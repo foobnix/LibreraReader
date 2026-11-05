@@ -73,6 +73,13 @@ public class PdfiumDocument extends AbstractCodecDocument {
     /** Set once an annotation has been drawn, so the pages render through MuPDF from then on. */
     private volatile boolean annotationsEdited;
 
+    /**
+     * Counts the annotations written or erased. MuPDF records a page's drawing once, when the
+     * page is opened, so a page opened before the last change would go on drawing the page as it
+     * was: {@link PdfiumPage} opens its MuPDF page again when this has moved on.
+     */
+    private volatile int annotationsVersion;
+
     private PdfiumDocument(final PdfiumContext context, final String fname, final PdfDocument document) {
         super(context, HANDLES.incrementAndGet());
         this.fname = fname;
@@ -445,6 +452,12 @@ public class PdfiumDocument extends AbstractCodecDocument {
     /** Called by {@link PdfiumPage} after it has written an annotation through MuPDF. */
     void onAnnotationAdded() {
         annotationsEdited = true;
+        annotationsVersion++;
+    }
+
+    /** See {@link #annotationsVersion}. */
+    int annotationsVersion() {
+        return annotationsVersion;
     }
 
     /**

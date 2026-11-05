@@ -79,6 +79,7 @@ import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.view.DragingDialogs;
+import com.foobnix.pdf.info.view.DrawView;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.HypenPanelHelper;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -98,6 +99,7 @@ import com.foobnix.pdf.search.activity.msg.MessageEvent;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.activity.msg.MessageEditMark;
+import com.foobnix.pdf.search.activity.msg.MessageEraseAnnotation;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -141,6 +143,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     TTSControlsView ttsActive;
     TTSControlsView ttsActivePage;
     FrameLayout anchor;
+    DrawView drawView;
+    ImageView editTop2;
     UnderlineImageView onCrop, onBC;
     ImageView moveCenter, lockModelImage, linkHistory, onModeChange, outline, onMove, textToSpeach, onPageFlip1,
             anchorX, anchorY, pagesBookmark;
@@ -922,7 +926,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                nullAdapter();
+                // A PDF drawn on is asked about over its page, not over an emptied reader
+                if (dc == null || !dc.hasPDFAnnotations()) {
+                    nullAdapter();
+                }
                 closeDialogs();
                 showInterstitial();
             }
@@ -931,7 +938,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         onClose.setOnLongClickListener(onCloseLongClick);
 
-        findViewById(R.id.editTop2).setVisibility(View.GONE);
+        drawView = findViewById(R.id.drawView);
+        editTop2 = findViewById(R.id.editTop2);
+        editTop2.setVisibility(View.GONE);
+        editTop2.setOnClickListener(v -> DragingDialogs.dialogEditColors(anchor, dc, drawView, false, () -> {
+        }));
         findViewById(R.id.nextTypeBootom).setVisibility(View.GONE);
 
         lockModelImage = (ImageView) findViewById(R.id.lockUnlock);
@@ -1261,6 +1272,36 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         }
     };
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEraseAnnotation(MessageEraseAnnotation erase) {
+        if (dc != null) {
+            dc.deleteAnnotation(erase.annotation.getPageHandler(), erase.annotation.getPage(), erase.annotation.getIndex());
+        }
+    }
+
+    /**
+     * The pen, as scroll mode has it, for a PDF that can take annotations - except where the
+     * page on screen is not the page as the book has it: split in half, turned, or a cropped
+     * spread, none of which a stroke can be mapped back from.
+     */
+    private void updateEditIcon() {
+        if (editTop2 == null || dc == null) {
+            return;
+        }
+        final boolean mappable = !AppSP.get().isCut && AppState.get().rotate == 0 && !(AppSP.get().isCrop && AppSP.get().isDouble);
+        editTop2.setVisibility(dc.isAnnotationsInsideDocument() && mappable ? View.VISIBLE : View.GONE);
+    }
+
+    /** A PDF drawn on is written, or not, before the book closes - as scroll mode asks. */
+    @Override
+    public void showInterstitial() {
+        if (dc != null && dc.hasPDFAnnotations()) {
+            dc.saveAnnotationsAndClose(dc::saveAnnotations, HorizontalViewActivity.super::showInterstitial);
+            return;
+        }
+        super.showInterstitial();
+    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEditMark(MessageEditMark edit) {
@@ -1850,6 +1891,20 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 showInterstitial();
             }
 
+            @Override
+            public PageImaveView getPageView() {
+                final ImagePageFragment page = (ImagePageFragment) getSupportFragmentManager().findFragmentByTag("f" + viewPager.getCurrentItem());
+                return page != null ? page.getImage() : null;
+            }
+
+            @Override
+            public void reloadPage() {
+                // Glide hands back the bitmap still on screen for the same key, memory cache
+                // cleared or not, so the page drawn on is asked for under a new one
+                PageImageState.get().pagesGeneration++;
+                reloadDocBrigntness.run();
+            }
+
         };
         // dc.init(this);
         dc.initAnchor(anchor);
@@ -1924,6 +1979,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void loadUI() {
         showPlaylistClose(true);
+        updateEditIcon();
         titleTxt.setText(dc.getTitle());
         pannelBookTitle.setText(dc.getTitle());
         // The cover of the book now open, drawn into the mark in front of its title.

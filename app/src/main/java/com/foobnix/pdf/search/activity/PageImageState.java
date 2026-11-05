@@ -51,7 +51,8 @@ public class PageImageState {
      * Changes whenever the text, links and marks held per page are thrown away. They are filled
      * only while a page is rendered, so a page image kept from before - Glide holds them in
      * memory across readers - would come back with no marks and no text: it is part of the key
-     * the images are cached under.
+     * the images are cached under. A stroke drawn into a PDF changes it too, for the page to be
+     * rendered again rather than handed back as it was.
      */
     public volatile int pagesGeneration;
 

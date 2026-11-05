@@ -63,6 +63,8 @@ public class PdfiumPage extends AbstractCodecPage {
 
     /** The same page opened by MuPDF, created only when an annotation is asked for or written. */
     private volatile CodecPage annotPage;
+    /** The {@link PdfiumDocument#annotationsVersion()} {@link #annotPage} was opened at. */
+    private volatile int annotPageVersion;
 
     private PdfiumPage(final PdfiumDocument document, final int pageNumber, final PdfPage page,
                        final int width, final int height) {
@@ -144,7 +146,13 @@ public class PdfiumPage extends AbstractCodecPage {
         if (edited != null) {
             // The annotations the user has just drawn live in the MuPDF document, which PDFium
             // cannot see: that document draws the page until the book is reopened.
-            return edited.renderBitmap(width, height, pageSliceBounds, cache);
+            try {
+                return edited.renderBitmap(width, height, pageSliceBounds, cache);
+            } catch (RuntimeException e) {
+                // Opened again by another thread after an annotation changed, see annotations()
+                LOG.e(e);
+                return annotatedPage().renderBitmap(width, height, pageSliceBounds, cache);
+            }
         }
         return render(width, height, pageSliceBounds, true);
     }
@@ -153,7 +161,12 @@ public class PdfiumPage extends AbstractCodecPage {
     public BitmapRef renderBitmapSimple(final int width, final int height, final RectF pageSliceBounds) {
         final CodecPage edited = annotatedPage();
         if (edited != null) {
-            return edited.renderBitmapSimple(width, height, pageSliceBounds);
+            try {
+                return edited.renderBitmapSimple(width, height, pageSliceBounds);
+            } catch (RuntimeException e) {
+                LOG.e(e);
+                return annotatedPage().renderBitmapSimple(width, height, pageSliceBounds);
+            }
         }
         return render(width, height, pageSliceBounds, false);
     }
@@ -391,11 +404,27 @@ public class PdfiumPage extends AbstractCodecPage {
      */
     private CodecPage annotations() {
         CodecPage local = annotPage;
-        if (local != null) {
+        final int version = document.annotationsVersion();
+        if (local != null && annotPageVersion == version) {
             return local;
         }
         synchronized (this) {
+            if (annotPage != null && annotPageVersion != version) {
+                // Opened before the last annotation was written or erased, so it draws the page
+                // without it: the page is opened again. Rendering takes the same lock.
+                TempHolder.lock.lock();
+                try {
+                    final CodecPage stale = annotPage;
+                    annotPage = null;
+                    if (!stale.isRecycled()) {
+                        stale.recycle();
+                    }
+                } finally {
+                    TempHolder.lock.unlock();
+                }
+            }
             if (annotPage == null) {
+                annotPageVersion = version;
                 final CodecDocument doc = document.annotations();
                 if (doc == null) {
                     return null;
@@ -453,8 +482,9 @@ public class PdfiumPage extends AbstractCodecPage {
     @Override
     public long getPageHandle() {
         // The handle identifies the page an annotation belongs to, and the annotations are
-        // MuPDF's, so it is MuPDF's handle that has to be reported.
-        final CodecPage annot = annotPage;
+        // MuPDF's, so it is MuPDF's handle that has to be reported - opening that page if it is
+        // not yet: paged mode opens a page just to erase on it, and 0 erases nothing.
+        final CodecPage annot = annotations();
         return annot == null ? 0 : annot.getPageHandle();
     }
 

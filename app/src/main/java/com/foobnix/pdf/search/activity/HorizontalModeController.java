@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Matrix;
 import android.graphics.PointF;
+import android.util.Pair;
 
 import com.foobnix.ext.PageEstimate;
 import com.foobnix.android.utils.Apps;
@@ -36,6 +37,7 @@ import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MovePageAction;
+import com.foobnix.sys.Colors;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
@@ -47,6 +49,7 @@ import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.core.PageSearcher;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
+import org.ebookdroid.core.codec.CodecPageInfo;
 import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.MuPdfLinks;
@@ -77,8 +80,27 @@ public abstract class HorizontalModeController extends DocumentController {
         return codeDocument;
     }
 
+    /** Whether pen strokes or erasing have changed the PDF since it was opened or saved. */
     @Override public boolean hasPDFAnnotations() {
-        return false;
+        final CodecDocument doc = codeDocument;
+        return doc != null && !doc.isRecycled() && isAnnotationsInsideDocument() && doc.hasChanges();
+    }
+
+    /** Writes the PDF's changed annotations into the file at a path, off the main thread. */
+    @Override public void saveAnnotations(final String path, final Runnable done) {
+        new Thread("@T saveAnnotations") {
+            @Override public void run() {
+                try {
+                    final CodecDocument doc = codeDocument;
+                    if (doc != null && !doc.isRecycled() && doc.hasChanges()) {
+                        doc.saveAnnotations(path);
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+                handler.post(done);
+            }
+        }.start();
     }
 
     public HorizontalModeController(Activity activity, int w, int h) {
@@ -305,6 +327,12 @@ public abstract class HorizontalModeController extends DocumentController {
 
     public abstract void showInterstialAndClose();
 
+    /** The page on screen, to map a pen stroke drawn over it onto the book. */
+    public abstract PageImaveView getPageView();
+
+    /** Renders the page on screen again, after an annotation was drawn on it or erased. */
+    public abstract void reloadPage();
+
     @Override public void onGoToPage(int page) {
         if (page <= getPageCount()) {
             onGoToPageImpl(page - 1);
@@ -529,14 +557,96 @@ public abstract class HorizontalModeController extends DocumentController {
                 .post(new InvalidateMessage());
     }
 
-    @Override public void saveChanges(List<PointF> points, int color) {
-        throw new RuntimeException("Not Implemented");
+    /**
+     * A pen stroke drawn over the page, written into the PDF as an ink annotation the way scroll
+     * mode writes one. Paged mode has no decode service, so the stroke goes straight into the
+     * document the pages are rendered from, and the page is rendered again to show it.
+     */
+    @Override public void saveChanges(final List<PointF> points, final int color) {
+        final PageImaveView view = getPageView();
+        final CodecDocument doc = codeDocument;
+        if (view == null || doc == null || points.isEmpty() || !isAnnotationsInsideDocument()) {
+            return;
+        }
+        // Points 0..1 of the page under each one; a stroke over both pages of a spread is a
+        // stroke on each
+        final Map<Integer, List<PointF>> byPage = new LinkedHashMap<Integer, List<PointF>>();
+        for (PointF p : points) {
+            final Pair<Integer, PointF> onPage = view.toPage(p.x, p.y);
+            if (onPage == null) {
+                continue;
+            }
+            List<PointF> list = byPage.get(onPage.first);
+            if (list == null) {
+                list = new ArrayList<PointF>();
+                byPage.put(onPage.first, list);
+            }
+            list.add(onPage.second);
+        }
+        if (byPage.isEmpty()) {
+            return;
+        }
+        final float width = AppState.get().editLineWidth * 3;
+        final float alpha = AppState.get().editAlphaColor;
+        final float[] mupdfColor = Colors.toMupdfColor(color);
 
+        new Thread("@T saveChanges") {
+            @Override public void run() {
+                try {
+                    for (Map.Entry<Integer, List<PointF>> entry : byPage.entrySet()) {
+                        final CodecPageInfo info = doc.getPageInfo(entry.getKey());
+                        if (info == null || doc.isRecycled()) {
+                            continue;
+                        }
+                        final List<PointF> list = entry.getValue();
+                        final PointF[][] path = new PointF[1][list.size()];
+                        for (int i = 0; i < list.size(); i++) {
+                            path[0][i] = new PointF(list.get(i).x * info.width, list.get(i).y * info.height);
+                        }
+                        final CodecPage page = doc.getPage(entry.getKey());
+                        try {
+                            page.addAnnotation(mupdfColor, path, width, alpha);
+                        } finally {
+                            page.recycle();
+                        }
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+                handler.post(HorizontalModeController.this::reloadPage);
+            }
+        }.start();
     }
 
-    @Override public void deleteAnnotation(long pageHander, int page, int index) {
-        throw new RuntimeException("Not Implemented");
-
+    /**
+     * Erases an annotation of the PDF. The handle the annotation came with belongs to a page
+     * long since recycled - pages are opened only to be rendered - so the page is opened again.
+     *
+     * @param page the page as the annotation counts it, from 1
+     */
+    @Override public void deleteAnnotation(long pageHander, final int page, final int index) {
+        final CodecDocument doc = codeDocument;
+        if (doc == null) {
+            return;
+        }
+        new Thread("@T deleteAnnotation") {
+            @Override public void run() {
+                try {
+                    if (doc.isRecycled()) {
+                        return;
+                    }
+                    final CodecPage codecPage = doc.getPage(page - 1);
+                    try {
+                        doc.deleteAnnotation(codecPage.getPageHandle(), index);
+                    } finally {
+                        codecPage.recycle();
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+                handler.post(HorizontalModeController.this::reloadPage);
+            }
+        }.start();
     }
 
     /**

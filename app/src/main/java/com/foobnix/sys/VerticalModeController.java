@@ -3,7 +3,6 @@ package com.foobnix.sys;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Handler;
@@ -14,7 +13,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -32,8 +30,6 @@ import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.pdf.info.AnnotationsPainter;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
-import com.foobnix.pdf.info.view.MyProgressDialog;
-import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 
@@ -50,14 +46,7 @@ import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.ebookdroid.ui.viewer.ViewerActivityController;
 import org.greenrobot.eventbus.EventBus;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -744,20 +733,6 @@ public class VerticalModeController extends DocumentController {
         }, 2000);
     }
 
-    public void copy(File src, File dst) throws IOException {
-        InputStream in = new FileInputStream(src);
-        OutputStream out = new FileOutputStream(dst);
-
-        // Transfer bytes from in to out
-        byte[] buf = new byte[1024];
-        int len;
-        while ((len = in.read(buf)) > 0) {
-            out.write(buf, 0, len);
-        }
-        in.close();
-        out.close();
-    }
-
     @Override
     public void saveAnnotationsToFile() {
 //        if (AppState.get().isSaveAnnotatationsAutomatically) {
@@ -773,6 +748,11 @@ public class VerticalModeController extends DocumentController {
     }
 
     @Override
+    public void saveAnnotations(final String path, final Runnable done) {
+        ctr.getDecodeService().saveAnnotations(path, done);
+    }
+
+    @Override
     public void onCloseActivityFinal(Runnable run) {
         stopTimer();
         ctr.closeActivityFinal(run);
@@ -785,92 +765,8 @@ public class VerticalModeController extends DocumentController {
         if (ctr == null || ctr.getDecodeService() == null) {
             return;
         }
-        final StringBuilder path = new StringBuilder(getCurrentBook().getAbsolutePath());
-
-
         if (ctr.getDecodeService().hasAnnotationChanges()) {
-            if (AppState.get().isSaveAnnotatationsAutomatically) {
-                final MyProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
-                progress.setCancelable(false);
-                progress.show();
-                ctr.getDecodeService().saveAnnotations(path.toString(), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        LOG.d("saveAnnotations return 1");
-                        progress.dismiss();
-                        LOG.d("saveAnnotations return 2");
-                        ctr.closeActivity(null);
-                    }
-                });
-            } else {
-
-                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.save_changes);
-
-                builder.setMessage(getCurrentBook().getAbsolutePath());
-                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        if (!path.toString().equals(getCurrentBook().getAbsolutePath())) {
-                            LOG.d("Save TO new file", path.toString());
-                            File newBook = new File(path.toString());
-                            newBook.delete();
-                            try {
-                                copy(getCurrentBook(), newBook);
-
-                            } catch (IOException e) {
-                                Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-
-                        }
-                        final MyProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
-                        progress.setCancelable(false);
-                        progress.show();
-                        ctr.getDecodeService().saveAnnotations(path.toString(), new Runnable() {
-
-                            @Override
-                            public void run() {
-                                LOG.d("saveAnnotations return 1");
-                                progress.dismiss();
-                                LOG.d("saveAnnotations return 2");
-                                ctr.closeActivity(null);
-                            }
-                        });
-                    }
-
-                    ;
-                });
-                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                        ctr.closeActivity(null);
-                    }
-                });
-                builder.setNeutralButton(R.string.rename, new OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        PrefDialogs.selectFileDialog(activity, Arrays.asList(".pdf"), getCurrentBook(), new ResultResponse<String>() {
-
-                            @Override
-                            public boolean onResultRecive(String result) {
-
-                                path.setLength(0);
-                                path.append(result);
-
-                                builder.setMessage(result);
-                                builder.show();
-                                return false;
-                            }
-                        });
-
-                    }
-                });
-                builder.show();
-            }
-
+            saveAnnotationsAndClose(this::saveAnnotations, () -> ctr.closeActivity(null));
         } else {
             ctr.closeActivity(null);
         }

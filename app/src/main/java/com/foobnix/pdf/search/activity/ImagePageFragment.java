@@ -170,6 +170,10 @@ public class ImagePageFragment extends Fragment {
         LoaderManager.getInstance(getActivity()).initLoader(getPath().hashCode(), null, callback).forceLoad();
     }
 
+    public PageImaveView getImage() {
+        return image;
+    }
+
     public void loadImageGlide() {
         if (image != null && image.getWidth() == 0) {
             return;

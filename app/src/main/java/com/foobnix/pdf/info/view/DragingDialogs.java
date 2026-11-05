@@ -112,6 +112,7 @@ import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Engines;
 import com.foobnix.pdf.info.EpubEngineMenu;
+import com.foobnix.pdf.info.PdfEngineMenu;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.model.AppAnnotation;
 import com.foobnix.pdf.info.AnnotationsData;
@@ -5803,6 +5804,19 @@ public class DragingDialogs {
                 epubEngine.setText(EpubEngineMenu.name(epubEngine.getContext(), AppState.get().epubEngine));
                 TxtUtils.underlineTextView(epubEngine);
                 epubEngine.setOnClickListener(v -> EpubEngineMenu.show(v, controller::restartActivity));
+
+                // The same for a PDF. Strokes drawn but not saved are asked about first, as on
+                // closing the book, since reopening it in the other engine would drop them.
+                inflate.findViewById(R.id.pdfEngineRow).setVisibility(TxtUtils.visibleIf(Engines.IS_ENGINE_CHOICE
+                        && BookType.PDF.is(controller.getCurrentBook().getPath())));
+                if (AppState.get().pdfEngine == AppState.PDF_ENGINE_PDFIUM) {
+                    final ImageView pdfEngineIcon = inflate.findViewById(R.id.pdfEngineIcon);
+                    pdfEngineIcon.setImageResource(R.drawable.glyphicons_670_dashboard_fast);
+                }
+                final TextView pdfEngine = inflate.findViewById(R.id.pdfEngine);
+                pdfEngine.setText(PdfEngineMenu.name(pdfEngine.getContext(), AppState.get().pdfEngine));
+                TxtUtils.underlineTextView(pdfEngine);
+                pdfEngine.setOnClickListener(v -> PdfEngineMenu.show(v, controller::restartWithAnnotationsSaved));
 
                 BrightnessHelper.showBlueLigthDialogAndBrightness(controller.getActivity(), inflate, onRefresh);
 // brightness end

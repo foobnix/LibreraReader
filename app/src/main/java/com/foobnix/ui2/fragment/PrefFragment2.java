@@ -94,6 +94,7 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.Engines;
 import com.foobnix.pdf.info.EpubEngineMenu;
+import com.foobnix.pdf.info.PdfEngineMenu;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
@@ -134,7 +135,6 @@ import com.google.android.ump.FormError;
 import com.google.android.ump.UserMessagingPlatform;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
-import org.ebookdroid.droids.pdfium.codec.PdfiumContext;
 import org.greenrobot.eventbus.Subscribe;
 import org.ebookdroid.droids.foliate.codec.FoliateContext;
 import org.greenrobot.eventbus.ThreadMode;
@@ -1025,30 +1025,13 @@ public class PrefFragment2 extends UIFragment {
         Views.visible(inflate.findViewById(R.id.epubEngineRow),
                 Engines.IS_ENGINE_CHOICE && FoliateContext.isWebViewSupported());
 
-        // Which engine renders a PDF. The choice is read when a document is opened, so the books
-        // and the covers already on screen keep the engine they were opened with: a cover's url
-        // names its engine, see IMG.toUrl, so the library redraws them with the new one.
+        // Which engine renders a PDF
         final TextView pdfEngine = inflate.findViewById(R.id.pdfEngine);
-        asButton(pdfEngine, pdfEngineName(AppState.get().pdfEngine));
-        pdfEngine.setOnClickListener(v -> {
-            final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-            for (final int engine : PDF_ENGINES) {
-                popupMenu.getMenu().add(pdfEngineName(engine)).setOnMenuItemClickListener(item -> {
-                    if (engine == AppState.PDF_ENGINE_PDFIUM && !PdfiumContext.isAvailable()) {
-                        Toast.makeText(v.getContext(), R.string.msg_pdf_engine_unavailable, Toast.LENGTH_LONG).show();
-                        return false;
-                    }
-                    if (AppState.get().pdfEngine != engine) {
-                        AppState.get().pdfEngine = engine;
-                        ImageExtractor.clearCodeDocument();
-                        TempHolder.listHash++;
-                    }
-                    asButton(pdfEngine, pdfEngineName(engine));
-                    return false;
-                });
-            }
-            popupMenu.show();
-        });
+        asButton(pdfEngine, PdfEngineMenu.name(getContext(), AppState.get().pdfEngine));
+        pdfEngine.setOnClickListener(v -> PdfEngineMenu.show(v, () -> {
+            ImageExtractor.clearCodeDocument();
+            asButton(pdfEngine, PdfEngineMenu.name(getContext(), AppState.get().pdfEngine));
+        }));
 
         // Which engine lays out a reflowable book
         final TextView epubEngine = inflate.findViewById(R.id.epubEngine);
@@ -3005,14 +2988,6 @@ public class PrefFragment2 extends UIFragment {
         getActivity().finish();
         MainTabs2.startActivity(getActivity(), TempHolder.get().currentTab);
 
-    }
-
-    /** The engines {@link AppState#pdfEngine} can be set to, in the order they are offered. */
-    private static final int[] PDF_ENGINES = {AppState.PDF_ENGINE_MUPDF, AppState.PDF_ENGINE_PDFIUM};
-
-    /** The engine's name as the preference shows it. */
-    private String pdfEngineName(final int engine) {
-        return engine == AppState.PDF_ENGINE_PDFIUM ? "PDFium" : "MuPDF";
     }
 
     /**

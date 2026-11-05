@@ -26,6 +26,12 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="false" />
 
+        <com.foobnix.pdf.info.view.DrawView
+            android:id="@+id/drawView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
         <LinearLayout
             android:id="@+id/musicButtonPanel"
             android:layout_width="match_parent"

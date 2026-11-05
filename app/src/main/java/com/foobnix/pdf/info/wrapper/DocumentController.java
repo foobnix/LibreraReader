@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.PointF;
@@ -74,6 +75,8 @@ import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.view.MyProgressDialog;
+import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
@@ -92,6 +95,11 @@ import java.util.concurrent.ScheduledFuture;
 import org.ebookdroid.core.codec.PageLink;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -875,6 +883,125 @@ public abstract class DocumentController {
             LOG.e(e);
             return false;
         }
+    }
+
+    /** Writes the annotations changed in the open document into the file at a path. */
+    public interface AnnotationsSaver {
+        void save(String path, Runnable done);
+    }
+
+    /**
+     * Writes the annotations drawn into a PDF before the book closes: straight away when they
+     * are saved automatically, otherwise after asking - into the book itself or, renamed, into a
+     * copy of it. Scroll and paged mode both close through here once they have changes.
+     */
+    /** Writes the annotations changed in the open PDF into the file at a path, then runs done. */
+    public void saveAnnotations(final String path, final Runnable done) {
+        done.run();
+    }
+
+    /**
+     * Opens the book again, as {@link #restartActivity()}, writing - or asking about - the
+     * strokes drawn on a PDF first: the reader opened anew would not have them.
+     */
+    public void restartWithAnnotationsSaved() {
+        if (hasPDFAnnotations()) {
+            saveAnnotationsAndClose(this::saveAnnotations, this::restartActivity);
+        } else {
+            restartActivity();
+        }
+    }
+
+    public void saveAnnotationsAndClose(final AnnotationsSaver saver, final Runnable close) {
+        final StringBuilder path = new StringBuilder(getCurrentBook().getAbsolutePath());
+        final Runnable save = new Runnable() {
+            @Override
+            public void run() {
+                final MyProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
+                progress.setCancelable(false);
+                progress.show();
+                saver.save(path.toString(), new Runnable() {
+
+                    @Override
+                    public void run() {
+                        LOG.d("saveAnnotations return 1");
+                        progress.dismiss();
+                        LOG.d("saveAnnotations return 2");
+                        close.run();
+                    }
+                });
+            }
+        };
+
+        if (AppState.get().isSaveAnnotatationsAutomatically) {
+            save.run();
+            return;
+        }
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.save_changes);
+
+        builder.setMessage(getCurrentBook().getAbsolutePath());
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                if (!path.toString().equals(getCurrentBook().getAbsolutePath())) {
+                    LOG.d("Save TO new file", path.toString());
+                    File newBook = new File(path.toString());
+                    newBook.delete();
+                    try {
+                        copy(getCurrentBook(), newBook);
+
+                    } catch (IOException e) {
+                        Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                save.run();
+            }
+        });
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+                close.run();
+            }
+        });
+        builder.setNeutralButton(R.string.rename, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                PrefDialogs.selectFileDialog(activity, Arrays.asList(".pdf"), getCurrentBook(), new ResultResponse<String>() {
+
+                    @Override
+                    public boolean onResultRecive(String result) {
+
+                        path.setLength(0);
+                        path.append(result);
+
+                        builder.setMessage(result);
+                        builder.show();
+                        return false;
+                    }
+                });
+
+            }
+        });
+        builder.show();
+    }
+
+    public void copy(File src, File dst) throws IOException {
+        InputStream in = new FileInputStream(src);
+        OutputStream out = new FileOutputStream(dst);
+
+        // Transfer bytes from in to out
+        byte[] buf = new byte[1024];
+        int len;
+        while ((len = in.read(buf)) > 0) {
+            out.write(buf, 0, len);
+        }
+        in.close();
+        out.close();
     }
 
     /**

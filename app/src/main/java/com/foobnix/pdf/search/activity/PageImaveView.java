@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
@@ -41,6 +42,7 @@ import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
 import com.foobnix.pdf.search.activity.msg.MessageEditMark;
+import com.foobnix.pdf.search.activity.msg.MessageEraseAnnotation;
 import com.foobnix.pdf.search.activity.msg.MessageEvent;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MovePageAction;
@@ -648,6 +650,24 @@ public class PageImaveView extends View {
         return false;
     }
 
+    /**
+     * An annotation of the PDF under a tap with the eraser, as scroll mode erases one: the reader
+     * erases it.
+     *
+     * @return whether one was there, in which case the tap was for it and nothing else
+     */
+    private boolean onEraseTap(float x, float y) {
+        if (AppState.get().editWith != AppState.EDIT_DELETE) {
+            return false;
+        }
+        final Pair<PageLink, Annotation> pair = getPageLinkClicked(x, y);
+        if (pair == null || pair.second == null) {
+            return false;
+        }
+        EventBus.getDefault().post(new MessageEraseAnnotation(pair.second));
+        return true;
+    }
+
     /** Which page of the book one of the pages on screen is, keyed as the links and text are. */
     private int docPageOf(int number) {
         if (!AppSP.get().isDouble || number == 0) {
@@ -658,6 +678,54 @@ public class PageImaveView extends View {
             first--;
         }
         return number == 1 ? first : first + 1;
+    }
+
+    /**
+     * The page of the book under a point on screen, and where on it the point is - 0..1 of the
+     * whole page, crop or not, as {@link #transform} takes it - for drawing on the page.
+     *
+     * @return null off the page, or where the bitmap on screen cannot be mapped back
+     */
+    public Pair<Integer, PointF> toPage(float x1, float y1) {
+        RectF tr = new RectF();
+        imageMatrix().mapRect(tr);
+        float[] f = new float[9];
+        imageMatrix().getValues(f);
+        final float scaleX = f[Matrix.MSCALE_X];
+        if (scaleX == 0 || drawableWidth == 0 || drawableHeight == 0) {
+            return null;
+        }
+        final float x = (x1 - tr.left) / scaleX;
+        final float y = (y1 - tr.top) / scaleX;
+
+        int number = 0;
+        if (AppSP.get().isDouble) {
+            number = x < drawableWidth / 2 ? 1 : 2;
+        }
+        if (!isCropMappable(number)) {
+            return null;
+        }
+        float nx;
+        if (number == 0) {
+            nx = x / drawableWidth;
+        } else if (number == 1) {
+            nx = x / (drawableWidth / 2f);
+        } else {
+            nx = (x - drawableWidth / 2f) / (drawableWidth / 2f);
+        }
+        float ny = y / drawableHeight;
+        if (number == 0) {
+            final RectF crop = PageImageState.get().getPageCrop(pageNumber);
+            if (crop != null && crop.width() > 0 && crop.height() > 0) {
+                nx = crop.left + nx * crop.width();
+                ny = crop.top + ny * crop.height();
+            }
+        }
+        final int page = docPageOf(number);
+        if (page < 0 || nx < 0 || nx > 1 || ny < 0 || ny > 1) {
+            return null;
+        }
+        return new Pair<>(page, new PointF(nx, ny));
     }
 
     public Pair<PageLink, Annotation> getPageLinkClicked(float x1, float y1) {
@@ -1176,6 +1244,9 @@ public class PageImaveView extends View {
 
                 if (!isIgronerClick && onMarkTap(event.getX(), event.getY())) {
                     // The tap was on a mark, and that is all it meant
+                    isIgronerClick = false;
+                } else if (!isIgronerClick && onEraseTap(event.getX(), event.getY())) {
+                    // The eraser took an annotation of the PDF, and that is all the tap meant
                     isIgronerClick = false;
                 } else if (!isIgronerClick) {
                     int target = 0;
