@@ -82,6 +82,8 @@ import androidx.media.MediaBrowserServiceCompat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @TargetApi(Build.VERSION_CODES.O) public class TTSService extends MediaBrowserServiceCompat {
     public static final String EXTRA_PATH = "EXTRA_PATH";
@@ -185,7 +187,10 @@ import java.util.List;
     String path;
     String layout;
     // Only the page asked for last is spoken, when a page's text comes back from another thread
-    int playRequest;
+    volatile int playRequest;
+    // Opening a book lays all of it out, which on a big one takes long enough for Android to call
+    // the app not responding. Not the shared single executor: the reader renders its pages there.
+    final ExecutorService bookExecutor = Executors.newSingleThreadExecutor();
     final Handler mainHandler = new Handler(Looper.getMainLooper());
     int emptyPageCount = 0;
     final OnAudioFocusChangeListener listener = new OnAudioFocusChangeListener() {
@@ -254,8 +259,8 @@ import java.util.List;
     }
 
     public static void playLastBook() {
-        playBookPage(AppSP.get().lastBookPage, AppSP.get().lastBookPath, "", AppSP.get().lastBookWidth,
-                AppSP.get().lastBookHeight, AppSP.get().lastFontSize, AppSP.get().lastBookTitle);
+        playBookPage(AppSP.get().lastBookPage, AppSP.get().lastBookPageCount, AppSP.get().lastBookPath, "",
+                AppSP.get().lastBookWidth, AppSP.get().lastBookHeight, AppSP.get().lastFontSize, AppSP.get().lastBookTitle);
     }
 
     public static void updateTimer() {
@@ -329,8 +334,8 @@ import java.util.List;
             }
         } else {
             if (controller != null) {
-                TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook()
-                                                                                        .getPath(), "",
+                TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getPageCount(),
+                        controller.getCurrentBook().getPath(), "",
                         controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp,
                         controller.getTitle());
             }
@@ -338,15 +343,19 @@ import java.util.List;
     }
 
     @TargetApi(26)
-    public static void playBookPage(int page, String path, String anchor, int width, int height, int fontSize,
-                                    String title) {
-        playBookPage(page, path, anchor, 0, width, height, fontSize, title);
+    public static void playBookPage(int page, int pageCount, String path, String anchor, int width, int height,
+                                    int fontSize, String title) {
+        playBookPage(page, pageCount, path, anchor, 0, width, height, fontSize, title);
     }
 
-    /** @param occurrence which of the places on the page that have the anchor's words, from 0 */
+    /**
+     * @param pageCount  pages in the layout {@code page} is from; TTS remaps the page by it when its own
+     *                   layout differs, so it must come with the page, not from the saved copy
+     * @param occurrence which of the places on the page that have the anchor's words, from 0
+     */
     @TargetApi(26)
-    public static void playBookPage(int page, String path, String anchor, int occurrence, int width, int height,
-                                    int fontSize, String title) {
+    public static void playBookPage(int page, int pageCount, String path, String anchor, int occurrence, int width,
+                                    int height, int fontSize, String title) {
         LOG.d(TAG, "playBookPage1", page, path, width, height);
 
         TTSEngine.get()
@@ -357,6 +366,7 @@ import java.util.List;
         AppSP.get().lastFontSize = fontSize;
         AppSP.get().lastBookTitle = title;
         AppSP.get().lastBookPage = page;
+        AppSP.get().lastBookPageCount = pageCount;
         // A service not running yet reloads these from the saved copy as it starts
         AppSP.get().save();
 
@@ -474,8 +484,8 @@ import java.util.List;
                     } catch (Exception e) {
                         LOG.e(e);
                     }
+                    // The new path makes getDC() recycle the old book's copy and open this one
                     AppSP.get().lastBookPage = page;
-                    cache = null;
                 }
                 playPage("", AppSP.get().lastBookPage, null);
                 EventBus.getDefault()
@@ -878,6 +888,8 @@ import java.util.List;
     }
 
     private void stopMediaSesstionAndReleaweWakeLock() {
+        // A page still being prepared must not start speaking after this
+        playRequest++;
         ReadingHighlight.clear();
         TTSEngine.get()
                  .stop(mMediaSessionCompat);
@@ -1043,47 +1055,44 @@ import java.util.List;
         if (pageNumber != -1) {
             isActivated = true;
             AppSP.get().lastBookPage = pageNumber;
-            CodecDocument dc = getDC();
-            if (dc == null) {
-                LOG.d(TAG, "CodecDocument", "is NULL");
-                TTSNotification.hideNotification();
-                stopMediaSesstionAndReleaweWakeLock();
-                return;
-            }
-
             final int request = ++playRequest;
-            if (dc instanceof FoliateDocument) {
-                // This engine answers on the main thread and makes its callers wait, so it cannot
-                // be asked from there. The page is the reader's own: it stays unrecycled.
-                AppsConfig.executorServiceSingle.execute(() -> {
-                    final int pageCount = dc.getPageCount();
-                    final int number = pageInLayout(dc, pageNumber, pageCount);
-                    final CodecPage page = number < pageCount ? dc.getPage(number) : null;
-                    final String pageHTML = page == null ? null : page.getPageHTML();
-                    final TextWord[][] words = page == null ? null : page.getText();
+            // This copy of the book and every engine's pages are only touched here. FoliateDocument
+            // answers on the main thread and makes its callers wait, so it cannot be asked from
+            // there either; its page is the reader's own and stays unrecycled.
+            bookExecutor.execute(() -> {
+                final CodecDocument dc = getDC();
+                if (dc == null) {
+                    LOG.d(TAG, "CodecDocument", "is NULL");
                     mainHandler.post(() -> {
                         if (request == playRequest) {
-                            readingWords = words;
-                            speakPage(preText, number, placeText(pageNumber, number, anchor), pageCount, pageHTML);
+                            TTSNotification.hideNotification();
+                            stopMediaSesstionAndReleaweWakeLock();
                         }
                     });
+                    return;
+                }
+                final int pageCount = dc.getPageCount();
+                final int number = pageInLayout(dc, pageNumber, pageCount);
+                final CodecPage page = number < pageCount ? dc.getPage(number) : null;
+                String pageHTML = null;
+                TextWord[][] words = null;
+                if (page != null) {
+                    pageHTML = page.getPageHTML();
+                    // This copy is laid out at the reader's size, so its words fall where the reader's do
+                    words = page.getText();
+                    if (!(dc instanceof FoliateDocument)) {
+                        page.recycle();
+                    }
+                }
+                final String html = pageHTML;
+                final TextWord[][] pageWords = words;
+                mainHandler.post(() -> {
+                    if (request == playRequest) {
+                        readingWords = pageWords;
+                        speakPage(preText, number, placeText(pageNumber, number, anchor), pageCount, html);
+                    }
                 });
-                return;
-            }
-
-            final int pageCount = dc.getPageCount();
-            final int number = pageInLayout(dc, pageNumber, pageCount);
-            final CodecPage page = number < pageCount ? dc.getPage(number) : null;
-            String pageHTML = null;
-            TextWord[][] words = null;
-            if (page != null) {
-                pageHTML = page.getPageHTML();
-                // This copy is laid out at the reader's size, so its words fall where the reader's do
-                words = page.getText();
-                page.recycle();
-            }
-            readingWords = words;
-            speakPage(preText, number, placeText(pageNumber, number, anchor), pageCount, pageHTML);
+            });
         }
     }
 
@@ -1357,10 +1366,15 @@ import java.util.List;
         serviceRef = null;
         mMediaSessionCompat.release();
 
-        if (cache != null) {
-            cache.recycle();
-        }
-        path = null;
+        // After any page still being read out of it
+        bookExecutor.execute(() -> {
+            if (cache != null) {
+                cache.recycle();
+                cache = null;
+            }
+            path = null;
+        });
+        bookExecutor.shutdown();
         LOG.d(TAG, "onDestroy:TTS playBookPage1");
     }
 

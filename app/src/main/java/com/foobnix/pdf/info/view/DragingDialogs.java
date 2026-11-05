@@ -1253,6 +1253,7 @@ public class DragingDialogs {
 
                                                          TTSEngine.get().mp3Destroy();
                                                          TTSService.playBookPage(controller.getCurentPageFirst1() - 1,
+                                                                                 controller.getPageCount(),
                                                                                  controller.getCurrentBook().getPath(),
                                                                                  "",
                                                                                  controller.getBookWidth(),
@@ -2025,6 +2026,7 @@ public class DragingDialogs {
                             final String anchor = editText.getText().toString().trim();
                             final int[] place = controller.getSelectionPlace(anchor);
                             TTSService.playBookPage(place != null ? place[0] : controller.getCurentPageFirst1() - 1,
+                                                    controller.getPageCount(),
                                                     controller.getCurrentBook().getPath(),
                                                     anchor,
                                                     place != null ? place[1] : 0,
@@ -3272,6 +3274,7 @@ public class DragingDialogs {
                                                     BookCSS.get().mp3BookPath(aPath.getPath());
                                                     AppState.get().mp3seek = 0;
                                                     TTSService.playBookPage(controller.getCurentPageFirst1() - 1,
+                                                                            controller.getPageCount(),
                                                                             controller.getCurrentBook().getPath(),
                                                                             "",
                                                                             controller.getBookWidth(),
