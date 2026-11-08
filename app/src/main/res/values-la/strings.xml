@@ -536,6 +536,7 @@
    <string name="zoom_in_out_with_lock_enable">Zoom in / clausum cum enable</string>
    <string name="show_footnotes_directly_in_text">Ostende directe in textu notis</string>
    <string name="read_by_sentences">Paulisper mora post symbolum</string>
+   <string name="tts_highlight_reading">Textum qui legitur illustra</string>
    <string name="do_not_read_characters">Non legitur characteribus</string>
    <string name="show_in_scroll_mode">In volumen ostendit modus</string>
    <string name="display_bookmark_text_instead_of_number">Top ostentationem textu pro numero</string>

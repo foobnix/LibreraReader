@@ -536,6 +536,7 @@
    <string name="zoom_in_out_with_lock_enable">Zoom ndani / nje na uwezeshe kufuli</string>
    <string name="show_footnotes_directly_in_text">Onyesha maelezo ya chini kwa maandishi</string>
    <string name="read_by_sentences">Pause fupi baada ya ishara</string>
+   <string name="tts_highlight_reading">Angazia maandishi yanayosomwa</string>
    <string name="do_not_read_characters">Usisome wahusika</string>
    <string name="show_in_scroll_mode">Onyesha katika hali ya kitabu</string>
    <string name="display_bookmark_text_instead_of_number">Onyesha maandishi ya alama badala ya namba</string>

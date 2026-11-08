@@ -536,6 +536,7 @@
    <string name="zoom_in_out_with_lock_enable">लॉक सक्षम के साथ ज़ूम इन / आउट करें</string>
    <string name="show_footnotes_directly_in_text">पाठ में सीधे फुटनोट दिखाएं</string>
    <string name="read_by_sentences">प्रतीक के बाद एक छोटा विराम</string>
+   <string name="tts_highlight_reading">पढ़े जा रहे पाठ को हाइलाइट करें</string>
    <string name="do_not_read_characters">वर्णों को न पढ़ें</string>
    <string name="show_in_scroll_mode">स्क्रॉल मोड में दिखाएं</string>
    <string name="display_bookmark_text_instead_of_number">संख्या के बजाय बुकमार्क पाठ प्रदर्शित करें</string>

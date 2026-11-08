@@ -10,6 +10,13 @@
         android:clickable="true"
         android:orientation="vertical">
 
+        <!-- The reading controls move up here, a line of their own, while an MP3 is loaded:
+             its name and seek line are too wide for the slot in the row below. -->
+        <FrameLayout
+            android:id="@+id/ttsControlsSlotTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <!-- The row is held off the head of the panel by as much as the strip below it holds
              the covers off, so the button has the same air above it as beneath. The name and
              the close button are given the same weight either side of the slot the reading

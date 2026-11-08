@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 
@@ -106,10 +107,12 @@ public final class ReadingHighlight {
 
     /** What to mark on a page, 0-based. */
     public static List<RectF> on(final int pageNumber) {
-        return pageNumber == page ? shown : Collections.<RectF>emptyList();
+        return pageNumber == page && AppState.get().isTTSHighlightReading ? shown
+                : Collections.<RectF>emptyList();
     }
 
-    private static void redraw() {
+    /** Shows or hides the sentence being read at once, when the setting is changed. */
+    public static void redraw() {
         handler.post(() -> EventBus.getDefault().post(new InvalidateMessage()));
     }
 }

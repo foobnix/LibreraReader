@@ -538,6 +538,7 @@
    <string name="zoom_in_out_with_lock_enable">Achegar/Afastar páxinas bloqueadas</string>
    <string name="show_footnotes_directly_in_text">Notas no texto (en vez de ao pé/finais)</string>
    <string name="read_by_sentences">Pequena pausa tras o símbolo</string>
+   <string name="tts_highlight_reading">Resaltar o texto que se está a ler</string>
    <string name="do_not_read_characters">Omitir símbolos:</string>
    <string name="show_in_scroll_mode">Modo desprazamento</string>
    <string name="display_bookmark_text_instead_of_number">Amosar texto (no canto do número de páxina)</string>

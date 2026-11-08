@@ -5,11 +5,11 @@ import android.app.PendingIntent;
 import android.app.PendingIntent.CanceledException;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -57,6 +57,7 @@ public class TTSControlsView extends FrameLayout {
         @Override
         public void run() {
             try {
+                standInPanel();
                 if (TTSEngine.get().isMp3()) {
                     initMp3();
                     if (TTSEngine.get().mp != null) {
@@ -385,7 +386,6 @@ public class TTSControlsView extends FrameLayout {
         if (TTSEngine.get().isMp3() && layoutMp3.getVisibility() == View.GONE) {
             layoutMp3.setVisibility(View.VISIBLE);
             trackName.setVisibility(View.VISIBLE);
-            view.setBackgroundColor(Color.parseColor("#ddffffff"));
 
             udateButtons();
 
@@ -432,6 +432,40 @@ public class TTSControlsView extends FrameLayout {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         EventBus.getDefault().register(this);
+        // Not while the window is still adding this view
+        post(this::standInPanel);
+    }
+
+    /**
+     * In the recent panel the controls stand in the middle of the row that names it, but an MP3
+     * brings its name and seek line, too wide for that: while one is loaded they stand on a line
+     * of their own above the row, and go back into it after.
+     */
+    private void standInPanel() {
+        if (!(getParent() instanceof ViewGroup)) {
+            return;
+        }
+        final ViewGroup parent = (ViewGroup) getParent();
+        final boolean mp3 = TTSEngine.get().isMp3();
+        final int target;
+        if (mp3 && parent.getId() == R.id.ttsControlsSlot) {
+            target = R.id.ttsControlsSlotTop;
+        } else if (!mp3 && parent.getId() == R.id.ttsControlsSlotTop) {
+            target = R.id.ttsControlsSlot;
+        } else {
+            return;
+        }
+        final View slot = getRootView().findViewById(target);
+        if (!(slot instanceof ViewGroup)) {
+            return;
+        }
+        parent.removeView(this);
+        final FrameLayout.LayoutParams lp =
+                new FrameLayout.LayoutParams(mp3 ? FrameLayout.LayoutParams.MATCH_PARENT :
+                                             FrameLayout.LayoutParams.WRAP_CONTENT,
+                                             FrameLayout.LayoutParams.WRAP_CONTENT);
+        lp.gravity = Gravity.CENTER;
+        ((ViewGroup) slot).addView(this, lp);
     }
 
     @Override

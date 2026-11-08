@@ -536,6 +536,7 @@
    <string name="zoom_in_out_with_lock_enable">تكبير / تصغير مع تمكين القفل</string>
    <string name="show_footnotes_directly_in_text">عرض الحواشي السفلية مباشرة في النص</string>
    <string name="read_by_sentences">وقفة قصيرة بعد الرمز</string>
+   <string name="tts_highlight_reading">تمييز النص الذي تتم قراءته</string>
    <string name="do_not_read_characters">لا تقرأ الأحرف</string>
    <string name="show_in_scroll_mode">تظهر في وضع التمرير</string>
    <string name="display_bookmark_text_instead_of_number">عرض نص الإشارة المرجعية بدلاً من الرقم</string>

@@ -536,6 +536,7 @@
    <string name="zoom_in_out_with_lock_enable">Přiblížit / oddálit \"zamčené\" stránky</string>
    <string name="show_footnotes_directly_in_text">Poznámky v textu (místo poznámek pod čarou / vysvětlivek)</string>
    <string name="read_by_sentences">Krátká pauza po symbolu</string>
+   <string name="tts_highlight_reading">Zvýraznit čtený text</string>
    <string name="do_not_read_characters">Přeskočit symboly:</string>
    <string name="show_in_scroll_mode">Režim skrolování</string>
    <string name="display_bookmark_text_instead_of_number">Zobrazit text (místo čísla stránky)</string>

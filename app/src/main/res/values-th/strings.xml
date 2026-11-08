@@ -536,6 +536,7 @@
    <string name="zoom_in_out_with_lock_enable">ซูมเข้า / ออกพร้อมเปิดใช้งานล็อค</string>
    <string name="show_footnotes_directly_in_text">แสดงเชิงอรรถโดยตรงในข้อความ</string>
    <string name="read_by_sentences">หยุดชั่วคราวหลังจากสัญลักษณ์</string>
+   <string name="tts_highlight_reading">ไฮไลต์ข้อความที่กำลังอ่าน</string>
    <string name="do_not_read_characters">อย่าอ่านตัวละคร</string>
    <string name="show_in_scroll_mode">แสดงในโหมดเลื่อน</string>
    <string name="display_bookmark_text_instead_of_number">แสดงข้อความบุ๊กมาร์กแทนตัวเลข</string>

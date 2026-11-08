@@ -536,6 +536,7 @@
    <string name="zoom_in_out_with_lock_enable">זום פנימה / החוצה עם לאפשר לנעול</string>
    <string name="show_footnotes_directly_in_text">הצג הערות שוליים ישירות בטקסט</string>
    <string name="read_by_sentences">הפסקה קצרה אחרי הסמל</string>
+   <string name="tts_highlight_reading">הדגשת הטקסט הנקרא</string>
    <string name="do_not_read_characters">לא לקרוא תווים</string>
    <string name="show_in_scroll_mode">הצג במצב גלילה</string>
    <string name="display_bookmark_text_instead_of_number">הצג טקסט סימניה במקום מספר</string>

@@ -536,6 +536,7 @@
    <string name="zoom_in_out_with_lock_enable">Lähennys / loitonnus lukituilla sivuilla</string>
    <string name="show_footnotes_directly_in_text">Näyttää viitteet suoraan tekstissä</string>
    <string name="read_by_sentences">Lyhyt tauko symbolin jälkeen</string>
+   <string name="tts_highlight_reading">Korosta luettava teksti</string>
    <string name="do_not_read_characters">Ohita merkit:</string>
    <string name="show_in_scroll_mode">Vieritystila</string>
    <string name="display_bookmark_text_instead_of_number">Näytä teksti sivunumeron sijaan</string>

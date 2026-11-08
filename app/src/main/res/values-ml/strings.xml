@@ -536,6 +536,7 @@
    <string name="zoom_in_out_with_lock_enable">\"ലോക്കുചെയ്‌ത\" പേജുകൾ സൂം ഇൻ / out ട്ട് ചെയ്യുക</string>
    <string name="show_footnotes_directly_in_text">വാചക കുറിപ്പുകൾ (കാൽ / അവസാന കുറിപ്പുകൾക്ക് പകരം)</string>
    <string name="read_by_sentences">ചിഹ്നത്തിന് ശേഷം ഒരു ചെറിയ ഇടവേള</string>
+   <string name="tts_highlight_reading">വായിക്കുന്ന വാചകം ഹൈലൈറ്റ് ചെയ്യുക</string>
    <string name="do_not_read_characters">ചിഹ്നങ്ങൾ ഒഴിവാക്കുക:</string>
    <string name="show_in_scroll_mode">സ്ക്രോൾ മോഡ്</string>
    <string name="display_bookmark_text_instead_of_number">പ്രദർശന വാചകം (പേജ് നമ്പറിന് പകരം)</string>

@@ -482,6 +482,7 @@ public class AppState {
     public volatile float ttsSpeed = 1.0f;
     public volatile float ttsPitch = 1.0f;
     @IgnoreHashCode public boolean ttsReadBySentences = true;
+    @IgnoreHashCode public boolean isTTSHighlightReading = true;
     @IgnoreHashCode public String ttsSentecesDivs = TTS_PUNCUATIONS;
     @IgnoreHashCode public boolean ttsTunnOnLastWord = false;
     @IgnoreHashCode public boolean isEnalbeTTSReplacements = true;

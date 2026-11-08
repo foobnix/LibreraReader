@@ -145,6 +145,56 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip" />
 
+        <TextView
+            android:id="@+id/ttsPlayMusicFile"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/play_a_music_file" />
+
+        <CheckBox
+            android:id="@+id/ttsHighlightReading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tts_highlight_reading" />
+
+        <CheckBox
+            android:id="@+id/isShowTtsPageControls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_tts_buttons_at_the_bottom_of_the_page" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/isEnalbeTTSReplacements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enable" />
+
+            <TextView
+                android:id="@+id/replaces"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/replacements" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/showDebug"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show" />
+
+        </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -154,13 +204,6 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-
-        <TextView
-            android:id="@+id/ttsPlayMusicFile"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/play_a_music_file" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -225,37 +268,6 @@
             android:layout_marginLeft="40dip" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <CheckBox
-                android:id="@+id/isEnalbeTTSReplacements"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/enable" />
-
-            <TextView
-                android:id="@+id/replaces"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/replacements" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/showDebug"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/show" />
-
-        </LinearLayout>
-
         <CheckBox
             android:id="@+id/allowOtherMusic"
             android:layout_width="wrap_content"
@@ -280,12 +292,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/quick_bookmark_by_the_headset" />
-
-        <CheckBox
-            android:id="@+id/isShowTtsPageControls"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/show_tts_buttons_at_the_bottom_of_the_page" />
 
         <TextView
             android:id="@+id/ttsSkeakToFile"

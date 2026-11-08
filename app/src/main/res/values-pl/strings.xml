@@ -536,6 +536,7 @@
    <string name="zoom_in_out_with_lock_enable">Powiększenie/pomniejszenie \"zablokowanych\" stron</string>
    <string name="show_footnotes_directly_in_text">Notatki w tekście (zamiast stopek/przypisów końcowych)</string>
    <string name="read_by_sentences">Krótka pauza po symbolu</string>
+   <string name="tts_highlight_reading">Podświetlaj czytany tekst</string>
    <string name="do_not_read_characters">Nie czytaj znaków</string>
    <string name="show_in_scroll_mode">Pokaż w trybie przewijania</string>
    <string name="display_bookmark_text_instead_of_number">Wyświetla tekst zakładki zamiast numeru</string>

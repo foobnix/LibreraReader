@@ -154,6 +154,7 @@ import com.foobnix.pdf.search.activity.msg.MovePageAction;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
 import com.foobnix.pdf.search.view.ProgressTask;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.tts.ReadingHighlight;
 import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSService;
@@ -1168,6 +1169,13 @@ public class DragingDialogs {
                         ttsSentecesDivs.setEnabled(AppState.get().ttsReadBySentences);
                         TTSEngine.get().stop();
                     }
+                });
+
+                CheckBox ttsHighlightReading = view.findViewById(R.id.ttsHighlightReading);
+                ttsHighlightReading.setChecked(AppState.get().isTTSHighlightReading);
+                ttsHighlightReading.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isTTSHighlightReading = isChecked;
+                    ReadingHighlight.redraw();
                 });
 
                 CheckBox isEnalbeTTSReplacements = view.findViewById(R.id.isEnalbeTTSReplacements);

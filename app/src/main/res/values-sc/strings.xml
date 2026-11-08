@@ -536,6 +536,7 @@
    <string name="zoom_in_out_with_lock_enable">Ismànnia/mìnima sas pàginas \"blocadas\"</string>
    <string name="show_footnotes_directly_in_text">Notas in su testu (in logu de cussas a pee de pàgina)</string>
    <string name="read_by_sentences">Una pàusa curtza a pustis de su sìmbulu</string>
+   <string name="tts_highlight_reading">Evidèntzia su testu chi si leghet</string>
    <string name="do_not_read_characters">Brinca sos sìmbulos:</string>
    <string name="show_in_scroll_mode">Modalidade a iscurrimentu</string>
    <string name="display_bookmark_text_instead_of_number">Ammustra su testu (in logu de su nùmeru de pagina)</string>
