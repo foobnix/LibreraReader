@@ -74,6 +74,8 @@ public class PageImaveView extends View {
 
     }
 
+    final Paint pageBgPaint = new Paint();
+    final RectF pageBgRect = new RectF();
     int drawableHeight, drawableWidth;
     GestureDetector gestureDetector;
     Scroller scroller;
@@ -432,7 +434,11 @@ public class PageImaveView extends View {
 //            } else {
 //                canvas.drawColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));
 //            }
-            canvas.drawColor(MagicHelper.getForegroundColor());
+            if (imageDrawable == null) {
+                drawPageNotReady(canvas);
+            } else {
+                canvas.drawColor(MagicHelper.getForegroundColor());
+            }
 
             final int saveCount = canvas.getSaveCount();
             canvas.save();
@@ -492,6 +498,23 @@ public class PageImaveView extends View {
 
         } catch (Exception e) {
             LOG.e(e);
+        }
+    }
+
+    /**
+     * Until the page is made the screen is the book's own page, its colour and background image,
+     * as the scrolled view shows a page still being made. The colour around the page, black for
+     * some, flashed over the whole screen while turning pages quickly.
+     */
+    private void drawPageNotReady(final Canvas canvas) {
+        canvas.drawColor(MagicHelper.getBgColor());
+        if (MagicHelper.isNeedBookBackgroundImage()) {
+            final Bitmap bg = MagicHelper.getBackgroundImage();
+            if (bg != null && !bg.isRecycled()) {
+                pageBgRect.set(0, 0, getWidth(), getHeight());
+                pageBgPaint.setAlpha(255 - MagicHelper.getTransparencyInt());
+                canvas.drawBitmap(bg, null, pageBgRect, pageBgPaint);
+            }
         }
     }
 
