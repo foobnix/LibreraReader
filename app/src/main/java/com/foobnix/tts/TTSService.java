@@ -71,6 +71,7 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
+import org.ebookdroid.core.codec.AbstractCodecContext;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.droids.foliate.codec.FoliateDocument;
@@ -906,9 +907,7 @@ import java.util.concurrent.Executors;
                 return reader;
             }
 
-            // Whatever changes the pages: a sum of the sides would not see the screen turned
-            final String currentLayout = AppSP.get().lastBookWidth + "x" + AppSP.get().lastBookHeight + "|"
-                    + BookCSS.get().fontSizeSp + "|" + BookCSS.get().toCssString(AppSP.get().lastBookPath).hashCode();
+            final String currentLayout = layoutKey(AppSP.get().lastBookPath);
             if (AppSP.get().lastBookPath != null && AppSP.get().lastBookPath.equals(
                     path) && cache != null && currentLayout.equals(layout)) {
                 LOG.d(TAG, "CodecDocument from cache", AppSP.get().lastBookPath);
@@ -920,12 +919,19 @@ import java.util.concurrent.Executors;
             }
             path = AppSP.get().lastBookPath;
             LOG.d(TAG, "CodecDocument", "loadingCancelled", TempHolder.get().loadingCancelled);
-            cache = ImageExtractor.singleCodecContext(AppSP.get().lastBookPath, "");
+            // The reader's cancel is not this copy's: it is set each time the app goes to the
+            // background, and a conversion it stops leaves a book of one page to read from
+            cache = TempHolder.get().loadingCancelled.ignoredWhile(() -> {
+                final CodecDocument dc = ImageExtractor.singleCodecContext(AppSP.get().lastBookPath, "");
+                if (dc != null) {
+                    dc.getPageCount(AppSP.get().lastBookWidth, AppSP.get().lastBookHeight, BookCSS.get().fontSizeSp);
+                }
+                return dc;
+            });
             if (cache == null) {
                 TTSNotification.hideNotification();
                 return null;
             }
-            cache.getPageCount(AppSP.get().lastBookWidth, AppSP.get().lastBookHeight, BookCSS.get().fontSizeSp);
             layout = currentLayout;
             LOG.d(TAG, "CodecDocument new", AppSP.get().lastBookPath, AppSP.get().lastBookWidth,
                     AppSP.get().lastBookHeight);
@@ -934,6 +940,23 @@ import java.util.concurrent.Executors;
             LOG.e(e);
             return null;
         }
+    }
+
+    /**
+     * Whatever makes this copy's pages differ from the reader's: the page it is laid out on, the
+     * book file itself, and the settings the converters make the book with - the same ones the
+     * reader's copy was made with, so a change to any of them makes the copy again.
+     */
+    private static String layoutKey(String path) {
+        final AppState state = AppState.get();
+        final BookCSS css = BookCSS.get();
+        // a sum of the sides would not see the screen turned
+        return AppSP.get().lastBookWidth + "x" + AppSP.get().lastBookHeight + "|" + css.fontSizeSp + "|"
+                + css.toCssString(path).hashCode() + "|" + AbstractCodecContext.getFileNameSalt(path) + "|"
+                + state.isShowFooterNotesInText + state.isReferenceMode + state.isShowPageNumbers
+                + state.isBionicMode + state.enableImageScale + state.textReplacementHash + state.isPreText
+                + state.isCharacterEncoding + state.characterEncoding + css.isAutoHypens + css.documentStyle
+                + css.isEnableBBCode + css.isCapitalLetter + AppSP.get().hypenLang + AppSP.get().isDouble;
     }
 
     /**

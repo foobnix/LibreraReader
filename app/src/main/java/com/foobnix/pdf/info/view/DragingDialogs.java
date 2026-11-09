@@ -1453,36 +1453,43 @@ public class DragingDialogs {
                 TxtUtils.underlineTextView(timerTime);
                 TxtUtils.underlineTextView(ttsSkeakToFile);
 
-                // The two parts of the sheet, chosen by the row of tabs at its head. Only one
-                // is on show at a time, so the settings that are reached less often are not in
-                // the way of the ones that are.
+                // The two parts of the sheet: the settings in use every day, with a button at
+                // their foot to the rest, and those with a button back. Only one is on show at a
+                // time, so the settings reached less often are not in the way of the others.
                 final View ttsMainSection = view.findViewById(R.id.ttsMainSection);
                 final View ttsAdvancedSection = view.findViewById(R.id.ttsAdvancedSection);
-                final TextView ttsMainTab = view.findViewById(R.id.ttsMainTab);
-                final TextView ttsAdvancedTab = view.findViewById(R.id.ttsAdvancedTab);
 
                 final ResultResponse<Boolean> showSection = new ResultResponse<Boolean>() {
                     @Override public boolean onResultRecive(Boolean advanced) {
                         ttsMainSection.setVisibility(advanced ? View.GONE : View.VISIBLE);
                         ttsAdvancedSection.setVisibility(advanced ? View.VISIBLE : View.GONE);
-                        // The part being read is named in bold, so which of the two is on
-                        // show can be told from the tabs themselves.
-                        ttsMainTab.setTypeface(null, advanced ? Typeface.NORMAL : Typeface.BOLD);
-                        ttsAdvancedTab.setTypeface(null, advanced ? Typeface.BOLD : Typeface.NORMAL);
+                        view.scrollTo(0, 0);
                         return false;
                     }
                 };
                 showSection.onResultRecive(false);
 
-                ttsMainTab.setOnClickListener(v1 -> showSection.onResultRecive(false));
-                ttsAdvancedTab.setOnClickListener(v1 -> showSection.onResultRecive(true));
+                view.findViewById(R.id.ttsAdvancedTab).setOnClickListener(v1 -> showSection.onResultRecive(true));
+                view.findViewById(R.id.ttsBackToMain).setOnClickListener(v1 -> showSection.onResultRecive(false));
 
                 // The links in this dialog are drawn as ringed buttons, as the settings panel
-                // draws its own.
+                // draws its own - all but the voice and the speed, which stay underlined words
+                // at the head of their rows, as the names of the sliders under them are words.
+                final TextView ttsSettingsLink = view.findViewById(R.id.ttsSettings);
+                ttsSettingsLink.setTag(null);
+                seekBarSpeed.getTitleText().setTag(null);
                 // The voice and the names of the sliders under it stand in one column, one width
-                TintUtil.sameWidth(view.findViewById(R.id.ttsSettings), seekBarSpeed.getTitleText(),
+                TintUtil.sameWidth(ttsSettingsLink, seekBarSpeed.getTitleText(),
                         seekBarPitch.getTitleText(), seekVolume.getTitleText());
                 TintUtil.asLinkButtons(view);
+
+                // Back starts with a chevron pointing back, sized and tinted to its word
+                final TextView ttsBackToMain = view.findViewById(R.id.ttsBackToMain);
+                final Drawable back = ContextCompat.getDrawable(activity, R.drawable.ic_chevron_back).mutate();
+                back.setBounds(0, 0, Dips.dpToPx(16), Dips.dpToPx(16));
+                back.setColorFilter(new PorterDuffColorFilter(ttsBackToMain.getCurrentTextColor(), Mode.SRC_IN));
+                ttsBackToMain.setCompoundDrawablesRelative(back, null, null, null);
+                ttsBackToMain.setCompoundDrawablePadding(Dips.DP_4);
 
 
                 return view;

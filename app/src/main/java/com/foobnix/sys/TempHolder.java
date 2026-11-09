@@ -39,7 +39,7 @@ public class TempHolder {
 
     //public static volatile boolean loadingCancelled = false;
 
-    public final AtomicBoolean loadingCancelled = new AtomicBoolean(false);
+    public final LoadingCancel loadingCancelled = new LoadingCancel();
     public boolean forseAppLang = false;
 
     public volatile long lastRecycledDocument = 0;

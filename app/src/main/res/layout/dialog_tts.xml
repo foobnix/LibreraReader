@@ -10,37 +10,8 @@
         android:orientation="vertical"
         android:padding="2dip">
 
-        <!-- The dialog is read in two parts, chosen the way the preferences dialog chooses
-             between its own. -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/ttsMainTab"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:lines="2"
-                android:singleLine="false"
-                android:text="@string/text_to_speech" />
-
-            <TextView
-                android:id="@+id/ttsAdvancedTab"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:lines="2"
-                android:singleLine="false"
-                android:text="@string/advanced_settings" />
-        </LinearLayout>
-
+        <!-- The dialog is read in two parts: the settings in use every day, and at their foot a
+             button to the rest, which in turn has a button back. -->
         <LinearLayout
             android:id="@+id/ttsMainSection"
             android:layout_width="match_parent"
@@ -195,6 +166,14 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/ttsAdvancedTab"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:text="@string/advanced_settings" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -203,6 +182,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="gone">
+
+        <TextView
+            android:id="@+id/ttsBackToMain"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back" />
 
 
         <LinearLayout
