@@ -34,6 +34,15 @@ class PdfiumText {
         return c == '\r' || c == '\n';
     }
 
+    /**
+     * The hyphen PDFium puts where a word is broken at the end of a line. It stands for the
+     * break as well as the hyphen: the text goes straight on with the rest of the word, with no
+     * line break after it, so the two lines either side of it read as one.
+     */
+    private static boolean isLineEndHyphen(final char c) {
+        return c == '\uFFFE' || c == '\u0002';
+    }
+
     /** The rectangles of the character ranges of one page, in PDF space. */
     private interface RangeRects {
         RectF rect(int start, int length);
@@ -72,6 +81,11 @@ class PdfiumText {
             if (byLetters) {
                 if (isLineBreak(c)) {
                     line++;
+                } else if (isLineEndHyphen(c)) {
+                    ranges.add(new int[]{i, 1});
+                    labels.add("-");
+                    lines.add(line);
+                    line++;
                 } else if (c != 0) {
                     ranges.add(new int[]{i, 1});
                     labels.add(String.valueOf(isSpace ? ' ' : c));
@@ -80,7 +94,21 @@ class PdfiumText {
                 continue;
             }
 
-            if (isSpace || isLineBreak(c) || c == 0) {
+            if (isLineEndHyphen(c)) {
+                // The two halves of a broken word go on their own lines, the first ending in a
+                // hyphen, as MuPDF gives them: selection joins them up again. As one word it
+                // would be boxed by one of its halves, and the two lines it joins boxed as one.
+                if (wordStart >= 0) {
+                    ranges.add(new int[]{wordStart, i - wordStart + 1});
+                    labels.add(text.substring(wordStart, i) + "-");
+                } else {
+                    ranges.add(new int[]{i, 1});
+                    labels.add("-");
+                }
+                lines.add(line);
+                wordStart = -1;
+                line++;
+            } else if (isSpace || isLineBreak(c) || c == 0) {
                 if (wordStart >= 0) {
                     ranges.add(new int[]{wordStart, i - wordStart});
                     labels.add(text.substring(wordStart, i));
@@ -176,7 +204,8 @@ class PdfiumText {
             if (answer != null && !answer.isEmpty()) {
                 final Map<Integer, RectF> byStart = new HashMap<Integer, RectF>(answer.size() * 2);
                 for (WordRangeRect r : answer) {
-                    if (r != null && r.getRect() != null) {
+                    // A range on two lines has a rectangle on each; the first is where it starts
+                    if (r != null && r.getRect() != null && !byStart.containsKey(r.getRangeStart())) {
                         byStart.put(r.getRangeStart(), r.getRect());
                     }
                 }
@@ -342,6 +371,10 @@ class PdfiumText {
     private static void escape(final StringBuilder out, final String text) {
         for (int i = 0; i < text.length(); i++) {
             final char c = text.charAt(i);
+            if (isLineEndHyphen(c)) {
+                // The broken word is read whole: the line it was broken at is not there
+                continue;
+            }
             switch (c) {
                 case '<':
                     out.append("&lt;");

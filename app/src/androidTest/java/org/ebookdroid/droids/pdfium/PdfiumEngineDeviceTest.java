@@ -384,6 +384,55 @@ public class PdfiumEngineDeviceTest {
         }
     }
 
+    /**
+     * A word broken at the end of a line. PDFium reads the hyphen as a break of its own and runs
+     * the two lines together in its text; MuPDF gives the halves as two words on their own lines.
+     * PDFium has to give them the same way: as one word it was boxed by one half only, and the
+     * words of the two lines were boxed as one line twice the height, so a selection over them
+     * came out patchy, darker where the boxes overlapped, and stopped short of the finger.
+     */
+    @Test
+    public void aWordBrokenAtTheEndOfALineIsTwoWordsOnTwoLines() throws Exception {
+        final File broken = new File(file.getParentFile(), "pdfium-engine-test-broken.pdf");
+        final OutputStream out = new FileOutputStream(broken);
+        try {
+            out.write(brokenWordPdf());
+        } finally {
+            out.close();
+        }
+        final File before = file;
+        file = broken;
+        final CodecDocument mupdf = open(AppState.PDF_ENGINE_MUPDF);
+        final CodecDocument pdfium = open(AppState.PDF_ENGINE_PDFIUM);
+        try {
+            // Only PDFium's own break joins the word up again when the page is read aloud
+            final String html = pdfium.getPage(0).getPageHTML();
+            assertTrue("PDFium read the hyphen as its own break: " + html, html.contains("broken word and"));
+
+            final List<TextWord> expected = words(mupdf);
+            final List<TextWord> actual = words(pdfium);
+            assertEquals("A broken wo- rd and more", join(expected));
+            assertEquals("the words PDFium found: " + join(actual), join(expected), join(actual));
+
+            final TextWord first = actual.get(2);
+            final TextWord second = actual.get(3);
+            assertTrue("'wo-' is above 'rd': " + first + " " + second, first.bottom <= second.top + 0.01f);
+            for (int i = 0; i < expected.size(); i++) {
+                final TextWord e = expected.get(i);
+                final TextWord a = actual.get(i);
+                assertClose("left of '" + e.w + "'", e.left, a.left);
+                assertClose("right of '" + e.w + "'", e.right, a.right);
+                assertTrue("'" + e.w + "' is inside MuPDF's line: " + a + " vs " + e,
+                        a.top >= e.top - TOLERANCE && a.bottom <= e.bottom + TOLERANCE);
+            }
+        } finally {
+            mupdf.recycle();
+            pdfium.recycle();
+            file = before;
+            broken.delete();
+        }
+    }
+
     @Test
     public void aFreshDocumentHasNoChanges() {
         final CodecDocument pdfium = open(AppState.PDF_ENGINE_PDFIUM);
@@ -545,6 +594,19 @@ public class PdfiumEngineDeviceTest {
         objects.add("<< /Title (" + CHAPTER + ") /Parent 6 0 R /Dest [3 0 R /XYZ 0 " + PAGE_HEIGHT + " 0] >>");
         objects.add("<< /Type /Annot /Subtype /Link /Rect [10 10 60 30] /Border [0 0 0]"
                 + " /A << /S /URI /URI (" + URL + ") >> >>");
+        return pdf(objects);
+    }
+
+    /** A PDF of one page with two lines of text, a word broken with a hyphen between them. */
+    private static byte[] brokenWordPdf() {
+        final String content = "BT /F1 12 Tf 20 70 Td (A broken wo-) Tj 0 -30 Td (rd and more) Tj ET\n";
+        final List<String> objects = new ArrayList<String>();
+        objects.add("<< /Type /Catalog /Pages 2 0 R >>");
+        objects.add("<< /Type /Pages /Kids [3 0 R] /Count 1 >>");
+        objects.add("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 " + PAGE_WIDTH + " " + PAGE_HEIGHT + "]"
+                + " /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>");
+        objects.add("<< /Length " + content.length() + " >>\nstream\n" + content + "endstream");
+        objects.add("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>");
         return pdf(objects);
     }
 
