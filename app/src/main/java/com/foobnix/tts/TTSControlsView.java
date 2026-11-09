@@ -71,8 +71,11 @@ public class TTSControlsView extends FrameLayout {
                     }
 
                 } else {
+                    // Closed with the stop mark, or never loaded: the line is the reading's again
                     layoutMp3.setVisibility(View.GONE);
                     trackName.setVisibility(View.GONE);
+                    ttsPrevTrack.setVisibility(View.GONE);
+                    ttsNextTrack.setVisibility(View.GONE);
                 }
 
                 LOG.d("TtsStatus-isPlaying", TTSEngine.get().isPlaying());
@@ -277,7 +280,7 @@ public class TTSControlsView extends FrameLayout {
             }
         });
 
-        if (TTSTracks.isMultyTracks()) {
+        if (TTSEngine.get().isMp3() && TTSTracks.isMultyTracks()) {
             ttsPrevTrack.setVisibility(View.VISIBLE);
             ttsNextTrack.setVisibility(View.VISIBLE);
         } else {

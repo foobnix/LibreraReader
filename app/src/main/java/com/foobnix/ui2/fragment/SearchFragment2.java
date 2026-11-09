@@ -1011,7 +1011,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     private void sortByPopup(final View view) {
 
         MyPopupMenu popup = new MyPopupMenu(getActivity(), view);
-        PopupHelper.addSortOrder(popup, AppState.get().isSortAsc, () -> {
+        PopupHelper.addSortOrder(popup, AppState.get().isSortAsc,
+                getString(SORT_BY.getByID(AppState.get().sortBy).getResName()), () -> {
             AppState.get().isSortAsc = !AppState.get().isSortAsc;
             recyclerView.scrollToPosition(0);
             searchAndOrderAsync();

@@ -738,7 +738,8 @@ import java.util.Map;
                                                        );//
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
-                PopupHelper.addSortOrder(menu, !AppState.get().sortByReverse, () -> {
+                PopupHelper.addSortOrder(menu, !AppState.get().sortByReverse,
+                        PopupHelper.sortName(names, ids, AppState.get().sortByBrowse), () -> {
                     AppState.get().sortByReverse = !AppState.get().sortByReverse;
                     onSort.setImageResource(PopupHelper.sortIcon(!AppState.get().sortByReverse));
                     populate();

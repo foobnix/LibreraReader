@@ -8,6 +8,7 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
@@ -16,6 +17,7 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.List;
 import android.graphics.PorterDuffColorFilter;
 
 public class PopupHelper {
@@ -26,26 +28,34 @@ public class PopupHelper {
     }
 
     /**
-     * A sort menu's first row: the way the list runs, turned round by a tap that sorts the list
-     * again and leaves the menu up.
+     * A sort menu's first row: what the list is sorted by, with an arrow for the way it runs,
+     * turned round by a tap that sorts the list again and leaves the menu up. Without a name
+     * the row says which way it runs in words.
      */
-    public static void addSortOrder(MyPopupMenu p, boolean asc, Runnable reverse) {
+    public static void addSortOrder(MyPopupMenu p, boolean asc, String sortedBy, Runnable reverse) {
         final boolean[] ascending = {asc};
         final MyPopupMenu.Menu row = p.getMenu();
-        showSortOrder(p.getContext(), row, asc);
+        showSortOrder(p.getContext(), row, asc, sortedBy);
         row.lineBelow()
            .keepOpen()
            .setOnMenuItemClickListener(item -> {
                ascending[0] = !ascending[0];
                reverse.run();
-               showSortOrder(p.getContext(), row, ascending[0]);
+               showSortOrder(p.getContext(), row, ascending[0], sortedBy);
                return false;
            });
     }
 
-    private static void showSortOrder(Context c, MyPopupMenu.Menu row, boolean asc) {
-        row.setTitle(c.getString(asc ? R.string.ascending : R.string.descending))
+    private static void showSortOrder(Context c, MyPopupMenu.Menu row, boolean asc, String sortedBy) {
+        final String order = c.getString(asc ? R.string.ascending : R.string.descending);
+        row.setTitle(TxtUtils.isNotEmpty(sortedBy) ? sortedBy : order)
            .setIcon(asc ? R.drawable.glyphicons_212_arrow_up : R.drawable.glyphicons_211_arrow_down);
+    }
+
+    /** The name of the field a list is sorted by: the one of <code>names</code> at the place of <code>current</code> in <code>ids</code>. */
+    public static String sortName(List<String> names, List<Integer> ids, int current) {
+        final int i = ids.indexOf(current);
+        return i >= 0 && i < names.size() ? names.get(i) : null;
     }
 
     public static void updateGridOrListIcon(ImageView gridList, int libraryMode) {

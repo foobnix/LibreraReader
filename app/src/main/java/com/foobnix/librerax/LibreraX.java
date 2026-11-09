@@ -96,9 +96,11 @@ public class LibreraX {
             Arrays.asList("ebooka", "pdf_classic", "pdf_v2", "tts_reader");
     // Closed for this run of the app only: MainTabs2 clears it when the app is started again.
     public static boolean migrateNoticeClosed;
+    // TEMPORARY: the notice is not shown for now; set back to true to show it again.
+    private static final boolean MIGRATE_NOTICE_ENABLED = false;
 
     public static boolean isMigrateNotice() {
-        return RETIRED_FLAVORS.contains(AppsConfig.FLAVOR) && !migrateNoticeClosed;
+        return MIGRATE_NOTICE_ENABLED && RETIRED_FLAVORS.contains(AppsConfig.FLAVOR) && !migrateNoticeClosed;
     }
 
     /** Takes the user to LibreraX: gets it, or, with it installed, hands this profile over to it. */

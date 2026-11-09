@@ -211,7 +211,8 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                                                        );//
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
-                PopupHelper.addSortOrder(menu, !AppState.get().sortByFavoriteReverse, () -> {
+                PopupHelper.addSortOrder(menu, !AppState.get().sortByFavoriteReverse,
+                        PopupHelper.sortName(names, ids, AppState.get().sortByFavorite), () -> {
                     AppState.get().sortByFavoriteReverse = !AppState.get().sortByFavoriteReverse;
                     onSort.setImageResource(PopupHelper.sortIcon(!AppState.get().sortByFavoriteReverse));
                     populate();
