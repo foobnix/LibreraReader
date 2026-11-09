@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Гэтая праграма больш не будзе падтрымлівацца і хутка будзе выдалена. Перанясіце прагрэс чытання, абранае, закладкі і тэгі ў LibreraX.</string>
    <string name="reading_progress">Прагрэс чытання</string>
    <string name="add_to_home_screen">Дадаць на галоўны экран</string>
+   <string name="not_supported">Не падтрымліваецца</string>
 </resources>

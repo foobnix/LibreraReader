@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Бұл қолданбаға енді қолдау көрсетілмейді және ол жақында жойылады. Оқу барысын, таңдаулыларды, бетбелгілерді және тегтерді LibreraX-ке көшіріңіз.</string>
    <string name="reading_progress">Оқу барысы</string>
    <string name="add_to_home_screen">Басты экранға қосу</string>
+   <string name="not_supported">Қолдау көрсетілмейді</string>
 </resources>

@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Ez az alkalmazás a továbbiakban nem kap támogatást, és hamarosan eltávolítjuk. Vigye át az olvasási előrehaladást, a kedvenceket, a könyvjelzőket és a címkéket a LibreraX-be.</string>
    <string name="reading_progress">Olvasási előrehaladás</string>
    <string name="add_to_home_screen">Hozzáadás a kezdőképernyőhöz</string>
+   <string name="not_supported">Nem támogatott</string>
 </resources>

@@ -8,9 +8,10 @@ LOCAL_CFLAGS    := $(APP_CFLAGS) -fexceptions -DHAVE_CONFIG_H
 LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
 LOCAL_ARM_MODE  := $(APP_ARM_MODE)
 
+# JPEG in DjVu is decoded by libjpeg-turbo, linked into libdjvu.so (Librera-libs.mk)
 LOCAL_C_INCLUDES := \
-    $(MUPDF_ROOT)/thirdparty/libjpeg \
-    $(MUPDF_ROOT)/scripts/libjpeg \
+    $(TOP_LOCAL_PATH)/libjpeg-turbo-3.2.1/config \
+    $(TOP_LOCAL_PATH)/libjpeg-turbo-3.2.1/src \
 	$(LOCAL_PATH)/src \
 
 LOCAL_SRC_FILES := \

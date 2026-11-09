@@ -1,0 +1,7 @@
+/* libtiff.so exports the JNI entry points of ../librera_tiff.c and nothing of libtiff */
+{
+    global:
+        Java_com_foobnix_ext_NativeTiff_*;
+    local:
+        *;
+};

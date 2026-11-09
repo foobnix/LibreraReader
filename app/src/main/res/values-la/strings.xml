@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Haec applicatio non iam sustinebitur et mox removebitur. Transfer progressum lectionis, favorita, signacula et notas ad LibreraX.</string>
    <string name="reading_progress">Progressus lectionis</string>
    <string name="add_to_home_screen">Adde ad tabulam primariam</string>
+   <string name="not_supported">Non sustinetur</string>
 </resources>

@@ -10,6 +10,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.ext.NativeTiff;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.EbookMeta;
@@ -123,6 +124,11 @@ public abstract class BaseExtractor {
         try {
             if(array==null){
                 return null;
+            }
+            if (NativeTiff.isTiff(array)) {
+                // Android cannot read a TIFF cover - a comic's first page, often - libtiff can
+                final int[] size = NativeTiff.size(array);
+                return size == null ? null : NativeTiff.decode(array, width > 0 ? size[0] / width : 1);
             }
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;

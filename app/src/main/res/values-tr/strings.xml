@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Bu uygulama artık desteklenmeyecek ve yakında kaldırılacak. Okuma ilerlemenizi, favorilerinizi, yer imlerinizi ve etiketlerinizi LibreraX\'e taşıyın.</string>
    <string name="reading_progress">Okuma ilerlemesi</string>
    <string name="add_to_home_screen">Ana ekrana ekle</string>
+   <string name="not_supported">Desteklenmiyor</string>
 </resources>

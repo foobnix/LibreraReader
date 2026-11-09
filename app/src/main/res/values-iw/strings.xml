@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">האפליקציה הזו לא תיתמך עוד ותוסר בקרוב. העבירו ל-LibreraX את התקדמות הקריאה, המועדפים, הסימניות והתגיות.</string>
    <string name="reading_progress">התקדמות קריאה</string>
    <string name="add_to_home_screen">הוספה למסך הבית</string>
+   <string name="not_supported">לא נתמך</string>
 </resources>

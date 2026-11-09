@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">لن يعود هذا التطبيق مدعومًا وستتم إزالته قريبًا. انقل تقدّم القراءة والمفضلة والإشارات المرجعية والوسوم إلى LibreraX.</string>
    <string name="reading_progress">تقدّم القراءة</string>
    <string name="add_to_home_screen">إضافة إلى الشاشة الرئيسية</string>
+   <string name="not_supported">غير مدعوم</string>
 </resources>

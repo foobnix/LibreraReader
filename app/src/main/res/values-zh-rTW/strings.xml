@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">此應用程式將不再受支援，並即將移除。請將閱讀進度、最愛、書籤和標籤轉移到 LibreraX。</string>
    <string name="reading_progress">閱讀進度</string>
    <string name="add_to_home_screen">新增至主畫面</string>
+   <string name="not_supported">不支援</string>
 </resources>

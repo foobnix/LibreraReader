@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Ta aplikacja nie będzie już wspierana i wkrótce zostanie usunięta. Przenieś postęp czytania, ulubione, zakładki i tagi do LibreraX.</string>
    <string name="reading_progress">Postęp czytania</string>
    <string name="add_to_home_screen">Dodaj do ekranu głównego</string>
+   <string name="not_supported">Nieobsługiwane</string>
 </resources>

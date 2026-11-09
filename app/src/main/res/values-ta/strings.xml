@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">இந்தப் பயன்பாட்டிற்கு இனி ஆதரவு இருக்காது, விரைவில் அகற்றப்படும். வாசிப்பு முன்னேற்றம், பிடித்தவை, புத்தகக்குறிகள், குறிச்சொற்களை LibreraX-க்கு மாற்றவும்.</string>
    <string name="reading_progress">வாசிப்பு முன்னேற்றம்</string>
    <string name="add_to_home_screen">முகப்புத் திரையில் சேர்</string>
+   <string name="not_supported">ஆதரிக்கப்படவில்லை</string>
 </resources>

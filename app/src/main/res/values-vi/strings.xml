@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Ứng dụng này sẽ không còn được hỗ trợ và sẽ sớm bị gỡ bỏ. Hãy chuyển tiến độ đọc, mục yêu thích, dấu trang và thẻ sang LibreraX.</string>
    <string name="reading_progress">Tiến độ đọc</string>
    <string name="add_to_home_screen">Thêm vào màn hình chính</string>
+   <string name="not_supported">Không được hỗ trợ</string>
 </resources>

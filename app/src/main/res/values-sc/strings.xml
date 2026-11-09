@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Custa aplicatzione no at a èssere prus suportada e at a èssere bogada luego. Passa a LibreraX su progressu de letura, sos preferidos, sos sinnalibros e sas etichetas.</string>
    <string name="reading_progress">Progressu de letura</string>
    <string name="add_to_home_screen">Agiunghe a s\'ischermu printzipale</string>
+   <string name="not_supported">No suportadu</string>
 </resources>

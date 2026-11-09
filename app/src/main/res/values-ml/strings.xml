@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">ഈ ആപ്പിന് ഇനി പിന്തുണ ഉണ്ടാകില്ല, ഉടൻ നീക്കം ചെയ്യും. വായനാ പുരോഗതി, പ്രിയപ്പെട്ടവ, ബുക്ക്മാർക്കുകൾ, ടാഗുകൾ എന്നിവ LibreraX-ലേക്ക് മാറ്റുക.</string>
    <string name="reading_progress">വായനാ പുരോഗതി</string>
    <string name="add_to_home_screen">ഹോം സ്ക്രീനിലേക്ക് ചേർക്കുക</string>
+   <string name="not_supported">പിന്തുണയില്ല</string>
 </resources>

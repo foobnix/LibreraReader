@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">このアプリのサポートは終了し、まもなく削除されます。読書の進捗、お気に入り、ブックマーク、タグを LibreraX に移行してください。</string>
    <string name="reading_progress">読書の進捗</string>
    <string name="add_to_home_screen">ホーム画面に追加</string>
+   <string name="not_supported">非対応</string>
 </resources>

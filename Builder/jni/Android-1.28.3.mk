@@ -11,6 +11,8 @@ include $(TOP_LOCAL_PATH)/libantiword-1.3.1/Android.mk
 include $(TOP_LOCAL_PATH)/libwebp-1.3.2/Android.mk
 include $(TOP_LOCAL_PATH)/liblame-1.0.9/Android.mk
 include $(TOP_LOCAL_PATH)/libarchive-3.8.10/Android.mk
+include $(TOP_LOCAL_PATH)/libjpeg-turbo-3.2.1/Android.mk
+include $(TOP_LOCAL_PATH)/libtiff-4.7.2/Android.mk
 
 include $(TOP_LOCAL_PATH)/MuPDF-1.28.3.mk
 

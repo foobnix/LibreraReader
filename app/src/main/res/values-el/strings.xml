@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Αυτή η εφαρμογή δεν θα υποστηρίζεται πλέον και θα αφαιρεθεί σύντομα. Μεταφέρετε την πρόοδο ανάγνωσης, τα αγαπημένα, τους σελιδοδείκτες και τις ετικέτες στο LibreraX.</string>
    <string name="reading_progress">Πρόοδος ανάγνωσης</string>
    <string name="add_to_home_screen">Προσθήκη στην αρχική οθόνη</string>
+   <string name="not_supported">Δεν υποστηρίζεται</string>
 </resources>

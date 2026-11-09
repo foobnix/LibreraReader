@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Táto aplikácia už nebude podporovaná a čoskoro bude odstránená. Preneste postup čítania, obľúbené, záložky a štítky do LibreraX.</string>
    <string name="reading_progress">Postup čítania</string>
    <string name="add_to_home_screen">Pridať na plochu</string>
+   <string name="not_supported">Nepodporované</string>
 </resources>

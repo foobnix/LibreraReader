@@ -352,9 +352,22 @@ public class ImageExtractor {
         } else if (BookType.PDF.is(unZipPath)) {
             // With the engine the book is read with, which IMG.toUrl keeps in the cover's url
             cover = proccessOtherPage(pageUrl);
-        } else if (BookType.DJVU.is(unZipPath) || BookType.TIFF.is(unZipPath)) {
+        } else if (BookType.DJVU.is(unZipPath)) {
             cover = proccessOtherPage(pageUrl);
             LOG.d("BookType.DJVU", cover, pageUrl);
+        } else if (BookType.TIFF.is(unZipPath)) {
+            try {
+                cover = proccessOtherPage(pageUrl);
+            } catch (Exception e) {
+                LOG.e(e, unZipPath);
+            }
+            if (cover == null) {
+                // A TIFF libtiff does not read - a kind of image it does not draw, or a damaged
+                // file - says so, under its name, rather than #error
+                cover = BaseExtractor.getBookCoverWithTitle(LibreraApp.context.getString(R.string.not_supported),
+                        ExtUtils.getFileName(unZipPath), true);
+                pageUrl.tempWithWatermakr = true;
+            }
         } else if (BookType.CBZ.is(unZipPath) || BookType.CBR.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(CbzCbrExtractor.getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.FOLDER.is(unZipPath)) {
@@ -433,7 +446,7 @@ public class ImageExtractor {
         }
 
         final CodecPageInfo pageInfo = codeCache.getPageInfo(page);
-        if (pageInfo == null) {
+        if (pageInfo == null || pageInfo.width <= 0 || pageInfo.height <= 0) {
             LOG.d("TEST", "pageInfo is null" + path);
             return null;
         }
@@ -461,6 +474,11 @@ public class ImageExtractor {
 
         }
         bitmapRef = pageCodec.renderBitmap(width, height, rectF, false);
+        if (bitmapRef == null || bitmapRef.getBitmap() == null) {
+            // the page could not be drawn: the caller falls back to a cover of its own
+            LOG.d("TEST", "page is not drawn" + path);
+            return null;
+        }
 
         bitmap = bitmapRef.getBitmap();
 

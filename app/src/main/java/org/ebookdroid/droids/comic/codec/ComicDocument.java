@@ -1,14 +1,14 @@
 package org.ebookdroid.droids.comic.codec;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.RectF;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.NativeArchive;
+import com.foobnix.ext.NativeTiff;
+import com.foobnix.pdf.info.AppsConfig;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.core.codec.AbstractCodecDocument;
-import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.CodecPageInfo;
 
 import java.util.ArrayList;
@@ -16,40 +16,30 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * A comic archive - a .cbz or a .cbr - the images inside it, in reading order, one per page. Both
  * are read with libarchive in place ({@link NativeArchive}), so neither is extracted or repacked
  * first. See {@link ComicContext}.
  */
-public class ComicDocument extends AbstractCodecDocument {
+public class ComicDocument extends ImageDocument {
 
     /**
-     * There is no native document behind this one, and Librera only uses the handle to tell
-     * documents apart, so a counter stands in for it. It must not be 0: that means "recycled".
+     * The images a comic is packed with: what Android's BitmapFactory decodes, and TIFF, which
+     * libtiff does ({@link NativeTiff}).
      */
-    private static final AtomicLong HANDLES = new AtomicLong(1);
-
-    /** What Android's BitmapFactory can decode, which is everything a comic is packed with. */
     private static final List<String> IMAGES =
-            BookType.list(".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".jfif", ".avif", ".heic", ".heif");
+            BookType.list(".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".jfif", ".avif", ".heic", ".heif",
+                    ".tif", ".tiff");
 
-    private final String fname;
     private final NativeArchive archive;
     /** The entries of the archive that are pages, by their index in the archive, in page order. */
     private final List<Integer> pages;
-
-    /** Page sizes, read off each image's header the first time that page is asked about. */
-    private final CodecPageInfo[] pageInfo;
-
     private ComicDocument(final ComicContext context, final String fname, final NativeArchive archive,
                           final List<Integer> pages) {
-        super(context, HANDLES.incrementAndGet());
-        this.fname = fname;
+        super(context, fname);
         this.archive = archive;
         this.pages = pages;
-        this.pageInfo = new CodecPageInfo[pages.size()];
     }
 
     /**
@@ -177,48 +167,23 @@ public class ComicDocument extends AbstractCodecDocument {
         return pages.size();
     }
 
-    @Override
-    public int getPageCount(final int w, final int h, final int fsize) {
-        // Comics do not reflow: the page count is the number of images, whatever the screen is
-        return getPageCount();
-    }
-
-    @Override
-    public CodecPage getPageInner(final int pageNumber) {
-        if (pageNumber < 0 || pageNumber >= pages.size()) {
-            return null;
-        }
-        return new ComicPage(this, fname, pageNumber);
-    }
-
-    @Override
-    public CodecPageInfo getUnifiedPageInfo() {
-        // The pages of a comic are whatever size each image is; there is no one size for all
-        return null;
-    }
-
-    @Override
-    public CodecPageInfo getPageInfo(final int pageNumber) {
-        if (pageNumber < 0 || pageNumber >= pages.size()) {
-            return null;
-        }
-        CodecPageInfo info = pageInfo[pageNumber];
-        if (info != null) {
-            return info;
-        }
-        info = readPageInfo(pageNumber);
-        pageInfo[pageNumber] = info;
-        return info;
-    }
-
     /**
      * The size of a page, read from the image's own header: inJustDecodeBounds means the pixels
      * are never decoded, so this costs one read of the entry and no memory.
      */
-    private CodecPageInfo readPageInfo(final int pageNumber) {
+    @Override
+    protected CodecPageInfo readPageInfo(final int pageNumber) {
         final byte[] bytes = read(pageNumber);
         final CodecPageInfo info = new CodecPageInfo();
         if (bytes == null) {
+            return info;
+        }
+        if (NativeTiff.isTiff(bytes)) {
+            final int[] size = NativeTiff.size(bytes);
+            if (size != null) {
+                info.width = size[0];
+                info.height = size[1];
+            }
             return info;
         }
         final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -249,44 +214,31 @@ public class ComicDocument extends AbstractCodecDocument {
         return bytes;
     }
 
-    // ---------------------------------------------------------------- the rest of the contract
-
+    /**
+     * Decodes the image no larger than it needs to be: BitmapFactory's inSampleSize halves it as
+     * many times as it can while still covering the size asked for, so reading a page of a comic
+     * at a page-fitting zoom costs a fraction of the full-resolution decode - and a 4000px scan
+     * never has to be held in memory whole. A TIFF page, which BitmapFactory cannot read, is
+     * read by libtiff, shrunk the same way.
+     */
     @Override
-    public List<? extends RectF> searchText(final int pageNumber, final String pattern) throws DocSearchNotSupported {
-        // There is no text in a comic to search, which is what MuPDF answers for a .cbz as well
-        throw new DocSearchNotSupported();
+    protected Bitmap decodePage(final int pageNumber, final int sample) {
+        final byte[] bytes = read(pageNumber);
+        if (bytes == null) {
+            return null;
+        }
+        if (NativeTiff.isTiff(bytes)) {
+            return NativeTiff.decode(bytes, sample);
+        }
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPreferredConfig = AppsConfig.CURRENT_BITMAP_ARGB;
+        options.inSampleSize = sample;
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
     }
 
     @Override
     public BookType getBookType() {
         return BookType.CBZ;
-    }
-
-    @Override
-    public String documentToHtml() {
-        return "";
-    }
-
-    @Override
-    public String getMeta(final String option) {
-        return "";
-    }
-
-    @Override
-    public void setMeta(final String key, final String value) {
-    }
-
-    @Override
-    public boolean hasChanges() {
-        return false;
-    }
-
-    @Override
-    public void deleteAnnotation(final long pageNumber, final int index) {
-    }
-
-    @Override
-    public void saveAnnotations(final String path) {
     }
 
     @Override

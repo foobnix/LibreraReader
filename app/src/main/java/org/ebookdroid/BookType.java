@@ -24,6 +24,7 @@ import org.ebookdroid.droids.RtfContext;
 import org.ebookdroid.droids.TxtContext;
 import org.ebookdroid.droids.ZipContext;
 import org.ebookdroid.droids.comic.codec.ComicContext;
+import org.ebookdroid.droids.tiff.codec.TiffContext;
 import org.ebookdroid.droids.djvu.codec.DjvuContext;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 import org.ebookdroid.droids.pdfium.codec.PdfiumContext;
@@ -38,12 +39,12 @@ import java.util.Map;
 public enum BookType {
 
     /**
-     * .xps and .tiff share MuPDF's context with the PDFs and are read by MuPDF alone - PDFium
-     * reads neither - so a build without MuPDF does not offer them. "xxx" is how this enum says
-     * "no extension", as DOCX does below.
+     * .xps shares MuPDF's context with the PDFs and is read by MuPDF alone - PDFium does not read
+     * it - so a build without MuPDF does not offer it. .tiff is read by libtiff in every build,
+     * MuPDF or not ({@link TiffContext}), every image of it a page.
      */
     PDF(PdfContext.class, false, false, Engines.IS_MUPDF ? list("pdf", "xps") : list("pdf"), list("application/pdf","application/oxps","application/vnd.ms-xpsdocument")),
-    TIFF(PdfContext.class, false, false, Engines.IS_MUPDF ? list("tiff", "tif") : list("xxx"), list("image/tiff")),
+    TIFF(TiffContext.class, false, false, list("tiff", "tif"), list("image/tiff")),
 
     // Comics are read by the comic engine in every build, MuPDF or not: libarchive in place
     CBZ(ComicContext.class, false, true, list("cbz"), list("application/x-cbz","application/comicbook+zip")),

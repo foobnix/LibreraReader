@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Esta aplicación deixará de ter soporte e eliminarase pronto. Transfire a LibreraX o progreso de lectura, os favoritos, os marcadores e as etiquetas.</string>
    <string name="reading_progress">Progreso de lectura</string>
    <string name="add_to_home_screen">Engadir á pantalla de inicio</string>
+   <string name="not_supported">Non compatible</string>
 </resources>

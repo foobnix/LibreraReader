@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Tätä sovellusta ei enää tueta, ja se poistetaan pian. Siirrä lukuedistyminen, suosikit, kirjanmerkit ja tunnisteet LibreraX-sovellukseen.</string>
    <string name="reading_progress">Lukuedistyminen</string>
    <string name="add_to_home_screen">Lisää aloitusnäyttöön</string>
+   <string name="not_supported">Ei tuettu</string>
 </resources>

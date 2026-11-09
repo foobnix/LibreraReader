@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Denne appen vil ikke lenger bli støttet og blir snart fjernet. Flytt lesefremdrift, favoritter, bokmerker og tagger til LibreraX.</string>
    <string name="reading_progress">Lesefremdrift</string>
    <string name="add_to_home_screen">Legg til på startskjermen</string>
+   <string name="not_supported">Støttes ikke</string>
 </resources>

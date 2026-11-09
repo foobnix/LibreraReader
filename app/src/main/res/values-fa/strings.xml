@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">این برنامه دیگر پشتیبانی نمی‌شود و به‌زودی حذف خواهد شد. پیشرفت مطالعه، موارد دلخواه، نشانک‌ها و برچسب‌های خود را به LibreraX منتقل کنید.</string>
    <string name="reading_progress">پیشرفت مطالعه</string>
    <string name="add_to_home_screen">افزودن به صفحهٔ اصلی</string>
+   <string name="not_supported">پشتیبانی نمی‌شود</string>
 </resources>

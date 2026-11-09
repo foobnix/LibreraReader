@@ -6,6 +6,7 @@ import org.ebookdroid.droids.foliate.codec.FoliateDocument;
 import org.ebookdroid.droids.pdfium.codec.PdfiumDocument;
 import org.ebookdroid.droids.djvu.codec.DjvuDocument;
 import org.ebookdroid.droids.comic.codec.ComicDocument;
+import org.ebookdroid.droids.tiff.codec.TiffDocument;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -768,7 +769,7 @@ public abstract class DocumentController {
 
     /**
      * In a debuggable build, the reading mode's name in the bottom bar is followed by the engine
-     * that lays the book out - [MuPDF], [HTML+JS], [PDFium] - to tell at a glance which one is
+     * that lays the book out - [MuPDF], [HTML+JS], [PDFium], [libtiff] - to tell at a glance which one is
      * at work, as the engine asked for can fall back to MuPDF. Once the book is open, and again
      * on every update, so the name is kept whatever rewrote it meanwhile.
      */
@@ -817,6 +818,9 @@ public abstract class DocumentController {
         }
         if (doc instanceof ComicDocument) {
             return "Comic";
+        }
+        if (doc instanceof TiffDocument) {
+            return "libtiff";
         }
         return "MuPDF";
     }

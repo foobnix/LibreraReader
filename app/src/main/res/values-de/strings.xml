@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Diese App wird nicht mehr unterstützt und bald entfernt. Übertragen Sie Ihren Lesefortschritt, Ihre Favoriten, Lesezeichen und Tags zu LibreraX.</string>
    <string name="reading_progress">Lesefortschritt</string>
    <string name="add_to_home_screen">Zum Startbildschirm hinzufügen</string>
+   <string name="not_supported">Nicht unterstützt</string>
 </resources>

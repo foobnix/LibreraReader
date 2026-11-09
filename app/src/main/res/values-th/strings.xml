@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">แอปนี้จะไม่ได้รับการสนับสนุนอีกต่อไปและจะถูกนำออกเร็ว ๆ นี้ โปรดย้ายความคืบหน้าการอ่าน รายการโปรด บุ๊กมาร์ก และแท็กไปยัง LibreraX</string>
    <string name="reading_progress">ความคืบหน้าการอ่าน</string>
    <string name="add_to_home_screen">เพิ่มไปยังหน้าจอหลัก</string>
+   <string name="not_supported">ไม่รองรับ</string>
 </resources>

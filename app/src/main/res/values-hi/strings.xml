@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">यह ऐप अब समर्थित नहीं रहेगा और जल्द ही हटा दिया जाएगा। अपनी पढ़ने की प्रगति, पसंदीदा, बुकमार्क और टैग LibreraX में ले जाएँ।</string>
    <string name="reading_progress">पढ़ने की प्रगति</string>
    <string name="add_to_home_screen">होम स्क्रीन पर जोड़ें</string>
+   <string name="not_supported">समर्थित नहीं</string>
 </resources>

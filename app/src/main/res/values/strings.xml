@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">This app will no longer be supported and will be removed soon. Move your book progress, favorites, bookmarks and tags to LibreraX.</string>
    <string name="reading_progress">Book progress</string>
    <string name="add_to_home_screen">Add to home screen</string>
+   <string name="not_supported">Not supported</string>
 </resources>

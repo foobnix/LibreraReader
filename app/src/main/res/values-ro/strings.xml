@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Această aplicație nu va mai fi acceptată și va fi eliminată în curând. Transferați progresul lecturii, favoritele, marcajele și etichetele în LibreraX.</string>
    <string name="reading_progress">Progresul lecturii</string>
    <string name="add_to_home_screen">Adaugă pe ecranul de pornire</string>
+   <string name="not_supported">Neacceptat</string>
 </resources>

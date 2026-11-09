@@ -1,7 +1,6 @@
 package org.ebookdroid.droids.comic.codec;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -26,13 +25,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * One image of a comic archive, drawn as a page. See {@link ComicContext}.
+ * One image of an {@link ImageDocument} - a page of a comic archive or of a TIFF - drawn as a
+ * page. See {@link ComicContext}.
  */
 public class ComicPage extends AbstractCodecPage {
 
     private static final int WHITE = Color.rgb(255, 255, 255);
 
-    private final ComicDocument document;
+    private final ImageDocument document;
     private final int pageNumber;
 
     /** The archive this page came from, for the logs; AbstractCodecPage keeps its own copy. */
@@ -40,7 +40,7 @@ public class ComicPage extends AbstractCodecPage {
 
     private volatile boolean recycled;
 
-    ComicPage(final ComicDocument document, final String path, final int pageNumber) {
+    ComicPage(final ImageDocument document, final String path, final int pageNumber) {
         super(path);
         this.fname = path;
         this.document = document;
@@ -167,31 +167,26 @@ public class ComicPage extends AbstractCodecPage {
     }
 
     /**
-     * Decodes the image no larger than it needs to be: BitmapFactory's inSampleSize halves it as
-     * many times as it can while still covering the size asked for, so reading a page of a comic
-     * at a page-fitting zoom costs a fraction of the full-resolution decode - and a 4000px scan
-     * never has to be held in memory whole.
+     * Decodes the image no larger than it needs to be: halved as many times as it can be while
+     * still covering the size asked for, so a page at a page-fitting zoom costs a fraction of the
+     * full-resolution decode, and a 4000px scan never has to be held in memory whole.
      */
     private Bitmap decode(final CodecPageInfo info, final int pageW, final int pageH) {
-        final byte[] bytes = document.read(pageNumber);
-        if (bytes == null) {
-            return null;
-        }
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inPreferredConfig = AppsConfig.CURRENT_BITMAP_ARGB;
-        options.inSampleSize = sampleSize(info.width, info.height, pageW, pageH);
+        final int sample = sampleSize(info.width, info.height, pageW, pageH);
         try {
-            return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
-        } catch (Throwable e) {
-            // A page too big to hold even sampled down: try again, smaller
-            LOG.e(e, fname, pageNumber);
-            options.inSampleSize = options.inSampleSize * 2;
-            try {
-                return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
-            } catch (Throwable e2) {
-                LOG.e(e2);
-                return null;
+            final Bitmap bitmap = document.decodePage(pageNumber, sample);
+            if (bitmap != null) {
+                return bitmap;
             }
+        } catch (Throwable e) {
+            LOG.e(e, fname, pageNumber);
+        }
+        // A page too big to hold even sampled down: try again, smaller
+        try {
+            return document.decodePage(pageNumber, sample * 2);
+        } catch (Throwable e) {
+            LOG.e(e);
+            return null;
         }
     }
 
@@ -263,8 +258,8 @@ public class ComicPage extends AbstractCodecPage {
 
     @Override
     public TextWord[][] getTextImpl() {
-        // A comic is scanned artwork: there is no text layer, which is what MuPDF reports for a
-        // .cbz too. Selection, search and text-to-speech are off for these books either way.
+        // A page is a scanned image: there is no text layer, which is what MuPDF reports for a
+        // .cbz or a .tiff too. Selection, search and text-to-speech are off for these books.
         return new TextWord[0][0];
     }
 
@@ -290,7 +285,7 @@ public class ComicPage extends AbstractCodecPage {
 
     @Override
     public void addAnnotation(final float[] color, final PointF[][] points, final float width, final float alpha) {
-        // Nothing to write them into: a .cbz is a zip of images and carries no annotation layer
+        // Nothing to write them into: a .cbz is a zip of images, and a TIFF is read, not written
     }
 
     @Override

@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Aquesta aplicació deixarà de tenir suport i s\'eliminarà aviat. Traspasseu el progrés de lectura, els preferits, les adreces d\'interès i les etiquetes a LibreraX.</string>
    <string name="reading_progress">Progrés de lectura</string>
    <string name="add_to_home_screen">Afegeix a la pantalla d\'inici</string>
+   <string name="not_supported">No compatible</string>
 </resources>

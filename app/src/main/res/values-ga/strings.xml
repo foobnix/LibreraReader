@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Ní thacófar leis an aip seo a thuilleadh agus bainfear í go luath. Bog do dhul chun cinn léitheoireachta, do cheanáin, do leabharmharcanna agus do chlibeanna go LibreraX.</string>
    <string name="reading_progress">Dul chun cinn léitheoireachta</string>
    <string name="add_to_home_screen">Cuir leis an scáileán baile</string>
+   <string name="not_supported">Ní thacaítear leis</string>
 </resources>

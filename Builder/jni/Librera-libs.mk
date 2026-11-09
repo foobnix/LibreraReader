@@ -8,26 +8,11 @@
 #   libantiword.so  antiword (main_u.c)               LibMobi.convertDocToHtml
 #   libhqx.so       hqx + cbdroidbridge.c             RawBitmap (the bitmap scaler)
 #
-# liblame.so and libarchive.so have makefiles of their own, in their folders.
+# liblame.so, libarchive.so and libtiff.so have makefiles of their own, in their folders. The
+# libjpeg DjVu and libtiff.so decode with is libjpeg-turbo (libjpeg-turbo-3.2.1/Android.mk).
 #
-# Included by Android-<mupdf version>.mk after its sub-makefiles (which build the static
-# libraries named here) and after MuPDF-<version>.mk, which reads MuPDF's Makelists: the libjpeg
-# DjVu decodes with is MuPDF's thirdparty copy, and LIBJPEG_SRC comes from there.
-
-# --- libjpeg, for DjVu ---
-# MuPDF's own build of it, mupdf_thirdparty_libjpeg, goes without libjpeg's memory manager, as
-# MuPDF supplies one; jmemnobs.c is libjpeg's own, which needs no backing store.
-include $(CLEAR_VARS)
-LOCAL_PATH      := $(TOP_LOCAL_PATH)
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-LOCAL_MODULE    := djvu_libjpeg
-LOCAL_SRC_FILES := $(patsubst %,$(MUPDF_PATH)/%,$(LIBJPEG_SRC)) \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jmemnobs.c
-LOCAL_C_INCLUDES := $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(LIBJPEG_CFLAGS) $(LIBJPEG_BUILD_CFLAGS)))
-LOCAL_CFLAGS += $(filter-out -I%,$(LIBJPEG_CFLAGS) $(LIBJPEG_BUILD_CFLAGS))
-include $(BUILD_STATIC_LIBRARY)
+# Included by Android-<mupdf version>.mk after its sub-makefiles, which build the static
+# libraries named here.
 
 # --- libdjvu.so ---
 include $(CLEAR_VARS)
@@ -38,7 +23,7 @@ LOCAL_MODULE     := djvu
 LOCAL_CFLAGS     := -DHAVE_ANDROID
 LOCAL_C_INCLUDES := $(TOP_LOCAL_PATH)/libdjvu-3.5.28/src $(TOP_LOCAL_PATH)
 LOCAL_SRC_FILES  := DjvuDroidBridge.cpp
-LOCAL_STATIC_LIBRARIES := djvu_static djvu_libjpeg
+LOCAL_STATIC_LIBRARIES := djvu_static jpeg_turbo
 LOCAL_LDLIBS     := -ljnigraphics -llog
 # the static libraries' own symbols stay inside, the JNI entry points are all that is exported
 LOCAL_LDFLAGS    := -Wl,--exclude-libs,ALL

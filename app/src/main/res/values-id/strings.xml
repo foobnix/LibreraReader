@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Aplikasi ini tidak akan didukung lagi dan akan segera dihapus. Pindahkan progres baca, favorit, penanda, dan tag Anda ke LibreraX.</string>
    <string name="reading_progress">Kemajuan membaca</string>
    <string name="add_to_home_screen">Tambahkan ke layar utama</string>
+   <string name="not_supported">Tidak didukung</string>
 </resources>

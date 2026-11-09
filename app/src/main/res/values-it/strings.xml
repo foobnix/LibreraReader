@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Questa app non sarà più supportata e verrà rimossa a breve. Trasferisci su LibreraX i progressi di lettura, i preferiti, i segnalibri e i tag.</string>
    <string name="reading_progress">Progresso di lettura</string>
    <string name="add_to_home_screen">Aggiungi alla schermata Home</string>
+   <string name="not_supported">Non supportato</string>
 </resources>

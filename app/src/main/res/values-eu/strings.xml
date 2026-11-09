@@ -723,4 +723,5 @@
    <string name="librerax_migrate_installed">Aplikazio honek ez du euskarririk izango eta laster kenduko da. Eraman irakurketa-aurrerapena, gogokoak, laster-markak eta etiketak LibreraX-era.</string>
    <string name="reading_progress">Irakurketaren aurrerapena</string>
    <string name="add_to_home_screen">Gehitu hasierako pantailara</string>
+   <string name="not_supported">Ez da onartzen</string>
 </resources>
