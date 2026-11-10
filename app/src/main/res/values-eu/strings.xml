@@ -724,4 +724,5 @@
    <string name="reading_progress">Irakurketaren aurrerapena</string>
    <string name="add_to_home_screen">Gehitu hasierako pantailara</string>
    <string name="not_supported">Ez da onartzen</string>
+   <string name="update_to_new_app">Eguneratu gure aplikazio moderno berrira: %1$s edo %2$s</string>
 </resources>

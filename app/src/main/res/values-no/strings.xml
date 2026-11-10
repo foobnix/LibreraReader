@@ -724,4 +724,5 @@
    <string name="reading_progress">Lesefremdrift</string>
    <string name="add_to_home_screen">Legg til på startskjermen</string>
    <string name="not_supported">Støttes ikke</string>
+   <string name="update_to_new_app">Bytt til vår nye, moderne app %1$s eller %2$s</string>
 </resources>

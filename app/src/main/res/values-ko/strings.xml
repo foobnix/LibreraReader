@@ -724,4 +724,5 @@
    <string name="reading_progress">읽기 진행률</string>
    <string name="add_to_home_screen">홈 화면에 추가</string>
    <string name="not_supported">지원되지 않음</string>
+   <string name="update_to_new_app">새로운 최신 앱 %1$s 또는 %2$s(으)로 업데이트하세요</string>
 </resources>

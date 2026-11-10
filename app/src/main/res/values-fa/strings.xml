@@ -724,4 +724,5 @@
    <string name="reading_progress">پیشرفت مطالعه</string>
    <string name="add_to_home_screen">افزودن به صفحهٔ اصلی</string>
    <string name="not_supported">پشتیبانی نمی‌شود</string>
+   <string name="update_to_new_app">لطفاً به برنامهٔ جدید و مدرن ما %1$s یا %2$s به‌روزرسانی کنید</string>
 </resources>

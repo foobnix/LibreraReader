@@ -724,4 +724,5 @@
    <string name="reading_progress">התקדמות קריאה</string>
    <string name="add_to_home_screen">הוספה למסך הבית</string>
    <string name="not_supported">לא נתמך</string>
+   <string name="update_to_new_app">אנא עברו לאפליקציה החדשה והמודרנית שלנו %1$s או %2$s</string>
 </resources>

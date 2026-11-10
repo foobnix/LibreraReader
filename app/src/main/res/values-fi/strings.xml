@@ -724,4 +724,5 @@
    <string name="reading_progress">Lukuedistyminen</string>
    <string name="add_to_home_screen">Lisää aloitusnäyttöön</string>
    <string name="not_supported">Ei tuettu</string>
+   <string name="update_to_new_app">Päivitä uuteen moderniin sovellukseemme %1$s tai %2$s</string>
 </resources>

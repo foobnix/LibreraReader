@@ -724,4 +724,5 @@
    <string name="reading_progress">Прогрес читання</string>
    <string name="add_to_home_screen">Додати на головний екран</string>
    <string name="not_supported">Не підтримується</string>
+   <string name="update_to_new_app">Будь ласка, перейдіть на наш новий сучасний застосунок %1$s або %2$s</string>
 </resources>

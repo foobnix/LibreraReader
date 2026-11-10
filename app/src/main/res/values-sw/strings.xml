@@ -724,4 +724,5 @@
    <string name="reading_progress">Maendeleo ya kusoma</string>
    <string name="add_to_home_screen">Ongeza kwenye skrini ya mwanzo</string>
    <string name="not_supported">Haitumiki</string>
+   <string name="update_to_new_app">Tafadhali hamia programu yetu mpya ya kisasa %1$s au %2$s</string>
 </resources>

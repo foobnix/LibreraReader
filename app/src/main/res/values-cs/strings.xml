@@ -724,4 +724,5 @@
    <string name="reading_progress">Postup čtení</string>
    <string name="add_to_home_screen">Přidat na plochu</string>
    <string name="not_supported">Nepodporováno</string>
+   <string name="update_to_new_app">Přejděte prosím na naši novou moderní aplikaci %1$s nebo %2$s</string>
 </resources>

@@ -724,4 +724,5 @@
    <string name="reading_progress">पढ़ने की प्रगति</string>
    <string name="add_to_home_screen">होम स्क्रीन पर जोड़ें</string>
    <string name="not_supported">समर्थित नहीं</string>
+   <string name="update_to_new_app">कृपया हमारे नए आधुनिक ऐप %1$s या %2$s पर अपडेट करें</string>
 </resources>

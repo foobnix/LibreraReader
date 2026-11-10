@@ -724,4 +724,5 @@
    <string name="reading_progress">Progresul lecturii</string>
    <string name="add_to_home_screen">Adaugă pe ecranul de pornire</string>
    <string name="not_supported">Neacceptat</string>
+   <string name="update_to_new_app">Treceți la noua noastră aplicație modernă %1$s sau %2$s</string>
 </resources>

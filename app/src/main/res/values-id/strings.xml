@@ -724,4 +724,5 @@
    <string name="reading_progress">Kemajuan membaca</string>
    <string name="add_to_home_screen">Tambahkan ke layar utama</string>
    <string name="not_supported">Tidak didukung</string>
+   <string name="update_to_new_app">Silakan beralih ke aplikasi modern baru kami %1$s atau %2$s</string>
 </resources>

@@ -724,4 +724,5 @@
    <string name="reading_progress">Progresso di lettura</string>
    <string name="add_to_home_screen">Aggiungi alla schermata Home</string>
    <string name="not_supported">Non supportato</string>
+   <string name="update_to_new_app">Passa alla nostra nuova app moderna %1$s o %2$s</string>
 </resources>

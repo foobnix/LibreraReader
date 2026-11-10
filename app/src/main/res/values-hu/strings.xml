@@ -724,4 +724,5 @@
    <string name="reading_progress">Olvasási előrehaladás</string>
    <string name="add_to_home_screen">Hozzáadás a kezdőképernyőhöz</string>
    <string name="not_supported">Nem támogatott</string>
+   <string name="update_to_new_app">Kérjük, váltson új, modern alkalmazásunkra: %1$s vagy %2$s</string>
 </resources>

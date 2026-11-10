@@ -724,4 +724,5 @@
    <string name="reading_progress">Dul chun cinn léitheoireachta</string>
    <string name="add_to_home_screen">Cuir leis an scáileán baile</string>
    <string name="not_supported">Ní thacaítear leis</string>
+   <string name="update_to_new_app">Uasghrádaigh chuig ár n-aip nua-aimseartha nua %1$s nó %2$s</string>
 </resources>

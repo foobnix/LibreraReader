@@ -724,4 +724,5 @@
    <string name="reading_progress">Skaitymo eiga</string>
    <string name="add_to_home_screen">Pridėti prie pradžios ekrano</string>
    <string name="not_supported">Nepalaikoma</string>
+   <string name="update_to_new_app">Pereikite prie mūsų naujos modernios programėlės %1$s arba %2$s</string>
 </resources>

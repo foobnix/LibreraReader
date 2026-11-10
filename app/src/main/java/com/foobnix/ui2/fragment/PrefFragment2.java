@@ -3,6 +3,10 @@ package com.foobnix.ui2.fragment;
 import static com.foobnix.pdf.info.view.confline.ConfAction.of;
 
 import android.content.res.ColorStateList;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.widget.ProgressBar;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -142,6 +146,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.io.File;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -2816,6 +2821,7 @@ public class PrefFragment2 extends UIFragment {
         TextView onProfile = inflate.findViewById(R.id.onProfile);
 
         profileLetter = inflate.findViewById(R.id.profileLetter);
+        showUpdateNotice(inflate.findViewById(R.id.updateToNewApp));
 
         final String p = AppProfile.getCurrent();
 
@@ -3016,6 +3022,42 @@ public class PrefFragment2 extends UIFragment {
     private static final int[] APP_BOXES = {R.id.onRateIt, R.id.downloadPRO, R.id.libreraXGithub,
             R.id.whatIsNew, R.id.libraryLicenses, R.id.onMailSupport, R.id.openWeb, R.id.openBeta,
             R.id.openWiki, R.id.onTelegram};
+
+    /** The flavours that are the app to stay on; every other one is asked to move. */
+    private static final List<String> CURRENT_FLAVORS = Arrays.asList("librera", "pro", "fdroid");
+
+    /** "Please update to ... Librera Reader or LibreraX", each name a link to where it is got. */
+    private void showUpdateNotice(TextView notice) {
+        if (notice == null || CURRENT_FLAVORS.contains(AppsConfig.FLAVOR)) {
+            return;
+        }
+        final String librera = getString(R.string.librera_reader);
+        final String librerax = getString(R.string.librerax);
+        final String text = getString(R.string.update_to_new_app, librera, librerax);
+        final SpannableString spannable = new SpannableString(text);
+        link(spannable, text, librera, AppsConfig.IS_FDROID
+                ? "https://f-droid.org/packages/com.foobnix.pro.pdf.reader/"
+                : "https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader");
+        link(spannable, text, librerax, LibreraX.downloadUrl());
+        notice.setText(spannable);
+        notice.setLinkTextColor(TintUtil.color);
+        notice.setMovementMethod(LinkMovementMethod.getInstance());
+        notice.setVisibility(View.VISIBLE);
+    }
+
+    /** Underlines a name in the text and opens the url when it is tapped. */
+    private static void link(SpannableString spannable, String text, String name, String url) {
+        final int start = text.indexOf(name);
+        if (start < 0) {
+            return;
+        }
+        spannable.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                Urls.open(widget.getContext(), url);
+            }
+        }, start, start + name.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }
 
     private static void markAppBoxes(View root) {
         for (int id : APP_BOXES) {

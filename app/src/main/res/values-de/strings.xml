@@ -724,4 +724,5 @@
    <string name="reading_progress">Lesefortschritt</string>
    <string name="add_to_home_screen">Zum Startbildschirm hinzufügen</string>
    <string name="not_supported">Nicht unterstützt</string>
+   <string name="update_to_new_app">Bitte wechseln Sie zu unserer neuen, modernen App %1$s oder %2$s</string>
 </resources>

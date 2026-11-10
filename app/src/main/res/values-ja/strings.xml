@@ -724,4 +724,5 @@
    <string name="reading_progress">読書の進捗</string>
    <string name="add_to_home_screen">ホーム画面に追加</string>
    <string name="not_supported">非対応</string>
+   <string name="update_to_new_app">新しいモダンなアプリ %1$s または %2$s に移行してください</string>
 </resources>

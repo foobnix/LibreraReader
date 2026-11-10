@@ -724,4 +724,5 @@
    <string name="reading_progress">Оқу барысы</string>
    <string name="add_to_home_screen">Басты экранға қосу</string>
    <string name="not_supported">Қолдау көрсетілмейді</string>
+   <string name="update_to_new_app">Жаңа заманауи қолданбамызға көшіңіз: %1$s немесе %2$s</string>
 </resources>

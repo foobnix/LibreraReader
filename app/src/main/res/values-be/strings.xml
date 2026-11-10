@@ -724,4 +724,5 @@
    <string name="reading_progress">Прагрэс чытання</string>
    <string name="add_to_home_screen">Дадаць на галоўны экран</string>
    <string name="not_supported">Не падтрымліваецца</string>
+   <string name="update_to_new_app">Калі ласка, перайдзіце на нашу новую сучасную праграму %1$s або %2$s</string>
 </resources>

@@ -724,4 +724,5 @@
    <string name="reading_progress">വായനാ പുരോഗതി</string>
    <string name="add_to_home_screen">ഹോം സ്ക്രീനിലേക്ക് ചേർക്കുക</string>
    <string name="not_supported">പിന്തുണയില്ല</string>
+   <string name="update_to_new_app">ഞങ്ങളുടെ പുതിയ ആധുനിക ആപ്പായ %1$s അല്ലെങ്കിൽ %2$s ലേക്ക് മാറുക</string>
 </resources>

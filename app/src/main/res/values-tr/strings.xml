@@ -724,4 +724,5 @@
    <string name="reading_progress">Okuma ilerlemesi</string>
    <string name="add_to_home_screen">Ana ekrana ekle</string>
    <string name="not_supported">Desteklenmiyor</string>
+   <string name="update_to_new_app">Lütfen yeni ve modern uygulamamız %1$s veya %2$s uygulamasına geçin</string>
 </resources>

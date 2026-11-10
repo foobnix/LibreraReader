@@ -724,4 +724,5 @@
    <string name="reading_progress">ความคืบหน้าการอ่าน</string>
    <string name="add_to_home_screen">เพิ่มไปยังหน้าจอหลัก</string>
    <string name="not_supported">ไม่รองรับ</string>
+   <string name="update_to_new_app">โปรดเปลี่ยนไปใช้แอปใหม่ที่ทันสมัยของเรา %1$s หรือ %2$s</string>
 </resources>

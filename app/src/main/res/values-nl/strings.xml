@@ -724,4 +724,5 @@
    <string name="reading_progress">Leesvoortgang</string>
    <string name="add_to_home_screen">Toevoegen aan startscherm</string>
    <string name="not_supported">Niet ondersteund</string>
+   <string name="update_to_new_app">Stap over op onze nieuwe, moderne app %1$s of %2$s</string>
 </resources>

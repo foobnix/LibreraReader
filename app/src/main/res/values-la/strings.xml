@@ -724,4 +724,5 @@
    <string name="reading_progress">Progressus lectionis</string>
    <string name="add_to_home_screen">Adde ad tabulam primariam</string>
    <string name="not_supported">Non sustinetur</string>
+   <string name="update_to_new_app">Quaesumus, ad novam nostram applicationem modernam %1$s vel %2$s transi</string>
 </resources>

@@ -724,4 +724,5 @@
    <string name="reading_progress">Tiến độ đọc</string>
    <string name="add_to_home_screen">Thêm vào màn hình chính</string>
    <string name="not_supported">Không được hỗ trợ</string>
+   <string name="update_to_new_app">Vui lòng chuyển sang ứng dụng hiện đại mới của chúng tôi %1$s hoặc %2$s</string>
 </resources>
