@@ -998,6 +998,67 @@ public class FoliateEngineDeviceTest {
     }
 
     /**
+     * The pages TTS has read ahead are the same pages - text, words and where the words are - and
+     * they are answered without the WebView, which in the background may not answer at all. The
+     * main thread stands in for that here: the WebView is never waited for from it, so a page not
+     * read ahead has no text there.
+     */
+    @Test
+    public void pagesReadAheadForTtsNeedNoWebView() throws Exception {
+        final CodecDocument document = open(AppState.EPUB_ENGINE_FOLIATE);
+        try {
+            final int pages = document.getPageCount(PAGE_WIDTH, PAGE_HEIGHT, BookCSS.get().fontSizeSp);
+            assertTrue("a book of several pages, got " + pages, pages >= 3);
+            final String[] html = new String[pages];
+            final String[] words = new String[pages];
+            for (int i = 0; i < pages; i++) {
+                html[i] = document.getPageInner(i).getPageHTML();
+                words[i] = wordsAndRects(document.getPageInner(i));
+                assertTrue("page " + i + " has text", html[i].contains("<p>"));
+            }
+            assertEquals("not read ahead, the main thread gets nothing", "", onMain(document, 1)[0]);
+
+            ((FoliateDocument) document).readAhead(1);
+            final long until = System.currentTimeMillis() + 30000;
+            while (onMain(document, pages - 1)[0].isEmpty() && System.currentTimeMillis() < until) {
+                Thread.sleep(100);
+            }
+
+            assertEquals("the page before the one TTS is on is not read ahead", "", onMain(document, 0)[0]);
+            for (int i = 1; i < pages; i++) {
+                final String[] cached = onMain(document, i);
+                assertEquals("page " + i + "'s text", html[i], cached[0]);
+                assertEquals("page " + i + "'s words", words[i], cached[1]);
+            }
+            // And the WebView is still where it was asked to be afterwards
+            assertEquals(html[0], document.getPageInner(0).getPageHTML());
+        } finally {
+            document.recycle();
+        }
+    }
+
+    /** A page's text and words, asked for on the main thread. */
+    private static String[] onMain(final CodecDocument document, final int page) {
+        final String[] out = new String[2];
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
+            final CodecPage codecPage = document.getPageInner(page);
+            out[0] = codecPage == null ? null : codecPage.getPageHTML();
+            out[1] = codecPage == null ? null : wordsAndRects(codecPage);
+        });
+        return out;
+    }
+
+    private static String wordsAndRects(final CodecPage page) {
+        final StringBuilder out = new StringBuilder();
+        for (TextWord[] line : page.getText()) {
+            for (TextWord word : line) {
+                out.append(word.w).append(word.getOriginal()).append('\n');
+            }
+        }
+        return out.toString();
+    }
+
+    /**
      * The guard that keeps the app alive: these are asked for on the UI thread, where waiting for
      * the WebView would wait for the thread the caller is holding.
      */

@@ -20,6 +20,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -74,6 +80,38 @@ public class FoliateDocument extends AbstractCodecDocument {
     private volatile int positionedChars;
 
     private volatile List<OutlineLink> outline;
+
+    /** How many pages from the one TTS is reading have their text read ahead. */
+    static final int READ_AHEAD = 100;
+
+    /** Pages read ahead per round trip: the reader waits no longer than that for a page of its own. */
+    private static final int READ_BATCH = 10;
+
+    /** One thread for every book: only one is open at a time, and it has one WebView. */
+    private static final ExecutorService READER = Executors.newSingleThreadExecutor(runnable -> {
+        final Thread thread = new Thread(runnable, "FoliateReadAhead");
+        thread.setDaemon(true);
+        return thread;
+    });
+
+    /**
+     * The text and the words of the pages read ahead, as {@link FoliateRenderer#text()} and
+     * {@link FoliateRenderer#words()} give them, by 0-based page. They belong to {@link #index}
+     * and are dropped with it.
+     */
+    private final Map<Integer, String[]> readAhead = new ConcurrentHashMap<Integer, String[]>();
+
+    /** The page TTS asked to read ahead from last. */
+    private final AtomicInteger readAheadFrom = new AtomicInteger();
+
+    private final AtomicBoolean readingAhead = new AtomicBoolean();
+
+    /**
+     * Set when a read ahead got no answer. Each call to a frozen renderer is queued in it and
+     * runs when it wakes, so asking at every page would leave the reader a backlog of stale
+     * reads to wait through on return; it is asked again once the app is on screen.
+     */
+    private volatile boolean readAheadStuck;
 
     public FoliateDocument(final CodecContext context, final String bookPath) {
         super(context, HANDLES.incrementAndGet());
@@ -131,8 +169,23 @@ public class FoliateDocument extends AbstractCodecDocument {
     /**
      * The page index for a viewport, from the cache when it is there and by walking the book's
      * sections when it is not.
+     *
+     * The index the book is already laid out for is handed back without taking the lock. A page
+     * being drawn holds it across a WebView round trip, which in the background - the WebView's
+     * renderer throttled or frozen - is a wait until the call times out, and TTS reading a page
+     * it has read ahead must not wait for that.
      */
-    private synchronized FoliateIndex index(final int w, final int h) {
+    private FoliateIndex index(final int w, final int h) {
+        final FoliateRenderer local = renderer;
+        final FoliateIndex ready = index;
+        if (local != null && local.isUsable() && ready != null
+                && (w > 0 ? w : Dips.screenWidth()) == width && (h > 0 ? h : Dips.screenHeight()) == height) {
+            return ready;
+        }
+        return indexLocked(w, h);
+    }
+
+    private synchronized FoliateIndex indexLocked(final int w, final int h) {
         final FoliateRenderer local = renderer;
         if (local == null || !local.isUsable()) {
             return null;
@@ -166,6 +219,8 @@ public class FoliateDocument extends AbstractCodecDocument {
         width = pageW;
         height = pageH;
         index = loaded;
+        // The pages read ahead were pages of the old layout
+        readAhead.clear();
         // A re-columnised book is no longer on the page it was
         invalidatePosition();
         return loaded;
@@ -478,21 +533,150 @@ public class FoliateDocument extends AbstractCodecDocument {
         if (local == null) {
             return null;
         }
-        synchronized (this) {
-            if (index(width, height) == null || !position(page - 1)) {
+        String json = readAheadText(page - 1);
+        if (json == null) {
+            if (!FoliateRenderer.canWait()) {
+                // The lock may be held by a call that is waiting for this very thread
                 return null;
             }
-            final String json = local.text();
-            if (json == null) {
-                return null;
-            }
-            try {
-                return new JSONObject(json).optString("text");
-            } catch (Throwable e) {
-                LOG.e(e);
-                return null;
+            synchronized (this) {
+                if (index(width, height) == null || !position(page - 1)) {
+                    return null;
+                }
+                json = local.text();
             }
         }
+        if (json == null) {
+            return null;
+        }
+        try {
+            return new JSONObject(json).optString("text");
+        } catch (Throwable e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    // ---------------------------------------------------------------- reading ahead for TTS
+
+    /**
+     * Has the text of the {@link #READ_AHEAD} pages from this one read out of the WebView, so TTS
+     * reads them from here rather than from it.
+     *
+     * TTS reads the reader's own document, and the WebView only answers reliably while the app is
+     * on screen: in the background Chromium throttles a WebView nobody can see and the system
+     * freezes WebView renderers it counts as idle. Then every call times out, and TTS stopped a
+     * minute or two after the screen went off. So each page TTS starts asks for the pages after it - those
+     * already read are not read again - while the WebView still answers, and they are read in
+     * batches on a thread of their own. A batch that fails ends the run, and none is tried again
+     * until the app is back on screen.
+     *
+     * @param page the 0-based page TTS is reading
+     */
+    public void readAhead(final int page) {
+        if (isRecycled()) {
+            return;
+        }
+        if (readAheadStuck) {
+            if (LibreraApp.getResumedActivity() == null) {
+                return;
+            }
+            readAheadStuck = false;
+        }
+        readAheadFrom.set(Math.max(0, page));
+        // What TTS has left behind is not wanted again, unless it goes back a page
+        for (Integer cached : readAhead.keySet()) {
+            if (cached < page - 1 || cached >= page + 2 * READ_AHEAD) {
+                readAhead.remove(cached);
+            }
+        }
+        if (readingAhead.compareAndSet(false, true)) {
+            READER.execute(() -> {
+                try {
+                    readAheadRun();
+                } catch (Throwable e) {
+                    LOG.e(e);
+                } finally {
+                    readingAhead.set(false);
+                }
+            });
+        }
+    }
+
+    /** Reads batch after batch until the pages ahead are all there or the WebView stops answering. */
+    private void readAheadRun() {
+        final long started = System.currentTimeMillis();
+        int read = 0;
+        while (!isRecycled()) {
+            final FoliateRenderer local = renderer;
+            final FoliateIndex local$index = index;
+            if (local == null || local$index == null || !local.isUsable()) {
+                return;
+            }
+            final int from = readAheadFrom.get();
+            final int to = Math.min(local$index.getTotal(), from + READ_AHEAD);
+            final List<Integer> batch = new ArrayList<Integer>(READ_BATCH);
+            for (int page = from; page < to && batch.size() < READ_BATCH; page++) {
+                if (!readAhead.containsKey(page)) {
+                    batch.add(page);
+                }
+            }
+            if (batch.isEmpty()) {
+                if (read > 0) {
+                    LOG.d("FOLIATE! read ahead", read, "pages from", from, "in",
+                            (System.currentTimeMillis() - started) + "ms");
+                }
+                return;
+            }
+            final int[] sections = new int[batch.size()];
+            final float[] fractions = new float[batch.size()];
+            for (int i = 0; i < sections.length; i++) {
+                sections[i] = local$index.sectionOf(batch.get(i));
+                fractions[i] = local$index.fractionOf(batch.get(i));
+            }
+            synchronized (this) {
+                if (index != local$index) {
+                    // Laid out again meanwhile: the pages are other pages now
+                    continue;
+                }
+                final JSONArray pages = local.pages(sections, fractions);
+                // Each page was gone to, so the book is no longer where it was
+                invalidatePosition();
+                if (pages == null) {
+                    LOG.d("FOLIATE! read ahead stopped at", batch.get(0), "after", read, "pages");
+                    readAheadStuck = true;
+                    return;
+                }
+                int stored = 0;
+                for (int i = 0; i < batch.size() && i < pages.length(); i++) {
+                    final JSONObject one = pages.optJSONObject(i);
+                    final JSONObject text = one == null ? null : one.optJSONObject("text");
+                    final JSONObject words = one == null ? null : one.optJSONObject("words");
+                    if (text != null && words != null) {
+                        readAhead.put(batch.get(i), new String[]{text.toString(), words.toString()});
+                        stored++;
+                    }
+                }
+                if (stored == 0) {
+                    // Pages that will not lay out would only be asked for again and again
+                    LOG.d("FOLIATE! read ahead got nothing at", batch.get(0));
+                    return;
+                }
+                read += stored;
+            }
+        }
+    }
+
+    /** A page's text as {@link FoliateRenderer#text()} gives it, if it was read ahead; else null. */
+    String readAheadText(final int page) {
+        final String[] cached = readAhead.get(page);
+        return cached == null ? null : cached[0];
+    }
+
+    /** A page's words as {@link FoliateRenderer#words()} gives them, if it was read ahead; else null. */
+    String readAheadWords(final int page) {
+        final String[] cached = readAhead.get(page);
+        return cached == null ? null : cached[1];
     }
 
     // ---------------------------------------------------------------- not reached for a book
@@ -540,6 +724,7 @@ public class FoliateDocument extends AbstractCodecDocument {
         disposeEngine();
         index = null;
         outline = null;
+        readAhead.clear();
         LOG.d("FOLIATE! <<< recycle [document]", bookPath);
     }
 }

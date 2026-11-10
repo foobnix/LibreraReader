@@ -601,6 +601,40 @@ class FoliateRenderer {
         return call("text", new JSONObject(), CALL_TIMEOUT_MS);
     }
 
+    /**
+     * The text and the words of several pages, each as {@link #text()} and {@link #words()} give
+     * them, in one round trip and without drawing any of them. It leaves the book on the last.
+     *
+     * @return one entry per page, {@code {"text": ..., "words": ...}} or null for a page that
+     *         would not lay out; <code>null</code> when the call itself failed
+     */
+    JSONArray pages(final int[] sections, final float[] fractions) {
+        final JSONObject args = new JSONObject();
+        try {
+            final JSONArray places = new JSONArray();
+            for (int i = 0; i < sections.length; i++) {
+                final JSONObject place = new JSONObject();
+                place.put("index", sections[i]);
+                place.put("fraction", fractions[i]);
+                places.put(place);
+            }
+            args.put("pages", places);
+        } catch (Throwable e) {
+            LOG.e(e);
+            return null;
+        }
+        final String answer = call("pages", args, CALL_TIMEOUT_MS);
+        if (answer == null) {
+            return null;
+        }
+        try {
+            return new JSONObject(answer).getJSONArray("pages");
+        } catch (Throwable e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
     /** The current page's links with their rectangles, as JSON, or null. */
     String links() {
         return call("links", new JSONObject(), CALL_TIMEOUT_MS);

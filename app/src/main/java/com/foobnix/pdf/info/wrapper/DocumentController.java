@@ -122,7 +122,9 @@ public abstract class DocumentController {
             ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, //onCrop
             ActivityInfo.SCREEN_ORIENTATION_PORTRAIT, //
             ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE, //
-            ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT//
+            // Upside down. Sensor portrait, which this used to be, stays upright unless the
+            // device is turned over, so it never looked flipped
+            ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT//
                                                                     );
 
     public final static List<Integer> orientationTexts = Arrays.asList(//
@@ -191,7 +193,13 @@ public abstract class DocumentController {
     }
 
     public static int getRotationText() {
-        return orientationTexts.get(orientationIds.indexOf(AppState.get().orientation));
+        final int index = orientationIds.indexOf(AppState.get().orientation);
+        if (index < 0) {
+            // Sensor portrait, saved before it was replaced, still applies and is a portrait
+            return AppState.get().orientation == ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
+                    ? R.string.portrait : R.string.automatic;
+        }
+        return orientationTexts.get(index);
     }
 
     public static boolean isEinkOrMode(Context c) {

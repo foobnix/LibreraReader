@@ -1107,6 +1107,11 @@ import java.util.concurrent.Executors;
                         page.recycle();
                     }
                 }
+                if (dc instanceof FoliateDocument) {
+                    // Its WebView stops answering in the background; the next pages are read
+                    // out of it now, while it still does
+                    ((FoliateDocument) dc).readAhead(number);
+                }
                 final String html = pageHTML;
                 final TextWord[][] pageWords = words;
                 mainHandler.post(() -> {

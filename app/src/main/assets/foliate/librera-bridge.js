@@ -1038,6 +1038,30 @@ const handlers = {
     },
 
     /**
+     * The text and the words of several pages, for TTS to read ahead of itself while this
+     * WebView still answers: in the background its renderer is throttled and then frozen.
+     *
+     * Nothing is drawn, so nothing waits for frames. The words are measured from the layout,
+     * which reading their rectangles brings up to date, and the paginator scrolls to an anchor
+     * synchronously - so each page costs its section's load, if it is a new one, and the
+     * measuring.
+     */
+    async pages({ pages }) {
+        const out = []
+        for (const { index, fraction } of pages || []) {
+            try {
+                await view.renderer.goTo({ index, anchor: fraction })
+                await laidOut()
+                out.push({ text: collectText(), words: collectWords() })
+            } catch (e) {
+                log('page ' + index + '/' + fraction + ' did not lay out: ' + e)
+                out.push(null)
+            }
+        }
+        return { pages: out }
+    },
+
+    /**
      * The table of contents, each entry resolved to the section and fraction it points at so
      * Librera can turn it into a page number through the index it already has.
      *

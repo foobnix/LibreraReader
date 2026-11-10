@@ -291,12 +291,19 @@ public class FoliatePage extends AbstractCodecPage {
         if (recycled || renderer == null || !renderer.isUsable()) {
             return new TextWord[0][0];
         }
-        final String json;
-        synchronized (document) {
-            if (!document.position(pageNumber)) {
+        // Read ahead for TTS, these need no WebView - which in the background may not answer
+        String json = document.readAheadWords(pageNumber);
+        if (json == null) {
+            if (!FoliateRenderer.canWait()) {
+                // The lock may be held by a call that is waiting for this very thread
                 return new TextWord[0][0];
             }
-            json = renderer.words();
+            synchronized (document) {
+                if (!document.position(pageNumber)) {
+                    return new TextWord[0][0];
+                }
+                json = renderer.words();
+            }
         }
         if (json == null) {
             return new TextWord[0][0];
@@ -409,12 +416,17 @@ public class FoliatePage extends AbstractCodecPage {
         if (recycled || renderer == null || !renderer.isUsable()) {
             return "";
         }
-        final String json;
-        synchronized (document) {
-            if (!document.position(pageNumber)) {
+        String json = document.readAheadText(pageNumber);
+        if (json == null) {
+            if (!FoliateRenderer.canWait()) {
                 return "";
             }
-            json = renderer.text();
+            synchronized (document) {
+                if (!document.position(pageNumber)) {
+                    return "";
+                }
+                json = renderer.text();
+            }
         }
         if (json == null) {
             return "";
