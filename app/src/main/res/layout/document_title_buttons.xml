@@ -190,22 +190,6 @@
         android:orientation="horizontal"
         android:padding="6dp">
 
-        <!-- The mark for the offer, cut to the height of the two lines it stands beside;
-             ViewBinder sets that height from the line the message is actually drawn at. -->
-        <ImageView
-            android:id="@+id/showRewardVideoIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="20dip"
-            android:layout_marginLeft="6dip"
-            android:layout_marginRight="4dip"
-            android:layout_weight="0"
-            android:adjustViewBounds="true"
-            android:importantForAccessibility="no"
-            android:scaleType="fitCenter"
-            android:src="@drawable/glyphicons_smileys_13_smiling_heart_eyes"
-            android:tag="no_tint"
-            android:tint="@color/white_alpha_dd" />
-
         <TextView
             android:id="@+id/showRewardVideoText"
             android:layout_width="0dp"
@@ -216,7 +200,8 @@
             android:text="@string/watch_this_short_video_to_turn_off_all_ads_for_3_hour"
             android:textColor="@color/white_alpha_dd" />
 
-        <TextView
+        <!-- The button: the video mark, then the word, inside the ring. -->
+        <LinearLayout
             android:id="@+id/showRewardVideoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -224,14 +209,31 @@
             android:layout_marginRight="6dip"
             android:layout_weight="0"
             android:background="@drawable/bg_pill_outline"
-            android:gravity="center"
-            android:paddingLeft="16dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="14dip"
             android:paddingRight="16dip"
             android:paddingTop="5dip"
-            android:paddingBottom="5dip"
-            android:text="@string/watch"
-            android:textAllCaps="true"
-            android:textColor="@color/white_alpha_dd" />
+            android:paddingBottom="5dip">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="14dip"
+                android:layout_marginRight="6dip"
+                android:adjustViewBounds="true"
+                android:importantForAccessibility="no"
+                android:scaleType="fitCenter"
+                android:src="@drawable/glyphicons_basic_438_playlist_video"
+                android:tag="no_tint"
+                android:tint="@color/white_alpha_dd" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/watch"
+                android:textAllCaps="true"
+                android:textColor="@color/white_alpha_dd" />
+        </LinearLayout>
     </LinearLayout>
 
 

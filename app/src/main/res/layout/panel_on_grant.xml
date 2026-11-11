@@ -114,21 +114,38 @@
             android:text="@string/add_all_books_with_permission"
             android:textColor="@color/white" />
 
-        <TextView
+        <!-- The button: a check, then the word, inside the ring. -->
+        <LinearLayout
             android:id="@+id/onGrantPermissionButton"
-            style="@style/textLinkWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="6dip"
             android:background="@drawable/bg_pill_outline"
-            android:gravity="center"
-            android:paddingLeft="16dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="14dip"
             android:paddingTop="5dip"
             android:paddingRight="16dip"
-            android:paddingBottom="5dip"
-            android:text="@string/allow"
-            android:textAllCaps="true" />
+            android:paddingBottom="5dip">
+
+            <ImageView
+                android:layout_width="16dip"
+                android:layout_height="16dip"
+                android:layout_marginRight="6dip"
+                android:importantForAccessibility="no"
+                android:src="@drawable/glyphicons_239_check"
+                android:tag="@string/no_tint"
+                android:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/allow"
+                android:textAllCaps="true"
+                android:textColor="@color/white" />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- Without the permission, once books come from a folder handed over in the picker: the
