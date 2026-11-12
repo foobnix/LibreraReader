@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Pencarian sedang berjalan, tolong tunggu ...</string>
    <string name="msg_no_text_found">Teks tidak ditemukan</string>
    <string name="annotations_draw">Anotasi dan hasil imbang</string>
+   <string name="draw_freehand">Bebas</string>
+   <string name="draw_line">Garis</string>
+   <string name="draw_arrow">Panah</string>
+   <string name="draw_rectangle">Persegi panjang</string>
+   <string name="draw_star">Bintang</string>
+   <string name="draw_line_width">Ketebalan garis</string>
+   <string name="draw_pin">Sematkan di bawah</string>
+   <string name="draw_unpin">Tampilkan sebagai jendela</string>
    <string name="go_to_page_dialog">Buka halaman</string>
    <string name="bookmark_with_text">Bookmark dengan teks</string>
    <string name="fast_bookmark">Penunjuk cepat</string>

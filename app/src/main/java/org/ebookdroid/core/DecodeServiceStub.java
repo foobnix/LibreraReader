@@ -85,6 +85,14 @@ public class DecodeServiceStub implements DecodeService {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public void moveAnnotation(long pageHandle, int page, int index, float dx, float dy, ResultResponse<List<Annotation>> resultResponse) {
+	}
+
+	@Override
+	public void styleAnnotation(long pageHandle, int page, int index, float[] color, float width, ResultResponse<List<Annotation>> resultResponse) {
+	}
+
     @Override
     public TextWord[][] getTextForPage(int page) {
         return null;

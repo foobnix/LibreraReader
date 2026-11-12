@@ -68,6 +68,11 @@ public class AppState {
     public static final int FULL_SCREEN_NORMAL = 0;
     public static final int FULL_SCREEN_FULLSCREEN = 1;
     public static final int FULL_SCREEN_FULLSCREEN_CUTOUT = 2;
+    // The pen's colours for drawing on a PDF: few, and each one reads on a white page
+    public static final List<String> DRAW_COLORS = Arrays.asList("#E53935", "#1E88E5", "#43A047", "#FDD835", "#000000");
+    // The pen's widths, thinnest first
+    public static final List<Float> DRAW_WIDTHS = Arrays.asList(1f, 2f, 3f, 5f, 8f);
+
     public static final List<String> COLORS = Arrays.asList(//
             "#000001", //
             "#000002", //
@@ -545,6 +550,11 @@ public class AppState {
     public String displayPath = AppProfile.DOWNLOADS_DIR.getPath();
 
     public float editLineWidth = 3;
+    // What the pen draws, one of DrawView.SHAPE_* or DrawPanel.NO_TOOL, and the colour it drew with last
+    public int editShape = 0;
+    public String drawColor = DRAW_COLORS.get(0);
+    // The drawing panel docked at the foot of the book instead of standing in a window
+    public boolean isDrawPanelPinned = false;
     // A single tap opens the book in the mode it is set to - paged, as AppSP starts out -
     // rather than stopping to ask which mode to use. E-ink still starts on the chooser below.
     @IgnoreHashCode public boolean isRememberMode = true;

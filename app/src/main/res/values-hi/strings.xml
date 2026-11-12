@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">खोज कर। कृपया प्रतीक्षा करें...</string>
    <string name="msg_no_text_found">पाठ नहीं मिला</string>
    <string name="annotations_draw">एनोटेशन और ड्रा</string>
+   <string name="draw_freehand">मुक्तहस्त</string>
+   <string name="draw_line">रेखा</string>
+   <string name="draw_arrow">तीर</string>
+   <string name="draw_rectangle">आयत</string>
+   <string name="draw_star">तारा</string>
+   <string name="draw_line_width">रेखा की मोटाई</string>
+   <string name="draw_pin">नीचे पिन करें</string>
+   <string name="draw_unpin">विंडो के रूप में दिखाएँ</string>
    <string name="go_to_page_dialog">पृष्ठ पर जाओ</string>
    <string name="bookmark_with_text">पाठ के साथ बुकमार्क</string>
    <string name="fast_bookmark">फास्ट बुकमार्क</string>

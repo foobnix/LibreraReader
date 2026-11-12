@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">தேடல்</string>
    <string name="msg_no_text_found">உரை கிடைக்கவில்லை</string>
    <string name="annotations_draw">சிறுகுறிப்புகள் மற்றும் வரைபடங்கள்</string>
+   <string name="draw_freehand">கையால் வரைதல்</string>
+   <string name="draw_line">கோடு</string>
+   <string name="draw_arrow">அம்புக்குறி</string>
+   <string name="draw_rectangle">செவ்வகம்</string>
+   <string name="draw_star">நட்சத்திரம்</string>
+   <string name="draw_line_width">கோட்டின் தடிமன்</string>
+   <string name="draw_pin">கீழே பொருத்து</string>
+   <string name="draw_unpin">சாளரமாகக் காட்டு</string>
    <string name="go_to_page_dialog">பக்கத்திற்கு செல்</string>
    <string name="bookmark_with_text">குறிப்பு</string>
    <string name="fast_bookmark">விரைவான புத்தககுற</string>

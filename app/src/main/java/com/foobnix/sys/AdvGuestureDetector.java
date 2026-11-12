@@ -175,7 +175,11 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
         if (!(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) && !AppState.get().isIgnoreAnnotatations || AppState.get().editWith == AppState.EDIT_DELETE) {
             alowConfirm = false;
-            Annotation annotation2 = avc.isAnnotationTap(e.getX(), e.getY());
+            // A drawing ahead of anything else under the tap: a page can carry a link over all of it
+            Annotation annotation2 = avc.drawingAt(e.getX(), e.getY());
+            if (annotation2 == null) {
+                annotation2 = avc.isAnnotationTap(e.getX(), e.getY());
+            }
 
             if (annotation2 == null && AppState.get().editWith == AppState.EDIT_DELETE) {
                 // Librera's own marks, which every format can have - the eraser removes one the
@@ -194,6 +198,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
             if (annotation2 == null && annotation != null) {
                 annotation = null;
+                docCtrl.selectedAnnotation = null;
                 avc.selectAnnotation(null);
                 return true;
             }
@@ -224,6 +229,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                     if (annotation.type == AnnotationType.TEXT) {
                         docCtrl.showAnnotation(annotation);
                     } else {
+                        // Picked out, so the drawing panel opening for it offers to erase it
+                        docCtrl.selectedAnnotation = annotation;
                         docCtrl.showEditDialogIfNeed();
                     }
                 }

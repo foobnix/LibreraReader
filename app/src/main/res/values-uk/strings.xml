@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Відбувається пошук, зачекайте</string>
    <string name="msg_no_text_found">Текст не знайдено</string>
    <string name="annotations_draw">Анотування і малювання</string>
+   <string name="draw_freehand">Від руки</string>
+   <string name="draw_line">Лінія</string>
+   <string name="draw_arrow">Стрілка</string>
+   <string name="draw_rectangle">Прямокутник</string>
+   <string name="draw_star">Зірка</string>
+   <string name="draw_line_width">Товщина лінії</string>
+   <string name="draw_pin">Закріпити внизу</string>
+   <string name="draw_unpin">Показати у вікні</string>
    <string name="go_to_page_dialog">Перехід на сторінку</string>
    <string name="bookmark_with_text">Закладка з текстом</string>
    <string name="fast_bookmark">Швидка закладка</string>

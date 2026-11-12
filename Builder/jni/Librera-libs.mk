@@ -7,6 +7,7 @@
 #   libmobi.so      libmobi (tools/mobitool.c)        LibMobi.convertToEpub
 #   libantiword.so  antiword (main_u.c)               LibMobi.convertDocToHtml
 #   libhqx.so       hqx + cbdroidbridge.c             RawBitmap (the bitmap scaler)
+#   libpdfannot.so  librera_pdfannot.c                PdfiumAnnots (annotations through PDFium)
 #
 # liblame.so, libarchive.so and libtiff.so have makefiles of their own, in their folders. The
 # libjpeg DjVu and libtiff.so decode with is libjpeg-turbo (libjpeg-turbo-3.2.1/Android.mk).
@@ -57,4 +58,13 @@ LOCAL_SRC_FILES  := cbdroidbridge.c
 LOCAL_STATIC_LIBRARIES := hqx_static
 LOCAL_LDLIBS     := -llog
 LOCAL_LDFLAGS    := -Wl,--exclude-libs,ALL
+include $(BUILD_SHARED_LIBRARY)
+
+# --- libpdfannot.so ---
+# PDFium is looked up at run time in the libpdfium.so pdfiumandroid loads, so nothing is linked
+include $(CLEAR_VARS)
+LOCAL_PATH      := $(TOP_LOCAL_PATH)
+LOCAL_MODULE    := pdfannot
+LOCAL_SRC_FILES := librera_pdfannot.c
+LOCAL_LDLIBS    := -llog -ldl
 include $(BUILD_SHARED_LIBRARY)

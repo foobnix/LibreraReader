@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Търсите ...</string>
    <string name="msg_no_text_found">Текстът не е намерен</string>
    <string name="annotations_draw">Анотации и рисунки</string>
+   <string name="draw_freehand">Свободно рисуване</string>
+   <string name="draw_line">Линия</string>
+   <string name="draw_arrow">Стрелка</string>
+   <string name="draw_rectangle">Правоъгълник</string>
+   <string name="draw_star">Звезда</string>
+   <string name="draw_line_width">Дебелина на линията</string>
+   <string name="draw_pin">Закачи долу</string>
+   <string name="draw_unpin">Покажи като прозорец</string>
    <string name="go_to_page_dialog">Отиди на страница</string>
    <string name="bookmark_with_text">Забележка</string>
    <string name="fast_bookmark">Бърза отметка</string>

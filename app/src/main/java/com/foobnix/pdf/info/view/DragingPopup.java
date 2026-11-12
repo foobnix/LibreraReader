@@ -37,6 +37,9 @@ public abstract class DragingPopup {
     protected String titleAction;
     protected Runnable titleRunnable;
     protected int titlePopupIcon;
+    // A mark in the head that does one thing, rather than opening a menu, and what it says it does
+    protected Runnable titleIconRunnable;
+    protected int titleIconDescription;
     protected MyPopupMenu titlePopupMenu;
     private FrameLayout anchor;
     private View popupView;
@@ -278,7 +281,14 @@ public abstract class DragingPopup {
 
 
         ImageView onIconAction = (ImageView) popupView.findViewById(R.id.onIconAction);
-        if (titlePopupMenu == null) {
+        if (titlePopupMenu == null && titleIconRunnable != null) {
+            onIconAction.setVisibility(View.VISIBLE);
+            onIconAction.setImageResource(titlePopupIcon);
+            if (titleIconDescription != 0) {
+                onIconAction.setContentDescription(onIconAction.getContext().getString(titleIconDescription));
+            }
+            onIconAction.setOnClickListener(v -> titleIconRunnable.run());
+        } else if (titlePopupMenu == null) {
             onIconAction.setVisibility(View.GONE);
             onIconAction.setImageResource(titlePopupIcon);
         } else {

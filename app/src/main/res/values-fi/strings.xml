@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Haetaan...</string>
    <string name="msg_no_text_found">Tekstiä ei löydy</string>
    <string name="annotations_draw">Huomautukset ja piirrokset</string>
+   <string name="draw_freehand">Vapaa piirto</string>
+   <string name="draw_line">Viiva</string>
+   <string name="draw_arrow">Nuoli</string>
+   <string name="draw_rectangle">Suorakulmio</string>
+   <string name="draw_star">Tähti</string>
+   <string name="draw_line_width">Viivan paksuus</string>
+   <string name="draw_pin">Kiinnitä alas</string>
+   <string name="draw_unpin">Näytä ikkunana</string>
    <string name="go_to_page_dialog">Mene sivulle</string>
    <string name="bookmark_with_text">Kirjanmerkki tekstillä</string>
    <string name="fast_bookmark">Pikakirjanmerkki</string>

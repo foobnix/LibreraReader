@@ -47,6 +47,7 @@ import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.core.PageSearcher;
+import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.CodecPageInfo;
@@ -616,6 +617,96 @@ public abstract class HorizontalModeController extends DocumentController {
                 handler.post(HorizontalModeController.this::reloadPage);
             }
         }.start();
+    }
+
+    @Override public Annotation selectAnnotationAt(float x, float y) {
+        final PageImaveView view = getPageView();
+        selectedAnnotation = view == null ? null : view.selectAnnotationAt(x, y);
+        return selectedAnnotation;
+    }
+
+    @Override public RectF selectedAnnotationOnScreen() {
+        final PageImaveView view = getPageView();
+        return view == null || selectedAnnotation == null ? null : view.selectedAnnotationOnScreen();
+    }
+
+    /**
+     * Moves the drawing picked out. The page is opened again to write it, as for an erase: the
+     * page the annotation came with was recycled once it was drawn.
+     */
+    @Override public void moveSelectedAnnotation(float dx, float dy) {
+        final Annotation annotation = selectedAnnotation;
+        final PageImaveView view = getPageView();
+        final RectF onScreen = selectedAnnotationOnScreen();
+        clearAnnotationSelection();
+        final CodecDocument doc = codeDocument;
+        if (annotation == null || view == null || onScreen == null || doc == null) {
+            return;
+        }
+        // The drag as part of the page, measured from the drawing's middle so both ends are on it
+        final Pair<Integer, PointF> from = view.toPage(onScreen.centerX(), onScreen.centerY());
+        final Pair<Integer, PointF> to = view.toPage(onScreen.centerX() + dx, onScreen.centerY() + dy);
+        if (from == null || to == null || !from.first.equals(to.first)) {
+            return;
+        }
+        final float nx = to.second.x - from.second.x;
+        final float ny = to.second.y - from.second.y;
+        new Thread("@T moveAnnotation") {
+            @Override public void run() {
+                try {
+                    if (doc.isRecycled()) {
+                        return;
+                    }
+                    final CodecPageInfo info = doc.getPageInfo(annotation.getPage() - 1);
+                    final CodecPage codecPage = doc.getPage(annotation.getPage() - 1);
+                    try {
+                        if (info != null) {
+                            doc.moveAnnotation(codecPage.getPageHandle(), annotation.getIndex(), nx * info.width, ny * info.height);
+                        }
+                    } finally {
+                        codecPage.recycle();
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+                handler.post(HorizontalModeController.this::reloadPage);
+            }
+        }.start();
+    }
+
+    @Override public void styleSelectedAnnotation(Integer color, float width) {
+        final Annotation annotation = selectedAnnotation;
+        final CodecDocument doc = codeDocument;
+        if (annotation == null || doc == null) {
+            return;
+        }
+        final float[] mupdfColor = color == null ? null : Colors.toMupdfColor(color);
+        new Thread("@T styleAnnotation") {
+            @Override public void run() {
+                try {
+                    if (doc.isRecycled()) {
+                        return;
+                    }
+                    final CodecPage codecPage = doc.getPage(annotation.getPage() - 1);
+                    try {
+                        doc.styleAnnotation(codecPage.getPageHandle(), annotation.getIndex(), mupdfColor, width);
+                    } finally {
+                        codecPage.recycle();
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+                handler.post(HorizontalModeController.this::reloadPage);
+            }
+        }.start();
+    }
+
+    @Override public void clearAnnotationSelection() {
+        super.clearAnnotationSelection();
+        final PageImaveView view = getPageView();
+        if (view != null) {
+            view.clearAnnotationSelection();
+        }
     }
 
     /**

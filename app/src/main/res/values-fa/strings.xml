@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">جستجوکردن. لطفا صبر کنید...</string>
    <string name="msg_no_text_found">متن یافت نشد</string>
    <string name="annotations_draw">حاشیه نویسی و قرعه کشی</string>
+   <string name="draw_freehand">آزاد</string>
+   <string name="draw_line">خط</string>
+   <string name="draw_arrow">پیکان</string>
+   <string name="draw_rectangle">مستطیل</string>
+   <string name="draw_star">ستاره</string>
+   <string name="draw_line_width">ضخامت خط</string>
+   <string name="draw_pin">سنجاق به پایین</string>
+   <string name="draw_unpin">نمایش به صورت پنجره</string>
    <string name="go_to_page_dialog">برو به صفحه</string>
    <string name="bookmark_with_text">نشانه با متن</string>
    <string name="fast_bookmark">نشانه سریع</string>

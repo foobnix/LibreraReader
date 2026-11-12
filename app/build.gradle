@@ -401,6 +401,8 @@ dependencies {
     implementation(libs.zip4j)
     // The default PDF render engine (Pdfium); the bundled MuPDF stays for every other format
     implementation(libs.pdfiumandroid)
+    // Its native document and page, for the annotations PdfiumAnnots writes through PDFium
+    implementation(libs.pdfiumandroid.core)
     implementation(libs.glide)
     annotationProcessor(libs.glide.compiler)
 

@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Đang tìm kiếm. Xin vui lòng chờ ...</string>
    <string name="msg_no_text_found">Văn bản không tìm thấy</string>
    <string name="annotations_draw">Chú thích và rút ra</string>
+   <string name="draw_freehand">Vẽ tự do</string>
+   <string name="draw_line">Đường thẳng</string>
+   <string name="draw_arrow">Mũi tên</string>
+   <string name="draw_rectangle">Hình chữ nhật</string>
+   <string name="draw_star">Ngôi sao</string>
+   <string name="draw_line_width">Độ dày nét</string>
+   <string name="draw_pin">Ghim xuống dưới</string>
+   <string name="draw_unpin">Hiển thị dạng cửa sổ</string>
    <string name="go_to_page_dialog">Đi tới trang</string>
    <string name="bookmark_with_text">Chia sẻ với bạn văn bản</string>
    <string name="fast_bookmark">Bookmark nhanh</string>

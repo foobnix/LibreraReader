@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Søker kjører, vent litt ...</string>
    <string name="msg_no_text_found">Tekst ikke funnet</string>
    <string name="annotations_draw">Notater og tegninger</string>
+   <string name="draw_freehand">Frihånd</string>
+   <string name="draw_line">Linje</string>
+   <string name="draw_arrow">Pil</string>
+   <string name="draw_rectangle">Rektangel</string>
+   <string name="draw_star">Stjerne</string>
+   <string name="draw_line_width">Linjetykkelse</string>
+   <string name="draw_pin">Fest nederst</string>
+   <string name="draw_unpin">Vis som vindu</string>
    <string name="go_to_page_dialog">Gå til side</string>
    <string name="bookmark_with_text">Bokmerke med tekst</string>
    <string name="fast_bookmark">Rask bokmerke</string>

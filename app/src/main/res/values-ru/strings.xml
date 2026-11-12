@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Идет поиск...</string>
    <string name="msg_no_text_found">Ничего не найдено</string>
    <string name="annotations_draw">Комментирование и рисование</string>
+   <string name="draw_freehand">От руки</string>
+   <string name="draw_line">Линия</string>
+   <string name="draw_arrow">Стрелка</string>
+   <string name="draw_rectangle">Прямоугольник</string>
+   <string name="draw_star">Звезда</string>
+   <string name="draw_line_width">Толщина линии</string>
+   <string name="draw_pin">Закрепить внизу</string>
+   <string name="draw_unpin">Показать в окне</string>
    <string name="go_to_page_dialog">Перейти к странице</string>
    <string name="bookmark_with_text">Закладка с названием</string>
    <string name="fast_bookmark">Быстрая закладка</string>

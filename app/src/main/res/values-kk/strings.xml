@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Іздеуде ...</string>
    <string name="msg_no_text_found">Мәтін табылмады</string>
    <string name="annotations_draw">Аннотациялар және суреттер</string>
+   <string name="draw_freehand">Еркін сызу</string>
+   <string name="draw_line">Сызық</string>
+   <string name="draw_arrow">Көрсеткі</string>
+   <string name="draw_rectangle">Тіктөртбұрыш</string>
+   <string name="draw_star">Жұлдыз</string>
+   <string name="draw_line_width">Сызық қалыңдығы</string>
+   <string name="draw_pin">Төменге бекіту</string>
+   <string name="draw_unpin">Терезе ретінде көрсету</string>
    <string name="go_to_page_dialog">Бетке өту</string>
    <string name="bookmark_with_text">Ескерту</string>
    <string name="fast_bookmark">Жылдам бетбелгі</string>

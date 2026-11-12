@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Buscando. Por favor, aguarde…</string>
    <string name="msg_no_text_found">Texto não encontrado</string>
    <string name="annotations_draw">Anotações e Desenhos</string>
+   <string name="draw_freehand">Mão livre</string>
+   <string name="draw_line">Linha</string>
+   <string name="draw_arrow">Seta</string>
+   <string name="draw_rectangle">Retângulo</string>
+   <string name="draw_star">Estrela</string>
+   <string name="draw_line_width">Espessura da linha</string>
+   <string name="draw_pin">Fixar embaixo</string>
+   <string name="draw_unpin">Mostrar como janela</string>
    <string name="go_to_page_dialog">Ir à página</string>
    <string name="bookmark_with_text">Marcador com texto</string>
    <string name="fast_bookmark">Marcador rápido</string>

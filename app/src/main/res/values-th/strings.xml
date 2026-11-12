@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">กำลังค้นหากำลังทำงานอยู่โปรดรอสักครู่ ...</string>
    <string name="msg_no_text_found">ไม่พบข้อความ</string>
    <string name="annotations_draw">คำอธิบายประกอบและวาด</string>
+   <string name="draw_freehand">วาดอิสระ</string>
+   <string name="draw_line">เส้นตรง</string>
+   <string name="draw_arrow">ลูกศร</string>
+   <string name="draw_rectangle">สี่เหลี่ยมผืนผ้า</string>
+   <string name="draw_star">ดาว</string>
+   <string name="draw_line_width">ความหนาของเส้น</string>
+   <string name="draw_pin">ปักหมุดไว้ด้านล่าง</string>
+   <string name="draw_unpin">แสดงเป็นหน้าต่าง</string>
    <string name="go_to_page_dialog">ไปที่หน้า</string>
    <string name="bookmark_with_text">บุ๊คมาร์คด้วยข้อความ</string>
    <string name="fast_bookmark">บุ๊คมาร์คอย่างรวดเร็ว</string>

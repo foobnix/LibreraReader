@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Wyszukiwanie…</string>
    <string name="msg_no_text_found">Tekst nie został znaleziony</string>
    <string name="annotations_draw">Adnotacje</string>
+   <string name="draw_freehand">Odręcznie</string>
+   <string name="draw_line">Linia</string>
+   <string name="draw_arrow">Strzałka</string>
+   <string name="draw_rectangle">Prostokąt</string>
+   <string name="draw_star">Gwiazda</string>
+   <string name="draw_line_width">Grubość linii</string>
+   <string name="draw_pin">Przypnij na dole</string>
+   <string name="draw_unpin">Pokaż jako okno</string>
    <string name="go_to_page_dialog">Idź do strony</string>
    <string name="bookmark_with_text">Zakładka z tekstem</string>
    <string name="fast_bookmark">Szybka zakładka</string>

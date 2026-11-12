@@ -2727,155 +2727,54 @@ public class DragingDialogs {
                                         final DocumentController controller,
                                         final DrawView drawView,
                                         final boolean force,
-                                        Runnable onClose) {
+                                        final Runnable onClose) {
         if (controller == null) {
             return;
         }
-        drawView.setOnFinishDraw(new Runnable() {
-            @Override public void run() {
-                String annotationDrawColor = AppState.get().annotationDrawColor;
-                if (TxtUtils.isEmpty(annotationDrawColor)) {
-                    annotationDrawColor = AppState.COLORS.get(0);
-                }
-
-                controller.saveChanges(drawView.getPoints(), Color.parseColor(annotationDrawColor));
-                drawView.clear();
-                controller.saveAnnotationsToFile();
-                controller.handler.postDelayed(onClose, 500);
+        // The pen button a second time puts the pen down, wherever the panel stands
+        if (!force && (DrawPanel.isDocked(controller)
+                || EDIT_COLORS_PANEL.equals(anchor.getTag()) && anchor.getVisibility() == View.VISIBLE)) {
+            DrawPanel.hideDock(controller);
+            if (EDIT_COLORS_PANEL.equals(anchor.getTag())) {
+                anchor.setVisibility(View.GONE);
             }
-        });
+            DrawPanel.stopPen(controller, drawView, onClose);
+            return;
+        }
+        DrawPanel.startPen();
 
-        new DragingPopup(R.string.annotations_draw, anchor, 250, 150) {
+        final Runnable unpin = () -> {
+            AppState.get().isDrawPanelPinned = false;
+            dialogEditColors(anchor, controller, drawView, true, onClose);
+        };
+        if (AppState.get().isDrawPanelPinned) {
+            DrawPanel.showDocked(controller, drawView, onClose, unpin);
+            return;
+        }
+
+        // Pinning closes the window without putting the pen down
+        final boolean[] pinning = {false};
+        new DragingPopup(R.string.annotations_draw, anchor, 290, 150) {
+            @Override public void beforeCreate() {
+                titlePopupIcon = R.drawable.glyphicons_415_push_pin;
+                titleIconDescription = R.string.draw_pin;
+                titleIconRunnable = () -> {
+                    pinning[0] = true;
+                    AppState.get().isDrawPanelPinned = true;
+                    closeDialog();
+                    DrawPanel.showDocked(controller, drawView, onClose, unpin);
+                };
+            }
+
             @Override public void closeDialog() {
                 super.closeDialog();
-                AppState.get().editWith = AppState.EDIT_NONE;
-                AppState.get().annotationDrawColor = "";
-                drawView.setVisibility(View.GONE);
-                drawView.clear();
-                controller.handler.postDelayed(onClose, 500);
+                if (!pinning[0]) {
+                    DrawPanel.stopPen(controller, drawView, onClose);
+                }
             }
 
             @Override public View getContentView(final LayoutInflater inflater) {
-                View a = inflater.inflate(R.layout.edit_panel, null, false);
-                final GridView grid = a.findViewById(R.id.gridColors);
-
-                if (AppState.get().editWith == AppState.EDIT_DELETE) {
-                    AppState.get().annotationDrawColor = AppState.COLORS.get(0);
-                }
-
-                final BaseItemAdapter<String> adapter = new BaseItemAdapter<String>(AppState.COLORS) {
-                    @Override public View getView(int pos, View arg1, ViewGroup arg2, String color) {
-                        View view = null;
-                        if (pos == 0) {
-                            view = inflater.inflate(R.layout.item_color_cut, arg2, false);
-                        } else if (pos == 1) {
-                            view = inflater.inflate(R.layout.item_color_spinner, arg2, false);
-                            final Spinner spinner = view.findViewById(R.id.spinner1);
-                            final List<Float> values = Arrays.asList(0.5f,
-                                                                     0.75f,
-                                                                     1f,
-                                                                     2f,
-                                                                     3f,
-                                                                     4f,
-                                                                     5f,
-                                                                     6f,
-                                                                     7f,
-                                                                     8f,
-                                                                     9f,
-                                                                     10f);
-                            spinner.setAdapter(new BaseItemLayoutAdapter<Float>(anchor.getContext(),
-                                                                                android.R.layout.simple_spinner_dropdown_item,
-                                                                                values) {
-                                @Override public void populateView(View inflate, int arg1, Float value) {
-                                    TextView text = Views.text(inflate, android.R.id.text1, "" + value + "");
-                                }
-                            });
-                            spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-                                @Override
-                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                    spinner.setSelection(position);
-                                    AppState.get().editLineWidth = values.get(position);
-                                    int acolor = IMG.alphaColor(AppState.get().editAlphaColor,
-                                                                AppState.get().annotationDrawColor);
-                                    drawView.setColor(acolor, AppState.get().editLineWidth);
-
-                                    try {
-                                        TextView textView = (TextView) spinner.getChildAt(0);
-                                        textView.setTextAppearance(R.style.textLinkStyle);
-                                    } catch (Exception e) {
-                                    }
-                                }
-
-                                @Override public void onNothingSelected(AdapterView<?> parent) {
-
-                                }
-                            });
-                            spinner.setSelection(values.indexOf(AppState.get().editLineWidth));
-                        } else if (pos == 2121) {
-                            view = inflater.inflate(R.layout.item_color_spinner, arg2, false);
-                            final Spinner spinner = view.findViewById(R.id.spinner1);
-                            final List<Integer> values = Arrays.asList(100, 90, 80, 70, 60, 50, 40, 30, 20, 10);
-                            spinner.setAdapter(new BaseItemLayoutAdapter<Integer>(anchor.getContext(),
-                                                                                  android.R.layout.simple_spinner_dropdown_item,
-                                                                                  values) {
-                                @Override public void populateView(View inflate, int arg1, Integer value) {
-                                    TextView text = Views.text(inflate, android.R.id.text1, "" + value + "%");
-                                }
-                            });
-                            spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-                                @Override
-                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                    spinner.setSelection(position);
-                                    AppState.get().editAlphaColor = values.get(position);
-                                    int acolor = IMG.alphaColor(AppState.get().editAlphaColor,
-                                                                AppState.get().annotationDrawColor);
-                                    drawView.setColor(acolor, AppState.get().editLineWidth);
-                                    // ((TextView)
-                                    // spinner.getChildAt(0)).setTextColor(anchor.getResources().getColor(R.color.grey_800));
-                                }
-
-                                @Override public void onNothingSelected(AdapterView<?> parent) {
-
-                                }
-                            });
-                            spinner.setSelection(values.indexOf(AppState.get().editAlphaColor));
-                        } else {
-                            view = inflater.inflate(R.layout.item_color, arg2, false);
-                            int acolor = IMG.alphaColor(AppState.get().editAlphaColor, color);
-                            view.findViewById(R.id.itColor).setBackgroundColor(acolor);
-                        }
-                        view.setTag(color);
-                        if (color.equals(AppState.get().annotationDrawColor)) {
-                            view.setBackgroundResource(R.drawable.bg_border_1_lines);
-                        } else {
-                            view.setBackgroundColor(Color.TRANSPARENT);
-                        }
-                        return view;
-                    }
-                };
-                grid.setAdapter(adapter);
-                grid.setOnItemClickListener(new OnItemClickListener() {
-                    @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        AppState.get().editWith = AppState.EDIT_PEN;
-                        if (view.getTag().equals(AppState.get().annotationDrawColor)) {
-                            AppState.get().annotationDrawColor = "";
-                            drawView.setVisibility(View.GONE);
-                        } else {
-                            AppState.get().annotationDrawColor = (String) view.getTag();
-                            int acolor = IMG.alphaColor(AppState.get().editAlphaColor,
-                                                        AppState.get().annotationDrawColor);
-                            drawView.setColor(acolor, AppState.get().editLineWidth);
-                            drawView.setVisibility(View.VISIBLE);
-                            if (position == 0) {
-                                drawView.setVisibility(View.GONE);
-                                AppState.get().editWith = AppState.EDIT_DELETE;
-                            }
-                        }
-                        adapter.notifyDataSetChanged();
-                    }
-                });
-
-                return a;
+                return DrawPanel.create(inflater, controller, drawView, onClose);
             }
         }.show(EDIT_COLORS_PANEL, force);
     }

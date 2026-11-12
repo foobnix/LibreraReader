@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The drawing panel's tool that draws a star: a stroke, tinted as the panel's other marks are. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M12.00,3.30 L14.35,9.56 L21.04,9.86 L15.80,14.04 L17.58,20.49 L12.00,16.80 L6.42,20.49 L8.20,14.04 L2.96,9.86 L9.65,9.56 Z"
+        android:strokeWidth="2"
+        android:strokeColor="@color/black"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

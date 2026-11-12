@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Aranıyor...</string>
    <string name="msg_no_text_found">Metin bulunamadı</string>
    <string name="annotations_draw">Açıklamalar ve Çizimler</string>
+   <string name="draw_freehand">Serbest çizim</string>
+   <string name="draw_line">Çizgi</string>
+   <string name="draw_arrow">Ok</string>
+   <string name="draw_rectangle">Dikdörtgen</string>
+   <string name="draw_star">Yıldız</string>
+   <string name="draw_line_width">Çizgi kalınlığı</string>
+   <string name="draw_pin">Alta sabitle</string>
+   <string name="draw_unpin">Pencere olarak göster</string>
    <string name="go_to_page_dialog">Sayfaya git</string>
    <string name="bookmark_with_text">Notlar</string>
    <string name="fast_bookmark">Hızlı yer imi</string>

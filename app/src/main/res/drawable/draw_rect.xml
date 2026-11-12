@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The drawing panel's tool that draws a rectangle: a stroke, tinted as the panel's other marks are. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M4,6 L20,6 L20,18 L4,18 Z"
+        android:strokeWidth="2"
+        android:strokeColor="@color/black"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

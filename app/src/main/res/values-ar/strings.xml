@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">جاري البحث. يرجى الإنتظار...</string>
    <string name="msg_no_text_found">لم يتم العثور على النص</string>
    <string name="annotations_draw">الشروح والتعادل</string>
+   <string name="draw_freehand">رسم حر</string>
+   <string name="draw_line">خط</string>
+   <string name="draw_arrow">سهم</string>
+   <string name="draw_rectangle">مستطيل</string>
+   <string name="draw_star">نجمة</string>
+   <string name="draw_line_width">سمك الخط</string>
+   <string name="draw_pin">تثبيت في الأسفل</string>
+   <string name="draw_unpin">عرض كنافذة</string>
    <string name="go_to_page_dialog">ذهاب الى الصفحة</string>
    <string name="bookmark_with_text">المرجعية مع النص</string>
    <string name="fast_bookmark">مرجعية سريعة</string>

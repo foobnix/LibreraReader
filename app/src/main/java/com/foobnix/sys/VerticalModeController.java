@@ -35,6 +35,7 @@ import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.core.AbstractViewController;
 import org.ebookdroid.core.Page;
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.CodecDocument;
@@ -328,6 +329,87 @@ public class VerticalModeController extends DocumentController {
             }
         });
 
+    }
+
+    @Override
+    public Annotation selectAnnotationAt(float x, float y) {
+        if (!(ctr.getDocumentController() instanceof AbstractViewController)) {
+            return null;
+        }
+        final AbstractViewController avc = (AbstractViewController) ctr.getDocumentController();
+        selectedAnnotation = avc.drawingAt(x, y);
+        avc.selectAnnotation(selectedAnnotation);
+        return selectedAnnotation;
+    }
+
+    @Override
+    public RectF selectedAnnotationOnScreen() {
+        if (selectedAnnotation == null || !(ctr.getDocumentController() instanceof AbstractViewController)) {
+            return null;
+        }
+        return ((AbstractViewController) ctr.getDocumentController()).annotationOnScreen(selectedAnnotation);
+    }
+
+    @Override
+    public void moveSelectedAnnotation(float dx, float dy) {
+        final Annotation annotation = selectedAnnotation;
+        clearAnnotationSelection();
+        if (annotation == null) {
+            return;
+        }
+        final Page page = ctr.getDocumentModel().getPageByDocIndex(annotation.getPage() - 1);
+        if (page == null) {
+            return;
+        }
+        // Screen pixels to the page's own units, through the part of the page on screen
+        final RectF bounds = page.getBounds(ctr.getZoomModel().getZoom());
+        float nx = dx / bounds.width();
+        float ny = dy / bounds.height();
+        final RectF crop = page.getCroppedBounds();
+        if (crop != null) {
+            nx *= crop.width();
+            ny *= crop.height();
+        }
+        final int index = annotation.getPage() - 1;
+        ctr.getDecodeService().moveAnnotation(annotation.getPageHandler(), index, annotation.getIndex(),
+                nx * page.cpi.width, ny * page.cpi.height, new ResultResponse<List<Annotation>>() {
+
+                    @Override
+                    public boolean onResultRecive(List<Annotation> annotations) {
+                        ctr.getDocumentModel().getPageObject(index).annotations = annotations;
+                        ctr.getDocumentController().toggleRenderingEffects();
+                        return false;
+                    }
+                });
+        saveAnnotationsToFile();
+    }
+
+    @Override
+    public void styleSelectedAnnotation(Integer color, float width) {
+        final Annotation annotation = selectedAnnotation;
+        if (annotation == null) {
+            return;
+        }
+        final int index = annotation.getPage() - 1;
+        ctr.getDecodeService().styleAnnotation(annotation.getPageHandler(), index, annotation.getIndex(),
+                color == null ? null : Colors.toMupdfColor(color), width, new ResultResponse<List<Annotation>>() {
+
+                    @Override
+                    public boolean onResultRecive(List<Annotation> annotations) {
+                        ctr.getDocumentModel().getPageObject(index).annotations = annotations;
+                        ctr.getDocumentController().toggleRenderingEffects();
+                        return false;
+                    }
+                });
+        saveAnnotationsToFile();
+    }
+
+    @Override
+    public void clearAnnotationSelection() {
+        super.clearAnnotationSelection();
+        if (ctr.getDocumentController() instanceof AbstractViewController) {
+            ((AbstractViewController) ctr.getDocumentController()).selectAnnotation(null);
+        }
     }
 
     @Override

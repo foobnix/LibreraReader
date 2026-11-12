@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">正在搜索...</string>
    <string name="msg_no_text_found">無結果</string>
    <string name="annotations_draw">注釋和手繪</string>
+   <string name="draw_freehand">手繪</string>
+   <string name="draw_line">直線</string>
+   <string name="draw_arrow">箭頭</string>
+   <string name="draw_rectangle">矩形</string>
+   <string name="draw_star">星形</string>
+   <string name="draw_line_width">線條粗細</string>
+   <string name="draw_pin">釘選到底部</string>
+   <string name="draw_unpin">以視窗顯示</string>
    <string name="go_to_page_dialog">前往頁面</string>
    <string name="bookmark_with_text">筆記</string>
    <string name="fast_bookmark">書簽</string>

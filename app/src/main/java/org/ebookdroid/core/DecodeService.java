@@ -68,6 +68,12 @@ public interface DecodeService {
 
 	void deleteAnnotation(final long pageHandle, final int page, final int index, final ResultResponse<List<Annotation>> response);
 
+	/** Moves a drawing on a page by dx, dy in page units, and hands back the page's annotations. */
+	void moveAnnotation(final long pageHandle, final int page, final int index, final float dx, final float dy, final ResultResponse<List<Annotation>> response);
+
+	/** Gives a drawing a colour (unless null) and a line width (when above 0), and hands back the page's annotations. */
+	void styleAnnotation(final long pageHandle, final int page, final int index, final float[] color, final float width, final ResultResponse<List<Annotation>> response);
+
 	boolean hasAnnotationChanges();
 
 	void saveAnnotations(String path, Runnable runnable);

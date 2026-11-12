@@ -55,6 +55,14 @@ public interface CodecDocument {
 	boolean hasChanges();
 	void deleteAnnotation(long pageNumber, int index);
 
+	/** Moves a drawing on a page by dx, dy in page units; only a PDF has any to move. */
+	default void moveAnnotation(long pageHandle, int index, float dx, float dy) {
+	}
+
+	/** Gives a drawing a colour (unless null) and a line width (when above 0). */
+	default void styleAnnotation(long pageHandle, int index, float[] color, float width) {
+	}
+
 	void saveAnnotations(String path);
 
     String documentToHtml();

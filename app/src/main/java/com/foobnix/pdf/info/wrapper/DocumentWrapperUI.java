@@ -2111,11 +2111,8 @@ public class DocumentWrapperUI {
             if (dc != null && passwordProtected) {
                 editTop2.setVisibility(View.GONE);
             } else {
-                if (AppsConfig.MUPDF_FZ_VERSION.equals(AppsConfig.MUPDF_1_11)) {
-                    editTop2.setVisibility(View.VISIBLE);
-                } else {
-                    editTop2.setVisibility(View.VISIBLE);
-                }
+                // Only where the drawing can be written into the PDF, as paged mode has it
+                editTop2.setVisibility(dc != null && dc.isAnnotationsInsideDocument() ? View.VISIBLE : View.GONE);
             }
         }
 

@@ -448,8 +448,118 @@ public class PdfiumPage extends AbstractCodecPage {
         return document.hasAnnotationChanges() ? annotations() : null;
     }
 
+    // ---------------------------------------------------------------- annotations through PDFium
+
+    /** The page's annotations as PDFium lists them, placed on the page as MuPDF places its own. */
+    private List<Annotation> nativeAnnotations() {
+        final List<Annotation> result = new ArrayList<Annotation>();
+        TempHolder.lock.lock();
+        try {
+            if (isRecycled()) {
+                return result;
+            }
+            final long pointer = PdfiumAnnots.pagePointer(page);
+            final float[] list = PdfiumAnnots.list(pointer);
+            if (list == null) {
+                return result;
+            }
+            for (int i = 0; i + 5 <= list.length; i += 5) {
+                final int index = i / 5;
+                final AnnotationType type = PdfiumAnnots.type((int) list[i]);
+                // PDF space has y going up, so the rectangle's top is the larger y
+                final RectF onPage = transform().toPageSpace(new RectF(list[i + 1], list[i + 2], list[i + 3], list[i + 4]));
+                transform().normalize(onPage);
+                String text = null;
+                if (type == AnnotationType.TEXT || type == AnnotationType.FREETEXT) {
+                    text = PdfiumAnnots.contents(pointer, index);
+                }
+                final Annotation annotation = new Annotation(onPage.left, onPage.top, onPage.right, onPage.bottom,
+                        type.ordinal(), (text == null ? "" : text).getBytes());
+                annotation.setIndex(index);
+                annotation.setPage(pageNumber);
+                annotation.setPageHandler(pageNumber);
+                result.add(annotation);
+            }
+        } catch (Throwable e) {
+            LOG.e(e);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+        return result;
+    }
+
+    /** A page-space point in PDF space, written into out at offset. */
+    private void toPdf(final float x, final float y, final float[] out, final int offset) {
+        final float[] xy = new float[2];
+        transform().toPdfSpace(x, y, xy);
+        out[offset] = xy[0];
+        out[offset + 1] = xy[1];
+    }
+
+    private void addNativeInk(final float[] color, final PointF[][] points, final float width) {
+        int total = 0;
+        for (PointF[] stroke : points) {
+            total += stroke.length;
+        }
+        final float[] xy = new float[total * 2];
+        final int[] counts = new int[points.length];
+        int at = 0;
+        for (int s = 0; s < points.length; s++) {
+            counts[s] = points[s].length;
+            for (PointF p : points[s]) {
+                toPdf(p.x, p.y, xy, at);
+                at += 2;
+            }
+        }
+        TempHolder.lock.lock();
+        try {
+            if (!isRecycled() && PdfiumAnnots.addInk(PdfiumAnnots.pagePointer(page), xy, counts, color[0], color[1], color[2], width)) {
+                document.onNativeAnnotationChanged();
+            }
+        } catch (Throwable e) {
+            LOG.e(e);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
+
+    /**
+     * The quads come four corners each in the order the reader lists them - lower left, lower
+     * right, upper right, upper left, see VerticalModeController.underlineText - and go to PDFium
+     * in the order PDF's QuadPoints have them: upper left, upper right, lower left, lower right.
+     */
+    private static final int[] QUAD_ORDER = {3, 2, 0, 1};
+
+    private void addNativeMarkup(final PointF[] quadPoints, final AnnotationType type, final float[] color) {
+        final int subtype = PdfiumAnnots.markupSubtype(type);
+        if (subtype < 0 || quadPoints.length < 4) {
+            return;
+        }
+        final int count = quadPoints.length / 4;
+        final float[] quads = new float[count * 8];
+        for (int q = 0; q < count; q++) {
+            for (int k = 0; k < 4; k++) {
+                final PointF corner = quadPoints[q * 4 + QUAD_ORDER[k]];
+                toPdf(corner.x, corner.y, quads, q * 8 + k * 2);
+            }
+        }
+        TempHolder.lock.lock();
+        try {
+            if (!isRecycled() && PdfiumAnnots.addMarkup(PdfiumAnnots.pagePointer(page), subtype, quads, color[0], color[1], color[2])) {
+                document.onNativeAnnotationChanged();
+            }
+        } catch (Throwable e) {
+            LOG.e(e);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
+
     @Override
     public List<Annotation> getAnnotationsImpl() {
+        if (document.isNativeAnnotations()) {
+            return nativeAnnotations();
+        }
         final CodecPage annot = annotations();
         if (annot == null) {
             return new ArrayList<Annotation>();
@@ -459,6 +569,10 @@ public class PdfiumPage extends AbstractCodecPage {
 
     @Override
     public void addAnnotation(final float[] color, final PointF[][] points, final float width, final float alpha) {
+        if (document.isNativeAnnotations()) {
+            addNativeInk(color, points, width);
+            return;
+        }
         final CodecPage annot = annotations();
         if (annot == null) {
             LOG.d("PDFIUM! addAnnotation skipped, MuPDF could not open the document");
@@ -470,6 +584,10 @@ public class PdfiumPage extends AbstractCodecPage {
 
     @Override
     public void addMarkupAnnotation(final PointF[] quadPoints, final AnnotationType type, final float[] color) {
+        if (document.isNativeAnnotations()) {
+            addNativeMarkup(quadPoints, type, color);
+            return;
+        }
         final CodecPage annot = annotations();
         if (annot == null) {
             LOG.d("PDFIUM! addMarkupAnnotation skipped, MuPDF could not open the document");
@@ -481,6 +599,10 @@ public class PdfiumPage extends AbstractCodecPage {
 
     @Override
     public long getPageHandle() {
+        if (document.isNativeAnnotations()) {
+            // PDFium's annotations are changed on a page opened for the change, found by number
+            return pageNumber;
+        }
         // The handle identifies the page an annotation belongs to, and the annotations are
         // MuPDF's, so it is MuPDF's handle that has to be reported - opening that page if it is
         // not yet: paged mode opens a page just to erase on it, and 0 erases nothing.

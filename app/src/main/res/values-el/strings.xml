@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Ερευνητικός...</string>
    <string name="msg_no_text_found">Το κείμενο δεν βρέθηκε</string>
    <string name="annotations_draw">Σχολιασμοί και σχέδια</string>
+   <string name="draw_freehand">Ελεύθερο σχέδιο</string>
+   <string name="draw_line">Γραμμή</string>
+   <string name="draw_arrow">Βέλος</string>
+   <string name="draw_rectangle">Ορθογώνιο</string>
+   <string name="draw_star">Αστέρι</string>
+   <string name="draw_line_width">Πάχος γραμμής</string>
+   <string name="draw_pin">Καρφίτσωμα στο κάτω μέρος</string>
+   <string name="draw_unpin">Εμφάνιση ως παράθυρο</string>
    <string name="go_to_page_dialog">Πήγαινε στην σελίδα</string>
    <string name="bookmark_with_text">Σημείωση</string>
    <string name="fast_bookmark">Γρήγορος σελιδοδείκτης</string>

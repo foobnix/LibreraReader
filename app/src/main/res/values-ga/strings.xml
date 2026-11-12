@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Ag cuardach ...</string>
    <string name="msg_no_text_found">Níor aimsíodh téacs</string>
    <string name="annotations_draw">Nótaí agus líníochtaí</string>
+   <string name="draw_freehand">Saorlámh</string>
+   <string name="draw_line">Líne</string>
+   <string name="draw_arrow">Saighead</string>
+   <string name="draw_rectangle">Dronuilleog</string>
+   <string name="draw_star">Réalta</string>
+   <string name="draw_line_width">Leithead na líne</string>
+   <string name="draw_pin">Pionnáil ag an mbun</string>
+   <string name="draw_unpin">Taispeáin mar fhuinneog</string>
    <string name="go_to_page_dialog">Téigh go leathanach</string>
    <string name="bookmark_with_text">Nóta</string>
    <string name="fast_bookmark">Leabharmharc tapa</string>

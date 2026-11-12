@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">検索中...</string>
    <string name="msg_no_text_found">検索ワードが見つかりませんでした</string>
    <string name="annotations_draw">注釈および描画</string>
+   <string name="draw_freehand">フリーハンド</string>
+   <string name="draw_line">直線</string>
+   <string name="draw_arrow">矢印</string>
+   <string name="draw_rectangle">長方形</string>
+   <string name="draw_star">星</string>
+   <string name="draw_line_width">線の太さ</string>
+   <string name="draw_pin">下部に固定</string>
+   <string name="draw_unpin">ウィンドウで表示</string>
    <string name="go_to_page_dialog">ページに移動</string>
    <string name="bookmark_with_text">テキストをブックマーク</string>
    <string name="fast_bookmark">高速ブックマーク</string>

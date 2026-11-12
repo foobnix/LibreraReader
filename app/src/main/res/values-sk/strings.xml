@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Vyhľadáva sa…</string>
    <string name="msg_no_text_found">Text sa nenašiel</string>
    <string name="annotations_draw">Anotácie a kresby</string>
+   <string name="draw_freehand">Voľne</string>
+   <string name="draw_line">Čiara</string>
+   <string name="draw_arrow">Šípka</string>
+   <string name="draw_rectangle">Obdĺžnik</string>
+   <string name="draw_star">Hviezda</string>
+   <string name="draw_line_width">Hrúbka čiary</string>
+   <string name="draw_pin">Pripnúť dole</string>
+   <string name="draw_unpin">Zobraziť ako okno</string>
    <string name="go_to_page_dialog">Prejsť na stranu</string>
    <string name="bookmark_with_text">Poznámka</string>
    <string name="fast_bookmark">Rýchla záložka</string>

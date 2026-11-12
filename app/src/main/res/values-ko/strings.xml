@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">검색중...</string>
    <string name="msg_no_text_found">텍스트를 찾을 수 없습니다</string>
    <string name="annotations_draw">주석과 그림</string>
+   <string name="draw_freehand">자유 곡선</string>
+   <string name="draw_line">직선</string>
+   <string name="draw_arrow">화살표</string>
+   <string name="draw_rectangle">사각형</string>
+   <string name="draw_star">별</string>
+   <string name="draw_line_width">선 두께</string>
+   <string name="draw_pin">아래에 고정</string>
+   <string name="draw_unpin">창으로 보기</string>
    <string name="go_to_page_dialog">페이지로 이동</string>
    <string name="bookmark_with_text">텍스트 북마크</string>
    <string name="fast_bookmark">빠른 북마크</string>

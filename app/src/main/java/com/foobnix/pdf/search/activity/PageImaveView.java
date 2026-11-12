@@ -43,6 +43,7 @@ import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
 import com.foobnix.pdf.search.activity.msg.MessageEditMark;
 import com.foobnix.pdf.search.activity.msg.MessageEraseAnnotation;
+import com.foobnix.pdf.search.activity.msg.MessageSelectAnnotation;
 import com.foobnix.pdf.search.activity.msg.MessageEvent;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MovePageAction;
@@ -461,6 +462,13 @@ public class PageImaveView extends View {
                 drawMarks(canvas, 0);
             }
 
+            if (selectedAnnotation != null && isCropMappable(selectedNumber)) {
+                // Shaded as scroll mode shades the annotation it has picked out
+                paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
+                paintWrods.setAlpha(60);
+                canvas.drawRect(transform(selectedAnnotation, selectedNumber), paintWrods);
+            }
+
             List<TextWord> selectedWords = PageImageState.get().getSelectedWords(pageNumber);
             if (selectedWords != null) {
                 for (TextWord tw : selectedWords) {
@@ -751,6 +759,80 @@ public class PageImaveView extends View {
         return new Pair<>(page, new PointF(nx, ny));
     }
 
+    // The annotation picked out from the drawing panel, and which page of a spread it is on
+    private Annotation selectedAnnotation;
+    private int selectedNumber;
+
+    /**
+     * Picks out the annotation of the PDF under a point on screen, as scroll mode does, or lets
+     * go of the one picked out when there is none there.
+     *
+     * @return the annotation now picked out, or null
+     */
+    public Annotation selectAnnotationAt(float x, float y) {
+        selectedAnnotation = drawingAt(x, y);
+        selectedNumber = lastClickedNumber;
+        invalidate();
+        return selectedAnnotation;
+    }
+
+    /**
+     * The drawing under a point on screen, or null. Only drawings count: a page can carry a
+     * link over all of it, which would otherwise be found first.
+     */
+    public Annotation drawingAt(float x1, float y1) {
+        RectF tr = new RectF();
+        imageMatrix().mapRect(tr);
+        float[] f = new float[9];
+        imageMatrix().getValues(f);
+        final float scaleX = f[Matrix.MSCALE_X];
+        if (scaleX == 0) {
+            return null;
+        }
+        final float x = (x1 - tr.left) / scaleX;
+        final float y = (y1 - tr.top) / scaleX;
+        final RectF tapRect = new RectF(x, y, x, y);
+        int number = 0;
+        if (AppSP.get().isDouble) {
+            number = x < drawableWidth / 2 ? 1 : 2;
+        }
+        lastClickedNumber = number;
+        // The last one drawn first: where drawings overlap, it is the one on top
+        final List<Annotation> annotations = getPageLinks(number).second;
+        for (int i = annotations.size() - 1; i >= 0; i--) {
+            final Annotation annotation = annotations.get(i);
+            if (annotation != null && annotation.type.isDrawing()
+                    && RectF.intersects(transform(annotation, number), tapRect)) {
+                return annotation;
+            }
+        }
+        return null;
+    }
+
+    /** Where the annotation picked out stands on screen, or null. */
+    public RectF selectedAnnotationOnScreen() {
+        if (selectedAnnotation == null || !isCropMappable(selectedNumber)) {
+            return null;
+        }
+        final RectF rect = transform(selectedAnnotation, selectedNumber);
+        imageMatrix().mapRect(rect);
+        return rect;
+    }
+
+    /** Picks out an annotation tapped on, as the drawing panel does. */
+    public void selectAnnotation(Annotation annotation, int number) {
+        selectedAnnotation = annotation;
+        selectedNumber = number;
+        invalidate();
+    }
+
+    public void clearAnnotationSelection() {
+        selectedAnnotation = null;
+        invalidate();
+    }
+
+    private int lastClickedNumber;
+
     public Pair<PageLink, Annotation> getPageLinkClicked(float x1, float y1) {
 
         RectF tr = new RectF();
@@ -776,6 +858,7 @@ public class PageImaveView extends View {
         if (AppSP.get().isDouble) {
             firstNumber = x1 < drawableWidth / 2 ? 1 : 2;
         }
+        lastClickedNumber = firstNumber;
         //
 
 
@@ -1282,6 +1365,15 @@ public class PageImaveView extends View {
                         }
                         TempHolder.get().linkPage = target;
                         LOG.d("Go to targetPage", target);
+                    }
+                    final Annotation drawing = drawingAt(event.getX(), event.getY());
+                    if (drawing != null) {
+                        // A drawing - ahead of a link under it: picked out, with the drawing panel
+                        // to move, restyle or erase it
+                        selectAnnotation(drawing, lastClickedNumber);
+                        EventBus.getDefault().post(new MessageSelectAnnotation(drawing));
+                        isIgronerClick = false;
+                        return true;
                     }
                     if (pair.second != null && TxtUtils.isNotEmpty(pair.second.text)) {
                         Dialogs.showTextDialog(getContext(), pair.second.text);

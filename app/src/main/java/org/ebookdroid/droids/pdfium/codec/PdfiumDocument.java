@@ -80,10 +80,67 @@ public class PdfiumDocument extends AbstractCodecDocument {
      */
     private volatile int annotationsVersion;
 
+    /**
+     * Whether PDFium itself owns the annotations, through {@link PdfiumAnnots}: listing, drawing,
+     * erasing and saving them on the document on screen, with no MuPDF behind it - the way a build
+     * without MuPDF draws on a PDF, and one with MuPDF too, as long as the library loads.
+     */
+    private final boolean nativeAnnotations;
+    /** An annotation was written or erased through PDFium since the file was opened or saved. */
+    private volatile boolean nativeEdited;
+
     private PdfiumDocument(final PdfiumContext context, final String fname, final PdfDocument document) {
         super(context, HANDLES.incrementAndGet());
         this.fname = fname;
         this.document = document;
+        this.nativeAnnotations = PdfiumAnnots.isAvailable();
+    }
+
+    /** See {@link #nativeAnnotations}. */
+    boolean isNativeAnnotations() {
+        return nativeAnnotations;
+    }
+
+    /** Called by {@link PdfiumPage} after it has written an annotation through PDFium. */
+    void onNativeAnnotationChanged() {
+        nativeEdited = true;
+    }
+
+    /** A change to a page's annotations, made on the open page and its native pointer. */
+    interface PageChange {
+        boolean change(PdfPage page, long pointer);
+    }
+
+    /**
+     * Makes an annotation change on a page, opened for it: the page the reader shows may have
+     * been let go since the annotation was listed, but the change is the document's either way.
+     *
+     * @param pageHandle as {@link PdfiumPage#getPageHandle()} hands it out: the page number, from 1
+     */
+    private void changePage(final long pageHandle, final PageChange change) {
+        final int index = (int) pageHandle - 1;
+        TempHolder.lock.lock();
+        PdfPage page = null;
+        try {
+            if (isRecycled() || index < 0) {
+                return;
+            }
+            page = document.openPage(index);
+            if (page != null && change.change(page, PdfiumAnnots.pagePointer(page))) {
+                nativeEdited = true;
+            }
+        } catch (Throwable e) {
+            LOG.e(e);
+        } finally {
+            if (page != null) {
+                try {
+                    page.close();
+                } catch (Throwable e) {
+                    LOG.e(e);
+                }
+            }
+            TempHolder.lock.unlock();
+        }
     }
 
     /**
@@ -469,12 +526,19 @@ public class PdfiumDocument extends AbstractCodecDocument {
 
     @Override
     public boolean hasChanges() {
+        if (nativeAnnotations) {
+            return nativeEdited;
+        }
         final CodecDocument annot = annotDocument;
         return annot != null && !annot.isRecycled() && annot.hasChanges();
     }
 
     @Override
     public void saveAnnotations(final String path) {
+        if (nativeAnnotations) {
+            saveNative(path);
+            return;
+        }
         final CodecDocument annot = annotDocument;
         if (annot == null || annot.isRecycled()) {
             LOG.d("PDFIUM! saveAnnotations skipped, nothing was changed");
@@ -483,13 +547,128 @@ public class PdfiumDocument extends AbstractCodecDocument {
         annot.saveAnnotations(path);
     }
 
+    /**
+     * Writes the document with its annotations to a new file beside the book and puts it in the
+     * book's place. PDFium goes on reading the file it opened, so it must not be written over
+     * while open: the old one stays readable until the document is closed.
+     */
+    private void saveNative(final String path) {
+        if (!nativeEdited) {
+            LOG.d("PDFIUM! saveAnnotations skipped, nothing was changed");
+            return;
+        }
+        final File target = new File(path);
+        final File written = new File(target.getParentFile(), "." + target.getName() + ".librera-save");
+        TempHolder.lock.lock();
+        try {
+            if (isRecycled()) {
+                return;
+            }
+            // Written whole: PDFium's incremental save leaves out changes to objects the file
+            // already had - the page's list of annotations among them - so nothing drawn is kept
+            boolean saved = saveCopy(written, FPDF_NO_INCREMENTAL);
+            if (saved && !written.renameTo(target)) {
+                saved = copy(written, target);
+                written.delete();
+            }
+            LOG.d("PDFIUM! saveAnnotations", path, saved);
+            if (saved) {
+                nativeEdited = false;
+            } else {
+                written.delete();
+            }
+        } catch (Throwable e) {
+            LOG.e(e, path);
+            written.delete();
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
+
+    private static final int FPDF_NO_INCREMENTAL = 2;
+
+    /** PDFium writes the document into a file, through pdfiumandroid. */
+    private boolean saveCopy(final File file, final int flags) {
+        try (java.io.OutputStream out = new java.io.BufferedOutputStream(new java.io.FileOutputStream(file))) {
+            final boolean[] failed = {false};
+            final boolean saved = document.saveAsCopy(data -> {
+                try {
+                    out.write(data);
+                    return 1;
+                } catch (java.io.IOException e) {
+                    failed[0] = true;
+                    return 0;
+                }
+            }, flags);
+            return saved && !failed[0];
+        } catch (Throwable e) {
+            LOG.e(e, file);
+            return false;
+        }
+    }
+
+    private static boolean copy(final File from, final File to) {
+        try (java.io.InputStream in = new java.io.FileInputStream(from);
+             java.io.OutputStream out = new java.io.FileOutputStream(to)) {
+            final byte[] buffer = new byte[64 * 1024];
+            int read;
+            while ((read = in.read(buffer)) > 0) {
+                out.write(buffer, 0, read);
+            }
+            return true;
+        } catch (Throwable e) {
+            LOG.e(e, to);
+            return false;
+        }
+    }
+
     @Override
     public void deleteAnnotation(final long pageHandle, final int index) {
+        if (nativeAnnotations) {
+            changePage(pageHandle, (page, pointer) -> PdfiumAnnots.remove(pointer, index));
+            return;
+        }
         final CodecDocument annot = annotDocument;
         if (annot == null || annot.isRecycled()) {
             return;
         }
         annot.deleteAnnotation(pageHandle, index);
+        onAnnotationAdded();
+    }
+
+    @Override
+    public void moveAnnotation(final long pageHandle, final int index, final float dx, final float dy) {
+        if (nativeAnnotations) {
+            changePage(pageHandle, (page, pointer) -> {
+                // The move as it is in PDF space, which a turned page does not share with the page
+                final PdfiumTransform transform = PdfiumTransform.of(page, page.getPageWidthPoint(), page.getPageHeightPoint());
+                final float[] from = new float[2];
+                final float[] to = new float[2];
+                transform.toPdfSpace(0, 0, from);
+                transform.toPdfSpace(dx, dy, to);
+                return PdfiumAnnots.move(pointer, index, to[0] - from[0], to[1] - from[1]);
+            });
+            return;
+        }
+        final CodecDocument annot = annotDocument;
+        if (annot == null || annot.isRecycled()) {
+            return;
+        }
+        annot.moveAnnotation(pageHandle, index, dx, dy);
+        onAnnotationAdded();
+    }
+
+    @Override
+    public void styleAnnotation(final long pageHandle, final int index, final float[] color, final float width) {
+        if (nativeAnnotations) {
+            changePage(pageHandle, (page, pointer) -> PdfiumAnnots.style(pointer, index, color, width));
+            return;
+        }
+        final CodecDocument annot = annotDocument;
+        if (annot == null || annot.isRecycled()) {
+            return;
+        }
+        annot.styleAnnotation(pageHandle, index, color, width);
         onAnnotationAdded();
     }
 

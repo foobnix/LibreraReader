@@ -100,6 +100,7 @@ import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.activity.msg.MessageEditMark;
 import com.foobnix.pdf.search.activity.msg.MessageEraseAnnotation;
+import com.foobnix.pdf.search.activity.msg.MessageSelectAnnotation;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -1290,6 +1291,16 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     };
 
     @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSelectAnnotation(MessageSelectAnnotation select) {
+        if (dc == null || !dc.isAnnotationsInsideDocument()) {
+            return;
+        }
+        dc.selectedAnnotation = select.annotation;
+        DragingDialogs.dialogEditColors(anchor, dc, drawView, true, () -> {
+        });
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEraseAnnotation(MessageEraseAnnotation erase) {
         if (dc != null) {
             dc.deleteAnnotation(erase.annotation.getPageHandler(), erase.annotation.getPage(), erase.annotation.getIndex());
@@ -1892,6 +1903,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void initAsync(int w, int h) {
         dc = new HorizontalModeController(this, w, h) {
+            @Override
+            public void togglePanels() {
+                doShowHideWrapperControlls();
+            }
+
             @Override
             public void onGoToPageImpl(int page) {
                 updateUI(page);

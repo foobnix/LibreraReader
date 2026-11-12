@@ -474,4 +474,32 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     private native void deleteAnnotationInternal(long docHandle, long pageHandle, int annot_index);
 
+    @Override public void moveAnnotation(long pageHandle, int index, float dx, float dy) {
+        TempHolder.lock.lock();
+        try {
+            if (isRecycled()) {
+                return;
+            }
+            moveAnnotationInternal(documentHandle, pageHandle, index, dx, dy);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
+
+    private native void moveAnnotationInternal(long docHandle, long pageHandle, int annot_index, float dx, float dy);
+
+    @Override public void styleAnnotation(long pageHandle, int index, float[] color, float width) {
+        TempHolder.lock.lock();
+        try {
+            if (isRecycled()) {
+                return;
+            }
+            styleAnnotationInternal(documentHandle, pageHandle, index, color, width);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
+
+    private native void styleAnnotationInternal(long docHandle, long pageHandle, int annot_index, float[] color, float width);
+
 }

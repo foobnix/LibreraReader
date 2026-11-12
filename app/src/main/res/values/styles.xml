@@ -117,6 +117,14 @@
         <item name="android:textColor">?android:attr/textColorLink</item>
     </style>
 
+    <!-- A tool of the drawing panel: the one in use is ringed, see DragingDialogs.dialogEditColors. -->
+    <style name="drawTool">
+        <item name="android:layout_width">40dip</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:layout_marginRight">2dip</item>
+        <item name="android:padding">8dip</item>
+    </style>
+
     <style name="buttonClear">
         <item name="android:background">?android:attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>

@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Chirchende...</string>
    <string name="msg_no_text_found">Testu no agatadu</string>
    <string name="annotations_draw">Annotatziones e disinnos</string>
+   <string name="draw_freehand">A manu lìbera</string>
+   <string name="draw_line">Lìnia</string>
+   <string name="draw_arrow">Fritza</string>
+   <string name="draw_rectangle">Retàngulu</string>
+   <string name="draw_star">Isteddu</string>
+   <string name="draw_line_width">Grussària de sa lìnia</string>
+   <string name="draw_pin">Apica in bàsciu</string>
+   <string name="draw_unpin">Mustra comente ventana</string>
    <string name="go_to_page_dialog">Bae a sa pàgina</string>
    <string name="bookmark_with_text">Nota</string>
    <string name="fast_bookmark">Sinnalibru lestru</string>

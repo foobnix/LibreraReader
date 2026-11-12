@@ -209,6 +209,35 @@ public class DecodeServiceBase implements DecodeService {
     }
 
     @Override
+    public void moveAnnotation(final long pageHandle, final int page, final int index, final float dx, final float dy,
+                               final ResultResponse<List<Annotation>> response) {
+        executor.addAny(new Task(0) {
+
+            @Override
+            public void run() {
+                codecDocument.moveAnnotation(pageHandle, index, dx, dy);
+                // The pages are opened again, as after an erase: a page draws what it held at open
+                pages.clear();
+                response.onResultRecive(getPage(page).getAnnotations());
+            }
+        });
+    }
+
+    @Override
+    public void styleAnnotation(final long pageHandle, final int page, final int index, final float[] color,
+                                final float width, final ResultResponse<List<Annotation>> response) {
+        executor.addAny(new Task(0) {
+
+            @Override
+            public void run() {
+                codecDocument.styleAnnotation(pageHandle, index, color, width);
+                pages.clear();
+                response.onResultRecive(getPage(page).getAnnotations());
+            }
+        });
+    }
+
+    @Override
     public void searchText(final String text, final Page[] pages, final ResultResponse<Integer> response, final Runnable finish, int firstPage, int lastPage) {
         Thread t = new Thread("@T searchText") {
             @Override

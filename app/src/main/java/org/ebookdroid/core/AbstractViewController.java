@@ -639,6 +639,41 @@ public abstract class AbstractViewController extends AbstractComponentController
         base.getDocumentController().redrawView();
     }
 
+    /** Where an annotation stands on screen, or null when its page is not laid out. */
+    public final RectF annotationOnScreen(final Annotation annotation) {
+        final Page page = base.getDocumentModel().getPageByDocIndex(annotation.getPage() - 1);
+        if (page == null) {
+            return null;
+        }
+        final RectF rect = page.getPageRegion(page.getBounds(base.getZoomModel().getZoom()), new RectF(annotation));
+        if (rect != null) {
+            rect.offset(-getScrollX(), -getScrollY());
+        }
+        return rect;
+    }
+
+    /** The drawing under a point on screen, or null; links and notes are passed over. */
+    public final Annotation drawingAt(final float x, final float y) {
+        final float zoom = base.getZoomModel().getZoom();
+        final RectF rect = new RectF(x, y, x, y);
+        rect.offset(getScrollX(), getScrollY());
+        for (final Page page : model.getPages(firstVisiblePage, lastVisiblePage + 1)) {
+            final RectF bounds = page.getBounds(zoom);
+            if (!RectF.intersects(bounds, rect) || page.annotations == null) {
+                continue;
+            }
+            // The last one drawn first: where drawings overlap, it is the one on top
+            for (int i = page.annotations.size() - 1; i >= 0; i--) {
+                final Annotation a = page.annotations.get(i);
+                final RectF onScreen = page.getPageRegion(bounds, new RectF(a));
+                if (a.type.isDrawing() && onScreen != null && RectF.intersects(onScreen, rect)) {
+                    return a;
+                }
+            }
+        }
+        return null;
+    }
+
     public final Annotation isAnnotationTap(final float x, final float y) {
 
         final float zoom = base.getZoomModel().getZoom();

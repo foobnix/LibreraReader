@@ -15,7 +15,7 @@ public class Annotation extends RectF {
 
     public Annotation(final float x0, final float y0, final float x1, final float y1, final int _type, byte[] textArray) {
         super(x0, y0, x1, y1);
-        type = _type == -1 ? AnnotationType.UNKNOWN : AnnotationType.values()[_type];
+        type = _type < 0 || _type >= AnnotationType.values().length ? AnnotationType.UNKNOWN : AnnotationType.values()[_type];
         this.text = new String(textArray);
         LOG.d("Annotation-TEXT", text);
     }

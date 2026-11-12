@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">തിരയുന്നു ...</string>
    <string name="msg_no_text_found">വാചകം കണ്ടെത്തിയില്ല</string>
    <string name="annotations_draw">വ്യാഖ്യാനങ്ങളും ഡ്രോയിംഗുകളും</string>
+   <string name="draw_freehand">സ്വതന്ത്ര വര</string>
+   <string name="draw_line">വര</string>
+   <string name="draw_arrow">അമ്പ്</string>
+   <string name="draw_rectangle">ദീർഘചതുരം</string>
+   <string name="draw_star">നക്ഷത്രം</string>
+   <string name="draw_line_width">വരയുടെ കനം</string>
+   <string name="draw_pin">താഴെ പിൻ ചെയ്യുക</string>
+   <string name="draw_unpin">ജാലകമായി കാണിക്കുക</string>
    <string name="go_to_page_dialog">പേജിലേക്ക് പോകുക</string>
    <string name="bookmark_with_text">കുറിപ്പ്</string>
    <string name="fast_bookmark">ദ്രുത ബുക്ക്മാർക്ക്</string>

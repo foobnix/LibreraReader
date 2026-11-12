@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Bilatzen...</string>
    <string name="msg_no_text_found">Testua ez da aurkitu</string>
    <string name="annotations_draw">Oharrak eta marrak</string>
+   <string name="draw_freehand">Esku hutsez</string>
+   <string name="draw_line">Lerroa</string>
+   <string name="draw_arrow">Gezia</string>
+   <string name="draw_rectangle">Laukizuzena</string>
+   <string name="draw_star">Izarra</string>
+   <string name="draw_line_width">Lerroaren lodiera</string>
+   <string name="draw_pin">Ainguratu behean</string>
+   <string name="draw_unpin">Erakutsi leiho gisa</string>
    <string name="go_to_page_dialog">Joan orrira</string>
    <string name="bookmark_with_text">Oharra</string>
    <string name="fast_bookmark">Laster marka arina</string>

@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Keresés...</string>
    <string name="msg_no_text_found">A szöveg nem található</string>
    <string name="annotations_draw">Széljegyzetek és rajzok</string>
+   <string name="draw_freehand">Szabadkézi</string>
+   <string name="draw_line">Vonal</string>
+   <string name="draw_arrow">Nyíl</string>
+   <string name="draw_rectangle">Téglalap</string>
+   <string name="draw_star">Csillag</string>
+   <string name="draw_line_width">Vonalvastagság</string>
+   <string name="draw_pin">Rögzítés alulra</string>
+   <string name="draw_unpin">Megjelenítés ablakként</string>
    <string name="go_to_page_dialog">Ugrás az oldalra</string>
    <string name="bookmark_with_text">Jegyzet</string>
    <string name="fast_bookmark">Könyvjelző</string>

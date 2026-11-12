@@ -3,6 +3,7 @@ package com.foobnix.pdf.info.wrapper;
 import android.content.pm.ApplicationInfo;
 import android.widget.TextView;
 import org.ebookdroid.droids.foliate.codec.FoliateDocument;
+import org.ebookdroid.droids.pdfium.codec.PdfiumAnnots;
 import org.ebookdroid.droids.pdfium.codec.PdfiumDocument;
 import org.ebookdroid.droids.djvu.codec.DjvuDocument;
 import org.ebookdroid.droids.comic.codec.ComicDocument;
@@ -751,6 +752,51 @@ public abstract class DocumentController {
 
     public abstract void deleteAnnotation(long pageHander, int page, int index);
 
+    /** The annotation of the document picked out on the page, which the drawing panel can erase. */
+    public Annotation selectedAnnotation;
+
+    /**
+     * Picks out the annotation of the document under a point on screen, or lets go of the one
+     * picked out when there is none there.
+     *
+     * @return the annotation now picked out, or null
+     */
+    public Annotation selectAnnotationAt(float x, float y) {
+        return null;
+    }
+
+    /** Lets go of the annotation picked out, if any, and shows the page without the mark. */
+    public void clearAnnotationSelection() {
+        selectedAnnotation = null;
+    }
+
+    /** Where the annotation picked out stands on screen, for it to be taken and moved; or null. */
+    public RectF selectedAnnotationOnScreen() {
+        return null;
+    }
+
+    /** Moves the drawing picked out by as far as it was dragged on screen, and lets go of it. */
+    public void moveSelectedAnnotation(float dx, float dy) {
+        clearAnnotationSelection();
+    }
+
+    /**
+     * Gives the drawing picked out a colour (unless null) and the pen's width in page units
+     * (when above 0); it stays picked out, to change the other too.
+     */
+    public void styleSelectedAnnotation(Integer color, float width) {
+    }
+
+    /** Erases the annotation picked out from the document, and lets go of it. */
+    public void deleteSelectedAnnotation() {
+        final Annotation annotation = selectedAnnotation;
+        clearAnnotationSelection();
+        if (annotation != null) {
+            deleteAnnotation(annotation.getPageHandler(), annotation.getPage(), annotation.getIndex());
+            saveAnnotationsToFile();
+        }
+    }
+
     public abstract void underlineText(int color, float width, AnnotationType type);
 
     public abstract void getOutline(ResultResponse<List<OutlineLinkWrapper>> outline, boolean forse);
@@ -883,12 +929,13 @@ public abstract class DocumentController {
      * A PDF has carried its own annotations since long before this, and keeps doing so - another
      * reader opening the file sees them. Everything else has nowhere inside the file to put one,
      * so Librera keeps it: see {@link com.foobnix.model.AppAnnotation}. Two PDFs fall back to
-     * Librera's store as well - one in a build with no MuPDF to write the annotation with, and
-     * one that is encrypted, which is not a file to be rewriting.
+     * Librera's store as well - one with nothing to write the annotation with (no MuPDF, and
+     * PDFium's own annotations not to be had), and one that is encrypted, which is not a file to
+     * be rewriting.
      */
     public boolean isAnnotationsInsideDocument() {
         try {
-            return Engines.IS_MUPDF
+            return (Engines.IS_MUPDF || AppState.get().getPdfEngine() == AppState.PDF_ENGINE_PDFIUM && PdfiumAnnots.isAvailable())
                     && BookType.PDF.is(getCurrentBook().getPath())
                     && !isPasswordProtected();
         } catch (Exception e) {
@@ -1515,6 +1562,13 @@ public abstract class DocumentController {
 
     public void onSingleTap() {
         ui.onSingleTap();
+    }
+
+    /** Shows the book's panels, or puts them away, as a tap in the middle of the page does. */
+    public void togglePanels() {
+        if (ui != null) {
+            ui.doShowHideWrapperControlls();
+        }
     }
 
     public void onDoubleTap(int x, int y) {

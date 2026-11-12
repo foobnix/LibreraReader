@@ -506,6 +506,20 @@
             android:visibility="gone" />
 
 
+        <!-- The drawing panel when pinned: above the bottom bar, and at the foot of the screen
+             while the bars are away, so it stays when the book's panels are closed. See
+             DrawPanel.showDocked. -->
+        <FrameLayout
+            android:id="@+id/drawDock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bottomBar"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:layout_marginBottom="6dip"
+            android:visibility="gone" />
+
         <FrameLayout
             android:id="@+id/overlay"
             android:layout_width="match_parent"

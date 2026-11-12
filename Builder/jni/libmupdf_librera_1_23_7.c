@@ -2038,6 +2038,114 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_deleteAnnotationInternal(JN
     }
 }
 
+// Moves an ink annotation - a drawing - by dx, dy in page space: its strokes are read, shifted
+// and written back, so its colour and width stay as they were. Other annotations are left alone.
+JNIEXPORT void JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_moveAnnotationInternal(JNIEnv* env,
+                                                                            jobject thiz,
+                                                                            jlong handle,
+                                                                            jlong pagehandle,
+                                                                            int annot_index,
+                                                                            jfloat dx,
+                                                                            jfloat dy)
+{
+    renderdocument_t* doc_t = (renderdocument_t*)(long)handle;
+    renderpage_t* page = (renderpage_t*)(long)pagehandle;
+    if (!doc_t || !doc_t->ctx || !doc_t->document || !page) {
+        return;
+    }
+    fz_context* ctx = doc_t->ctx;
+    fz_point* pts = NULL;
+    int* counts = NULL;
+    fz_var(pts);
+    fz_var(counts);
+    fz_try(ctx)
+    {
+        pdf_annot* annot = pdf_first_annot(ctx, (pdf_page*)page->page);
+        int i, j, k, n, total = 0;
+        for (i = 0; i < annot_index && annot; i++) {
+            annot = pdf_next_annot(ctx, annot);
+        }
+        if (annot && pdf_annot_type(ctx, annot) == PDF_ANNOT_INK) {
+            n = pdf_annot_ink_list_count(ctx, annot);
+            counts = fz_malloc_array(ctx, n, int);
+            for (i = 0; i < n; i++) {
+                counts[i] = pdf_annot_ink_list_stroke_count(ctx, annot, i);
+                total += counts[i];
+            }
+            pts = fz_malloc_array(ctx, total, fz_point);
+            k = 0;
+            for (i = 0; i < n; i++) {
+                for (j = 0; j < counts[i]; j++) {
+                    fz_point p = pdf_annot_ink_list_stroke_vertex(ctx, annot, i, j);
+                    pts[k].x = p.x + dx;
+                    pts[k].y = p.y + dy;
+                    k++;
+                }
+            }
+            pdf_set_annot_ink_list(ctx, annot, n, counts, pts);
+            pdf_update_page(ctx, (pdf_page*)page->page);
+        }
+    }
+    fz_always(ctx)
+    {
+        fz_free(ctx, pts);
+        fz_free(ctx, counts);
+    }
+    fz_catch(ctx)
+    {
+    }
+}
+
+// Gives an ink annotation - a drawing - a new colour (when color is not null) and a new line
+// width (when width is above 0), keeping its strokes. Other annotations are left alone.
+JNIEXPORT void JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_styleAnnotationInternal(JNIEnv* env,
+                                                                             jobject thiz,
+                                                                             jlong handle,
+                                                                             jlong pagehandle,
+                                                                             int annot_index,
+                                                                             jfloatArray jcolor,
+                                                                             jfloat width)
+{
+    renderdocument_t* doc_t = (renderdocument_t*)(long)handle;
+    renderpage_t* page = (renderpage_t*)(long)pagehandle;
+    if (!doc_t || !doc_t->ctx || !doc_t->document || !page) {
+        return;
+    }
+    fz_context* ctx = doc_t->ctx;
+    float color[3];
+    int has_color = 0;
+    if (jcolor != NULL && (*env)->GetArrayLength(env, jcolor) >= 3) {
+        jfloat* co = (*env)->GetFloatArrayElements(env, jcolor, 0);
+        color[0] = co[0];
+        color[1] = co[1];
+        color[2] = co[2];
+        (*env)->ReleaseFloatArrayElements(env, jcolor, co, JNI_ABORT);
+        has_color = 1;
+    }
+    fz_try(ctx)
+    {
+        pdf_annot* annot = pdf_first_annot(ctx, (pdf_page*)page->page);
+        int i;
+        for (i = 0; i < annot_index && annot; i++) {
+            annot = pdf_next_annot(ctx, annot);
+        }
+        if (annot && pdf_annot_type(ctx, annot) == PDF_ANNOT_INK) {
+            if (has_color) {
+                pdf_set_annot_color(ctx, annot, 3, color);
+            }
+            if (width > 0) {
+                pdf_set_annot_border(ctx, annot, width);
+            }
+            pdf_update_page(ctx, (pdf_page*)page->page);
+        }
+    }
+    fz_catch(ctx)
+    {
+    }
+}
+
 JNIEXPORT void JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNIEnv* env,
                                                                              jobject thiz,

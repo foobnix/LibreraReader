@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Zoeken. Even geduld aub...</string>
    <string name="msg_no_text_found">Tekst niet gevonden</string>
    <string name="annotations_draw">Annotaties en tekeningen</string>
+   <string name="draw_freehand">Uit de vrije hand</string>
+   <string name="draw_line">Lijn</string>
+   <string name="draw_arrow">Pijl</string>
+   <string name="draw_rectangle">Rechthoek</string>
+   <string name="draw_star">Ster</string>
+   <string name="draw_line_width">Lijndikte</string>
+   <string name="draw_pin">Onderaan vastzetten</string>
+   <string name="draw_unpin">Als venster tonen</string>
    <string name="go_to_page_dialog">Ga naar pagina</string>
    <string name="bookmark_with_text">Bookmark met tekst</string>
    <string name="fast_bookmark">Snelle bladwijzer</string>

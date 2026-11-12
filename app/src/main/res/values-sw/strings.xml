@@ -301,6 +301,14 @@
    <string name="searching_please_wait_">Kutafuta. Tafadhali subiri...</string>
    <string name="msg_no_text_found">Nakala hakuonekana</string>
    <string name="annotations_draw">Annotations na sare</string>
+   <string name="draw_freehand">Kwa mkono</string>
+   <string name="draw_line">Mstari</string>
+   <string name="draw_arrow">Mshale</string>
+   <string name="draw_rectangle">Mstatili</string>
+   <string name="draw_star">Nyota</string>
+   <string name="draw_line_width">Unene wa mstari</string>
+   <string name="draw_pin">Bandika chini</string>
+   <string name="draw_unpin">Onyesha kama dirisha</string>
    <string name="go_to_page_dialog">Go Kwanza</string>
    <string name="bookmark_with_text">Bookmark na maandishi</string>
    <string name="fast_bookmark">Fast bookmark</string>
