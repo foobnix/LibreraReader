@@ -353,6 +353,12 @@ public class AppState {
     public int statusBarColorNight = Color.parseColor(TEXT_COLOR_NIGHT);
     @IgnoreHashCode public String statusBarColorDays = "#888888, #000000";
     @IgnoreHashCode public String statusBarColorNights = "#888888, #e2e2e2";
+    // Musician's mode: one colour for the tap zone lines, the speed bar and the bookmarks, for
+    // day and for night; 0 is the colour of the book's text, which they wore before
+    public int musicColorDay = 0;
+    public int musicColorNight = 0;
+    @IgnoreHashCode public String musicColorDays = "#000000, #888888, #1976D2";
+    @IgnoreHashCode public String musicColorNights = "#e2e2e2, #888888, #64B5F6";
     // public int tintColor =
     // Color.parseColor(STYLE_COLORS.get(STYLE_COLORS.size() - 2));
     public int userColor = Color.MAGENTA;

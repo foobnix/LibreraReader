@@ -1510,7 +1510,7 @@ public class DocumentWrapperUI {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void tintSpeed() {
         try {
-            int tintColor = MagicHelper.getPageMarkColor();
+            int tintColor = MagicHelper.getMusicColor();
             speedSeekBar.getProgressDrawable().mutate().setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
 
             speedSeekBar.getThumb().setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));

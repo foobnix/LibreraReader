@@ -1822,6 +1822,8 @@ public class DragingDialogs {
                 final ImageView strike = view.findViewById(R.id.onStrike);
                 final ImageView selection = view.findViewById(R.id.onSelection);
                 final ImageView onAddCustom = view.findViewById(R.id.onAddCustom);
+                // Ringed, so the plus reads as a button; the dialog draws the ring in the plus's colour
+                TintUtil.setColorSwatchOutline(onAddCustom, TintUtil.color);
 
                 final LinearLayout customsLayout = view.findViewById(R.id.customsLayout);
 
@@ -1941,7 +1943,12 @@ public class DragingDialogs {
                     inflate.setBackgroundResource(R.drawable.bg_border_2_lines);
                     final View img = inflate.findViewById(R.id.itColor);
                     final int colorId = Color.parseColor(colorName);
-                    img.setBackgroundColor(colorId);
+                    // The same small round the colour swatches in the other dialogs are, with no
+                    // frame: kept out of the pass that rings every shape in the dialog in the
+                    // link colour as the dialog opens
+                    TintUtil.setColorSwatch(img, colorId);
+                    ((GradientDrawable) img.getBackground()).setStroke(0, Color.TRANSPARENT);
+                    img.setTag("no_tint");
                     inflate.setTag(colorName);
 
                     linearLayoutColor.addView(inflate);
@@ -4090,6 +4097,12 @@ public class DragingDialogs {
                     statusBarColorNight.setVisibility(View.VISIBLE);
                 }
 
+                // Musician's mode has a colour of its own, for day or night as the book is now
+                if (controller.isMusicianMode()) {
+                    inflate.findViewById(R.id.musicColors).setVisibility(View.VISIBLE);
+                    initMusicColor(inflate, controller, onRefresh);
+                }
+
                 // The links in this dialog are drawn as ringed buttons, as the settings
                 // panel draws its own.
                 TintUtil.asLinkButtons(inflate);
@@ -4099,6 +4112,60 @@ public class DragingDialogs {
         };
 
         dialog.show(DragingPopup.PREF + "_statusBarSettings");
+    }
+
+    /**
+     * The musician's mode colour in the status bar settings: its tap zone lines, speed bar and
+     * bookmarks, for the day or the night the book is read in now, with swatches of its own.
+     */
+    private static void initMusicColor(View inflate, DocumentController controller, Runnable onRefresh) {
+        final boolean day = AppState.get().isDayNotInvert;
+        final CustomColorView view = inflate.findViewById(R.id.musicColor);
+        view.getText1().setText(day ? R.string.st_color_day : R.string.st_color_night);
+        view.withDefaultColors(musicSwatches());
+        view.init(MagicHelper.getMusicColor());
+        view.setOnColorChanged(new StringResponse() {
+            @Override public boolean onResultRecive(String string) {
+                if (day) {
+                    AppState.get().musicColorDay = Color.parseColor(string);
+                } else {
+                    AppState.get().musicColorNight = Color.parseColor(string);
+                }
+                AppState.get().isEditMode = false;
+                if (onRefresh != null) {
+                    onRefresh.run();
+                }
+                Keyboards.hideNavigation(controller.getActivity());
+                return false;
+            }
+        });
+        view.setOnLongClickListener(new OnLongClickListener() {
+            @Override public boolean onLongClick(View v) {
+                Dialogs.showEditDialog(v.getContext(), false, view.getTextString(), musicPalette(),
+                        new ResultResponse<String>() {
+                            @Override public boolean onResultRecive(String result) {
+                                if (day) {
+                                    AppState.get().musicColorDays = result;
+                                } else {
+                                    AppState.get().musicColorNights = result;
+                                }
+                                view.withDefaultColors(musicSwatches());
+                                return true;
+                            }
+                        });
+                return true;
+            }
+        });
+    }
+
+    /** Three to choose from, however many the list was edited to hold. */
+    private static List<Integer> musicSwatches() {
+        final List<Integer> colors = StringDB.converToColor(musicPalette());
+        return colors.size() > 3 ? new ArrayList<>(colors.subList(0, 3)) : colors;
+    }
+
+    private static String musicPalette() {
+        return AppState.get().isDayNotInvert ? AppState.get().musicColorDays : AppState.get().musicColorNights;
     }
 
     public static void dialogPerformanceSettings(final FrameLayout anchor,

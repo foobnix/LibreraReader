@@ -510,6 +510,15 @@ public class MagicHelper {
         return AppState.get().isDayNotInvert ? AppState.get().colorDayText : AppState.get().colorNigthText;
     }
 
+    /**
+     * Musician's mode: the dotted lines round the tap zones, the speed bar and the bookmarks, in
+     * the colour chosen for day or night - the book's text colour until one is.
+     */
+    public static int getMusicColor() {
+        final int color = AppState.get().isDayNotInvert ? AppState.get().musicColorDay : AppState.get().musicColorNight;
+        return color != 0 ? color : getPageMarkColor();
+    }
+
     public static int getPageMarkBgColor(int alpha) {
         return ColorUtils.setAlphaComponent(AppState.get().isDayNotInvert ? AppState.get().colorDayBg : AppState.get().colorNigthBg, alpha);
     }

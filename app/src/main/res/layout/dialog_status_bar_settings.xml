@@ -24,6 +24,30 @@
             android:layout_marginTop="5dip"
             myseek:text="@string/st_color_night" />
 
+        <!-- Musician's mode only: one colour for its tap zone lines, speed bar and bookmarks,
+             for the day or the night the book is read in now. -->
+        <LinearLayout
+            android:id="@+id/musicColors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginTop="8dip"
+                android:text="@string/mode_musician"
+                android:textStyle="bold" />
+
+            <com.foobnix.pdf.info.view.CustomColorView
+                android:id="@+id/musicColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip" />
+        </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

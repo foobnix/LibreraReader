@@ -48,8 +48,9 @@ public class BookmarkPanel {
 
 
         // Everything in this panel stands on the page rather than on a bar, so it is drawn in
-        // the colour of the book's text over a veil of the page's own colour, for day and night.
-        final int bookmarkColor = MagicHelper.getPageMarkColor();
+        // the colour of the book's text over a veil of the page's own colour, for day and night -
+        // or, in musician's mode, the colour chosen for them in the status bar settings.
+        final int bookmarkColor = dc.isMusicianMode() ? MagicHelper.getMusicColor() : MagicHelper.getPageMarkColor();
         final int veilColor = MagicHelper.getPageMarkBgColor(140);
         TintUtil.setTintImageNoAlpha(pagesBookmark, bookmarkColor);
         pagesBookmark.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
