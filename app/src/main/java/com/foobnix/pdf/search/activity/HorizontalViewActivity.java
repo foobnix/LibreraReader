@@ -711,6 +711,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                      @Override
                      public boolean onMenuItemClick(MenuItem item) {
+                         final boolean wasCut = AppSP.get().isCut;
                          closeDialogs();
                          onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
                          AppSP.get().isDouble = false;
@@ -720,7 +721,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                          SettingsManager.getBookSettings().updateFromAppState();
                          SharedBooks.save(SettingsManager.getBookSettings());
 
-                         if (dc.isTextFormat()) {
+                         if (dc.isTextFormat() || wasCut != AppSP.get().isCut) {
                              nullAdapter();
                              dc.restartActivity();
                              dc.cleanImageMatrix();
@@ -741,6 +742,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                      @Override
                      public boolean onMenuItemClick(MenuItem item) {
 
+                         final boolean wasCut = AppSP.get().isCut;
                          closeDialogs();
                          onModeChange.setImageResource(R.drawable.my_glyphicons_two_pages_12);
                          AppSP.get().isDouble = true;
@@ -750,7 +752,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                          SettingsManager.getBookSettings().updateFromAppState();
                          SharedBooks.save(SettingsManager.getBookSettings());
 
-                         if (dc.isTextFormat()) {
+                         if (dc.isTextFormat() || wasCut != AppSP.get().isCut) {
                              nullAdapter();
                              dc.restartActivity();
                              dc.cleanImageMatrix();
@@ -772,6 +774,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                          @Override
                          public boolean onMenuItemClick(MenuItem item) {
 
+                             final boolean wasCut = AppSP.get().isCut;
                              closeDialogs();
                              onModeChange.setImageResource(R.drawable.my_glyphicons_two_pages_23);
                              AppSP.get().isDouble = true;
@@ -780,7 +783,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                              SettingsManager.getBookSettings().updateFromAppState();
                              SharedBooks.save(SettingsManager.getBookSettings());
 
-                             if (dc.isTextFormat()) {
+                             if (dc.isTextFormat() || wasCut != AppSP.get().isCut) {
                                  nullAdapter();
                                  dc.restartActivity();
                                  dc.cleanImageMatrix();
@@ -803,6 +806,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                          @Override
                          public boolean onMenuItemClick(MenuItem item) {
 
+                             final boolean wasCut = AppSP.get().isCut;
                              closeDialogs();
                              onModeChange.setImageResource(R.drawable.my_glyphicons_page_split);
                              AppSP.get().isDouble = false;
@@ -815,6 +819,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                              // onCrop.underline(AppSP.get().isCrop);
 
+                             if (!wasCut) {
+                                 nullAdapter();
+                                 dc.restartActivity();
+                                 dc.cleanImageMatrix();
+                                 return false;
+                             }
                              dc.cleanImageMatrix();
                              reloadDoc.run();
                              authoFit();

@@ -218,7 +218,7 @@ public class DocumentModel extends ListenerProxy {
                     final Page page2 =
                             new Page(base, new PageIndex(docIndex, viewIndex++), PageType.RIGHT_PAGE, infos[docIndex]);
 
-                    if (AppState.get().isCutRTL) {
+                    if (AppSP.get().isRTL) {
                         list.add(page2);
                         list.add(page1);
                     } else {

@@ -105,7 +105,7 @@ public class PageUrl {
         url.setCutp(AppState.get().cutP);
 
         if (AppSP.get().isCut) {
-            if (AppState.get().isCutRTL) {
+            if (AppSP.get().isRTL) {
                 url.setNumber(page % 2 == 0 ? 2 : 1);
             } else {
                 url.setNumber(page % 2 == 0 ? 1 : 2);

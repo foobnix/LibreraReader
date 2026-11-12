@@ -219,9 +219,7 @@ public class DocumentWrapperUI {
                      }
                      closeDialogs();
                      onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
-                     AppSP.get().isCut = !false;
-                     onCut.onClick(null);
-                     hideShowEditIcon();
+                     applyCut(false);
                      return false;
                  }
              });
@@ -244,12 +242,20 @@ public class DocumentWrapperUI {
                  public boolean onMenuItemClick(MenuItem item) {
                      closeDialogs();
                      onModeChange.setImageResource(R.drawable.my_glyphicons_page_split);
-                     AppSP.get().isCut = !true;
-                     onCut.onClick(null);
-                     hideShowEditIcon();
+                     applyCut(true);
                      return false;
                  }
              });
+        }
+
+        private void applyCut(boolean cut) {
+            if (AppSP.get().isCut == cut) {
+                return;
+            }
+            AppSP.get().isCut = cut;
+            AppSP.get().isCrop = false;
+            AppState.get().cutP = 50;
+            dc.restartWithAnnotationsSaved();
         }
     };
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon,
