@@ -681,6 +681,7 @@
    <string name="show_print_edition_page_numbers_epub3">Amosar números de páxina da edición impresa (EPUB3)</string>
    <string name="ad_privacy_settings">Axustes de privacidade de anuncios</string>
    <string name="allow_other_music_to_play">Permitir reproducir outra música</string>
+   <string name="mix_with_other_apps_sound">Mesturar co son doutras aplicacións</string>
    <string name="enable_image_scale">Activar escala de imaxe</string>
    <string name="open_books_on_page_1">Abrir libros na páxina 1</string>
    <string name="foreground">Primeiro plano</string>

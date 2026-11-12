@@ -679,6 +679,7 @@
    <string name="show_print_edition_page_numbers_epub3">Seitenzahlen der gedruckten Ausgabe anzeigen (epub3)</string>
    <string name="ad_privacy_settings">Datenschutzeinstellungen für Anzeigen</string>
    <string name="allow_other_music_to_play">Andere Musik abspielen lassen</string>
+   <string name="mix_with_other_apps_sound">Mit dem Ton anderer Apps mischen</string>
    <string name="enable_image_scale">Bildskalierung aktivieren</string>
    <string name="open_books_on_page_1">Bücher auf Seite 1 öffnen</string>
    <string name="foreground">Vordergrund</string>

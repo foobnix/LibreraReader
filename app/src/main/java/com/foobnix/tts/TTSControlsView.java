@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppSP;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
@@ -51,6 +52,8 @@ public class TTSControlsView extends FrameLayout {
     private TextView trackName;
     private ImageView ttsPrevTrack;
     private ImageView ttsNextTrack;
+    private ImageView ttsCurrentPage;
+    private Runnable onCurrentPage;
     private int colorTint;
     Runnable update = new Runnable() {
 
@@ -78,6 +81,7 @@ public class TTSControlsView extends FrameLayout {
                     ttsNextTrack.setVisibility(View.GONE);
                 }
 
+                showCurrentPage();
                 LOG.d("TtsStatus-isPlaying", TTSEngine.get().isPlaying());
                 ttsPlayPause.setImageResource(TTSEngine.get().isPlaying() ? R.drawable.glyphicons_174_pause : R.drawable.glyphicons_175_play);
             } catch (Exception e) {
@@ -138,6 +142,7 @@ public class TTSControlsView extends FrameLayout {
 
         ttsPrevTrack = (ImageView) view.findViewById(R.id.ttsPrevTrack);
         ttsNextTrack = (ImageView) view.findViewById(R.id.ttsNextTrack);
+        ttsCurrentPage = (ImageView) view.findViewById(R.id.ttsCurrentPage);
         trackName = (TextView) view.findViewById(R.id.trackName);
 
         ttsDialog = (ImageView) view.findViewById(R.id.ttsDialog);
@@ -157,6 +162,7 @@ public class TTSControlsView extends FrameLayout {
         TintUtil.setTintImageWithAlpha(ttsDialog, colorTint, alpha);
         TintUtil.setTintImageWithAlpha(ttsPrevTrack, colorTint, alpha);
         TintUtil.setTintImageWithAlpha(ttsNextTrack, colorTint, alpha);
+        TintUtil.setTintImageWithAlpha(ttsCurrentPage, colorTint, alpha);
         TintUtil.setTintText(trackName, colorTint);
 
         // TxtUtils.updateAllLinks(view);
@@ -222,6 +228,21 @@ public class TTSControlsView extends FrameLayout {
                     Urls.openTTS(getContext());
                 } else {
                     TTSService.playPause(context, controller);
+                }
+            }
+        });
+
+        // The page being read aloud is the last one TTS started, kept 0-based like the page
+        // the reader follows it to.
+        ttsCurrentPage.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (controller != null) {
+                    controller.onGoToPage(AppSP.get().lastBookPage + 1);
+                }
+                if (onCurrentPage != null) {
+                    onCurrentPage.run();
                 }
             }
         });
@@ -321,6 +342,7 @@ public class TTSControlsView extends FrameLayout {
         Apps.accessibilityButtonSize(ttsPrevTrack);
         Apps.accessibilityButtonSize(ttsDialog);
         Apps.accessibilityButtonSize(ttsStop);
+        Apps.accessibilityButtonSize(ttsCurrentPage);
 
     }
 
@@ -333,7 +355,7 @@ public class TTSControlsView extends FrameLayout {
         colorTint = color;
         int alpha = 240;
         for (int id : new int[]{R.id.ttsStop, R.id.ttsPlay, R.id.ttsNext, R.id.ttsPrev, R.id.ttsDialog,
-                R.id.ttsPrevTrack, R.id.ttsNextTrack}) {
+                R.id.ttsPrevTrack, R.id.ttsNextTrack, R.id.ttsCurrentPage}) {
             View mark = view.findViewById(id);
             if (mark instanceof ImageView) {
                 TintUtil.setTintImageWithAlpha((ImageView) mark, color, alpha);
@@ -348,6 +370,17 @@ public class TTSControlsView extends FrameLayout {
 
     public void setDC(DocumentController dc) {
         controller = dc;
+        showCurrentPage();
+    }
+
+    /**
+     * The wave that goes back to the page being read stands only by a book open in the reader,
+     * and not while an MP3 plays, which has no page in the book.
+     */
+    private void showCurrentPage() {
+        if (ttsCurrentPage != null) {
+            ttsCurrentPage.setVisibility(controller != null && !TTSEngine.get().isMp3() ? View.VISIBLE : View.GONE);
+        }
     }
 
     /**
@@ -371,6 +404,11 @@ public class TTSControlsView extends FrameLayout {
         hideStop();
         setTintColor(TintUtil.getStatusBarTextColor());
         setAlpha(0.6f);
+    }
+
+    /** Run after the wave has gone back to the page being read; the reader closes its panels there. */
+    public void setOnCurrentPage(Runnable run) {
+        onCurrentPage = run;
     }
 
     public void addOnDialogRunnable(final Runnable run) {

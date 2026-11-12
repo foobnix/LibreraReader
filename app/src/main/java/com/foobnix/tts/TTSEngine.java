@@ -3,6 +3,8 @@ package com.foobnix.tts;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.icu.util.ULocale;
+import android.media.AudioAttributes;
+import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.content.Intent;
@@ -672,16 +674,20 @@ public class TTSEngine {
         try {
             mp3Destroy();
             mp = new MediaPlayer();
+            mp.setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_MEDIA)
+                                                               .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                                                               .build());
             mp.setDataSource(ttsPlayMp3Path);
             mp.prepare();
             mp.setOnCompletionListener(new OnCompletionListener() {
 
                 @Override public void onCompletion(MediaPlayer mp) {
                     mp.pause();
+                    abandonMp3Focus();
                 }
             });
             if (play) {
-                mp.start();
+                startMp3();
             }
 
             mTimer = new Timer();
@@ -708,6 +714,7 @@ public class TTSEngine {
     }
 
     public void mp3Destroy() {
+        abandonMp3Focus();
         if (mp != null) {
             mp.stop();
             mp.reset();
@@ -741,9 +748,9 @@ public class TTSEngine {
                 return false;
             }
             if (mp.isPlaying()) {
-                mp.pause();
+                pauseMp3();
             } else {
-                mp.start();
+                startMp3();
             }
             TTSNotification.showLast();
             return true;
@@ -753,13 +760,124 @@ public class TTSEngine {
 
     public void playMp3() {
         if (mp != null) {
-            mp.start();
+            startMp3();
         }
     }
 
     public void pauseMp3() {
         if (mp != null) {
             mp.pause();
+        }
+        abandonMp3Focus();
+    }
+
+    // Unless it is to mix with other apps, the audio file player takes the sound the way a music
+    // player does: other apps pause while it plays, and it pauses for a call or for music another
+    // app starts - and plays on after a call, or quietly under a notification.
+    private Object mp3FocusRequest;
+    private boolean mp3HasFocus;
+    private boolean mp3PausedForFocus;
+
+    private final AudioManager.OnAudioFocusChangeListener mp3FocusListener = focusChange -> {
+        LOG.d("mp3 onAudioFocusChange", focusChange);
+        if (mp == null) {
+            return;
+        }
+        try {
+            if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                mp.setVolume(1f, 1f);
+                if (mp3PausedForFocus) {
+                    mp3PausedForFocus = false;
+                    mp.start();
+                }
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                mp.setVolume(0.2f, 0.2f);
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+                if (mp.isPlaying()) {
+                    mp3PausedForFocus = true;
+                    mp.pause();
+                }
+            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                // Another player has it for good: stop, and leave it to the reader to start again
+                mp3PausedForFocus = false;
+                pauseMp3();
+            }
+            EventBus.getDefault().post(new TtsStatus());
+            TTSNotification.showLast();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    };
+
+    private void startMp3() {
+        if (mp == null) {
+            return;
+        }
+        mp3PausedForFocus = false;
+        if (!AppState.get().mp3MixWithOtherApps && !requestMp3Focus()) {
+            LOG.d("mp3 audio focus refused");
+            return;
+        }
+        mp.setVolume(1f, 1f);
+        mp.start();
+    }
+
+    private boolean requestMp3Focus() {
+        if (mp3HasFocus) {
+            return true;
+        }
+        try {
+            final AudioManager am = (AudioManager) LibreraApp.context.getSystemService(Context.AUDIO_SERVICE);
+            final int result;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                if (mp3FocusRequest == null) {
+                    mp3FocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
+                            .setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_MEDIA)
+                                                                             .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                                                                             .build())
+                            .setOnAudioFocusChangeListener(mp3FocusListener)
+                            .build();
+                }
+                result = am.requestAudioFocus((AudioFocusRequest) mp3FocusRequest);
+            } else {
+                result = am.requestAudioFocus(mp3FocusListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+            }
+            mp3HasFocus = result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED;
+        } catch (Exception e) {
+            LOG.e(e);
+            // Better to play along with the others than not to play at all
+            return true;
+        }
+        return mp3HasFocus;
+    }
+
+    private void abandonMp3Focus() {
+        mp3PausedForFocus = false;
+        if (!mp3HasFocus) {
+            return;
+        }
+        mp3HasFocus = false;
+        try {
+            final AudioManager am = (AudioManager) LibreraApp.context.getSystemService(Context.AUDIO_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                am.abandonAudioFocusRequest((AudioFocusRequest) mp3FocusRequest);
+            } else {
+                am.abandonAudioFocus(mp3FocusListener);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    /** The setting changed while a file plays: take the sound now, or give it back. */
+    public void mp3MixChanged() {
+        if (AppState.get().mp3MixWithOtherApps) {
+            abandonMp3Focus();
+            if (mp != null) {
+                mp.setVolume(1f, 1f);
+            }
+        } else if (mp != null && mp.isPlaying()) {
+            requestMp3Focus();
         }
     }
 

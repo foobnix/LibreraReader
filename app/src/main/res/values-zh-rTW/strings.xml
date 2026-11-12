@@ -679,6 +679,7 @@
    <string name="show_print_edition_page_numbers_epub3">顯示印刷版頁碼 (epub3)</string>
    <string name="ad_privacy_settings">廣告隱私設定</string>
    <string name="allow_other_music_to_play">允許播放其他音樂</string>
+   <string name="mix_with_other_apps_sound">與其他應用程式的聲音混音</string>
    <string name="enable_image_scale">啟用圖像縮放</string>
    <string name="open_books_on_page_1">打開第1頁的書</string>
    <string name="foreground">前景</string>

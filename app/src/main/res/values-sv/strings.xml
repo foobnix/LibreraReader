@@ -679,6 +679,7 @@
    <string name="show_print_edition_page_numbers_epub3">Visa sidnummer i den tryckta utgåvan (epub3)</string>
    <string name="ad_privacy_settings">Annonssekretessinställningar</string>
    <string name="allow_other_music_to_play">Låta annan musik spelas</string>
+   <string name="mix_with_other_apps_sound">Mixa med ljud från andra appar</string>
    <string name="enable_image_scale">Aktivera bildskala</string>
    <string name="open_books_on_page_1">Öppna böcker på sidan 1</string>
    <string name="foreground">Förgrund</string>

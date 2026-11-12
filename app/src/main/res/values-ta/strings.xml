@@ -679,6 +679,7 @@
    <string name="show_print_edition_page_numbers_epub3">அச்சு பதிப்பு பக்க எண்களைக் காட்டு (epub3)</string>
    <string name="ad_privacy_settings">விளம்பர தனியுரிமை அமைப்புகள்</string>
    <string name="allow_other_music_to_play">மற்ற இசையை இயக்க அனுமதிக்கவும்</string>
+   <string name="mix_with_other_apps_sound">பிற ஆப்ஸின் ஒலியுடன் கலக்கவும்</string>
    <string name="enable_image_scale">பட அளவை இயக்கு</string>
    <string name="open_books_on_page_1">பக்கம் 1 இல் புத்தகங்களைத் திறக்கவும்</string>
    <string name="foreground">முன்புறம்</string>

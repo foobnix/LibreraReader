@@ -1252,6 +1252,12 @@ public class DocumentWrapperUI {
         ttsActivePage = a.findViewById(R.id.ttsActivePage);
         ttsActivePage.setDC(dc);
         ttsActivePage.onPage();
+        // Back on the page being read, the panels make way for it
+        ttsActive.setOnCurrentPage(() -> {
+            if (AppState.get().isEditMode) {
+                doShowHideWrapperControlls();
+            }
+        });
         ttsActive.addOnDialogRunnable(new Runnable() {
 
             @Override

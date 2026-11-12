@@ -679,6 +679,7 @@
    <string name="show_print_edition_page_numbers_epub3">Näytä painetun painoksen sivunumerot (epub3)</string>
    <string name="ad_privacy_settings">Mainosten tietosuoja-asetukset</string>
    <string name="allow_other_music_to_play">Salli muun musiikin toistaa</string>
+   <string name="mix_with_other_apps_sound">Sekoita muiden sovellusten ääneen</string>
    <string name="enable_image_scale">Ota kuvan mittakaava käyttöön</string>
    <string name="open_books_on_page_1">Avaa kirjat sivulla 1</string>
    <string name="foreground">Etualalla</string>

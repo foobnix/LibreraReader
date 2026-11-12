@@ -679,6 +679,7 @@
    <string name="show_print_edition_page_numbers_epub3">Показывать номера страниц печатного издания (для EPUB3-формата)</string>
    <string name="ad_privacy_settings">Настройки конфиденциальности рекламы</string>
    <string name="allow_other_music_to_play">Разрешить воспроизведение другой музыки</string>
+   <string name="mix_with_other_apps_sound">Смешивать со звуком других приложений</string>
    <string name="enable_image_scale">Включить масштаб изображения</string>
    <string name="open_books_on_page_1">Открыть книги на странице 1</string>
    <string name="foreground">Передний план</string>

@@ -679,6 +679,7 @@
    <string name="show_print_edition_page_numbers_epub3">Zobrazit čísla stránek tištěného vydání (epub3)</string>
    <string name="ad_privacy_settings">Nastavení soukromí reklam</string>
    <string name="allow_other_music_to_play">Povolit přehrávání jiné hudby</string>
+   <string name="mix_with_other_apps_sound">Míchat se zvukem jiných aplikací</string>
    <string name="enable_image_scale">Povolit měřítko obrazu</string>
    <string name="open_books_on_page_1">Otevřené knihy na straně 1</string>
    <string name="foreground">Popředí</string>

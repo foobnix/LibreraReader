@@ -679,6 +679,7 @@
    <string name="show_print_edition_page_numbers_epub3">Afișați numerele paginilor ediției tipărite (epub3)</string>
    <string name="ad_privacy_settings">Setări de confidențialitate a anunțurilor</string>
    <string name="allow_other_music_to_play">Permiteți să redea altă muzică</string>
+   <string name="mix_with_other_apps_sound">Amestecă cu sunetul altor aplicații</string>
    <string name="enable_image_scale">Activați scara imaginii</string>
    <string name="open_books_on_page_1">Cărți deschise de la pagina 1</string>
    <string name="foreground">Prim plan</string>

@@ -1200,6 +1200,14 @@ public class DragingDialogs {
                         AppState.get().allowOtherMusic = isChecked;
                     }
                 });
+                CheckBox mp3MixWithOtherApps = view.findViewById(R.id.mp3MixWithOtherApps);
+                mp3MixWithOtherApps.setChecked(AppState.get().mp3MixWithOtherApps);
+                mp3MixWithOtherApps.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                    @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().mp3MixWithOtherApps = isChecked;
+                        TTSEngine.get().mp3MixChanged();
+                    }
+                });
 
                 TxtUtils.underlineTextView(view.findViewById(R.id.showDebug)).setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View v) {

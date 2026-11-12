@@ -679,6 +679,7 @@
    <string name="show_print_edition_page_numbers_epub3">แสดงหมายเลขหน้าฉบับพิมพ์ (epub3)</string>
    <string name="ad_privacy_settings">การตั้งค่าความเป็นส่วนตัวของโฆษณา</string>
    <string name="allow_other_music_to_play">อนุญาตให้เล่นเพลงอื่นได้</string>
+   <string name="mix_with_other_apps_sound">ผสมกับเสียงของแอปอื่น</string>
    <string name="enable_image_scale">เปิดใช้งานขนาดภาพ</string>
    <string name="open_books_on_page_1">เปิดหนังสือในหน้า 1</string>
    <string name="foreground">พื้นหน้า</string>

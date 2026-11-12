@@ -260,6 +260,14 @@
             android:layout_height="wrap_content"
             android:text="@string/allow_other_music_to_play" />
 
+        <!-- The audio file player ("Play an audio file"): play along with other apps rather
+             than pausing them and pausing for them. -->
+        <CheckBox
+            android:id="@+id/mp3MixWithOtherApps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mix_with_other_apps_sound" />
+
 
         <CheckBox
             android:id="@+id/ttsTunnOnLastWord"

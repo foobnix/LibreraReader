@@ -1182,6 +1182,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     ttsActive.setDC(dc);
                     ttsActive.hideStop();
                     ttsActivePage.setDC(dc);
+                    // Back on the page being read, the panels make way for it
+                    ttsActive.setOnCurrentPage(() -> {
+                        if (AppState.get().isEditMode) {
+                            doShowHideWrapperControlls();
+                        }
+                    });
                     ttsActive.addOnDialogRunnable(new Runnable() {
 
                         @Override

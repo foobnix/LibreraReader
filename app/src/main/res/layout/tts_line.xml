@@ -49,7 +49,21 @@
         android:background="@drawable/bg_round_press"
         android:padding="3dp"
         android:src="@drawable/glyphicons_89_skip_to_next" />
-    
+
+    <!-- Brings back the page being read aloud, after the reader has turned or scrolled away
+         from it; only where the controls stand by an open book. -->
+    <ImageView
+        android:id="@+id/ttsCurrentPage"
+        android:layout_width="@dimen/wh_tts_button"
+        android:layout_height="@dimen/wh_tts_button"
+        android:layout_gravity="center"
+        android:layout_marginLeft="4dip"
+        android:background="@drawable/bg_round_press"
+        android:contentDescription="@string/m_current_page"
+        android:padding="7dp"
+        android:src="@drawable/graphic_eq_24"
+        android:visibility="gone" />
+
     
     <ImageView
         android:id="@+id/ttsPrevTrack"

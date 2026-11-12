@@ -679,6 +679,7 @@
    <string name="show_print_edition_page_numbers_epub3">Ammustra sos nùmeros de pàgina de s\'editzione imprentada (Epub3)</string>
    <string name="ad_privacy_settings">Impostatziones de riservadesa de sos annùntzios</string>
    <string name="allow_other_music_to_play">Permite sa riprodutzione de àtera mùsica</string>
+   <string name="mix_with_other_apps_sound">Mistura cun su sonu de àteras aplicatziones</string>
    <string name="enable_image_scale">Abilita s\'iscala de s\'immàgine</string>
    <string name="open_books_on_page_1">Aberi sos libros in sa pàgina 1</string>
    <string name="foreground">Primu pranu</string>
