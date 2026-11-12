@@ -249,6 +249,12 @@ static void ink_appearance(FPDF_ANNOTATION annot) {
             pPathLineTo(path, points[0].x + 0.01f, points[0].y);
         }
         for (k = 1; k < count; k++) {
+            /* PDFium writes a 4-point path whose corners square up as a closed rectangle ("re"),
+               which would draw the side a rectangle cut by the page edge does not have: a point
+               halfway along the first side keeps it an open line */
+            if (count == 4 && k == 1) {
+                pPathLineTo(path, (points[0].x + points[1].x) / 2, (points[0].y + points[1].y) / 2);
+            }
             pPathLineTo(path, points[k].x, points[k].y);
         }
         free(points);

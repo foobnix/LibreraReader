@@ -62,7 +62,7 @@ public interface DecodeService {
 
 	}
 
-    void addAnnotation(Map<Integer, List<PointF>> points, int color, float width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> resultResponse);
+    void addAnnotation(Map<Integer, List<List<PointF>>> points, int color, float width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> resultResponse);
 
 	Map<Integer, CodecPageHolder> getPages();
 

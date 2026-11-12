@@ -718,33 +718,32 @@ public class PageImaveView extends View {
      * @return null off the page, or where the bitmap on screen cannot be mapped back
      */
     public Pair<Integer, PointF> toPage(float x1, float y1) {
-        RectF tr = new RectF();
-        imageMatrix().mapRect(tr);
-        float[] f = new float[9];
-        imageMatrix().getValues(f);
-        final float scaleX = f[Matrix.MSCALE_X];
-        if (scaleX == 0 || drawableWidth == 0 || drawableHeight == 0) {
+        final float scale = imageScale();
+        if (scale == 0 || drawableWidth == 0 || drawableHeight == 0) {
             return null;
         }
-        final float x = (x1 - tr.left) / scaleX;
-        final float y = (y1 - tr.top) / scaleX;
-
         int number = 0;
         if (AppSP.get().isDouble) {
-            number = x < drawableWidth / 2 ? 1 : 2;
+            number = (x1 - imageLeft()) / scale < drawableWidth / 2 ? 1 : 2;
         }
-        if (!isCropMappable(number)) {
+        return toPage(number, x1, y1);
+    }
+
+    /**
+     * Where a point on screen is on one of the pages on screen - 0 the only one, 1 and 2 those of
+     * a spread - as {@link #toPage(float, float)}; a point just past its edge is on the edge.
+     */
+    public Pair<Integer, PointF> toPage(int number, float x1, float y1) {
+        final RectF onScreen = pageOnScreen(number);
+        if (onScreen == null || !isCropMappable(number)) {
             return null;
         }
-        float nx;
-        if (number == 0) {
-            nx = x / drawableWidth;
-        } else if (number == 1) {
-            nx = x / (drawableWidth / 2f);
-        } else {
-            nx = (x - drawableWidth / 2f) / (drawableWidth / 2f);
+        final float slop = 1;
+        if (x1 < onScreen.left - slop || x1 > onScreen.right + slop || y1 < onScreen.top - slop || y1 > onScreen.bottom + slop) {
+            return null;
         }
-        float ny = y / drawableHeight;
+        float nx = Math.max(0, Math.min(1, (x1 - onScreen.left) / onScreen.width()));
+        float ny = Math.max(0, Math.min(1, (y1 - onScreen.top) / onScreen.height()));
         if (number == 0) {
             final RectF crop = PageImageState.get().getPageCrop(pageNumber);
             if (crop != null && crop.width() > 0 && crop.height() > 0) {
@@ -753,10 +752,52 @@ public class PageImaveView extends View {
             }
         }
         final int page = docPageOf(number);
-        if (page < 0 || nx < 0 || nx > 1 || ny < 0 || ny > 1) {
+        if (page < 0) {
             return null;
         }
         return new Pair<>(page, new PointF(nx, ny));
+    }
+
+    /** The pages on screen by number, as {@link #toPage(int, float, float)} takes them. */
+    public int[] pagesOnScreen() {
+        return AppSP.get().isDouble ? new int[]{1, 2} : new int[]{0};
+    }
+
+    /** Where one of the pages on screen stands on the view, or null before it is shown. */
+    public RectF pageOnScreen(int number) {
+        final float scale = imageScale();
+        if (scale == 0 || drawableWidth == 0 || drawableHeight == 0) {
+            return null;
+        }
+        final float left = imageLeft();
+        final float top = imageTop();
+        final float width = drawableWidth * scale;
+        final float height = drawableHeight * scale;
+        if (number == 1) {
+            return new RectF(left, top, left + width / 2, top + height);
+        }
+        if (number == 2) {
+            return new RectF(left + width / 2, top, left + width, top + height);
+        }
+        return new RectF(left, top, left + width, top + height);
+    }
+
+    private float imageScale() {
+        float[] f = new float[9];
+        imageMatrix().getValues(f);
+        return f[Matrix.MSCALE_X];
+    }
+
+    private float imageLeft() {
+        RectF tr = new RectF();
+        imageMatrix().mapRect(tr);
+        return tr.left;
+    }
+
+    private float imageTop() {
+        RectF tr = new RectF();
+        imageMatrix().mapRect(tr);
+        return tr.top;
     }
 
     // The annotation picked out from the drawing panel, and which page of a spread it is on

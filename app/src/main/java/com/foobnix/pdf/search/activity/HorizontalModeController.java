@@ -31,6 +31,7 @@ import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.view.StrokeClip;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
@@ -569,20 +570,32 @@ public abstract class HorizontalModeController extends DocumentController {
         if (view == null || doc == null || points.isEmpty() || !isAnnotationsInsideDocument()) {
             return;
         }
-        // Points 0..1 of the page under each one; a stroke over both pages of a spread is a
-        // stroke on each
-        final Map<Integer, List<PointF>> byPage = new LinkedHashMap<Integer, List<PointF>>();
-        for (PointF p : points) {
-            final Pair<Integer, PointF> onPage = view.toPage(p.x, p.y);
-            if (onPage == null) {
+        // The stroke cut to each page of a spread, as points 0..1 of the page: a figure over
+        // both pages is the part of it on each, and what goes past the page edge is left off
+        final Map<Integer, List<List<PointF>>> byPage = new LinkedHashMap<Integer, List<List<PointF>>>();
+        for (int number : view.pagesOnScreen()) {
+            final RectF onScreen = view.pageOnScreen(number);
+            if (onScreen == null) {
                 continue;
             }
-            List<PointF> list = byPage.get(onPage.first);
-            if (list == null) {
-                list = new ArrayList<PointF>();
-                byPage.put(onPage.first, list);
+            final List<List<PointF>> pieces = new ArrayList<List<PointF>>();
+            Integer docPage = null;
+            for (List<PointF> piece : StrokeClip.clip(points, onScreen)) {
+                final List<PointF> list = new ArrayList<PointF>();
+                for (PointF p : piece) {
+                    final Pair<Integer, PointF> onPage = view.toPage(number, p.x, p.y);
+                    if (onPage != null) {
+                        docPage = onPage.first;
+                        list.add(onPage.second);
+                    }
+                }
+                if (!list.isEmpty()) {
+                    pieces.add(list);
+                }
             }
-            list.add(onPage.second);
+            if (docPage != null && !pieces.isEmpty()) {
+                byPage.put(docPage, pieces);
+            }
         }
         if (byPage.isEmpty()) {
             return;
@@ -594,15 +607,19 @@ public abstract class HorizontalModeController extends DocumentController {
         new Thread("@T saveChanges") {
             @Override public void run() {
                 try {
-                    for (Map.Entry<Integer, List<PointF>> entry : byPage.entrySet()) {
+                    for (Map.Entry<Integer, List<List<PointF>>> entry : byPage.entrySet()) {
                         final CodecPageInfo info = doc.getPageInfo(entry.getKey());
                         if (info == null || doc.isRecycled()) {
                             continue;
                         }
-                        final List<PointF> list = entry.getValue();
-                        final PointF[][] path = new PointF[1][list.size()];
-                        for (int i = 0; i < list.size(); i++) {
-                            path[0][i] = new PointF(list.get(i).x * info.width, list.get(i).y * info.height);
+                        final List<List<PointF>> pieces = entry.getValue();
+                        final PointF[][] path = new PointF[pieces.size()][];
+                        for (int s = 0; s < pieces.size(); s++) {
+                            final List<PointF> list = pieces.get(s);
+                            path[s] = new PointF[list.size()];
+                            for (int i = 0; i < list.size(); i++) {
+                                path[s][i] = new PointF(list.get(i).x * info.width, list.get(i).y * info.height);
+                            }
                         }
                         final CodecPage page = doc.getPage(entry.getKey());
                         try {

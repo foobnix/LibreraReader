@@ -228,7 +228,7 @@ public class DecodeServiceStub implements DecodeService {
 	}
 
 	@Override
-    public void addAnnotation(Map<Integer, List<PointF>> points, int color, float width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> resultResponse) {
+    public void addAnnotation(Map<Integer, List<List<PointF>>> points, int color, float width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> resultResponse) {
 		// TODO Auto-generated method stub
 
 	}

@@ -30,6 +30,7 @@ import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.pdf.info.AnnotationsPainter;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.view.StrokeClip;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 
@@ -427,50 +428,43 @@ public class VerticalModeController extends DocumentController {
         int scrollX = ctr.getDocumentController().getView().getScrollX();
         int scrollY = ctr.getDocumentController().getView().getScrollY();
 
-        final Map<Integer, List<PointF>> result = new HashMap<Integer, List<PointF>>();
+        final Map<Integer, List<List<PointF>>> result = new HashMap<Integer, List<List<PointF>>>();
 
         final int first = ctr.getDocumentController().getFirstVisiblePage();
         final int last = ctr.getDocumentController().getLastVisiblePage() + 1;
         LOG.d("first", first, "last", last);
 
-        for (PointF p : points) {
-            RectF tapRect = new RectF(p.x, p.y, p.x, p.y);
-            tapRect.offset(scrollX, scrollY);
+        // The stroke cut to each page it goes over: a figure drawn across two pages is the part
+        // of it on each, not the points that happen to land on one
+        Iterable<Page> pages = ctr.getDocumentModel().getPages(first, last);
+        for (Page page : pages) {
+            RectF pbounds = page.getBounds(zoom);
+            RectF onScreen = new RectF(pbounds);
+            onScreen.offset(-scrollX, -scrollY);
 
-            Iterable<Page> pages = ctr.getDocumentModel().getPages(first, last);
-            for (Page page : pages) {
-                RectF pbounds = page.getBounds(zoom);
-
-                if (RectF.intersects(pbounds, tapRect)) {
-                    int pNumber = page.index.docIndex;
-                    List<PointF> list = result.get(pNumber);
-                    if (list == null) {
-                        list = new ArrayList<PointF>();
-                    }
-
-                    // Position of the touch within the on-screen page box (0..1).
-                    float normX = (p.x + scrollX - pbounds.left) / pbounds.width();
-                    float normY = (p.y + scrollY - pbounds.top) / pbounds.height();
-
-                    // When "Crop White Space" is enabled the on-screen page shows
-                    // only the cropped sub-region of the full page, so remap the
-                    // normalized point back into the full page before converting
-                    // to PDF coordinates. Annotations are always stored in full
-                    // page coordinates so they render correctly cropped or not.
-                    RectF crop = page.getCroppedBounds();
+            List<List<PointF>> pieces = StrokeClip.clip(points, onScreen);
+            if (pieces.isEmpty()) {
+                continue;
+            }
+            // When "Crop White Space" is enabled the on-screen page shows only the cropped
+            // sub-region of the full page, so remap the normalized point back into the full
+            // page before converting to PDF coordinates. Annotations are always stored in full
+            // page coordinates so they render correctly cropped or not.
+            RectF crop = page.getCroppedBounds();
+            for (List<PointF> piece : pieces) {
+                for (PointF p : piece) {
+                    // Position of the point within the on-screen page box (0..1).
+                    float normX = (p.x - onScreen.left) / onScreen.width();
+                    float normY = (p.y - onScreen.top) / onScreen.height();
                     if (crop != null) {
                         normX = crop.left + normX * crop.width();
                         normY = crop.top + normY * crop.height();
                     }
-
                     p.x = normX * page.cpi.width;
                     p.y = normY * page.cpi.height;
-
-                    list.add(p);
-                    result.put(pNumber, list);
                 }
             }
-
+            result.put(page.index.docIndex, pieces);
         }
 
         float width = AppState.get().editLineWidth * 3;

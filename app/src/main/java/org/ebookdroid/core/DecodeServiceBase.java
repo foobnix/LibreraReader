@@ -165,7 +165,7 @@ public class DecodeServiceBase implements DecodeService {
     }
 
     @Override
-    public void addAnnotation(Map<Integer, List<PointF>> points, int color, float width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> result) {
+    public void addAnnotation(Map<Integer, List<List<PointF>>> points, int color, float width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> result) {
         final AddAnnotationTask anTask = new AddAnnotationTask(points, color, width, alpha, result);
         executor.addAny(anTask);
     }
@@ -995,13 +995,13 @@ public class DecodeServiceBase implements DecodeService {
 
     class AddAnnotationTask extends Task {
 
-        private Map<Integer, List<PointF>> points;
+        private Map<Integer, List<List<PointF>>> points;
         private int color;
         private ResultResponse<Pair<Integer, List<Annotation>>> onResult;
         private float width;
         private float alpha;
 
-        public AddAnnotationTask(Map<Integer, List<PointF>> points, int color, float width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> result) {
+        public AddAnnotationTask(Map<Integer, List<List<PointF>>> points, int color, float width, float alpha, ResultResponse<Pair<Integer, List<Annotation>>> result) {
             super(1);
             this.points = points;
             this.width = width;
@@ -1014,17 +1014,24 @@ public class DecodeServiceBase implements DecodeService {
         @Override
         public void run() {
             Set<Integer> keySet = points.keySet();
+            // Every page of the stroke is written before any is shown again: a page shown in
+            // between - a figure over two pages is written page by page - can be rendered from
+            // the page it was being written through, and so never shows its part
             for (int docIndex : keySet) {
-                List<PointF> good = points.get(docIndex);
-                if (good == null) {
+                List<List<PointF>> good = points.get(docIndex);
+                if (good == null || good.isEmpty()) {
                     continue;
                 }
-                PointF[][] path = new PointF[1][good.size()];
-                path[0] = good.toArray(new PointF[good.size()]);
+                // Each piece of the stroke on the page is a line of the one ink annotation
+                PointF[][] path = new PointF[good.size()][];
+                for (int i = 0; i < good.size(); i++) {
+                    path[i] = good.get(i).toArray(new PointF[0]);
+                }
 
                 updateAnnotation(docIndex, Colors.toMupdfColor(color), path, width, alpha);
-                pages.clear();
-
+            }
+            pages.clear();
+            for (int docIndex : keySet) {
                 onResult.onResultRecive(new Pair<Integer, List<Annotation>>(docIndex, getPage(docIndex).getAnnotations()));
             }
         }
