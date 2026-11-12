@@ -840,7 +840,7 @@ public abstract class DocumentController {
     public String getBookmarkText() {
         try {
             CodecDocument doc = getCodecDocument();
-            return doc != null ? doc.getBookmarkText(getCurentPageFirst1()) : null;
+            return doc != null && !AppSP.get().isCut ? doc.getBookmarkText(getCurentPageFirst1()) : null;
         } catch (Exception e) {
             LOG.e(e);
             return null;

@@ -105,7 +105,7 @@ public class RtlViewPager extends ViewPager {
     }
 
     private int convert(int position) {
-        if (position >= 0 && isRtl()) {
+        if (position >= 0 && super.getAdapter() instanceof ReverseAdapter) {
             return getAdapter() == null ? 0 : getAdapter().getCount() - position - 1;
         } else {
             return position;
@@ -120,7 +120,7 @@ public class RtlViewPager extends ViewPager {
 
     @Override
     public void fakeDragBy(float xOffset) {
-        super.fakeDragBy(isRtl() ? xOffset : -xOffset);
+        super.fakeDragBy(super.getAdapter() instanceof ReverseAdapter ? xOffset : -xOffset);
     }
 
     @Override

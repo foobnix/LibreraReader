@@ -12,6 +12,7 @@ import com.foobnix.pdf.info.AnnotationsFinder;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBook;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -173,7 +174,8 @@ public abstract class AbstractViewController extends AbstractComponentController
             // foliate reads no page on the UI thread, where this runs: the book opens at the
             // percentage and the exact place is looked for on a thread of its own
             final boolean later = doc instanceof FoliateDocument && Looper.myLooper() == Looper.getMainLooper();
-            if (!later) {
+            final boolean split = AppSP.get().isCut;
+            if (!later && !split) {
                 final int found = placeOf(doc, bs.cfi, bs.pt, toPage);
                 if (found > 0) {
                     toPage = found - 1;
@@ -185,7 +187,7 @@ public abstract class AbstractViewController extends AbstractComponentController
             }
 
 
-            final boolean find = later && !AppState.get().isAlwaysOpenOnPage1;
+            final boolean find = later && !split && !AppState.get().isAlwaysOpenOnPage1;
             final String cfi = bs.cfi;
             final String pt = bs.pt;
             goToPage(toPage, bs.x, bs.y);
