@@ -33,6 +33,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.droids.FolderContext;
 import org.greenrobot.eventbus.EventBus;
 import org.jsoup.Jsoup;
@@ -447,6 +448,14 @@ public class FileMetaCore {
         fileMeta.setLang(TxtUtils.toLowerCase(meta.getLang()));
         fileMeta.setKeyword(replaceComma(meta.getKeywords()));
         int pagesCount = meta.getPagesCount();
+        if (PageEstimate.isEstimated(meta.getUnzipPath())) {
+            // Read before: the pages it was read in, not the estimate, as when it was opened
+            SharedBooks.preloadAll();
+            final int read = SharedBooks.pagesRead(fileMeta.getPath());
+            if (read > 0) {
+                pagesCount = read;
+            }
+        }
         // An estimated book is given its pages even when there are none to give: 0 is "read, and
         // not to be read again" to estimateMissingPages(), where null is "not read yet"
         if (pagesCount != 0 || PageEstimate.isEstimated(meta.getUnzipPath())) {

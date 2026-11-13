@@ -1419,6 +1419,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void updateSeekBarColorAndSize() {
+        // As see-through as the status bar settings have the panels
+        TintUtil.setTintBgSimple(actionBar, AppState.get().transparencyUI);
+        TintUtil.setTintBgSimple(bottomBar, AppState.get().transparencyUI);
 
         TintUtil.setTintText(pagesPower, TintUtil.getStatusBarTextColor());
         TintUtil.setTintText(pagesTime, TintUtil.getStatusBarTextColor());

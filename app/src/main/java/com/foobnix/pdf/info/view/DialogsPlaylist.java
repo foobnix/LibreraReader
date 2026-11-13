@@ -503,7 +503,7 @@ public class DialogsPlaylist {
                                                                             .getPath()
                                                                             .equals(s)) {
 
-                            dc.onCloseActivityFinal(new Runnable() {
+                            dc.closeWithAnnotationsSaved(new Runnable() {
 
                                 @Override public void run() {
                                     ExtUtils.showDocumentWithoutDialog(a, new File(s), displayPath);

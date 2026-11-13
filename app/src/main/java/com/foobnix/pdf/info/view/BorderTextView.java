@@ -23,8 +23,16 @@ public class BorderTextView extends TextView {
         paint.setStyle(Style.STROKE);
     }
 
+    /** A light swatch is ringed so it stands off a light sheet; a dark one needs none. */
+    private boolean bordered = true;
+
     public BorderTextView(Context context) {
         super(context);
+    }
+
+    public void setBordered(boolean bordered) {
+        this.bordered = bordered;
+        invalidate();
     }
 
     @Override
@@ -32,9 +40,11 @@ public class BorderTextView extends TextView {
         // Drawn square, the border left its corners behind as specks outside the round the
         // swatch is clipped to. It is drawn to the same round instead, and held inside the
         // view by half its own width so the stroke does not straddle the edge.
-        final float inset = paint.getStrokeWidth() / 2f;
-        final float radius = Dips.dpToPx(RADIUS_DP);
-        canvas.drawRoundRect(inset, inset, getWidth() - inset, getHeight() - inset, radius, radius, paint);
+        if (bordered) {
+            final float inset = paint.getStrokeWidth() / 2f;
+            final float radius = Dips.dpToPx(RADIUS_DP);
+            canvas.drawRoundRect(inset, inset, getWidth() - inset, getHeight() - inset, radius, radius, paint);
+        }
         super.onDraw(canvas);
     }
 

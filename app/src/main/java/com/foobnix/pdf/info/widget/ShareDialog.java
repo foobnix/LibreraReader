@@ -369,7 +369,7 @@ public class ShareDialog {
                     AlertDialogs.editFileTxt(a, file, AppProfile.DOWNLOADS_DIR, new StringResponse() {
                         @Override public boolean onResultRecive(String string) {
                             if ((a instanceof HorizontalViewActivity || a instanceof VerticalViewActivity) && dc != null) {
-                                dc.onCloseActivityFinal(new Runnable() {
+                                dc.closeWithAnnotationsSaved(new Runnable() {
 
                                     @Override public void run() {
                                         ExtUtils.openFile(a, new FileMeta(string));
@@ -389,7 +389,7 @@ public class ShareDialog {
                 }
 
                 if (dc != null && (a instanceof HorizontalViewActivity || dc.isMusicianMode()) && which == i++) {
-                    dc.onCloseActivityFinal(new Runnable() {
+                    dc.closeWithAnnotationsSaved(new Runnable() {
 
                         @Override public void run() {
                             if (dc.isMusicianMode()) {
@@ -407,7 +407,7 @@ public class ShareDialog {
                 }
                 if (dc != null && (a instanceof VerticalViewActivity || dc.isMusicianMode()) && which == i++) {
                     if (dc != null) {
-                        dc.onCloseActivityFinal(new Runnable() {
+                        dc.closeWithAnnotationsSaved(new Runnable() {
 
                             @Override public void run() {
                                 if (dc.isMusicianMode()) {
@@ -423,7 +423,7 @@ public class ShareDialog {
                     }
                 }
                 if (dc != null && which == i++) {
-                    dc.onCloseActivityFinal(new Runnable() {
+                    dc.closeWithAnnotationsSaved(new Runnable() {
 
                         @Override public void run() {
                             LibreraX.open(a, Uri.fromFile(file), 0f, null);
@@ -431,7 +431,7 @@ public class ShareDialog {
                     });
                 }
                 if (dc != null && dc.isMusicianMode() == false && which == i++) {
-                    dc.onCloseActivityFinal(new Runnable() {
+                    dc.closeWithAnnotationsSaved(new Runnable() {
 
                         @Override public void run() {
                             AppSP.get().readingMode = AppState.READING_MODE_MUSICIAN;

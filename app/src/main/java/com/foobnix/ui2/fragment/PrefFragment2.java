@@ -48,6 +48,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.text.TextUtils;
+import android.graphics.drawable.GradientDrawable;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ScrollView;
@@ -124,6 +125,7 @@ import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.pdf.info.wrapper.UITab;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
 import com.foobnix.pdf.search.activity.msg.MessageSync;
 import com.foobnix.sys.ImageExtractor;
@@ -2364,8 +2366,9 @@ public class PrefFragment2 extends UIFragment {
                 view.setBackgroundColor(Color.TRANSPARENT);
                 final int intColor = Color.parseColor(color);
                 final View img = view.findViewById(R.id.itColor);
-                TintUtil.setColorSwatch(img, intColor);
+                plainSwatch(img, intColor);
                 img.setContentDescription(getString(R.string.color));
+                view.setTag(intColor);
 
                 colorsLine.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
 
@@ -2374,6 +2377,7 @@ public class PrefFragment2 extends UIFragment {
                     @Override public void onClick(View v) {
                         TintUtil.color = intColor;
                         AppState.get().tintThemeColor = intColor;
+                        markColorInUse(colorsLine, intColor);
                         TempHolder.listHash++;
 
                         onTintChanged();
@@ -2384,6 +2388,7 @@ public class PrefFragment2 extends UIFragment {
                     }
                 });
             }
+            markColorInUse(colorsLine, AppState.get().tintThemeColor);
 
             View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
             view.setBackgroundColor(Color.TRANSPARENT);
@@ -2406,6 +2411,7 @@ public class PrefFragment2 extends UIFragment {
                             AppState.get().userColor = color;
                             AppState.get().tintThemeColor = color;
                             TintUtil.color = color;
+                            markColorInUse(colorsLine, color);
                             img.setColorFilter(color);
                             TintUtil.setColorSwatchOutline(img, color);
 
@@ -2455,6 +2461,7 @@ public class PrefFragment2 extends UIFragment {
             isAccentTextColor.setOnCheckedChangeListener(new OnCheckedChangeListener() {
                 @Override public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     AppState.get().isUiTextColor = b;
+                    markColorInUse(colorsLine, b ? AppState.get().uiTextColor : null);
                     onAccent.run();
                 }
             });
@@ -2476,8 +2483,9 @@ public class PrefFragment2 extends UIFragment {
                 view.setBackgroundColor(Color.TRANSPARENT);
 
                 final View img = view.findViewById(R.id.itColor);
-                TintUtil.setColorSwatch(img, intColor);
+                plainSwatch(img, intColor);
                 img.setContentDescription(getString(R.string.color));
+                view.setTag(intColor);
 
                 colorsLine.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
 
@@ -2488,6 +2496,7 @@ public class PrefFragment2 extends UIFragment {
                         AppState.get().isUiTextColor = true;
                         AppState.get().uiTextColor = intColor;
                         AppState.get().uiTextColorUser = intColor;
+                        markColorInUse(colorsLine, intColor);
 
                         isAccentTextColor.setChecked(AppState.get().isUiTextColor);
 
@@ -2496,6 +2505,7 @@ public class PrefFragment2 extends UIFragment {
                     }
                 });
             }
+            markColorInUse(colorsLine, AppState.get().isUiTextColor ? AppState.get().uiTextColor : null);
 
             View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
             view.setBackgroundColor(Color.TRANSPARENT);
@@ -2514,6 +2524,7 @@ public class PrefFragment2 extends UIFragment {
                             AppState.get().isUiTextColor = true;
                             AppState.get().uiTextColor = color;
                             AppState.get().uiTextColorUser = color;
+                            markColorInUse(colorsLine, color);
 
                             img.setColorFilter(color);
                             TintUtil.setColorSwatchOutline(img, color);
@@ -3513,6 +3524,28 @@ public class PrefFragment2 extends UIFragment {
 
         }
         asButton(themeColor);
+    }
+
+    /**
+     * A colour swatch with no frame, kept out of the pass that rings every shape on the screen
+     * in the link colour: the colour is the whole of it.
+     */
+    private static void plainSwatch(View img, int color) {
+        TintUtil.setColorSwatch(img, color);
+        ((GradientDrawable) img.getBackground()).setStroke(0, Color.TRANSPARENT);
+        img.setTag("no_tint");
+    }
+
+    /** The colour in use ticked in a row of swatches, each tagged with its colour; none for null. */
+    private static void markColorInUse(LinearLayout line, Integer inUse) {
+        for (int i = 0; i < line.getChildCount(); i++) {
+            final View child = line.getChildAt(i);
+            if (child.getTag() instanceof Integer) {
+                final int color = (Integer) child.getTag();
+                TintUtil.markInUse(child.findViewById(R.id.itColor), inUse != null && inUse == color,
+                                   MagicHelper.isColorDark(color));
+            }
+        }
     }
 
     private void saveChanges() {

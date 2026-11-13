@@ -1207,7 +1207,7 @@ public class ExtUtils {
         }
         final File file = dc.getCurrentBook();
         final String playlist = a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST);
-        dc.onCloseActivityFinal(new Runnable() {
+        dc.closeWithAnnotationsSaved(new Runnable() {
 
             @Override public void run() {
                 AppSP.get().readingMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK
@@ -1686,7 +1686,7 @@ public class ExtUtils {
                         }
                     };
                     if (dc != null) {
-                        dc.onCloseActivityFinal(run);
+                        dc.closeWithAnnotationsSaved(run);
                     } else {
                         Safe.run(run);
                     }

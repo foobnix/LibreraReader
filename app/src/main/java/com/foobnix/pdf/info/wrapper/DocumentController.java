@@ -565,6 +565,11 @@ public abstract class DocumentController {
                     Insets over = Insets.max(Insets.subtract(barsShown(a, windowInsets), insets), Insets.NONE);
                     View top = a.findViewById(R.id.actionBar);
                     if (top == null) {
+                        // The whole row at the head - musician's name and close button with the
+                        // title bar between - so all of it moves down together
+                        top = a.findViewById(R.id.underLayout);
+                    }
+                    if (top == null) {
                         top = a.findViewById(R.id.titleBar);
                     }
                     View bottomPanel = a.findViewById(R.id.bottomBar1);
@@ -968,6 +973,19 @@ public abstract class DocumentController {
             saveAnnotationsAndClose(this::saveAnnotations, this::restartActivity);
         } else {
             restartActivity();
+        }
+    }
+
+    /**
+     * Closes the book, as {@link #onCloseActivityFinal(Runnable)}, writing - or asking about -
+     * the strokes drawn on a PDF first: whatever opens next - the book in another mode, another
+     * book, the book in another app - would not have them.
+     */
+    public void closeWithAnnotationsSaved(final Runnable run) {
+        if (hasPDFAnnotations()) {
+            saveAnnotationsAndClose(this::saveAnnotations, () -> onCloseActivityFinal(run));
+        } else {
+            onCloseActivityFinal(run);
         }
     }
 

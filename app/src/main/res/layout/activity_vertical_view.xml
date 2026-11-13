@@ -24,14 +24,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <!-- The bookmarks line: under the title bar, however tall musician's mode makes it -->
         <LinearLayout
             android:id="@+id/musicButtonPanel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="30dip"
+            android:layout_below="@+id/document_title_bar"
+            android:layout_alignWithParentIfMissing="true"
             android:orientation="horizontal"
-            android:padding="2dip">
+            android:paddingLeft="8dip"
+            android:paddingTop="6dip"
+            android:paddingRight="8dip"
+            android:paddingBottom="2dip">
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -56,31 +60,32 @@
                 android:tint="@color/lt_grey_dima" />
         </LinearLayout>
 
-        <LinearLayout
+        <!-- Musician's tap zones, each placed on its own: the user drags them about and sizes
+             them while the scrolling is paused. DocumentWrapperUI lays them out. -->
+        <FrameLayout
+            android:id="@+id/tapZones"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="94dip"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/document_title_bar"
+            android:layout_alignWithParentIfMissing="true">
 
             <TextView
                 android:id="@+id/line1"
-                android:layout_width="match_parent"
+                android:layout_width="120dip"
                 android:layout_height="220dip"
-                android:layout_weight="1"
-                android:background="@drawable/bg_border_ltgray_dash" />
+                android:layout_gravity="top|left"
+                android:layout_marginTop="64dip" />
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+            <TextView
+                android:id="@+id/line2"
+                android:layout_width="120dip"
+                android:layout_height="220dip"
+                android:layout_gravity="top|left"
+                android:layout_marginTop="64dip" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:layout_marginRight="5dip"
-                android:layout_weight="3"
                 android:orientation="vertical"
                 android:visibility="gone">
 
@@ -88,7 +93,6 @@
                     android:id="@+id/lineClose"
                     android:layout_width="match_parent"
                     android:layout_height="105dip"
-                    android:layout_weight="0"
                     app:text="x" />
 
                 <com.foobnix.pdf.search.view.BgClickbaleView
@@ -96,17 +100,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="105dip"
                     android:layout_marginTop="10dip"
-                    android:layout_weight="0"
                     app:text="1" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/line2"
-                android:layout_width="match_parent"
-                android:layout_height="220dip"
-                android:layout_weight="1"
-                android:background="@drawable/bg_border_ltgray_dash" />
-        </LinearLayout>
+        </FrameLayout>
 
         <com.foobnix.pdf.info.view.DrawView
             android:id="@+id/drawView"
@@ -229,7 +225,6 @@
             android:layout_alignWithParentIfMissing="true"
             android:layout_marginLeft="8dip"
             android:layout_marginRight="8dip"
-            android:layout_marginBottom="6dip"
             android:visibility="gone" />
 
         <FrameLayout

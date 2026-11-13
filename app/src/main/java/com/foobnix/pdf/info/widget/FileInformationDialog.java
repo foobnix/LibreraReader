@@ -60,6 +60,7 @@ import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
@@ -266,14 +267,16 @@ public class FileInformationDialog {
 
         ((TextView) dialog.findViewById(R.id.size)).setText(fileMeta.getSizeTxt());
 
-        // A reflowable book has no pages of its own: what it shows is the standard pages its
-        // text would fill, so it is marked as near rather than exact
+        // A reflowable book has no pages of its own: until it is read, what it shows is the
+        // standard pages its text would fill, so it is marked as near rather than exact
         final View rowPages = dialog.findViewById(R.id.rowPages);
         final TextView pagesView = dialog.findViewById(R.id.pages);
-        final String near = PageEstimate.isEstimated(fileMeta.getPath(), fileMeta.getChild()) ? "≈" : "";
+        final boolean estimated = PageEstimate.isEstimated(fileMeta.getPath(), fileMeta.getChild());
         rowPages.setVisibility(View.GONE);
         AppsConfig.executorService.execute(() -> {
-            final int pages = FileMetaCore.pagesOf(fileMeta);
+            final int read = estimated ? SharedBooks.load(fileMeta.getPath()).pc : 0;
+            final int pages = read > 0 ? read : FileMetaCore.pagesOf(fileMeta);
+            final String near = estimated && read <= 0 ? "≈" : "";
             if (pages > 0) {
                 pagesView.post(() -> {
                     pagesView.setText(near + pages);

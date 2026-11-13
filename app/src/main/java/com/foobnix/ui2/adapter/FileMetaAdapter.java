@@ -59,6 +59,7 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import org.ebookdroid.common.settings.books.SharedBooks;
 
 public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.ViewHolder> implements FastScroller.SectionIndexer {
 
@@ -722,9 +723,14 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         holder.browserExt.setText(bookExt);
 
         if (holder.size != null) {
-            if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
+            final boolean estimated = PageEstimate.isEstimated(fileMeta.getPath(), fileMeta.getChild());
+            final int read = estimated ? SharedBooks.pagesRead(fileMeta.getPath()) : 0;
+            if (read > 0) {
+                // A reflowable book that has been opened: the pages it was read in
+                holder.size.setText(fileMeta.getSizeTxt() + " (" + read + ")");
+            } else if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
                 // ≈ for the standard pages of a reflowable book, which are estimated
-                String near = PageEstimate.isEstimated(fileMeta.getPath(), fileMeta.getChild()) ? "≈" : "";
+                String near = estimated ? "≈" : "";
                 holder.size.setText(fileMeta.getSizeTxt() + " (" + near + fileMeta.getPages() + ")");
             } else {
                 holder.size.setText(fileMeta.getSizeTxt());

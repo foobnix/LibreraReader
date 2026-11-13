@@ -1,7 +1,10 @@
 package com.foobnix.pdf.info.view;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -9,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.ViewPager.LayoutParams;
 
 import com.foobnix.android.utils.Dips;
@@ -25,7 +29,7 @@ import java.util.List;
 
 public class BookmarkPanel {
 
-    private static final int SIZE = Dips.DP_40;
+    private static final int SIZE = Dips.DP_32;
 
     public static void showPagesHelper(final LinearLayout pageshelper, final View musicButtonPanel,
                                        final DocumentController dc, final ImageView pagesBookmark,
@@ -34,35 +38,35 @@ public class BookmarkPanel {
         if (dc == null) {
             return;
         }
-
-        if (AppState.get().isShowBookmarsPanelInMusicMode && dc.isMusicianMode()) {
-            musicButtonPanel.setVisibility(View.VISIBLE);
-        } else if (AppState.get().isShowBookmarsPanelInBookMode && dc.isBookMode()) {
-            musicButtonPanel.setVisibility(View.VISIBLE);
-        } else if (AppState.get().isShowBookmarsPanelInScrollMode && dc.isScrollMode()) {
-            musicButtonPanel.setVisibility(View.VISIBLE);
-        } else {
+        // With the panels up the bookmarks step aside: they would stand under the bars
+        if (AppState.get().isEditMode) {
             musicButtonPanel.setVisibility(View.GONE);
             return;
         }
 
-
-        // Everything in this panel stands on the page rather than on a bar, so it is drawn in
-        // the colour of the book's text over a veil of the page's own colour, for day and night -
-        // or, in musician's mode, the colour chosen for them in the status bar settings.
-        final int bookmarkColor = dc.isMusicianMode() ? MagicHelper.getMusicColor() : MagicHelper.getPageMarkColor();
-        final int veilColor = MagicHelper.getPageMarkBgColor(140);
-        TintUtil.setTintImageNoAlpha(pagesBookmark, bookmarkColor);
-        pagesBookmark.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
-        GradientDrawable pagesBookmarkShape = TintUtil.setStrokeColorWithDash(pagesBookmark, bookmarkColor);
-        if (pagesBookmarkShape != null) {
-            pagesBookmarkShape.setColor(veilColor);
+        // The bookmarks are shown in the modes they are asked for in; the button that adds one
+        // stands in scroll and musician's mode all the same
+        final boolean listShown = AppState.get().isShowBookmarsPanelInMusicMode && dc.isMusicianMode()
+                || AppState.get().isShowBookmarsPanelInBookMode && dc.isBookMode()
+                || AppState.get().isShowBookmarsPanelInScrollMode && dc.isScrollMode();
+        if (!listShown && !dc.isScrollMode() && !dc.isMusicianMode()) {
+            musicButtonPanel.setVisibility(View.GONE);
+            return;
         }
+        musicButtonPanel.setVisibility(View.VISIBLE);
 
 
-
-
-        pagesBookmark.setPadding(Dips.DP_10, Dips.DP_10, Dips.DP_10, Dips.DP_10);
+        // Each bookmark stands on the page as the panels' own buttons do: a round of the panels'
+        // colour, as see-through as they are, with their text colour on it
+        final int bookmarkColor = MagicHelper.getTextOrIconColor();
+        TintUtil.setTintImageNoAlpha(pagesBookmark, bookmarkColor);
+        pagesBookmark.setBackground(panelRound());
+        pagesBookmark.setPadding(Dips.DP_8, Dips.DP_8, Dips.DP_8, Dips.DP_8);
+        pagesBookmark.getLayoutParams().width = pagesBookmark.getLayoutParams().height = SIZE;
+        pagesBookmark.requestLayout();
+        if (!listShown) {
+            return;
+        }
 
         List<AppBookmark> all = BookmarksData.get().getBookmarksByBook(dc.getCurrentBook());
         for (final AppBookmark appBookmark : all) {
@@ -84,15 +88,10 @@ public class BookmarkPanel {
 
             t.setSingleLine();
             t.setGravity(Gravity.CENTER);
-            t.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-            t.setTextSize(16);
-            t.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
+            t.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
+            t.setTextSize(14);
+            t.setBackground(panelRound());
             t.setTextColor(bookmarkColor);
-
-            GradientDrawable shape = TintUtil.setStrokeColorWithDash(t, bookmarkColor);
-            if (shape != null) {
-                shape.setColor(veilColor);
-            }
 
 
             t.setOnClickListener(new View.OnClickListener() {
@@ -133,17 +132,24 @@ public class BookmarkPanel {
                     return true;
                 }
             });
-            if (AppState.get().isShowBookmarsPanelText && !isQuick) {
-                t.setPadding(Dips.DP_8, Dips.DP_2, Dips.DP_8, Dips.DP_2);
-                t.setMinWidth(SIZE);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, SIZE);
-                params.leftMargin = Dips.DP_3;
-                pageshelper.addView(t, params);
-            } else {
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(SIZE, SIZE);
-                params.leftMargin = Dips.DP_3;
-                pageshelper.addView(t, params);
-            }
+            // A circle, or a pill where the page number or the text needs more room; spaced
+            // as the buttons in the bar above are
+            t.setPadding(Dips.DP_8, 0, Dips.DP_8, 0);
+            t.setMinWidth(SIZE);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, SIZE);
+            params.leftMargin = pageshelper.getChildCount() == 0 ? 0 : Dips.DP_4;
+            pageshelper.addView(t, params);
         }
+    }
+
+    /** A pill - a circle when as wide as tall - of the panels' colour, answering a press. */
+    private static RippleDrawable panelRound() {
+        final GradientDrawable fill = new GradientDrawable();
+        fill.setColor(ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI));
+        fill.setCornerRadius(SIZE / 2f);
+        final GradientDrawable mask = new GradientDrawable();
+        mask.setColor(Color.WHITE);
+        mask.setCornerRadius(SIZE / 2f);
+        return new RippleDrawable(ColorStateList.valueOf(Color.parseColor("#3c888888")), fill, mask);
     }
 }

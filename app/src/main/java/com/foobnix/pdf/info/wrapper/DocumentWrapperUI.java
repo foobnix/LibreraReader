@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
@@ -48,6 +49,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.OutlineHelper.Info;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.graphics.PorterDuffColorFilter;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -275,7 +277,10 @@ public class DocumentWrapperUI {
         }
     };
     ImageView pagesBookmark;
-    View line1, line2, lineFirst, lineClose, closeTop, musicButtonPanel, parentParent, documentTitleBar;
+    View line1, line2, lineFirst, lineClose, closeTop, musicButtonPanel, parentParent, documentTitleBar, musicSeekRow, tapZones;
+    ImageView musicClose;
+    SeekBar musicSeekBar;
+    TextView musicCurrent, musicMax;
     TTSControlsView ttsActive;
     TTSControlsView ttsActivePage;
     SeekBar seekBar, speedSeekBar;
@@ -759,6 +764,10 @@ public class DocumentWrapperUI {
 
         maxSeek.setText(info.textPage);
         currentSeek.setText(info.textMax);
+        if (musicMax != null) {
+            musicMax.setText(info.textPage);
+            musicCurrent.setText(info.textMax);
+        }
         pagesCountIndicator.setText(info.chText);
 
         currentSeek.setContentDescription(dc.getString(R.string.m_current_page) + " " + info.textMax);
@@ -777,6 +786,11 @@ public class DocumentWrapperUI {
         seekBar.setMax(max - 1);
         seekBar.setProgress(current - 1);
         seekBar.setOnSeekBarChangeListener(onSeek);
+
+        musicSeekBar.setOnSeekBarChangeListener(null);
+        musicSeekBar.setMax(max - 1);
+        musicSeekBar.setProgress(current - 1);
+        musicSeekBar.setOnSeekBarChangeListener(onSeek);
 
         speedSeekBar.setOnSeekBarChangeListener(null);
         speedSeekBar.setMax(AppState.MAX_SPEED);
@@ -845,11 +859,8 @@ public class DocumentWrapperUI {
             handler.postDelayed(clearFlags, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
         }
 
-        if (AppState.get().isAutoScroll) {
-            pagesBookmark.setVisibility(View.GONE);
-        } else {
-            pagesBookmark.setVisibility(View.VISIBLE);
-        }
+        // The bookmark button stays while the music scrolls: a page is marked as it goes by
+        pagesBookmark.setVisibility(View.VISIBLE);
 
         dc.saveCurrentPage();
         //SharedBooks.save(bs);
@@ -876,12 +887,10 @@ public class DocumentWrapperUI {
             TempHolder.get().documentTitleBarHeight = 0;
         }
 
-        final int dashHeight = Math.min(Dips.dpToPx(220), Dips.screenHeight() / 3);
-        line1.getLayoutParams().height = dashHeight;
-        line2.getLayoutParams().height = dashHeight;
-
-        line1.setLayoutParams(line1.getLayoutParams());
-        line2.setLayoutParams(line2.getLayoutParams());
+        layoutTapZones();
+        // Out of sight while the music scrolls, though a tap on one still turns the page
+        line1.setAlpha(AppState.get().isAutoScroll ? 0f : 1f);
+        line2.setAlpha(AppState.get().isAutoScroll ? 0f : 1f);
 
     }
 
@@ -1112,11 +1121,14 @@ public class DocumentWrapperUI {
         zoomMinus = a.findViewById(R.id.zoomMinus);
         zoomMinus.setOnClickListener(onMinus);
 
+        tapZones = a.findViewById(R.id.tapZones);
         line1 = a.findViewById(R.id.line1);
         line1.setOnClickListener(onPrevPage);
+        line1.setOnTouchListener(new TapZoneDrag());
 
         line2 = a.findViewById(R.id.line2);
         line2.setOnClickListener(onNextPage);
+        line2.setOnTouchListener(new TapZoneDrag());
 
         lineClose = a.findViewById(R.id.lineClose);
         lineClose.setOnClickListener(onClose);
@@ -1124,6 +1136,13 @@ public class DocumentWrapperUI {
         closeTop = a.findViewById(R.id.closeTop);
         closeTop.setOnClickListener(onClose);
         closeTop.setOnLongClickListener(onCloseLongClick);
+        musicSeekRow = a.findViewById(R.id.musicSeekRow);
+        musicSeekBar = a.findViewById(R.id.musicSeekBar);
+        musicCurrent = a.findViewById(R.id.musicCurrent);
+        musicMax = a.findViewById(R.id.musicMax);
+        musicClose = a.findViewById(R.id.musicClose);
+        musicClose.setOnClickListener(onClose);
+        musicClose.setOnLongClickListener(onCloseLongClick);
 
         lineFirst = a.findViewById(R.id.lineFirst);
         lineFirst.setOnClickListener(onGoToPAge1);
@@ -1380,6 +1399,23 @@ public class DocumentWrapperUI {
         // The name of the mode is set in the colour the book's own title beside it is, rather
         // than in a white of its own.
         lirbiLogo.setTextColor(MagicHelper.getTextOrIconColor());
+        musicClose.setImageTintList(ColorStateList.valueOf(lirbiLogo.getCurrentTextColor()));
+        paintMusicButtons();
+        // The close button is a circle as tall as the mode's name beside it
+        lirbiLogo.addOnLayoutChangeListener((v, l, t, r, b, ol, ot, or, ob) -> {
+            final int size = b - t;
+            final ViewGroup.LayoutParams lp = musicClose.getLayoutParams();
+            if (size > 0 && (lp.width != size || lp.height != size)) {
+                lp.width = lp.height = size;
+                musicClose.post(() -> musicClose.setLayoutParams(lp));
+            }
+            // The slider between them as tall as well
+            final ViewGroup.LayoutParams row = musicSeekRow.getLayoutParams();
+            if (size > 0 && row.height != size) {
+                row.height = size;
+                musicSeekRow.post(() -> musicSeekRow.setLayoutParams(row));
+            }
+        });
         tintSpeed();
 
         pageshelper = (LinearLayout) a.findViewById(R.id.pageshelper);
@@ -1410,10 +1446,8 @@ public class DocumentWrapperUI {
             lineFirst.setVisibility(View.VISIBLE);
             lineClose.setVisibility(View.VISIBLE);
 
+            // The title bar's own buttons are left out: the panels under it carry the same
             goToPage1.setVisibility(View.VISIBLE);
-            goToPage1Top.setVisibility(View.VISIBLE);
-            lockUnlockTop.setVisibility(View.VISIBLE);
-            closeTop.setVisibility(View.VISIBLE);
 
             reverseKeysIndicator.setVisibility(View.GONE);
             textToSpeachTop.setVisibility(View.GONE);
@@ -1466,8 +1500,11 @@ public class DocumentWrapperUI {
         TintUtil.setTintImageWithAlpha(batteryIcon, textColor).setImageAlpha(200);
 
         //int titleColor = AppState.get().isDayNotInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
-        titleBar.setBackgroundColor(TintUtil.color);
-        lirbiLogo.setBackgroundColor(TintUtil.color);
+        // The row the title bar stands in is painted instead, status bar strip and all
+        titleBar.setBackgroundColor(Color.TRANSPARENT);
+        TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), AppState.get().transparencyUI);
+        TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar1), AppState.get().transparencyUI);
+        paintMusicButtons();
 
         int progressColor = TintUtil.color;
 
@@ -1527,9 +1564,8 @@ public class DocumentWrapperUI {
 
             seekBar.getThumb().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
 
-            //line1.getBackground().
-            TintUtil.setStrokeColorWithDash(line1, tintColor);
-            TintUtil.setStrokeColorWithDash(line2, tintColor);
+            paintTapZone(line1);
+            paintTapZone(line2);
             SpeedBgView speedBg = dc.getActivity().findViewById(R.id.speedBgView1);
             if (speedBg != null) {
                 speedBg.setBorderColor(tintColor);
@@ -1716,21 +1752,38 @@ public class DocumentWrapperUI {
         } else {
             toolBarButton.setImageResource(R.drawable.glyphicons_305_no_symbol);
         }
-        if (AppState.get().isEditMode || AppState.get().isShowToolBar) {
-            titleBar.setVisibility(View.VISIBLE);
-        } else {
-            titleBar.setVisibility(View.GONE);
+        // Musician's mode with the panels away has no bar: only its name, the page slider and
+        // a close button, each on a round of the bar's colour, over the page. With the panels
+        // up its name stands ringed at the head of the title bar scroll mode has.
+        final boolean musicianBare = dc.isMusicianMode() && !AppState.get().isEditMode;
+        final boolean titleShown = !musicianBare && (AppState.get().isEditMode || AppState.get().isShowToolBar);
+        titleBar.setVisibility(titleShown ? View.VISIBLE : View.GONE);
+        // The row is painted, as see-through as the other panels, only while it is a bar
+        a.findViewById(R.id.underLayout).setBackgroundColor(titleShown
+                ? ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI)
+                : Color.TRANSPARENT);
+        if (musicClose != null) {
+            lirbiLogo.setVisibility(dc.isMusicianMode() ? View.VISIBLE : View.GONE);
+            musicSeekRow.setVisibility(musicianBare ? View.VISIBLE : View.GONE);
+            musicClose.setVisibility(musicianBare ? View.VISIBLE : View.GONE);
+            paintMusicButtons();
+            // The bookmarks keep the gap the bar's buttons keep from the edge, unless they
+            // stand under musician's row, which keeps one under it already
+            if (musicButtonPanel != null) {
+                musicButtonPanel.setPadding(musicButtonPanel.getPaddingLeft(), musicianBare ? 0 : Dips.DP_6,
+                                            musicButtonPanel.getPaddingRight(), musicButtonPanel.getPaddingBottom());
+            }
         }
 
 
-        if (AppState.get().isShowReadingProgress && AppState.get().isEditMode) {
+        if (musicianBare || AppState.get().isShowReadingProgress && AppState.get().isEditMode) {
             progressDraw.setVisibility(View.GONE);
         } else {
             progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
         }
 
 
-        toolBarButton.setVisibility(View.VISIBLE);
+        toolBarButton.setVisibility(dc.isMusicianMode() ? View.GONE : View.VISIBLE);
 
         batteryLevel.setVisibility(AppState.get().isShowBattery ? View.VISIBLE : View.GONE);
         batteryIcon.setVisibility(AppState.get().isShowBattery ? View.VISIBLE : View.GONE);
@@ -1803,6 +1856,7 @@ public class DocumentWrapperUI {
     public void hideShow() {
         showTtsPageControls();
         hideShowAnnotationLine();
+        showPagesHelper();
 
         if (AppState.get().isEnableAccessibility) {
             //AppState.get().isEditMode = true;
@@ -1842,11 +1896,7 @@ public class DocumentWrapperUI {
             }
         }
 
-        if (dc.isMusicianMode()) {
-            lirbiLogo.setVisibility(View.VISIBLE);
-        } else {
-            lirbiLogo.setVisibility(View.GONE);
-        }
+        lirbiLogo.setVisibility(dc.isMusicianMode() ? View.VISIBLE : View.GONE);
 
         // hideSeekBarInReadMode();
         // showHideHavigationBar();
@@ -2324,6 +2374,207 @@ public class DocumentWrapperUI {
             hideAds();
         }
     };
+
+    /** Puts the tap zones where the user left them, or where they start. */
+    private void layoutTapZones() {
+        tapZones.post(() -> {
+            final int w = tapZones.getWidth();
+            final int h = tapZones.getHeight();
+            if (w == 0 || h == 0) {
+                return;
+            }
+            final float[] zones = tapZoneFractions(h);
+            placeTapZone(line1, zones, 0, w, h);
+            placeTapZone(line2, zones, 4, w, h);
+        });
+    }
+
+    private static float[] tapZoneFractions(int height) {
+        try {
+            final String[] saved = AppState.get().musicTapZones.split(",");
+            if (saved.length == 8) {
+                final float[] zones = new float[8];
+                for (int i = 0; i < 8; i++) {
+                    zones[i] = Float.parseFloat(saved[i]);
+                }
+                return zones;
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        // Where they start: a third of the width at either side, a little below the title bar,
+        // and a third of the screen tall at most
+        final float w = 1f / 3;
+        final float y = Dips.dpToPx(64) / (float) height;
+        final float h = Math.min(Dips.dpToPx(220), Dips.screenHeight() / 3) / (float) height;
+        return new float[]{0, y, w, h, 1 - w, y, w, h};
+    }
+
+    private static void placeTapZone(View zone, float[] zones, int i, int w, int h) {
+        final FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) zone.getLayoutParams();
+        lp.gravity = Gravity.TOP | Gravity.LEFT;
+        lp.leftMargin = Math.round(zones[i] * w);
+        lp.topMargin = Math.round(zones[i + 1] * h);
+        lp.width = Math.round(zones[i + 2] * w);
+        lp.height = Math.round(zones[i + 3] * h);
+        zone.setLayoutParams(lp);
+    }
+
+    private void saveTapZones() {
+        final float w = tapZones.getWidth();
+        final float h = tapZones.getHeight();
+        if (w == 0 || h == 0) {
+            return;
+        }
+        final StringBuilder zones = new StringBuilder();
+        for (View zone : new View[]{line1, line2}) {
+            final FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) zone.getLayoutParams();
+            for (float value : new float[]{lp.leftMargin / w, lp.topMargin / h, lp.width / w, lp.height / h}) {
+                zones.append(zones.length() == 0 ? "" : ",").append(value);
+            }
+        }
+        AppState.get().musicTapZones = zones.toString();
+    }
+
+    /**
+     * While the scrolling is paused a tap zone is taken with a finger and put elsewhere, or,
+     * taken near one of its edges, made bigger or smaller on that side. A tap still turns the
+     * page; while the music scrolls the zone is left to its tap alone.
+     */
+    private class TapZoneDrag implements View.OnTouchListener {
+        private final int edge = Dips.dpToPx(28);
+        private final int min = Dips.dpToPx(48);
+        private final int slop = Dips.dpToPx(8);
+        private float downX, downY;
+        private int left, top, width, height;
+        private boolean l, t, r, b, dragging;
+
+        @Override
+        public boolean onTouch(View v, MotionEvent e) {
+            if (AppState.get().isAutoScroll) {
+                return false;
+            }
+            final FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) v.getLayoutParams();
+            switch (e.getActionMasked()) {
+                case MotionEvent.ACTION_DOWN:
+                    downX = e.getRawX();
+                    downY = e.getRawY();
+                    left = lp.leftMargin;
+                    top = lp.topMargin;
+                    width = v.getWidth();
+                    height = v.getHeight();
+                    l = e.getX() < edge;
+                    r = e.getX() > width - edge;
+                    t = e.getY() < edge;
+                    b = e.getY() > height - edge;
+                    dragging = false;
+                    return true;
+                case MotionEvent.ACTION_MOVE: {
+                    final int dx = Math.round(e.getRawX() - downX);
+                    final int dy = Math.round(e.getRawY() - downY);
+                    if (!dragging && Math.hypot(dx, dy) < slop) {
+                        return true;
+                    }
+                    dragging = true;
+                    final int w = tapZones.getWidth();
+                    final int h = tapZones.getHeight();
+                    int nl = left, nt = top, nw = width, nh = height;
+                    if (!(l || r || t || b)) {
+                        nl = clamp(left + dx, 0, w - width);
+                        nt = clamp(top + dy, 0, h - height);
+                    } else {
+                        if (l) {
+                            nl = clamp(left + dx, 0, left + width - min);
+                            nw = left + width - nl;
+                        }
+                        if (r) {
+                            nw = clamp(width + dx, min, w - left);
+                        }
+                        if (t) {
+                            nt = clamp(top + dy, 0, top + height - min);
+                            nh = top + height - nt;
+                        }
+                        if (b) {
+                            nh = clamp(height + dy, min, h - top);
+                        }
+                    }
+                    lp.leftMargin = nl;
+                    lp.topMargin = nt;
+                    lp.width = nw;
+                    lp.height = nh;
+                    v.setLayoutParams(lp);
+                    return true;
+                }
+                case MotionEvent.ACTION_UP:
+                    if (dragging) {
+                        saveTapZones();
+                    } else {
+                        v.performClick();
+                    }
+                    return true;
+                case MotionEvent.ACTION_CANCEL:
+                    if (dragging) {
+                        saveTapZones();
+                    }
+                    return true;
+            }
+            return false;
+        }
+
+        private int clamp(int value, int low, int high) {
+            return Math.max(low, Math.min(value, Math.max(low, high)));
+        }
+    }
+
+    /**
+     * A musician's tap zone: a faint round of the panels' colour, with no outline drawn over
+     * the music, shown all the time.
+     */
+    private static void paintTapZone(View zone) {
+        final GradientDrawable fill = new GradientDrawable();
+        fill.setColor(ColorUtils.setAlphaComponent(TintUtil.color, 30));
+        fill.setCornerRadius(Dips.dpToPx(16));
+        zone.setBackground(fill);
+    }
+
+    /**
+     * Musician's name and close button stand on the page with no bar under them: each on a
+     * round of the bar's colour, as see-through as the panels, answering a press; the page
+     * slider between them on the same round. On the bar, with the panels up, the round would
+     * not show, and the name is ringed instead in its own colour.
+     */
+    private void paintMusicButtons() {
+        final int ring = lirbiLogo.getCurrentTextColor();
+        final boolean onBar = AppState.get().isEditMode;
+        final int fill = ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI);
+        // On the bar the name is a ring only: a round of its own would lay the bar's colour twice
+        lirbiLogo.setBackground(musicButton(GradientDrawable.RECTANGLE, onBar ? Color.TRANSPARENT : fill,
+                                            onBar ? ring : Color.TRANSPARENT));
+        musicClose.setBackground(musicButton(GradientDrawable.OVAL, fill, Color.TRANSPARENT));
+        musicSeekRow.setBackground(musicButton(GradientDrawable.RECTANGLE, fill, Color.TRANSPARENT));
+        musicCurrent.setTextColor(ring);
+        musicMax.setTextColor(ring);
+        musicSeekBar.setProgressTintList(ColorStateList.valueOf(ring));
+        musicSeekBar.setThumbTintList(ColorStateList.valueOf(ring));
+        musicSeekBar.setProgressBackgroundTintList(ColorStateList.valueOf(ring));
+    }
+
+    private static RippleDrawable musicButton(int shape, int color, int ring) {
+        final GradientDrawable fill = new GradientDrawable();
+        fill.setShape(shape);
+        fill.setColor(color);
+        if (ring != Color.TRANSPARENT) {
+            fill.setStroke(Dips.dpToPx(1), ring);
+        }
+        final GradientDrawable mask = new GradientDrawable();
+        mask.setShape(shape);
+        mask.setColor(Color.WHITE);
+        if (shape == GradientDrawable.RECTANGLE) {
+            fill.setCornerRadius(Dips.dpToPx(100));
+            mask.setCornerRadius(Dips.dpToPx(100));
+        }
+        return new RippleDrawable(ColorStateList.valueOf(Color.parseColor("#3c888888")), fill, mask);
+    }
 
     View.OnClickListener onLirbiLogoClick = new View.OnClickListener() {
 

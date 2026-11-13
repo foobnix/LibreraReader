@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The drawing panel: what the pen draws and how thick, then its colour, and the eraser for an
-     annotation picked out on the page. DragingDialogs.dialogEditColors fills it in. -->
+<!-- The drawing panel: what the pen draws and how thick, with the eraser for an annotation
+     picked out on the page, then its colour. DragingDialogs.dialogEditColors fills it in. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -55,8 +55,7 @@
             android:id="@+id/drawWidth"
             android:contentDescription="@string/draw_line_width"
             android:layout_width="40dip"
-            android:layout_height="40dip"
-            android:background="?android:attr/selectableItemBackground">
+            android:layout_height="40dip">
 
             <View
                 android:id="@+id/drawWidthLine"
@@ -64,6 +63,17 @@
                 android:layout_height="4dip"
                 android:layout_gravity="center" />
         </FrameLayout>
+
+        <!-- Beside the width, only while an annotation on the page is picked out: a tap on one picks it out. -->
+        <ImageView
+            android:id="@+id/drawDelete"
+            android:layout_width="34dip"
+            android:layout_height="34dip"
+            android:layout_marginLeft="4dip"
+            android:contentDescription="@string/delete"
+            android:padding="6dip"
+            android:src="@drawable/glyphicons_17_bin"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
@@ -73,16 +83,6 @@
         android:layout_marginTop="6dip"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-
-        <!-- Next to the colours, only while an annotation on the page is picked out: a tap on one picks it out. -->
-        <ImageView
-            android:id="@+id/drawDelete"
-            android:layout_width="34dip"
-            android:layout_height="34dip"
-            android:contentDescription="@string/delete"
-            android:padding="6dip"
-            android:src="@drawable/glyphicons_17_bin"
-            android:visibility="gone" />
     </LinearLayout>
 
 </LinearLayout>

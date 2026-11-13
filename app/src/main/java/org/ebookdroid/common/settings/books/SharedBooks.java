@@ -255,6 +255,18 @@ public class SharedBooks {
         }
     }
 
+    /**
+     * The pages the book was laid out in when last read here, 0 if it never was. Only what is
+     * already held: a book card asks on the main thread, and the list loads every record first.
+     */
+    public static int pagesRead(String path) {
+        if (path == null) {
+            return 0;
+        }
+        final AppBook book = cache.get(ExtUtils.getFileName(path));
+        return book != null ? book.pc : 0;
+    }
+
     public static AppBook load(String fileName) {
         LOG.d("SharedBooks-load", fileName);
 

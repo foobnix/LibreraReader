@@ -6,7 +6,7 @@ import android.graphics.Color;
 import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
-import android.util.TypedValue;
+import android.graphics.drawable.RippleDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +15,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+
+import androidx.core.graphics.ColorUtils;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.TxtUtils;
@@ -44,7 +46,10 @@ public class DrawPanel {
         }
         AppState.get().editLineWidth = nearestDrawWidth(AppState.get().editLineWidth);
         AppState.get().annotationDrawColor = AppState.get().drawColor;
-        AppState.get().editWith = AppState.EDIT_PEN;
+        // The eraser taken up stays up: the panel shown again after each drawing it erases
+        if (AppState.get().editWith != AppState.EDIT_DELETE) {
+            AppState.get().editWith = AppState.EDIT_PEN;
+        }
     }
 
     /** The pen is put down: the page takes touches again and nothing stays picked out. */
@@ -67,6 +72,11 @@ public class DrawPanel {
         final View widthLine = panel.findViewById(R.id.drawWidthLine);
         final LinearLayout colors = panel.findViewById(R.id.drawColors);
         final int[] tools = {R.id.drawFree, R.id.drawLine, R.id.drawArrow, R.id.drawRect, R.id.drawStar};
+        for (int tool : tools) {
+            pressable(panel.findViewById(tool), TintUtil.SWATCH_RADIUS);
+        }
+        pressable(panel.findViewById(R.id.drawWidth), TintUtil.SWATCH_RADIUS);
+        pressable(delete, TintUtil.SWATCH_RADIUS);
 
         final Runnable updatePen = () -> {
             final int color = Color.parseColor(AppState.get().drawColor);
@@ -81,6 +91,7 @@ public class DrawPanel {
             drawView.setColor(IMG.alphaColor(AppState.get().editAlphaColor, AppState.get().drawColor),
                               AppState.get().editLineWidth);
             drawView.setVisibility(drawing || controller.selectedAnnotation != null ? View.VISIBLE : View.GONE);
+            updateDelete(controller, delete);
 
             // The tool in use is ringed, in the colour the panel draws its marks in
             for (int i = 0; i < tools.length; i++) {
@@ -119,6 +130,7 @@ public class DrawPanel {
             panel.findViewById(tools[i]).setOnClickListener(v -> {
                 // The tool in use, tapped again, is put down
                 AppState.get().editShape = AppState.get().editShape == shape ? NO_TOOL : shape;
+                AppState.get().editWith = AppState.EDIT_PEN;
                 updatePen.run();
             });
         }
@@ -132,8 +144,10 @@ public class DrawPanel {
             swatch.setTag("no_tint");
             swatch.setPadding(Dips.DP_8, Dips.DP_8, Dips.DP_8, Dips.DP_8);
             swatch.setContentDescription(name);
-            final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(34), Dips.dpToPx(34));
-            params.rightMargin = Dips.DP_6;
+            pressable(swatch, TintUtil.SWATCH_RADIUS);
+            // Eight of them fit in a phone's width beside the dock's buttons
+            final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(32), Dips.dpToPx(32));
+            params.rightMargin = Dips.DP_4;
             colors.addView(swatch, i, params);
             swatch.setOnClickListener(v -> {
                 AppState.get().drawColor = name;
@@ -155,12 +169,10 @@ public class DrawPanel {
         }));
 
         // A tap on the page picks out the annotation under it, which can then be erased
-        TintUtil.setColorSwatchOutline(delete, TintUtil.color);
-        delete.setVisibility(controller.selectedAnnotation != null ? View.VISIBLE : View.GONE);
+        updateDelete(controller, delete);
         drawView.setOnTap((x, y) -> {
             final boolean hadPicked = controller.selectedAnnotation != null;
             final Annotation picked = controller.selectAnnotationAt(x, y);
-            delete.setVisibility(picked != null ? View.VISIBLE : View.GONE);
             // Docked, the panel stays while the book's panels come and go: a tap on the page
             // with nothing on it to pick, or to let go of, shows them or puts them away
             if (picked == null && !hadPicked && isDocked(controller)) {
@@ -176,19 +188,26 @@ public class DrawPanel {
 
             @Override public void onDrop(float dx, float dy) {
                 controller.moveSelectedAnnotation(dx, dy);
-                delete.setVisibility(View.GONE);
                 updatePen.run();
             }
         });
         delete.setOnClickListener(v -> {
-            controller.deleteSelectedAnnotation();
-            delete.setVisibility(View.GONE);
+            if (controller.selectedAnnotation != null) {
+                controller.deleteSelectedAnnotation();
+            } else {
+                // Nothing picked out: the eraser is taken up, or put down, and a tap on a
+                // drawing on the page then erases it; the pen is put down for it
+                final boolean erasing = AppState.get().editWith == AppState.EDIT_DELETE;
+                AppState.get().editWith = erasing ? AppState.EDIT_PEN : AppState.EDIT_DELETE;
+                if (!erasing) {
+                    AppState.get().editShape = NO_TOOL;
+                }
+            }
             updatePen.run();
         });
 
         drawView.setOnFinishDraw(() -> {
             controller.clearAnnotationSelection();
-            delete.setVisibility(View.GONE);
             controller.saveChanges(drawView.getPoints(), Color.parseColor(AppState.get().drawColor));
             drawView.clear();
             controller.saveAnnotationsToFile();
@@ -233,8 +252,12 @@ public class DrawPanel {
         row.setOrientation(LinearLayout.HORIZONTAL);
         row.setGravity(Gravity.CENTER_VERTICAL);
         final GradientDrawable sheet = new GradientDrawable();
-        sheet.setColor(sheetColor(context));
-        sheet.setCornerRadius(Dips.dpToPx(16));
+        // The colour the book's bars are, and as see-through: docked on them, it is one of them
+        sheet.setColor(ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI));
+        // Rounded on top only: its foot stands on the bottom bar, and round corners there would
+        // show the page through between the two
+        final float radius = Dips.dpToPx(16);
+        sheet.setCornerRadii(new float[]{radius, radius, radius, radius, 0, 0, 0, 0});
         row.setBackground(sheet);
         row.setElevation(Dips.DP_8);
         // Touches on the sheet are the panel's, not the page's under it
@@ -258,8 +281,8 @@ public class DrawPanel {
 
         dock.addView(row);
         dock.setVisibility(View.VISIBLE);
-        // The panel's marks take the colours the dialogs give theirs
-        TxtUtils.updateAllLinks(row, true);
+        // The panel's marks take the colours the bars give theirs
+        TxtUtils.updateAllLinks(row, false);
         // The pin stands ringed: the panel is pinned, and a tap lets it go
         final ImageView pin = (ImageView) buttons.getChildAt(0);
         final ColorStateList tint = pin.getImageTintList();
@@ -280,20 +303,38 @@ public class DrawPanel {
         button.setContentDescription(context.getString(description));
         button.setPadding(Dips.DP_8, Dips.DP_8, Dips.DP_8, Dips.DP_8);
         button.setOnClickListener(onClick);
+        pressable(button, TintUtil.SWATCH_RADIUS);
         final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(36), Dips.dpToPx(36));
         params.setMargins(Dips.DP_4, Dips.DP_4, Dips.DP_6, Dips.DP_4);
         button.setLayoutParams(params);
         return button;
     }
 
-    /** The colour the dialogs' sheets are, so the docked panel reads as the same panel. */
-    private static int sheetColor(Context context) {
-        final TypedValue value = new TypedValue();
-        if (context.getTheme().resolveAttribute(android.R.attr.colorBackground, value, true)
-                && value.type >= TypedValue.TYPE_FIRST_COLOR_INT && value.type <= TypedValue.TYPE_LAST_COLOR_INT) {
-            return value.data;
+    /**
+     * The eraser: there while a drawing is picked out, to erase it - and in musician's mode
+     * always, as a tap on the page turns it there rather than picking a drawing out, so the
+     * eraser is taken up instead and the drawing tapped. Ringed while it has one to erase.
+     */
+    private static void updateDelete(DocumentController controller, ImageView delete) {
+        final boolean picked = controller.selectedAnnotation != null;
+        delete.setVisibility(picked || controller.isMusicianMode() ? View.VISIBLE : View.GONE);
+        if (picked || AppState.get().editWith == AppState.EDIT_DELETE) {
+            final ColorStateList tint = delete.getImageTintList();
+            TintUtil.setColorSwatchOutline(delete, tint != null ? tint.getDefaultColor() : TintUtil.color);
+        } else {
+            delete.setBackground(null);
         }
-        return Color.WHITE;
+    }
+
+    /**
+     * A press shows on the button: a grey wash over it in its own round, drawn over whatever
+     * the button carries - a swatch's colour, a tool's ring - and read on a bar or a sheet alike.
+     */
+    private static void pressable(View view, float radius) {
+        final GradientDrawable mask = new GradientDrawable();
+        mask.setColor(Color.WHITE);
+        mask.setCornerRadius(radius);
+        view.setForeground(new RippleDrawable(ColorStateList.valueOf(Color.parseColor("#66888888")), null, mask));
     }
 
     /** The pen's widths, each as a line that thick, under the button that shows the one in use. */
@@ -328,6 +369,7 @@ public class DrawPanel {
             line.setBackground(shape);
             row.addView(line, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, drawWidthPx(width), Gravity.CENTER));
             row.setContentDescription(String.valueOf(width));
+            pressable(row, 0);
             row.setOnClickListener(v -> {
                 AppState.get().editLineWidth = width;
                 updatePen.run();

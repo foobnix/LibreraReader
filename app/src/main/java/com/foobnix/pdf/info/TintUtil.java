@@ -459,6 +459,23 @@ public class TintUtil {
      * A colour to pick from, drawn as a chip with a small round and a hairline round it, so a
      * swatch close to the colour of the sheet behind it still reads as a swatch.
      */
+    /**
+     * The colour in use ticked over its swatch - white on a dark one, black on a light one -
+     * as the pen's is in the drawing panel; or the tick taken off.
+     */
+    public static void markInUse(View swatch, boolean inUse, boolean dark) {
+        if (swatch == null) {
+            return;
+        }
+        if (!inUse) {
+            swatch.setForeground(null);
+            return;
+        }
+        final Drawable check = ContextCompat.getDrawable(swatch.getContext(), R.drawable.glyphicons_239_check).mutate();
+        check.setTint(dark ? Color.WHITE : Color.BLACK);
+        swatch.setForeground(new InsetDrawable(check, Dips.dpToPx(7)));
+    }
+
     public static void setColorSwatch(View swatch, int color) {
         if (swatch == null) {
             return;

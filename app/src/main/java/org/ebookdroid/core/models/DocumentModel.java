@@ -3,7 +3,6 @@ package org.ebookdroid.core.models;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.PageEstimate;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -247,9 +246,9 @@ public class DocumentModel extends ListenerProxy {
         try {
             FileMeta meta = AppDB.get()
                                  .load(bs.path);
-            // A reflowable book is as many pages here as its font makes it: it keeps the standard
-            // pages of its text, so it is sorted with the others by one measure
-            if (meta != null && !PageEstimate.isEstimated(bs.path, meta.getChild())) {
+            // A reflowable book's estimated pages give way to the pages it is read in, which its
+            // card shows and the library sorts by
+            if (meta != null) {
                 meta.setPages(pagesCount);
                 AppDB.get()
                      .save(meta);

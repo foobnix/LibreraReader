@@ -11,23 +11,30 @@
         android:id="@+id/underLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
+        <!-- Musician's mode only: its name, a button in a ring like the reader's others, with
+             room above and below it that makes the bar taller than the one scroll mode has. -->
         <TextView
             android:id="@+id/lirbiLogo"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="8dip"
+            android:layout_marginTop="6dip"
+            android:layout_marginRight="4dip"
+            android:layout_marginBottom="6dip"
             android:layout_weight="0"
             android:adjustViewBounds="true"
-            android:background="@drawable/bg_search_second_clickable"
+            android:background="@drawable/bg_button_outline"
             android:cropToPadding="true"
             android:ellipsize="end"
             android:gravity="center"
-            android:paddingLeft="20dip"
-            android:paddingTop="0dip"
-            android:paddingRight="20dip"
-            android:paddingBottom="0dip"
+            android:paddingLeft="16dip"
+            android:paddingTop="5dip"
+            android:paddingRight="16dip"
+            android:paddingBottom="5dip"
             android:singleLine="true"
             android:src="@drawable/lirbi_text"
             android:text="Music"
@@ -37,10 +44,11 @@
 
         <LinearLayout
             android:id="@+id/titleBar"
-            android:layout_width="match_parent"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/lirbiLogo"
+            android:layout_weight="1"
             android:gravity="center_vertical"
+            android:paddingRight="12dip"
             android:visibility="visible">
 
             <ImageView
@@ -199,7 +207,68 @@
                 android:tint="@color/tint_gray" />
         </LinearLayout>
 
+        <!-- Musician's mode with the panels away: only its name at the left, at the right a round
+             close button as tall as it, and between them the page slider of the bottom panel.
+             DocumentWrapperUI sizes and paints all three. -->
+        <LinearLayout
+            android:id="@+id/musicSeekRow"
+            android:layout_width="0dip"
+            android:layout_height="36dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginTop="6dip"
+            android:layout_marginBottom="6dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:visibility="gone">
 
+            <TextView
+                android:id="@+id/musicCurrent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:gravity="center"
+                android:minEms="1"
+                android:singleLine="true"
+                android:text="--"
+                android:textSize="14sp" />
+
+            <SeekBar
+                android:id="@+id/musicSeekBar"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/go_to_page_dialog" />
+
+            <TextView
+                android:id="@+id/musicMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:gravity="center"
+                android:minEms="1"
+                android:singleLine="true"
+                android:text="--"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/musicClose"
+            android:layout_width="36dip"
+            android:layout_height="36dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginTop="6dip"
+            android:layout_marginRight="8dip"
+            android:layout_marginBottom="6dip"
+            android:layout_weight="0"
+            android:background="@drawable/bg_button_outline"
+            android:contentDescription="@string/close"
+            android:padding="8dip"
+            android:scaleType="fitCenter"
+            android:src="@drawable/glyphicons_599_menu_close"
+            android:visibility="gone" />
     </LinearLayout>
     <com.foobnix.pdf.info.view.ProgressDraw
         android:id="@+id/progressDraw"

@@ -38,7 +38,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:orientation="horizontal"
-            android:padding="2dip">
+            android:paddingLeft="8dip"
+            android:paddingTop="6dip"
+            android:paddingRight="8dip"
+            android:paddingBottom="2dip">
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -517,7 +520,6 @@
             android:layout_alignWithParentIfMissing="true"
             android:layout_marginLeft="8dip"
             android:layout_marginRight="8dip"
-            android:layout_marginBottom="6dip"
             android:visibility="gone" />
 
         <FrameLayout

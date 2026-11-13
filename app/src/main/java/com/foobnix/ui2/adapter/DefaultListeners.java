@@ -52,7 +52,7 @@ public class DefaultListeners {
 
         searchAdapter.setOnItemClickListener(result -> {
             onClick.run();
-            dc.onCloseActivityFinal(() -> ExtUtils.showDocumentWithoutDialog(a, new File(result.getPath()), null));
+            dc.closeWithAnnotationsSaved(() -> ExtUtils.showDocumentWithoutDialog(a, new File(result.getPath()), null));
             return false;
         });
         searchAdapter.setOnItemLongClickListener(onLongClickChooser(a, searchAdapter));

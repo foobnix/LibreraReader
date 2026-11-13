@@ -43,12 +43,18 @@ public class AppBook implements CurrentPageListener {
     public String cfi;
     public long t;//time
     public String ln;
+    /**
+     * Pages of the book as this device lays it out, 0 until it is read. The library keeps the
+     * estimated standard pages of a reflowable book to sort by; this is what its card shows once
+     * the book has been opened. Not taken from other devices: their screens make other pages.
+     */
+    public int pc;
 
     public boolean rtl = Urls.isRtl();
 
     @Override
     public int hashCode() {
-        final String s = "" + path + z + sp + cp + dp + dc + lk + (int) (x * 100) + (int) (y * 100) + this.s + d + p + pt + cfi + ln + rtl;
+        final String s = "" + path + z + sp + cp + dp + dc + lk + (int) (x * 100) + (int) (y * 100) + this.s + d + p + pt + cfi + ln + rtl + pc;
         LOG.d("hashCode-appbook", s);
         return s.hashCode();
     }
@@ -96,6 +102,7 @@ public class AppBook implements CurrentPageListener {
             LOG.d("currentPageChanged ERROR!!!", page + " : " + pages);
             return;
         }
+        pc = pages;
         float percent = MyMath.percent(page, pages);
         if (percent != p) {
             //text and place of the old page, DocumentController.saveCurrentPageAsync() sets the new ones

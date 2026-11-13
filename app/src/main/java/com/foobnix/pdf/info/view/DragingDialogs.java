@@ -1935,13 +1935,31 @@ public class DragingDialogs {
                 strike.setColorFilter(Color.parseColor(AppState.get().annotationTextColor));
                 selection.setColorFilter(Color.parseColor(AppState.get().annotationTextColor));
 
+                // The colour in use carries a tick, as the pen's does in the drawing panel
+                final Runnable markColorInUse = () -> {
+                    for (int i = 0; i < linearLayoutColor.getChildCount(); i++) {
+                        final View child = linearLayoutColor.getChildAt(i);
+                        final ImageView swatch = child.findViewById(R.id.itColor);
+                        if (swatch == null || !(child.getTag() instanceof String)) {
+                            continue;
+                        }
+                        final String name = (String) child.getTag();
+                        if (name.equalsIgnoreCase(AppState.get().annotationTextColor)) {
+                            swatch.setImageResource(R.drawable.glyphicons_239_check);
+                            swatch.setColorFilter(MagicHelper.isColorDark(Color.parseColor(name)) ? Color.WHITE : Color.BLACK);
+                        } else {
+                            swatch.setImageDrawable(null);
+                        }
+                    }
+                };
+
                 for (final String colorName : colors) {
                     final View inflate =
                             LayoutInflater.from(linearLayoutColor.getContext()).inflate(R.layout.item_color,
                                                                                         linearLayoutColor,
                                                                                         false);
                     inflate.setBackgroundResource(R.drawable.bg_border_2_lines);
-                    final View img = inflate.findViewById(R.id.itColor);
+                    final ImageView img = inflate.findViewById(R.id.itColor);
                     final int colorId = Color.parseColor(colorName);
                     // The same small round the colour swatches in the other dialogs are, with no
                     // frame: kept out of the pass that rings every shape in the dialog in the
@@ -1961,9 +1979,11 @@ public class DragingDialogs {
                             underLine.setColorFilter(Color.parseColor(colorName));
                             strike.setColorFilter(Color.parseColor(colorName));
                             selection.setColorFilter(Color.parseColor(colorName));
+                            markColorInUse.run();
                         }
                     });
                 }
+                markColorInUse.run();
 
                 final EditText editText = view.findViewById(R.id.editText);
                 final String selectedText = AppState.get().selectedText;
@@ -3594,6 +3614,16 @@ public class DragingDialogs {
                     }
                 });
 
+                final TextView resetTapZones = inflate.findViewById(R.id.resetTapZones);
+                resetTapZones.setVisibility(
+                        AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
+                resetTapZones.setOnClickListener(v -> {
+                    AppState.get().musicTapZones = "";
+                    if (onRefresh != null) {
+                        onRefresh.run();
+                    }
+                });
+
                 CheckBox isShowLineDividing = inflate.findViewById(R.id.isShowLineDividing);
                 isShowLineDividing.setVisibility(
                         AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
@@ -3901,6 +3931,21 @@ public class DragingDialogs {
                         isShowReadingProgress.setChecked(true);
                         AppState.get().progressLineHeight = result;
                         AppState.get().isEditMode = false;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        return false;
+                    }
+                });
+
+                // How much of the page shows through the panels, in every mode, in percent;
+                // kept short of all of it, so the panels still read over the page
+                final CustomSeek panelsTransparency = inflate.findViewById(R.id.panelsTransparency);
+                panelsTransparency.setTitleTextWidth(Dips.dpToPx(100));
+                panelsTransparency.init(0, 80, Math.round((255 - AppState.get().transparencyUI) * 100f / 255), "%");
+                panelsTransparency.setOnSeekChanged(new IntegerResponse() {
+                    @Override public boolean onResultRecive(int result) {
+                        AppState.get().transparencyUI = 255 - Math.round(result * 255f / 100);
                         if (onRefresh != null) {
                             onRefresh.run();
                         }
@@ -5937,6 +5982,9 @@ public class DragingDialogs {
 // View.GONE);
 
                 final int padding = Dips.dpToPx(3);
+                // The row is laid out again on a pick, so the tick moves to the colour picked
+                final Runnable[] relayColors = new Runnable[1];
+                final boolean named = controller.isTextFormat() || AppState.get().isCustomizeBgAndColors;
                 final Runnable colorsLine = new Runnable() {
                     @Override public void run() {
                         // TODO Auto-generated method stub
@@ -5966,6 +6014,14 @@ public class DragingDialogs {
                             swatch.setColor(bg);
                             swatch.setCornerRadius(Dips.dpToPx(BorderTextView.RADIUS_DP));
                             t1.setBackground(swatch);
+                            t1.setBordered(isDay);
+                            // The day colours and the night ones each have theirs in use ticked
+                            final boolean inUse = isDay
+                                    ? !AppState.get().isUseBGImageDay && AppState.get().colorDayBg == bg
+                                      && (!named || AppState.get().colorDayText == text)
+                                    : !AppState.get().isUseBGImageNight && AppState.get().colorNigthBg == bg
+                                      && (!named || AppState.get().colorNigthText == text);
+                            TintUtil.markInUse(t1, inUse, MagicHelper.isColorDark(bg));
                             if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
                                 t1.setText(name);
                                 t1.setTextColor(text);
@@ -5999,6 +6055,7 @@ public class DragingDialogs {
 
                                     TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
                                     TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
+                                    lc.post(relayColors[0]);
                                 }
                             });
                             lc.addView(t1);
@@ -6014,6 +6071,7 @@ public class DragingDialogs {
                             t1.setScaleType(ScaleType.FIT_XY);
 
                             t1.setImageDrawable(MagicHelper.getBgImageDayDrawable(false));
+                            TintUtil.markInUse(t1, AppState.get().isUseBGImageDay, false);
 
                             t1.setOnClickListener(new OnClickListener() {
                                 @Override public void onClick(View v) {
@@ -6027,6 +6085,7 @@ public class DragingDialogs {
                                     AppState.get().isUseBGImageDay = true;
 
                                     TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
+                                    lc.post(relayColors[0]);
                                 }
                             });
                             lc.addView(t1, AppState.get().readColors.split(";").length / 2);
@@ -6043,6 +6102,7 @@ public class DragingDialogs {
                             t2.setScaleType(ScaleType.FIT_XY);
 
                             t2.setImageDrawable(MagicHelper.getBgImageNightDrawable(false));
+                            TintUtil.markInUse(t2, AppState.get().isUseBGImageNight, true);
 
                             t2.setOnClickListener(new OnClickListener() {
                                 @Override public void onClick(View v) {
@@ -6054,6 +6114,7 @@ public class DragingDialogs {
                                     textNigthColor.setBackground(MagicHelper.getBgImageNightDrawable(false));
                                     AppState.get().isUseBGImageNight = true;
                                     TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
+                                    lc.post(relayColors[0]);
                                 }
                             });
                             lc.addView(t2);
@@ -6064,6 +6125,7 @@ public class DragingDialogs {
                         }
                     }
                 };
+                relayColors[0] = colorsLine;
                 colorsLine.run();
 
                 // The two panels and every swatch under them are cut to the round their

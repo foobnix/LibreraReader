@@ -69,7 +69,8 @@ public class AppState {
     public static final int FULL_SCREEN_FULLSCREEN = 1;
     public static final int FULL_SCREEN_FULLSCREEN_CUTOUT = 2;
     // The pen's colours for drawing on a PDF: few, and each one reads on a white page
-    public static final List<String> DRAW_COLORS = Arrays.asList("#E53935", "#1E88E5", "#43A047", "#FDD835", "#000000");
+    public static final List<String> DRAW_COLORS = Arrays.asList("#E53935", "#FB8C00", "#FDD835", "#43A047", "#1E88E5", "#8E24AA",
+            "#D81B60", "#000000");
     // The pen's widths, thinnest first
     public static final List<Float> DRAW_WIDTHS = Arrays.asList(1f, 2f, 3f, 5f, 8f);
 
@@ -515,6 +516,9 @@ public class AppState {
     @IgnoreHashCode public boolean isShowBookmarsPanelInScrollMode = false;
     @IgnoreHashCode public boolean isShowBookmarsPanelInBookMode = false;
     @IgnoreHashCode public boolean isShowRectangularTapZones = true;
+    // Musician's tap zones where the user put them: the left one, then the right one, each as x, y,
+    // width and height in fractions of the space under the title bar; empty for where they start
+    @IgnoreHashCode public String musicTapZones = "";
     @IgnoreHashCode public boolean isShowLastPageRed = true;
     @IgnoreHashCode public boolean isShowLineDividing = true;
     @IgnoreHashCode public boolean isShowBookmarsPanelText = true;
@@ -619,7 +623,7 @@ public class AppState {
     public boolean isOLED = false;
     public int cutP = 50;
     public volatile int statusBarTextSizeAdv = Dips.isXLargeScreen() ? 16 : 14;
-    public volatile int statusBarTextSizeEasy = Dips.isXLargeScreen() ? 16 : 12;
+    public volatile int statusBarTextSizeEasy = Dips.isXLargeScreen() ? 16 : 14;
     public volatile int progressLineHeight = Dips.isXLargeScreen() ? 8 : 4;
     public String versionNew = "";
     public boolean isCutRTL = Urls.isRtl();

@@ -225,6 +225,16 @@
             android:layout_marginLeft="10dip"
             android:text="@string/show_tap_zones_on_screen" />
 
+        <!-- Puts the tap zones back where they start, after they were dragged and sized -->
+        <TextView
+            android:id="@+id/resetTapZones"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dip"
+            android:layout_marginBottom="4dip"
+            android:text="@string/restore_defaults_short" />
+
         <CheckBox
             android:id="@+id/isShowLastPageRed"
             android:layout_width="match_parent"
@@ -319,6 +329,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dip"
             myseek:text="@string/line_height"></com.foobnix.pdf.info.view.CustomSeek>
+
+        <!-- How much of the page shows through the panels, in every mode -->
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/panelsTransparency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/transparency"></com.foobnix.pdf.info.view.CustomSeek>
 
 
     </LinearLayout>
