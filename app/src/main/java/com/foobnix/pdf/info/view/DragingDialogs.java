@@ -3904,14 +3904,16 @@ public class DragingDialogs {
 
                 statusBarTextSize.init(5,
                                        30,
-                                       controller.isBookMode() ?
-                                       AppState.get().statusBarTextSizeEasy :
+                                       controller.isBookMode() ? AppState.get().statusBarTextSizeEasy :
+                                       controller.isMusicianMode() ? AppState.get().statusBarTextSizeMusician :
                                        AppState.get().statusBarTextSizeAdv);
                 statusBarTextSize.setOnSeekChanged(new IntegerResponse() {
                     @Override public boolean onResultRecive(int result) {
                         isShowToolBar.setChecked(true);
                         if (controller.isBookMode()) {
                             AppState.get().statusBarTextSizeEasy = result;
+                        } else if (controller.isMusicianMode()) {
+                            AppState.get().statusBarTextSizeMusician = result;
                         } else {
                             AppState.get().statusBarTextSizeAdv = result;
                         }
@@ -6021,7 +6023,10 @@ public class DragingDialogs {
                                       && (!named || AppState.get().colorDayText == text)
                                     : !AppState.get().isUseBGImageNight && AppState.get().colorNigthBg == bg
                                       && (!named || AppState.get().colorNigthText == text);
-                            TintUtil.markInUse(t1, inUse, MagicHelper.isColorDark(bg));
+                            // Underlined in the swatch's own text colour where it shows a name,
+                            // in black or white on the colour where it does not
+                            TintUtil.underlineInUse(t1, inUse, named ? text
+                                    : MagicHelper.isColorDark(bg) ? Color.WHITE : Color.BLACK);
                             if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
                                 t1.setText(name);
                                 t1.setTextColor(text);
@@ -6071,7 +6076,7 @@ public class DragingDialogs {
                             t1.setScaleType(ScaleType.FIT_XY);
 
                             t1.setImageDrawable(MagicHelper.getBgImageDayDrawable(false));
-                            TintUtil.markInUse(t1, AppState.get().isUseBGImageDay, false);
+                            TintUtil.underlineInUse(t1, AppState.get().isUseBGImageDay, Color.BLACK);
 
                             t1.setOnClickListener(new OnClickListener() {
                                 @Override public void onClick(View v) {
@@ -6102,7 +6107,7 @@ public class DragingDialogs {
                             t2.setScaleType(ScaleType.FIT_XY);
 
                             t2.setImageDrawable(MagicHelper.getBgImageNightDrawable(false));
-                            TintUtil.markInUse(t2, AppState.get().isUseBGImageNight, true);
+                            TintUtil.underlineInUse(t2, AppState.get().isUseBGImageNight, Color.WHITE);
 
                             t2.setOnClickListener(new OnClickListener() {
                                 @Override public void onClick(View v) {

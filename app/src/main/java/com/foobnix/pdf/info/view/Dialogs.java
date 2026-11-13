@@ -9,6 +9,9 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.InsetDrawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.InputType;
@@ -32,6 +35,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.FragmentActivity;
 
 import com.buzzingandroid.ui.HSVColorPickerDialog;
@@ -754,7 +758,12 @@ public class Dialogs {
             TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), textColor);
             TintUtil.setTintText(text, textColor);
 
-            view.setBackgroundColor(TintUtil.color);
+            // A panel of its own, as see-through as the reader's panels: the dialog's own sheet
+            // is taken away below, so the page shows through
+            final GradientDrawable panel = new GradientDrawable();
+            panel.setColor(ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI));
+            panel.setCornerRadius(Dips.dpToPx(16));
+            view.setBackground(panel);
 
             image.setOnClickListener(new OnClickListener() {
 
@@ -772,6 +781,8 @@ public class Dialogs {
 
             AlertDialog dialog = builder.show();
             dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            dialog.getWindow().setBackgroundDrawable(new InsetDrawable(new ColorDrawable(Color.TRANSPARENT),
+                                                                       Dips.dpToPx(24), 0, Dips.dpToPx(24), 0));
 
             long time = System.currentTimeMillis();
             dialog.setOnDismissListener(new OnDismissListener() {

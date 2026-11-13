@@ -155,7 +155,9 @@ public class AppState {
                     "3,#f9f5e8,#333333,0;" + //
                     //
                     "A,#3a3a3a,#c8c8c8,1;" + //
-                    "B,#000000,#8cffb5,1;" + //
+                    // A warm dark sepia: softer than black at night, and told apart from it on a
+                    // PDF too, where only the page colour is taken
+                    "B,#2b2620,#d8c7a3,1;" + //
                     "C,#000000,#ffffff,1;"; //
     public static final String TTS_REPLACEMENTS =
 
@@ -624,6 +626,8 @@ public class AppState {
     public int cutP = 50;
     public volatile int statusBarTextSizeAdv = Dips.isXLargeScreen() ? 16 : 14;
     public volatile int statusBarTextSizeEasy = Dips.isXLargeScreen() ? 16 : 14;
+    // Musician's mode has a title of its own size, bigger than scroll mode's
+    public volatile int statusBarTextSizeMusician = Dips.isXLargeScreen() ? 18 : 16;
     public volatile int progressLineHeight = Dips.isXLargeScreen() ? 8 : 4;
     public String versionNew = "";
     public boolean isCutRTL = Urls.isRtl();
@@ -858,7 +862,14 @@ public class AppState {
         }
 
         IO.readObj(AppProfile.syncState, instance);
+        // The night colour that was green on black looked the same as the black one on a PDF,
+        // where only the page colour is taken: it gives way to the sepia one
+        if (instance.readColors != null && instance.readColors.contains(OLD_NIGHT_GREEN)) {
+            instance.readColors = instance.readColors.replace(OLD_NIGHT_GREEN, "B,#2b2620,#d8c7a3,1;");
+        }
     }
+
+    private static final String OLD_NIGHT_GREEN = "B,#000000,#8cffb5,1;";
 
     public void save(final Context a) {
         LOG.d("AppState-save");

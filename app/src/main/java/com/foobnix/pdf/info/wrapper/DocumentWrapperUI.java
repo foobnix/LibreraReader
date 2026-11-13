@@ -1481,8 +1481,12 @@ public class DocumentWrapperUI {
         // TintUtil.setBackgroundFillColorBottomRight(ttsActive,
         // ColorUtils.setAlphaComponent(TintUtil.color, 230));
 
-        //int textColor = MagicHelper.getTextOrIconColor();
+        // The title bar stands on the panels' colour: left at its grey default, it is written in
+        // the panels' own text colour; a colour chosen in the status bar settings is kept
         int textColor = TintUtil.getStatusBarTextColor();
+        if (textColor == Color.parseColor(AppState.TEXT_COLOR_DAY) || textColor == Color.parseColor(AppState.TEXT_COLOR_NIGHT)) {
+            textColor = MagicHelper.getTextOrIconColor();
+        }
 
         TintUtil.setTintText(bookName, textColor);
         TintUtil.setTintImageWithAlpha(textToSpeachTop, textColor);
@@ -1514,14 +1518,15 @@ public class DocumentWrapperUI {
         progressDraw.requestLayout();
 
         // textSize
-        bookName.setTextSize(AppState.get().statusBarTextSizeAdv);
-        pagesCountIndicator.setTextSize(AppState.get().statusBarTextSizeAdv);
-        currentTime.setTextSize(AppState.get().statusBarTextSizeAdv);
-        batteryLevel.setTextSize(AppState.get().statusBarTextSizeAdv);
-        reverseKeysIndicator.setTextSize(AppState.get().statusBarTextSizeAdv);
-        lirbiLogo.setTextSize(AppState.get().statusBarTextSizeAdv);
+        final int titleTextSize = dc.isMusicianMode() ? AppState.get().statusBarTextSizeMusician : AppState.get().statusBarTextSizeAdv;
+        bookName.setTextSize(titleTextSize);
+        pagesCountIndicator.setTextSize(titleTextSize);
+        currentTime.setTextSize(titleTextSize);
+        batteryLevel.setTextSize(titleTextSize);
+        reverseKeysIndicator.setTextSize(titleTextSize);
+        lirbiLogo.setTextSize(titleTextSize);
 
-        int iconSize = Dips.spToPx(AppState.get().statusBarTextSizeAdv);
+        int iconSize = Dips.spToPx(titleTextSize);
 
         textToSpeachTop.getLayoutParams().height = textToSpeachTop.getLayoutParams().width = iconSize;
         lockUnlockTop.getLayoutParams().height = lockUnlockTop.getLayoutParams().width = iconSize;
@@ -1553,6 +1558,8 @@ public class DocumentWrapperUI {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void tintSpeed() {
         try {
+            // The speed bar over the page is as see-through as the panels
+            seekSpeedLayot.setAlpha(AppState.get().transparencyUI / 255f);
             int tintColor = MagicHelper.getMusicColor();
             speedSeekBar.getProgressDrawable().mutate().setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
 

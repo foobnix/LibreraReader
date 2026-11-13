@@ -14,12 +14,12 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <!-- Musician's mode only: its name, a button in a ring like the reader's others, with
-             room above and below it that makes the bar taller than the one scroll mode has. -->
+        <!-- Musician's mode only: its name, a button in a ring like the reader's others, as tall
+             as the bookmarks under it; the slider and close button beside it take its height. -->
         <TextView
             android:id="@+id/lirbiLogo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="32dip"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="8dip"
             android:layout_marginTop="6dip"
@@ -32,9 +32,9 @@
             android:ellipsize="end"
             android:gravity="center"
             android:paddingLeft="16dip"
-            android:paddingTop="5dip"
+            android:paddingTop="0dip"
             android:paddingRight="16dip"
-            android:paddingBottom="5dip"
+            android:paddingBottom="0dip"
             android:singleLine="true"
             android:src="@drawable/lirbi_text"
             android:text="Music"
@@ -238,7 +238,7 @@
             <SeekBar
                 android:id="@+id/musicSeekBar"
                 android:layout_width="0dip"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/go_to_page_dialog" />
 

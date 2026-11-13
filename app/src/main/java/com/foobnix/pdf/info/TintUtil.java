@@ -476,6 +476,25 @@ public class TintUtil {
         swatch.setForeground(new InsetDrawable(check, Dips.dpToPx(7)));
     }
 
+    /**
+     * The colour in use underlined at the foot of its swatch, in the colour given: it leaves
+     * the name a swatch may carry readable, where a tick would stand over it; or taken off.
+     */
+    public static void underlineInUse(View swatch, boolean inUse, int color) {
+        if (swatch == null) {
+            return;
+        }
+        if (!inUse) {
+            swatch.setForeground(null);
+            return;
+        }
+        final GradientDrawable bar = new GradientDrawable();
+        bar.setColor(color);
+        bar.setCornerRadius(Dips.dpToPx(2));
+        // The swatches are 30dp square: a bar 3dp thick, 4dp up from the foot
+        swatch.setForeground(new InsetDrawable(bar, Dips.dpToPx(8), Dips.dpToPx(23), Dips.dpToPx(8), Dips.dpToPx(4)));
+    }
+
     public static void setColorSwatch(View swatch, int color) {
         if (swatch == null) {
             return;

@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.InputType;
 import android.util.Pair;
+import android.view.Choreographer;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
@@ -42,6 +43,7 @@ import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.OutlineLink;
+import org.ebookdroid.ui.viewer.IView;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.MuPdfLinks;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
@@ -59,8 +61,6 @@ public class VerticalModeController extends DocumentController {
 
     private static final double ZOOM_VALUE = 0.05;
     Handler handler;
-    Thread t = new Thread("@T AutoScroll");
-
     long begin = 0;
     float currentZoom, currentX, currentY, pageN;
     boolean isLocked;
@@ -615,87 +615,82 @@ public class VerticalModeController extends DocumentController {
         }
     }
 
+    /** Whether the frame-by-frame scrolling below is running. */
+    private boolean autoScrolling;
+
+    /**
+     * Scrolls the book on, a frame at a time, while auto scroll is on. It used to sleep on a
+     * thread and move one pixel at a time on its own clock, which fell out of step with the
+     * screen's frames: some moved none and some two, and the page juddered. Each frame now
+     * moves as far as the time since the last one asks for, the part of a pixel left over
+     * carried to the next, so the music runs evenly at 60 and 120 Hz alike.
+     */
     @Override
     public void onAutoScroll() {
-        if (t.isAlive()) {
+        if (autoScrolling) {
             return;
         }
+        autoScrolling = true;
         begin = System.currentTimeMillis();
-        t = new Thread(new Runnable() {
+        Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
+            private long last;
+            private long start;
+            private long holdUntil;
+            private float carry;
 
             @Override
-            public void run() {
-                while (AppState.get().isAutoScroll) {
-                    boolean repeat = false;
-
-                    long l = System.currentTimeMillis() - begin;
-                    if (!AppState.get().isLoopAutoplay && l > TimeUnit.HOURS.toMillis(1)) {
-                        break;
-                    }
-
-                    if (AppState.get().isLoopAutoplay && ctr.getDocumentController().getScrollLimits().bottom == ctr.getDocumentController().getView().getScrollY()) {
-                        repeat = true;
-                        try {
-                            Thread.sleep(3000);
-                            LOG.d("Sleep 3000");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    auto();
-
-                    if (repeat) {
-                        try {
-                            Thread.sleep(3000);
-                            LOG.d("Sleep 3000");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    try {
-                        float x = AppState.get().autoScrollSpeed;
-
-                        if (x <= 50) {
-                            x = x * 2;
+            public void doFrame(long now) {
+                if (!AppState.get().isAutoScroll || activity.isFinishing()) {
+                    autoScrolling = false;
+                    return;
+                }
+                if (!AppState.get().isLoopAutoplay && System.currentTimeMillis() - begin > TimeUnit.HOURS.toMillis(1)) {
+                    // Left on for an hour, it is taken to be forgotten
+                    autoScrolling = false;
+                    return;
+                }
+                if (last != 0 && now >= holdUntil) {
+                    // A frame missed is not made up in one leap
+                    final float seconds = Math.min((now - last) / 1e9f, 0.1f);
+                    // Setting off, it eases in rather than jerking the page along
+                    final float easeIn = Math.min(1f, (now - start) / 400e6f);
+                    carry += autoScrollPixelsPerSecond() * easeIn * seconds;
+                    final int step = (int) carry;
+                    carry -= step;
+                    if (step > 0) {
+                        final IView view = ctr.getDocumentController().getView();
+                        if (AppState.get().isLoopAutoplay
+                                && ctr.getDocumentController().getScrollLimits().bottom == view.getScrollY()) {
+                            // At the end it waits, starts over from the top, and waits again
+                            onScrollY(0);
+                            holdUntil = now + TimeUnit.SECONDS.toNanos(3);
+                            start = holdUntil;
                         } else {
-                            final int x1 = 51;
-                            final int y1 = 101;
-
-                            final int x2 = 149;
-                            final int y2 = 149;
-                            // x = (x - y1) * (x2 - x1) / (y2 - y1) + x1;
-                            x = (x - x1) * (y2 - y1) / (x2 - x1) + y1;
-
+                            view.scrollBy(0, step);
                         }
-                        LOG.d("TEST", "Speed after" + x);
-
-                        Thread.sleep(Math.max(AppState.MAX_SPEED - (int) x + 5, 5));
-                    } catch (final InterruptedException e) {
-                        e.printStackTrace();
                     }
+                } else if (last == 0) {
+                    start = now;
                 }
-
-            }
-        }, "@T AutoScroll 2");
-        t.setPriority(Thread.NORM_PRIORITY);
-        t.start();
-    }
-
-    public void auto() {
-        activity.runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-
-                if (AppState.get().isLoopAutoplay && ctr.getDocumentController().getScrollLimits().bottom == ctr.getDocumentController().getView().getScrollY()) {
-                    LOG.d("onScrollY 01");
-                    onScrollY(0);
-                } else {
-                    ctr.getDocumentController().getView().scrollBy(0, 1);
-                }
+                last = now;
+                Choreographer.getInstance().postFrameCallback(this);
             }
         });
+    }
+
+    /**
+     * The speed set on the slider, in pixels a second: what the one-pixel steps and the pauses
+     * between them came to before, so a speed the user chose stays the speed it was.
+     */
+    private static float autoScrollPixelsPerSecond() {
+        float x = AppState.get().autoScrollSpeed;
+        if (x <= 50) {
+            x = x * 2;
+        } else {
+            x = (x - 51) * (149 - 101) / (149 - 51) + 101;
+        }
+        final float pause = Math.max(AppState.MAX_SPEED - x + 5, 5);
+        return 1000f / pause;
     }
 
     @Override

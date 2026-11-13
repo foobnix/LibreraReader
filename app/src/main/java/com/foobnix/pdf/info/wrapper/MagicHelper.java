@@ -26,6 +26,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 
 import java.io.ByteArrayInputStream;
@@ -516,7 +517,8 @@ public class MagicHelper {
      */
     public static int getMusicColor() {
         final int color = AppState.get().isDayNotInvert ? AppState.get().musicColorDay : AppState.get().musicColorNight;
-        return color != 0 ? color : getPageMarkColor();
+        // Not chosen, it is the theme's colour, as the panels are
+        return color != 0 ? color : TintUtil.color;
     }
 
     public static int getPageMarkBgColor(int alpha) {

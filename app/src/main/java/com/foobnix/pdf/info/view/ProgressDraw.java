@@ -22,7 +22,6 @@ import java.util.List;
 
 public class ProgressDraw extends View {
 
-    private static final int ALPHA = 245;
     Paint paint = new Paint();
 
     {
@@ -68,7 +67,8 @@ public class ProgressDraw extends View {
     }
 
     public void updateColor(int color) {
-        this.color = ColorUtils.setAlphaComponent(color, ALPHA);
+        // As see-through as the panels, chapter marks and all
+        this.color = ColorUtils.setAlphaComponent(color, AppState.get().transparencyUI);
         this.color1 = MagicHelper.alpha(40, MagicHelper.getForegroundColor());
 
         paint.setColor(color);
@@ -112,14 +112,14 @@ public class ProgressDraw extends View {
             }
 
             float progressLine = progress * k;
-            //canvas.drawRect(0, 0, progressLine, h, paint);
+            // The ends of the line are round, the gap at the chapter's start included
+            final float r = h / 2f;
             if (currentChapter != 0) {
                 float chapterLine = currentChapter * k;
-                //canvas.drawLine(chapterLine, 0, chapterLine, h, paint1);
-                canvas.drawRect(0, 0, chapterLine - Dips.dpToPx(1), h, paint);
-                canvas.drawRect(chapterLine, 0, progressLine, h, paint);
+                canvas.drawRoundRect(0, 0, chapterLine - Dips.dpToPx(1), h, r, r, paint);
+                canvas.drawRoundRect(chapterLine, 0, progressLine, h, r, r, paint);
             } else {
-                canvas.drawRect(0, 0, progressLine, h, paint);
+                canvas.drawRoundRect(0, 0, progressLine, h, r, r, paint);
             }
 
         } catch (Exception e) {
