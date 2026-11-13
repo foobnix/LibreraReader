@@ -93,7 +93,7 @@ public class BookCSS {
     public String syncOneDrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
     public String dictPath;
     public String fontFolder;
-    public volatile int fontSizeSp = Dips.isXLargeScreen() ? 24 : 20;
+    public volatile int fontSizeSp = Dips.isXLargeScreen() ? 24 : 17;
 
     /**
      * foliate-js keeps a font size and page margins of its own: it lays a page out differently
@@ -111,7 +111,7 @@ public class BookCSS {
     public int lineHeight12Foliate = FOLIATE_LINE_HEIGHT;
 
     public static final int FOLIATE_LINE_HEIGHT = 15;
-    public static final int FOLIATE_FONT_SIZE = 20;
+    public static final int FOLIATE_FONT_SIZE = 17;
     public static final int FOLIATE_MARGIN_TOP = 6;
     public static final int FOLIATE_MARGIN_BOTTOM = 4;
     public static final int FOLIATE_MARGIN_SIDE = 5;

@@ -15,6 +15,7 @@ import com.foobnix.model.AppBook;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.sys.AdvGuestureDetector;
@@ -687,6 +688,12 @@ public abstract class AbstractViewController extends AbstractComponentController
                     continue;
                 }
                 for (Annotation a : page.annotations) {
+                    if (a.type == AnnotationType.LINK || a.type == AnnotationType.POPUP
+                            || a.type == AnnotationType.WIDGET) {
+                        // PDFium lists a page's links with its annotations: a tap on one goes to
+                        // the link, not to the drawing panel
+                        continue;
+                    }
                     RectF wordRect = page.getPageRegion(bounds, new RectF(a));
                     if (wordRect == null) {
                         continue;

@@ -97,9 +97,13 @@
             android:padding="5dip"
             android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
 
+        <!-- As wide as its buttons, so the scroll-by button can give way, and only it: where the
+             row is wider than the screen it shrinks, rather than the back button at the end being
+             pushed off. Where the row fits nothing grows. -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:clickable="true"
             android:gravity="center"
             android:paddingLeft="2dip"
@@ -177,11 +181,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/wh_button_small"
                 android:layout_marginLeft="4dip"
-                android:layout_weight="0"
+                android:layout_weight="1"
                 android:background="@drawable/bg_border_white"
                 android:contentDescription="Scroll by pages or by screen"
+                android:ellipsize="end"
                 android:gravity="center"
                 android:minWidth="120dip"
+                android:paddingLeft="8dip"
+                android:paddingRight="8dip"
                 android:singleLine="true"
                 android:text="@string/by_screans"
                 android:textAllCaps="true"

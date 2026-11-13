@@ -254,10 +254,7 @@ public class DrawPanel {
         final GradientDrawable sheet = new GradientDrawable();
         // The colour the book's bars are, and as see-through: docked on them, it is one of them
         sheet.setColor(ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI));
-        // Rounded on top only: its foot stands on the bottom bar, and round corners there would
-        // show the page through between the two
-        final float radius = Dips.dpToPx(16);
-        sheet.setCornerRadii(new float[]{radius, radius, radius, radius, 0, 0, 0, 0});
+        // Square and the width of the screen, as the bar it stands on
         row.setBackground(sheet);
         row.setElevation(Dips.DP_8);
         // Touches on the sheet are the panel's, not the page's under it

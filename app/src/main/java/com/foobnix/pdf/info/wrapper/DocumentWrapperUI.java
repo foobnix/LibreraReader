@@ -1018,6 +1018,12 @@ public class DocumentWrapperUI {
         documentTitleBar = a.findViewById(R.id.document_title_bar);
         linkHistory = (ImageView) a.findViewById(R.id.linkHistory);
         linkHistory.setOnClickListener(onLinkHistory);
+        // A long press forgets the way back: the pages stay where they are, the button goes
+        linkHistory.setOnLongClickListener(v -> {
+            dc.getLinkHistory().clear();
+            showHideHistory();
+            return true;
+        });
 
         menuLayout = a.findViewById(R.id.menuLayout);
 

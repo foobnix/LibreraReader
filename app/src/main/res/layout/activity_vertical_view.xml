@@ -223,8 +223,6 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/bottomBar1"
             android:layout_alignWithParentIfMissing="true"
-            android:layout_marginLeft="8dip"
-            android:layout_marginRight="8dip"
             android:visibility="gone" />
 
         <FrameLayout

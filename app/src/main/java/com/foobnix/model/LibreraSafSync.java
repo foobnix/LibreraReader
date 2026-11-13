@@ -316,6 +316,11 @@ public class LibreraSafSync {
      * With the permission the settings are in /storage/emulated/0/Librera. What was kept in
      * Download/Librera without it, and is newer, is brought over, so granting the permission
      * later loses nothing. The files there are left as they are.
+     *
+     * Except over a profile an earlier install left there. Reinstalled, the app starts without
+     * the permission and writes its fresh defaults to Download/Librera at once; newer by minutes,
+     * they went over the user's real settings the moment the permission was granted, and the
+     * theme, colours and everything else were back to the defaults.
      */
     static void mergeDownloadLibrera(Context c) {
         if (c == null || !Android6.canWrite(c)) {
@@ -330,14 +335,29 @@ public class LibreraSafSync {
         if (profiles == null) {
             return;
         }
+        final long installed = firstInstallTime(c);
         for (File profile : profiles) {
             if (profile.isDirectory() && isSynced(profile.getName())) {
-                mergeNewer(profile, new File(to, profile.getName()));
+                mergeNewer(profile, new File(to, profile.getName()), installed);
             }
         }
     }
 
-    private static void mergeNewer(File from, File to) {
+    private static long firstInstallTime(Context c) {
+        try {
+            return c.getPackageManager().getPackageInfo(c.getPackageName(), 0).firstInstallTime;
+        } catch (Exception e) {
+            LOG.e(e);
+            return 0;
+        }
+    }
+
+    /**
+     * Copies what {@code from} has newer over {@code to}, but never over a file written before
+     * this install: that one is an earlier install's - the user's own settings - and what this
+     * install wrote in the meantime is mostly its defaults.
+     */
+    private static void mergeNewer(File from, File to, long installed) {
         File[] children = from.listFiles();
         if (children == null) {
             return;
@@ -346,7 +366,9 @@ public class LibreraSafSync {
         for (File child : children) {
             File target = new File(to, child.getName());
             if (child.isDirectory()) {
-                mergeNewer(child, target);
+                mergeNewer(child, target, installed);
+            } else if (target.isFile() && target.lastModified() < installed) {
+                LOG.d("LibreraSafSync kept an earlier install's", target);
             } else if (!target.isFile() || child.lastModified() > target.lastModified()) {
                 try (InputStream in = new java.io.FileInputStream(child);
                      OutputStream out = new FileOutputStream(target)) {

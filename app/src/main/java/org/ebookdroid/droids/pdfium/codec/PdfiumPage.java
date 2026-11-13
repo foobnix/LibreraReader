@@ -316,7 +316,9 @@ public class PdfiumPage extends AbstractCodecPage {
             if (isRecycled()) {
                 return new ArrayList<PageLink>();
             }
-            return PdfiumLinks.get(page, textPage(), transform());
+            final List<PageLink> links = PdfiumLinks.get(page, textPage(), transform());
+            PageLink.resolveByPrintedPage(links, this::getTextImpl, document::getPageCount);
+            return links;
         } catch (Throwable e) {
             LOG.e(e);
             return new ArrayList<PageLink>();

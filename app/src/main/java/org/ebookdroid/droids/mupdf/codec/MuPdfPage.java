@@ -318,7 +318,9 @@ public class MuPdfPage extends AbstractCodecPage {
             if (isRecycled()) {
                 return new ArrayList<PageLink>();
             }
-            return MuPdfLinks.getPageLinks(docHandle, pageHandle, pageBounds);
+            final List<PageLink> links = MuPdfLinks.getPageLinks(docHandle, pageHandle, pageBounds);
+            PageLink.resolveByPrintedPage(links, this::getTextImpl, muPdfDocument::getPageCount);
+            return links;
         } finally {
             TempHolder.lock.unlock();
         }

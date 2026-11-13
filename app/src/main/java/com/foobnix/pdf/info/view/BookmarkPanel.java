@@ -44,12 +44,12 @@ public class BookmarkPanel {
             return;
         }
 
-        // The bookmarks are shown in the modes they are asked for in; the button that adds one
-        // stands in scroll and musician's mode all the same
+        // The bookmarks, and the button that adds one, are shown only in the modes they are
+        // asked for in
         final boolean listShown = AppState.get().isShowBookmarsPanelInMusicMode && dc.isMusicianMode()
                 || AppState.get().isShowBookmarsPanelInBookMode && dc.isBookMode()
                 || AppState.get().isShowBookmarsPanelInScrollMode && dc.isScrollMode();
-        if (!listShown && !dc.isScrollMode() && !dc.isMusicianMode()) {
+        if (!listShown) {
             musicButtonPanel.setVisibility(View.GONE);
             return;
         }
@@ -64,9 +64,6 @@ public class BookmarkPanel {
         pagesBookmark.setPadding(Dips.DP_8, Dips.DP_8, Dips.DP_8, Dips.DP_8);
         pagesBookmark.getLayoutParams().width = pagesBookmark.getLayoutParams().height = SIZE;
         pagesBookmark.requestLayout();
-        if (!listShown) {
-            return;
-        }
 
         List<AppBookmark> all = BookmarksData.get().getBookmarksByBook(dc.getCurrentBook());
         for (final AppBookmark appBookmark : all) {

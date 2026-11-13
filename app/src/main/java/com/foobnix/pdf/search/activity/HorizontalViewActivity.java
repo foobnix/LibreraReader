@@ -524,6 +524,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 showHideHistory();
             }
         });
+        // A long press forgets the way back: the pages stay where they are, the button goes
+        linkHistory.setOnLongClickListener(v -> {
+            dc.getLinkHistory().clear();
+            showHideHistory();
+            return true;
+        });
         linkHistory.setVisibility(View.GONE);
 
         seekBar = (SeekBar) findViewById(R.id.seekBar1);
