@@ -240,6 +240,11 @@ public class PrefFragment2 extends UIFragment {
         paintLinkButtons(inflate);
         paintLibreraXBlock(inflate);
         paintLibraryFolders();
+        // its links are spans, which the pass over the screen's views does not reach
+        final TextView notice = inflate.findViewById(R.id.updateToNewApp);
+        if (notice != null && getActivity() != null) {
+            notice.setLinkTextColor(TxtUtils.getLinkTextColor(getActivity()));
+        }
 
     }
 
@@ -3051,7 +3056,9 @@ public class PrefFragment2 extends UIFragment {
                 : "https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader");
         link(spannable, text, librerax, LibreraX.downloadUrl());
         notice.setText(spannable);
-        notice.setLinkTextColor(TintUtil.color);
+        // the accent the buttons around it are drawn in, not the theme colour, which on a dark
+        // panel of the same colour family was all but invisible
+        notice.setLinkTextColor(TxtUtils.getLinkTextColor(notice.getContext()));
         notice.setMovementMethod(LinkMovementMethod.getInstance());
         notice.setVisibility(View.VISIBLE);
     }
