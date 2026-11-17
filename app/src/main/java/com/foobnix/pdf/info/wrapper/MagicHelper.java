@@ -512,7 +512,7 @@ public class MagicHelper {
     }
 
     /**
-     * Musician's mode: the dotted lines round the tap zones, the speed bar and the bookmarks, in
+     * Musician's mode: its buttons' rounds, the tap zones, the speed bar and the bookmarks, in
      * the colour chosen for day or night - the book's text colour until one is.
      */
     public static int getMusicColor() {

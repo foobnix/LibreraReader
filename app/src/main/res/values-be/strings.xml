@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Ігнараваць метададзеныя (адлюстроўваць толькі імёны файлаў)</string>
    <string name="use_fingerprint_as_the_password">Дазволіць аўтэнтыфікацыю па адбітках пальцаў</string>
    <string name="show_tap_zones_on_screen">Пазначыць зоны крана (пункцірная лінія)</string>
-   <string name="show_the_last_page_with_the_red_line">Пазначыць апошнюю старонку чырвонымі палоскамі</string>
+   <string name="show_the_last_page_with_the_red_line">Пазначаць апошнюю старонку палосамі</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Вылучыць падзельнікі старонак</string>
    <string name="clear_log">Ачысціць часопіс</string>
    <string name="floating_bookmark">Які плавае</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Дадаць на галоўны экран</string>
    <string name="not_supported">Не падтрымліваецца</string>
    <string name="update_to_new_app">Калі ласка, перайдзіце на нашу новую сучасную праграму %1$s або %2$s</string>
+   <string name="button_size">Памер кнопкі</string>
+   <string name="tap_zone_style">Выгляд зон націску</string>
+   <string name="tap_zones_filled">Залітыя</string>
+   <string name="tap_zones_dotted">Пункцірная мяжа</string>
+   <string name="speed_bar">Паласа хуткасці</string>
+   <string name="tap_zones">Зоны націску</string>
+   <string name="scrolling">Пракрутка</string>
+   <string name="paused">Паўза</string>
+   <string name="tap_zones_drag_note">* Зоны націску можна перацягваць і змяняць іх памер падчас паўзы</string>
+   <string name="show_close_button">Паказваць кнопку закрыцця</string>
 </resources>

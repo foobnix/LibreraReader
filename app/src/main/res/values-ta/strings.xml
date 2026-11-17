@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">மெட்டாடேட்டாவை புறக்கணிக்கவும் (கோப்பு பெயர்களை மட்டும் காண்பி)</string>
    <string name="use_fingerprint_as_the_password">கைரேகை அங்கீகாரத்தை அனுமதிக்கவும்</string>
    <string name="show_tap_zones_on_screen">மண்டலங்களைக் குறிக்கவும் (புள்ளியிடப்பட்ட வரி</string>
-   <string name="show_the_last_page_with_the_red_line">கடைசி பக்கத்தை சிவப்பு கோடுகளுடன் குறிக்கவும்</string>
+   <string name="show_the_last_page_with_the_red_line">கடைசிப் பக்கத்தைப் பட்டைகளால் குறி</string>
    <string name="show_dividing_lines_on_pages_more_contrast">பக்க பிரிப்பான்களை முன்னிலைப்படுத்தவும்</string>
    <string name="clear_log">பதிவுகளை அழி</string>
    <string name="floating_bookmark">மிதக்கும் புத்தககுற</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">முகப்புத் திரையில் சேர்</string>
    <string name="not_supported">ஆதரிக்கப்படவில்லை</string>
    <string name="update_to_new_app">எங்கள் புதிய நவீன பயன்பாடான %1$s அல்லது %2$s க்கு மாறவும்</string>
+   <string name="button_size">பொத்தானின் அளவு</string>
+   <string name="tap_zone_style">தட்டும் பகுதிகளின் பாணி</string>
+   <string name="tap_zones_filled">நிரப்பப்பட்டது</string>
+   <string name="tap_zones_dotted">புள்ளியிட்ட எல்லை</string>
+   <string name="speed_bar">வேகப் பட்டி</string>
+   <string name="tap_zones">தட்டும் பகுதிகள்</string>
+   <string name="scrolling">உருட்டும்போது</string>
+   <string name="paused">இடைநிறுத்தம்</string>
+   <string name="tap_zones_drag_note">* இடைநிறுத்தத்தில் தட்டும் பகுதிகளை இழுக்கவும் அளவை மாற்றவும் முடியும்</string>
+   <string name="show_close_button">மூடு பொத்தானைக் காட்டு</string>
 </resources>

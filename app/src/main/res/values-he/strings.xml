@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">להציג שמות קבצים מקוריים (ללא מטה-נתונים)</string>
    <string name="use_fingerprint_as_the_password">השתמש בטביעת אצבע כסיסמה</string>
    <string name="show_tap_zones_on_screen">הצג אזורי ברז על המסך</string>
-   <string name="show_the_last_page_with_the_red_line">הצג את העמוד האחרון עם הקו האדום</string>
+   <string name="show_the_last_page_with_the_red_line">סמן את העמוד האחרון בפסים</string>
    <string name="show_dividing_lines_on_pages_more_contrast">הצג שורות המפרידות על דפים יותר ניגודיות</string>
    <string name="clear_log">יומן ברור</string>
    <string name="floating_bookmark">סימניה צף</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">הוספה למסך הבית</string>
    <string name="not_supported">לא נתמך</string>
    <string name="update_to_new_app">אנא עברו לאפליקציה החדשה והמודרנית שלנו %1$s או %2$s</string>
+   <string name="button_size">גודל הכפתור</string>
+   <string name="tap_zone_style">סגנון אזורי הקשה</string>
+   <string name="tap_zones_filled">מלאים</string>
+   <string name="tap_zones_dotted">מסגרת מנוקדת</string>
+   <string name="speed_bar">סרגל מהירות</string>
+   <string name="tap_zones">אזורי הקשה</string>
+   <string name="scrolling">בגלילה</string>
+   <string name="paused">מושהה</string>
+   <string name="tap_zones_drag_note">* ניתן לגרור את אזורי ההקשה ולשנות את גודלם בזמן השהיה</string>
+   <string name="show_close_button">הצג כפתור סגירה</string>
 </resources>

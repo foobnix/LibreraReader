@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Rodyti originalius failų pavadinimus (be metaduomenų)</string>
    <string name="use_fingerprint_as_the_password">Naudoti slaptažodį kaip slaptažodį</string>
    <string name="show_tap_zones_on_screen">Rodyti ekrano zonose</string>
-   <string name="show_the_last_page_with_the_red_line">Rodyti paskutinį puslapį su raudona linija</string>
+   <string name="show_the_last_page_with_the_red_line">Pažymėti paskutinį puslapį juostomis</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Rodyti skirtingas linijas puslapiuose, daugiau kontrasto</string>
    <string name="clear_log">Aiškus žurnalas</string>
    <string name="floating_bookmark">Plaukiojanti žyma</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Pridėti prie pradžios ekrano</string>
    <string name="not_supported">Nepalaikoma</string>
    <string name="update_to_new_app">Pereikite prie mūsų naujos modernios programėlės %1$s arba %2$s</string>
+   <string name="button_size">Mygtuko dydis</string>
+   <string name="tap_zone_style">Palietimo zonų stilius</string>
+   <string name="tap_zones_filled">Užpildytos</string>
+   <string name="tap_zones_dotted">Taškuotas kraštas</string>
+   <string name="speed_bar">Greičio juosta</string>
+   <string name="tap_zones">Palietimo zonos</string>
+   <string name="scrolling">Slenkant</string>
+   <string name="paused">Pristabdyta</string>
+   <string name="tap_zones_drag_note">* Pristabdžius palietimo zonas galima tempti ir keisti jų dydį</string>
+   <string name="show_close_button">Rodyti uždarymo mygtuką</string>
 </resources>

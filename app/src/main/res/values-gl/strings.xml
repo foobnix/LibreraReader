@@ -601,7 +601,7 @@
    <string name="display_original_file_names_without_metadata">Ignorar metadatos (amosar só nomes de ficheiro)</string>
    <string name="use_fingerprint_as_the_password">Permitir autenticación por pegada dixital</string>
    <string name="show_tap_zones_on_screen">Indicar zonas de toque (liña de puntos)</string>
-   <string name="show_the_last_page_with_the_red_line">Marcar última páxina con liña vermella</string>
+   <string name="show_the_last_page_with_the_red_line">Marcar a última páxina con franxas</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Resaltar separadores de páxina</string>
    <string name="clear_log">Limpar rexistro</string>
    <string name="floating_bookmark">Flotante</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Engadir á pantalla de inicio</string>
    <string name="not_supported">Non compatible</string>
    <string name="update_to_new_app">Actualiza á nosa nova aplicación moderna %1$s ou %2$s</string>
+   <string name="button_size">Tamaño do botón</string>
+   <string name="tap_zone_style">Estilo das zonas táctiles</string>
+   <string name="tap_zones_filled">Enchidas</string>
+   <string name="tap_zones_dotted">Bordo punteado</string>
+   <string name="speed_bar">Barra de velocidade</string>
+   <string name="tap_zones">Zonas táctiles</string>
+   <string name="scrolling">Desprazando</string>
+   <string name="paused">En pausa</string>
+   <string name="tap_zones_drag_note">* As zonas táctiles pódense arrastrar e redimensionar en pausa</string>
+   <string name="show_close_button">Amosar o botón de pechar</string>
 </resources>

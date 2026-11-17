@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Exibir nomes de arquivos originais (sem metadados)</string>
    <string name="use_fingerprint_as_the_password">Usar impressão digital como senha</string>
    <string name="show_tap_zones_on_screen">Mostre as Zonas de toque na tela</string>
-   <string name="show_the_last_page_with_the_red_line">Mostre a última página com a linha vermelha</string>
+   <string name="show_the_last_page_with_the_red_line">Marcar a última página com faixas</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Mostra linhas divisórias em páginas com mais contraste</string>
    <string name="clear_log">Limpar logs</string>
    <string name="floating_bookmark">Marcador flutuante</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Adicionar à tela inicial</string>
    <string name="not_supported">Não suportado</string>
    <string name="update_to_new_app">Atualize para o nosso novo app moderno %1$s ou %2$s</string>
+   <string name="button_size">Tamanho do botão</string>
+   <string name="tap_zone_style">Estilo das zonas de toque</string>
+   <string name="tap_zones_filled">Preenchidas</string>
+   <string name="tap_zones_dotted">Borda pontilhada</string>
+   <string name="speed_bar">Barra de velocidade</string>
+   <string name="tap_zones">Zonas de toque</string>
+   <string name="scrolling">Rolando</string>
+   <string name="paused">Pausado</string>
+   <string name="tap_zones_drag_note">* As zonas de toque podem ser arrastadas e redimensionadas quando pausado</string>
+   <string name="show_close_button">Mostrar o botão de fechar</string>
 </resources>

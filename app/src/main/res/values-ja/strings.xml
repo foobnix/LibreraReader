@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">元のファイル名を表示する（メタデータなしで）</string>
    <string name="use_fingerprint_as_the_password">パスワードとして指紋を使う</string>
    <string name="show_tap_zones_on_screen">画面にタップゾーンを表示する</string>
-   <string name="show_the_last_page_with_the_red_line">最後のページに赤い線を表示する</string>
+   <string name="show_the_last_page_with_the_red_line">最後のページを縞で示す</string>
    <string name="show_dividing_lines_on_pages_more_contrast">ページ境界線を表示する</string>
    <string name="clear_log">クリアログ</string>
    <string name="floating_bookmark">フローティングブックマーク</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">ホーム画面に追加</string>
    <string name="not_supported">非対応</string>
    <string name="update_to_new_app">新しいモダンなアプリ %1$s または %2$s に移行してください</string>
+   <string name="button_size">ボタンのサイズ</string>
+   <string name="tap_zone_style">タップゾーンのスタイル</string>
+   <string name="tap_zones_filled">塗りつぶし</string>
+   <string name="tap_zones_dotted">点線の枠</string>
+   <string name="speed_bar">速度バー</string>
+   <string name="tap_zones">タップゾーン</string>
+   <string name="scrolling">スクロール中</string>
+   <string name="paused">一時停止中</string>
+   <string name="tap_zones_drag_note">* 一時停止中はタップゾーンをドラッグしてサイズを変更できます</string>
+   <string name="show_close_button">閉じるボタンを表示</string>
 </resources>

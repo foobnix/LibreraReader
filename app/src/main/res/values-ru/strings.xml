@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Отображать оригинальные имена файлов (без обращения к метаданным)</string>
    <string name="use_fingerprint_as_the_password">Использовать отпечаток пальца в качестве пароля</string>
    <string name="show_tap_zones_on_screen">Показывать и использовать наэкранные тап-зоны</string>
-   <string name="show_the_last_page_with_the_red_line">Чертить красную линию после самой последней страницы</string>
+   <string name="show_the_last_page_with_the_red_line">Отмечать последнюю страницу полосами</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Обозначать межстраничные разделительные линии более контрастно</string>
    <string name="clear_log">Очистить журнал событий</string>
    <string name="floating_bookmark">"Плавающая" закладка</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Добавить на главный экран</string>
    <string name="not_supported">Не поддерживается</string>
    <string name="update_to_new_app">Пожалуйста, перейдите на наше новое современное приложение %1$s или %2$s</string>
+   <string name="button_size">Размер кнопки</string>
+   <string name="tap_zone_style">Вид зон нажатия</string>
+   <string name="tap_zones_filled">Залитые</string>
+   <string name="tap_zones_dotted">Пунктирная рамка</string>
+   <string name="speed_bar">Полоса скорости</string>
+   <string name="tap_zones">Зоны нажатия</string>
+   <string name="scrolling">Прокрутка</string>
+   <string name="paused">Пауза</string>
+   <string name="tap_zones_drag_note">* Зоны нажатия можно перетаскивать и менять их размер во время паузы</string>
+   <string name="show_close_button">Показывать кнопку закрытия</string>
 </resources>

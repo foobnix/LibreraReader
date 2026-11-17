@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Originele bestandsnamen weergeven (zonder metagegevens)</string>
    <string name="use_fingerprint_as_the_password">Gebruik vingerafdruk als wachtwoord</string>
    <string name="show_tap_zones_on_screen">Toon tikzones op het scherm</string>
-   <string name="show_the_last_page_with_the_red_line">Toon de laatste pagina met de rode lijn</string>
+   <string name="show_the_last_page_with_the_red_line">Laatste pagina markeren met strepen</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Toon scheidslijnen op pagina\'s meer contrast</string>
    <string name="clear_log">Logboek opschonen</string>
    <string name="floating_bookmark">Zwevende bladwijzer</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Toevoegen aan startscherm</string>
    <string name="not_supported">Niet ondersteund</string>
    <string name="update_to_new_app">Stap over op onze nieuwe, moderne app %1$s of %2$s</string>
+   <string name="button_size">Knopgrootte</string>
+   <string name="tap_zone_style">Stijl van tikzones</string>
+   <string name="tap_zones_filled">Gevuld</string>
+   <string name="tap_zones_dotted">Gestippelde rand</string>
+   <string name="speed_bar">Snelheidsbalk</string>
+   <string name="tap_zones">Tikzones</string>
+   <string name="scrolling">Scrollen</string>
+   <string name="paused">Gepauzeerd</string>
+   <string name="tap_zones_drag_note">* Tikzones kunnen tijdens pauze worden versleept en van grootte veranderd</string>
+   <string name="show_close_button">Sluitknop tonen</string>
 </resources>

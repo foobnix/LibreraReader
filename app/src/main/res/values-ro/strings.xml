@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Afișați nume de fișier originale (fără metadate)</string>
    <string name="use_fingerprint_as_the_password">Utilizați amprenta ca parolă</string>
    <string name="show_tap_zones_on_screen">Afișați zonele de atingere pe ecran</string>
-   <string name="show_the_last_page_with_the_red_line">Afișați ultima pagină cu linia roșie</string>
+   <string name="show_the_last_page_with_the_red_line">Marchează ultima pagină cu dungi</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Afișarea liniilor de divizare pe pagini mai mult contrast</string>
    <string name="clear_log">Curăță Jurnalul</string>
    <string name="floating_bookmark">Marcaj plutitor</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Adaugă pe ecranul de pornire</string>
    <string name="not_supported">Neacceptat</string>
    <string name="update_to_new_app">Treceți la noua noastră aplicație modernă %1$s sau %2$s</string>
+   <string name="button_size">Dimensiunea butonului</string>
+   <string name="tap_zone_style">Stilul zonelor de atingere</string>
+   <string name="tap_zones_filled">Umplute</string>
+   <string name="tap_zones_dotted">Contur punctat</string>
+   <string name="speed_bar">Bara de viteză</string>
+   <string name="tap_zones">Zone de atingere</string>
+   <string name="scrolling">Derulare</string>
+   <string name="paused">În pauză</string>
+   <string name="tap_zones_drag_note">* Zonele de atingere pot fi trase și redimensionate în pauză</string>
+   <string name="show_close_button">Afișează butonul de închidere</string>
 </resources>

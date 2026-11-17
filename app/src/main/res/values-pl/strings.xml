@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Wyświetl oryginalne nazwy plików (bez metadanych)</string>
    <string name="use_fingerprint_as_the_password">Użyj odcisku palca jako hasła</string>
    <string name="show_tap_zones_on_screen">Wskaż strefy tapnięcia (linia przerywana)</string>
-   <string name="show_the_last_page_with_the_red_line">Pokaż ostatnią stronę czerwoną linią</string>
+   <string name="show_the_last_page_with_the_red_line">Oznacz ostatnią stronę paskami</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Wyróżnij separatory stron</string>
    <string name="clear_log">Wyczyść log</string>
    <string name="floating_bookmark">Pływająca zakładka</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Dodaj do ekranu głównego</string>
    <string name="not_supported">Nieobsługiwane</string>
    <string name="update_to_new_app">Przejdź na naszą nową, nowoczesną aplikację %1$s lub %2$s</string>
+   <string name="button_size">Rozmiar przycisku</string>
+   <string name="tap_zone_style">Styl stref dotyku</string>
+   <string name="tap_zones_filled">Wypełnione</string>
+   <string name="tap_zones_dotted">Kropkowana ramka</string>
+   <string name="speed_bar">Pasek prędkości</string>
+   <string name="tap_zones">Strefy dotyku</string>
+   <string name="scrolling">Przewijanie</string>
+   <string name="paused">Wstrzymane</string>
+   <string name="tap_zones_drag_note">* Strefy dotyku można przeciągać i zmieniać ich rozmiar podczas wstrzymania</string>
+   <string name="show_close_button">Pokaż przycisk zamykania</string>
 </resources>

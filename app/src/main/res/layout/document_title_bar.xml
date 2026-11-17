@@ -42,6 +42,23 @@
             android:textSize="16sp"
             android:textStyle="normal" />
 
+        <!-- Musician's mode with the panels up: a round button as tall as its name, beside it,
+             that opens the mode's own settings. -->
+        <ImageView
+            android:id="@+id/musicSettings"
+            android:layout_width="36dip"
+            android:layout_height="36dip"
+            android:layout_marginTop="6dip"
+            android:layout_marginRight="4dip"
+            android:layout_marginBottom="6dip"
+            android:layout_weight="0"
+            android:background="@drawable/bg_button_outline"
+            android:contentDescription="@string/mode_musician"
+            android:padding="7dip"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_music_note"
+            android:visibility="gone" />
+
         <LinearLayout
             android:id="@+id/titleBar"
             android:layout_width="0dip"

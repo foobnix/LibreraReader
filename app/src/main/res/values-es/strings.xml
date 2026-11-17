@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Mostrar nombres de archivos originales (sin metadatos)</string>
    <string name="use_fingerprint_as_the_password">Autenticar con huella dactilar</string>
    <string name="show_tap_zones_on_screen">Mostrar zonas de toque en la pantalla</string>
-   <string name="show_the_last_page_with_the_red_line">Mostrar la última página con una línea roja</string>
+   <string name="show_the_last_page_with_the_red_line">Marcar la última página con franjas</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Resaltar líneas divisorias.</string>
    <string name="clear_log">Borrar registro</string>
    <string name="floating_bookmark">Marcador flotante</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Añadir a la pantalla de inicio</string>
    <string name="not_supported">No compatible</string>
    <string name="update_to_new_app">Actualiza a nuestra nueva aplicación moderna %1$s o %2$s</string>
+   <string name="button_size">Tamaño del botón</string>
+   <string name="tap_zone_style">Estilo de las zonas táctiles</string>
+   <string name="tap_zones_filled">Rellenas</string>
+   <string name="tap_zones_dotted">Borde punteado</string>
+   <string name="speed_bar">Barra de velocidad</string>
+   <string name="tap_zones">Zonas táctiles</string>
+   <string name="scrolling">Desplazando</string>
+   <string name="paused">En pausa</string>
+   <string name="tap_zones_drag_note">* Las zonas táctiles se pueden arrastrar y redimensionar en pausa</string>
+   <string name="show_close_button">Mostrar el botón de cerrar</string>
 </resources>

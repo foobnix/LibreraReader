@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Αγνοήστε τα μεταδεδομένα (μόνο τα ονόματα αρχείων εμφάνισης)</string>
    <string name="use_fingerprint_as_the_password">Επιτρέψτε τον έλεγχο ταυτότητας δακτυλικών αποτυπωμάτων</string>
    <string name="show_tap_zones_on_screen">Υποδείξτε ζώνες βρύσης (διακεκομμένη γραμμή)</string>
-   <string name="show_the_last_page_with_the_red_line">Επισημάνετε την τελευταία σελίδα με κόκκινες ρίγες</string>
+   <string name="show_the_last_page_with_the_red_line">Σήμανση της τελευταίας σελίδας με λωρίδες</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Επισημάνετε διαχωριστικά σελίδων</string>
    <string name="clear_log">Καθαρό ημερολόγιο</string>
    <string name="floating_bookmark">Επιπλέων</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Προσθήκη στην αρχική οθόνη</string>
    <string name="not_supported">Δεν υποστηρίζεται</string>
    <string name="update_to_new_app">Παρακαλούμε μεταβείτε στη νέα σύγχρονη εφαρμογή μας %1$s ή %2$s</string>
+   <string name="button_size">Μέγεθος κουμπιού</string>
+   <string name="tap_zone_style">Στυλ ζωνών αφής</string>
+   <string name="tap_zones_filled">Γεμάτες</string>
+   <string name="tap_zones_dotted">Διάστικτο περίγραμμα</string>
+   <string name="speed_bar">Γραμμή ταχύτητας</string>
+   <string name="tap_zones">Ζώνες αφής</string>
+   <string name="scrolling">Κύλιση</string>
+   <string name="paused">Σε παύση</string>
+   <string name="tap_zones_drag_note">* Οι ζώνες αφής μπορούν να μετακινηθούν και να αλλάξουν μέγεθος σε παύση</string>
+   <string name="show_close_button">Εμφάνιση κουμπιού κλεισίματος</string>
 </resources>

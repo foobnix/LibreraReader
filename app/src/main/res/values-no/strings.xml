@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Vis originale filnavn (uten metadata)</string>
    <string name="use_fingerprint_as_the_password">Bruk fingeravtrykk som passord</string>
    <string name="show_tap_zones_on_screen">Vis trykksoner på skjermen</string>
-   <string name="show_the_last_page_with_the_red_line">Vis den siste siden med den røde linjen</string>
+   <string name="show_the_last_page_with_the_red_line">Merk siste side med striper</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Vis delelinjer på sider mer kontrast</string>
    <string name="clear_log">Tøm Logg</string>
    <string name="floating_bookmark">Flytende bokmerke</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Legg til på startskjermen</string>
    <string name="not_supported">Støttes ikke</string>
    <string name="update_to_new_app">Bytt til vår nye, moderne app %1$s eller %2$s</string>
+   <string name="button_size">Knappestørrelse</string>
+   <string name="tap_zone_style">Stil for trykksoner</string>
+   <string name="tap_zones_filled">Fylt</string>
+   <string name="tap_zones_dotted">Prikket kant</string>
+   <string name="speed_bar">Hastighetslinje</string>
+   <string name="tap_zones">Trykksoner</string>
+   <string name="scrolling">Ruller</string>
+   <string name="paused">Satt på pause</string>
+   <string name="tap_zones_drag_note">* Trykksonene kan dras og endre størrelse mens de er satt på pause</string>
+   <string name="show_close_button">Vis lukkeknappen</string>
 </resources>

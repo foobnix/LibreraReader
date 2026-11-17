@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Игнорирайте метаданните (само показвате имена на файлове)</string>
    <string name="use_fingerprint_as_the_password">Позволяват удостоверяване на пръстови отпечатъци</string>
    <string name="show_tap_zones_on_screen">Посочете зони за докосване (пунктирана линия)</string>
-   <string name="show_the_last_page_with_the_red_line">Маркирайте последната страница с червени ивици</string>
+   <string name="show_the_last_page_with_the_red_line">Отбелязване на последната страница с ивици</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Подчертайте разделителите на страниците</string>
    <string name="clear_log">Чист дневник</string>
    <string name="floating_bookmark">Плаващ</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Добавяне към началния екран</string>
    <string name="not_supported">Не се поддържа</string>
    <string name="update_to_new_app">Моля, преминете към новото ни модерно приложение %1$s или %2$s</string>
+   <string name="button_size">Размер на бутона</string>
+   <string name="tap_zone_style">Стил на зоните за докосване</string>
+   <string name="tap_zones_filled">Запълнени</string>
+   <string name="tap_zones_dotted">Пунктирна рамка</string>
+   <string name="speed_bar">Лента за скорост</string>
+   <string name="tap_zones">Зони за докосване</string>
+   <string name="scrolling">Превъртане</string>
+   <string name="paused">Пауза</string>
+   <string name="tap_zones_drag_note">* Зоните за докосване могат да се местят и преоразмеряват по време на пауза</string>
+   <string name="show_close_button">Показване на бутона за затваряне</string>
 </resources>

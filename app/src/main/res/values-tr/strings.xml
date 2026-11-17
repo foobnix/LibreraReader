@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Orijinal dosya adlarını göster (meta veri olmadan)</string>
    <string name="use_fingerprint_as_the_password">Şifre olarak parmak izi kullan</string>
    <string name="show_tap_zones_on_screen">Dokunma bölgelerini ekranda göster</string>
-   <string name="show_the_last_page_with_the_red_line">Son sayfayı kırmızı çizgiyle göster</string>
+   <string name="show_the_last_page_with_the_red_line">Son sayfayı şeritlerle işaretle</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Sayfalarda daha fazla kontrast çizgileri göster</string>
    <string name="clear_log">Günlüğü temizle</string>
    <string name="floating_bookmark">Kayan yer imi</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Ana ekrana ekle</string>
    <string name="not_supported">Desteklenmiyor</string>
    <string name="update_to_new_app">Lütfen yeni ve modern uygulamamız %1$s veya %2$s uygulamasına geçin</string>
+   <string name="button_size">Düğme boyutu</string>
+   <string name="tap_zone_style">Dokunma alanı stili</string>
+   <string name="tap_zones_filled">Dolu</string>
+   <string name="tap_zones_dotted">Noktalı kenarlık</string>
+   <string name="speed_bar">Hız çubuğu</string>
+   <string name="tap_zones">Dokunma alanları</string>
+   <string name="scrolling">Kaydırırken</string>
+   <string name="paused">Duraklatıldı</string>
+   <string name="tap_zones_drag_note">* Dokunma alanları duraklatıldığında sürüklenebilir ve yeniden boyutlandırılabilir</string>
+   <string name="show_close_button">Kapat düğmesini göster</string>
 </resources>

@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Display original file nomina (sine metadata)</string>
    <string name="use_fingerprint_as_the_password">Uti fingerprints et password</string>
    <string name="show_tap_zones_on_screen">ICTUS sapien ostendit in screen,</string>
-   <string name="show_the_last_page_with_the_red_line">Postremo ostendere aciem rubia page</string>
+   <string name="show_the_last_page_with_the_red_line">Notare paginam ultimam lineis</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Dividentes vero ostendit lineae in plures paginas</string>
    <string name="clear_log">Patet iniuriarum</string>
    <string name="floating_bookmark">Top fluens,</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Adde ad tabulam primariam</string>
    <string name="not_supported">Non sustinetur</string>
    <string name="update_to_new_app">Quaesumus, ad novam nostram applicationem modernam %1$s vel %2$s transi</string>
+   <string name="button_size">Magnitudo globuli</string>
+   <string name="tap_zone_style">Species zonarum tactus</string>
+   <string name="tap_zones_filled">Plenae</string>
+   <string name="tap_zones_dotted">Margo punctatus</string>
+   <string name="speed_bar">Vectis celeritatis</string>
+   <string name="tap_zones">Zonae tactus</string>
+   <string name="scrolling">Volvens</string>
+   <string name="paused">Intermissum</string>
+   <string name="tap_zones_drag_note">* Zonae tactus, dum intermissum est, trahi et magnitudine mutari possunt</string>
+   <string name="show_close_button">Monstrare globulum claudendi</string>
 </resources>

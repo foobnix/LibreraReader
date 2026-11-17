@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">원본 파일 이름 표시 (메타 정보 무시)</string>
    <string name="use_fingerprint_as_the_password">지문 인중 사용</string>
    <string name="show_tap_zones_on_screen">화면에 탭 영역 표시</string>
-   <string name="show_the_last_page_with_the_red_line">빨간색 선으로 마지막 페이지 표시</string>
+   <string name="show_the_last_page_with_the_red_line">마지막 페이지를 줄무늬로 표시</string>
    <string name="show_dividing_lines_on_pages_more_contrast">페이지 구분 선 강조</string>
    <string name="clear_log">로그 지우기</string>
    <string name="floating_bookmark">떠있는 북마크</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">홈 화면에 추가</string>
    <string name="not_supported">지원되지 않음</string>
    <string name="update_to_new_app">새로운 최신 앱 %1$s 또는 %2$s(으)로 업데이트하세요</string>
+   <string name="button_size">버튼 크기</string>
+   <string name="tap_zone_style">탭 영역 스타일</string>
+   <string name="tap_zones_filled">채우기</string>
+   <string name="tap_zones_dotted">점선 테두리</string>
+   <string name="speed_bar">속도 막대</string>
+   <string name="tap_zones">탭 영역</string>
+   <string name="scrolling">스크롤 중</string>
+   <string name="paused">일시 정지</string>
+   <string name="tap_zones_drag_note">* 일시 정지 중에는 탭 영역을 끌어서 옮기고 크기를 바꿀 수 있습니다</string>
+   <string name="show_close_button">닫기 버튼 표시</string>
 </resources>

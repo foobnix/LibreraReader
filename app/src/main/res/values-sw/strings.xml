@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Onyesha majina ya faili ya awali (bila metadata)</string>
    <string name="use_fingerprint_as_the_password">Tumia alama za kidole kama nenosiri</string>
    <string name="show_tap_zones_on_screen">Onyesha kanda za bomba kwenye skrini</string>
-   <string name="show_the_last_page_with_the_red_line">Onyesha ukurasa wa mwisho na mstari mwekundu</string>
+   <string name="show_the_last_page_with_the_red_line">Weka alama ukurasa wa mwisho kwa mistari</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Onyesha mistari ya kugawa kwenye kurasa tofauti zaidi</string>
    <string name="clear_log">Logi wazi</string>
    <string name="floating_bookmark">Alama ya kugeuka</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Ongeza kwenye skrini ya mwanzo</string>
    <string name="not_supported">Haitumiki</string>
    <string name="update_to_new_app">Tafadhali hamia programu yetu mpya ya kisasa %1$s au %2$s</string>
+   <string name="button_size">Ukubwa wa kitufe</string>
+   <string name="tap_zone_style">Mtindo wa maeneo ya kugusa</string>
+   <string name="tap_zones_filled">Yaliyojazwa</string>
+   <string name="tap_zones_dotted">Mpaka wa nukta</string>
+   <string name="speed_bar">Upau wa kasi</string>
+   <string name="tap_zones">Maeneo ya kugusa</string>
+   <string name="scrolling">Inasogeza</string>
+   <string name="paused">Imesitishwa</string>
+   <string name="tap_zones_drag_note">* Maeneo ya kugusa yanaweza kuburutwa na kubadilishwa ukubwa yakiwa yamesitishwa</string>
+   <string name="show_close_button">Onyesha kitufe cha kufunga</string>
 </resources>

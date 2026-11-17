@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Ignorovat metadata (zobrazit pouze názvy souborů)</string>
    <string name="use_fingerprint_as_the_password">Povolit  ověřování pomocí otisku prstu</string>
    <string name="show_tap_zones_on_screen">Vykreslit oblasti poklepu (tečkovaná čára)</string>
-   <string name="show_the_last_page_with_the_red_line">Označit poslední stránku červenými pruhy</string>
+   <string name="show_the_last_page_with_the_red_line">Označit poslední stránku pruhy</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Zvýraznit oddělovače stránek</string>
    <string name="clear_log">Vymazat protokol</string>
    <string name="floating_bookmark">Plovoucí</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Přidat na plochu</string>
    <string name="not_supported">Nepodporováno</string>
    <string name="update_to_new_app">Přejděte prosím na naši novou moderní aplikaci %1$s nebo %2$s</string>
+   <string name="button_size">Velikost tlačítka</string>
+   <string name="tap_zone_style">Styl dotykových zón</string>
+   <string name="tap_zones_filled">Vyplněné</string>
+   <string name="tap_zones_dotted">Tečkovaný okraj</string>
+   <string name="speed_bar">Lišta rychlosti</string>
+   <string name="tap_zones">Dotykové zóny</string>
+   <string name="scrolling">Posouvání</string>
+   <string name="paused">Pozastaveno</string>
+   <string name="tap_zones_drag_note">* Dotykové zóny lze při pozastavení přetahovat a měnit jejich velikost</string>
+   <string name="show_close_button">Zobrazit tlačítko zavřít</string>
 </resources>

@@ -48,7 +48,10 @@ import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.OutlineHelper.Info;
+import android.graphics.drawable.ClipDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.PorterDuffColorFilter;
 import com.foobnix.pdf.info.R;
@@ -278,7 +281,7 @@ public class DocumentWrapperUI {
     };
     ImageView pagesBookmark;
     View line1, line2, lineFirst, lineClose, closeTop, musicButtonPanel, parentParent, documentTitleBar, musicSeekRow, tapZones;
-    ImageView musicClose;
+    ImageView musicClose, musicSettings;
     SeekBar musicSeekBar;
     TextView musicCurrent, musicMax;
     TTSControlsView ttsActive;
@@ -888,22 +891,21 @@ public class DocumentWrapperUI {
         }
 
         layoutTapZones();
-        // Out of sight while the music scrolls, though a tap on one still turns the page
-        line1.setAlpha(AppState.get().isAutoScroll ? 0f : 1f);
-        line2.setAlpha(AppState.get().isAutoScroll ? 0f : 1f);
+        // Out of sight while the music scrolls or while it is paused, as asked, or always, though
+        // a tap on one still turns the page
+        final boolean zonesHidden = !AppState.get().isShowRectangularTapZones
+                || (AppState.get().isAutoScroll ? !AppState.get().isShowMusicTapZonesScrolling
+                : !AppState.get().isShowMusicTapZonesPaused);
+        fadeTo(line1, zonesHidden ? 0f : 1f);
+        fadeTo(line2, zonesHidden ? 0f : 1f);
 
     }
 
     public void hideShowPrevNext() {
+        // Musician's tap zones are always there to tap, seen or not: updateUI shows or hides them
         if (dc.isMusicianMode()) {
-            if (AppState.get().isShowRectangularTapZones) {
-                line1.setVisibility(View.VISIBLE);
-                line2.setVisibility(View.VISIBLE);
-            } else {
-                line1.setVisibility(View.GONE);
-                line2.setVisibility(View.GONE);
-
-            }
+            line1.setVisibility(View.VISIBLE);
+            line2.setVisibility(View.VISIBLE);
         }
     }
 
@@ -1149,6 +1151,8 @@ public class DocumentWrapperUI {
         musicClose = a.findViewById(R.id.musicClose);
         musicClose.setOnClickListener(onClose);
         musicClose.setOnLongClickListener(onCloseLongClick);
+        musicSettings = a.findViewById(R.id.musicSettings);
+        musicSettings.setOnClickListener(v -> DragingDialogs.dialogMusicianSettings(anchor, dc, onRefresh));
 
         lineFirst = a.findViewById(R.id.lineFirst);
         lineFirst.setOnClickListener(onGoToPAge1);
@@ -1404,16 +1408,16 @@ public class DocumentWrapperUI {
         TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar1), AppState.get().transparencyUI);
         // The name of the mode is set in the colour the book's own title beside it is, rather
         // than in a white of its own.
-        lirbiLogo.setTextColor(MagicHelper.getTextOrIconColor());
-        musicClose.setImageTintList(ColorStateList.valueOf(lirbiLogo.getCurrentTextColor()));
         paintMusicButtons();
-        // The close button is a circle as tall as the mode's name beside it
+        // The close and settings buttons are circles as tall as the mode's name beside them
         lirbiLogo.addOnLayoutChangeListener((v, l, t, r, b, ol, ot, or, ob) -> {
             final int size = b - t;
-            final ViewGroup.LayoutParams lp = musicClose.getLayoutParams();
-            if (size > 0 && (lp.width != size || lp.height != size)) {
-                lp.width = lp.height = size;
-                musicClose.post(() -> musicClose.setLayoutParams(lp));
+            for (final View round : new View[]{musicClose, musicSettings}) {
+                final ViewGroup.LayoutParams lp = round.getLayoutParams();
+                if (size > 0 && (lp.width != size || lp.height != size)) {
+                    lp.width = lp.height = size;
+                    round.post(() -> round.setLayoutParams(lp));
+                }
             }
             // The slider between them as tall as well
             final ViewGroup.LayoutParams row = musicSeekRow.getLayoutParams();
@@ -1531,6 +1535,20 @@ public class DocumentWrapperUI {
         batteryLevel.setTextSize(titleTextSize);
         reverseKeysIndicator.setTextSize(titleTextSize);
         lirbiLogo.setTextSize(titleTextSize);
+        // Musician's name button, and the round buttons and slider that take its height, in
+        // the size chosen for them
+        if (dc.isMusicianMode()) {
+            final float scale = musicButtonScale();
+            lirbiLogo.setTextSize(titleTextSize * scale);
+            lirbiLogo.getLayoutParams().height = Dips.dpToPx(Math.round(32 * scale));
+            final int side = Dips.dpToPx(Math.round(16 * scale));
+            lirbiLogo.setPadding(side, 0, side, 0);
+            final int inner = Dips.dpToPx(Math.round(7 * scale));
+            musicSettings.setPadding(inner, inner, inner, inner);
+            final int close = Dips.dpToPx(Math.round(8 * scale));
+            musicClose.setPadding(close, close, close, close);
+            lirbiLogo.requestLayout();
+        }
 
         int iconSize = Dips.spToPx(titleTextSize);
 
@@ -1567,7 +1585,17 @@ public class DocumentWrapperUI {
             // The speed bar over the page is as see-through as the panels
             seekSpeedLayot.setAlpha(AppState.get().transparencyUI / 255f);
             int tintColor = MagicHelper.getMusicColor();
-            speedSeekBar.getProgressDrawable().mutate().setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
+            if (dc.isMusicianMode()) {
+                // Its centre line as wide as the lines across it: the system's track keeps 2dp
+                // however tall the bar is let be, so it has one of its own
+                speedSeekBar.setProgressDrawable(speedTrack(tintColor, Dips.dpToPx(AppState.get().musicSpeedLineWidth)));
+                // The theme's tint would paint the passed part over in its own colour; the rest
+                // keeps its faintness under a tint of the same colour
+                speedSeekBar.setProgressTintList(ColorStateList.valueOf(tintColor));
+                speedSeekBar.setProgressBackgroundTintList(ColorStateList.valueOf(tintColor));
+            } else {
+                speedSeekBar.getProgressDrawable().mutate().setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
+            }
 
             speedSeekBar.getThumb().setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
 
@@ -1582,6 +1610,9 @@ public class DocumentWrapperUI {
             SpeedBgView speedBg = dc.getActivity().findViewById(R.id.speedBgView1);
             if (speedBg != null) {
                 speedBg.setBorderColor(tintColor);
+                if (dc.isMusicianMode()) {
+                    speedBg.setLineWidth(Dips.dpToPx(AppState.get().musicSpeedLineWidth));
+                }
             }
 
         } catch (Exception e) {
@@ -1777,8 +1808,20 @@ public class DocumentWrapperUI {
                 : Color.TRANSPARENT);
         if (musicClose != null) {
             lirbiLogo.setVisibility(dc.isMusicianMode() ? View.VISIBLE : View.GONE);
-            musicSeekRow.setVisibility(musicianBare ? View.VISIBLE : View.GONE);
-            musicClose.setVisibility(musicianBare ? View.VISIBLE : View.GONE);
+            // Without the slider its place is kept, so the close button stays at the far end
+            musicSeekRow.setVisibility(!musicianBare ? View.GONE
+                    : AppState.get().isShowMusicSeekBar ? View.VISIBLE : View.INVISIBLE);
+            final boolean closeShown = musicianBare && AppState.get().isShowMusicClose;
+            musicClose.setVisibility(closeShown ? View.VISIBLE : View.GONE);
+            // Without the close button the slider keeps the gap from the edge it kept
+            final ViewGroup.MarginLayoutParams seekLp = (ViewGroup.MarginLayoutParams) musicSeekRow.getLayoutParams();
+            final int seekRight = closeShown ? 0 : Dips.dpToPx(8);
+            if (seekLp.rightMargin != seekRight) {
+                seekLp.rightMargin = seekRight;
+                musicSeekRow.setLayoutParams(seekLp);
+            }
+            // The mode's settings are offered only with the panels up
+            musicSettings.setVisibility(dc.isMusicianMode() && titleShown ? View.VISIBLE : View.GONE);
             paintMusicButtons();
             // The bookmarks keep the gap the bar's buttons keep from the edge, unless they
             // stand under musician's row, which keeps one under it already
@@ -1896,11 +1939,9 @@ public class DocumentWrapperUI {
         }
 
         if (dc.isMusicianMode()) {
-            if (AppState.get().isAutoScroll) {
-                seekSpeedLayot.setVisibility(View.VISIBLE);
-            } else {
-                seekSpeedLayot.setVisibility(View.GONE);
-            }
+            // The speed bar is there while the music scrolls, or while it is paused, as asked
+            fadeShow(seekSpeedLayot, AppState.get().isAutoScroll ? AppState.get().isShowMusicSpeedScrolling
+                    : AppState.get().isShowMusicSpeedPaused, AppState.get().transparencyUI / 255f);
         } else {
             if (AppState.get().isEditMode && AppState.get().isAutoScroll) {
                 seekSpeedLayot.setVisibility(View.VISIBLE);
@@ -2540,30 +2581,112 @@ public class DocumentWrapperUI {
     }
 
     /**
-     * A musician's tap zone: a faint round of the panels' colour, with no outline drawn over
-     * the music, shown all the time.
+     * A musician's tap zone: a faint round of the mode's colour with no outline drawn over
+     * the music, or, as chosen in the mode's settings, see-through with a dotted line round it.
      */
     private static void paintTapZone(View zone) {
         final GradientDrawable fill = new GradientDrawable();
-        fill.setColor(ColorUtils.setAlphaComponent(TintUtil.color, 30));
         fill.setCornerRadius(Dips.dpToPx(16));
+        if (AppState.get().isMusicTapZonesDotted) {
+            // Or see-through, with only a dotted line round it in the mode's colour
+            fill.setColor(Color.TRANSPARENT);
+            // as see-through as the panels
+            // as see-through as the panels, as wide as chosen, the dots growing with it
+            final int width = Math.max(1, AppState.get().musicTapZoneLineWidth);
+            fill.setStroke(Dips.dpToPx(width),
+                           ColorUtils.setAlphaComponent(MagicHelper.getMusicColor(), AppState.get().transparencyUI),
+                           Dips.dpToPx(Math.max(6, width * 3)), Dips.dpToPx(Math.max(5, width * 5 / 2)));
+        } else {
+            // faint, and fainter as the panels are made more see-through
+            fill.setColor(ColorUtils.setAlphaComponent(MagicHelper.getMusicColor(),
+                                                       Math.round(30f * AppState.get().transparencyUI / 255)));
+        }
         zone.setBackground(fill);
     }
 
     /**
+     * A seek bar track of a given thickness, centred in the bar: the part passed in a colour, the
+     * rest in the same colour fainter.
+     */
+    private static LayerDrawable speedTrack(int color, int height) {
+        final GradientDrawable rest = new GradientDrawable();
+        rest.setColor(ColorUtils.setAlphaComponent(color, 100));
+        rest.setCornerRadius(height / 2f);
+        final GradientDrawable passed = new GradientDrawable();
+        passed.setColor(color);
+        passed.setCornerRadius(height / 2f);
+        final LayerDrawable track = new LayerDrawable(new Drawable[]{rest,
+                new ClipDrawable(passed, Gravity.LEFT, ClipDrawable.HORIZONTAL)});
+        track.setId(0, android.R.id.background);
+        track.setId(1, android.R.id.progress);
+        for (int i = 0; i < 2; i++) {
+            track.setLayerHeight(i, height);
+            track.setLayerGravity(i, Gravity.CENTER_VERTICAL | Gravity.FILL_HORIZONTAL);
+        }
+        return track;
+    }
+
+    private static final int FADE_MS = 250;
+
+    /** Fades a view to an alpha, from wherever it is, rather than setting it at once. */
+    private static void fadeTo(View view, float alpha) {
+        view.animate().cancel();
+        if (view.getAlpha() != alpha) {
+            view.animate().alpha(alpha).setDuration(FADE_MS).start();
+        }
+    }
+
+    /** Fades a view in to an alpha, or out and then away, rather than showing or hiding it at once. */
+    private static void fadeShow(View view, boolean show, float alpha) {
+        view.animate().cancel();
+        if (show) {
+            if (view.getVisibility() != View.VISIBLE) {
+                view.setAlpha(0f);
+                view.setVisibility(View.VISIBLE);
+            }
+            view.animate().alpha(alpha).setDuration(FADE_MS).start();
+        } else if (view.getVisibility() == View.VISIBLE) {
+            view.animate().alpha(0f).setDuration(FADE_MS).withEndAction(() -> {
+                view.setVisibility(View.GONE);
+                view.setAlpha(alpha);
+            }).start();
+        }
+    }
+
+    private static float musicButtonScale() {
+        switch (AppState.get().musicButtonSize) {
+            case AppState.MUSIC_BUTTON_SMALL:
+                return 0.8f;
+            case AppState.MUSIC_BUTTON_LARGE:
+                return 1.3f;
+            default:
+                return 1f;
+        }
+    }
+
+    /**
      * Musician's name and close button stand on the page with no bar under them: each on a
-     * round of the bar's colour, as see-through as the panels, answering a press; the page
-     * slider between them on the same round. On the bar, with the panels up, the round would
-     * not show, and the name is ringed instead in its own colour.
+     * round of the mode's colour (the bar's until one is chosen), as see-through as the panels,
+     * answering a press; the page slider between them on the same round. On the bar, with the
+     * panels up, the name is ringed as well, in its text colour.
      */
     private void paintMusicButtons() {
+        lirbiLogo.setTextColor(MagicHelper.getTextOrIconColor());
         final int ring = lirbiLogo.getCurrentTextColor();
+        musicClose.setImageTintList(ColorStateList.valueOf(ring));
         final boolean onBar = AppState.get().isEditMode;
-        final int fill = ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI);
-        // On the bar the name is a ring only: a round of its own would lay the bar's colour twice
-        lirbiLogo.setBackground(musicButton(GradientDrawable.RECTANGLE, onBar ? Color.TRANSPARENT : fill,
+        // The rounds are in the mode's colour, chosen in its settings - the bar's until one is
+        final int fill = ColorUtils.setAlphaComponent(MagicHelper.getMusicColor(), AppState.get().transparencyUI);
+        // On the bar the name is a ring only, unless a colour of its own was chosen: a round of
+        // the bar's colour would lay it twice
+        final boolean chosen = (AppState.get().isDayNotInvert ? AppState.get().musicColorDay
+                : AppState.get().musicColorNight) != 0;
+        lirbiLogo.setBackground(musicButton(GradientDrawable.RECTANGLE, onBar && !chosen ? Color.TRANSPARENT : fill,
                                             onBar ? ring : Color.TRANSPARENT));
         musicClose.setBackground(musicButton(GradientDrawable.OVAL, fill, Color.TRANSPARENT));
+        // Only ever on the bar, so ringed like the name
+        musicSettings.setBackground(musicButton(GradientDrawable.OVAL, Color.TRANSPARENT, ring));
+        musicSettings.setImageTintList(ColorStateList.valueOf(ring));
         musicSeekRow.setBackground(musicButton(GradientDrawable.RECTANGLE, fill, Color.TRANSPARENT));
         musicCurrent.setTextColor(ring);
         musicMax.setTextColor(ring);

@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Tampilkan nama file asli (tanpa metadata)</string>
    <string name="use_fingerprint_as_the_password">Gunakan sidik jari sebagai kata sandi</string>
    <string name="show_tap_zones_on_screen">Tampilkan zona ketuk di layar</string>
-   <string name="show_the_last_page_with_the_red_line">Perlihatkan halaman terakhir dengan garis merah</string>
+   <string name="show_the_last_page_with_the_red_line">Tandai halaman terakhir dengan garis</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Menunjukkan garis pemisah pada halaman yang lebih kontras</string>
    <string name="clear_log">Menghapus log</string>
    <string name="floating_bookmark">Bookmark mengambang</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Tambahkan ke layar utama</string>
    <string name="not_supported">Tidak didukung</string>
    <string name="update_to_new_app">Silakan beralih ke aplikasi modern baru kami %1$s atau %2$s</string>
+   <string name="button_size">Ukuran tombol</string>
+   <string name="tap_zone_style">Gaya zona ketuk</string>
+   <string name="tap_zones_filled">Terisi</string>
+   <string name="tap_zones_dotted">Batas bertitik</string>
+   <string name="speed_bar">Bilah kecepatan</string>
+   <string name="tap_zones">Zona ketuk</string>
+   <string name="scrolling">Menggulir</string>
+   <string name="paused">Dijeda</string>
+   <string name="tap_zones_drag_note">* Zona ketuk dapat diseret dan diubah ukurannya saat dijeda</string>
+   <string name="show_close_button">Tampilkan tombol tutup</string>
 </resources>

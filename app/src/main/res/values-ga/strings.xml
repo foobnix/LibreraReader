@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Neamhaird a dhéanamh ar mheiteashonraí (ainmneacha comhaid a thaispeáint amháin)</string>
    <string name="use_fingerprint_as_the_password">Fíordheimhniú méarloirg a cheadú</string>
    <string name="show_tap_zones_on_screen">Léirigh criosanna sconna (líne phonc)</string>
-   <string name="show_the_last_page_with_the_red_line">Marcáil an leathanach deireanach le stríoca dearga</string>
+   <string name="show_the_last_page_with_the_red_line">Marcáil an leathanach deireanach le stríoca</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Aibhsigh deighilteoirí leathanaigh</string>
    <string name="clear_log">Logáil shoiléir</string>
    <string name="floating_bookmark">Ar snámh</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Cuir leis an scáileán baile</string>
    <string name="not_supported">Ní thacaítear leis</string>
    <string name="update_to_new_app">Uasghrádaigh chuig ár n-aip nua-aimseartha nua %1$s nó %2$s</string>
+   <string name="button_size">Méid an chnaipe</string>
+   <string name="tap_zone_style">Stíl na gcriosanna tapála</string>
+   <string name="tap_zones_filled">Líonta</string>
+   <string name="tap_zones_dotted">Imeall poncaithe</string>
+   <string name="speed_bar">Barra luais</string>
+   <string name="tap_zones">Criosanna tapála</string>
+   <string name="scrolling">Ag scrollú</string>
+   <string name="paused">Ar sos</string>
+   <string name="tap_zones_drag_note">* Is féidir na criosanna tapála a tharraingt agus a athmhéadú agus iad ar sos</string>
+   <string name="show_close_button">Taispeáin an cnaipe dúnta</string>
 </resources>

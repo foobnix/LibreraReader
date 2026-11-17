@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Musician's mode settings, all in one place: opened by the round button at the end of its
+     title row while the panels are up. DragingDialogs.dialogMusicianSettings fills it. -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myseek="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="2dip">
+
+        <!-- The name on its button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="6dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/custom_text" />
+
+            <EditText
+                android:id="@+id/musicText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="@string/musician" />
+
+            <ImageView
+                android:id="@+id/musicTextOk"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:background="@drawable/bg_border_ltgray"
+                android:padding="8dip"
+                android:src="@drawable/glyphicons_739_check"
+                android:tint="@color/tint_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="4dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/button_size" />
+
+            <TextView
+                android:id="@+id/musicButtonSize"
+                style="@style/textLinkDropdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:text="@string/normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="4dip"
+            android:layout_marginBottom="6dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/tap_zone_style" />
+
+            <TextView
+                android:id="@+id/musicTapZoneStyle"
+                style="@style/textLinkDropdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:text="@string/tap_zones_filled" />
+        </LinearLayout>
+
+        <!-- A note, plain text, under the tap zone style -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginBottom="6dip"
+            android:text="@string/tap_zones_drag_note"
+            android:textSize="13sp" />
+
+        <CheckBox
+            android:id="@+id/isShowMusicSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_reading_slider" />
+
+        <CheckBox
+            android:id="@+id/isShowMusicClose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_close_button" />
+
+        <CheckBox
+            android:id="@+id/isShowBookmarsPanelInMusicMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_bookmarks_bar" />
+
+        <!-- One colour for the tap zone lines, the speed bar and the bookmarks, for the day or
+             the night the book is read in now -->
+        <com.foobnix.pdf.info.view.CustomColorView
+            android:id="@+id/musicColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip" />
+
+        <!-- The panels' transparency, the same one the status bar settings set: it is the
+             buttons', the dotted tap zones' and the speed bar's here -->
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/panelsTransparency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/transparency" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="1dip"
+            android:layout_marginTop="5dip"
+            android:background="@color/lt_grey_alpha"
+            android:tag="with_tint1" />
+
+        <!-- When the speed bar and the tap zones are seen: while the music scrolls, while it is
+             paused. Tap zones not seen still turn the page. -->
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="4dip"
+            android:shrinkColumns="0"
+            android:stretchColumns="0">
+
+            <TableRow>
+
+                <View
+                    android:layout_width="0dip"
+                    android:layout_height="0dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingLeft="8dip"
+                    android:paddingRight="8dip"
+                    android:text="@string/scrolling" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingLeft="8dip"
+                    android:paddingRight="8dip"
+                    android:text="@string/paused" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/speed_bar" />
+
+                <CheckBox
+                    android:id="@+id/isShowMusicSpeedScrolling"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+                <CheckBox
+                    android:id="@+id/isShowMusicSpeedPaused"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/tap_zones" />
+
+                <CheckBox
+                    android:id="@+id/isShowMusicTapZonesScrolling"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+                <CheckBox
+                    android:id="@+id/isShowMusicTapZonesPaused"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+            </TableRow>
+        </TableLayout>
+
+        <!-- How wide the speed bar's lines are drawn, and the dotted line round a tap zone -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="8dip"
+            android:text="@string/draw_line_width" />
+
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/musicSpeedLineWidth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            myseek:text="@string/speed_bar" />
+
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/musicTapZoneLineWidth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            myseek:text="@string/tap_zones" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="1dip"
+            android:background="@color/lt_grey_alpha"
+            android:tag="with_tint1" />
+
+        <CheckBox
+            android:id="@+id/isShowLastPageRed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_the_last_page_with_the_red_line" />
+
+        <CheckBox
+            android:id="@+id/isShowLineDividing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_dividing_lines_on_pages_more_contrast" />
+
+        <!-- Every setting here back as it is at first, the tap zones where they start -->
+        <TextView
+            android:id="@+id/resetMusicSettings"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="6dip"
+            android:text="@string/restore_defaults_short" />
+    </LinearLayout>
+</ScrollView>

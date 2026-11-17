@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Az eredeti fájlnevek megjelenítése (metaadatok nélkül)</string>
    <string name="use_fingerprint_as_the_password">Jelszóként ujjlenyomatot használjon</string>
    <string name="show_tap_zones_on_screen">A képernyőn érintse meg a csapokat</string>
-   <string name="show_the_last_page_with_the_red_line">Mutassa meg az utolsó oldalt a piros vonallal</string>
+   <string name="show_the_last_page_with_the_red_line">Utolsó oldal megjelölése csíkokkal</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Mutasson szétválasztó vonalakat az oldalakon, kontrasztot</string>
    <string name="clear_log">Napló törlése</string>
    <string name="floating_bookmark">Úszó könyvjelző</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Hozzáadás a kezdőképernyőhöz</string>
    <string name="not_supported">Nem támogatott</string>
    <string name="update_to_new_app">Kérjük, váltson új, modern alkalmazásunkra: %1$s vagy %2$s</string>
+   <string name="button_size">Gomb mérete</string>
+   <string name="tap_zone_style">Érintési zónák stílusa</string>
+   <string name="tap_zones_filled">Kitöltött</string>
+   <string name="tap_zones_dotted">Pontozott keret</string>
+   <string name="speed_bar">Sebességsáv</string>
+   <string name="tap_zones">Érintési zónák</string>
+   <string name="scrolling">Görgetés</string>
+   <string name="paused">Szüneteltetve</string>
+   <string name="tap_zones_drag_note">* Az érintési zónák szüneteltetéskor áthelyezhetők és átméretezhetők</string>
+   <string name="show_close_button">Bezárás gomb megjelenítése</string>
 </resources>

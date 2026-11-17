@@ -24,30 +24,6 @@
             android:layout_marginTop="5dip"
             myseek:text="@string/st_color_night" />
 
-        <!-- Musician's mode only: one colour for its tap zone lines, speed bar and bookmarks,
-             for the day or the night the book is read in now. -->
-        <LinearLayout
-            android:id="@+id/musicColors"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:layout_marginTop="8dip"
-                android:text="@string/mode_musician"
-                android:textStyle="bold" />
-
-            <com.foobnix.pdf.info.view.CustomColorView
-                android:id="@+id/musicColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dip" />
-        </LinearLayout>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -185,69 +161,6 @@
             android:layout_margin="1dip"
             android:background="@color/lt_grey_alpha"
             android:tag="with_tint1" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginTop="10dip"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="@string/custom_text" />
-
-            <EditText
-                android:id="@+id/musicText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:layout_weight="1"
-                android:text="@string/musician" />
-
-            <ImageView
-                android:id="@+id/musicTextOk"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/bg_border_ltgray"
-                android:padding="8dip"
-                android:src="@drawable/glyphicons_739_check"
-                android:tint="@color/tint_gray" />
-        </LinearLayout>
-
-        <CheckBox
-            android:id="@+id/isShowRectangularTapZones"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/show_tap_zones_on_screen" />
-
-        <!-- Puts the tap zones back where they start, after they were dragged and sized -->
-        <TextView
-            android:id="@+id/resetTapZones"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="44dip"
-            android:layout_marginBottom="4dip"
-            android:text="@string/restore_defaults_short" />
-
-        <CheckBox
-            android:id="@+id/isShowLastPageRed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/show_the_last_page_with_the_red_line" />
-
-        <CheckBox
-            android:id="@+id/isShowLineDividing"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/show_dividing_lines_on_pages_more_contrast" />
 
         <LinearLayout
             android:id="@+id/statusBarPositionParent"

@@ -60,7 +60,7 @@ public class BookmarkPanel {
         // colour, as see-through as they are, with their text colour on it
         final int bookmarkColor = MagicHelper.getTextOrIconColor();
         TintUtil.setTintImageNoAlpha(pagesBookmark, bookmarkColor);
-        pagesBookmark.setBackground(panelRound());
+        pagesBookmark.setBackground(panelRound(dc.isMusicianMode()));
         pagesBookmark.setPadding(Dips.DP_8, Dips.DP_8, Dips.DP_8, Dips.DP_8);
         pagesBookmark.getLayoutParams().width = pagesBookmark.getLayoutParams().height = SIZE;
         pagesBookmark.requestLayout();
@@ -87,7 +87,7 @@ public class BookmarkPanel {
             t.setGravity(Gravity.CENTER);
             t.setTypeface(Typeface.DEFAULT, Typeface.NORMAL);
             t.setTextSize(14);
-            t.setBackground(panelRound());
+            t.setBackground(panelRound(dc.isMusicianMode()));
             t.setTextColor(bookmarkColor);
 
 
@@ -139,10 +139,14 @@ public class BookmarkPanel {
         }
     }
 
-    /** A pill - a circle when as wide as tall - of the panels' colour, answering a press. */
-    private static RippleDrawable panelRound() {
+    /**
+     * A pill - a circle when as wide as tall - of the panels' colour, or in musician's mode of
+     * the colour chosen in its settings, answering a press.
+     */
+    private static RippleDrawable panelRound(boolean musician) {
         final GradientDrawable fill = new GradientDrawable();
-        fill.setColor(ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI));
+        final int color = musician ? MagicHelper.getMusicColor() : TintUtil.color;
+        fill.setColor(ColorUtils.setAlphaComponent(color, AppState.get().transparencyUI));
         fill.setCornerRadius(SIZE / 2f);
         final GradientDrawable mask = new GradientDrawable();
         mask.setColor(Color.WHITE);

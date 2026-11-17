@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Бастапқы файл атауларын көрсету (метадеректер жоқ)</string>
    <string name="use_fingerprint_as_the_password">Саусақ ізін құпия сөз ретінде пайдаланыңыз</string>
    <string name="show_tap_zones_on_screen">Экрандағы сенсорлық аймақтарды көрсету</string>
-   <string name="show_the_last_page_with_the_red_line">Соңғы бетті қызыл сызықпен көрсетіңіз</string>
+   <string name="show_the_last_page_with_the_red_line">Соңғы бетті жолақтармен белгілеу</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Беттердегі бөлгіш сызықтарды контрастын көрсету</string>
    <string name="clear_log">Таза журналы</string>
    <string name="floating_bookmark">Өзгермелі бетбелгі</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Басты экранға қосу</string>
    <string name="not_supported">Қолдау көрсетілмейді</string>
    <string name="update_to_new_app">Жаңа заманауи қолданбамызға көшіңіз: %1$s немесе %2$s</string>
+   <string name="button_size">Түйме өлшемі</string>
+   <string name="tap_zone_style">Түрту аймақтарының стилі</string>
+   <string name="tap_zones_filled">Толтырылған</string>
+   <string name="tap_zones_dotted">Нүктелі жиек</string>
+   <string name="speed_bar">Жылдамдық жолағы</string>
+   <string name="tap_zones">Түрту аймақтары</string>
+   <string name="scrolling">Айналдыру</string>
+   <string name="paused">Кідірту</string>
+   <string name="tap_zones_drag_note">* Кідірту кезінде түрту аймақтарын жылжытуға және өлшемін өзгертуге болады</string>
+   <string name="show_close_button">Жабу түймесін көрсету</string>
 </resources>

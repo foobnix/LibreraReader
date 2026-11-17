@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Показувати назви оригінальних файлів (без метаданих)</string>
    <string name="use_fingerprint_as_the_password">Використовуйте відбиток пальця як пароль</string>
    <string name="show_tap_zones_on_screen">Показувати зони торкання на екрані</string>
-   <string name="show_the_last_page_with_the_red_line">Показувати останню сторінку червоною лінією</string>
+   <string name="show_the_last_page_with_the_red_line">Позначати останню сторінку смугами</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Показувати контрастніші розділові лінії на сторінках</string>
    <string name="clear_log">Очистити журнал</string>
    <string name="floating_bookmark">Плаваючою закладкою</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Додати на головний екран</string>
    <string name="not_supported">Не підтримується</string>
    <string name="update_to_new_app">Будь ласка, перейдіть на наш новий сучасний застосунок %1$s або %2$s</string>
+   <string name="button_size">Розмір кнопки</string>
+   <string name="tap_zone_style">Вигляд зон гортання</string>
+   <string name="tap_zones_filled">Заповнені</string>
+   <string name="tap_zones_dotted">Пунктирна рамка</string>
+   <string name="speed_bar">Смуга швидкості</string>
+   <string name="tap_zones">Зони гортання</string>
+   <string name="scrolling">Прокручування</string>
+   <string name="paused">Пауза</string>
+   <string name="tap_zones_drag_note">* Зони гортання можна перетягувати й змінювати їх розмір під час паузи</string>
+   <string name="show_close_button">Показувати кнопку закриття</string>
 </resources>

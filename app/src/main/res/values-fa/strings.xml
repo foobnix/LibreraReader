@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">نمایش نام فایل اصلی (بدون ابرداده)</string>
    <string name="use_fingerprint_as_the_password">استفاده از اثر انگشت به عنوان رمز عبور</string>
    <string name="show_tap_zones_on_screen">مناطق شیری روی صفحه نمایش نشان می دهد</string>
-   <string name="show_the_last_page_with_the_red_line">آخرین صفحه را با خط قرمز نشان می دهد</string>
+   <string name="show_the_last_page_with_the_red_line">علامت‌گذاری صفحه آخر با نوار</string>
    <string name="show_dividing_lines_on_pages_more_contrast">نشان می دهد خطوط تقسیم در صفحات بیشتر کنتراست</string>
    <string name="clear_log">روشن ورود</string>
    <string name="floating_bookmark">نشانه شناور</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">افزودن به صفحهٔ اصلی</string>
    <string name="not_supported">پشتیبانی نمی‌شود</string>
    <string name="update_to_new_app">لطفاً به برنامهٔ جدید و مدرن ما %1$s یا %2$s به‌روزرسانی کنید</string>
+   <string name="button_size">اندازه دکمه</string>
+   <string name="tap_zone_style">سبک نواحی لمسی</string>
+   <string name="tap_zones_filled">پر</string>
+   <string name="tap_zones_dotted">حاشیه نقطه‌چین</string>
+   <string name="speed_bar">نوار سرعت</string>
+   <string name="tap_zones">نواحی لمسی</string>
+   <string name="scrolling">در حال پیمایش</string>
+   <string name="paused">متوقف</string>
+   <string name="tap_zones_drag_note">* نواحی لمسی را می‌توان هنگام توقف جابه‌جا کرد و اندازه‌شان را تغییر داد</string>
+   <string name="show_close_button">نمایش دکمه بستن</string>
 </resources>

@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Ignora les metadades (mostra només els noms dels fitxers)</string>
    <string name="use_fingerprint_as_the_password">Permet l\'autenticació amb empremta digital</string>
    <string name="show_tap_zones_on_screen">Indica les zones de toc (línia de punts)</string>
-   <string name="show_the_last_page_with_the_red_line">Marca l\'última pàgina amb ratlles vermelles</string>
+   <string name="show_the_last_page_with_the_red_line">Marca l\'última pàgina amb franges</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Destaca els separadors de pàgina</string>
    <string name="clear_log">Neteja el registre</string>
    <string name="floating_bookmark">Flotant</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Afegeix a la pantalla d\'inici</string>
    <string name="not_supported">No compatible</string>
    <string name="update_to_new_app">Actualitzeu a la nostra nova aplicació moderna %1$s o %2$s</string>
+   <string name="button_size">Mida del botó</string>
+   <string name="tap_zone_style">Estil de les zones tàctils</string>
+   <string name="tap_zones_filled">Plenes</string>
+   <string name="tap_zones_dotted">Vora puntejada</string>
+   <string name="speed_bar">Barra de velocitat</string>
+   <string name="tap_zones">Zones tàctils</string>
+   <string name="scrolling">En desplaçament</string>
+   <string name="paused">En pausa</string>
+   <string name="tap_zones_drag_note">* Les zones tàctils es poden arrossegar i redimensionar en pausa</string>
+   <string name="show_close_button">Mostra el botó de tancar</string>
 </resources>

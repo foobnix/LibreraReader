@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">മെറ്റാഡാറ്റ അവഗണിക്കുക (ഫയൽനാമങ്ങൾ മാത്രം പ്രദർശിപ്പിക്കുക)</string>
    <string name="use_fingerprint_as_the_password">ഫിംഗർപ്രിന്റ് പ്രാമാണീകരണം അനുവദിക്കുക</string>
    <string name="show_tap_zones_on_screen">ടാപ്പ് സോണുകൾ സൂചിപ്പിക്കുക (ഡോട്ട് ഇട്ട വരി)</string>
-   <string name="show_the_last_page_with_the_red_line">അവസാന പേജ് ചുവന്ന വരകളാൽ അടയാളപ്പെടുത്തുക</string>
+   <string name="show_the_last_page_with_the_red_line">അവസാന പേജ് വരകളാൽ അടയാളപ്പെടുത്തുക</string>
    <string name="show_dividing_lines_on_pages_more_contrast">പേജ് സെപ്പറേറ്ററുകൾ ഹൈലൈറ്റ് ചെയ്യുക</string>
    <string name="clear_log">ലോഗ് മായ്‌ക്കുക</string>
    <string name="floating_bookmark">പൊങ്ങിക്കിടക്കുന്നു</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">ഹോം സ്ക്രീനിലേക്ക് ചേർക്കുക</string>
    <string name="not_supported">പിന്തുണയില്ല</string>
    <string name="update_to_new_app">ഞങ്ങളുടെ പുതിയ ആധുനിക ആപ്പായ %1$s അല്ലെങ്കിൽ %2$s ലേക്ക് മാറുക</string>
+   <string name="button_size">ബട്ടണിന്റെ വലുപ്പം</string>
+   <string name="tap_zone_style">ടാപ്പ് സോണുകളുടെ ശൈലി</string>
+   <string name="tap_zones_filled">നിറച്ചത്</string>
+   <string name="tap_zones_dotted">കുത്തുകളുള്ള അതിര്</string>
+   <string name="speed_bar">വേഗത ബാർ</string>
+   <string name="tap_zones">ടാപ്പ് സോണുകൾ</string>
+   <string name="scrolling">സ്ക്രോൾ ചെയ്യുമ്പോൾ</string>
+   <string name="paused">താൽക്കാലികമായി നിർത്തി</string>
+   <string name="tap_zones_drag_note">* താൽക്കാലികമായി നിർത്തുമ്പോൾ ടാപ്പ് സോണുകൾ വലിച്ചുനീക്കാനും വലുപ്പം മാറ്റാനും കഴിയും</string>
+   <string name="show_close_button">അടയ്ക്കൽ ബട്ടൺ കാണിക്കുക</string>
 </resources>

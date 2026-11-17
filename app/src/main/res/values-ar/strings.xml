@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">عرض أسماء الملفات الأصلية (بدون بيانات التعريف)</string>
    <string name="use_fingerprint_as_the_password">استخدام بصمة ككلمة المرور</string>
    <string name="show_tap_zones_on_screen">عرض مناطق النقر على الشاشة</string>
-   <string name="show_the_last_page_with_the_red_line">اعرض الصفحة الأخيرة بالخط الأحمر</string>
+   <string name="show_the_last_page_with_the_red_line">تمييز الصفحة الأخيرة بخطوط</string>
    <string name="show_dividing_lines_on_pages_more_contrast">عرض خطوط تقسيم على الصفحات أكثر تباينًا</string>
    <string name="clear_log">سجل نظيف</string>
    <string name="floating_bookmark">المرجعية العائمة</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">إضافة إلى الشاشة الرئيسية</string>
    <string name="not_supported">غير مدعوم</string>
    <string name="update_to_new_app">يرجى الانتقال إلى تطبيقنا الحديث الجديد %1$s أو %2$s</string>
+   <string name="button_size">حجم الزر</string>
+   <string name="tap_zone_style">نمط مناطق النقر</string>
+   <string name="tap_zones_filled">ممتلئة</string>
+   <string name="tap_zones_dotted">حدود منقطة</string>
+   <string name="speed_bar">شريط السرعة</string>
+   <string name="tap_zones">مناطق النقر</string>
+   <string name="scrolling">أثناء التمرير</string>
+   <string name="paused">متوقف مؤقتًا</string>
+   <string name="tap_zones_drag_note">* يمكن سحب مناطق النقر وتغيير حجمها أثناء الإيقاف المؤقت</string>
+   <string name="show_close_button">إظهار زر الإغلاق</string>
 </resources>

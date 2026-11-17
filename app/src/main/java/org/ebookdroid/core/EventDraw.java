@@ -132,13 +132,14 @@ public class EventDraw implements IEvent {
         //}
 
         if (AppState.get().isShowLastPageRed && AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN && page.isLastPage) {
-            rect.setColor(ColorUtils.setAlphaComponent(Color.RED, 150));
+            // In musician's mode's colour, chosen in its settings
+            rect.setColor(ColorUtils.setAlphaComponent(MagicHelper.getMusicColor(), 150));
             rect.setStyle(Style.FILL);
             canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.bottom - Dips.DP_25, fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom + Dips.DP_1, rect);
             canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.bottom - fixedPageBounds.height() / 4 - Dips.DP_5, fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom - fixedPageBounds.height() / 4, rect);
 
         } else if (AppState.get().isShowLineDividing && AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) {
-            rect.setColor(ColorUtils.setAlphaComponent(Color.GRAY, 200));
+            rect.setColor(ColorUtils.setAlphaComponent(MagicHelper.getMusicColor(), 200));
             rect.setStyle(Style.FILL);
             canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.bottom - Dips.DP_2, fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom + Dips.DP_1, rect);
 

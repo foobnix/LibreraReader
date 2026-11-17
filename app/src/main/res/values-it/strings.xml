@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Mostra i nomi dei file originali (senza metadati)</string>
    <string name="use_fingerprint_as_the_password">Utilizzare l\'impronta digitale come password</string>
    <string name="show_tap_zones_on_screen">Mostra le zone di tocco sullo schermo</string>
-   <string name="show_the_last_page_with_the_red_line">Mostra l\'ultima pagina con la linea rossa</string>
+   <string name="show_the_last_page_with_the_red_line">Segna l\'ultima pagina con strisce</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Mostra linee di divisione su pagine più contrastanti</string>
    <string name="clear_log">Pulisci il registro</string>
    <string name="floating_bookmark">Segnalibro mobile</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Aggiungi alla schermata Home</string>
    <string name="not_supported">Non supportato</string>
    <string name="update_to_new_app">Passa alla nostra nuova app moderna %1$s o %2$s</string>
+   <string name="button_size">Dimensione del pulsante</string>
+   <string name="tap_zone_style">Stile delle zone di tocco</string>
+   <string name="tap_zones_filled">Piene</string>
+   <string name="tap_zones_dotted">Bordo punteggiato</string>
+   <string name="speed_bar">Barra della velocità</string>
+   <string name="tap_zones">Zone di tocco</string>
+   <string name="scrolling">Scorrimento</string>
+   <string name="paused">In pausa</string>
+   <string name="tap_zones_drag_note">* Le zone di tocco si possono trascinare e ridimensionare in pausa</string>
+   <string name="show_close_button">Mostra il pulsante di chiusura</string>
 </resources>

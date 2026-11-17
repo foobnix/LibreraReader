@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">显示文件名而非元数据</string>
    <string name="use_fingerprint_as_the_password">使用指纹作为密码</string>
    <string name="show_tap_zones_on_screen">在屏上显示点击区(虚线)</string>
-   <string name="show_the_last_page_with_the_red_line">用红线来显示尾页</string>
+   <string name="show_the_last_page_with_the_red_line">用条纹标记最后一页</string>
    <string name="show_dividing_lines_on_pages_more_contrast">高亮分页符</string>
    <string name="clear_log">清除日志</string>
    <string name="floating_bookmark">浮动书签</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">添加到主屏幕</string>
    <string name="not_supported">不支持</string>
    <string name="update_to_new_app">请升级到我们全新的现代应用 %1$s 或 %2$s</string>
+   <string name="button_size">按钮大小</string>
+   <string name="tap_zone_style">点击区域样式</string>
+   <string name="tap_zones_filled">填充</string>
+   <string name="tap_zones_dotted">点线边框</string>
+   <string name="speed_bar">速度条</string>
+   <string name="tap_zones">点击区域</string>
+   <string name="scrolling">滚动时</string>
+   <string name="paused">暂停时</string>
+   <string name="tap_zones_drag_note">* 暂停时可以拖动点击区域并调整其大小</string>
+   <string name="show_close_button">显示关闭按钮</string>
 </resources>

@@ -224,6 +224,10 @@ public class AppState {
     public final static int READING_MODE_SCROLL = 1;
     public final static int READING_MODE_BOOK = 2;
     public final static int READING_MODE_MUSICIAN = 3;
+
+    public final static int MUSIC_BUTTON_SMALL = 0;
+    public final static int MUSIC_BUTTON_NORMAL = 1;
+    public final static int MUSIC_BUTTON_LARGE = 2;
     public final static int READING_MODE_TAG_MANAGER = 4;
     public final static int READING_MODE_OPEN_WITH = 5;
     public final static int READING_MODE_SELECT_MODE = 6;
@@ -521,8 +525,25 @@ public class AppState {
     // Musician's tap zones where the user put them: the left one, then the right one, each as x, y,
     // width and height in fractions of the space under the title bar; empty for where they start
     @IgnoreHashCode public String musicTapZones = "";
-    @IgnoreHashCode public boolean isShowLastPageRed = true;
-    @IgnoreHashCode public boolean isShowLineDividing = true;
+    // Musician's own settings, behind the round button on its title row with the panels up:
+    // the size of its name button (and of the close button and page slider that take its
+    // height), one of MUSIC_BUTTON_*; whether the page slider stands beside it with the panels
+    // away; when the speed bar and tap zones are seen; how a tap zone is drawn
+    @IgnoreHashCode public int musicButtonSize = MUSIC_BUTTON_NORMAL;
+    @IgnoreHashCode public boolean isShowMusicSeekBar = true;
+    @IgnoreHashCode public boolean isShowMusicClose = true;
+    // Whether the speed bar and the tap zones are seen while the music scrolls and while it is
+    // paused; tap zones seen in neither still turn the page
+    @IgnoreHashCode public boolean isShowMusicSpeedScrolling = true;
+    @IgnoreHashCode public boolean isShowMusicSpeedPaused = true;
+    @IgnoreHashCode public boolean isShowMusicTapZonesScrolling = true;
+    @IgnoreHashCode public boolean isShowMusicTapZonesPaused = true;
+    @IgnoreHashCode public boolean isMusicTapZonesDotted = true;
+    // The width, in dp, of the dotted line round a tap zone and of the speed bar's lines
+    @IgnoreHashCode public int musicTapZoneLineWidth = 2;
+    @IgnoreHashCode public int musicSpeedLineWidth = 2;
+    @IgnoreHashCode public boolean isShowLastPageRed = false;
+    @IgnoreHashCode public boolean isShowLineDividing = false;
     @IgnoreHashCode public boolean isShowBookmarsPanelText = true;
     public String musicText = "Musician";
     public int cropTop = 0;
@@ -805,6 +826,28 @@ public class AppState {
             colorNigthBg = AppState.COLOR_BLACK;
             colorNigthForeground = AppState.COLOR_NIGHT_FG;
        // }
+    }
+
+    /** Every setting in musician's mode's own settings back as it is on a first start. */
+    public void musicianDefaults(Context a) {
+        musicText = a.getString(R.string.musician);
+        musicButtonSize = MUSIC_BUTTON_NORMAL;
+        isShowMusicSeekBar = true;
+        isShowMusicClose = true;
+        isShowBookmarsPanelInMusicMode = true;
+        musicColorDay = 0;
+        musicColorNight = 0;
+        isMusicTapZonesDotted = true;
+        isShowMusicSpeedScrolling = true;
+        isShowMusicSpeedPaused = true;
+        isShowMusicTapZonesScrolling = true;
+        isShowMusicTapZonesPaused = true;
+        isShowRectangularTapZones = true;
+        musicSpeedLineWidth = 2;
+        musicTapZoneLineWidth = 2;
+        musicTapZones = "";
+        isShowLastPageRed = false;
+        isShowLineDividing = false;
     }
 
     public void accessibilityDefaults() {

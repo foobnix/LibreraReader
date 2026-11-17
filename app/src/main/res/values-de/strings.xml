@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Originaldateinamen anzeigen (ohne Metadaten)</string>
    <string name="use_fingerprint_as_the_password">Fingerabdruck als Passwort verwenden</string>
    <string name="show_tap_zones_on_screen">Tippen-Zonen auf dem Bildschirm anzeigen</string>
-   <string name="show_the_last_page_with_the_red_line">Markiere die letzte Seite mit roter Linie</string>
+   <string name="show_the_last_page_with_the_red_line">Letzte Seite mit Streifen markieren</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Trennlinien auf Seiten kontrastreicher anzeigen</string>
    <string name="clear_log">Log löschen</string>
    <string name="floating_bookmark">Schwebendes Lesezeichen</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Zum Startbildschirm hinzufügen</string>
    <string name="not_supported">Nicht unterstützt</string>
    <string name="update_to_new_app">Bitte wechseln Sie zu unserer neuen, modernen App %1$s oder %2$s</string>
+   <string name="button_size">Schaltflächengröße</string>
+   <string name="tap_zone_style">Stil der Tippzonen</string>
+   <string name="tap_zones_filled">Gefüllt</string>
+   <string name="tap_zones_dotted">Gepunkteter Rahmen</string>
+   <string name="speed_bar">Geschwindigkeitsleiste</string>
+   <string name="tap_zones">Tippzonen</string>
+   <string name="scrolling">Beim Scrollen</string>
+   <string name="paused">Pausiert</string>
+   <string name="tap_zones_drag_note">* Tippzonen können im pausierten Zustand verschoben und in der Größe geändert werden</string>
+   <string name="show_close_button">Schaltfläche „Schließen“ anzeigen</string>
 </resources>

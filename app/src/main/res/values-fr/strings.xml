@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Afficher les noms de fichiers d\'origine (sans métadonnées)</string>
    <string name="use_fingerprint_as_the_password">Utiliser l\'empreinte digitale comme mot de passe</string>
    <string name="show_tap_zones_on_screen">Afficher les zones tactiles à l\'écran</string>
-   <string name="show_the_last_page_with_the_red_line">Marquer la dernière page avec des lignes rouges</string>
+   <string name="show_the_last_page_with_the_red_line">Marquer la dernière page avec des bandes</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Séparateurs de pages plus visibles</string>
    <string name="clear_log">Effacer le journal</string>
    <string name="floating_bookmark">Signet flottant</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Ajouter à l\'écran d\'accueil</string>
    <string name="not_supported">Non pris en charge</string>
    <string name="update_to_new_app">Veuillez passer à notre nouvelle application moderne %1$s ou %2$s</string>
+   <string name="button_size">Taille du bouton</string>
+   <string name="tap_zone_style">Style des zones tactiles</string>
+   <string name="tap_zones_filled">Remplies</string>
+   <string name="tap_zones_dotted">Bordure pointillée</string>
+   <string name="speed_bar">Barre de vitesse</string>
+   <string name="tap_zones">Zones tactiles</string>
+   <string name="scrolling">Défilement</string>
+   <string name="paused">En pause</string>
+   <string name="tap_zones_drag_note">* Les zones tactiles peuvent être déplacées et redimensionnées en pause</string>
+   <string name="show_close_button">Afficher le bouton de fermeture</string>
 </resources>

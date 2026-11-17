@@ -68,6 +68,11 @@ public class SpeedBgView extends View {
         canvas.restore();
     }
 
+    public void setLineWidth(final float width) {
+        paint.setStrokeWidth(width);
+        invalidate();
+    }
+
     public void setBorderColor(final int color) {
         paint.setColor(color);
         invalidate();

@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Ignora sos metadatos (ammustra sos nùmenes de sos documentos ebbia)</string>
    <string name="use_fingerprint_as_the_password">Permite s\'autenticatzione cun s\'imprenta digitale</string>
    <string name="show_tap_zones_on_screen">Indita sas àreas de tocu (lìnia trategiada)</string>
-   <string name="show_the_last_page_with_the_red_line">Marca s\'ùrtima pàgina cun istrìscias rujas</string>
+   <string name="show_the_last_page_with_the_red_line">Sinnala s\'ùrtima pàgina cun istrisciones</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Evidèntzia sos partzidores de pàginas</string>
    <string name="clear_log">Isbòida su registru</string>
    <string name="floating_bookmark">Flutuante</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Agiunghe a s\'ischermu printzipale</string>
    <string name="not_supported">No suportadu</string>
    <string name="update_to_new_app">Passa a sa noa aplicatzione moderna nostra %1$s o %2$s</string>
+   <string name="button_size">Mannària de su butone</string>
+   <string name="tap_zone_style">Istile de sas zonas de tocu</string>
+   <string name="tap_zones_filled">Prenas</string>
+   <string name="tap_zones_dotted">Oru puntizadu</string>
+   <string name="speed_bar">Istanga de sa lestresa</string>
+   <string name="tap_zones">Zonas de tocu</string>
+   <string name="scrolling">Iscurrende</string>
+   <string name="paused">In pàusa</string>
+   <string name="tap_zones_drag_note">* Sas zonas de tocu si podent tragare e cambiare de mannària in pàusa</string>
+   <string name="show_close_button">Ammustra su butone de serrare</string>
 </resources>

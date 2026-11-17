@@ -70,6 +70,28 @@
                 android:singleLine="false"
                 android:text="@string/status_bar" />
 
+            <!-- Musician's mode only: its own settings -->
+            <View
+                android:tag="with_tint1"
+                android:id="@+id/musicianSettingsDiv"
+                android:layout_width="1dip"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:background="@color/lt_grey_alpha"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/musicianSettings"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:lines="2"
+                android:singleLine="false"
+                android:text="@string/mode_musician"
+                android:visibility="gone" />
+
             <View
                 android:tag="with_tint1"
                 android:layout_width="1dip"

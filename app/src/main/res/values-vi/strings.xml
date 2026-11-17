@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">Hiển thị tên tệp gốc (không có siêu dữ liệu)</string>
    <string name="use_fingerprint_as_the_password">Sử dụng dấu vân tay làm mật khẩu</string>
    <string name="show_tap_zones_on_screen">Hiển thị vùng tap trên màn hình</string>
-   <string name="show_the_last_page_with_the_red_line">Hiển thị trang cuối cùng với dòng màu đỏ</string>
+   <string name="show_the_last_page_with_the_red_line">Đánh dấu trang cuối bằng sọc</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Hiển thị đường phân chia trên các trang tương phản hơn</string>
    <string name="clear_log">Xóa nhật ký</string>
    <string name="floating_bookmark">Dấu trang nổi</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Thêm vào màn hình chính</string>
    <string name="not_supported">Không được hỗ trợ</string>
    <string name="update_to_new_app">Vui lòng chuyển sang ứng dụng hiện đại mới của chúng tôi %1$s hoặc %2$s</string>
+   <string name="button_size">Kích thước nút</string>
+   <string name="tap_zone_style">Kiểu vùng chạm</string>
+   <string name="tap_zones_filled">Tô đầy</string>
+   <string name="tap_zones_dotted">Viền chấm</string>
+   <string name="speed_bar">Thanh tốc độ</string>
+   <string name="tap_zones">Vùng chạm</string>
+   <string name="scrolling">Đang cuộn</string>
+   <string name="paused">Tạm dừng</string>
+   <string name="tap_zones_drag_note">* Có thể kéo và đổi kích thước vùng chạm khi tạm dừng</string>
+   <string name="show_close_button">Hiện nút đóng</string>
 </resources>

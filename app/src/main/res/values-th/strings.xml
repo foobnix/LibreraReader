@@ -599,7 +599,7 @@
    <string name="display_original_file_names_without_metadata">แสดงชื่อไฟล์ต้นฉบับ (โดยไม่มีข้อมูลเมตา)</string>
    <string name="use_fingerprint_as_the_password">ใช้ลายนิ้วมือเป็นรหัสผ่าน</string>
    <string name="show_tap_zones_on_screen">แสดง tap-zones บนหน้าจอ</string>
-   <string name="show_the_last_page_with_the_red_line">แสดงหน้าสุดท้ายด้วยเส้นสีแดง</string>
+   <string name="show_the_last_page_with_the_red_line">ทำเครื่องหมายหน้าสุดท้ายด้วยแถบ</string>
    <string name="show_dividing_lines_on_pages_more_contrast">แสดงเส้นแบ่งบนหน้าเว็บที่มีความคมชัดมากขึ้น</string>
    <string name="clear_log">บันทึกที่ชัดเจน</string>
    <string name="floating_bookmark">บุ๊คมาร์คลอย</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">เพิ่มไปยังหน้าจอหลัก</string>
    <string name="not_supported">ไม่รองรับ</string>
    <string name="update_to_new_app">โปรดเปลี่ยนไปใช้แอปใหม่ที่ทันสมัยของเรา %1$s หรือ %2$s</string>
+   <string name="button_size">ขนาดปุ่ม</string>
+   <string name="tap_zone_style">รูปแบบโซนแตะ</string>
+   <string name="tap_zones_filled">แบบทึบ</string>
+   <string name="tap_zones_dotted">ขอบเส้นประ</string>
+   <string name="speed_bar">แถบความเร็ว</string>
+   <string name="tap_zones">โซนแตะ</string>
+   <string name="scrolling">ขณะเลื่อน</string>
+   <string name="paused">หยุดชั่วคราว</string>
+   <string name="tap_zones_drag_note">* ลากและปรับขนาดโซนแตะได้ขณะหยุดชั่วคราว</string>
+   <string name="show_close_button">แสดงปุ่มปิด</string>
 </resources>

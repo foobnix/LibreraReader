@@ -601,7 +601,7 @@
    <string name="display_original_file_names_without_metadata">Ignore metadata (display filenames only)</string>
    <string name="use_fingerprint_as_the_password">Allow fingerprint authentication</string>
    <string name="show_tap_zones_on_screen">Indicate tap zones (dotted line)</string>
-   <string name="show_the_last_page_with_the_red_line">Mark last page with red stripes</string>
+   <string name="show_the_last_page_with_the_red_line">Mark last page with stripes</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Highlight page separators</string>
    <string name="clear_log">Clear log</string>
    <string name="floating_bookmark">Floating</string>
@@ -734,4 +734,14 @@
    <string name="add_to_home_screen">Add to home screen</string>
    <string name="not_supported">Not supported</string>
    <string name="update_to_new_app">Please update to our new modern app %1$s or %2$s</string>
+   <string name="button_size">Button size</string>
+   <string name="tap_zone_style">Tap zone style</string>
+   <string name="tap_zones_filled">Filled</string>
+   <string name="tap_zones_dotted">Dotted border</string>
+   <string name="speed_bar">Speed bar</string>
+   <string name="tap_zones">Tap zones</string>
+   <string name="scrolling">Scrolling</string>
+   <string name="paused">Paused</string>
+   <string name="tap_zones_drag_note">* Tap zones can be dragged and resized while paused</string>
+   <string name="show_close_button">Show close button</string>
 </resources>

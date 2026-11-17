@@ -190,6 +190,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.function.IntConsumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import android.graphics.PorterDuffColorFilter;
@@ -3589,68 +3590,6 @@ public class DragingDialogs {
                     }
                 });
 
-                final EditText musicText = inflate.findViewById(R.id.musicText);
-                musicText.setText(AppState.get().musicText);
-                ((View) musicText.getParent()).setVisibility(
-                        AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
-                inflate.findViewById(R.id.musicTextOk).setOnClickListener(new OnClickListener() {
-                    @Override public void onClick(View v) {
-                        AppState.get().musicText = musicText.getText().toString();
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                    }
-                });
-                ///
-
-                CheckBox isShowRectangularTapZones = inflate.findViewById(R.id.isShowRectangularTapZones);
-                isShowRectangularTapZones.setVisibility(
-                        AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
-                isShowRectangularTapZones.setChecked(AppState.get().isShowRectangularTapZones);
-                isShowRectangularTapZones.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    AppState.get().isShowRectangularTapZones = isChecked;
-                    if (onRefresh != null) {
-                        onRefresh.run();
-                    }
-                });
-
-                final TextView resetTapZones = inflate.findViewById(R.id.resetTapZones);
-                resetTapZones.setVisibility(
-                        AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
-                resetTapZones.setOnClickListener(v -> {
-                    AppState.get().musicTapZones = "";
-                    if (onRefresh != null) {
-                        onRefresh.run();
-                    }
-                });
-
-                CheckBox isShowLineDividing = inflate.findViewById(R.id.isShowLineDividing);
-                isShowLineDividing.setVisibility(
-                        AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
-                isShowLineDividing.setChecked(AppState.get().isShowLineDividing);
-                isShowLineDividing.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    AppState.get().isShowLineDividing = isChecked;
-                    if (onRefresh != null) {
-                        controller.updateRendering();
-                        //onRefresh.run();
-                    }
-                });
-
-                CheckBox isShowLastPageRed = inflate.findViewById(R.id.isShowLastPageRed);
-                isShowLastPageRed.setVisibility(
-                        AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
-                isShowLastPageRed.setChecked(AppState.get().isShowLastPageRed);
-                isShowLastPageRed.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    AppState.get().isShowLastPageRed = isChecked;
-                    if (onRefresh != null) {
-                        controller.updateRendering();
-                        //onRefresh.run();
-
-                    }
-                });
-
-                ///
-
                 CheckBox isRewindEnable = inflate.findViewById(R.id.isRewindEnable);
                 isRewindEnable.setChecked(AppState.get().isRewindEnable);
                 isRewindEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -4043,12 +3982,6 @@ public class DragingDialogs {
                     statusBarColorNight.setVisibility(View.VISIBLE);
                 }
 
-                // Musician's mode has a colour of its own, for day or night as the book is now
-                if (controller.isMusicianMode()) {
-                    inflate.findViewById(R.id.musicColors).setVisibility(View.VISIBLE);
-                    initMusicColor(inflate, controller, onRefresh);
-                }
-
                 // The links in this dialog are drawn as ringed buttons, as the settings
                 // panel draws its own.
                 TintUtil.asLinkButtons(inflate);
@@ -4061,7 +3994,180 @@ public class DragingDialogs {
     }
 
     /**
-     * The musician's mode colour in the status bar settings: its tap zone lines, speed bar and
+     * Musician's mode settings, all of them in one place: the name on its button and how big
+     * that button is, the page slider and the bookmarks shown with the panels away, the mode's
+     * colour, what the speed bar and tap zones do while the music scrolls, how the tap zones
+     * are drawn, and the marks on the pages. Each change is shown at once, with the panels put
+     * away so it can be seen.
+     */
+    public static void dialogMusicianSettings(final FrameLayout anchor,
+                                              final DocumentController controller,
+                                              final Runnable onRefresh) {
+        DragingPopup dialog = new DragingPopup(R.string.mode_musician, anchor, PREF_WIDTH, PREF_HEIGHT) {
+            @Override public View getContentView(final LayoutInflater inflater) {
+                final View inflate = inflater.inflate(R.layout.dialog_musician_settings, null, false);
+                final Runnable refresh = () -> {
+                    AppState.get().isEditMode = false;
+                    if (onRefresh != null) {
+                        onRefresh.run();
+                    }
+                };
+
+                final EditText musicText = inflate.findViewById(R.id.musicText);
+                musicText.setText(AppState.get().musicText);
+                inflate.findViewById(R.id.musicTextOk).setOnClickListener(v -> {
+                    AppState.get().musicText = musicText.getText().toString();
+                    Keyboards.close(musicText);
+                    refresh.run();
+                });
+
+                final List<Integer> sizeIds = Arrays.asList(AppState.MUSIC_BUTTON_SMALL,
+                                                            AppState.MUSIC_BUTTON_NORMAL,
+                                                            AppState.MUSIC_BUTTON_LARGE);
+                final List<String> sizeNames = Arrays.asList(controller.getString(R.string.small),
+                                                             controller.getString(R.string.normal),
+                                                             controller.getString(R.string.large));
+                final TextView buttonSize = inflate.findViewById(R.id.musicButtonSize);
+                initChoice(buttonSize, sizeNames, sizeIds.indexOf(AppState.get().musicButtonSize), i -> {
+                    AppState.get().musicButtonSize = sizeIds.get(i);
+                    refresh.run();
+                });
+
+                final CheckBox isShowMusicSeekBar = inflate.findViewById(R.id.isShowMusicSeekBar);
+                isShowMusicSeekBar.setChecked(AppState.get().isShowMusicSeekBar);
+                isShowMusicSeekBar.setOnCheckedChangeListener((b, isChecked) -> {
+                    AppState.get().isShowMusicSeekBar = isChecked;
+                    refresh.run();
+                });
+
+                final CheckBox isShowMusicClose = inflate.findViewById(R.id.isShowMusicClose);
+                isShowMusicClose.setChecked(AppState.get().isShowMusicClose);
+                isShowMusicClose.setOnCheckedChangeListener((b, isChecked) -> {
+                    AppState.get().isShowMusicClose = isChecked;
+                    refresh.run();
+                });
+
+                final CheckBox isShowBookmarks = inflate.findViewById(R.id.isShowBookmarsPanelInMusicMode);
+                isShowBookmarks.setChecked(AppState.get().isShowBookmarsPanelInMusicMode);
+                isShowBookmarks.setOnCheckedChangeListener((b, isChecked) -> {
+                    AppState.get().isShowBookmarsPanelInMusicMode = isChecked;
+                    refresh.run();
+                });
+
+                initMusicColor(inflate, controller, onRefresh);
+
+                final CustomSeek transparency = inflate.findViewById(R.id.panelsTransparency);
+                transparency.setTitleTextWidth(Dips.dpToPx(100));
+                transparency.init(0, 80, Math.round((255 - AppState.get().transparencyUI) * 100f / 255), "%");
+                transparency.setOnSeekChanged(result -> {
+                    AppState.get().transparencyUI = 255 - Math.round(result * 255f / 100);
+                    refresh.run();
+                    return false;
+                });
+
+                final CheckBox speedScrolling = inflate.findViewById(R.id.isShowMusicSpeedScrolling);
+                speedScrolling.setChecked(AppState.get().isShowMusicSpeedScrolling);
+                speedScrolling.setOnCheckedChangeListener((b, isChecked) -> {
+                    AppState.get().isShowMusicSpeedScrolling = isChecked;
+                    refresh.run();
+                });
+                final CheckBox speedPaused = inflate.findViewById(R.id.isShowMusicSpeedPaused);
+                speedPaused.setChecked(AppState.get().isShowMusicSpeedPaused);
+                speedPaused.setOnCheckedChangeListener((b, isChecked) -> {
+                    AppState.get().isShowMusicSpeedPaused = isChecked;
+                    refresh.run();
+                });
+
+                // Tap zones hidden by the old switch read as seen in neither
+                final boolean zonesOn = AppState.get().isShowRectangularTapZones;
+                final CheckBox zonesScrolling = inflate.findViewById(R.id.isShowMusicTapZonesScrolling);
+                final CheckBox zonesPaused = inflate.findViewById(R.id.isShowMusicTapZonesPaused);
+                zonesScrolling.setChecked(zonesOn && AppState.get().isShowMusicTapZonesScrolling);
+                zonesPaused.setChecked(zonesOn && AppState.get().isShowMusicTapZonesPaused);
+                final OnCheckedChangeListener onZones = (b, isChecked) -> {
+                    AppState.get().isShowMusicTapZonesScrolling = zonesScrolling.isChecked();
+                    AppState.get().isShowMusicTapZonesPaused = zonesPaused.isChecked();
+                    AppState.get().isShowRectangularTapZones = zonesScrolling.isChecked() || zonesPaused.isChecked();
+                    refresh.run();
+                };
+                zonesScrolling.setOnCheckedChangeListener(onZones);
+                zonesPaused.setOnCheckedChangeListener(onZones);
+
+                final CustomSeek speedLine = inflate.findViewById(R.id.musicSpeedLineWidth);
+                speedLine.setTitleTextWidth(Dips.dpToPx(100));
+                speedLine.init(1, 8, AppState.get().musicSpeedLineWidth, "dp");
+                speedLine.setOnSeekChanged(result -> {
+                    AppState.get().musicSpeedLineWidth = result;
+                    refresh.run();
+                    return false;
+                });
+                final CustomSeek zoneLine = inflate.findViewById(R.id.musicTapZoneLineWidth);
+                zoneLine.setTitleTextWidth(Dips.dpToPx(100));
+                zoneLine.init(1, 8, AppState.get().musicTapZoneLineWidth, "dp");
+                zoneLine.setOnSeekChanged(result -> {
+                    AppState.get().musicTapZoneLineWidth = result;
+                    refresh.run();
+                    return false;
+                });
+
+                final TextView tapZoneStyle = inflate.findViewById(R.id.musicTapZoneStyle);
+                final List<String> styleNames = Arrays.asList(controller.getString(R.string.tap_zones_filled),
+                                                              controller.getString(R.string.tap_zones_dotted));
+                initChoice(tapZoneStyle, styleNames, AppState.get().isMusicTapZonesDotted ? 1 : 0, i -> {
+                    AppState.get().isMusicTapZonesDotted = i == 1;
+                    refresh.run();
+                });
+
+                // Everything back as at first, the dialog shown again with it
+                inflate.findViewById(R.id.resetMusicSettings).setOnClickListener(v -> {
+                    AppState.get().musicianDefaults(controller.getActivity());
+                    refresh.run();
+                    controller.updateRendering();
+                    realod();
+                });
+
+                final CheckBox isShowLastPageRed = inflate.findViewById(R.id.isShowLastPageRed);
+                isShowLastPageRed.setChecked(AppState.get().isShowLastPageRed);
+                isShowLastPageRed.setOnCheckedChangeListener((b, isChecked) -> {
+                    AppState.get().isShowLastPageRed = isChecked;
+                    controller.updateRendering();
+                });
+
+                final CheckBox isShowLineDividing = inflate.findViewById(R.id.isShowLineDividing);
+                isShowLineDividing.setChecked(AppState.get().isShowLineDividing);
+                isShowLineDividing.setOnCheckedChangeListener((b, isChecked) -> {
+                    AppState.get().isShowLineDividing = isChecked;
+                    controller.updateRendering();
+                });
+
+                TintUtil.asLinkButtons(inflate);
+                return inflate;
+            }
+        };
+        dialog.show(DragingPopup.PREF + "_musicianSettings");
+    }
+
+    /** A dropdown link showing the chosen one of names, offering the others on a press. */
+    private static void initChoice(TextView link, List<String> names, int chosen, IntConsumer onChosen) {
+        link.setText(names.get(Math.max(0, chosen)));
+        TxtUtils.underlineTextView(link);
+        link.setOnClickListener(v -> {
+            final MyPopupMenu popupMenu = new MyPopupMenu(v.getContext(), v);
+            for (int i = 0; i < names.size(); i++) {
+                final int j = i;
+                popupMenu.getMenu().add(names.get(i)).setOnMenuItemClickListener(item -> {
+                    link.setText(names.get(j));
+                    TxtUtils.underlineTextView(link);
+                    onChosen.accept(j);
+                    return false;
+                });
+            }
+            popupMenu.show();
+        });
+    }
+
+    /**
+     * The musician's mode colour in its settings: its tap zone lines, speed bar and
      * bookmarks, for the day or the night the book is read in now, with swatches of its own.
      */
     private static void initMusicColor(View inflate, DocumentController controller, Runnable onRefresh) {
@@ -5710,6 +5816,14 @@ public class DragingDialogs {
                         dialogStatusBarSettings(anchor, controller, onRefresh, updateUIRefresh);
                     }
                 });
+
+                // Musician's mode has settings of its own, offered beside the status bar's
+                if (controller.isMusicianMode()) {
+                    final TextView musicianSettings = TxtUtils.underlineTextView(inflate.findViewById(R.id.musicianSettings));
+                    musicianSettings.setVisibility(View.VISIBLE);
+                    inflate.findViewById(R.id.musicianSettingsDiv).setVisibility(View.VISIBLE);
+                    musicianSettings.setOnClickListener(v -> dialogMusicianSettings(anchor, controller, onRefresh));
+                }
 
                 // The font size of the engine laying this book out: foliate-js keeps its own
                 final boolean foliateFont = controller.getCodecDocument() instanceof FoliateDocument;
