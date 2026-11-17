@@ -2684,8 +2684,8 @@ public class DocumentWrapperUI {
         lirbiLogo.setBackground(musicButton(GradientDrawable.RECTANGLE, onBar && !chosen ? Color.TRANSPARENT : fill,
                                             onBar ? ring : Color.TRANSPARENT));
         musicClose.setBackground(musicButton(GradientDrawable.OVAL, fill, Color.TRANSPARENT));
-        // Only ever on the bar, so ringed like the name
-        musicSettings.setBackground(musicButton(GradientDrawable.OVAL, Color.TRANSPARENT, ring));
+        // Only ever on the bar, so ringed and filled like the name
+        musicSettings.setBackground(musicButton(GradientDrawable.OVAL, chosen ? fill : Color.TRANSPARENT, ring));
         musicSettings.setImageTintList(ColorStateList.valueOf(ring));
         musicSeekRow.setBackground(musicButton(GradientDrawable.RECTANGLE, fill, Color.TRANSPARENT));
         musicCurrent.setTextColor(ring);
