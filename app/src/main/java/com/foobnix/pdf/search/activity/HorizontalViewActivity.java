@@ -1428,6 +1428,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         // As see-through as the status bar settings have the panels
         TintUtil.setTintBgSimple(actionBar, AppState.get().transparencyUI);
         TintUtil.setTintBgSimple(bottomBar, AppState.get().transparencyUI);
+        DocumentController.repaintBarStrips(this);
 
         TintUtil.setTintText(pagesPower, TintUtil.getStatusBarTextColor());
         TintUtil.setTintText(pagesTime, TintUtil.getStatusBarTextColor());
@@ -2092,6 +2093,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         // The bars are painted first: on Ink a mark takes its colour from the surface under it.
         TintUtil.setTintBgSimple(actionBar, AppState.get().transparencyUI);
         TintUtil.setTintBgSimple(bottomBar, AppState.get().transparencyUI);
+        DocumentController.repaintBarStrips(this);
         TxtUtils.updateAllLinks(parentParent);
         // TintUtil.setBackgroundFillColorBottomRight(ttsActive,
         // ColorUtils.setAlphaComponent(TintUtil.color, 230));

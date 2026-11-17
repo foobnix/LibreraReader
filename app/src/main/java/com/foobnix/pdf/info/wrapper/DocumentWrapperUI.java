@@ -1406,6 +1406,7 @@ public class DocumentWrapperUI {
 
         TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), AppState.get().transparencyUI);
         TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar1), AppState.get().transparencyUI);
+        DocumentController.repaintBarStrips(a);
         // The name of the mode is set in the colour the book's own title beside it is, rather
         // than in a white of its own.
         paintMusicButtons();
@@ -1518,6 +1519,7 @@ public class DocumentWrapperUI {
         titleBar.setBackgroundColor(Color.TRANSPARENT);
         TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), AppState.get().transparencyUI);
         TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar1), AppState.get().transparencyUI);
+        DocumentController.repaintBarStrips(a);
         paintMusicButtons();
 
         int progressColor = TintUtil.color;

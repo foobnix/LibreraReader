@@ -59,6 +59,7 @@ import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import androidx.core.graphics.ColorUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.OutlineHelper;
@@ -517,6 +518,7 @@ public abstract class DocumentController {
             EdgeToEdge.enable((ComponentActivity) a,
                               SystemBarStyle.dark(Color.TRANSPARENT),
                               SystemBarStyle.dark(barColor));
+            a.getWindow().getDecorView().setTag(R.id.navigationBarPaint, barColor);
         }
         // From Android 10 on, the style above leaves the bar clear and lets the system put its
         // own scrim over whatever shows through. The colour is set here instead, and the scrim
@@ -534,6 +536,7 @@ public abstract class DocumentController {
         if (parentParent != null) {
             ViewCompat.setOnApplyWindowInsetsListener(parentParent, (v, windowInsets) -> {
                 Insets insets = keptClearOf(a, windowInsets);
+                final int stripColor = stripColor(a, barColor);
 
                 ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
                 // Where the chrome floats it carries the bars itself, and the page runs
@@ -556,7 +559,7 @@ public abstract class DocumentController {
                     }
                     // With the status bar put away, all the strip still keeps clear of is the
                     // camera, and that is boxed off in black the way the system used to do it.
-                    statusBarHack.setBackgroundColor(barsShown(a, windowInsets).top > 0 ? barColor : Color.BLACK);
+                    statusBarHack.setBackgroundColor(barsShown(a, windowInsets).top > 0 ? stripColor : Color.BLACK);
                 }
 
                 if (isReader(a)) {
@@ -586,9 +589,8 @@ public abstract class DocumentController {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                         a.getWindow().setNavigationBarContrastEnforced(false);
                     }
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        a.getWindow().setNavigationBarColor(overPanel ? Color.TRANSPARENT : barColor);
-                    }
+                    // Left clear, the panel shows through it as see-through as the panel is
+                    paintNavigationBar(a, overPanel ? Color.TRANSPARENT : stripColor);
                 }
 
                 // Only the page runs up behind the status bar. The drawer slides over
@@ -608,6 +610,50 @@ public abstract class DocumentController {
 
                 return WindowInsetsCompat.CONSUMED;
             });
+        }
+    }
+
+    /** Has the strips kept for the bars painted again, after the panels' colour changed. */
+    public static void repaintBarStrips(final Activity a) {
+        final View parentParent = a.findViewById(R.id.parentParent);
+        if (parentParent != null) {
+            ViewCompat.requestApplyInsets(parentParent);
+        }
+    }
+
+    /**
+     * What the strips kept for the bars are painted. A reader's are its panels' colour, as
+     * see-through as the panels, over the page's own colour: there is no page under them to
+     * show, so they look like the panels over blank paper rather than a solid band beside them.
+     */
+    private static int stripColor(final Activity a, final int barColor) {
+        if (!isReader(a)) {
+            return barColor;
+        }
+        return ColorUtils.compositeColors(ColorUtils.setAlphaComponent(barColor, AppState.get().transparencyUI),
+                                          ColorUtils.setAlphaComponent(MagicHelper.getBgColor(), 255));
+    }
+
+    /**
+     * Paints the strip the navigation bar's buttons stand on. Up to Android 14 that is the
+     * window's own colour for the bar. From Android 15 on the window's colour is ignored and
+     * EdgeToEdge paints the strip itself, in a layer over the whole window - over a panel
+     * reaching in under the bar too - so it is EdgeToEdge that is told. Only on a change: set
+     * up again, it has the window's insets sent round once more.
+     */
+    private static void paintNavigationBar(final Activity a, final int color) {
+        final View decor = a.getWindow().getDecorView();
+        final Object painted = decor.getTag(R.id.navigationBarPaint);
+        if (painted instanceof Integer && (Integer) painted == color) {
+            return;
+        }
+        decor.setTag(R.id.navigationBarPaint, color);
+        if (Build.VERSION.SDK_INT >= 35 && a instanceof ComponentActivity) {
+            EdgeToEdge.enable((ComponentActivity) a,
+                              SystemBarStyle.dark(Color.TRANSPARENT),
+                              SystemBarStyle.dark(color));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            a.getWindow().setNavigationBarColor(color);
         }
     }
 
