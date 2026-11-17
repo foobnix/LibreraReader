@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Kropkowana ramka</string>
    <string name="speed_bar">Pasek prędkości</string>
    <string name="tap_zones">Strefy dotyku</string>
+   <string name="musician_button">Przycisk muzyka</string>
    <string name="scrolling">Przewijanie</string>
    <string name="paused">Wstrzymane</string>
    <string name="tap_zones_drag_note">* Strefy dotyku można przeciągać i zmieniać ich rozmiar podczas wstrzymania</string>

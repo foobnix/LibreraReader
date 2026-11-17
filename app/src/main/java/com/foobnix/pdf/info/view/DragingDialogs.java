@@ -4093,6 +4093,13 @@ public class DragingDialogs {
                 zonesScrolling.setOnCheckedChangeListener(onZones);
                 zonesPaused.setOnCheckedChangeListener(onZones);
 
+                final CheckBox buttonScrolling = inflate.findViewById(R.id.isShowMusicButtonScrolling);
+                buttonScrolling.setChecked(AppState.get().isShowMusicButtonScrolling);
+                buttonScrolling.setOnCheckedChangeListener((b, isChecked) -> {
+                    AppState.get().isShowMusicButtonScrolling = isChecked;
+                    refresh.run();
+                });
+
                 final CustomSeek speedLine = inflate.findViewById(R.id.musicSpeedLineWidth);
                 speedLine.setTitleTextWidth(Dips.dpToPx(100));
                 speedLine.init(1, 8, AppState.get().musicSpeedLineWidth, "dp");

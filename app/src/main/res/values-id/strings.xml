@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Batas bertitik</string>
    <string name="speed_bar">Bilah kecepatan</string>
    <string name="tap_zones">Zona ketuk</string>
+   <string name="musician_button">Tombol musisi</string>
    <string name="scrolling">Menggulir</string>
    <string name="paused">Dijeda</string>
    <string name="tap_zones_drag_note">* Zona ketuk dapat diseret dan diubah ukurannya saat dijeda</string>

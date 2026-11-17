@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Bodkovaný okraj</string>
    <string name="speed_bar">Lišta rýchlosti</string>
    <string name="tap_zones">Dotykové zóny</string>
+   <string name="musician_button">Tlačidlo hudobníka</string>
    <string name="scrolling">Posúvanie</string>
    <string name="paused">Pozastavené</string>
    <string name="tap_zones_drag_note">* Dotykové zóny možno počas pozastavenia presúvať a meniť ich veľkosť</string>

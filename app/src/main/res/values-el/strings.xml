@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Διάστικτο περίγραμμα</string>
    <string name="speed_bar">Γραμμή ταχύτητας</string>
    <string name="tap_zones">Ζώνες αφής</string>
+   <string name="musician_button">Κουμπί μουσικού</string>
    <string name="scrolling">Κύλιση</string>
    <string name="paused">Σε παύση</string>
    <string name="tap_zones_drag_note">* Οι ζώνες αφής μπορούν να μετακινηθούν και να αλλάξουν μέγεθος σε παύση</string>

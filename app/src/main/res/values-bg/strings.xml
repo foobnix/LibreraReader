@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Пунктирна рамка</string>
    <string name="speed_bar">Лента за скорост</string>
    <string name="tap_zones">Зони за докосване</string>
+   <string name="musician_button">Бутон на музиканта</string>
    <string name="scrolling">Превъртане</string>
    <string name="paused">Пауза</string>
    <string name="tap_zones_drag_note">* Зоните за докосване могат да се местят и преоразмеряват по време на пауза</string>

@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Пунктирна рамка</string>
    <string name="speed_bar">Смуга швидкості</string>
    <string name="tap_zones">Зони гортання</string>
+   <string name="musician_button">Кнопка музиканта</string>
    <string name="scrolling">Прокручування</string>
    <string name="paused">Пауза</string>
    <string name="tap_zones_drag_note">* Зони гортання можна перетягувати й змінювати їх розмір під час паузи</string>

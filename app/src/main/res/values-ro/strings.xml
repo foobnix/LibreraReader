@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Contur punctat</string>
    <string name="speed_bar">Bara de viteză</string>
    <string name="tap_zones">Zone de atingere</string>
+   <string name="musician_button">Butonul muzicianului</string>
    <string name="scrolling">Derulare</string>
    <string name="paused">În pauză</string>
    <string name="tap_zones_drag_note">* Zonele de atingere pot fi trase și redimensionate în pauză</string>

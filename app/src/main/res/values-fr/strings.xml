@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Bordure pointillée</string>
    <string name="speed_bar">Barre de vitesse</string>
    <string name="tap_zones">Zones tactiles</string>
+   <string name="musician_button">Bouton du musicien</string>
    <string name="scrolling">Défilement</string>
    <string name="paused">En pause</string>
    <string name="tap_zones_drag_note">* Les zones tactiles peuvent être déplacées et redimensionnées en pause</string>

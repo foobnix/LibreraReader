@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Gestippelde rand</string>
    <string name="speed_bar">Snelheidsbalk</string>
    <string name="tap_zones">Tikzones</string>
+   <string name="musician_button">Muzikantknop</string>
    <string name="scrolling">Scrollen</string>
    <string name="paused">Gepauzeerd</string>
    <string name="tap_zones_drag_note">* Tikzones kunnen tijdens pauze worden versleept en van grootte veranderd</string>

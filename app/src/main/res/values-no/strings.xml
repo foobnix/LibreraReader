@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Prikket kant</string>
    <string name="speed_bar">Hastighetslinje</string>
    <string name="tap_zones">Trykksoner</string>
+   <string name="musician_button">Musikerknapp</string>
    <string name="scrolling">Ruller</string>
    <string name="paused">Satt på pause</string>
    <string name="tap_zones_drag_note">* Trykksonene kan dras og endre størrelse mens de er satt på pause</string>

@@ -1951,6 +1951,10 @@ public class DocumentWrapperUI {
         }
 
         lirbiLogo.setVisibility(dc.isMusicianMode() ? View.VISIBLE : View.GONE);
+        // Put out of sight while the music scrolls with the panels away, as asked; a tap where
+        // it stands still brings the panels back
+        fadeTo(lirbiLogo, dc.isMusicianMode() && !AppState.get().isEditMode && AppState.get().isAutoScroll
+                && !AppState.get().isShowMusicButtonScrolling ? 0f : 1f);
 
         // hideSeekBarInReadMode();
         // showHideHavigationBar();

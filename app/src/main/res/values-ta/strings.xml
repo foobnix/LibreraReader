@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">புள்ளியிட்ட எல்லை</string>
    <string name="speed_bar">வேகப் பட்டி</string>
    <string name="tap_zones">தட்டும் பகுதிகள்</string>
+   <string name="musician_button">இசைக்கலைஞர் பொத்தான்</string>
    <string name="scrolling">உருட்டும்போது</string>
    <string name="paused">இடைநிறுத்தம்</string>
    <string name="tap_zones_drag_note">* இடைநிறுத்தத்தில் தட்டும் பகுதிகளை இழுக்கவும் அளவை மாற்றவும் முடியும்</string>

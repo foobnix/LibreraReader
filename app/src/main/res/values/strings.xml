@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Dotted border</string>
    <string name="speed_bar">Speed bar</string>
    <string name="tap_zones">Tap zones</string>
+   <string name="musician_button">Musician button</string>
    <string name="scrolling">Scrolling</string>
    <string name="paused">Paused</string>
    <string name="tap_zones_drag_note">* Tap zones can be dragged and resized while paused</string>

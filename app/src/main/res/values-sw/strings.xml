@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Mpaka wa nukta</string>
    <string name="speed_bar">Upau wa kasi</string>
    <string name="tap_zones">Maeneo ya kugusa</string>
+   <string name="musician_button">Kitufe cha mwanamuziki</string>
    <string name="scrolling">Inasogeza</string>
    <string name="paused">Imesitishwa</string>
    <string name="tap_zones_drag_note">* Maeneo ya kugusa yanaweza kuburutwa na kubadilishwa ukubwa yakiwa yamesitishwa</string>

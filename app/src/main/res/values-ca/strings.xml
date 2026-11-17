@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Vora puntejada</string>
    <string name="speed_bar">Barra de velocitat</string>
    <string name="tap_zones">Zones tàctils</string>
+   <string name="musician_button">Botó del músic</string>
    <string name="scrolling">En desplaçament</string>
    <string name="paused">En pausa</string>
    <string name="tap_zones_drag_note">* Les zones tàctils es poden arrossegar i redimensionar en pausa</string>

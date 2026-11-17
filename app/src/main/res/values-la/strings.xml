@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Margo punctatus</string>
    <string name="speed_bar">Vectis celeritatis</string>
    <string name="tap_zones">Zonae tactus</string>
+   <string name="musician_button">Globulus musici</string>
    <string name="scrolling">Volvens</string>
    <string name="paused">Intermissum</string>
    <string name="tap_zones_drag_note">* Zonae tactus, dum intermissum est, trahi et magnitudine mutari possunt</string>

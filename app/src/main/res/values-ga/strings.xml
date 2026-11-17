@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Imeall poncaithe</string>
    <string name="speed_bar">Barra luais</string>
    <string name="tap_zones">Criosanna tapála</string>
+   <string name="musician_button">Cnaipe an cheoltóra</string>
    <string name="scrolling">Ag scrollú</string>
    <string name="paused">Ar sos</string>
    <string name="tap_zones_drag_note">* Is féidir na criosanna tapála a tharraingt agus a athmhéadú agus iad ar sos</string>

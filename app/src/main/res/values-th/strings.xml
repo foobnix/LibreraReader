@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">ขอบเส้นประ</string>
    <string name="speed_bar">แถบความเร็ว</string>
    <string name="tap_zones">โซนแตะ</string>
+   <string name="musician_button">ปุ่มนักดนตรี</string>
    <string name="scrolling">ขณะเลื่อน</string>
    <string name="paused">หยุดชั่วคราว</string>
    <string name="tap_zones_drag_note">* ลากและปรับขนาดโซนแตะได้ขณะหยุดชั่วคราว</string>

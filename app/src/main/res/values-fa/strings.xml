@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">حاشیه نقطه‌چین</string>
    <string name="speed_bar">نوار سرعت</string>
    <string name="tap_zones">نواحی لمسی</string>
+   <string name="musician_button">دکمه نوازنده</string>
    <string name="scrolling">در حال پیمایش</string>
    <string name="paused">متوقف</string>
    <string name="tap_zones_drag_note">* نواحی لمسی را می‌توان هنگام توقف جابه‌جا کرد و اندازه‌شان را تغییر داد</string>

@@ -221,6 +221,23 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center" />
             </TableRow>
+
+            <!-- Musician's button can be put away only while the music scrolls: paused, it is
+                 what brings the panels back. Out of sight it still does. -->
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/musician_button" />
+
+                <CheckBox
+                    android:id="@+id/isShowMusicButtonScrolling"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+            </TableRow>
         </TableLayout>
 
         <!-- How wide the speed bar's lines are drawn, and the dotted line round a tap zone -->

@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">बिंदीदार किनारा</string>
    <string name="speed_bar">गति पट्टी</string>
    <string name="tap_zones">टैप ज़ोन</string>
+   <string name="musician_button">संगीतकार बटन</string>
    <string name="scrolling">स्क्रॉल करते समय</string>
    <string name="paused">रुका हुआ</string>
    <string name="tap_zones_drag_note">* रुके होने पर टैप ज़ोन को खींचा और उनका आकार बदला जा सकता है</string>

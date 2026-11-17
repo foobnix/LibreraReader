@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Noktalı kenarlık</string>
    <string name="speed_bar">Hız çubuğu</string>
    <string name="tap_zones">Dokunma alanları</string>
+   <string name="musician_button">Müzisyen düğmesi</string>
    <string name="scrolling">Kaydırırken</string>
    <string name="paused">Duraklatıldı</string>
    <string name="tap_zones_drag_note">* Dokunma alanları duraklatıldığında sürüklenebilir ve yeniden boyutlandırılabilir</string>

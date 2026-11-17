@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Ertz puntuduna</string>
    <string name="speed_bar">Abiadura-barra</string>
    <string name="tap_zones">Ukipen-guneak</string>
+   <string name="musician_button">Musikariaren botoia</string>
    <string name="scrolling">Korritzen</string>
    <string name="paused">Pausatuta</string>
    <string name="tap_zones_drag_note">* Ukipen-guneak arrastatu eta tamainaz alda daitezke pausatuta dagoenean</string>

@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">点線の枠</string>
    <string name="speed_bar">速度バー</string>
    <string name="tap_zones">タップゾーン</string>
+   <string name="musician_button">ミュージシャンボタン</string>
    <string name="scrolling">スクロール中</string>
    <string name="paused">一時停止中</string>
    <string name="tap_zones_drag_note">* 一時停止中はタップゾーンをドラッグしてサイズを変更できます</string>

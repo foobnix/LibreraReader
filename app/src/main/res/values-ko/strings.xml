@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">점선 테두리</string>
    <string name="speed_bar">속도 막대</string>
    <string name="tap_zones">탭 영역</string>
+   <string name="musician_button">뮤지션 버튼</string>
    <string name="scrolling">스크롤 중</string>
    <string name="paused">일시 정지</string>
    <string name="tap_zones_drag_note">* 일시 정지 중에는 탭 영역을 끌어서 옮기고 크기를 바꿀 수 있습니다</string>

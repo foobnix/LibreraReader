@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">מסגרת מנוקדת</string>
    <string name="speed_bar">סרגל מהירות</string>
    <string name="tap_zones">אזורי הקשה</string>
+   <string name="musician_button">כפתור המוזיקאי</string>
    <string name="scrolling">בגלילה</string>
    <string name="paused">מושהה</string>
    <string name="tap_zones_drag_note">* ניתן לגרור את אזורי ההקשה ולשנות את גודלם בזמן השהיה</string>

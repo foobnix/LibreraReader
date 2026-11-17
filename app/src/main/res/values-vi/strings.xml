@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Viền chấm</string>
    <string name="speed_bar">Thanh tốc độ</string>
    <string name="tap_zones">Vùng chạm</string>
+   <string name="musician_button">Nút nhạc sĩ</string>
    <string name="scrolling">Đang cuộn</string>
    <string name="paused">Tạm dừng</string>
    <string name="tap_zones_drag_note">* Có thể kéo và đổi kích thước vùng chạm khi tạm dừng</string>

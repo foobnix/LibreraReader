@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Gepunkteter Rahmen</string>
    <string name="speed_bar">Geschwindigkeitsleiste</string>
    <string name="tap_zones">Tippzonen</string>
+   <string name="musician_button">Musiker-Schaltfläche</string>
    <string name="scrolling">Beim Scrollen</string>
    <string name="paused">Pausiert</string>
    <string name="tap_zones_drag_note">* Tippzonen können im pausierten Zustand verschoben und in der Größe geändert werden</string>

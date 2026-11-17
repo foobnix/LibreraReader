@@ -538,6 +538,9 @@ public class AppState {
     @IgnoreHashCode public boolean isShowMusicSpeedPaused = true;
     @IgnoreHashCode public boolean isShowMusicTapZonesScrolling = true;
     @IgnoreHashCode public boolean isShowMusicTapZonesPaused = true;
+    // Musician's button with the panels away while the music scrolls; out of sight it still
+    // brings the panels back. Paused it is always seen.
+    @IgnoreHashCode public boolean isShowMusicButtonScrolling = true;
     @IgnoreHashCode public boolean isMusicTapZonesDotted = true;
     // The width, in dp, of the dotted line round a tap zone and of the speed bar's lines
     @IgnoreHashCode public int musicTapZoneLineWidth = 2;
@@ -842,6 +845,7 @@ public class AppState {
         isShowMusicSpeedPaused = true;
         isShowMusicTapZonesScrolling = true;
         isShowMusicTapZonesPaused = true;
+        isShowMusicButtonScrolling = true;
         isShowRectangularTapZones = true;
         musicSpeedLineWidth = 2;
         musicTapZoneLineWidth = 2;

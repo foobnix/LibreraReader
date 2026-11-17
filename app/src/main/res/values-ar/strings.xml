@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">حدود منقطة</string>
    <string name="speed_bar">شريط السرعة</string>
    <string name="tap_zones">مناطق النقر</string>
+   <string name="musician_button">زر الموسيقي</string>
    <string name="scrolling">أثناء التمرير</string>
    <string name="paused">متوقف مؤقتًا</string>
    <string name="tap_zones_drag_note">* يمكن سحب مناطق النقر وتغيير حجمها أثناء الإيقاف المؤقت</string>

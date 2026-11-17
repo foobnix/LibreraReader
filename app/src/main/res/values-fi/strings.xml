@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Pisteviivareunus</string>
    <string name="speed_bar">Nopeuspalkki</string>
    <string name="tap_zones">Napautusalueet</string>
+   <string name="musician_button">Muusikon painike</string>
    <string name="scrolling">Vieritys</string>
    <string name="paused">Tauko</string>
    <string name="tap_zones_drag_note">* Napautusalueita voi siirtää ja muuttaa niiden kokoa tauon aikana</string>

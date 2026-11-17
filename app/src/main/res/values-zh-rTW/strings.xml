@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">點線邊框</string>
    <string name="speed_bar">速度列</string>
    <string name="tap_zones">點按區域</string>
+   <string name="musician_button">音樂家按鈕</string>
    <string name="scrolling">捲動時</string>
    <string name="paused">暫停時</string>
    <string name="tap_zones_drag_note">* 暫停時可以拖曳點按區域並調整其大小</string>

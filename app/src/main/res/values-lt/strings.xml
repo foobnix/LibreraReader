@@ -740,6 +740,7 @@
    <string name="tap_zones_dotted">Taškuotas kraštas</string>
    <string name="speed_bar">Greičio juosta</string>
    <string name="tap_zones">Palietimo zonos</string>
+   <string name="musician_button">Muzikanto mygtukas</string>
    <string name="scrolling">Slenkant</string>
    <string name="paused">Pristabdyta</string>
    <string name="tap_zones_drag_note">* Pristabdžius palietimo zonas galima tempti ir keisti jų dydį</string>
