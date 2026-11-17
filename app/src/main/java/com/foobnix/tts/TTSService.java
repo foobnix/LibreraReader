@@ -18,8 +18,10 @@ import android.content.pm.ServiceInfo;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioAttributes;
 import android.media.AudioFocusRequest;
+import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
+import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.IBinder;
@@ -281,33 +283,20 @@ import java.util.concurrent.Executors;
         a.startActivity(intent);
     }
 
-    private static void openNotificationSettings(Context context) {
-        try {
-            Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-            intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
+    /** Whether the notification permission was asked for in this run of the app. */
+    private static boolean notificationsAsked;
 
     public static boolean isTTSGranted(Context context) {
-        if (Build.VERSION.SDK_INT >= 33 && ContextCompat.checkSelfPermission(context,
-                Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-
-            final Activity activity = context instanceof Activity ? (Activity) context : null;
-
-            if (activity == null) {
-                openNotificationSettings(context);
-            } else if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
-                    Manifest.permission.POST_NOTIFICATIONS)) {
-                openNotificationSettings(context);
-            } else {
-                ActivityCompat.requestPermissions(activity,
-                        new String[]{Manifest.permission.POST_NOTIFICATIONS}, 11);
-            }
-            return false;
+        // Reading aloud does not need the notification permission: the player's notification is
+        // a media one, which Android 13+ shows without it. Waiting for it left a play press -
+        // a headset key above all - doing nothing at all. It is asked for once, on a screen,
+        // and reading starts whatever the answer.
+        if (Build.VERSION.SDK_INT >= 33 && !notificationsAsked && context instanceof Activity
+                && ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            notificationsAsked = true;
+            ActivityCompat.requestPermissions((Activity) context,
+                    new String[]{Manifest.permission.POST_NOTIFICATIONS}, 11);
         }
         if (TTSEngine.get()
                      .hasUnknownLanguage()) {
@@ -433,7 +422,18 @@ import java.util.concurrent.Executors;
                         Arrays.asList(KeyEvent.KEYCODE_HEADSETHOOK, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE,
                                 KeyEvent.KEYCODE_MEDIA_STOP, KeyEvent.KEYCODE_MEDIA_PLAY, KeyEvent.KEYCODE_MEDIA_PAUSE);
 
-                if (KeyEvent.ACTION_DOWN == event.getAction()) {
+                // Play and pause keys mean what they say - a pause never starts reading, a
+                // play never stops it; only the toggle keys turn it either way. Headphones
+                // send play or pause by the state the phone reports, so this is a no-op then.
+                // Only when the engine and the state the headphones were told agree: where they
+                // differ - the state lags while the engine starts up - the key turns it either way.
+                final boolean wrongWay = event != null && (
+                        (isPlaying && reportedPlaying && event.getKeyCode() == KeyEvent.KEYCODE_MEDIA_PLAY)
+                                || (!isPlaying && !reportedPlaying
+                                && (event.getKeyCode() == KeyEvent.KEYCODE_MEDIA_PAUSE
+                                || event.getKeyCode() == KeyEvent.KEYCODE_MEDIA_STOP)));
+
+                if (event != null && KeyEvent.ACTION_DOWN == event.getAction() && !wrongWay) {
                     if (list.contains(event.getKeyCode())) {
                         LOG.d(TAG, "onMediaButtonEvent", "isPlaying", isPlaying, "isFastBookmarkByTTS",
                                 AppState.get().isFastBookmarkByTTS);
@@ -987,6 +987,9 @@ import java.util.concurrent.Executors;
         return duration > 0 ? Math.min(position, duration) : position;
     }
 
+    /** Whether the media session last told the system - and the headphones - it was playing. */
+    private static volatile boolean reportedPlaying;
+
     static void updatePlaybackState() {
         try {
             final MediaSessionCompat session = sessionRef;
@@ -994,6 +997,7 @@ import java.util.concurrent.Executors;
                 return;
             }
             final boolean playing = TTSEngine.get().isPlaying();
+            reportedPlaying = playing;
             // Keep the session active even while paused. Android 13+ renders a MediaStyle
             // notification only through the media controls, and hides it completely when the
             // session is inactive - TTSEngine.stop() deactivates it on pause, which would
@@ -1059,12 +1063,56 @@ import java.util.concurrent.Executors;
         }
     }
 
+    /**
+     * Takes the headphone buttons back for this app's media session. Android gives them to the
+     * app that played audio last, and the spoken book is played by the TTS engine's process,
+     * not this one: once another app had them (a music or audiobook app, played or paused),
+     * reading on from the screen left a headphone pause going to that app, until a restart
+     * made a new session. A fifth of a second of silence played from here settles it.
+     */
+    private static void claimMediaButtons() {
+        new Thread(() -> {
+            AudioTrack track = null;
+            try {
+                final int rate = 8000;
+                final int bytes = rate / 5 * 2; // 200 ms of 16-bit mono
+                track = new AudioTrack.Builder()
+                        .setAudioAttributes(new AudioAttributes.Builder()
+                                .setUsage(AudioAttributes.USAGE_MEDIA)
+                                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                                .build())
+                        .setAudioFormat(new AudioFormat.Builder()
+                                .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+                                .setSampleRate(rate)
+                                .setChannelMask(AudioFormat.CHANNEL_OUT_MONO)
+                                .build())
+                        .setBufferSizeInBytes(bytes)
+                        .setTransferMode(AudioTrack.MODE_STATIC)
+                        .build();
+                track.write(new byte[bytes], 0, bytes);
+                track.play();
+                Thread.sleep(300);
+                track.stop();
+            } catch (Throwable e) {
+                LOG.e(e);
+            } finally {
+                if (track != null) {
+                    track.release();
+                }
+            }
+        }, "ClaimMediaButtons").start();
+    }
+
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     private void playPage(String preText, int pageNumber, String anchor) {
         //releaseWakeLock();
         acquireWakeLock();
         mMediaSessionCompat.setActive(true);
         updatePlaybackState();
+        // Only when reading starts or resumes, not on every page it turns to by itself
+        if (!TTSEngine.get().isPlaying()) {
+            claimMediaButtons();
+        }
 
         if (!AppState.get().allowOtherMusic) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -1249,6 +1297,11 @@ import java.util.concurrent.Executors;
                      .setOnUtteranceProgressListener(new UtteranceProgressListener() {
                          @Override public void onStart(String utteranceId) {
                              LOG.d(TAG, "onUtteranceCompleted onStart", utteranceId);
+                             // Reading was asked for before the engine was ready, and the state
+                             // went out as paused: headphones would send play to pause it
+                             if (!reportedPlaying) {
+                                 new Handler(Looper.getMainLooper()).post(TTSService::updatePlaybackState);
+                             }
                              if (utteranceId.startsWith(TTSEngine.FINISHED_SIGNAL)) {
                                  ReadingHighlight.show(Integer.parseInt(
                                          utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")));

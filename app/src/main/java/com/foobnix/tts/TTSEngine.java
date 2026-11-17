@@ -337,9 +337,8 @@ public class TTSEngine {
         // Every way of stopping comes here - the reader stops it when it restarts for a setting -
         // and a sentence left marked would look as if it were still being read
         ReadingHighlight.clear();
-        if (mediaSessionCompat != null) {
-            mediaSessionCompat.setActive(false);
-        }
+        // The media session is left active: a paused player keeps it, and switching it off
+        // even for a moment may hand the headphone buttons to another app's session
         if (!AppState.get().allowOtherMusic) {
             try {
 

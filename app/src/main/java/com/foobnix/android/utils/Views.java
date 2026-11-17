@@ -99,7 +99,9 @@ public class Views {
         textView.setPadding(dp * 2, dp, dp * 2, dp);
 
         final PopupWindow mPopupWindow = new PopupWindow(textView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        mPopupWindow.setFocusable(true);
+        // Not focusable: a hint shown as a book opens must not take the keys - a headset's
+        // play key above all - for the seconds it stays up. A tap still closes it.
+        mPopupWindow.setFocusable(false);
         mPopupWindow.showAsDropDown(anchor, 0, -Dips.dpToPx(180));
 
         mPopupWindow.setOnDismissListener(new OnDismissListener() {
