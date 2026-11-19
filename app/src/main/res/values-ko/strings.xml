@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">축소, 확대</string>
    <string name="enhancements_for_oled_display">OLED 디스플레이 향상</string>
    <string name="ignore_annotations_on_click">주석에 클릭 무시</string>
-   <string name="save_new_annotations_automatically">종료시 자동으로 주석을 저장</string>
    <string name="selecting_text_by_letters">글자 단위 선택</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">볼륨 키로 자동 스크롤 속도 변경</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">화면 왼쪽 가장자리에서 밝기 조정 사용</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">텍스트를 표시하려면 설정에서 EPUB 엔진을 HTML+JS로 변경하세요.</string>
    <string name="base_stylesheet">기본 스타일시트 적용 (foliate-js)</string>
    <string name="pdf_engine">PDF 엔진</string>
+   <string name="annotations_in_pdf">PDF 파일의 주석</string>
+   <string name="dont_save">저장 안 함</string>
+   <string name="ask_to_save">저장 전에 묻기</string>
+   <string name="save_automatically">자동으로 저장</string>
    <string name="msg_pdf_engine_unavailable">이 빌드에는 PDFium 라이브러리가 포함되어 있지 않습니다.</string>
    <string name="book_open_failed">이 책을 열 수 없습니다.</string>
    <string name="book_open_crashed">지난번 이 책을 여는 중에 앱이 예기치 않게 종료되었습니다.</string>

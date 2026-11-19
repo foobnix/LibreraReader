@@ -99,6 +99,8 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.Engines;
 import com.foobnix.pdf.info.EpubEngineMenu;
+import com.foobnix.pdf.info.AnnotationsSaveMenu;
+import org.ebookdroid.droids.pdfium.codec.PdfiumAnnots;
 import com.foobnix.pdf.info.PdfEngineMenu;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
@@ -1044,6 +1046,13 @@ public class PrefFragment2 extends UIFragment {
             ImageExtractor.clearCodeDocument();
             asButton(pdfEngine, PdfEngineMenu.name(getContext(), AppState.get().pdfEngine));
         }));
+
+        // What becomes of the strokes drawn on a PDF as it closes
+        Views.visible(inflate.findViewById(R.id.annotationsSaveRow), Engines.IS_MUPDF || PdfiumAnnots.isAvailable());
+        final TextView annotationsSave = inflate.findViewById(R.id.annotationsSave);
+        asButton(annotationsSave, AnnotationsSaveMenu.name(getContext(), AppState.get().annotationsSaveMode));
+        annotationsSave.setOnClickListener(v -> AnnotationsSaveMenu.show(v,
+                () -> asButton(annotationsSave, AnnotationsSaveMenu.name(getContext(), AppState.get().annotationsSaveMode))));
 
         // Which engine lays out a reflowable book
         final TextView epubEngine = inflate.findViewById(R.id.epubEngine);

@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-# The whole release, built on one MuPDF: ./all-release.sh 1.28.5
-# (or through all-release-1.23.7.sh / all-release-1.28.5.sh). The MuPDF version goes into the
-# names of the APKs, bundles, mappings and native symbols, so both releases sit side by side.
-MUPDF=$1
-if [ -z "$MUPDF" ] || [ ! -f "./link_to_mupdf_$MUPDF.sh" ]; then
+# The whole release, built on the MuPDF there is a link script for: ./all-release.sh 1.28.5
+# (or through all-release-1.28.5.sh). The MuPDF version is written beside the builds.
+MUPDF=${1:-1.28.5}
+if [ ! -f "./link_to_mupdf_$MUPDF.sh" ]; then
   echo "Usage: $0 <mupdf version>, one of:" $(ls link_to_mupdf_*.sh | sed 's/link_to_mupdf_//; s/\.sh//')
   exit 1
 fi

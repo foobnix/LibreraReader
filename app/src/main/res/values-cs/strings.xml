@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Přiblížit / oddálit</string>
    <string name="enhancements_for_oled_display">Vylepšení nočního režimu pro AMOLED displeje</string>
    <string name="ignore_annotations_on_click">Ignorovat dotykové poznámky</string>
-   <string name="save_new_annotations_automatically">Automaticky uložit poznámky při ukončení</string>
    <string name="selecting_text_by_letters">Vybrat text písmeno po písmenu (Asijské jazyky)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Ovládání rychlosti automatického skrolování pomocí tlačítek hlasitosti</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Upravit jas posuvem v levém okraji</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Chcete-li označovat text, změňte v nastavení EPUB engine na HTML+JS.</string>
    <string name="base_stylesheet">Použít základní styl (foliate-js)</string>
    <string name="pdf_engine">Jádro PDF</string>
+   <string name="annotations_in_pdf">Anotace v souboru PDF</string>
+   <string name="dont_save">Neukládat</string>
+   <string name="ask_to_save">Zeptat se před uložením</string>
+   <string name="save_automatically">Ukládat automaticky</string>
    <string name="msg_pdf_engine_unavailable">Toto sestavení neobsahuje knihovny PDFium.</string>
    <string name="book_open_failed">Tuto knihu se nepodařilo otevřít.</string>
    <string name="book_open_crashed">Aplikace se při posledním otevírání této knihy neočekávaně ukončila.</string>

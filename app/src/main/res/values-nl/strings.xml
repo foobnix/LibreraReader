@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">In-/uitzoomen</string>
    <string name="enhancements_for_oled_display">Verbeteringen voor OLED-weergave</string>
    <string name="ignore_annotations_on_click">Negeer tik annotaties</string>
-   <string name="save_new_annotations_automatically">Bewaar nieuwe annotaties automatisch</string>
    <string name="selecting_text_by_letters">Selecteer tekst letter voor letter (Aziatische talen)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Wijzig de automatische scrollsnelheid met de volumetoetsen</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Helderheid aanpassen door te schuiven aan de linkerrand</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Om tekst te markeren, zet u de EPUB-engine in de instellingen op HTML+JS.</string>
    <string name="base_stylesheet">Basisstijlblad toepassen (foliate-js)</string>
    <string name="pdf_engine">PDF-engine</string>
+   <string name="annotations_in_pdf">Aantekeningen in het PDF-bestand</string>
+   <string name="dont_save">Niet opslaan</string>
+   <string name="ask_to_save">Vragen voor het opslaan</string>
+   <string name="save_automatically">Automatisch opslaan</string>
    <string name="msg_pdf_engine_unavailable">Deze build bevat de PDFium-bibliotheken niet.</string>
    <string name="book_open_failed">Dit boek kon niet worden geopend.</string>
    <string name="book_open_crashed">De app is de vorige keer onverwacht gesloten tijdens het openen van dit boek.</string>

@@ -79,9 +79,9 @@
             android:paddingLeft="10dip"
             android:paddingRight="10dip"
             android:singleLine="true"
-            android:text="718"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
 
         <TextView

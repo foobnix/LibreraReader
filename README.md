@@ -83,7 +83,7 @@ For this project only Analytics is used, so a spakling plan is all you need.
 
 ~~~~
 cd Builder
-./link_to_mupdf_x.x.x.sh (Change the paths to mupdf and jniLibs folders)
+./link_to_mupdf_1.28.5.sh (Change the paths to mupdf and jniLibs folders)
 cd ..
 ./gradlew assembleLibrera
 ~~~~
@@ -94,7 +94,7 @@ If you wish to build for F-Droid (e.g. not using google services, Internet) you 
 
 ~~~~
 cd Builder
-./link_to_mupdf_x.x.x.sh
+./link_to_mupdf_1.28.5.sh
 cd ..
 ./gradlew assembleFdroid
 ~~~~
@@ -148,7 +148,7 @@ Full release notes: https://github.com/foobnix/LibreraReader/releases
 
 | Library    | Version          | License              |
 |------------|------------------|----------------------|
-| MuPDF      | 1.28.5 (1.23.7)  | AGPL-3.0             |
+| MuPDF      | 1.28.5           | AGPL-3.0             |
 | DjVuLibre  | 3.5.28           | GPL-2.0-or-later     |
 | antiword   | 1.3.1            | GPL-2.0              |
 | libmobi    | 0.12             | LGPL-3.0-or-later    |

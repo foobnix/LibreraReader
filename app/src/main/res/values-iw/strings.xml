@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">הגדלה, הקטנה החוצה</string>
    <string name="enhancements_for_oled_display">שיפורים לתצוגה OLED</string>
    <string name="ignore_annotations_on_click">התעלם ולהערות קליק</string>
-   <string name="save_new_annotations_automatically">שמור הערות חדשות באופן אוטומטי</string>
    <string name="selecting_text_by_letters">בחירת טקסט על ידי אותיות</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">שנה את מהירות הגלילה האוטומטית באמצעות מקשי עוצמת הקול</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">הפעל התאמת בהירות בצד שמאל של המסך</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">כדי לסמן טקסט, שנו את מנוע ה-EPUB ל-HTML+JS בהגדרות.</string>
    <string name="base_stylesheet">החלת גיליון הסגנונות הבסיסי (foliate-js)</string>
    <string name="pdf_engine">מנוע PDF</string>
+   <string name="annotations_in_pdf">הערות בקובץ ה-PDF</string>
+   <string name="dont_save">לא לשמור</string>
+   <string name="ask_to_save">לשאול לפני שמירה</string>
+   <string name="save_automatically">לשמור אוטומטית</string>
    <string name="msg_pdf_engine_unavailable">גרסה זו אינה כוללת את ספריות PDFium.</string>
    <string name="book_open_failed">לא ניתן היה לפתוח ספר זה.</string>
    <string name="book_open_crashed">בפעם הקודמת היישום נסגר באופן בלתי צפוי בזמן פתיחת ספר זה.</string>

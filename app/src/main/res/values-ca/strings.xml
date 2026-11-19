@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Amplia/Redueix</string>
    <string name="enhancements_for_oled_display">Millora el mode fosc per a pantalles AMOLED</string>
    <string name="ignore_annotations_on_click">Ignora les anotacions al tocar</string>
-   <string name="save_new_annotations_automatically">Desa automàticament les anotacions al sortir</string>
    <string name="selecting_text_by_letters">Selecciona el text lletra per lletra (idiomes asiàtics)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Controla la velocitat de desplaçament automàtic amb els botons del volum</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Ajusta lluminositat amb lliscaments en el marge esquerre</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Per marcar text, canvieu el motor EPUB a HTML+JS a la configuració.</string>
    <string name="base_stylesheet">Aplica el full d\'estils base (foliate-js)</string>
    <string name="pdf_engine">Motor de PDF</string>
+   <string name="annotations_in_pdf">Anotacions al fitxer PDF</string>
+   <string name="dont_save">No desar</string>
+   <string name="ask_to_save">Preguntar abans de desar</string>
+   <string name="save_automatically">Desar automàticament</string>
    <string name="msg_pdf_engine_unavailable">Aquesta compilació no inclou les biblioteques PDFium.</string>
    <string name="book_open_failed">No s\'ha pogut obrir aquest llibre.</string>
    <string name="book_open_crashed">L\'aplicació es va tancar inesperadament en obrir aquest llibre l\'última vegada.</string>

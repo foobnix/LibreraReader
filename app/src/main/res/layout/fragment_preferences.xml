@@ -771,6 +771,28 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/annotationsSaveRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/annotations_in_pdf"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/annotationsSave"
+                    style="@style/textLinkDropdown"
+                    android:layout_width="@dimen/pref_value_width"
+                    android:layout_height="wrap_content"
+                    android:minWidth="100dip" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/epubEngineRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

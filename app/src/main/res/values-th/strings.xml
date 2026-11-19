@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">ซูมเข้า/ซูมออก</string>
    <string name="enhancements_for_oled_display">การเพิ่มประสิทธิภาพสำหรับการแสดงผลจอ OLED</string>
    <string name="ignore_annotations_on_click">ไม่สนใจคำอธิบายประกอบเมื่อแตะ</string>
-   <string name="save_new_annotations_automatically">บันทึกคำอธิบายประกอบใหม่โดยอัตโนมัติ</string>
    <string name="selecting_text_by_letters">การเลือกข้อความตามตัวอักษร</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">เปลี่ยนความเร็วในการเลื่อนอัตโนมัติด้วยปุ่มปรับระดับเสียง</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">เปิดใช้งานการปรับความสว่างที่ด้านซ้ายของหน้าจอ</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">หากต้องการทำเครื่องหมายข้อความ ให้เปลี่ยนเอนจิน EPUB เป็น HTML+JS ในการตั้งค่า</string>
    <string name="base_stylesheet">ใช้สไตล์ชีตพื้นฐาน (foliate-js)</string>
    <string name="pdf_engine">เอนจิน PDF</string>
+   <string name="annotations_in_pdf">คำอธิบายประกอบในไฟล์ PDF</string>
+   <string name="dont_save">ไม่บันทึก</string>
+   <string name="ask_to_save">ถามก่อนบันทึก</string>
+   <string name="save_automatically">บันทึกอัตโนมัติ</string>
    <string name="msg_pdf_engine_unavailable">บิลด์นี้ไม่มีไลบรารี PDFium</string>
    <string name="book_open_failed">ไม่สามารถเปิดหนังสือเล่มนี้ได้</string>
    <string name="book_open_crashed">ครั้งล่าสุดแอปปิดไปโดยไม่คาดคิดขณะเปิดหนังสือเล่มนี้</string>

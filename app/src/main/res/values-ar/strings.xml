@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">تكبير، تصغير</string>
    <string name="enhancements_for_oled_display">تحسينات لشاشة أوليد</string>
    <string name="ignore_annotations_on_click">تجاهل الشروح على نقرة</string>
-   <string name="save_new_annotations_automatically">حفظ الشروح الجديدة تلقائيا</string>
    <string name="selecting_text_by_letters">اختيار النص بخطابات</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">تغيير سرعة التمرير التلقائي مع مفاتيح الصوت</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">تمكين تعديل السطوع على يمين الشاشة</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">لتمييز النص، غيّر محرك EPUB إلى HTML+JS في الإعدادات.</string>
    <string name="base_stylesheet">تطبيق ورقة الأنماط الأساسية (foliate-js)</string>
    <string name="pdf_engine">محرك PDF</string>
+   <string name="annotations_in_pdf">الملاحظات في ملف PDF</string>
+   <string name="dont_save">عدم الحفظ</string>
+   <string name="ask_to_save">السؤال قبل الحفظ</string>
+   <string name="save_automatically">الحفظ تلقائيًا</string>
    <string name="msg_pdf_engine_unavailable">لا تتضمن هذه النسخة مكتبات PDFium.</string>
    <string name="book_open_failed">تعذّر فتح هذا الكتاب.</string>
    <string name="book_open_crashed">أُغلق التطبيق بشكل غير متوقع أثناء فتح هذا الكتاب في المرة السابقة.</string>

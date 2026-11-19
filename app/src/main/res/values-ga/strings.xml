@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Súmáil isteach / amach</string>
    <string name="enhancements_for_oled_display">Feabhsú mód oíche le haghaidh taispeántais amoled</string>
    <string name="ignore_annotations_on_click">Neamhaird a dhéanamh ar anótálacha tadhaill</string>
-   <string name="save_new_annotations_automatically">Anótálacha uathoibríoch-shábháil ar imeacht</string>
    <string name="selecting_text_by_letters">Roghnaigh téacs litir i litir (teangacha na hÁise)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Luas uathoibríoch-scrollaigh a rialú le heochracha toirte</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Gile a choigeartú le sleamhnáin imeall clé</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Chun téacs a mharcáil, athraigh an t-inneall EPUB go HTML+JS sna socruithe.</string>
    <string name="base_stylesheet">Cuir an bunstílbhileog i bhfeidhm (foliate-js)</string>
    <string name="pdf_engine">Inneall PDF</string>
+   <string name="annotations_in_pdf">Nótaí sa chomhad PDF</string>
+   <string name="dont_save">Ná sábháil</string>
+   <string name="ask_to_save">Fiafraigh roimh shábháil</string>
+   <string name="save_automatically">Sábháil go huathoibríoch</string>
    <string name="msg_pdf_engine_unavailable">Níl leabharlanna PDFium sa leagan seo.</string>
    <string name="book_open_failed">Níorbh fhéidir an leabhar seo a oscailt.</string>
    <string name="book_open_crashed">Dúnadh an aip gan choinne agus an leabhar seo á oscailt an uair dheireanach.</string>

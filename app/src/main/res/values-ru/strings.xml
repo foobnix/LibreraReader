@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Увел./умен. масштаб страниц в 2 раза</string>
    <string name="enhancements_for_oled_display">Заполнять пустующие области вокруг страниц черным цветом при чтении в режиме \"Ночь\" (OLED-адаптация)</string>
    <string name="ignore_annotations_on_click">Не открывать окно редактирования комментариев/пометок при тапах в области их расположения</string>
-   <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки при закрытии книги или выходе из приложения</string>
    <string name="selecting_text_by_letters">Использовать побуквенное выделение текста (для иероглифических языков)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Менять скорость автопрокрутки текста клавишами регулировки громкости</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулировать яркость подсветки свайпом у левой кромки экрана</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Чтобы выделять текст, смените движок EPUB на HTML+JS в настройках.</string>
    <string name="base_stylesheet">Применять базовую таблицу стилей (foliate-js)</string>
    <string name="pdf_engine">Движок PDF</string>
+   <string name="annotations_in_pdf">Аннотации в файле PDF</string>
+   <string name="dont_save">Не сохранять</string>
+   <string name="ask_to_save">Спрашивать перед сохранением</string>
+   <string name="save_automatically">Сохранять автоматически</string>
    <string name="msg_pdf_engine_unavailable">В этой сборке нет библиотек PDFium.</string>
    <string name="book_open_failed">Не удалось открыть эту книгу.</string>
    <string name="book_open_crashed">В прошлый раз приложение неожиданно закрылось при открытии этой книги.</string>

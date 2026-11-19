@@ -32,11 +32,11 @@ else
 fi
 
 
-# The betas of every MuPDF: ./all-beta.sh, or ./all-beta.sh 1.28.5 for one of them. The version
+# The betas of every MuPDF: ./all-beta.sh, or ./all-beta.sh 1.28.6 for one of them. The version
 # goes into the names of the APKs and the bundles (-Pmupdf), so the betas sit side by side.
 MUPDF_VERSIONS=("$@")
 if [ ${#MUPDF_VERSIONS[@]} -eq 0 ]; then
-  MUPDF_VERSIONS=(1.28.5)
+  MUPDF_VERSIONS=(1.28.6)
 fi
 for MUPDF in "${MUPDF_VERSIONS[@]}"; do
   if [ ! -f "./link_to_mupdf_$MUPDF.sh" ]; then

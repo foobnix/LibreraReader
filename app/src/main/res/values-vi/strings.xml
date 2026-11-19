@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Phóng to, thu nhỏ</string>
    <string name="enhancements_for_oled_display">Cải tiến cho màn hình OLED</string>
    <string name="ignore_annotations_on_click">Bỏ qua các chú thích trên nhấp chuột</string>
-   <string name="save_new_annotations_automatically">Lưu chú thích tự động mới</string>
    <string name="selecting_text_by_letters">Chọn văn bản bằng chữ</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Thay đổi tốc độ cuộn tự động bằng các phím âm lượng</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Bật điều chỉnh độ sáng ở bên trái màn hình</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Để đánh dấu văn bản, hãy đổi công cụ EPUB thành HTML+JS trong cài đặt.</string>
    <string name="base_stylesheet">Áp dụng biểu định kiểu cơ bản (foliate-js)</string>
    <string name="pdf_engine">Công cụ PDF</string>
+   <string name="annotations_in_pdf">Chú thích trong tệp PDF</string>
+   <string name="dont_save">Không lưu</string>
+   <string name="ask_to_save">Hỏi trước khi lưu</string>
+   <string name="save_automatically">Tự động lưu</string>
    <string name="msg_pdf_engine_unavailable">Bản dựng này không bao gồm thư viện PDFium.</string>
    <string name="book_open_failed">Không thể mở cuốn sách này.</string>
    <string name="book_open_crashed">Lần trước ứng dụng đã đóng đột ngột khi mở cuốn sách này.</string>

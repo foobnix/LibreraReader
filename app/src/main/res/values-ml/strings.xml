@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">സൂം ഇൻ / .ട്ട്</string>
    <string name="enhancements_for_oled_display">അമോലെഡ് ഡിസ്പ്ലേകൾക്കായി രാത്രി മോഡ് മെച്ചപ്പെടുത്തൽ</string>
    <string name="ignore_annotations_on_click">സ്‌പർശിക്കുന്ന വ്യാഖ്യാനങ്ങൾ അവഗണിക്കുക</string>
-   <string name="save_new_annotations_automatically">പുറത്തുകടക്കുമ്പോൾ വ്യാഖ്യാനങ്ങൾ യാന്ത്രികമായി സംരക്ഷിക്കുക</string>
    <string name="selecting_text_by_letters">അക്ഷരങ്ങൾ ഉപയോഗിച്ച് വാചകം തിരഞ്ഞെടുക്കുക (ഏഷ്യൻ ഭാഷകൾ)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">വോളിയം കീകൾ ഉപയോഗിച്ച് യാന്ത്രിക-സ്ക്രോൾ വേഗത നിയന്ത്രിക്കുക</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">ഇടത് എഡ്ജ് സ്ലൈഡുകൾ ഉപയോഗിച്ച് തെളിച്ചം ക്രമീകരിക്കുക</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">ടെക്സ്റ്റ് അടയാളപ്പെടുത്താൻ, ക്രമീകരണങ്ങളിൽ EPUB എഞ്ചിൻ HTML+JS ആക്കുക.</string>
    <string name="base_stylesheet">അടിസ്ഥാന സ്റ്റൈൽഷീറ്റ് പ്രയോഗിക്കുക (foliate-js)</string>
    <string name="pdf_engine">PDF എഞ്ചിൻ</string>
+   <string name="annotations_in_pdf">PDF ഫയലിലെ കുറിപ്പുകൾ</string>
+   <string name="dont_save">സേവ് ചെയ്യേണ്ട</string>
+   <string name="ask_to_save">സേവ് ചെയ്യും മുമ്പ് ചോദിക്കുക</string>
+   <string name="save_automatically">സ്വയമേവ സേവ് ചെയ്യുക</string>
    <string name="msg_pdf_engine_unavailable">ഈ ബിൽഡിൽ PDFium ലൈബ്രറികൾ ഉൾപ്പെടുന്നില്ല.</string>
    <string name="book_open_failed">ഈ പുസ്തകം തുറക്കാൻ കഴിഞ്ഞില്ല.</string>
    <string name="book_open_crashed">കഴിഞ്ഞ തവണ ഈ പുസ്തകം തുറക്കുമ്പോൾ ആപ്പ് അപ്രതീക്ഷിതമായി അടഞ്ഞു.</string>

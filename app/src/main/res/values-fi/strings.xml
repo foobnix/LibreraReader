@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Lähennä ja loitonna</string>
    <string name="enhancements_for_oled_display">Yötilan parannukset AMOLED-näytölle</string>
    <string name="ignore_annotations_on_click">Poista huomautusten kosketus käytöstä</string>
-   <string name="save_new_annotations_automatically">Tallenna huomautukset suljettaessa</string>
    <string name="selecting_text_by_letters">Valitse teksti kirjain kerrallaan (Aasian kielet)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Vaihda automaattista vieritysnopeutta äänenvoimakkuusnäppäimillä</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Säädä kirkkautta näytön vasenta puolelta pyyhkäisemällä</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Jos haluat merkitä tekstiä, vaihda EPUB-moottoriksi HTML+JS asetuksista.</string>
    <string name="base_stylesheet">Käytä perustyylitiedostoa (foliate-js)</string>
    <string name="pdf_engine">PDF-moottori</string>
+   <string name="annotations_in_pdf">Merkinnät PDF-tiedostossa</string>
+   <string name="dont_save">Älä tallenna</string>
+   <string name="ask_to_save">Kysy ennen tallennusta</string>
+   <string name="save_automatically">Tallenna automaattisesti</string>
    <string name="msg_pdf_engine_unavailable">Tämä koontiversio ei sisällä PDFium-kirjastoja.</string>
    <string name="book_open_failed">Tätä kirjaa ei voitu avata.</string>
    <string name="book_open_crashed">Sovellus sulkeutui odottamatta, kun tätä kirjaa avattiin viimeksi.</string>

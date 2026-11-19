@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Увеличаване / намаляване</string>
    <string name="enhancements_for_oled_display">Подобряване на нощен режим за амолирани дисплеи</string>
    <string name="ignore_annotations_on_click">Игнорирайте докосването на пояснения</string>
-   <string name="save_new_annotations_automatically">Автоматично записване на пояснения при изход</string>
    <string name="selecting_text_by_letters">Изберете текстово писмо по буква (азиатски езици)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Контролирайте скоростта на автоматично превъртане с клавиши за сила на звука</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулирайте яркостта чрез леви ръбове слайдове</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">За да маркирате текст, сменете EPUB енджина на HTML+JS в настройките.</string>
    <string name="base_stylesheet">Прилагане на основната стилова таблица (foliate-js)</string>
    <string name="pdf_engine">Двигател за PDF</string>
+   <string name="annotations_in_pdf">Анотации във файла PDF</string>
+   <string name="dont_save">Без запазване</string>
+   <string name="ask_to_save">Питане преди запазване</string>
+   <string name="save_automatically">Автоматично запазване</string>
    <string name="msg_pdf_engine_unavailable">Тази версия не включва библиотеките PDFium.</string>
    <string name="book_open_failed">Тази книга не може да бъде отворена.</string>
    <string name="book_open_crashed">Последния път приложението се затвори неочаквано при отваряне на тази книга.</string>

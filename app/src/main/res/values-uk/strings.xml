@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Збільшення, зменшення масштабу</string>
    <string name="enhancements_for_oled_display">Заповнити простір навколо сторінки чорним кольором (AMOLED-адаптація)</string>
    <string name="ignore_annotations_on_click">Ігнорувати анотації на клік</string>
-   <string name="save_new_annotations_automatically">Автоматично зберігати у файл нові анотації</string>
    <string name="selecting_text_by_letters">Виділення тексту по буквам</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Змінювати швидкість автоматичного прокручування клавішами гучності</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Увімкнути регулювання яскравості ліворуч від екрана</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Щоб виділяти текст, змініть рушій EPUB на HTML+JS у налаштуваннях.</string>
    <string name="base_stylesheet">Застосовувати базову таблицю стилів (foliate-js)</string>
    <string name="pdf_engine">Рушій PDF</string>
+   <string name="annotations_in_pdf">Анотації у файлі PDF</string>
+   <string name="dont_save">Не зберігати</string>
+   <string name="ask_to_save">Питати перед збереженням</string>
+   <string name="save_automatically">Зберігати автоматично</string>
    <string name="msg_pdf_engine_unavailable">Ця збірка не містить бібліотек PDFium.</string>
    <string name="book_open_failed">Не вдалося відкрити цю книгу.</string>
    <string name="book_open_crashed">Минулого разу застосунок несподівано закрився під час відкриття цієї книги.</string>

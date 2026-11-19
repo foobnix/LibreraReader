@@ -325,6 +325,47 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
+        <!-- The choice stands beside its name, or under it when the two do not fit one line -->
+        <LinearLayout
+            android:id="@+id/annotationsSaveRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/annotationsSaveTop"
+                android:layout_width="match_parent"
+                android:minHeight="@dimen/wh_button_big"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:padding="5dip"
+                    android:src="@drawable/my_glyphicons_pen"
+                    app:tint="@color/tint_gray" />
+
+                <TextView
+                    android:id="@+id/annotationsSaveName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dip"
+                    android:layout_weight="1"
+                    android:text="@string/annotations_in_pdf"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/annotationsSave"
+                    style="@style/textLinkDropdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dip"
+                    android:singleLine="true" />
+            </LinearLayout>
+        </LinearLayout>
+
         <View
             android:tag="with_tint1"
             android:id="@+id/topPanelLineDiv"
@@ -784,37 +825,44 @@
             </LinearLayout>
         </LinearLayout>
 
+        <!-- The dictionary button stands beside the words, or under them when the two do not
+             fit one line: the words were squeezed a syllable a line on a narrow screen. -->
         <LinearLayout
+            android:id="@+id/dictionaryRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/dictionaryTop"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_580_translate"
-                app:tint="@color/tint_gray" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <!-- The words take what the dictionary button leaves them, and wrap there; the button
-                 is held to a width that leaves them room, its name cut short past it. -->
-            <CheckBox
-                android:id="@+id/isRememberDictionary"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:text="@string/open_in_the_dictionary" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:padding="5dip"
+                    android:src="@drawable/glyphicons_580_translate"
+                    app:tint="@color/tint_gray" />
 
-            <TextView
-                android:id="@+id/selectedDictionaly"
-                style="@style/textLinkDropdown"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxWidth="180dp"
-                android:text="GoogleTranslate" />
+                <CheckBox
+                    android:id="@+id/isRememberDictionary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/open_in_the_dictionary" />
+
+                <TextView
+                    android:id="@+id/selectedDictionaly"
+                    style="@style/textLinkDropdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="GoogleTranslate" />
+            </LinearLayout>
         </LinearLayout>
 
         <!-- The row takes the dialog's width and the button its words': in a row only as wide as

@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">ズームイン、ズームアウト</string>
    <string name="enhancements_for_oled_display">AMOLED画面向けのナイトモード機能強化</string>
    <string name="ignore_annotations_on_click">タップで注釈を無視する</string>
-   <string name="save_new_annotations_automatically">終了時に注釈を自動保存する</string>
    <string name="selecting_text_by_letters">文字単位でテキストを選択</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量ボタンで自動スクロール速度を変更する</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">画面の左側で明るさの調整を有効にする</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">テキストにマークを付けるには、設定で EPUB エンジンを HTML+JS に変更してください。</string>
    <string name="base_stylesheet">基本スタイルシートを適用 (foliate-js)</string>
    <string name="pdf_engine">PDF エンジン</string>
+   <string name="annotations_in_pdf">PDF ファイル内の注釈</string>
+   <string name="dont_save">保存しない</string>
+   <string name="ask_to_save">保存前に確認</string>
+   <string name="save_automatically">自動で保存</string>
    <string name="msg_pdf_engine_unavailable">このビルドには PDFium ライブラリが含まれていません。</string>
    <string name="book_open_failed">この本を開けませんでした。</string>
    <string name="book_open_crashed">前回この本を開いている途中でアプリが予期せず終了しました。</string>

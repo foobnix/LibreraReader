@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">縮放</string>
    <string name="enhancements_for_oled_display">魔麗屏顯增強（僅夜晚模式）</string>
    <string name="ignore_annotations_on_click">觸碰忽略注釋</string>
-   <string name="save_new_annotations_automatically">自動保存注釋</string>
    <string name="selecting_text_by_letters">選擇文本單字</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量鍵調滾速</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">屏左邊調亮度</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">若要標記文字,請在設定中將 EPUB 引擎改為 HTML+JS。</string>
    <string name="base_stylesheet">套用基礎樣式表 (foliate-js)</string>
    <string name="pdf_engine">PDF 引擎</string>
+   <string name="annotations_in_pdf">PDF 檔案中的註解</string>
+   <string name="dont_save">不儲存</string>
+   <string name="ask_to_save">儲存前詢問</string>
+   <string name="save_automatically">自動儲存</string>
    <string name="msg_pdf_engine_unavailable">此版本不包含 PDFium 程式庫。</string>
    <string name="book_open_failed">無法開啟這本書。</string>
    <string name="book_open_crashed">上次開啟這本書時應用程式意外關閉。</string>

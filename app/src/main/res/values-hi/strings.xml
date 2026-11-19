@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">ज़ूम इन ज़ूम आउट</string>
    <string name="enhancements_for_oled_display">ओएलईडी डिस्प्ले के लिए एन्हांसमेंट</string>
    <string name="ignore_annotations_on_click">क्लिक पर एनोटेशन पर ध्यान न दें</string>
-   <string name="save_new_annotations_automatically">नई एनोटेशन स्वचालित रूप से बचाओ</string>
    <string name="selecting_text_by_letters">पत्र द्वारा पाठ का चयन</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">वॉल्यूम कुंजियों के साथ स्वचालित स्क्रॉलिंग गति बदलें</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">स्क्रीन के बाईं ओर चमक समायोजन सक्षम करें</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">टेक्स्ट चिह्नित करने के लिए, सेटिंग में EPUB इंजन को HTML+JS पर बदलें।</string>
    <string name="base_stylesheet">आधार स्टाइलशीट लागू करें (foliate-js)</string>
    <string name="pdf_engine">PDF इंजन</string>
+   <string name="annotations_in_pdf">PDF फ़ाइल में एनोटेशन</string>
+   <string name="dont_save">सहेजें नहीं</string>
+   <string name="ask_to_save">सहेजने से पहले पूछें</string>
+   <string name="save_automatically">अपने-आप सहेजें</string>
    <string name="msg_pdf_engine_unavailable">इस बिल्ड में PDFium लाइब्रेरी शामिल नहीं हैं।</string>
    <string name="book_open_failed">यह पुस्तक खोली नहीं जा सकी।</string>
    <string name="book_open_crashed">पिछली बार इस पुस्तक को खोलते समय ऐप अप्रत्याशित रूप से बंद हो गया था।</string>

@@ -1991,7 +1991,7 @@ public class DocumentWrapperUI {
     private void hideShowAnnotationLineInt() {
 
         try {
-            if(!AppState.get().isSaveAnnotatationsAutomatically){
+            if (AppState.get().annotationsSaveMode != AppState.ANNOTATIONS_SAVE_AUTO) {
                 return;
             }
             if (!dc.getCurrentBook().getPath().endsWith(".pdf")) {

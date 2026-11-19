@@ -1679,16 +1679,70 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_saveInternal(JNIEnv* env,
     pdf_write_options opts = { 0 };
     opts.do_incremental = pdf_can_be_saved_incrementally(ctx, idoc);
 
-    DEBUG("save to file 3");
+    DEBUG("save to file 3 incremental=%d", opts.do_incremental);
 
-    fz_try(ctx)
-    {
-        // fz_write_document(ctx, doc_t->document, path, &opts);
-        pdf_save_document(ctx, idoc, path, &opts);
-    }
-    fz_catch(ctx)
-    {
-        ERROR("save to file not success");
+    if (opts.do_incremental) {
+        // Appended to the file: MuPDF first cuts it back to the size it had when opened, so the
+        // document goes on from the file as saved - else a second save while the book stays
+        // open (to send it, say) cut off the first one's changes, and its xref pointed past the
+        // end of the file
+        int saved = 0;
+        fz_try(ctx)
+        {
+            pdf_save_document(ctx, idoc, path, &opts);
+            saved = 1;
+        }
+        fz_catch(ctx)
+        {
+            ERROR("save to file not success: %s", fz_caught_message(ctx));
+        }
+        if (saved) {
+            fz_stream* file = NULL;
+            fz_var(file);
+            fz_try(ctx)
+            {
+                file = fz_open_file(ctx, path);
+                fz_seek(ctx, file, 0, SEEK_END);
+                int64_t size = fz_tell(ctx, file);
+                fz_seek(ctx, file, 0, SEEK_SET);
+                fz_drop_stream(ctx, idoc->file);
+                idoc->file = file;
+                idoc->file_size = size;
+                file = NULL;
+                DEBUG("save to file: reading on from the saved file, %lld bytes", (long long)size);
+            }
+            fz_catch(ctx)
+            {
+                fz_drop_stream(ctx, file);
+                ERROR("save to file: saved file not reopened: %s", fz_caught_message(ctx));
+            }
+        }
+    } else {
+        // Written whole, beside the book and then put in its place: written straight over it,
+        // the file was emptied while the document still read its objects from it
+        size_t len = strlen(path) + 32;
+        char* temp = (char*)malloc(len);
+        if (temp) {
+            snprintf(temp, len, "%s.librera-save", path);
+            int saved = 0;
+            fz_try(ctx)
+            {
+                pdf_save_document(ctx, idoc, temp, &opts);
+                saved = 1;
+            }
+            fz_catch(ctx)
+            {
+                ERROR("save to file not success: %s", fz_caught_message(ctx));
+            }
+            if (saved && rename(temp, path) != 0) {
+                ERROR("save to file: not moved into place");
+                saved = 0;
+            }
+            if (!saved) {
+                unlink(temp);
+            }
+            free(temp);
+        }
     }
     (*env)->ReleaseStringUTFChars(env, fname, path);
     DEBUG("save to file 4");

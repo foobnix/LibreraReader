@@ -212,6 +212,10 @@ public class AppState {
     public final static int PDF_ENGINE_MUPDF = 0;
     public final static int PDF_ENGINE_PDFIUM = 1;
     /** Which engine lays out a reflowable book: see {@link #epubEngine}. */
+    /** What becomes of the annotations drawn on a PDF as it closes: see {@link #annotationsSaveMode}. */
+    public final static int ANNOTATIONS_DONT_SAVE = 0;
+    public final static int ANNOTATIONS_ASK = 1;
+    public final static int ANNOTATIONS_SAVE_AUTO = 2;
     public final static int EPUB_ENGINE_MUPDF = 0;
     public final static int EPUB_ENGINE_FOLIATE = 1;
     public final static int PAGE_NUMBER_FORMAT_NUMBER = 0;
@@ -643,7 +647,10 @@ public class AppState {
     public boolean isLineBreaksText = false;
     public boolean isLineTitleBoldText = false;
     public boolean isIgnoreAnnotatations = false;
+    /** Read only to carry an old choice over to {@link #annotationsSaveMode}. */
     @IgnoreHashCode public boolean isSaveAnnotatationsAutomatically = false;
+    /** Whether annotations drawn on a PDF are written into it on closing, asked about, or dropped. */
+    @IgnoreHashCode public int annotationsSaveMode = ANNOTATIONS_ASK;
     public boolean isShowWhatIsNewDialog = true;
     public boolean isShowCloseAppDialog = true;
     public boolean isFirstSurname = false;
@@ -925,6 +932,15 @@ public class AppState {
         // where only the page colour is taken: it gives way to the sepia one
         if (instance.readColors != null && instance.readColors.contains(OLD_NIGHT_GREEN)) {
             instance.readColors = instance.readColors.replace(OLD_NIGHT_GREEN, "B,#2b2620,#d8c7a3,1;");
+        }
+        migrateAnnotationsSave(instance);
+    }
+
+    /** The yes or no of saving annotations automatically, now one of three choices. */
+    private static void migrateAnnotationsSave(AppState state) {
+        if (state.isSaveAnnotatationsAutomatically) {
+            state.annotationsSaveMode = ANNOTATIONS_SAVE_AUTO;
+            state.isSaveAnnotatationsAutomatically = false;
         }
     }
 

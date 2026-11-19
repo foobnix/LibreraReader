@@ -449,6 +449,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
                 return;
             }
             saveInternal(documentHandle, path);
+            // Asked again from the document: the book stays open after a save to send it
+            isHasChanges = false;
             LOG.d("Save Annotations saveInternal 2");
         } finally {
             TempHolder.lock.unlock();

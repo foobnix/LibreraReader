@@ -1101,6 +1101,28 @@ public abstract class DocumentController {
     }
 
     public void saveAnnotationsAndClose(final AnnotationsSaver saver, final Runnable close) {
+        saveAnnotationsThen(saver, file -> {
+            close.run();
+            return false;
+        });
+    }
+
+    /**
+     * Runs then with the book's file holding the annotations drawn, as {@link
+     * AppState#annotationsSaveMode} says: written, asked about, or left out. The book stays open,
+     * so sending it sends what is on screen. then gets the file written - the copy, when it was
+     * saved under another name - or the book as it was.
+     */
+    public void withAnnotationsSaved(final ResultResponse<File> then) {
+        if (hasPDFAnnotations()) {
+            saveAnnotationsThen(this::saveAnnotations, then);
+        } else {
+            then.onResultRecive(getCurrentBook());
+        }
+    }
+
+    private void saveAnnotationsThen(final AnnotationsSaver saver, final ResultResponse<File> then) {
+        final File book = getCurrentBook();
         final StringBuilder path = new StringBuilder(getCurrentBook().getAbsolutePath());
         final Runnable save = new Runnable() {
             @Override
@@ -1115,14 +1137,19 @@ public abstract class DocumentController {
                         LOG.d("saveAnnotations return 1");
                         progress.dismiss();
                         LOG.d("saveAnnotations return 2");
-                        close.run();
+                        then.onResultRecive(new File(path.toString()));
                     }
                 });
             }
         };
 
-        if (AppState.get().isSaveAnnotatationsAutomatically) {
+        final int mode = AppState.get().annotationsSaveMode;
+        if (mode == AppState.ANNOTATIONS_SAVE_AUTO) {
             save.run();
+            return;
+        }
+        if (mode == AppState.ANNOTATIONS_DONT_SAVE) {
+            then.onResultRecive(book);
             return;
         }
 
@@ -1152,7 +1179,7 @@ public abstract class DocumentController {
             @Override
             public void onClick(DialogInterface dialog, int id) {
                 dialog.dismiss();
-                close.run();
+                then.onResultRecive(book);
             }
         });
         builder.setNeutralButton(R.string.rename, new DialogInterface.OnClickListener() {

@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Aumentar ou diminuir</string>
    <string name="enhancements_for_oled_display">Aprimoramentos para tela OLED</string>
    <string name="ignore_annotations_on_click">Ignorar as anotações de toque</string>
-   <string name="save_new_annotations_automatically">Salvar novas anotações automaticamente</string>
    <string name="selecting_text_by_letters">Seleção de texto por letras</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Mude a velocidade de rolagem automática com os botões de volume</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Ative o ajuste de brilho com o deslizamento na borda esquerda da tela</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Para marcar o texto, mude o mecanismo EPUB para HTML+JS nas configurações.</string>
    <string name="base_stylesheet">Aplicar a folha de estilos base (foliate-js)</string>
    <string name="pdf_engine">Motor PDF</string>
+   <string name="annotations_in_pdf">Anotações no arquivo PDF</string>
+   <string name="dont_save">Não salvar</string>
+   <string name="ask_to_save">Perguntar antes de salvar</string>
+   <string name="save_automatically">Salvar automaticamente</string>
    <string name="msg_pdf_engine_unavailable">Esta compilação não inclui as bibliotecas PDFium.</string>
    <string name="book_open_failed">Não foi possível abrir este livro.</string>
    <string name="book_open_crashed">O app fechou inesperadamente ao abrir este livro da última vez.</string>

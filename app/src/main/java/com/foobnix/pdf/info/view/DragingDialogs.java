@@ -112,6 +112,7 @@ import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Engines;
 import com.foobnix.pdf.info.EpubEngineMenu;
+import com.foobnix.pdf.info.AnnotationsSaveMenu;
 import com.foobnix.pdf.info.PdfEngineMenu;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.model.AppAnnotation;
@@ -200,6 +201,50 @@ public class DragingDialogs {
     public final static int PREF_HEIGHT = 560;
     public static final String EDIT_COLORS_PANEL = "editColorsPanel";
     static String lastSearchText = "";
+
+    /**
+     * A choice beside its name while both fit their line whole, otherwise on a line of its own
+     * under it, at the end: the name was squeezed a word a line by a long choice.
+     */
+    static void fitBesideName(final ViewGroup row, final ViewGroup top, final TextView name, final TextView choice) {
+        row.post(() -> {
+            final int width = top.getWidth();
+            if (width == 0) {
+                return;
+            }
+            choice.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+            final ViewGroup.MarginLayoutParams nameLp = (ViewGroup.MarginLayoutParams) name.getLayoutParams();
+            final int nameWidth = (int) Math.ceil(name.getPaint().measureText(name.getText().toString()))
+                    + name.getCompoundPaddingLeft() + name.getCompoundPaddingRight() + nameLp.leftMargin;
+            int used = 0;
+            for (int i = 0; i < top.getChildCount(); i++) {
+                final View child = top.getChildAt(i);
+                if (child != name && child != choice && child.getVisibility() != View.GONE) {
+                    used += child.getWidth();
+                }
+            }
+            // The margins the button pass gives every value button, kept wherever it goes
+            final int[] margins = {Dips.DP_8, Dips.DP_4, Dips.DP_8, Dips.DP_4};
+            final boolean fits = used + nameWidth + margins[0] + choice.getMeasuredWidth() + margins[2]
+                    <= width - top.getPaddingLeft() - top.getPaddingRight();
+            final ViewGroup parent = (ViewGroup) choice.getParent();
+            if (fits && parent != top) {
+                parent.removeView(choice);
+                final LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                lp.setMargins(margins[0], margins[1], margins[2], margins[3]);
+                top.addView(choice, lp);
+            } else if (!fits && parent != row) {
+                parent.removeView(choice);
+                final LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                lp.setMargins(margins[0], margins[1], margins[2], margins[3] + Dips.DP_4);
+                lp.gravity = Gravity.END;
+                row.addView(choice, lp);
+            }
+        });
+    }
 
     public static void sample(final FrameLayout anchor, final DocumentController controller) {
         if (controller == null) {
@@ -4535,18 +4580,6 @@ public class DragingDialogs {
                                                     View.VISIBLE :
                                                     View.GONE);
 
-                CheckBox isSaveAnnotatationsAutomatically = inflate.findViewById(R.id.isSaveAnnotatationsAutomatically);
-                isSaveAnnotatationsAutomatically.setChecked(AppState.get().isSaveAnnotatationsAutomatically);
-                isSaveAnnotatationsAutomatically.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isSaveAnnotatationsAutomatically = isChecked;
-                    }
-                });
-
-                isSaveAnnotatationsAutomatically.setVisibility(
-                        !(AppSP.get().readingMode == AppState.READING_MODE_BOOK) &&
-                        BookType.PDF.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
-
                 CheckBox isCutRTL = inflate.findViewById(R.id.isCutRTL);
                 isCutRTL.setVisibility(View.GONE);
                 isCutRTL.setChecked(AppState.get().isCutRTL);
@@ -5867,17 +5900,35 @@ public class DragingDialogs {
                 TxtUtils.underlineTextView(pdfEngine);
                 pdfEngine.setOnClickListener(v -> PdfEngineMenu.show(v, controller::restartWithAnnotationsSaved));
 
+                // What becomes of the strokes drawn on this PDF as it closes
+                inflate.findViewById(R.id.annotationsSaveRow).setVisibility(TxtUtils.visibleIf(controller.isAnnotationsInsideDocument()));
+                final TextView annotationsSave = inflate.findViewById(R.id.annotationsSave);
+                annotationsSave.setText(AnnotationsSaveMenu.name(annotationsSave.getContext(), AppState.get().annotationsSaveMode));
+                TxtUtils.underlineTextView(annotationsSave);
+                annotationsSave.setOnClickListener(v -> AnnotationsSaveMenu.show(v, () -> {
+                    annotationsSave.setText(AnnotationsSaveMenu.name(annotationsSave.getContext(), AppState.get().annotationsSaveMode));
+                    TxtUtils.underlineTextView(annotationsSave);
+                    fitBesideName(inflate.findViewById(R.id.annotationsSaveRow), inflate.findViewById(R.id.annotationsSaveTop),
+                            inflate.findViewById(R.id.annotationsSaveName), annotationsSave);
+                }));
+                fitBesideName(inflate.findViewById(R.id.annotationsSaveRow), inflate.findViewById(R.id.annotationsSaveTop),
+                        inflate.findViewById(R.id.annotationsSaveName), annotationsSave);
+
                 BrightnessHelper.showBlueLigthDialogAndBrightness(controller.getActivity(), inflate, onRefresh);
 // brightness end
 // dicts
 
                 final TextView selectedDictionaly = inflate.findViewById(R.id.selectedDictionaly);
                 selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
+                fitBesideName(inflate.findViewById(R.id.dictionaryRow), inflate.findViewById(R.id.dictionaryTop),
+                        inflate.findViewById(R.id.isRememberDictionary), selectedDictionaly);
                 selectedDictionaly.setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View v) {
                         DialogTranslateFromTo.show(controller.getActivity(), false, new Runnable() {
                             @Override public void run() {
                                 selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
+                                fitBesideName(inflate.findViewById(R.id.dictionaryRow), inflate.findViewById(R.id.dictionaryTop),
+                                        inflate.findViewById(R.id.isRememberDictionary), selectedDictionaly);
                             }
                         }, false);
                     }

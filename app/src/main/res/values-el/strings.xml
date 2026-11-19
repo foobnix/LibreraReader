@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Μεγέθυνση / σμίκρυνση</string>
    <string name="enhancements_for_oled_display">Ενίσχυση νυχτερινής λειτουργίας για οθόνες amoled</string>
    <string name="ignore_annotations_on_click">Αγνοήστε τους συγκινητικούς σχολιασμούς</string>
-   <string name="save_new_annotations_automatically">Αυτόματη αποθήκευση σχολιασμών κατά την έξοδο</string>
    <string name="selecting_text_by_letters">Επιλέξτε κείμενο με γράμμα (ασιατικές γλώσσες)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Ελέγξτε την ταχύτητα αυτόματης κύλισης με τα πλήκτρα έντασης</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Προσαρμόστε τη φωτεινότητα με διαφάνειες αριστερού άκρου</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Για να επισημάνετε κείμενο, αλλάξτε τη μηχανή EPUB σε HTML+JS στις ρυθμίσεις.</string>
    <string name="base_stylesheet">Εφαρμογή του βασικού φύλλου στυλ (foliate-js)</string>
    <string name="pdf_engine">Μηχανή PDF</string>
+   <string name="annotations_in_pdf">Σημειώσεις στο αρχείο PDF</string>
+   <string name="dont_save">Χωρίς αποθήκευση</string>
+   <string name="ask_to_save">Ερώτηση πριν την αποθήκευση</string>
+   <string name="save_automatically">Αυτόματη αποθήκευση</string>
    <string name="msg_pdf_engine_unavailable">Αυτή η έκδοση δεν περιλαμβάνει τις βιβλιοθήκες PDFium.</string>
    <string name="book_open_failed">Δεν ήταν δυνατό το άνοιγμα αυτού του βιβλίου.</string>
    <string name="book_open_crashed">Την τελευταία φορά η εφαρμογή έκλεισε απροσδόκητα κατά το άνοιγμα αυτού του βιβλίου.</string>

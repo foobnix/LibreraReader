@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Kuvuta, kuvuta nje</string>
    <string name="enhancements_for_oled_display">Maandamano ya kuonyesha OLED</string>
    <string name="ignore_annotations_on_click">Kupuuza annotations juu ya click</string>
-   <string name="save_new_annotations_automatically">Ila annotations mpya moja kwa moja</string>
    <string name="selecting_text_by_letters">Kuchagua maandishi na barua</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Badilisha kasi ya scrolling moja kwa moja na funguo za kiasi</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Wezesha marekebisho ya mwangaza upande wa kushoto wa skrini</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Ili kuweka alama kwenye maandishi, badilisha injini ya EPUB kuwa HTML+JS katika mipangilio.</string>
    <string name="base_stylesheet">Tumia laha ya mitindo ya msingi (foliate-js)</string>
    <string name="pdf_engine">Injini ya PDF</string>
+   <string name="annotations_in_pdf">Maelezo katika faili la PDF</string>
+   <string name="dont_save">Usihifadhi</string>
+   <string name="ask_to_save">Uliza kabla ya kuhifadhi</string>
+   <string name="save_automatically">Hifadhi kiotomatiki</string>
    <string name="msg_pdf_engine_unavailable">Toleo hili halina maktaba za PDFium.</string>
    <string name="book_open_failed">Kitabu hiki hakikuweza kufunguliwa.</string>
    <string name="book_open_crashed">Programu ilifungwa ghafla wakati wa kufungua kitabu hiki mara ya mwisho.</string>

@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Nagyítás, kicsinyítés</string>
    <string name="enhancements_for_oled_display">Éjszakai mód fokozása az AMOLED kijelzőkön</string>
    <string name="ignore_annotations_on_click">Érintés figyelmen kívül hagyása a jegyzetekben</string>
-   <string name="save_new_annotations_automatically">Széljegyzetek automatikus mentése kilépéskor</string>
    <string name="selecting_text_by_letters">Szöveges betűjel kiválasztása betűvel (ázsiai nyelvek)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Automatikus lapozási sebesség szabályzása a hangerőgombokkal</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Állítsa be a fényerőt a bal oldali csúszkákkal</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Szöveg megjelöléséhez a beállításokban állítsa az EPUB-motort HTML+JS-re.</string>
    <string name="base_stylesheet">Alap stíluslap alkalmazása (foliate-js)</string>
    <string name="pdf_engine">PDF-motor</string>
+   <string name="annotations_in_pdf">Jegyzetek a PDF-fájlban</string>
+   <string name="dont_save">Nincs mentés</string>
+   <string name="ask_to_save">Mentés előtt kérdezzen</string>
+   <string name="save_automatically">Automatikus mentés</string>
    <string name="msg_pdf_engine_unavailable">Ez a build nem tartalmazza a PDFium könyvtárakat.</string>
    <string name="book_open_failed">Ezt a könyvet nem sikerült megnyitni.</string>
    <string name="book_open_crashed">Az alkalmazás legutóbb váratlanul bezárult a könyv megnyitása közben.</string>

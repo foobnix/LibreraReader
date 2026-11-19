@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Uzaklaştır, yakınlaştır</string>
    <string name="enhancements_for_oled_display">AMOLED ekranlara gece kipi geliştirmeleri</string>
    <string name="ignore_annotations_on_click">Açıklamalara dokunmayı kapat</string>
-   <string name="save_new_annotations_automatically">Çıkarken açıklamaları kendiliğinde kaydet</string>
    <string name="selecting_text_by_letters">Metni harf harf seç (Uzak doğu dilleri)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Ses kaydırma tuşlarıyla otomatik kaydırma hızını değiştirme</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Sol kenarı kaydırarak parlaklığı düzenle</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Metni işaretlemek için ayarlardan EPUB motorunu HTML+JS olarak değiştirin.</string>
    <string name="base_stylesheet">Temel stil sayfasını uygula (foliate-js)</string>
    <string name="pdf_engine">PDF motoru</string>
+   <string name="annotations_in_pdf">PDF dosyasındaki ek açıklamalar</string>
+   <string name="dont_save">Kaydetme</string>
+   <string name="ask_to_save">Kaydetmeden önce sor</string>
+   <string name="save_automatically">Otomatik kaydet</string>
    <string name="msg_pdf_engine_unavailable">Bu sürüm PDFium kitaplıklarını içermiyor.</string>
    <string name="book_open_failed">Bu kitap açılamadı.</string>
    <string name="book_open_crashed">Uygulama, bu kitap son açılırken beklenmedik şekilde kapandı.</string>

@@ -317,12 +317,6 @@
             android:text="@string/ignore_annotations_on_click" />
 
         <CheckBox
-            android:id="@+id/isSaveAnnotatationsAutomatically"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/save_new_annotations_automatically" />
-
-        <CheckBox
             android:id="@+id/isCropPDF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

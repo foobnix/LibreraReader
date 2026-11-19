@@ -17,6 +17,7 @@ import androidx.core.util.Pair;
 
 import com.foobnix.librerax.LibreraX;
 import com.foobnix.StringResponse;
+import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.Keyboards;
@@ -451,9 +452,15 @@ public class ShareDialog {
                     }
                     DialogSpeedRead.show(a, dc);
                 } else if (which == i++) {
-                    ExtUtils.openWith(a, file);
+                    withAnnotations(dc, file, f -> {
+                        ExtUtils.openWith(a, f);
+                        return false;
+                    });
                 } else if (which == i++) {
-                    ExtUtils.sendFileTo(a, file);
+                    withAnnotations(dc, file, f -> {
+                        ExtUtils.sendFileTo(a, f);
+                        return false;
+                    });
                 } else if (isMainTabs && canDelete && which == i++) {
                     FileInformationDialog.dialogDelete(a, file, onDeleteAction);
                 } else if (isMainTabs && canCopy && which == i++) {
@@ -584,6 +591,18 @@ public class ShareDialog {
 //        menu.getMenu(R.drawable.glyphicons_2_book_open, R.string.open_with, () -> ExtUtils.openPDFInTextReflow(a, file, page + 1, dc));
 //
 //        menu.show();
+    }
+
+    /**
+     * The open book goes out with the annotations drawn on it: they are written first, or asked
+     * about, as on closing it. Another book goes as it is.
+     */
+    private static void withAnnotations(final DocumentController dc, final File file, final ResultResponse<File> send) {
+        if (dc != null && file != null && file.equals(dc.getCurrentBook())) {
+            dc.withAnnotationsSaved(send);
+        } else {
+            send.onResultRecive(file);
+        }
     }
 
     public static void showAddToCloudDialog(final Activity a, final File file) {

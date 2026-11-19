@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">زوم در، زوم کردن</string>
    <string name="enhancements_for_oled_display">پیشرفت صفحه نمایش OLED</string>
    <string name="ignore_annotations_on_click">نادیده گرفتن حاشیه نویسی بر روی کلیک</string>
-   <string name="save_new_annotations_automatically">صرفه جویی در حاشیه نویسی جدید به طور خودکار</string>
    <string name="selecting_text_by_letters">انتخاب متن با حروف</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">سرعت پیمایش خودکار با کلید های حجم را تغییر دهید</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">تنظیم روشنایی در سمت چپ صفحه را فعال کنید</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">برای علامت‌گذاری متن، موتور EPUB را در تنظیمات به HTML+JS تغییر دهید.</string>
    <string name="base_stylesheet">اعمال شیوه‌نامهٔ پایه (foliate-js)</string>
    <string name="pdf_engine">موتور PDF</string>
+   <string name="annotations_in_pdf">یادداشت‌ها در فایل PDF</string>
+   <string name="dont_save">ذخیره نشود</string>
+   <string name="ask_to_save">پرسیدن پیش از ذخیره</string>
+   <string name="save_automatically">ذخیرهٔ خودکار</string>
    <string name="msg_pdf_engine_unavailable">این نسخه شامل کتابخانه‌های PDFium نیست.</string>
    <string name="book_open_failed">این کتاب باز نشد.</string>
    <string name="book_open_crashed">دفعهٔ قبل برنامه هنگام باز کردن این کتاب به‌طور غیرمنتظره بسته شد.</string>

@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Павялічыць/паменшыць маштаб</string>
    <string name="enhancements_for_oled_display">Паляпшэнне начнога рэжыму для дысплеяў amoled</string>
    <string name="ignore_annotations_on_click">Ігнараваць кранальныя анатацыі</string>
-   <string name="save_new_annotations_automatically">Аўтаматычнае захаванне анатацый пры выхадзе</string>
    <string name="selecting_text_by_letters">Выбіраць тэкст па літарах (азіяцкія мовы)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Кантраляваць хуткасць аўтаматычнай пракруткі з дапамогай клавіш гучнасці</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Рэгуляваць яркасць слайдамі з левага краю</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">Каб пазначаць тэкст, змяніце рухавік EPUB на HTML+JS у наладах.</string>
    <string name="base_stylesheet">Ужываць базавую табліцу стыляў (foliate-js)</string>
    <string name="pdf_engine">Рухавік PDF</string>
+   <string name="annotations_in_pdf">Анатацыі ў файле PDF</string>
+   <string name="dont_save">Не захоўваць</string>
+   <string name="ask_to_save">Пытацца перад захаваннем</string>
+   <string name="save_automatically">Захоўваць аўтаматычна</string>
    <string name="msg_pdf_engine_unavailable">Гэтая зборка не змяшчае бібліятэк PDFium.</string>
    <string name="book_open_failed">Не ўдалося адкрыць гэтую кнігу.</string>
    <string name="book_open_crashed">Мінулым разам праграма нечакана закрылася падчас адкрыцця гэтай кнігі.</string>

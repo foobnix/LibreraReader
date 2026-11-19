@@ -127,7 +127,6 @@
    <string name="zoom_in_zoom_out">Zoom inn, zoom ut</string>
    <string name="enhancements_for_oled_display">Forbedringer for OLED-skjerm</string>
    <string name="ignore_annotations_on_click">Ignorer annoteringer på klikk</string>
-   <string name="save_new_annotations_automatically">Lagre nye kommentarer automatisk</string>
    <string name="selecting_text_by_letters">Velger tekst med bokstaver</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Endre automatisk rullehastighet med volumtastene</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Aktiver lysstyrkejustering til venstre på skjermen</string>
@@ -716,6 +715,10 @@
    <string name="msg_mark_needs_foliate">For å merke tekst må du endre EPUB-motoren til HTML+JS i innstillingene.</string>
    <string name="base_stylesheet">Bruk grunnleggende stilark (foliate-js)</string>
    <string name="pdf_engine">PDF-motor</string>
+   <string name="annotations_in_pdf">Merknader i PDF-filen</string>
+   <string name="dont_save">Ikke lagre</string>
+   <string name="ask_to_save">Spør før lagring</string>
+   <string name="save_automatically">Lagre automatisk</string>
    <string name="msg_pdf_engine_unavailable">Denne versjonen inneholder ikke PDFium-bibliotekene.</string>
    <string name="book_open_failed">Denne boken kunne ikke åpnes.</string>
    <string name="book_open_crashed">Appen ble uventet avsluttet sist denne boken ble åpnet.</string>
