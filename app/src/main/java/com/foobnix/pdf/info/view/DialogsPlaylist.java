@@ -59,6 +59,7 @@ import com.foobnix.model.TagData;
 import com.foobnix.model.Tags2;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -560,6 +561,9 @@ public class DialogsPlaylist {
 
     private static final int ROW_OWN = 0, ROW_ICON = 2, ROW_ICON_OPEN = 3;
 
+    // How tall the strip of covers last stood with covers in it, to keep when it has none
+    private static int stripHeight;
+
     // The list the strip of covers shows, whose mark the Recent button carries
     private static String shownPlaylist = L_PLAYLIST_RECENT;
     // Its name, short as its tab has it: a folder by its own name only
@@ -719,6 +723,23 @@ public class DialogsPlaylist {
                           a.findViewById(R.id.ttsControlsSlot), playlistRecycleView);
 
         playListName.setVisibility(View.VISIBLE);
+
+        // The strip keeps the height of its covers even when the list shown has none, so the
+        // panel does not fold up under the tabs: as tall as it last stood with covers in it,
+        // or as one cover is made
+        final int coverHeight = (int) (IMG.getImageSize() * 0.7 * IMG.WIDTH_DK) + Dips.dpToPx(2)
+                + playlistRecycleView.getPaddingTop() + playlistRecycleView.getPaddingBottom();
+        playlistRecycleView.setMinimumHeight(Math.max(stripHeight, coverHeight));
+        if (playlistRecycleView.getTag(R.id.playlistRecycleView) == null) {
+            playlistRecycleView.setTag(R.id.playlistRecycleView, Boolean.TRUE);
+            playlistRecycleView.addOnLayoutChangeListener((v, l, t, r, b, ol, ot, or, ob) -> {
+                final RecyclerView strip = (RecyclerView) v;
+                if (strip.getAdapter() != null && strip.getAdapter().getItemCount() > 0 && b - t > stripHeight) {
+                    stripHeight = b - t;
+                    strip.post(() -> strip.setMinimumHeight(stripHeight));
+                }
+            });
+        }
 
         playListNameEdit.setVisibility(View.GONE);
         playlistRecycleView.setVisibility(View.VISIBLE);
