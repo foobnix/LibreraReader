@@ -136,6 +136,7 @@ public class PageImaveView extends View {
         paintWrods.setTextSize(30);
 
         EventBus.getDefault().register(this);
+        PAGE_VIEWS.add(this);
         clickUtils = new ClickUtils();
         brightnessHelper = new BrightnessHelper(context);
         setSaveEnabled(false);
@@ -421,6 +422,8 @@ public class PageImaveView extends View {
 //            bitmap = null;
 //        }
         imageDrawable = null;
+        dropDetail();
+        PAGE_VIEWS.remove(this);
         EventBus.getDefault().unregister(this);
     }
 
@@ -528,25 +531,93 @@ public class PageImaveView extends View {
     private final float[] detailMatrix = new float[9];
     private int detailGeneration;
     private int detailRetries;
+    // The zoom the part was drawn at: moved at the same zoom, the part drawn still serves
+    private float detailScale;
     private static final java.util.concurrent.ExecutorService DETAIL =
             java.util.concurrent.Executors.newSingleThreadExecutor();
     private final Runnable renderDetail = this::renderDetail;
 
-    /** A zoom or a move of the page draws the part on screen again, a moment after it stops. */
+    // The pages made: the one on screen and those either side of it share the zoom
+    private static final java.util.Set<PageImaveView> PAGE_VIEWS =
+            java.util.Collections.newSetFromMap(new java.util.WeakHashMap<>());
+
+    /**
+     * A zoom or a move of the page draws the part on screen again, a moment after it stops - on
+     * the page on screen first, then on the pages either side of it, at the same zoom, so the
+     * page turned to is sharp as it comes. The others are not drawn while off screen, so they
+     * are asked here.
+     */
     private void scheduleDetail() {
+        if (requestDetail()) {
+            for (PageImaveView view : new java.util.ArrayList<>(PAGE_VIEWS)) {
+                if (view != this) {
+                    view.requestDetail();
+                }
+            }
+        }
+    }
+
+    /** The pages either side of the one turned to are drawn sharp too, at the zoom it has. */
+    public static void requestDetailAround() {
+        for (PageImaveView view : new java.util.ArrayList<>(PAGE_VIEWS)) {
+            view.requestDetail();
+        }
+    }
+
+    /** @return whether the zoom had moved since this page's part was last drawn for it */
+    private boolean requestDetail() {
+        if (!isNearCurrentPage()) {
+            // Two pages away or more: its part is let go of, kept for the pages it may be
+            dropDetail();
+            java.util.Arrays.fill(detailMatrix, 0);
+            return false;
+        }
         final float[] values = new float[9];
         imageMatrix().getValues(values);
         if (java.util.Arrays.equals(values, detailMatrix)) {
-            return;
+            return false;
         }
         System.arraycopy(values, 0, detailMatrix, 0, 9);
+        // Moved a little at the same zoom - a page turned to by a swipe that nudged the page -
+        // the part drawn, with the room kept round it, still covers the screen: nothing to draw
+        if (detailCovers()) {
+            return false;
+        }
         detailRetries = 0;
         removeCallbacks(renderDetail);
-        postDelayed(renderDetail, 300);
+        postDelayed(renderDetail, pageNumber == PageImageState.currentPage ? 300 : 900);
+        return true;
+    }
+
+    /** Whether the part drawn sharp covers the screen at the zoom the page has now. */
+    private boolean detailCovers() {
+        if (detail == null || detail.isRecycled() || detailScale == 0) {
+            return false;
+        }
+        final float[] values = new float[9];
+        imageMatrix().getValues(values);
+        if (Math.abs(values[Matrix.MSCALE_X] / detailScale - 1) > 0.01f) {
+            return false;
+        }
+        final Matrix inverse = new Matrix();
+        if (!imageMatrix().invert(inverse)) {
+            return false;
+        }
+        final RectF shown = new RectF(0, 0, getWidth(), getHeight());
+        inverse.mapRect(shown);
+        shown.intersect(0, 0, drawableWidth, drawableHeight);
+        final RectF reach = new RectF(detailRegion);
+        reach.inset(-1, -1);
+        return reach.contains(shown);
+    }
+
+    private boolean isNearCurrentPage() {
+        return Math.abs(pageNumber - PageImageState.currentPage) <= 1;
     }
 
     private void dropDetail() {
         detailGeneration++;
+        detailScale = 0;
         if (detail != null) {
             detail = null;
             invalidate();
@@ -556,17 +627,13 @@ public class PageImaveView extends View {
     /**
      * Only one page to the screen, neither cut in two nor turned - the others are made up of
      * parts of the page the codec does not draw by itself; a cropped page once the part it
-     * keeps is known - and only the page that is on screen, not those either side of it, which
-     * share the zoom.
+     * keeps is known - and only the page on screen and those either side of it, which share
+     * the zoom and are turned to next.
      */
     private boolean isDetailWanted() {
-        if (imageDrawable == null || drawableWidth == 0 || drawableHeight == 0 || getWidth() == 0
-                || AppSP.get().isDouble || AppSP.get().isCut || AppState.get().rotate != 0
-                || !isCropMappable(0)) {
-            return false;
-        }
-        final Rect shown = new Rect();
-        return getGlobalVisibleRect(shown) && shown.width() > getWidth() / 2;
+        return imageDrawable != null && drawableWidth != 0 && drawableHeight != 0 && getWidth() != 0
+                && !AppSP.get().isDouble && !AppSP.get().isCut && AppState.get().rotate == 0
+                && isCropMappable(0) && isAttachedToWindow() && isNearCurrentPage();
     }
 
     private void renderDetail() {
@@ -593,13 +660,16 @@ public class PageImaveView extends View {
         if (!imageMatrix().invert(inverse)) {
             return;
         }
+        if (detailCovers()) {
+            return;
+        }
+        // The part on screen, with a tenth of it kept round each side: a swipe that nudges the
+        // page, or a short move, stays inside it
         final RectF region = new RectF(0, 0, getWidth(), getHeight());
+        region.inset(-getWidth() * 0.1f, -getHeight() * 0.1f);
         inverse.mapRect(region);
         if (!region.intersect(0, 0, drawableWidth, drawableHeight)) {
             dropDetail();
-            return;
-        }
-        if (detail != null && detailRegion.equals(region)) {
             return;
         }
         final int width = Math.round(region.width() * scale);
@@ -618,6 +688,10 @@ public class PageImaveView extends View {
             slice.set(crop.left + slice.left * crop.width(), crop.top + slice.top * crop.height(),
                       crop.left + slice.right * crop.width(), crop.top + slice.bottom * crop.height());
         }
+        // The part of the page image, in fractions of it, that the book's background is laid
+        // under: the background lies over the image as made, cropped or not
+        final RectF textureRegion = new RectF(region.left / drawableWidth, region.top / drawableHeight,
+                                              region.right / drawableWidth, region.bottom / drawableHeight);
         final int page = pageNumber;
         final int generation = ++detailGeneration;
         final boolean invert = !AppState.get().isDayNotInvert;
@@ -652,7 +726,7 @@ public class PageImaveView extends View {
                     bitmap = raw.toBitmap().getBitmap();
                 }
                 if (background) {
-                    bitmap = MagicHelper.updateWithBackground(bitmap);
+                    bitmap = MagicHelper.updateWithBackground(bitmap, textureRegion);
                 }
             } catch (Exception e) {
                 LOG.e(e);
@@ -670,6 +744,7 @@ public class PageImaveView extends View {
                 }
                 detail = made;
                 detailRegion.set(region);
+                detailScale = scale;
                 invalidate();
             });
         });
@@ -703,6 +778,8 @@ public class PageImaveView extends View {
 
         autoFit();
         invalidate();
+        // A page made off screen is not drawn, so it asks for its sharp part itself
+        post(this::requestDetail);
 
         LOG.d("addBitmap", bitmap.getWidth(), bitmap.getHeight(), "Real WH:", getWidth(), getHeight());
     }

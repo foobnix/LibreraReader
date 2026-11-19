@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -332,6 +333,29 @@ public class MagicHelper {
 
     public static Bitmap updateWithBackground(Bitmap bitmap) {
         return updateWithBackground(bitmap, getTransparencyInt(), getBackgroundImage());
+    }
+
+    /**
+     * A part of a page with the book's background under it as the whole page has it: the part
+     * of the background that lies under that part, not the whole background squeezed into it.
+     *
+     * @param part the part of the page, in fractions of it
+     */
+    public static Bitmap updateWithBackground(Bitmap bitmap, RectF part) {
+        final Bitmap bgBitmap = getBackgroundImage();
+        if (bgBitmap == null || bgBitmap.isRecycled()) {
+            return bitmap;
+        }
+        final Paint p = new Paint();
+        p.setAlpha(getTransparencyInt());
+        final Bitmap result = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+        final Canvas canvas = new Canvas(result);
+        final Rect src = new Rect(Math.round(part.left * bgBitmap.getWidth()), Math.round(part.top * bgBitmap.getHeight()),
+                                  Math.round(part.right * bgBitmap.getWidth()), Math.round(part.bottom * bgBitmap.getHeight()));
+        canvas.drawBitmap(bgBitmap, src, new Rect(0, 0, result.getWidth(), result.getHeight()), new Paint(Paint.FILTER_BITMAP_FLAG));
+        canvas.drawBitmap(bitmap, 0, 0, p);
+        bitmap.recycle();
+        return result;
     }
 
     public static Bitmap updateWithBackground(Bitmap bitmap, int alpha, Bitmap bgBitmap) {

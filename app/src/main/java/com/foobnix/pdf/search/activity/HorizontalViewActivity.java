@@ -2835,6 +2835,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         @Override
         public void onPageSelected(final int pos) {
             PageImageState.currentPage = pos;
+            // Zoomed in, the pages either side of this one are made sharp before they are turned to
+            PageImaveView.requestDetailAround();
             dc.setCurrentPage(viewPager.getCurrentItem());
             updateUI(pos);
 

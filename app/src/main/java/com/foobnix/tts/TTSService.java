@@ -749,7 +749,23 @@ import java.util.concurrent.Executors;
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        startMyForeground();
+        // No intent: the system starting the service again after its process was gone. There is
+        // nothing to read then, and from Android 12 a service may not come to the foreground from
+        // the background - trying crashed the app - so it stops instead, not to be started again.
+        if (intent == null && !TTSEngine.get().isPlaying()) {
+            LOG.d(TAG, "onStartCommand", "restarted without an intent: stop");
+            stopSelf();
+            return START_NOT_STICKY;
+        }
+
+        try {
+            startMyForeground();
+        } catch (Exception e) {
+            // The system refused the foreground (ForegroundServiceStartNotAllowedException): the
+            // service goes on as an ordinary one rather than taking the app down
+            LOG.e(e);
+            isStartForeground = false;
+        }
 
         LOG.d(TAG, "onStartCommand", intent);
         if (intent == null) {
