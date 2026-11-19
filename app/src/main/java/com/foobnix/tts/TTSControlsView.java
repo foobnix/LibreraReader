@@ -479,19 +479,22 @@ public class TTSControlsView extends FrameLayout {
 
     /**
      * In the recent panel the controls stand in the middle of the row that names it, but an MP3
-     * brings its name and seek line, too wide for that: while one is loaded they stand on a line
-     * of their own above the row, and go back into it after.
+     * brings its name and seek line, too wide for that, and the panel's tabs want the row to
+     * themselves: while either is there they stand on a line of their own above the row, and
+     * go back into it after.
      */
-    private void standInPanel() {
+    public void standInPanel() {
         if (!(getParent() instanceof ViewGroup)) {
             return;
         }
         final ViewGroup parent = (ViewGroup) getParent();
         final boolean mp3 = TTSEngine.get().isMp3();
+        final View tabs = getRootView().findViewById(R.id.playListTabsScroll);
+        final boolean above = mp3 || tabs != null && tabs.getVisibility() == View.VISIBLE;
         final int target;
-        if (mp3 && parent.getId() == R.id.ttsControlsSlot) {
+        if (above && parent.getId() == R.id.ttsControlsSlot) {
             target = R.id.ttsControlsSlotTop;
-        } else if (!mp3 && parent.getId() == R.id.ttsControlsSlotTop) {
+        } else if (!above && parent.getId() == R.id.ttsControlsSlotTop) {
             target = R.id.ttsControlsSlot;
         } else {
             return;

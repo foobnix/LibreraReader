@@ -74,6 +74,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.tts.TTSControlsView;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fragment.BrowseFragment2;
 import com.foobnix.ui2.fragment.FavoritesFragment2;
@@ -771,6 +772,21 @@ public class DialogsPlaylist {
                 // No close of its own: the button ahead of the tabs puts the strip away
                 closePlaylist.setVisibility(View.GONE);
                 playlistRecycleView.setVisibility(AppState.get().isPlayListVisible ? View.VISIBLE : View.GONE);
+                // The reading controls go up to a line of their own over the tabs, and back
+                final List<TTSControlsView> controls = new ArrayList<>();
+                for (int id : new int[]{R.id.ttsControlsSlot, R.id.ttsControlsSlotTop}) {
+                    final View slot = a.findViewById(id);
+                    if (slot instanceof ViewGroup) {
+                        for (int i = 0; i < ((ViewGroup) slot).getChildCount(); i++) {
+                            if (((ViewGroup) slot).getChildAt(i) instanceof TTSControlsView) {
+                                controls.add((TTSControlsView) ((ViewGroup) slot).getChildAt(i));
+                            }
+                        }
+                    }
+                }
+                for (TTSControlsView control : controls) {
+                    control.post(control::standInPanel);
+                }
             }
         };
         closePlaylist.setOnClickListener(new OnClickListener() {
