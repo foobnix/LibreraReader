@@ -776,12 +776,16 @@ public class PageImaveView extends View {
         drawableWidth = bitmap.getWidth();
         imageDrawable.setBounds(0, 0, drawableWidth, drawableHeight);
 
-        autoFit();
+        // The zoom is shared by every page: a page made beside the one on screen fitting it to its
+        // own size moved the page being read, sized or cropped differently, after the turn
+        if (pageNumber == PageImageState.currentPage) {
+            autoFit();
+        }
         invalidate();
         // A page made off screen is not drawn, so it asks for its sharp part itself
         post(this::requestDetail);
 
-        LOG.d("addBitmap", bitmap.getWidth(), bitmap.getHeight(), "Real WH:", getWidth(), getHeight());
+        LOG.d("addBitmap", pageNumber, bitmap.getWidth(), bitmap.getHeight(), "Real WH:", getWidth(), getHeight());
     }
 
     /** Lets go of the page. Its size stays, so the same page added back keeps the zoom. */

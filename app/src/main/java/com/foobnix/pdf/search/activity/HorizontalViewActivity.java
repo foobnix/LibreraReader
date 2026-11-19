@@ -1970,6 +1970,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         maxSeek.setContentDescription(dc.getString(R.string.m_total_pages) + " " + info.textPage);
 
         seekBar.setProgress(page);
+        PageImageState.currentPage = page;
         if (dc != null) {
             dc.currentPage = page;
         }

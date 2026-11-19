@@ -508,7 +508,14 @@ public class DialogsPlaylist {
             badgeBg.setCornerRadius(Dips.dpToPx(50));
             badgeBg.setColor(ColorUtils.setAlphaComponent(accent, chosen ? 0x55 : 0x26));
             badge.setBackground(badgeBg);
-            badge.setVisibility(View.GONE);
+            // Counted before, shown at once: the tabs are made again on every tap, and a count
+            // coming in later widened them all one frame after
+            final Integer known = TAB_COUNTS.get(item);
+            if (known != null) {
+                badge.setText(String.valueOf(known));
+            } else {
+                badge.setVisibility(View.GONE);
+            }
             final LinearLayout.LayoutParams badgeLp = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             badgeLp.leftMargin = Dips.DP_6;
@@ -531,10 +538,18 @@ public class DialogsPlaylist {
                 selected = tab;
             }
         }
-        // The list shown is brought into view
+        // The list shown is brought into view, the strip left where it is when it is seen whole
         final View shown = selected;
         if (shown != null) {
-            scroll.post(() -> scroll.smoothScrollTo(Math.max(0, shown.getLeft() - Dips.dpToPx(24)), 0));
+            scroll.post(() -> {
+                final int from = scroll.getScrollX();
+                final int to = from + scroll.getWidth();
+                if (shown.getLeft() < from) {
+                    scroll.smoothScrollTo(Math.max(0, shown.getLeft() - Dips.dpToPx(24)), 0);
+                } else if (shown.getRight() > to) {
+                    scroll.smoothScrollTo(shown.getRight() + Dips.dpToPx(24) - scroll.getWidth(), 0);
+                }
+            });
         }
 
         final Handler main = new Handler(Looper.getMainLooper());
@@ -550,6 +565,10 @@ public class DialogsPlaylist {
                     LOG.e(e);
                     continue;
                 }
+                final Integer before = TAB_COUNTS.put(items.get(i), count);
+                if (before != null && before == count) {
+                    continue;
+                }
                 final TextView badge = badges.get(i);
                 final int n = count;
                 main.post(() -> {
@@ -559,6 +578,9 @@ public class DialogsPlaylist {
             }
         });
     }
+
+    // How many books each tab's list held when last counted
+    private static final java.util.Map<String, Integer> TAB_COUNTS = new java.util.concurrent.ConcurrentHashMap<>();
 
     private static final int ROW_OWN = 0, ROW_ICON = 2, ROW_ICON_OPEN = 3;
 
