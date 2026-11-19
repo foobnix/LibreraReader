@@ -883,6 +883,55 @@ public class BookCSS {
         return toCssString("");
     }
 
+    // Whether a book carries font files of its own, by path, size and date
+    private static final java.util.Map<String, Boolean> EMBEDS_FONTS = new java.util.HashMap<>();
+
+    /**
+     * Whether a book carries font files of its own. A book that only names fonts - "Times New
+     * Roman", Verdana - names fonts the phone does not have, which come out as the plain serif
+     * or sans; one that brings its own may need them, for its script or its look. Unknown - no
+     * file to look into - counts as bringing them, and keeps the book's fonts as before.
+     */
+    public static boolean bookEmbedsFonts(String path) {
+        if (TxtUtils.isEmpty(path)) {
+            return true;
+        }
+        final File file = new File(path);
+        if (!file.isFile()) {
+            return true;
+        }
+        final String key = path + "|" + file.length() + "|" + file.lastModified();
+        synchronized (EMBEDS_FONTS) {
+            final Boolean known = EMBEDS_FONTS.get(key);
+            if (known != null) {
+                return known;
+            }
+        }
+        boolean embeds = false;
+        try (java.util.zip.ZipFile zip = new java.util.zip.ZipFile(file)) {
+            final java.util.Enumeration<? extends java.util.zip.ZipEntry> entries = zip.entries();
+            while (entries.hasMoreElements()) {
+                final String name = entries.nextElement().getName().toLowerCase(java.util.Locale.US);
+                if (name.endsWith(".ttf") || name.endsWith(".otf") || name.endsWith(".woff") || name.endsWith(".woff2")) {
+                    embeds = true;
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // Not an archive - FB2, HTML, text: a book of that kind brings no fonts
+            embeds = false;
+        }
+        synchronized (EMBEDS_FONTS) {
+            EMBEDS_FONTS.put(key, embeds);
+        }
+        return embeds;
+    }
+
+    /** A rule of the font chosen, made to win over the book's where it is to. */
+    private static String fontRule(String input, boolean wins) {
+        return wins ? input.replace(";", " !important;") : input;
+    }
+
     public String important(String input) {
         if (documentStyle == STYLES_ONLY_USER) {
             return input.replace(";", " !important;");
@@ -918,6 +967,10 @@ public class BookCSS {
         lineHeight12 = Math.max(10, lineHeight12);
         lineHeight12Foliate = Math.max(10, lineHeight12Foliate);
         final int lineHeight = lineHeight(foliate);
+        // The font chosen wins over the book's: always with the user's styles alone, and with the
+        // book's and the user's together over fonts the book only names, not ones it brings
+        final boolean userFontWins = documentStyle == STYLES_ONLY_USER
+                || documentStyle == STYLES_DOC_AND_USER && !bookEmbedsFonts(path);
 
         StringBuilder builder = new StringBuilder();
 
@@ -1009,9 +1062,9 @@ public class BookCSS {
             builder.append(String.format("text-align:%s;", getTextAlignConst(textAlign)));
 
             if (isUrlFont(normalFont)) {
-                builder.append(important("font-family:'my';"));
+                builder.append(fontRule("font-family:'my';", userFontWins));
             } else {
-                builder.append(important("font-family:'" + normalFont + "';"));
+                builder.append(fontRule("font-family:'" + normalFont + "';", userFontWins));
             }
 
             builder.append("}");
@@ -1053,14 +1106,14 @@ public class BookCSS {
 
             if (isUrlFont(headersFont)) {
                 builder.append("@font-face {font-family:'myHeader'; src:url('" + headersFont + "');}");
-                builder.append(important("h1,h2,h3,h4,h5,h6 {font-weight:normal; font-family:'myHeader';}"));
-                builder.append(important("title,title>p,title>p>strong {font-weight:normal; font-family:'myHeader';}"));
-                builder.append(important("subtitle {font-weight:normal; font-family:'myHeader';}"));
+                builder.append(fontRule("h1,h2,h3,h4,h5,h6 {font-weight:normal; font-family:'myHeader';}", userFontWins));
+                builder.append(fontRule("title,title>p,title>p>strong {font-weight:normal; font-family:'myHeader';}", userFontWins));
+                builder.append(fontRule("subtitle {font-weight:normal; font-family:'myHeader';}", userFontWins));
 
             } else {
-                builder.append(important("h1,h2,h3,h4,h5,h6 {font-weight:bold; font-family:'" + headersFont + "';}"));
-                builder.append(important("title,title>p,title>p>strong {font-weight:bold; font-family:'" + headersFont + "';}"));
-                builder.append(important("subtitle, subtitle>p {font-weight:bold; font-family:'" + headersFont + "';}"));
+                builder.append(fontRule("h1,h2,h3,h4,h5,h6 {font-weight:bold; font-family:'" + headersFont + "';}", userFontWins));
+                builder.append(fontRule("title,title>p,title>p>strong {font-weight:bold; font-family:'" + headersFont + "';}", userFontWins));
+                builder.append(fontRule("subtitle, subtitle>p {font-weight:bold; font-family:'" + headersFont + "';}", userFontWins));
             }
 
             builder.append(customCSS2.replace("\n", ""));
