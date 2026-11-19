@@ -86,6 +86,10 @@ public class DecodeServiceStub implements DecodeService {
 	}
 
 	@Override
+	public void deleteAnnotations(int page, List<Integer> indexes, ResultResponse<List<Annotation>> resultResponse) {
+	}
+
+	@Override
 	public void moveAnnotation(long pageHandle, int page, int index, float dx, float dy, ResultResponse<List<Annotation>> resultResponse) {
 	}
 

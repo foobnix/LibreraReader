@@ -14,6 +14,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.Pair;
+
+import com.foobnix.pdf.info.wrapper.DocumentController;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -848,6 +850,25 @@ public class PageImaveView extends View {
             }
         }
         return null;
+    }
+
+    /** The annotations a box on screen reaches, on either page of a spread, with where each stands on screen. */
+    public List<Pair<Annotation, RectF>> annotationsIn(RectF screen) {
+        final List<Pair<Annotation, RectF>> found = new ArrayList<>();
+        final int[] numbers = AppSP.get().isDouble ? new int[]{1, 2} : new int[]{0};
+        for (final int number : numbers) {
+            for (final Annotation annotation : getPageLinks(number).second) {
+                if (!DocumentController.isPickable(annotation)) {
+                    continue;
+                }
+                final RectF rect = transform(annotation, number);
+                imageMatrix().mapRect(rect);
+                if (RectF.intersects(rect, screen)) {
+                    found.add(new Pair<>(annotation, rect));
+                }
+            }
+        }
+        return found;
     }
 
     /** Where the annotation picked out stands on screen, or null. */

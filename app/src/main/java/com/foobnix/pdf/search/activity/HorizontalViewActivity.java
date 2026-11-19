@@ -2016,7 +2016,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (closePlaylist == null) {
             return;
         }
-        closePlaylist.setVisibility(show && AppState.get().isPlayListVisible ? View.VISIBLE : View.INVISIBLE);
+        // The recent panel has no close of its own any more: the button ahead of its tabs puts it away
+        closePlaylist.setVisibility(View.GONE);
     }
 
     public void loadUI() {

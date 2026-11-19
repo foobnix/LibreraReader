@@ -28,10 +28,17 @@ public class DrawView extends View {
 	public static final int SHAPE_ARROW = 2;
 	public static final int SHAPE_RECT = 3;
 	public static final int SHAPE_STAR = 4;
+	/** Not a drawing: a box spanned over the page picks out the annotations it reaches. */
+	public static final int SHAPE_SELECT = 5;
 
 	/** A tap rather than a stroke, at a point on the view. */
 	public interface OnTap {
 		void onTap(float x, float y);
+	}
+
+	/** A box spanned with the selection tool, on the view. */
+	public interface OnSelect {
+		void onSelect(RectF box);
 	}
 
 	/** A drawing that can be taken and moved, rather than drawn over. */
@@ -70,6 +77,17 @@ public class DrawView extends View {
 		dragPaint.setColor(Color.GRAY);
 		dragPaint.setAntiAlias(true);
 	}
+	private OnSelect onSelect;
+	// The box being spanned with the selection tool, and the annotations picked out with it
+	private final RectF box = new RectF();
+	private boolean spanning;
+	private final List<RectF> marked = new ArrayList<>();
+	private final Paint markPaint = new Paint();
+	{
+		markPaint.setStyle(Style.FILL);
+		markPaint.setColor(Color.argb(0x40, 0x21, 0x96, 0xF3));
+		markPaint.setAntiAlias(true);
+	}
 	private int shape = SHAPE_FREE;
 	private float downX, downY;
 	private boolean moved;
@@ -96,6 +114,13 @@ public class DrawView extends View {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		canvas.drawPath(pointsPath, paint);
+		for (final RectF rect : marked) {
+			canvas.drawRect(rect, markPaint);
+			canvas.drawRect(rect, dragPaint);
+		}
+		if (spanning) {
+			canvas.drawRect(box, dragPaint);
+		}
 		if (dragged != null) {
 			final RectF at = new RectF(dragged);
 			at.offset(dragX, dragY);
@@ -103,7 +128,15 @@ public class DrawView extends View {
 		}
 	}
 
+	/** The annotations picked out, shaded where they stand on screen. */
+	public void setMarked(List<RectF> rects) {
+		marked.clear();
+		marked.addAll(rects);
+		invalidate();
+	}
+
 	public void clear() {
+		spanning = false;
 		points.clear();
 		pointsPath.reset();
 		invalidate();
@@ -147,6 +180,9 @@ public class DrawView extends View {
 				dragY = y - downY;
 			} else if (shape < 0) {
 				return true;
+			} else if (shape == SHAPE_SELECT) {
+				spanning = true;
+				box.set(Math.min(downX, x), Math.min(downY, y), Math.max(downX, x), Math.max(downY, y));
 			} else if (shape == SHAPE_FREE) {
 				pointsPath.lineTo(x, y);
 				points.add(new PointF(x, y));
@@ -171,7 +207,13 @@ public class DrawView extends View {
 				}
 				return true;
 			}
-			if (shape < 0) {
+			if (shape == SHAPE_SELECT) {
+				final RectF spanned = new RectF(box);
+				clear();
+				if (onSelect != null) {
+					onSelect.onSelect(spanned);
+				}
+			} else if (shape < 0) {
 				clear();
 			} else if (onFinishDraw != null) {
 				onFinishDraw.run();
@@ -246,6 +288,10 @@ public class DrawView extends View {
 
 	public void setOnTap(OnTap onTap) {
 		this.onTap = onTap;
+	}
+
+	public void setOnSelect(OnSelect onSelect) {
+		this.onSelect = onSelect;
 	}
 
 	public void setOnDrag(OnDrag onDrag) {

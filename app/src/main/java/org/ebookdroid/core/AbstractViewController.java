@@ -653,6 +653,31 @@ public abstract class AbstractViewController extends AbstractComponentController
         return rect;
     }
 
+    /** The annotations a box on screen reaches, each with where it stands on screen. */
+    public final List<Pair<Annotation, RectF>> annotationsIn(final RectF screen) {
+        final List<Pair<Annotation, RectF>> found = new ArrayList<>();
+        final float zoom = base.getZoomModel().getZoom();
+        final RectF rect = new RectF(screen);
+        rect.offset(getScrollX(), getScrollY());
+        for (final Page page : model.getPages(firstVisiblePage, lastVisiblePage + 1)) {
+            final RectF bounds = page.getBounds(zoom);
+            if (!RectF.intersects(bounds, rect) || page.annotations == null) {
+                continue;
+            }
+            for (final Annotation a : page.annotations) {
+                if (!com.foobnix.pdf.info.wrapper.DocumentController.isPickable(a)) {
+                    continue;
+                }
+                final RectF onScreen = page.getPageRegion(bounds, new RectF(a));
+                if (onScreen != null && RectF.intersects(onScreen, rect)) {
+                    onScreen.offset(-getScrollX(), -getScrollY());
+                    found.add(new Pair<>(a, onScreen));
+                }
+            }
+        }
+        return found;
+    }
+
     /** The drawing under a point on screen, or null; links and notes are passed over. */
     public final Annotation drawingAt(final float x, final float y) {
         final float zoom = base.getZoomModel().getZoom();

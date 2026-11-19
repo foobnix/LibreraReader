@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Scrolling by 10% of the screen: a page filled that far from the top. Tinted where it is shown. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M6,2.5 L18,2.5 Q19,2.5 19,3.5 L19,20.5 Q19,21.5 18,21.5 L6,21.5 Q5,21.5 5,20.5 L5,3.5 Q5,2.5 6,2.5 Z"
+        android:strokeWidth="1.6"
+        android:strokeColor="@color/black"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M6.6,3.6 L17.4,3.6 L17.4,5.3 L6.6,5.3 Z"
+        android:fillAlpha="0.55"
+        android:fillColor="@color/black" />
+</vector>

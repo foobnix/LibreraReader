@@ -52,6 +52,7 @@ import com.foobnix.android.utils.MyMath;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
 import android.graphics.RectF;
+import android.util.Pair;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
@@ -103,6 +104,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -836,6 +841,66 @@ public abstract class DocumentController {
      * (when above 0); it stays picked out, to change the other too.
      */
     public void styleSelectedAnnotation(Integer color, float width) {
+    }
+
+    /**
+     * The annotations the selection tool has picked out together, each with where it stood on
+     * screen when picked, to be erased at once. The page does not move meanwhile: the drawing
+     * layer over it takes the finger while a tool is picked.
+     */
+    public final List<Pair<Annotation, RectF>> pickedAnnotations = new ArrayList<>();
+
+    /**
+     * Whether the selection tool takes an annotation: drawings, marks on words and notes, not
+     * the links and form fields a page lists with them.
+     */
+    public static boolean isPickable(Annotation annotation) {
+        return annotation != null && annotation.type != AnnotationType.LINK
+                && annotation.type != AnnotationType.POPUP && annotation.type != AnnotationType.WIDGET;
+    }
+
+    /** The annotations a box on screen reaches, each with where it stands on screen. */
+    public List<Pair<Annotation, RectF>> annotationsIn(RectF screen) {
+        return new ArrayList<>();
+    }
+
+    /** Erases the annotations picked out together, and lets go of them. */
+    public void deletePickedAnnotations() {
+        final List<Annotation> annotations = new ArrayList<>();
+        for (Pair<Annotation, RectF> picked : pickedAnnotations) {
+            annotations.add(picked.first);
+        }
+        pickedAnnotations.clear();
+        if (!annotations.isEmpty()) {
+            deleteAnnotations(annotations);
+            saveAnnotationsToFile();
+        }
+    }
+
+    /** Erases several annotations of the document at once. */
+    public void deleteAnnotations(List<Annotation> annotations) {
+    }
+
+    /**
+     * Annotations by the page they are on, from 1, each page's indexes highest first: an
+     * annotation erased moves down those after it on its page.
+     */
+    public static Map<Integer, List<Integer>> indexesByPage(List<Annotation> annotations) {
+        final Map<Integer, List<Integer>> byPage = new TreeMap<>();
+        for (Annotation a : annotations) {
+            List<Integer> indexes = byPage.get(a.getPage());
+            if (indexes == null) {
+                indexes = new ArrayList<>();
+                byPage.put(a.getPage(), indexes);
+            }
+            if (!indexes.contains(a.getIndex())) {
+                indexes.add(a.getIndex());
+            }
+        }
+        for (List<Integer> indexes : byPage.values()) {
+            Collections.sort(indexes, Collections.reverseOrder());
+        }
+        return byPage;
     }
 
     /** Erases the annotation picked out from the document, and lets go of it. */

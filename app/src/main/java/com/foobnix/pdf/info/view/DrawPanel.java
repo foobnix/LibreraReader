@@ -6,14 +6,17 @@ import android.graphics.Color;
 import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RippleDrawable;
+import android.util.Pair;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.PopupWindow;
 
 import androidx.core.graphics.ColorUtils;
@@ -28,6 +31,10 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import org.ebookdroid.core.codec.Annotation;
+
+import java.util.List;
+
+import java.util.ArrayList;
 
 /**
  * The drawing panel: what the pen draws, how thick and in which colour, and the eraser for an
@@ -59,8 +66,11 @@ public class DrawPanel {
         drawView.setVisibility(View.GONE);
         drawView.setOnTap(null);
         drawView.setOnDrag(null);
+        drawView.setOnSelect(null);
         drawView.clear();
+        drawView.setMarked(new ArrayList<>());
         controller.clearAnnotationSelection();
+        controller.pickedAnnotations.clear();
         controller.handler.postDelayed(onClose, 500);
     }
 
@@ -71,7 +81,8 @@ public class DrawPanel {
         final ImageView delete = panel.findViewById(R.id.drawDelete);
         final View widthLine = panel.findViewById(R.id.drawWidthLine);
         final LinearLayout colors = panel.findViewById(R.id.drawColors);
-        final int[] tools = {R.id.drawFree, R.id.drawLine, R.id.drawArrow, R.id.drawRect, R.id.drawStar};
+        // In the order of DrawView's SHAPE_*, the last picking out rather than drawing
+        final int[] tools = {R.id.drawFree, R.id.drawLine, R.id.drawArrow, R.id.drawRect, R.id.drawStar, R.id.drawSelect};
         for (int tool : tools) {
             pressable(panel.findViewById(tool), TintUtil.SWATCH_RADIUS);
         }
@@ -88,17 +99,40 @@ public class DrawPanel {
             if (!drawing) {
                 drawView.clear();
             }
+            // What the selection tool picked out is let go of once another tool is picked
+            if (AppState.get().editShape != DrawView.SHAPE_SELECT) {
+                controller.pickedAnnotations.clear();
+            }
+            final List<RectF> marked = new ArrayList<>();
+            for (Pair<Annotation, RectF> picked : controller.pickedAnnotations) {
+                marked.add(picked.second);
+            }
+            drawView.setMarked(marked);
             drawView.setColor(IMG.alphaColor(AppState.get().editAlphaColor, AppState.get().drawColor),
                               AppState.get().editLineWidth);
             drawView.setVisibility(drawing || controller.selectedAnnotation != null ? View.VISIBLE : View.GONE);
             updateDelete(controller, delete);
 
-            // The tool in use is ringed, in the colour the panel draws its marks in
+            // The tool in use is ringed, in the colour the panel draws its marks in, and filled
+            // in that colour too while it is locked
             for (int i = 0; i < tools.length; i++) {
                 final ImageView tool = panel.findViewById(tools[i]);
                 if (i == AppState.get().editShape) {
                     final ColorStateList tint = tool.getImageTintList();
-                    TintUtil.setColorSwatchOutline(tool, tint != null ? tint.getDefaultColor() : TintUtil.color);
+                    final int ring = tint != null ? tint.getDefaultColor() : TintUtil.color;
+                    TintUtil.setColorSwatchOutline(tool, ring);
+                    if (AppState.get().isEditShapeLocked) {
+                        // Locked: a small dot in the ring's top-left corner, in the ring's colour
+                        final GradientDrawable dot = new GradientDrawable();
+                        dot.setShape(GradientDrawable.OVAL);
+                        dot.setColor(ring);
+                        final LayerDrawable lockedMark = new LayerDrawable(new Drawable[]{tool.getBackground(), dot});
+                        final int size = Dips.dpToPx(7);
+                        lockedMark.setLayerGravity(1, Gravity.TOP | Gravity.LEFT);
+                        lockedMark.setLayerSize(1, size, size);
+                        lockedMark.setLayerInset(1, Dips.dpToPx(5), Dips.dpToPx(5), 0, 0);
+                        tool.setBackground(lockedMark);
+                    }
                 } else {
                     tool.setBackground(null);
                 }
@@ -128,10 +162,19 @@ public class DrawPanel {
         for (int i = 0; i < tools.length; i++) {
             final int shape = i;
             panel.findViewById(tools[i]).setOnClickListener(v -> {
-                // The tool in use, tapped again, is put down
+                // The tool in use, tapped again, is put down; a tool tapped is not locked
                 AppState.get().editShape = AppState.get().editShape == shape ? NO_TOOL : shape;
+                AppState.get().isEditShapeLocked = false;
                 AppState.get().editWith = AppState.EDIT_PEN;
                 updatePen.run();
+            });
+            // A long press picks the tool and locks it: it stays picked after each drawing
+            panel.findViewById(tools[i]).setOnLongClickListener(v -> {
+                AppState.get().editShape = shape;
+                AppState.get().isEditShapeLocked = true;
+                AppState.get().editWith = AppState.EDIT_PEN;
+                updatePen.run();
+                return true;
             });
         }
 
@@ -171,6 +214,20 @@ public class DrawPanel {
         // A tap on the page picks out the annotation under it, which can then be erased
         updateDelete(controller, delete);
         drawView.setOnTap((x, y) -> {
+            if (AppState.get().editShape == DrawView.SHAPE_SELECT) {
+                // With the selection tool a tap picks out the annotation on top under it, or
+                // lets go of it if it was picked out already
+                final int reach = Dips.DP_6;
+                final List<Pair<Annotation, RectF>> under = controller.annotationsIn(new RectF(x - reach, y - reach, x + reach, y + reach));
+                if (!under.isEmpty()) {
+                    final Pair<Annotation, RectF> top = under.get(under.size() - 1);
+                    if (!removePicked(controller, top.first)) {
+                        controller.pickedAnnotations.add(top);
+                    }
+                }
+                updatePen.run();
+                return;
+            }
             final boolean hadPicked = controller.selectedAnnotation != null;
             final Annotation picked = controller.selectAnnotationAt(x, y);
             // Docked, the panel stays while the book's panels come and go: a tap on the page
@@ -183,6 +240,10 @@ public class DrawPanel {
         // The drawing picked out is taken with a finger and put elsewhere on its page
         drawView.setOnDrag(new DrawView.OnDrag() {
             @Override public RectF draggable() {
+                // The selection tool spans its box wherever the finger goes down
+                if (AppState.get().editShape == DrawView.SHAPE_SELECT) {
+                    return null;
+                }
                 return controller.selectedAnnotationOnScreen();
             }
 
@@ -191,8 +252,24 @@ public class DrawPanel {
                 updatePen.run();
             }
         });
+        // A box spanned with the selection tool adds what it reaches to what is picked out
+        drawView.setOnSelect(box -> {
+            for (Pair<Annotation, RectF> found : controller.annotationsIn(box)) {
+                if (!isPicked(controller, found.first)) {
+                    controller.pickedAnnotations.add(found);
+                }
+            }
+            updatePen.run();
+        });
         delete.setOnClickListener(v -> {
-            if (controller.selectedAnnotation != null) {
+            if (!controller.pickedAnnotations.isEmpty()) {
+                // All that the selection tool picked out, at once; the tool is put down after,
+                // unless it is locked
+                controller.deletePickedAnnotations();
+                if (!AppState.get().isEditShapeLocked) {
+                    AppState.get().editShape = NO_TOOL;
+                }
+            } else if (controller.selectedAnnotation != null) {
                 controller.deleteSelectedAnnotation();
             } else {
                 // Nothing picked out: the eraser is taken up, or put down, and a tap on a
@@ -212,8 +289,8 @@ public class DrawPanel {
             drawView.clear();
             controller.saveAnnotationsToFile();
             controller.handler.postDelayed(onClose, 500);
-            // A shape is drawn once and the tool put down; the free line is the pen's own
-            if (AppState.get().editShape != DrawView.SHAPE_FREE) {
+            // Every tool, the free line too, draws once and is put down, unless it is locked
+            if (!AppState.get().isEditShapeLocked) {
                 AppState.get().editShape = NO_TOOL;
                 updatePen.run();
             }
@@ -248,7 +325,24 @@ public class DrawPanel {
         final LayoutInflater inflater = LayoutInflater.from(context);
         dock.removeAllViews();
 
-        final LinearLayout row = new LinearLayout(context);
+        final DrawPanelLayout panel = (DrawPanelLayout) create(inflater, controller, drawView, onClose);
+        final LinearLayout buttons = new LinearLayout(context);
+        final LinearLayout row = new LinearLayout(context) {
+            @Override
+            protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+                // Where the panel stands on one line, the pin and the close button stand on it
+                // too, side by side, so the dock is one line high
+                int side = 0;
+                for (int i = 0; i < buttons.getChildCount(); i++) {
+                    final LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) buttons.getChildAt(i).getLayoutParams();
+                    side += lp.width + lp.leftMargin + lp.rightMargin;
+                }
+                final boolean oneLine = MeasureSpec.getMode(widthMeasureSpec) != MeasureSpec.UNSPECIFIED
+                        && panel.oneLineWidth() + side <= MeasureSpec.getSize(widthMeasureSpec);
+                buttons.setOrientation(oneLine ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL);
+                super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+            }
+        };
         row.setOrientation(LinearLayout.HORIZONTAL);
         row.setGravity(Gravity.CENTER_VERTICAL);
         final GradientDrawable sheet = new GradientDrawable();
@@ -260,10 +354,8 @@ public class DrawPanel {
         // Touches on the sheet are the panel's, not the page's under it
         row.setClickable(true);
 
-        row.addView(create(inflater, controller, drawView, onClose),
-                    new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+        row.addView(panel, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
-        final LinearLayout buttons = new LinearLayout(context);
         buttons.setOrientation(LinearLayout.VERTICAL);
         buttons.addView(dockButton(context, R.drawable.glyphicons_415_push_pin, R.string.draw_unpin, v -> {
             hideDock(controller);
@@ -312,9 +404,31 @@ public class DrawPanel {
      * always, as a tap on the page turns it there rather than picking a drawing out, so the
      * eraser is taken up instead and the drawing tapped. Ringed while it has one to erase.
      */
+    /** Whether an annotation is among those the selection tool picked out: the very one, not one alike. */
+    private static boolean isPicked(DocumentController controller, Annotation annotation) {
+        for (Pair<Annotation, RectF> picked : controller.pickedAnnotations) {
+            if (picked.first == annotation) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** Lets go of an annotation the selection tool picked out; false if it was not. */
+    private static boolean removePicked(DocumentController controller, Annotation annotation) {
+        for (int i = 0; i < controller.pickedAnnotations.size(); i++) {
+            if (controller.pickedAnnotations.get(i).first == annotation) {
+                controller.pickedAnnotations.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
     private static void updateDelete(DocumentController controller, ImageView delete) {
-        final boolean picked = controller.selectedAnnotation != null;
-        delete.setVisibility(picked || controller.isMusicianMode() ? View.VISIBLE : View.GONE);
+        final boolean picked = controller.selectedAnnotation != null || !controller.pickedAnnotations.isEmpty();
+        // Out of sight rather than gone, so the colours beside it never move when it comes
+        delete.setVisibility(picked || controller.isMusicianMode() ? View.VISIBLE : View.INVISIBLE);
         if (picked || AppState.get().editWith == AppState.EDIT_DELETE) {
             final ColorStateList tint = delete.getImageTintList();
             TintUtil.setColorSwatchOutline(delete, tint != null ? tint.getDefaultColor() : TintUtil.color);
@@ -354,8 +468,10 @@ public class DrawPanel {
         popup.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         for (final float width : AppState.DRAW_WIDTHS) {
-            final FrameLayout row = new FrameLayout(context);
-            row.setPadding(Dips.dpToPx(20), 0, Dips.dpToPx(20), 0);
+            final LinearLayout row = new LinearLayout(context);
+            row.setOrientation(LinearLayout.HORIZONTAL);
+            row.setGravity(Gravity.CENTER_VERTICAL);
+            row.setPadding(Dips.dpToPx(16), 0, Dips.dpToPx(20), 0);
             if (width == AppState.get().editLineWidth) {
                 row.setBackgroundColor(light ? Color.parseColor("#1F000000") : Color.parseColor("#26FFFFFF"));
             }
@@ -364,8 +480,16 @@ public class DrawPanel {
             shape.setColor(Color.parseColor(AppState.get().drawColor));
             shape.setCornerRadius(Dips.DP_10);
             line.setBackground(shape);
-            row.addView(line, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, drawWidthPx(width), Gravity.CENTER));
-            row.setContentDescription(String.valueOf(width));
+            // The width as a number before the line drawn that thick
+            final String number = width == Math.round(width) ? String.valueOf(Math.round(width)) : String.valueOf(width);
+            final TextView label = new TextView(context);
+            label.setText(number);
+            label.setTextSize(14);
+            label.setTextColor(light ? Color.parseColor("#DE000000") : Color.WHITE);
+            label.setGravity(Gravity.CENTER_VERTICAL | Gravity.START);
+            row.addView(label, new LinearLayout.LayoutParams(Dips.dpToPx(24), LinearLayout.LayoutParams.WRAP_CONTENT));
+            row.addView(line, new LinearLayout.LayoutParams(0, drawWidthPx(width), 1));
+            row.setContentDescription(number);
             pressable(row, 0);
             row.setOnClickListener(v -> {
                 AppState.get().editLineWidth = width;

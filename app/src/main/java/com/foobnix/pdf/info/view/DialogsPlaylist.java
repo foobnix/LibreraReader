@@ -13,6 +13,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Color;
+import android.text.TextUtils;
+import androidx.core.graphics.ColorUtils;
+import android.util.TypedValue;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
+import android.widget.HorizontalScrollView;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -23,6 +29,7 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import androidx.core.content.ContextCompat;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -55,6 +62,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.view.drag.OnStartDragListener;
@@ -363,6 +371,330 @@ public class DialogsPlaylist {
         return res;
     }
 
+    /** The lists the strip of covers can show: recent, favourites, folders, playlists and tags. */
+    private static List<String> playlistChoices() {
+        final List<String> items = new ArrayList<>();
+        items.add(L_PLAYLIST_RECENT);
+        items.add(L_PLAYLIST_FAVORITES);
+        items.add(L_PLAYLIST_CURRENT_FOLDER);
+        for (FileMeta folder : AppData.get().getAllFavoriteFolders()) {
+            items.add(L_PLAYLIST_FOLDER + folder.getPath());
+        }
+        items.addAll(Playlists.getAllPlaylists());
+        for (String tag : Tags2.getAllTags()) {
+            if (TxtUtils.isNotEmpty(tag)) {
+                items.add(L_PLAYLIST_TAGS + tag);
+            }
+        }
+        return items;
+    }
+
+    /** A list's name on its tab, short: the folder's own name, the playlist's without its count. */
+    private static String tabName(Activity a, String item) {
+        if (item.startsWith(L_PLAYLIST_RECENT) || item.startsWith(L_PLAYLIST_FAVORITES)) {
+            return Playlists.formatPlaylistName(a, item);
+        }
+        if (item.startsWith(L_PLAYLIST_CURRENT_FOLDER)) {
+            return ExtUtils.getFileName(AppState.get().displayPath);
+        }
+        if (item.startsWith(L_PLAYLIST_FOLDER)) {
+            return ExtUtils.getFileName(item);
+        }
+        if (item.startsWith(L_PLAYLIST_TAGS)) {
+            return item.replace(L_PLAYLIST_TAGS, "");
+        }
+        return TxtUtils.firstUppercase(ExtUtils.getFileName(item).replace(Playlists.L_PLAYLIST, ""));
+    }
+
+    private static int tabIcon(String item) {
+        if (item == null || item.startsWith(L_PLAYLIST_RECENT)) {
+            return R.drawable.glyphicons_422_book_library;
+        }
+        if (item.startsWith(L_PLAYLIST_FAVORITES)) {
+            return R.drawable.glyphicons_13_heart;
+        }
+        if (item.startsWith(L_PLAYLIST_CURRENT_FOLDER)) {
+            return R.drawable.glyphicons_145_folder_open;
+        }
+        if (item.startsWith(L_PLAYLIST_FOLDER)) {
+            return R.drawable.glyphicons_336_folder;
+        }
+        if (item.startsWith(L_PLAYLIST_TAGS)) {
+            return R.drawable.glyphicons_66_tag;
+        }
+        return R.drawable.glyphicons_160_playlist;
+    }
+
+    /** How many books a list holds, as the strip would show them, before it is cut to its length. Off the main thread. */
+    private static int countOf(String item) {
+        if (item.equals(L_PLAYLIST_RECENT)) {
+            return AppData.get().getAllRecent(false).size();
+        }
+        if (item.equals(L_PLAYLIST_FAVORITES)) {
+            return FavoritesFragment2.getFavoritesSorted(false).size();
+        }
+        if (item.startsWith(L_PLAYLIST_FOLDER) || item.startsWith(L_PLAYLIST_CURRENT_FOLDER)) {
+            final String path = item.startsWith(L_PLAYLIST_CURRENT_FOLDER)
+                    ? AppState.get().displayPath : item.replace(L_PLAYLIST_FOLDER, "");
+            final List<FileMeta> files = SearchCore.getFilesAndDirs(path, true, AppState.get().isDisplayAllFilesInFolder);
+            ExtUtils.removeReadBooks(files);
+            int count = 0;
+            for (FileMeta meta : files) {
+                if (meta.getCusType() == null || meta.getCusType() != FileMetaAdapter.DISPLAY_TYPE_DIRECTORY) {
+                    count++;
+                }
+            }
+            return count;
+        }
+        if (item.startsWith(L_PLAYLIST_TAGS)) {
+            return Tags2.getAllFilesByTag(item.replace(L_PLAYLIST_TAGS, "")).size();
+        }
+        return Playlists.getPlaylistItems(item).size();
+    }
+
+    /**
+     * The lists the strip can show, as tabs over it: each its mark, its name and how many books
+     * it holds, the one shown filled in. A tap on one shows it.
+     */
+    private static void showPlaylistTabs(final Activity a, final DocumentController dc, final String current) {
+        final LinearLayout tabs = a.findViewById(R.id.playListTabs);
+        final HorizontalScrollView scroll = a.findViewById(R.id.playListTabsScroll);
+        if (tabs == null || scroll == null) {
+            return;
+        }
+        tabs.removeAllViews();
+        final int accent = MagicHelper.getTextOrIconColor();
+        final List<String> items = playlistChoices();
+        final List<TextView> badges = new ArrayList<>();
+        View selected = null;
+        for (final String item : items) {
+            final boolean chosen = item.equals(current);
+            final int ink = chosen ? accent : ColorUtils.setAlphaComponent(accent, 0xB3);
+
+            final LinearLayout tab = new LinearLayout(a);
+            tab.setOrientation(LinearLayout.HORIZONTAL);
+            tab.setGravity(Gravity.CENTER_VERTICAL);
+            tab.setPadding(Dips.dpToPx(12), Dips.DP_6, Dips.dpToPx(12), Dips.DP_6);
+            final GradientDrawable pill = new GradientDrawable();
+            pill.setCornerRadius(Dips.dpToPx(50));
+            pill.setColor(chosen ? ColorUtils.setAlphaComponent(accent, 0x33) : Color.TRANSPARENT);
+            tab.setBackground(pill);
+            tab.setContentDescription(Playlists.formatPlaylistName(a, item));
+
+            final ImageView icon = new ImageView(a);
+            icon.setImageResource(tabIcon(item));
+            icon.setColorFilter(ink);
+            tab.addView(icon, new LinearLayout.LayoutParams(Dips.dpToPx(18), Dips.dpToPx(18)));
+
+            final TextView label = new TextView(a);
+            label.setText(tabName(a, item));
+            label.setTextColor(ink);
+            label.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+            label.setTypeface(null, chosen ? Typeface.BOLD : Typeface.NORMAL);
+            label.setSingleLine(true);
+            final LinearLayout.LayoutParams labelLp = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            labelLp.leftMargin = Dips.DP_6;
+            tab.addView(label, labelLp);
+
+            // How many books, once counted
+            final TextView badge = new TextView(a);
+            badge.setTextColor(ink);
+            badge.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+            badge.setPadding(Dips.DP_6, 0, Dips.DP_6, 0);
+            final GradientDrawable badgeBg = new GradientDrawable();
+            badgeBg.setCornerRadius(Dips.dpToPx(50));
+            badgeBg.setColor(ColorUtils.setAlphaComponent(accent, chosen ? 0x55 : 0x26));
+            badge.setBackground(badgeBg);
+            badge.setVisibility(View.GONE);
+            final LinearLayout.LayoutParams badgeLp = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            badgeLp.leftMargin = Dips.DP_6;
+            tab.addView(badge, badgeLp);
+            badges.add(badge);
+
+            tab.setOnClickListener(v -> {
+                if (chosen) {
+                    return;
+                }
+                AppState.get().playlistDefault = item;
+                a.getIntent().putExtra(DocumentController.EXTRA_PLAYLIST, item);
+                dispalyPlaylist(a, dc);
+            });
+            final LinearLayout.LayoutParams tabLp = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            tabLp.rightMargin = Dips.DP_4;
+            tabs.addView(tab, tabLp);
+            if (chosen) {
+                selected = tab;
+            }
+        }
+        // The list shown is brought into view
+        final View shown = selected;
+        if (shown != null) {
+            scroll.post(() -> scroll.smoothScrollTo(Math.max(0, shown.getLeft() - Dips.dpToPx(24)), 0));
+        }
+
+        final Handler main = new Handler(Looper.getMainLooper());
+        AppsConfig.executorServiceSingle.execute(() -> {
+            for (int i = 0; i < items.size(); i++) {
+                if (Apps.isDestroyedActivity(a)) {
+                    return;
+                }
+                int count;
+                try {
+                    count = countOf(items.get(i));
+                } catch (Exception e) {
+                    LOG.e(e);
+                    continue;
+                }
+                final TextView badge = badges.get(i);
+                final int n = count;
+                main.post(() -> {
+                    badge.setText(String.valueOf(n));
+                    badge.setVisibility(View.VISIBLE);
+                });
+            }
+        });
+    }
+
+    private static final int ROW_OWN = 0, ROW_ICON = 2, ROW_ICON_OPEN = 3;
+
+    // The list the strip of covers shows, whose mark the Recent button carries
+    private static String shownPlaylist = L_PLAYLIST_RECENT;
+    // Its name, short as its tab has it: a folder by its own name only
+    private static String shownPlaylistName = "";
+
+    /** Turned on its side: the screen's own measure, as the reading screens keep their configuration through a turn. */
+    public static boolean isLandscape() {
+        return Dips.screenWidth() > Dips.screenHeight();
+    }
+
+    /**
+     * The Recent button first in the row of buttons, ringed as the scroll button at the row's
+     * end is: named in landscape, its mark alone upright, as that button is - the mark of the
+     * list it shows. It puts the strip of covers out and away again, and is the only button
+     * for that: the row it had of its own keeps the strip's tabs while the strip is out and the
+     * reading controls while they are up, and otherwise folds away.
+     */
+    private static void keepBesideButtons(final View chipRow, final View buttons, final View ttsSlot, final View strip) {
+        if (chipRow == null || !(buttons instanceof ViewGroup) || !(chipRow instanceof ViewGroup)
+                || !(chipRow.getParent() instanceof View) || chipRow.getTag(R.id.footerButtons) != null) {
+            return;
+        }
+        final TextView name = chipRow.findViewById(R.id.playListName);
+        if (name == null) {
+            return;
+        }
+        chipRow.setTag(R.id.footerButtons, ROW_OWN);
+        final int paddingTop = chipRow.getPaddingTop();
+
+        final TextView pill = buttons.findViewById(R.id.nextTypeBootom);
+        final TextView button = new TextView(chipRow.getContext());
+        button.setContentDescription(chipRow.getContext().getString(R.string.recent));
+        button.setGravity(Gravity.CENTER);
+        button.setSingleLine(true);
+        button.setVisibility(View.GONE);
+        button.setOnClickListener(v -> chipRow.performClick());
+        final int pillHeight = pill != null && pill.getLayoutParams().height > 0
+                ? pill.getLayoutParams().height : Dips.dpToPx(32);
+        final int side = pill != null ? pill.getPaddingLeft() : Dips.DP_8;
+        button.setPadding(side, 0, side, 0);
+        if (pill != null) {
+            button.setTextSize(TypedValue.COMPLEX_UNIT_PX, pill.getTextSize());
+            button.setAllCaps(true);
+        }
+        final LinearLayout.LayoutParams buttonLp = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, pillHeight);
+        buttonLp.rightMargin = Dips.DP_4;
+        ((ViewGroup) buttons).addView(button, 0, buttonLp);
+
+        // Named in landscape, its mark alone upright; in the scroll button's colours and ring.
+        // Only when that changes: dressed, it asks for another layout.
+        final String[] dressedFor = {null};
+        final Runnable dress = () -> {
+            final boolean named = isLandscape();
+            final String key = named + "|" + shownPlaylistName + "|" + shownPlaylist;
+            if (key.equals(dressedFor[0])) {
+                return;
+            }
+            dressedFor[0] = key;
+            final int ink = pill != null ? pill.getCurrentTextColor() : name.getCurrentTextColor();
+            button.setText(named ? shownPlaylistName : "");
+            button.setTextColor(ink);
+            button.setTag(R.id.pillRing, null);
+            // The mark of the list the strip shows, as its tab has it
+            final Drawable mark = ContextCompat.getDrawable(button.getContext(), tabIcon(shownPlaylist));
+            // The scroll button's ring, as it was coloured for the theme, without its mark
+            final View ringed = pill != null ? pill : name;
+            Object ring = ringed.getTag(R.id.pillRing);
+            if (!(ring instanceof Drawable)) {
+                ring = ringed.getBackground();
+            }
+            if (ring instanceof Drawable && ((Drawable) ring).getConstantState() != null) {
+                final Drawable copy = ((Drawable) ring).getConstantState().newDrawable().mutate();
+                // The ring in the mark's colour - in paged mode the scroll button is never shown,
+                // nor its ring coloured - before the mark goes in: coloured with the ring, it
+                // would come out dark
+                button.setBackground(copy);
+                TintUtil.setRingColor(button, ink);
+                button.setTag(R.id.pillRing, copy);
+            }
+            if (mark != null) {
+                DocumentWrapperUI.pillIcon(button, mark, !named);
+            }
+        };
+
+        final View parent = (View) chipRow.getParent();
+        final View toggle = chipRow.findViewById(R.id.playListToggle);
+        final View chip = name.getParent() instanceof View ? (View) name.getParent() : null;
+        parent.addOnLayoutChangeListener((v, l, t, r, b, ol, ot, or, ob) -> {
+            // The slot keeps the reading controls in it, out of sight while nothing is read
+            boolean ttsShown = false;
+            if (ttsSlot instanceof ViewGroup && ttsSlot.getVisibility() == View.VISIBLE) {
+                for (int i = 0; i < ((ViewGroup) ttsSlot).getChildCount(); i++) {
+                    ttsShown |= ((ViewGroup) ttsSlot).getChildAt(i).getVisibility() == View.VISIBLE;
+                }
+            }
+            final boolean landscape = isLandscape();
+            final CharSequence wasText = button.getText();
+            dress.run();
+            final boolean open = strip != null && strip.getVisibility() == View.VISIBLE;
+            // The row keeps the tabs while the strip is out, and the reading controls while
+            // they are up; otherwise it folds away
+            final int mode = open ? ROW_ICON_OPEN : ttsShown ? ROW_OWN : ROW_ICON;
+            final ViewGroup.MarginLayoutParams rowLp = (ViewGroup.MarginLayoutParams) chipRow.getLayoutParams();
+            final int height = mode == ROW_ICON ? 0 : ViewGroup.LayoutParams.WRAP_CONTENT;
+            if (Integer.valueOf(mode).equals(chipRow.getTag(R.id.footerButtons)) && rowLp.height == height
+                    && button.getVisibility() == View.VISIBLE
+                    && (chip == null || chip.getVisibility() == View.GONE)
+                    && (toggle == null || toggle.getVisibility() == View.GONE)
+                    && Boolean.valueOf(landscape).equals(button.getTag(R.id.playListToggle))
+                    && TextUtils.equals(wasText, button.getText())) {
+                return;
+            }
+            chipRow.setTag(R.id.footerButtons, mode);
+            button.setTag(R.id.playListToggle, landscape);
+            // not in the middle of the layout pass that reported the sizes
+            chipRow.post(() -> {
+                dress.run();
+                // The button among the others is the only one: the row's own and the mark
+                // ahead of the tabs are never shown
+                button.setVisibility(View.VISIBLE);
+                if (chip != null) {
+                    chip.setVisibility(View.GONE);
+                }
+                if (toggle != null) {
+                    toggle.setVisibility(View.GONE);
+                }
+                chipRow.setPadding(chipRow.getPaddingLeft(), paddingTop, chipRow.getPaddingRight(), chipRow.getPaddingBottom());
+                rowLp.height = height;
+                rowLp.bottomMargin = 0;
+                chipRow.setLayoutParams(rowLp);
+            });
+        });
+    }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static void dispalyPlaylist(final Activity a, final DocumentController dc) {
         if(Apps.isDestroyedActivity(a) || dc ==null){
@@ -381,7 +713,8 @@ public class DialogsPlaylist {
         final TextView playListNameEdit = (TextView) a.findViewById(R.id.playListNameEdit);
         final View playListParent = a.findViewById(R.id.playListParent);
         final ImageView closePlaylist = a.findViewById(R.id.closePlaylist);
-        TintUtil.setRingColor(closePlaylist, MagicHelper.getTextOrIconColor());
+        keepBesideButtons(playListParent, a.findViewById(R.id.footerButtons),
+                          a.findViewById(R.id.ttsControlsSlot), playlistRecycleView);
 
         playListName.setVisibility(View.VISIBLE);
 
@@ -389,15 +722,32 @@ public class DialogsPlaylist {
         playlistRecycleView.setVisibility(View.VISIBLE);
         playListParent.setVisibility(View.VISIBLE);
 
+        final View tabsScroll = a.findViewById(R.id.playListTabsScroll);
+        final ImageView toggle = a.findViewById(R.id.playListToggle);
+        final View ttsSlot = a.findViewById(R.id.ttsControlsSlot);
         Runnable updateVisible = new Runnable() {
             @Override public void run() {
-                if (AppState.get().isPlayListVisible) {
-                    playlistRecycleView.setVisibility(View.VISIBLE);
-                    closePlaylist.setVisibility(View.VISIBLE);
-                } else {
-                    playlistRecycleView.setVisibility(View.GONE);
-                    closePlaylist.setVisibility(View.GONE);
+                // With the strip out its lists stand as tabs in place of the button; the reading
+                // controls beside them keep only the room they need
+                final boolean tabs = AppState.get().isPlayListVisible && tabsScroll != null;
+                if (tabsScroll != null) {
+                    tabsScroll.setVisibility(tabs ? View.VISIBLE : View.GONE);
                 }
+                // The Recent button stands among the buttons below; the row's own is never shown
+                ((View) playListName.getParent()).setVisibility(View.GONE);
+                if (ttsSlot != null && ttsSlot.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+                    final LinearLayout.LayoutParams slotLp = (LinearLayout.LayoutParams) ttsSlot.getLayoutParams();
+                    final int slotWidth = tabs ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
+                    final float slotWeight = tabs ? 0 : 1;
+                    if (slotLp.width != slotWidth || slotLp.weight != slotWeight) {
+                        slotLp.width = slotWidth;
+                        slotLp.weight = slotWeight;
+                        ttsSlot.setLayoutParams(slotLp);
+                    }
+                }
+                // No close of its own: the button ahead of the tabs puts the strip away
+                closePlaylist.setVisibility(View.GONE);
+                playlistRecycleView.setVisibility(AppState.get().isPlayListVisible ? View.VISIBLE : View.GONE);
             }
         };
         closePlaylist.setOnClickListener(new OnClickListener() {
@@ -422,6 +772,12 @@ public class DialogsPlaylist {
             palylistPathCheck = AppState.get().playlistDefault;
         }
         final String displayPath = palylistPathCheck;
+        shownPlaylist = displayPath;
+        shownPlaylistName = tabName(a, displayPath);
+        if (toggle != null) {
+            toggle.setImageResource(tabIcon(displayPath));
+        }
+        showPlaylistTabs(a, dc, displayPath);
 
         final List<String> res = new ArrayList<String>();
 
@@ -548,11 +904,13 @@ public class DialogsPlaylist {
 
         // The mark and the name are one button: a ring around both, with the mark drawn inside
         // it rather than set in the text as a character.
-        playListName.setText(Playlists.formatPlaylistName(a, displayPath));
+        // Short, as its tab names it: a folder by its own name only
+        playListName.setText(tabName(a, displayPath));
+        playListName.setContentDescription(Playlists.formatPlaylistName(a, displayPath));
         int playlistAccent = MagicHelper.getTextOrIconColor();
         playListName.setTextColor(playlistAccent);
         TintUtil.asLinkButton(playListName);
-        Drawable playlistMark = ContextCompat.getDrawable(a, R.drawable.my_glyphicons_114_paragraph_justify);
+        Drawable playlistMark = ContextCompat.getDrawable(a, tabIcon(displayPath));
         if (playlistMark != null) {
             int markSize = (int) playListName.getTextSize();
             playlistMark.setBounds(0, 0, markSize, markSize);
@@ -561,6 +919,14 @@ public class DialogsPlaylist {
             playListName.setCompoundDrawablePadding(Dips.DP_6);
         }
         TxtUtils.updateAllLinks((ViewGroup) playListNameEdit.getParent());
+        if (toggle != null) {
+            // In the chip's ring, as it was coloured for the theme, and its colour
+            toggle.setColorFilter(playlistAccent);
+            if (playListName.getBackground() != null && playListName.getBackground().getConstantState() != null) {
+                toggle.setBackground(playListName.getBackground().getConstantState().newDrawable().mutate());
+            }
+            toggle.setOnClickListener(v -> playListParent.performClick());
+        }
 
         View.OnClickListener onChoosePlaylist = v -> {
             if (!AppState.get().isPlayListVisible) {
@@ -569,32 +935,7 @@ public class DialogsPlaylist {
                 return;
             }
 
-            final List<String> items = new ArrayList<>();
-            items.add(L_PLAYLIST_RECENT);
-            items.add(L_PLAYLIST_FAVORITES);
-            items.add(L_PLAYLIST_CURRENT_FOLDER);
-
-
-
-            final List<FileMeta> folders = AppData.get()
-                                                  .getAllFavoriteFolders();
-            if (!folders.isEmpty()) {
-                for (FileMeta folder : folders) {
-                    items.add(L_PLAYLIST_FOLDER + folder.getPath());
-                }
-            }
-
-            items.addAll(Playlists.getAllPlaylists());
-
-            final List<String> tags = Tags2.getAllTags();
-            if (!tags.isEmpty()) {
-                for (String tag : tags) {
-                    if (TxtUtils.isEmpty(tag)) {
-                        continue;
-                    }
-                    items.add(L_PLAYLIST_TAGS + tag);
-                }
-            }
+            final List<String> items = playlistChoices();
 
             MyPopupMenu menu = new MyPopupMenu(v);
             for (final String item : items) {

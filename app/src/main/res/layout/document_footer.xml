@@ -57,6 +57,43 @@
                     android:visibility="gone" />
             </LinearLayout>
 
+            <!-- While the strip of covers is out, the lists it can show stand here as tabs in
+                 place of the button above, each with how many books it holds; filled in by
+                 DialogsPlaylist. -->
+            <!-- Puts the strip away again: the mark of the button the strip came from, ringed as
+                 it is, ahead of the tabs and out of their scroll -->
+            <ImageView
+                android:id="@+id/playListToggle"
+                android:layout_width="48dip"
+                android:layout_height="32dip"
+                android:layout_marginLeft="8dip"
+                android:layout_marginRight="4dip"
+                android:contentDescription="@string/recent"
+                android:paddingLeft="12dip"
+                android:paddingTop="6dip"
+                android:paddingRight="12dip"
+                android:paddingBottom="6dip"
+                android:scaleType="fitCenter"
+                android:src="@drawable/my_glyphicons_114_paragraph_justify"
+                android:visibility="gone" />
+
+            <HorizontalScrollView
+                android:id="@+id/playListTabsScroll"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scrollbars="none"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/playListTabs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="4dip" />
+            </HorizontalScrollView>
+
             <!-- The controls that play the book are put in here by the reading screen; the
                  slot fills the row between its neighbours, so they stand in the middle of that gap. -->
             <FrameLayout
@@ -71,17 +108,16 @@
                 android:gravity="right|center_vertical"
                 android:orientation="horizontal">
 
-                <!-- Ringed like the close on the reading bar; the panel draws the ring in its
-                     own colour. -->
+                <!-- A bare cross, as the drawing panel's close is, with no ring round it -->
                 <ImageView
                     android:id="@+id/closePlaylist"
                     android:layout_width="@dimen/wh_button_small"
                     android:layout_height="@dimen/wh_button_small"
                     android:layout_margin="4dip"
                     android:layout_weight="0"
-                    android:background="@drawable/bg_round_button"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/close"
-                    android:padding="5dip"
+                    android:padding="6dip"
                     android:src="@drawable/glyphicons_599_menu_close"
                     android:tint="@color/tint_white" />
             </LinearLayout>
@@ -101,6 +137,7 @@
              row is wider than the screen it shrinks, rather than the back button at the end being
              pushed off. Where the row fits nothing grows. -->
         <LinearLayout
+            android:id="@+id/footerButtons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -128,7 +165,8 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:contentDescription="@string/recent"
-                android:src="@drawable/glyphicons_422_book_library" />
+                android:src="@drawable/glyphicons_589_book_open"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/editTop2"
@@ -179,7 +217,7 @@
             <TextView
                 android:id="@+id/nextTypeBootom"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/wh_button_small"
+                android:layout_height="32dip"
                 android:layout_marginLeft="4dip"
                 android:layout_weight="1"
                 android:background="@drawable/bg_border_white"

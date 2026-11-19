@@ -68,6 +68,9 @@ public interface DecodeService {
 
 	void deleteAnnotation(final long pageHandle, final int page, final int index, final ResultResponse<List<Annotation>> response);
 
+	/** Erases several annotations of one page, the highest index first, as one task on a page opened afresh. */
+	void deleteAnnotations(final int page, final List<Integer> indexes, final ResultResponse<List<Annotation>> response);
+
 	/** Moves a drawing on a page by dx, dy in page units, and hands back the page's annotations. */
 	void moveAnnotation(final long pageHandle, final int page, final int index, final float dx, final float dy, final ResultResponse<List<Annotation>> response);
 

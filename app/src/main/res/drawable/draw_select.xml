@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The drawing panel's selection tool: a dashed box, tinted as the panel's other marks are. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M4,9 L4,6 L7,6 M10.5,6 L13.5,6 M17,6 L20,6 L20,9 M20,11 L20,13 M20,15 L20,18 L17,18 M13.5,18 L10.5,18 M7,18 L4,18 L4,15 M4,13 L4,11"
+        android:strokeWidth="2"
+        android:strokeColor="@color/black"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

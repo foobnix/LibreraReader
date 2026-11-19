@@ -641,6 +641,42 @@ public abstract class HorizontalModeController extends DocumentController {
         return selectedAnnotation;
     }
 
+    @Override public List<Pair<Annotation, RectF>> annotationsIn(RectF screen) {
+        final PageImaveView view = getPageView();
+        return view == null ? new ArrayList<>() : view.annotationsIn(screen);
+    }
+
+    /** Erases several annotations, page by page, each page opened again once for all of its own. */
+    @Override public void deleteAnnotations(List<Annotation> annotations) {
+        final CodecDocument doc = codeDocument;
+        if (doc == null || annotations.isEmpty()) {
+            return;
+        }
+        final Map<Integer, List<Integer>> byPage = indexesByPage(annotations);
+        new Thread("@T deleteAnnotations") {
+            @Override public void run() {
+                try {
+                    for (Map.Entry<Integer, List<Integer>> entry : byPage.entrySet()) {
+                        if (doc.isRecycled()) {
+                            return;
+                        }
+                        final CodecPage codecPage = doc.getPage(entry.getKey() - 1);
+                        try {
+                            for (final int index : entry.getValue()) {
+                                doc.deleteAnnotation(codecPage.getPageHandle(), index);
+                            }
+                        } finally {
+                            codecPage.recycle();
+                        }
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+                handler.post(HorizontalModeController.this::reloadPage);
+            }
+        }.start();
+    }
+
     @Override public RectF selectedAnnotationOnScreen() {
         final PageImaveView view = getPageView();
         return view == null || selectedAnnotation == null ? null : view.selectedAnnotationOnScreen();

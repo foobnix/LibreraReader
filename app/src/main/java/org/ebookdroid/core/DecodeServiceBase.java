@@ -209,6 +209,23 @@ public class DecodeServiceBase implements DecodeService {
     }
 
     @Override
+    public void deleteAnnotations(final int page, final List<Integer> indexes, final ResultResponse<List<Annotation>> response) {
+        executor.addAny(new Task(0) {
+
+            @Override
+            public void run() {
+                // One handle for them all: a page is recycled once the cache is cleared
+                final long pageHandle = getPage(page).getPageHandle();
+                for (final int index : indexes) {
+                    codecDocument.deleteAnnotation(pageHandle, index);
+                }
+                pages.clear();
+                response.onResultRecive(getPage(page).getAnnotations());
+            }
+        });
+    }
+
+    @Override
     public void moveAnnotation(final long pageHandle, final int page, final int index, final float dx, final float dy,
                                final ResultResponse<List<Annotation>> response) {
         executor.addAny(new Task(0) {

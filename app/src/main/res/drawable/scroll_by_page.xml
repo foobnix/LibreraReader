@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Scrolling by whole pages: a page with lines of text on it. Tinted where it is shown. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M6,2.5 L18,2.5 Q19,2.5 19,3.5 L19,20.5 Q19,21.5 18,21.5 L6,21.5 Q5,21.5 5,20.5 L5,3.5 Q5,2.5 6,2.5 Z"
+        android:strokeWidth="1.6"
+        android:strokeColor="@color/black"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M8.5,7 L15.5,7 M8.5,10.5 L15.5,10.5 M8.5,14 L15.5,14 M8.5,17.5 L13,17.5"
+        android:strokeWidth="1.6"
+        android:strokeColor="@color/black"
+        android:strokeLineCap="round" />
+</vector>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- The drawing panel: what the pen draws and how thick, with the eraser for an annotation
-     picked out on the page, then its colour. DragingDialogs.dialogEditColors fills it in. -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     picked out on the page, then its colour. DragingDialogs.dialogEditColors fills it in.
+     The two rows stand side by side where the width holds both. -->
+<com.foobnix.pdf.info.view.DrawPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -43,6 +44,14 @@
             android:contentDescription="@string/draw_star"
             android:src="@drawable/draw_star" />
 
+        <!-- Picks out many annotations at once, to erase them together: a box spanned over
+             them, or a tap on each -->
+        <ImageView
+            android:id="@+id/drawSelect"
+            style="@style/drawTool"
+            android:contentDescription="@string/select"
+            android:src="@drawable/draw_select" />
+
         <View
             android:layout_width="1dip"
             android:layout_height="26dip"
@@ -73,7 +82,7 @@
             android:contentDescription="@string/delete"
             android:padding="6dip"
             android:src="@drawable/glyphicons_17_bin"
-            android:visibility="gone" />
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
@@ -85,4 +94,4 @@
         android:orientation="horizontal">
     </LinearLayout>
 
-</LinearLayout>
+</com.foobnix.pdf.info.view.DrawPanelLayout>

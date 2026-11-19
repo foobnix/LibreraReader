@@ -344,6 +344,30 @@ public class VerticalModeController extends DocumentController {
     }
 
     @Override
+    public List<Pair<Annotation, RectF>> annotationsIn(RectF screen) {
+        if (!(ctr.getDocumentController() instanceof AbstractViewController)) {
+            return new ArrayList<>();
+        }
+        return ((AbstractViewController) ctr.getDocumentController()).annotationsIn(screen);
+    }
+
+    @Override
+    public void deleteAnnotations(List<Annotation> annotations) {
+        for (Map.Entry<Integer, List<Integer>> entry : indexesByPage(annotations).entrySet()) {
+            final int index = entry.getKey() - 1;
+            ctr.getDecodeService().deleteAnnotations(index, entry.getValue(), new ResultResponse<List<Annotation>>() {
+
+                @Override
+                public boolean onResultRecive(List<Annotation> arg0) {
+                    ctr.getDocumentModel().getPageObject(index).annotations = arg0;
+                    ctr.getDocumentController().toggleRenderingEffects();
+                    return false;
+                }
+            });
+        }
+    }
+
+    @Override
     public RectF selectedAnnotationOnScreen() {
         if (selectedAnnotation == null || !(ctr.getDocumentController() instanceof AbstractViewController)) {
             return null;

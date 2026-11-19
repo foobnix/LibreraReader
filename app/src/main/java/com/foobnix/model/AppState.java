@@ -582,6 +582,8 @@ public class AppState {
     public float editLineWidth = 3;
     // What the pen draws, one of DrawView.SHAPE_* or DrawPanel.NO_TOOL, and the colour it drew with last
     public int editShape = 0;
+    // The tool stays picked after each drawing instead of being put down: a long press on it
+    public boolean isEditShapeLocked = false;
     public String drawColor = DRAW_COLORS.get(0);
     // The drawing panel docked at the foot of the book instead of standing in a window
     public boolean isDrawPanelPinned = false;

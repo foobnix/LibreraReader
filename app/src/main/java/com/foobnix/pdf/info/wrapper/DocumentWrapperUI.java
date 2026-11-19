@@ -3,6 +3,8 @@
  */
 package com.foobnix.pdf.info.wrapper;
 
+import android.content.res.Configuration;
+import androidx.core.content.ContextCompat;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -969,7 +971,8 @@ public class DocumentWrapperUI {
         if (closePlaylist == null) {
             return;
         }
-        closePlaylist.setVisibility(show && AppState.get().isPlayListVisible ? View.VISIBLE : View.INVISIBLE);
+        // The recent panel has no close of its own any more: the button ahead of its tabs puts it away
+        closePlaylist.setVisibility(View.GONE);
     }
 
     public void showHideHistory() {
@@ -1707,7 +1710,7 @@ public class DocumentWrapperUI {
                 name = screens;
             }
 
-            popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            popupMenu.getMenu().add(name).setIcon(scrollByIcon(values.get(i))).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -1719,7 +1722,7 @@ public class DocumentWrapperUI {
             });
         }
 
-        popupMenu.getMenu().add(R.string.custom_value).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+        popupMenu.getMenu().add(R.string.custom_value).setIcon(R.drawable.scroll_by_custom).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -1851,21 +1854,110 @@ public class DocumentWrapperUI {
 
     }
 
-    public void initNextType() {
-        if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
-            nextTypeBootom.setText(R.string.by_pages);
-            nextScreenType.setImageResource(R.drawable.my_glyphicons_full_page);
+    /** The icon of a scroll by pages or by a share of the screen, as the menu and its button show it. */
+    private static int scrollByIcon(int scrollBy) {
+        switch (scrollBy) {
+            case AppState.NEXT_SCREEN_SCROLL_BY_PAGES:
+                return R.drawable.scroll_by_page;
+            case 100:
+                return R.drawable.scroll_by_100;
+            case 95:
+                return R.drawable.scroll_by_95;
+            case 75:
+                return R.drawable.scroll_by_75;
+            case 50:
+                return R.drawable.scroll_by_50;
+            case 25:
+                return R.drawable.scroll_by_25;
+            case 10:
+                return R.drawable.scroll_by_10;
+            default:
+                return R.drawable.scroll_by_custom;
+        }
+    }
 
+    /**
+     * A ringed button's mark: before its name, or alone, drawn in the middle of the ring - a
+     * text view with no text would leave it at the left wherever the row makes the button
+     * wider or narrower than the mark. The ring itself is kept, as it was coloured for the
+     * theme, for the button to be dressed again and for others to copy.
+     */
+    public static void pillIcon(TextView button, Drawable icon, boolean alone) {
+        Object ring = button.getTag(R.id.pillRing);
+        if (!(ring instanceof Drawable)) {
+            ring = button.getBackground();
+            button.setTag(R.id.pillRing, ring);
+        }
+        // As large as the marks of the buttons beside it, in the colour of the name
+        final int size = Dips.dpToPx(24);
+        icon = icon.mutate();
+        icon.setColorFilter(new PorterDuffColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN));
+        if (alone && ring != null) {
+            final LayerDrawable layers = new LayerDrawable(new Drawable[]{(Drawable) ring, icon});
+            layers.setLayerGravity(1, Gravity.CENTER);
+            layers.setLayerSize(1, size, size);
+            button.setBackground(layers);
+            button.setCompoundDrawables(null, null, null, null);
+            button.setMinWidth(size + Dips.dpToPx(20));
+            button.setMinimumWidth(size + Dips.dpToPx(20));
+        } else {
+            button.setBackground((Drawable) ring);
+            icon.setBounds(0, 0, size, size);
+            button.setCompoundDrawables(icon, null, null, null);
+            button.setCompoundDrawablePadding(Dips.DP_6);
+        }
+    }
+
+    // The orientation the scroll button was last laid out for, to lay it out again on a turn
+    private int nextTypeOrientation = -1;
+
+    public void initNextType() {
+        final String name;
+        if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
+            name = dc.getString(R.string.by_pages);
+            nextScreenType.setImageResource(R.drawable.my_glyphicons_full_page);
         } else {
             if (AppState.get().nextScreenScrollBy == 100) {
-                nextTypeBootom.setText(dc.getString(R.string.by_screans));
+                name = dc.getString(R.string.by_screans);
             } else {
-                nextTypeBootom.setText(AppState.get().nextScreenScrollBy + "% " + dc.getString(R.string.of_screen));
+                name = AppState.get().nextScreenScrollBy + "% " + dc.getString(R.string.of_screen);
             }
             nextScreenType.setImageResource(R.drawable.my_glyphicons_halp_page);
-
         }
 
+        // Upright the button is the icon of the scroll it is set to, alone; turned on its side,
+        // where the row has room, the icon before the scroll's name
+        // The screen's own measure: the reading screen keeps its configuration through a turn
+        final int orientation = DialogsPlaylist.isLandscape() ? Configuration.ORIENTATION_LANDSCAPE : Configuration.ORIENTATION_PORTRAIT;
+        final boolean iconOnly = orientation != Configuration.ORIENTATION_LANDSCAPE;
+        nextTypeOrientation = orientation;
+        nextTypeBootom.setText(iconOnly ? "" : name);
+        nextTypeBootom.setContentDescription(name);
+        nextTypeBootom.setMinWidth(iconOnly ? 0 : Dips.dpToPx(120));
+        nextTypeBootom.setMinimumWidth(iconOnly ? 0 : Dips.dpToPx(120));
+        // The icon alone, the button is no wider than it and its ring, so it stands in the middle:
+        // the room the row gives a name is not taken
+        if (nextTypeBootom.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+            final LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) nextTypeBootom.getLayoutParams();
+            final float weight = iconOnly ? 0 : 1;
+            if (lp.weight != weight) {
+                lp.weight = weight;
+                nextTypeBootom.setLayoutParams(lp);
+            }
+        }
+        final Drawable icon = ContextCompat.getDrawable(a, scrollByIcon(AppState.get().nextScreenScrollBy));
+        if (icon != null) {
+            pillIcon(nextTypeBootom, icon, iconOnly);
+        }
+        // The reading screen keeps itself through a turn, so the button is laid out again then
+        if (nextTypeBootom.getTag(R.id.nextTypeBootom) == null) {
+            nextTypeBootom.setTag(R.id.nextTypeBootom, Boolean.TRUE);
+            nextTypeBootom.addOnLayoutChangeListener((v, l, t, r, b, ol, ot, or, ob) -> {
+                if ((DialogsPlaylist.isLandscape() ? Configuration.ORIENTATION_LANDSCAPE : Configuration.ORIENTATION_PORTRAIT) != nextTypeOrientation) {
+                    v.post(this::initNextType);
+                }
+            });
+        }
     }
 
     public View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {
