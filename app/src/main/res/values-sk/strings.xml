@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Ovládať rýchlosť automatického posúvania pomocou tlačidiel hlasitosti</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Upraviť jas posúvaním ľavého okraja</string>
    <string name="scroll_speed">Rýchlosť posúvania</string>
-   <string name="page_quality">Kvalita strany</string>
-   <string name="pages_in_memory">Stránky v pamäti</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Vypnúť displej po (min.)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Stavový riadok</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Hľadať v knižnici</string>
    <string name="update_metadata">Aktualizovať metaúdaje</string>
    <string name="highlighting_initial_letters">Zvýraznené čítanie</string>
-   <string name="anti_aliasing_level">Úroveň vyhladenia</string>
    <string name="folder_preview">Náhľad priečinka</string>
    <string name="show_storage_book_covers">Zobraziť obálky pre pridané úložisko</string>
    <string name="accent">Farba zvýraznenia</string>

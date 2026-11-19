@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Controla la velocitat de desplaçament automàtic amb els botons del volum</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Ajusta lluminositat amb lliscaments en el marge esquerre</string>
    <string name="scroll_speed">Sensibilitat de la roda del ratolí</string>
-   <string name="page_quality">Qualitat de la pàgina</string>
-   <string name="pages_in_memory">Pàgines en memòria</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Apaga la pantalla després de (min.)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Barra d\'estat</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Cerca a la biblioteca</string>
    <string name="update_metadata">Actualitza les metadades</string>
    <string name="highlighting_initial_letters">Lectura accentuada</string>
-   <string name="anti_aliasing_level">Nivell de suavitzat</string>
    <string name="folder_preview">Previsualització de la carpeta</string>
    <string name="show_storage_book_covers">Mostra les cobertes de l\'emmagatzematge afegit</string>
    <string name="accent">Accent</string>

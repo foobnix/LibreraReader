@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Luas uathoibríoch-scrollaigh a rialú le heochracha toirte</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Gile a choigeartú le sleamhnáin imeall clé</string>
    <string name="scroll_speed">Íogaireacht roth luch</string>
-   <string name="page_quality">Cáilíocht an leathanaigh</string>
-   <string name="pages_in_memory">Leathanaigh i gcuimhne</string>
    <string name="screen_turn_off_after_inactivity_minutes_">An scáileán a mhúchadh tar éis (nóim)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Barra stádais</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Cuardach sa leabharlann</string>
    <string name="update_metadata">Meiteashonraí a nuashonrú</string>
    <string name="highlighting_initial_letters">Léamh béime</string>
-   <string name="anti_aliasing_level">Leibhéal frith-ailiasú</string>
    <string name="folder_preview">Réamhamharc fillteán</string>
    <string name="show_storage_book_covers">Taispeáin clúdaigh don stóráil a cuireadh leis</string>
    <string name="accent">Aiceann</string>

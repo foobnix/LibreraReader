@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Controlla sa lestresa de s\'iscurrimentu automàticu cun sos butones de su volume</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Modìfica sa lughentesa trisinende in s\'oru a manca de s\'ischermu</string>
    <string name="scroll_speed">Sensibilidade de sa rodedda de su ratu</string>
-   <string name="page_quality">Calidade de sa pàgina</string>
-   <string name="pages_in_memory">Pàginas in memòria</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Istuda s\'ischermu a pustis de (min)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Istanga de istadu</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Chirca in sa biblioteca</string>
    <string name="update_metadata">Annoa sos metadatos</string>
    <string name="highlighting_initial_letters">Letura acentuada</string>
-   <string name="anti_aliasing_level">Livellu de anti-iscalitadura</string>
    <string name="folder_preview">Antiprima de cartella</string>
    <string name="show_storage_book_covers">Ammustra sas coberteddas de sa memòria annanta</string>
    <string name="accent">Atzentu</string>

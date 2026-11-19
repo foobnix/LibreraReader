@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">தொகுதி விசைகள் மூலம் தானாக உருட்டும் வேகத்தைக் கட்டுப்படுத்தவும்</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">இடது விளிம்பு ஸ்லைடுகளால் பிரகாசத்தை சரிசெய்யவும்</string>
    <string name="scroll_speed">சுட்டி சக்கர உணர்திறன்</string>
-   <string name="page_quality">பக்கத்தின் தரம்</string>
-   <string name="pages_in_memory">நினைவகத்தில் பக்கங்கள்</string>
    <string name="screen_turn_off_after_inactivity_minutes_">(நிமிடம்) பிறகு திரையை அணைக்கவும்</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">நிலைமை பட்டை</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">நூலகத்தில் தேடுங்கள்</string>
    <string name="update_metadata">மெட்டாடேட்டாவைப் புதுப்பிக்கவும்</string>
    <string name="highlighting_initial_letters">அழுத்த வாசிப்பு</string>
-   <string name="anti_aliasing_level">மாற்று மாற்று நிலை</string>
    <string name="folder_preview">கோப்புறை முன்னோட்டம்</string>
    <string name="show_storage_book_covers">சேர்க்கப்பட்ட சேமிப்பகத்திற்கான அட்டைகளைக் காண்பி</string>
    <string name="accent">உச்சரிப்பு</string>

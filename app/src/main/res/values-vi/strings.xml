@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Thay đổi tốc độ cuộn tự động bằng các phím âm lượng</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Bật điều chỉnh độ sáng ở bên trái màn hình</string>
    <string name="scroll_speed">Tốc độ cuộn</string>
-   <string name="page_quality">Chất lượng trang</string>
-   <string name="pages_in_memory">Các trang trong bộ nhớ</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Màn hình tắt sau khi không hoạt động (phút)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Thanh trạng thái</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Tìm kiếm trong thư viện</string>
    <string name="update_metadata">Cập nhật siêu dữ liệu</string>
    <string name="highlighting_initial_letters">Đọc nhấn mạnh</string>
-   <string name="anti_aliasing_level">Mức khử răng cưa</string>
    <string name="folder_preview">Xem trước thư mục</string>
    <string name="show_storage_book_covers">Hiển thị bìa cho bộ nhớ đã thêm</string>
    <string name="accent">Giọng</string>

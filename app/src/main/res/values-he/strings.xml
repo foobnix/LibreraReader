@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">שנה את מהירות הגלילה האוטומטית באמצעות מקשי עוצמת הקול</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">הפעל התאמת בהירות בצד שמאל של המסך</string>
    <string name="scroll_speed">מהירות גלילה</string>
-   <string name="page_quality">איכות דף</string>
-   <string name="pages_in_memory">דפים בזיכרון</string>
    <string name="screen_turn_off_after_inactivity_minutes_">מסך לכבות לאחר חוסר פעילות (דקות)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">שורת מצב</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">לחפש בספרייה</string>
    <string name="update_metadata">לעדכן מטא נתונים</string>
    <string name="highlighting_initial_letters">קריאה מודגשת</string>
-   <string name="anti_aliasing_level">רמת נוגדות ביטוי</string>
    <string name="folder_preview">תצוגה מקדימה של התיקייה</string>
    <string name="show_storage_book_covers">הצג כריכות עבור האחסון שנוסף</string>
    <string name="accent">מִבטָא</string>

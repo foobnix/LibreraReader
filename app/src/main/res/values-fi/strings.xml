@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Vaihda automaattista vieritysnopeutta äänenvoimakkuusnäppäimillä</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Säädä kirkkautta näytön vasenta puolelta pyyhkäisemällä</string>
    <string name="scroll_speed">Vieritysnopeus hiirellä</string>
-   <string name="page_quality">Sivun laatu</string>
-   <string name="pages_in_memory">Sivuja muistissa</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Sammuta näyttö, kun on kulunut (minuuttia)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Tilarivi</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Etsi kirjastosta</string>
    <string name="update_metadata">Päivittää metatiedot</string>
    <string name="highlighting_initial_letters">Korostettu lukeminen</string>
-   <string name="anti_aliasing_level">Anti-aliasing taso</string>
    <string name="folder_preview">Kansion esikatselu</string>
    <string name="show_storage_book_covers">Näytä kannet lisätystä sijainnista</string>
    <string name="accent">Aksentti</string>

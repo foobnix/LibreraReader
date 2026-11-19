@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">വോളിയം കീകൾ ഉപയോഗിച്ച് യാന്ത്രിക-സ്ക്രോൾ വേഗത നിയന്ത്രിക്കുക</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">ഇടത് എഡ്ജ് സ്ലൈഡുകൾ ഉപയോഗിച്ച് തെളിച്ചം ക്രമീകരിക്കുക</string>
    <string name="scroll_speed">മൗസ് വീൽ സംവേദനക്ഷമത</string>
-   <string name="page_quality">പേജ് ഗുണമേന്മ</string>
-   <string name="pages_in_memory">മെമ്മറിയിലുള്ള പേജുകൾ</string>
    <string name="screen_turn_off_after_inactivity_minutes_">(മിനിറ്റ്) കഴിഞ്ഞ് സ്ക്രീൻ ഓഫ് ചെയ്യുക</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">സ്റ്റാറ്റസ് ബാർ</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">ലൈബ്രറിയിൽ തിരയുക</string>
    <string name="update_metadata">മെറ്റാഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുക</string>
    <string name="highlighting_initial_letters">ഊന്നൽ വായന</string>
-   <string name="anti_aliasing_level">ആന്റി-അലിയാസിംഗ് ലെവൽ</string>
    <string name="folder_preview">ഫോൾഡർ പ്രിവ്യൂ</string>
    <string name="show_storage_book_covers">ചേർത്ത സംഭരണത്തിനായി കവറുകൾ കാണിക്കുക</string>
    <string name="accent">ഉച്ചാരണം</string>

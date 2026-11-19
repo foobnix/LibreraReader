@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Schimbați viteza de derulare automată cu tastele de volum</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Activați ajustarea luminozității din partea stângă a ecranului</string>
    <string name="scroll_speed">Scroll viteza</string>
-   <string name="page_quality">Calitatea paginii de</string>
-   <string name="pages_in_memory">Pagini din memorie</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Ecranul se oprește după inactivitate (minute)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Bara de stare</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Cauta in biblioteca</string>
    <string name="update_metadata">Actualizați metadatele</string>
    <string name="highlighting_initial_letters">Citire accentuată</string>
-   <string name="anti_aliasing_level">Nivel anti-aliasing</string>
    <string name="folder_preview">Previzualizare folder</string>
    <string name="show_storage_book_covers">Afișați coperțile pentru stocarea adăugată</string>
    <string name="accent">Accent</string>

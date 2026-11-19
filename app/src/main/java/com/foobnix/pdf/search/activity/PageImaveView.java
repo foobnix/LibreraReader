@@ -6,6 +6,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import org.ebookdroid.common.bitmaps.RawBitmap;
+import org.ebookdroid.common.bitmaps.BitmapRef;
+import android.graphics.Rect;
 import android.graphics.Paint.Style;
 import android.graphics.PointF;
 import android.graphics.RectF;
@@ -450,6 +453,10 @@ public class PageImaveView extends View {
 
             if (imageDrawable != null) {
                 imageDrawable.draw(canvas);
+                // The part on screen drawn again at the screen's own sharpness, over the page
+                if (detail != null && !detail.isRecycled()) {
+                    canvas.drawBitmap(detail, null, detailRegion, detailPaint);
+                }
             }
 
             if (PageImageState.get().isShowCuttingLine && AppSP.get().isCut == false) {
@@ -509,6 +516,163 @@ public class PageImaveView extends View {
         } catch (Exception e) {
             LOG.e(e);
         }
+        scheduleDetail();
+    }
+
+    // The part of the page on screen, drawn again at the screen's own sharpness once a zoom past
+    // the page's own size has settled - the page itself is made only as large as the screen.
+    // Its place is in the page bitmap's own pixels, so it moves and grows with the page.
+    private Bitmap detail;
+    private final RectF detailRegion = new RectF();
+    private final Paint detailPaint = new Paint(Paint.FILTER_BITMAP_FLAG);
+    private final float[] detailMatrix = new float[9];
+    private int detailGeneration;
+    private int detailRetries;
+    private static final java.util.concurrent.ExecutorService DETAIL =
+            java.util.concurrent.Executors.newSingleThreadExecutor();
+    private final Runnable renderDetail = this::renderDetail;
+
+    /** A zoom or a move of the page draws the part on screen again, a moment after it stops. */
+    private void scheduleDetail() {
+        final float[] values = new float[9];
+        imageMatrix().getValues(values);
+        if (java.util.Arrays.equals(values, detailMatrix)) {
+            return;
+        }
+        System.arraycopy(values, 0, detailMatrix, 0, 9);
+        detailRetries = 0;
+        removeCallbacks(renderDetail);
+        postDelayed(renderDetail, 300);
+    }
+
+    private void dropDetail() {
+        detailGeneration++;
+        if (detail != null) {
+            detail = null;
+            invalidate();
+        }
+    }
+
+    /**
+     * Only one page to the screen, neither cut in two nor turned - the others are made up of
+     * parts of the page the codec does not draw by itself; a cropped page once the part it
+     * keeps is known - and only the page that is on screen, not those either side of it, which
+     * share the zoom.
+     */
+    private boolean isDetailWanted() {
+        if (imageDrawable == null || drawableWidth == 0 || drawableHeight == 0 || getWidth() == 0
+                || AppSP.get().isDouble || AppSP.get().isCut || AppState.get().rotate != 0
+                || !isCropMappable(0)) {
+            return false;
+        }
+        final Rect shown = new Rect();
+        return getGlobalVisibleRect(shown) && shown.width() > getWidth() / 2;
+    }
+
+    private void renderDetail() {
+        final float[] values = new float[9];
+        imageMatrix().getValues(values);
+        final float scale = values[Matrix.MSCALE_X];
+        if (scale <= 1.05f) {
+            dropDetail();
+            return;
+        }
+        if (!isDetailWanted()) {
+            // Not on screen yet - the page after, made while this one was read, still sliding in -
+            // or its crop not known yet: tried again a few times, and on its next drawing
+            dropDetail();
+            java.util.Arrays.fill(detailMatrix, 0);
+            if (imageDrawable != null && detailRetries++ < 5) {
+                removeCallbacks(renderDetail);
+                postDelayed(renderDetail, 400);
+            }
+            return;
+        }
+        detailRetries = 0;
+        final Matrix inverse = new Matrix();
+        if (!imageMatrix().invert(inverse)) {
+            return;
+        }
+        final RectF region = new RectF(0, 0, getWidth(), getHeight());
+        inverse.mapRect(region);
+        if (!region.intersect(0, 0, drawableWidth, drawableHeight)) {
+            dropDetail();
+            return;
+        }
+        if (detail != null && detailRegion.equals(region)) {
+            return;
+        }
+        final int width = Math.round(region.width() * scale);
+        final int height = Math.round(region.height() * scale);
+        if (width <= 0 || height <= 0) {
+            return;
+        }
+        final RectF slice = new RectF(region.left / drawableWidth, region.top / drawableHeight,
+                                      region.right / drawableWidth, region.bottom / drawableHeight);
+        // A cropped page is the part of the page it keeps: the slice is of that part
+        if (AppSP.get().isCrop) {
+            final RectF crop = PageImageState.get().getPageCrop(pageNumber);
+            if (crop == null) {
+                return;
+            }
+            slice.set(crop.left + slice.left * crop.width(), crop.top + slice.top * crop.height(),
+                      crop.left + slice.right * crop.width(), crop.top + slice.bottom * crop.height());
+        }
+        final int page = pageNumber;
+        final int generation = ++detailGeneration;
+        final boolean invert = !AppState.get().isDayNotInvert;
+        final boolean background = MagicHelper.isNeedBookBackgroundImage();
+        DETAIL.execute(() -> {
+            Bitmap bitmap = null;
+            try {
+                if (generation != detailGeneration) {
+                    return;
+                }
+                final org.ebookdroid.core.codec.CodecDocument doc = com.foobnix.sys.ImageExtractor.codeCache;
+                if (doc == null || doc.isRecycled()) {
+                    return;
+                }
+                final org.ebookdroid.core.codec.CodecPage codecPage = doc.getPage(page);
+                try {
+                    final BitmapRef ref = codecPage.renderBitmap(width, height, slice, false);
+                    bitmap = ref == null ? null : ref.getBitmap();
+                } finally {
+                    if (!codecPage.isRecycled()) {
+                        codecPage.recycle();
+                    }
+                }
+                if (bitmap == null) {
+                    return;
+                }
+                // The same as the page it lies over: night's inversion, the book's background
+                if (invert) {
+                    final RawBitmap raw = new RawBitmap(bitmap, new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()));
+                    raw.invert();
+                    bitmap.recycle();
+                    bitmap = raw.toBitmap().getBitmap();
+                }
+                if (background) {
+                    bitmap = MagicHelper.updateWithBackground(bitmap);
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+                return;
+            }
+            final Bitmap made = bitmap;
+            post(() -> {
+                if (generation != detailGeneration || !isDetailWanted()) {
+                    made.recycle();
+                    java.util.Arrays.fill(detailMatrix, 0);
+                    return;
+                }
+                if (detail != null) {
+                    detail.recycle();
+                }
+                detail = made;
+                detailRegion.set(region);
+                invalidate();
+            });
+        });
     }
 
     /**
@@ -529,6 +693,9 @@ public class PageImaveView extends View {
     }
 
     public void addBitmap(Bitmap bitmap) {
+        dropDetail();
+        detailRetries = 0;
+        java.util.Arrays.fill(detailMatrix, 0);
         imageDrawable = new BitmapDrawable(getResources(), bitmap);
         drawableHeight = bitmap.getHeight();
         drawableWidth = bitmap.getWidth();
@@ -542,6 +709,7 @@ public class PageImaveView extends View {
 
     /** Lets go of the page. Its size stays, so the same page added back keeps the zoom. */
     public void clearBitmap() {
+        dropDetail();
         imageDrawable = null;
         invalidate();
     }

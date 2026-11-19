@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Cambiar velocidad de desplazamiento con teclas de volumen</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Ajustar brillo a la izquierda de la pantalla</string>
    <string name="scroll_speed">Velocidad de desplazamiento</string>
-   <string name="page_quality">Calidad de la página</string>
-   <string name="pages_in_memory">Páginas en memoria</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Apagar pantalla después de (minutos)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Barra de estado</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Buscar en la biblioteca</string>
    <string name="update_metadata">Actualizar metadatos</string>
    <string name="highlighting_initial_letters">Lectura acentuada</string>
-   <string name="anti_aliasing_level">Nivel de suavizado</string>
    <string name="folder_preview">Vista previa de la carpeta</string>
    <string name="show_storage_book_covers">Mostrar portadas del almacenamiento agregado</string>
    <string name="accent">Acento</string>

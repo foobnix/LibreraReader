@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Geschwindigkeit des Auto-Umblätterns mit den Lautstärketasten regulieren</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Helligkeit auf linker Bildschirmseite durch vertikales wischen verändern</string>
    <string name="scroll_speed">Scrollgeschwindigkeit (Mausrad)</string>
-   <string name="page_quality">Qualität der Seitendarstellung</string>
-   <string name="pages_in_memory">Seiten im Zwischenspeicher</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Bildschirm ausschalten nach Inaktivität (Minuten)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Statusleiste</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Suche in der Bibliothek</string>
    <string name="update_metadata">Metadaten aktualisieren</string>
    <string name="highlighting_initial_letters">Akzentlesen</string>
-   <string name="anti_aliasing_level">Anti-Aliasing-Stufe</string>
    <string name="folder_preview">Ordnervorschau</string>
    <string name="show_storage_book_covers">Titelbilder für hinzugefügten Speicher anzeigen</string>
    <string name="accent">Akzent</string>

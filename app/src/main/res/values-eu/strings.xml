@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Aldatu bolumen-teklen bidezko korritze-abiadura</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Distira pantailaren ezker aldean doitu</string>
    <string name="scroll_speed">Desplazamendu abiadura</string>
-   <string name="page_quality">Orriaren kalitatea</string>
-   <string name="pages_in_memory">Memoriako orriak</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Itzali pantaila hainbat minutu pasata</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Egoera barra</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Bilatu liburutegian</string>
    <string name="update_metadata">Eguneratu metadatuak</string>
    <string name="highlighting_initial_letters">Irakurketa nabarmendua</string>
-   <string name="anti_aliasing_level">Leuntze maila</string>
    <string name="folder_preview">Karpetaren aurrbista</string>
    <string name="show_storage_book_covers">Erakutsi gehitutako biltegiaren azalak</string>
    <string name="accent">Azentua</string>

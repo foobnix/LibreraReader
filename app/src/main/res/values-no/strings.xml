@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Endre automatisk rullehastighet med volumtastene</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Aktiver lysstyrkejustering til venstre på skjermen</string>
    <string name="scroll_speed">Rullehastighet</string>
-   <string name="page_quality">Sidekvalitet</string>
-   <string name="pages_in_memory">Sider i minnet</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Skjermen slås av etter inaktivitet (minutter)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Statuslinjen</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Søk i biblioteket</string>
    <string name="update_metadata">Oppdatere metadata</string>
    <string name="highlighting_initial_letters">Uthevet lesing</string>
-   <string name="anti_aliasing_level">Anti-aliasing nivå</string>
    <string name="folder_preview">Mappe forhåndsvisning</string>
    <string name="show_storage_book_covers">Vis omslag for lagt til lagring</string>
    <string name="accent">Aksent</string>

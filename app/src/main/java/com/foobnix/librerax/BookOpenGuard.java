@@ -36,7 +36,7 @@ public final class BookOpenGuard {
     private static final long SETTLED_MS = 5000;
 
     /** This run of the app: a new process, and so a new run, follows every crash. */
-    private static final String RUN = UUID.randomUUID().toString();
+    public static final String RUN = UUID.randomUUID().toString();
     private static final AtomicInteger OPENS = new AtomicInteger();
 
     private BookOpenGuard() {
@@ -62,7 +62,7 @@ public final class BookOpenGuard {
      * closing it stops it too - easily done, as the first open of a long book can take a while.
      * Android knows which it was from version 11, so a book is not blamed for those.
      */
-    private static boolean lastRunEndedNormally(final Context c) {
+    public static boolean lastRunEndedNormally(final Context c) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
             return false;
         }

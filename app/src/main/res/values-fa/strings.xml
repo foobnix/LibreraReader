@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">سرعت پیمایش خودکار با کلید های حجم را تغییر دهید</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">تنظیم روشنایی در سمت چپ صفحه را فعال کنید</string>
    <string name="scroll_speed">سرعت حرکت</string>
-   <string name="page_quality">کیفیت صفحه</string>
-   <string name="pages_in_memory">صفحه در حافظه</string>
    <string name="screen_turn_off_after_inactivity_minutes_">صفحه نمایش خاموش بعد از عدم فعالیت (دقیقه)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">نوار وضعیت</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">در کتابخانه جستجو کنید</string>
    <string name="update_metadata">به روز رسانی متادیتا</string>
    <string name="highlighting_initial_letters">خواندن تأکیدی</string>
-   <string name="anti_aliasing_level">سطح ضد آلیاسینگ</string>
    <string name="folder_preview">پیش نمایش پوشه</string>
    <string name="show_storage_book_covers">نمایش جلد کتاب‌ها برای حافظهٔ افزوده‌شده</string>
    <string name="accent">لهجه</string>

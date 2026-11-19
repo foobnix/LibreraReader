@@ -4556,72 +4556,6 @@ public class DragingDialogs {
                     }
                 });
 
-                final TextView pageQuality = inflate.findViewById(R.id.pageQuality);
-                ((ViewGroup) pageQuality.getParent()).setVisibility(
-                        AppSP.get().readingMode == AppState.READING_MODE_BOOK &&
-                        !ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
-                pageQuality.setText((int) (AppState.get().pageQuality * 100) + "%");
-                TxtUtils.underlineTextView(pageQuality);
-                pageQuality.setOnClickListener(new OnClickListener() {
-                    @Override public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (float i = 0.5f; i < 2.1f; i += 0.1f) {
-                            final float quality = i;
-                            popupMenu.getMenu()
-                                     .add((int) (i * 100) + "%")
-                                     .setOnMenuItemClickListener(new OnMenuItemClickListener() {
-                                         @Override public boolean onMenuItemClick(MenuItem item) {
-                                             AppState.get().pageQuality = quality;
-                                             pageQuality.setText((int) (AppState.get().pageQuality * 100) + "%");
-                                             TxtUtils.underlineTextView(pageQuality);
-                                             return false;
-                                         }
-                                     });
-                        }
-                        popupMenu.show();
-                    }
-                });
-
-                final TextView pagesInMemory = inflate.findViewById(R.id.pagesInMemory);
-                ((ViewGroup) pagesInMemory.getParent()).setVisibility(
-                        AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
-
-                pagesInMemory.setText("" + AppState.get().pagesInMemory);
-                TxtUtils.underlineTextView(pagesInMemory);
-                pagesInMemory.setOnClickListener(new OnClickListener() {
-                    @Override public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-
-                        popupMenu.getMenu().add("" + 1).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-                            @Override public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().pagesInMemory = 1;
-                                pagesInMemory.setText("" + AppState.get().pagesInMemory);
-                                TxtUtils.underlineTextView(pagesInMemory);
-                                return false;
-                            }
-                        });
-
-                        popupMenu.getMenu().add("" + 3).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-                            @Override public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().pagesInMemory = 3;
-                                pagesInMemory.setText("" + AppState.get().pagesInMemory);
-                                TxtUtils.underlineTextView(pagesInMemory);
-                                return false;
-                            }
-                        });
-
-                        popupMenu.getMenu().add("" + 5).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-                            @Override public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().pagesInMemory = 5;
-                                pagesInMemory.setText("" + AppState.get().pagesInMemory);
-                                TxtUtils.underlineTextView(pagesInMemory);
-                                return false;
-                            }
-                        });
-
-                        popupMenu.show();
-                    }
-                });
 
                 ///
                 final TextView inactivityTime = inflate.findViewById(R.id.inactivityTime);
@@ -4718,32 +4652,6 @@ public class DragingDialogs {
                         }
                     });
                 }
-                // double tap
-                {
-                    final TextView antiAliasLevel = inflate.findViewById(R.id.antiAliasLevel);
-                    antiAliasLevel.setText("" + AppState.get().antiAliasLevel);
-                    TxtUtils.underlineTextView(antiAliasLevel);
-                    antiAliasLevel.setOnClickListener(new OnClickListener() {
-                        @SuppressLint("NewApi") @Override public void onClick(View v) {
-                            final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                            for (int i = 1; i <= 8; i += 1) {
-                                final int number = i;
-                                popupMenu.getMenu()
-                                         .add("" + i)
-                                         .setOnMenuItemClickListener(new OnMenuItemClickListener() {
-                                             @Override public boolean onMenuItemClick(MenuItem item) {
-                                                 AppState.get().antiAliasLevel = number;
-                                                 antiAliasLevel.setText("" + AppState.get().antiAliasLevel);
-                                                 TxtUtils.underlineTextView(antiAliasLevel);
-                                                 return false;
-                                             }
-                                         });
-                            }
-                            popupMenu.show();
-                        }
-                    });
-                }
-
                 final List<String> doubleTapNames = Arrays.asList(//
                                                                   controller.getString(R.string.db_auto_scroll),
                                                                   //
@@ -4974,31 +4882,6 @@ public class DragingDialogs {
 
                 // BETA
 
-                final CustomSeek decodingThreadPriority = inflate.findViewById(R.id.decodingThreadPriority);
-                decodingThreadPriority.init(Thread.MIN_PRIORITY,
-                                            Thread.MAX_PRIORITY,
-                                            CoreSettings.get().decodingThreadPriority);
-                decodingThreadPriority.setOnSeekChanged(new IntegerResponse() {
-                    @Override public boolean onResultRecive(int result) {
-                        CoreSettings.get().decodingThreadPriority = result;
-                        AppState.get().helpHash++;
-                        return false;
-                    }
-                });
-                Views.visibleInBeta(decodingThreadPriority);
-
-                final CustomSeek drawThreadPriority = inflate.findViewById(R.id.drawThreadPriority);
-                drawThreadPriority.init(Thread.MIN_PRIORITY,
-                                        Thread.MAX_PRIORITY,
-                                        CoreSettings.get().drawThreadPriority);
-                drawThreadPriority.setOnSeekChanged(new IntegerResponse() {
-                    @Override public boolean onResultRecive(int result) {
-                        CoreSettings.get().drawThreadPriority = result;
-                        AppState.get().helpHash++;
-                        return false;
-                    }
-                });
-                Views.visibleInBeta(drawThreadPriority);
 
                 // The links in this dialog are drawn as ringed buttons, as the settings
                 // panel draws its own.

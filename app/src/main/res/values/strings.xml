@@ -134,8 +134,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Control auto-scroll speed with volume keys</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Adjust brightness by left-edge slides</string>
    <string name="scroll_speed">Mouse wheel sensitivity</string>
-   <string name="page_quality">Page quality</string>
-   <string name="pages_in_memory">Pages in memory</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Turn off screen after (min.)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Status Bar</string>
@@ -681,7 +679,6 @@
    <string name="search_in_the_library">Search in the library</string>
    <string name="update_metadata">Update metadata</string>
    <string name="highlighting_initial_letters">Accent reading</string>
-   <string name="anti_aliasing_level">Anti-aliasing level</string>
    <string name="folder_preview">Folder preview</string>
    <string name="show_storage_book_covers">Show covers for added storage</string>
    <string name="accent">Accent</string>

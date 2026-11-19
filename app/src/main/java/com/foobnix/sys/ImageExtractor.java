@@ -47,6 +47,7 @@ import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.librerax.BookOpenGuard;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.PageImageState;
 import com.foobnix.ui2.AppDB;
@@ -600,21 +601,26 @@ public class ImageExtractor {
             return getStreamInner(imageUri, "");
         }
         final String hash = "" + imageUri.hashCode();
-        try {
-            final InputStream streamInner;
-            if (sp.contains(hash)) {
+        // The mark names the run of the app that made it. One of this run is a drawing of the
+        // same page still under way, not a crash; one of an earlier run is a crash only if that
+        // run ended in one - an update, or the app stopped by the user or the system while the
+        // page was being drawn, left marks that kept good pages out for good.
+        final Object mark = sp.getAll().get(hash);
+        if (mark != null) {
+            final boolean thisRun = mark instanceof String && mark.equals(BookOpenGuard.RUN);
+            if (!thisRun && !BookOpenGuard.lastRunEndedNormally(c)) {
                 LOG.d("Error-crash", imageUri, hash);
                 return messageFile("#crash", "");
             }
-            try {
-                sp.edit().putBoolean(hash, true).commit();
-                streamInner = getStreamInner(imageUri, hash);
-            } finally {
-                sp.edit().remove(hash).commit();
+            if (thisRun) {
+                return getStreamInner(imageUri, hash);
             }
-            return streamInner;
+        }
+        try {
+            sp.edit().putString(hash, BookOpenGuard.RUN).commit();
+            return getStreamInner(imageUri, hash);
         } finally {
-
+            sp.edit().remove(hash).commit();
         }
     }
 

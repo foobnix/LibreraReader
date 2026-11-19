@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">वॉल्यूम कुंजियों के साथ स्वचालित स्क्रॉलिंग गति बदलें</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">स्क्रीन के बाईं ओर चमक समायोजन सक्षम करें</string>
    <string name="scroll_speed">स्क्रोल गति</string>
-   <string name="page_quality">पृष्ठ की गुणवत्ता</string>
-   <string name="pages_in_memory">स्मृति में पेज</string>
    <string name="screen_turn_off_after_inactivity_minutes_">स्क्रीन निष्क्रियता के बाद बंद कर देते हैं (मिनट)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">स्टेटस बार</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">पुस्तकालय में खोजें</string>
    <string name="update_metadata">मेटाडेटा अपडेट करें</string>
    <string name="highlighting_initial_letters">उभरा हुआ पठन</string>
-   <string name="anti_aliasing_level">एंटी-अलियासिंग स्तर</string>
    <string name="folder_preview">फ़ोल्डर पूर्वावलोकन</string>
    <string name="show_storage_book_covers">जोड़े गए संग्रहण के लिए कवर दिखाएं</string>
    <string name="accent">लहज़ा</string>

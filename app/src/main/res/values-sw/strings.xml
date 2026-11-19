@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Badilisha kasi ya scrolling moja kwa moja na funguo za kiasi</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Wezesha marekebisho ya mwangaza upande wa kushoto wa skrini</string>
    <string name="scroll_speed">Tembea kasi</string>
-   <string name="page_quality">Kwanza ubora</string>
-   <string name="pages_in_memory">Makala katika kumbukumbu</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Screen kugeuka mbali baada ya kutokuwa na shughuli (dakika)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Kuonyesha hali</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Tafuta kwenye maktaba</string>
    <string name="update_metadata">Sasisha metadata</string>
    <string name="highlighting_initial_letters">Usomaji wa msisitizo</string>
-   <string name="anti_aliasing_level">Kiwango cha kupinga-aliasing</string>
    <string name="folder_preview">Hakikisho la folda</string>
    <string name="show_storage_book_covers">Onyesha jalada za hifadhi iliyoongezwa</string>
    <string name="accent">Lafudhi</string>

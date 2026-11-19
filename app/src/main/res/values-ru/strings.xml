@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Менять скорость автопрокрутки текста клавишами регулировки громкости</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулировать яркость подсветки свайпом у левой кромки экрана</string>
    <string name="scroll_speed">Прокр. текста колес. мыши</string>
-   <string name="page_quality">Качество прорисовки страниц</string>
-   <string name="pages_in_memory">Страниц в опер. памяти</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Время перед гашением экрана (в минутах)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Контроль/прогресс чтения</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Искать в библиотеке</string>
    <string name="update_metadata">Обновить метаданные</string>
    <string name="highlighting_initial_letters">Акцентное чтение</string>
-   <string name="anti_aliasing_level">Уровень сглаживания</string>
    <string name="folder_preview">Предпросмотр папки</string>
    <string name="show_storage_book_covers">Показывать обложки для добавленного хранилища</string>
    <string name="accent">Цвет акцента</string>

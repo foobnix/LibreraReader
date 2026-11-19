@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Mutare velocitatem auto protrahendi con bullis</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Adtempere candorem laevad lateri velarii</string>
    <string name="scroll_speed">Sensibilitas rotae muris</string>
-   <string name="page_quality">Pag. qualitas delineamenti</string>
-   <string name="pages_in_memory">Pag. memoriad operaria</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Velarium exstinguere post</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Fascia stati</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Quaerere in bibliotheca</string>
    <string name="update_metadata">Metadata renova</string>
    <string name="highlighting_initial_letters">Lectio accentuata</string>
-   <string name="anti_aliasing_level">Anti-aliasing gradu</string>
    <string name="folder_preview">Praevisio directorii</string>
    <string name="show_storage_book_covers">Ostendere operimenta pro memoria addita</string>
    <string name="accent">Accentu</string>

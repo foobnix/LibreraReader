@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Змінювати швидкість автоматичного прокручування клавішами гучності</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Увімкнути регулювання яскравості ліворуч від екрана</string>
    <string name="scroll_speed">Швидкість прокручування</string>
-   <string name="page_quality">Якість сторінок</string>
-   <string name="pages_in_memory">Сторінок у пам\'яті</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Час до вимкнення екрана (в хвилинах)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Рядок стану</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Шукати в бібліотеці</string>
    <string name="update_metadata">Оновити метадані</string>
    <string name="highlighting_initial_letters">Акцентне читання</string>
-   <string name="anti_aliasing_level">Рівень згладжування</string>
    <string name="folder_preview">Перегляд папки</string>
    <string name="show_storage_book_covers">Показувати обкладинки для доданого сховища</string>
    <string name="accent">Акцент</string>

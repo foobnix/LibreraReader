@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Кантраляваць хуткасць аўтаматычнай пракруткі з дапамогай клавіш гучнасці</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Рэгуляваць яркасць слайдамі з левага краю</string>
    <string name="scroll_speed">Адчувальнасць колы мышы</string>
-   <string name="page_quality">Якасць старонкі</string>
-   <string name="pages_in_memory">Старонак у памяці</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Выключыць экран праз (мін.)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Радок стану</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Пошук у бібліятэцы</string>
    <string name="update_metadata">Абнавіць метададзеныя</string>
    <string name="highlighting_initial_letters">Акцэнтнае чытанне</string>
-   <string name="anti_aliasing_level">Ўзровень згладжвання</string>
    <string name="folder_preview">Папярэдні прагляд папкі</string>
    <string name="show_storage_book_covers">Паказваць вокладкі для дададзенага сховішча</string>
    <string name="accent">Акцэнт</string>

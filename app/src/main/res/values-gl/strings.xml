@@ -134,8 +134,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Controlar velocidade co volume</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Axustar brillo deslizando polo bordo esquerdo</string>
    <string name="scroll_speed">Sensibilidade da roda do rato</string>
-   <string name="page_quality">Calidade da páxina</string>
-   <string name="pages_in_memory">Páxinas en memoria</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Apagar pantalla tras (min.)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Barra de estado</string>
@@ -681,7 +679,6 @@
    <string name="search_in_the_library">Procurar na biblioteca</string>
    <string name="update_metadata">Actualizar metadatos</string>
    <string name="highlighting_initial_letters">Lectura acentuada</string>
-   <string name="anti_aliasing_level">Nivel de suavizado (anti-aliasing)</string>
    <string name="folder_preview">Vista previa do cartafol</string>
    <string name="show_storage_book_covers">Amosar portadas do almacenamento engadido</string>
    <string name="accent">Cor de acento</string>

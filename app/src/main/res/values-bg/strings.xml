@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Контролирайте скоростта на автоматично превъртане с клавиши за сила на звука</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулирайте яркостта чрез леви ръбове слайдове</string>
    <string name="scroll_speed">Чувствителност на колелото на мишката</string>
-   <string name="page_quality">Качество на страницата</string>
-   <string name="pages_in_memory">Страници в паметта</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Изключете екрана след (мин.)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Лента за състоянието</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Търсене в библиотеката</string>
    <string name="update_metadata">Актуализиране на метаданни</string>
    <string name="highlighting_initial_letters">Акцентно четене</string>
-   <string name="anti_aliasing_level">Ниво на антиалиасинг</string>
    <string name="folder_preview">Преглед на папка</string>
    <string name="show_storage_book_covers">Показване на корици за добавеното хранилище</string>
    <string name="accent">Акцент</string>

@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Дыбыс деңгейі пернелерімен автоматты жылжу жылдамдығын басқарыңыз</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Жарықтықты сол жақ шеті слайдтармен реттеңіз</string>
    <string name="scroll_speed">Тінтуірдің рульдік сезімталдығы</string>
-   <string name="page_quality">Бет сапасы</string>
-   <string name="pages_in_memory">Жадтағы беттер</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Экраннан кейін өшіру (мин)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Күй жолағы</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Кітапханадан іздеу</string>
    <string name="update_metadata">Метадеректерді жаңарту</string>
    <string name="highlighting_initial_letters">Екпінді оқу</string>
-   <string name="anti_aliasing_level">Антиалиазинг деңгейі</string>
    <string name="folder_preview">Қалтаны алдын ала қарау</string>
    <string name="show_storage_book_covers">Қосылған жад үшін мұқабаларды көрсету</string>
    <string name="accent">Екпін</string>

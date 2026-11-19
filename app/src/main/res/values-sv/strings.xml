@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Ändra automatisk rullningshastighet med volymknapparna</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Aktivera ljusstyrkan justering till vänster på skärmen</string>
    <string name="scroll_speed">Scrollhastighet</string>
-   <string name="page_quality">Page kvalitet</string>
-   <string name="pages_in_memory">Sidor i minnet</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Skärmen av efter inaktivitet (minuter)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Statusfältet</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Sök i biblioteket</string>
    <string name="update_metadata">Uppdatera metadata</string>
    <string name="highlighting_initial_letters">Accentläsning</string>
-   <string name="anti_aliasing_level">Kantutjämningsnivå</string>
    <string name="folder_preview">Förhandsgranskning av mapp</string>
    <string name="show_storage_book_covers">Visa omslag för tillagd lagring</string>
    <string name="accent">Accent</string>

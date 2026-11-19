@@ -409,7 +409,8 @@ public class AppState {
     public boolean isShowBottomSeekBar = true;
     public boolean isShowChaptersOnProgress = true;
     public boolean isShowSubChaptersOnProgress = true;
-    public int antiAliasLevel = 8;//0-8
+    // MuPDF is built with its 8-bit rasteriser alone (AA_BITS=8): any other level is not drawn
+    public int antiAliasLevel = 8;
     /**
      * The engine a PDF is rendered, searched and read with: {@link #PDF_ENGINE_PDFIUM}, the
      * default, or {@link #PDF_ENGINE_MUPDF}. A default only reaches a fresh install: this is saved
@@ -662,7 +663,13 @@ public class AppState {
     public boolean isRTLByDefault = Urls.isRtl();
     // perofrmance
     public int pagesInMemory = 3;
-    public float pageQuality = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? 1.6f : 1.4f;
+    // How large the paged view made its pages, once a setting; read now only for the zooms kept
+    // for books then - pages are made as large as the screen, and a zoom draws its part sharp
+    public float pageQuality = 1.0f;
+    // pageQuality brought down to the screen's size once, from the larger sizes it had before
+    public boolean isPageQualityScreen = false;
+    // The size pages were made at before that, for the zooms kept for books then
+    public float pageQualityBefore = 0;
     public int rotate = 0;
     public int rotateViewPager = 0;
     @IgnoreHashCode public int tapzoneSize = Dips.isXLargeScreen() ? 15 : 25;

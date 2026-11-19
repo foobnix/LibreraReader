@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">تغيير سرعة التمرير التلقائي مع مفاتيح الصوت</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">تمكين تعديل السطوع على يمين الشاشة</string>
    <string name="scroll_speed">سرعة التمرير</string>
-   <string name="page_quality">جودة الصفحة</string>
-   <string name="pages_in_memory">الصفحات في الذاكرة</string>
    <string name="screen_turn_off_after_inactivity_minutes_">شاشة إيقاف بعد الخمول (دقائق)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">شريط الحالة</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">ابحث في المكتبة</string>
    <string name="update_metadata">تحديث البيانات الوصفية</string>
    <string name="highlighting_initial_letters">القراءة المُبرَزة</string>
-   <string name="anti_aliasing_level">مستوى الصقل</string>
    <string name="folder_preview">معاينة المجلد</string>
    <string name="show_storage_book_covers">عرض الأغلفة للتخزين المضاف</string>
    <string name="accent">لهجة</string>

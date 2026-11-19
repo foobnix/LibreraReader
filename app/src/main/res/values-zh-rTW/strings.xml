@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量鍵調滾速</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">屏左邊調亮度</string>
    <string name="scroll_speed">滑鼠靈敏度</string>
-   <string name="page_quality">頁面品質</string>
-   <string name="pages_in_memory">預載頁面</string>
    <string name="screen_turn_off_after_inactivity_minutes_">螢幕常亮（分鐘）</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___">資訊區域</string>
    <string name="status_bar">資訊區域</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">在圖書館搜索</string>
    <string name="update_metadata">更新元數據</string>
    <string name="highlighting_initial_letters">重點閱讀</string>
-   <string name="anti_aliasing_level">抗鋸齒級別</string>
    <string name="folder_preview">資料夾預覽</string>
    <string name="show_storage_book_covers">顯示已新增儲存空間的封面</string>
    <string name="accent">口音</string>

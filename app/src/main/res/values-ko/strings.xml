@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">볼륨 키로 자동 스크롤 속도 변경</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">화면 왼쪽 가장자리에서 밝기 조정 사용</string>
    <string name="scroll_speed">마우스 휠 민감도</string>
-   <string name="page_quality">페이지 품질</string>
-   <string name="pages_in_memory">메모리 페이지</string>
    <string name="screen_turn_off_after_inactivity_minutes_">동작이 없을때 화면끄기 (단위. 분)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">상태 표시 줄</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">라이브러리에서 검색</string>
    <string name="update_metadata">메타데이터 업데이트</string>
    <string name="highlighting_initial_letters">강조 읽기</string>
-   <string name="anti_aliasing_level">앤티 앨리어싱 수준</string>
    <string name="folder_preview">폴더 미리보기</string>
    <string name="show_storage_book_covers">추가한 저장소의 표지 표시</string>
    <string name="accent">악센트</string>

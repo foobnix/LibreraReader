@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Automatikus lapozási sebesség szabályzása a hangerőgombokkal</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Állítsa be a fényerőt a bal oldali csúszkákkal</string>
    <string name="scroll_speed">Egérgörgő érzékenysége</string>
-   <string name="page_quality">Oldalminőség</string>
-   <string name="pages_in_memory">Oldalak a memóriában</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Képernyő kikapcsolása (x perc után)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Állapotsor</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Keress a könyvtárban</string>
    <string name="update_metadata">Frissítse a metaadatokat</string>
    <string name="highlighting_initial_letters">Kiemelt olvasás</string>
-   <string name="anti_aliasing_level">Élsimítási szint</string>
    <string name="folder_preview">Mappa előnézete</string>
    <string name="show_storage_book_covers">Borítók megjelenítése a hozzáadott tárhelyhez</string>
    <string name="accent">Hangsúly</string>

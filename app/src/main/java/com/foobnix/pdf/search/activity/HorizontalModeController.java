@@ -217,6 +217,13 @@ public abstract class HorizontalModeController extends DocumentController {
                     PageImageState.get().needAutoFit = false;
                 }
                 Matrix matrix = PageImageState.fromString(string);
+                // The zoom is kept in the pixels of the page made for it: a page made at another
+                // size - a zoom kept before pages were made at the screen's size - takes it scaled
+                final float madeWidth = matrixPageWidth(string);
+                if (madeWidth > 0 && imageWidth > 0 && Math.abs(madeWidth - imageWidth) > 1) {
+                    final float k = madeWidth / imageWidth;
+                    matrix.preScale(k, k);
+                }
                 PageImageState.get()
                               .getMatrix()
                               .set(matrix);
@@ -256,12 +263,37 @@ public abstract class HorizontalModeController extends DocumentController {
         onGoToPage(page2);
     }
 
+    /**
+     * The width of the page a kept zoom was made for: written after the zoom since pages are
+     * made at the screen's size; for one kept before, the width pages were made at then.
+     */
+    private static float matrixPageWidth(String saved) {
+        try {
+            final String[] values = saved.split(",");
+            if (values.length >= 10) {
+                return Float.parseFloat(values[9]);
+            }
+            if (AppState.get().pageQualityBefore > 0) {
+                return Math.min(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQualityBefore;
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return 0;
+    }
+
     public void udpateImageSize(boolean isTextFormat, int w, int h) {
         LOG.d("udpateImageSize", w, h, isTextFormat);
-        imageWidth = isTextFormat ? w :
-                (int) (Math.min(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
-        imageHeight = isTextFormat ? h :
-                (int) (Math.max(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
+        // Pages made larger than the screen, as they were before a zoom drew its part sharp; the
+        // size they had is kept, for the zooms kept for them
+        if (!AppState.get().isPageQualityScreen) {
+            AppState.get().isPageQualityScreen = true;
+            AppState.get().pageQualityBefore = AppState.get().pageQuality;
+            AppState.get().pageQuality = 1.0f;
+        }
+        // As large as the screen: a zoom draws the part on screen again at its sharpness
+        imageWidth = isTextFormat ? w : Math.min(Dips.screenWidth(), Dips.screenHeight());
+        imageHeight = isTextFormat ? h : Math.max(Dips.screenWidth(), Dips.screenHeight());
     }
 
     @Override public int getBookHeight() {
@@ -485,9 +517,10 @@ public abstract class HorizontalModeController extends DocumentController {
                 }
                 try {
                     if (!ExtUtils.isTextFomat(bookPath)) {
+                        // With the width of the page it was made for, to be scaled for another
                         matrixSP.edit()
                                 .putString(bookPath.hashCode() + "", PageImageState.get()
-                                                                                   .getMatrixAsString())
+                                                                                   .getMatrixAsString() + "," + imageWidth)
                                 .commit();
                         LOG.d("MATRIX", "SAVE", bookPath.hashCode() + "", PageImageState.get()
                                                                                         .getMatrixAsString());

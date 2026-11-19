@@ -132,8 +132,6 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Wijzig de automatische scrollsnelheid met de volumetoetsen</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Helderheid aanpassen door te schuiven aan de linkerrand</string>
    <string name="scroll_speed">Scrollsnelheid</string>
-   <string name="page_quality">Pagina kwaliteit</string>
-   <string name="pages_in_memory">Pagina\'s in het geheugen</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Schakel scherm uit na inactiviteit (minuten)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Statusbalk</string>
@@ -679,7 +677,6 @@
    <string name="search_in_the_library">Zoeken in de bibliotheek</string>
    <string name="update_metadata">Metagegevens bijwerken</string>
    <string name="highlighting_initial_letters">Accentlezen</string>
-   <string name="anti_aliasing_level">Anti-aliasing niveau</string>
    <string name="folder_preview">Mapvoorbeeld</string>
    <string name="show_storage_book_covers">Toon omslagen voor toegevoegde opslag</string>
    <string name="accent">Accent</string>
