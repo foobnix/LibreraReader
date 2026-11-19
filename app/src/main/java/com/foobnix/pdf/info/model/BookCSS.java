@@ -233,6 +233,11 @@ public class BookCSS {
     private String lastBookPathCache = "";
     private String trackPathCache;
 
+    /** A variable font holding every weight of the upright face: the family's regular. */
+    private static boolean isUprightVariable(String lowerName) {
+        return lowerName.contains("variablefont") && !lowerName.contains("italic");
+    }
+
     public static String filterFontName(String fontName) {
         if (!fontName.contains(".")) {
             return fontName;
@@ -306,8 +311,35 @@ public class BookCSS {
         }
     }
 
+    /**
+     * The font the app ships with: Literata, as four static fonts - regular, italic, bold and
+     * bold italic - cut from its variable fonts, each with its whole Cyrillic. MuPDF draws a
+     * variable font only at its default weight and makes bold up itself.
+     */
     private static String bundledFont(String style) {
         return new File(AppProfile.syncFontFolder, BUNDLED_FONT + "-" + style + ".ttf").getPath();
+    }
+
+    /** Names the upright and italic Literata had for a while, as variable fonts. */
+    private static final String[][] BUNDLED_FONT_RENAMED = {
+            {BUNDLED_FONT + "-VariableFont_opsz,wght.ttf", "Regular"},
+            {BUNDLED_FONT + "-Italic-VariableFont_opsz,wght.ttf", "Italic"}};
+
+    /** Settings that name the Literata files by those names name the static fonts again. */
+    private void renameBundledFonts() {
+        for (String[] renamed : BUNDLED_FONT_RENAMED) {
+            final String now = bundledFont(renamed[1]);
+            normalFont = renamedFont(normalFont, renamed[0], now);
+            boldFont = renamedFont(boldFont, renamed[0], now);
+            italicFont = renamedFont(italicFont, renamed[0], now);
+            boldItalicFont = renamedFont(boldItalicFont, renamed[0], now);
+            headersFont = renamedFont(headersFont, renamed[0], now);
+            capitalFont = renamedFont(capitalFont, renamed[0], now);
+        }
+    }
+
+    private static String renamedFont(String font, String oldName, String now) {
+        return font != null && font.endsWith("/" + oldName) ? now : font;
     }
 
     public void resetToDefault(Context c) {
@@ -527,6 +559,7 @@ public class BookCSS {
         }
         instance.pathSAF = storages;
         instance.keepFontsReadable();
+        instance.renameBundledFonts();
 
         try {
             // No list at all is a profile that has never had one; an empty one, a user who took
@@ -630,7 +663,8 @@ public class BookCSS {
 
             if (fontName.startsWith(dispalyName) || fontName.equals(dispalyName)) {
 
-                if (fontName.equals(dispalyName) || fontName.contains("regular") || fontName.contains("normal") || fontName.contains("light") || fontName.contains("medium") || fontName.endsWith("me")) {
+                if (fontName.equals(dispalyName) || fontName.contains("regular") || fontName.contains("normal") || fontName.contains("light") || fontName.contains("medium") || fontName.endsWith("me")
+                        || isUprightVariable(fontName)) {
                     if (!fontName.contains("regularitalic")) {
                         normalFont = capitalFont = fullName;
                     }
@@ -777,7 +811,8 @@ public class BookCSS {
                             fontNameDisplay = fontNameDisplay.replace(".ttf", "").replace(".otf", "").trim().toLowerCase(Locale.US);
 
                             if (font.startsWith(fontNameDisplay)) {
-                                if (font.equals(fontNameDisplay) || font.contains("regular") || font.contains("normal") || font.contains("light") || font.contains("medium") || font.endsWith("me")) {
+                                if (font.equals(fontNameDisplay) || font.contains("regular") || font.contains("normal") || font.contains("light") || font.contains("medium") || font.endsWith("me")
+                                        || isUprightVariable(font)) {
                                     e.normalFont = path + "/" + fontInit;
                                     break;
                                 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.EpubExtractor;
@@ -125,21 +126,53 @@ public class FontExtractor {
 
     }
 
-    /** The fonts every app ships with, into Librera/Fonts; a copy already there is left alone. */
+    /**
+     * Raised when the fonts the app ships with change, so copies made of the earlier ones are
+     * written over once: 2 - Literata Bold and Bold Italic cut from the variable Literata, with
+     * its Cyrillic letters carrying a stress mark; 3 - the variable Literata under its own names;
+     * 4 - all four static again, regular and italic cut from the variable fonts too, each with
+     * the whole Cyrillic.
+     */
+    private static final String BUNDLED_FONTS_VERSION = "4";
+
+    /** The variable Literata as version 3 copied it: no longer shipped, nor named by the settings. */
+    private static final String[] BUNDLED_FONTS_GONE = {
+            "Literata-VariableFont_opsz,wght.ttf", "Literata-Italic-VariableFont_opsz,wght.ttf"};
+
+    /**
+     * The fonts every app ships with, into Librera/Fonts; a copy already there is left alone,
+     * unless the fonts shipped have changed since it was made.
+     */
     private static void copyBundledFonts(final Context c) throws Exception {
         final File fontDir = AppProfile.syncFontFolder;
         fontDir.mkdirs();
+        final File versionFile = new File(fontDir, ".bundled-fonts-version");
+        final boolean outdated = !BUNDLED_FONTS_VERSION.equals(
+                versionFile.isFile() ? IO.readString(versionFile).trim() : "");
         for (String name : c.getAssets().list("fonts")) {
             File font = new File(fontDir, name);
-            if (!name.endsWith(".ttf") || font.isFile()) {
+            if (!name.endsWith(".ttf") || font.isFile() && !outdated) {
                 continue;
             }
             // Written aside first: a font cut short by the app being killed would stay broken
             File partial = new File(fontDir, name + ".part");
             IOUtils.copyClose(c.getAssets().open("fonts/" + name), new FileOutputStream(partial));
+            if (font.isFile() && !font.delete()) {
+                LOG.d("copyBundledFonts could not replace", font);
+            }
             if (!partial.renameTo(font)) {
                 LOG.d("copyBundledFonts could not move", partial, font);
             }
+        }
+        if (outdated) {
+            // A family showing in the font list once, the variable copies would be picked for it
+            for (String gone : BUNDLED_FONTS_GONE) {
+                final File old = new File(fontDir, gone);
+                if (old.isFile() && !old.delete()) {
+                    LOG.d("copyBundledFonts could not remove", old);
+                }
+            }
+            IO.writeString(versionFile, BUNDLED_FONTS_VERSION);
         }
     }
 
