@@ -514,8 +514,16 @@ public abstract class DocumentController {
      * @param barColor what the strip kept for the status bar is painted with, where one is
      * kept at all - the chrome below it is painted in the same colour.
      */
-    public static void applyEdgeToEdge(final Activity a, final boolean underStatusBar, final int barColor) {
-        if (a instanceof ComponentActivity) {
+    public static void applyEdgeToEdge(final Activity a, final boolean underStatusBar, final int tint) {
+        // On Ink the chrome is paper white, and the system's icons over it dark
+        final boolean ink = AppState.get().appTheme == AppState.THEME_INK;
+        final int barColor = ink ? Color.WHITE : tint;
+        if (ink && a instanceof ComponentActivity) {
+            EdgeToEdge.enable((ComponentActivity) a,
+                              SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
+                              SystemBarStyle.light(barColor, barColor));
+            a.getWindow().getDecorView().setTag(R.id.navigationBarPaint, barColor);
+        } else if (a instanceof ComponentActivity) {
             // Both bars take the app's own colour, with the light icons they always had: the
             // strip kept for the status bar is painted by the app, and the strip the buttons
             // at the foot stand on is painted here. The system's scrim would leave that strip
@@ -654,9 +662,16 @@ public abstract class DocumentController {
         }
         decor.setTag(R.id.navigationBarPaint, color);
         if (Build.VERSION.SDK_INT >= 35 && a instanceof ComponentActivity) {
-            EdgeToEdge.enable((ComponentActivity) a,
-                              SystemBarStyle.dark(Color.TRANSPARENT),
-                              SystemBarStyle.dark(color));
+            if (AppState.get().appTheme == AppState.THEME_INK) {
+                // Ink's chrome is white: the system's icons over it are dark
+                EdgeToEdge.enable((ComponentActivity) a,
+                                  SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
+                                  SystemBarStyle.light(color, color));
+            } else {
+                EdgeToEdge.enable((ComponentActivity) a,
+                                  SystemBarStyle.dark(Color.TRANSPARENT),
+                                  SystemBarStyle.dark(color));
+            }
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             a.getWindow().setNavigationBarColor(color);
         }

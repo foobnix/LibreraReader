@@ -2,6 +2,7 @@
 <resources>
     <!-- The padding a panel was laid out with, before the system bars were added to it. -->
     <item name="basePadding" type="id" />
+    <item name="inkRulePad" type="id" />
     <item name="navigationBarPaint" type="id" />
     <item name="pillRing" type="id" />
     <!-- Set on a settings button drawn as a box rather than a pill: see bg_button_outline_card. -->

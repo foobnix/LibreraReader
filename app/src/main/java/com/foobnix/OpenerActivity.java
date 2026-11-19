@@ -19,6 +19,7 @@ import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -67,6 +68,7 @@ public class OpenerActivity extends Activity {
         } else {
             setTheme(R.style.StyledIndicatorsBlack);
         }
+        TintUtil.applyInkTheme(this);
 
         super.onCreate(savedInstanceState);
 

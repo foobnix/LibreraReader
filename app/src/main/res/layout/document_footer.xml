@@ -133,7 +133,8 @@
             android:padding="5dip"
             android:visibility="gone"></androidx.recyclerview.widget.RecyclerView>
 
-        <!-- As wide as its buttons, so the scroll-by button can give way, and only it: where the
+        <!-- The same room above it as the top bar keeps under its own row of buttons (6dip).
+             As wide as its buttons, so the scroll-by button can give way, and only it: where the
              row is wider than the screen it shrinks, rather than the back button at the end being
              pushed off. Where the row fits nothing grows. -->
         <LinearLayout
@@ -144,7 +145,7 @@
             android:clickable="true"
             android:gravity="center"
             android:paddingLeft="2dip"
-            android:paddingTop="2dip"
+            android:paddingTop="6dip"
             android:paddingRight="2dip"
             android:visibility="visible">
 

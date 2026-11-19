@@ -145,7 +145,7 @@ public class BookmarkPanel {
      */
     private static RippleDrawable panelRound(boolean musician) {
         final GradientDrawable fill = new GradientDrawable();
-        final int color = musician ? MagicHelper.getMusicColor() : TintUtil.color;
+        final int color = musician ? MagicHelper.getMusicColor() : TintUtil.readerPanelColor();
         fill.setColor(ColorUtils.setAlphaComponent(color, AppState.get().transparencyUI));
         fill.setCornerRadius(SIZE / 2f);
         final GradientDrawable mask = new GradientDrawable();

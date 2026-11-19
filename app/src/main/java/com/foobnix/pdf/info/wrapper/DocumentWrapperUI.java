@@ -1413,8 +1413,8 @@ public class DocumentWrapperUI {
         updateSeekBarColorAndSize();
         BrightnessHelper.updateOverlay(overlay);
 
-        TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), AppState.get().transparencyUI);
-        TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar1), AppState.get().transparencyUI);
+        TintUtil.setReaderBar(a.findViewById(R.id.menuLayout), AppState.get().transparencyUI, true);
+        TintUtil.setReaderBar(a.findViewById(R.id.bottomBar1), AppState.get().transparencyUI, false);
         DocumentController.repaintBarStrips(a);
         // The name of the mode is set in the colour the book's own title beside it is, rather
         // than in a white of its own.
@@ -1526,8 +1526,8 @@ public class DocumentWrapperUI {
         //int titleColor = AppState.get().isDayNotInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
         // The row the title bar stands in is painted instead, status bar strip and all
         titleBar.setBackgroundColor(Color.TRANSPARENT);
-        TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), AppState.get().transparencyUI);
-        TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar1), AppState.get().transparencyUI);
+        TintUtil.setReaderBar(a.findViewById(R.id.menuLayout), AppState.get().transparencyUI, true);
+        TintUtil.setReaderBar(a.findViewById(R.id.bottomBar1), AppState.get().transparencyUI, false);
         DocumentController.repaintBarStrips(a);
         paintMusicButtons();
 
@@ -1815,7 +1815,7 @@ public class DocumentWrapperUI {
         titleBar.setVisibility(titleShown ? View.VISIBLE : View.GONE);
         // The row is painted, as see-through as the other panels, only while it is a bar
         a.findViewById(R.id.underLayout).setBackgroundColor(titleShown
-                ? ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI)
+                ? ColorUtils.setAlphaComponent(TintUtil.readerPanelColor(), AppState.get().transparencyUI)
                 : Color.TRANSPARENT);
         if (musicClose != null) {
             lirbiLogo.setVisibility(dc.isMusicianMode() ? View.VISIBLE : View.GONE);

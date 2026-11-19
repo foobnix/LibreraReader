@@ -1601,6 +1601,10 @@ public class TxtUtils {
             if (AppState.get().appTheme == AppState.THEME_DARK_OLED && !AppState.get().isUiTextColor) {
                 color = Color.WHITE;
             }
+            // Ink's panels are white: the words on them black, never white on white
+            if (AppState.get().appTheme == AppState.THEME_INK) {
+                color = Color.BLACK;
+            }
 
             // onCloseApp is a button now, not a line of text, and would stop the loop dead.
             List<Integer> ids = Arrays.asList(R.id.title, R.id.chapter,

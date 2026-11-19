@@ -99,8 +99,6 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.Engines;
 import com.foobnix.pdf.info.EpubEngineMenu;
-import com.foobnix.pdf.info.AnnotationsSaveMenu;
-import org.ebookdroid.droids.pdfium.codec.PdfiumAnnots;
 import com.foobnix.pdf.info.PdfEngineMenu;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
@@ -1046,13 +1044,6 @@ public class PrefFragment2 extends UIFragment {
             ImageExtractor.clearCodeDocument();
             asButton(pdfEngine, PdfEngineMenu.name(getContext(), AppState.get().pdfEngine));
         }));
-
-        // What becomes of the strokes drawn on a PDF as it closes
-        Views.visible(inflate.findViewById(R.id.annotationsSaveRow), Engines.IS_MUPDF || PdfiumAnnots.isAvailable());
-        final TextView annotationsSave = inflate.findViewById(R.id.annotationsSave);
-        asButton(annotationsSave, AnnotationsSaveMenu.name(getContext(), AppState.get().annotationsSaveMode));
-        annotationsSave.setOnClickListener(v -> AnnotationsSaveMenu.show(v,
-                () -> asButton(annotationsSave, AnnotationsSaveMenu.name(getContext(), AppState.get().annotationsSaveMode))));
 
         // Which engine lays out a reflowable book
         final TextView epubEngine = inflate.findViewById(R.id.epubEngine);
@@ -3006,6 +2997,15 @@ public class PrefFragment2 extends UIFragment {
     private void onEink() {
         AppState.get().appTheme = AppState.THEME_INK;
         AppState.get().blueLightAlpha = 0;
+        // Panels over the page are solid on e-paper: see-through, they are only grey smudge
+        AppState.get().transparencyUI = 255;
+        // Pages turn without sliding: every frame of a slide is a smear on e-paper
+        AppState.get().isScrollAnimation = false;
+        // and the page is plain white with black words, no paper picture under it
+        AppState.get().isDayNotInvert = true;
+        AppState.get().isUseBGImageDay = false;
+        AppState.get().colorDayBg = AppState.COLOR_WHITE;
+        AppState.get().colorDayText = AppState.COLOR_BLACK;
         AppState.get().tintThemeColor = Color.BLACK;
         AppState.get().uiTextColor = Color.BLACK;
         AppState.get().isUiTextColor = true;

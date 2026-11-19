@@ -761,8 +761,12 @@ public class Dialogs {
             // A panel of its own, as see-through as the reader's panels: the dialog's own sheet
             // is taken away below, so the page shows through
             final GradientDrawable panel = new GradientDrawable();
-            panel.setColor(ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI));
+            panel.setColor(ColorUtils.setAlphaComponent(TintUtil.readerPanelColor(), AppState.get().transparencyUI));
             panel.setCornerRadius(Dips.dpToPx(16));
+            // On Ink a white sheet on white paper is ruled round in black
+            if (TintUtil.isInk()) {
+                panel.setStroke(Math.max(1, Dips.DP_1), Color.BLACK);
+            }
             view.setBackground(panel);
 
             image.setOnClickListener(new OnClickListener() {

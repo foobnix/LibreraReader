@@ -219,6 +219,85 @@
         <item name="android:popupBackground">@drawable/bg_popup_round</item>
     </style>
 
+    <!-- Ink: e-paper redraws every frame of a menu sliding or fading open as a smear, so on
+         the Ink theme menus, drop-downs and dialogs just appear. Laid over the theme at run
+         time - see TintUtil.applyInkTheme. -->
+    <!-- An animation style with nothing in it: @null reads as "not set", and the platform
+         then falls back to its own sliding and fading. -->
+    <style name="InkNoAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+    </style>
+
+    <style name="PopupMenuRoundInk" parent="PopupMenuRound">
+        <item name="android:popupAnimationStyle">@style/InkNoAnimation</item>
+        <item name="android:popupEnterTransition">@null</item>
+        <item name="android:popupExitTransition">@null</item>
+    </style>
+
+    <style name="PopupMenuRoundOverflowInk" parent="PopupMenuRoundOverflow">
+        <item name="android:popupAnimationStyle">@style/InkNoAnimation</item>
+        <item name="android:popupEnterTransition">@null</item>
+        <item name="android:popupExitTransition">@null</item>
+    </style>
+
+    <style name="ListPopupWindowRoundInk" parent="ListPopupWindowRound">
+        <item name="android:popupAnimationStyle">@style/InkNoAnimation</item>
+        <item name="android:popupEnterTransition">@null</item>
+        <item name="android:popupExitTransition">@null</item>
+    </style>
+
+    <style name="SpinnerPopupRoundInk" parent="SpinnerPopupRound">
+        <item name="android:popupAnimationStyle">@style/InkNoAnimation</item>
+        <item name="android:popupEnterTransition">@null</item>
+        <item name="android:popupExitTransition">@null</item>
+    </style>
+
+    <style name="PopupMenuRoundCompatInk" parent="PopupMenuRoundCompat">
+        <item name="android:popupAnimationStyle">@style/InkNoAnimation</item>
+        <item name="android:popupEnterTransition">@null</item>
+        <item name="android:popupExitTransition">@null</item>
+    </style>
+
+    <style name="PopupMenuRoundCompatOverflowInk" parent="PopupMenuRoundCompatOverflow">
+        <item name="android:popupAnimationStyle">@style/InkNoAnimation</item>
+        <item name="android:popupEnterTransition">@null</item>
+        <item name="android:popupExitTransition">@null</item>
+    </style>
+
+    <style name="ListPopupWindowRoundCompatInk" parent="ListPopupWindowRoundCompat">
+        <item name="android:popupAnimationStyle">@style/InkNoAnimation</item>
+        <item name="android:popupEnterTransition">@null</item>
+        <item name="android:popupExitTransition">@null</item>
+    </style>
+
+    <style name="PopupWindowInk" parent="@android:style/Widget.Material.PopupWindow">
+        <item name="android:popupAnimationStyle">@style/InkNoAnimation</item>
+        <item name="android:popupEnterTransition">@null</item>
+        <item name="android:popupExitTransition">@null</item>
+    </style>
+
+    <style name="DialogRoundLightInk" parent="DialogRoundLight">
+        <item name="android:windowAnimationStyle">@style/InkNoAnimation</item>
+    </style>
+
+    <style name="InkNoAnimations">
+        <item name="android:popupMenuStyle">@style/PopupMenuRoundInk</item>
+        <item name="android:actionOverflowMenuStyle">@style/PopupMenuRoundOverflowInk</item>
+        <item name="android:listPopupWindowStyle">@style/ListPopupWindowRoundInk</item>
+        <item name="android:dropDownSpinnerStyle">@style/SpinnerPopupRoundInk</item>
+        <item name="android:popupWindowStyle">@style/PopupWindowInk</item>
+        <item name="popupMenuStyle">@style/PopupMenuRoundCompatInk</item>
+        <item name="actionOverflowMenuStyle">@style/PopupMenuRoundCompatOverflowInk</item>
+        <item name="listPopupWindowStyle">@style/ListPopupWindowRoundCompatInk</item>
+        <item name="android:alertDialogTheme">@style/DialogRoundLightInk</item>
+        <item name="android:windowAnimationStyle">@style/InkNoAnimation</item>
+    </style>
+
     <!-- Dialogs are cut to the same round the cards are and held a little short of opaque, and
          their titles are set in caps like the section heads, so a dialog reads as part of the
          app rather than as the platform's own box. -->

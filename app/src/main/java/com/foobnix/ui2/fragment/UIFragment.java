@@ -13,6 +13,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.graphics.Color;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.InsetDrawable;
+import android.graphics.drawable.DrawableContainer;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.widget.TextView;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
@@ -302,7 +308,7 @@ public abstract class UIFragment<T> extends Fragment {
         // in the theme colour rather than left to show whatever is behind it, and it runs the
         // full width, with no margin to break it away from the bar above it.
         if (floatingHeader.getBackground() == null) {
-            floatingHeader.setBackgroundColor(TintUtil.color);
+            floatingHeader.setBackgroundColor(headerColor());
             headerPainted = true;
         }
         if (floatingHeader.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
@@ -316,7 +322,7 @@ public abstract class UIFragment<T> extends Fragment {
         // under it to show through, and a held-back bar only looks unlike the one above it.
         if (getActivity() instanceof MainTabs2) {
             floatingHeader.getBackground()
-                          .setAlpha(AppsConfig.APP_TRANSPARENCY);
+                          .setAlpha(TintUtil.panelAlpha());
         }
         // Every notice raised at the top of a page stands in the chrome, whichever it is.
         floatingNotices.clear();
@@ -327,6 +333,7 @@ public abstract class UIFragment<T> extends Fragment {
             }
         }
         paintFloatingNotice();
+        inkHeader();
 
         // Everything past here is the main screen's alone: pulling the list up behind the
         // chrome and carrying the status bar make no sense inside a dialog, which stands in
@@ -436,23 +443,126 @@ public abstract class UIFragment<T> extends Fragment {
             return;
         }
         if (headerPainted) {
-            floatingHeader.setBackgroundColor(TintUtil.color);
+            floatingHeader.setBackgroundColor(headerColor());
         }
         if (floatingHeader.getBackground() != null) {
-            floatingHeader.getBackground().setAlpha(AppsConfig.APP_TRANSPARENCY);
+            floatingHeader.getBackground().setAlpha(TintUtil.panelAlpha());
         }
         headerSquared = false;
         floatingHeader.requestLayout();
         paintFloatingNotice();
+        inkHeader();
+    }
+
+    private static boolean isInk() {
+        return AppState.get().appTheme == AppState.THEME_INK;
+    }
+
+    /**
+     * The colour the header is painted in: the theme's, or on Ink paper white like the tab
+     * strip above it. An e-ink reader showed the black band as white - with the white
+     * buttons on it gone - so on Ink the header is drawn black on white, which reads the
+     * same on any screen.
+     */
+    private static int headerColor() {
+        return isInk() ? Color.WHITE : TintUtil.color;
+    }
+
+    /**
+     * On Ink the header and the notices under it are paper, and what stands on them ink. A
+     * tab that paints its own header, or a panel in it, in the theme colour has that fill
+     * turned white here, after it has done so.
+     */
+    private void inkHeader() {
+        if (!isInk() || floatingHeader == null) {
+            return;
+        }
+        whiten(floatingHeader, true);
+        inkOver(floatingHeader);
+        for (View notice : floatingNotices) {
+            whiten(notice, true);
+            inkOver(notice);
+        }
+    }
+
+    /** Turns the theme-coloured fills under a view white - every fill for the band itself. */
+    private static void whiten(View view, boolean band) {
+        Drawable background = view.getBackground();
+        if (background != null) {
+            if (background instanceof ColorDrawable) {
+                if (band || sameColor(((ColorDrawable) background).getColor(), TintUtil.color)) {
+                    int alpha = background.getAlpha();
+                    ((ColorDrawable) background).setColor(Color.WHITE);
+                    background.setAlpha(alpha);
+                }
+            } else {
+                whitenFills(background.mutate(), band, 0);
+            }
+            view.invalidate();
+        }
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            for (int i = 0; i < group.getChildCount(); i++) {
+                whiten(group.getChildAt(i), false);
+            }
+        }
+    }
+
+    private static void whitenFills(Drawable drawable, boolean band, int depth) {
+        if (drawable == null || depth > 4) {
+            return;
+        }
+        if (drawable instanceof GradientDrawable) {
+            GradientDrawable shape = (GradientDrawable) drawable;
+            ColorStateList fill = shape.getColor();
+            if (fill != null && (band || sameColor(fill.getDefaultColor(), TintUtil.color))) {
+                shape.setColor(Color.WHITE);
+            }
+        } else if (drawable instanceof LayerDrawable) {
+            LayerDrawable layers = (LayerDrawable) drawable;
+            for (int i = 0; i < layers.getNumberOfLayers(); i++) {
+                if (layers.getId(i) != android.R.id.mask) {
+                    whitenFills(layers.getDrawable(i), band, depth + 1);
+                }
+            }
+        } else if (drawable instanceof DrawableContainer) {
+            whitenFills(drawable.getCurrent(), band, depth + 1);
+        } else if (drawable instanceof InsetDrawable) {
+            whitenFills(((InsetDrawable) drawable).getDrawable(), band, depth + 1);
+        }
+    }
+
+    private static boolean sameColor(int a, int b) {
+        return (a & 0xFFFFFF) == (b & 0xFFFFFF) && Color.alpha(a) > 0;
+    }
+
+    private static void inkOver(View view) {
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            for (int i = 0; i < group.getChildCount(); i++) {
+                inkOver(group.getChildAt(i));
+            }
+        } else if (view instanceof ImageView) {
+            TintUtil.setTintImageNoAlpha((ImageView) view, Color.BLACK);
+        } else if (view instanceof TextView) {
+            TextView text = (TextView) view;
+            text.setTextColor(Color.BLACK);
+            text.setHintTextColor(Color.DKGRAY);
+            text.setShadowLayer(0, 0, 0, Color.TRANSPARENT);
+            // A ringed button's ring is drawn in the colour of its words
+            if (text.getTag(R.id.linkButton) != null || "textLinkWhite".equals(text.getTag()) || "textLink".equals(text.getTag())) {
+                TintUtil.setRingColor(text, Color.BLACK);
+            }
+        }
     }
 
     private void paintFloatingNotice() {
         boolean overPage = getActivity() instanceof MainTabs2;
         for (View notice : floatingNotices) {
-            notice.setBackgroundColor(TintUtil.color);
+            notice.setBackgroundColor(headerColor());
             if (overPage) {
                 notice.getBackground()
-                      .setAlpha(AppsConfig.APP_TRANSPARENCY);
+                      .setAlpha(TintUtil.panelAlpha());
             }
         }
     }

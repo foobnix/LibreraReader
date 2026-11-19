@@ -107,6 +107,13 @@ public final class PdfSurfaceView extends android.view.View implements IView{
      */
     @Override
     public void startPageScroll(final int dx, final int dy) {
+        // On Ink the page jumps: every frame of a glide is a smear on e-paper
+        if (com.foobnix.model.AppState.get().appTheme == com.foobnix.model.AppState.THEME_INK) {
+            scroller.forceFinished(true);
+            scrollTo(getScrollX() + dx, getScrollY() + dy);
+            redrawView();
+            return;
+        }
         scroller.startScroll(getScrollX(), getScrollY(), dx, dy);
         redrawView();
     }

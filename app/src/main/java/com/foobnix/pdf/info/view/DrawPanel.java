@@ -347,7 +347,7 @@ public class DrawPanel {
         row.setGravity(Gravity.CENTER_VERTICAL);
         final GradientDrawable sheet = new GradientDrawable();
         // The colour the book's bars are, and as see-through: docked on them, it is one of them
-        sheet.setColor(ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI));
+        sheet.setColor(ColorUtils.setAlphaComponent(TintUtil.readerPanelColor(), AppState.get().transparencyUI));
         // Square and the width of the screen, as the bar it stands on
         row.setBackground(sheet);
         row.setElevation(Dips.DP_8);

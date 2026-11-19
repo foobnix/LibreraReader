@@ -692,6 +692,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         // it, at the head or at the foot, and carries the status bar itself.
         DocumentController.applyEdgeToEdge(this, true,
                                            SlidingTabLayout.floatingTint(TintUtil.color));
+        inkStatusBar();
 
         imageMenu = findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
@@ -1139,6 +1140,19 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
     }
 
+    /**
+     * On Ink the chrome is paper white, the strip at the head and the header alike, so the
+     * clock and the icons over it are drawn dark; light, they were white on white.
+     */
+    private void inkStatusBar() {
+        if (AppState.get().appTheme != AppState.THEME_INK) {
+            return;
+        }
+        androidx.core.view.WindowInsetsControllerCompat controller =
+                androidx.core.view.WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
+        controller.setAppearanceLightStatusBars(true);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -1155,6 +1169,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "clear");
 
         DocumentController.chooseFullScreen(this, AppState.get().fullScreenMainMode);
+        inkStatusBar();
         TintUtil.updateAll();
         BrightnessHelper.applySystemBrigtness(this);
         hideOverlay();

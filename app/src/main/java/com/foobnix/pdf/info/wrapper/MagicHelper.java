@@ -550,6 +550,10 @@ public class MagicHelper {
     }
 
     public static int getTextOrIconColor() {
+        // On Ink the reader's panels are white, and what is on them black
+        if (AppState.get().appTheme == AppState.THEME_INK) {
+            return Color.BLACK;
+        }
         int textColor = AppState.get().isUiTextColor ? AppState.get().uiTextColor : Color.WHITE;
 
         if (AppState.get().uiTextColor == AppState.get().tintThemeColor) {

@@ -228,19 +228,35 @@ import java.util.Map;
     private static Drawable openAsBookButton() {
         GradientDrawable face = new GradientDrawable();
         face.setCornerRadius(Dips.DP_50);
-        face.setColor(TintUtil.color);
-        face.setAlpha(AppsConfig.APP_TRANSPARENCY);
+        // On Ink the header is paper white, and the button on it a black ring on white
+        if (isInk()) {
+            face.setColor(Color.WHITE);
+            face.setStroke(Dips.DP_1, Color.BLACK);
+        } else {
+            face.setColor(TintUtil.color);
+            face.setAlpha(TintUtil.panelAlpha());
+        }
 
         GradientDrawable mask = new GradientDrawable();
         mask.setCornerRadius(Dips.DP_50);
         mask.setColor(Color.WHITE);
 
-        return new RippleDrawable(ColorStateList.valueOf(Color.argb(60, 255, 255, 255)), face, mask);
+        int ripple = isInk() ? Color.argb(60, 0, 0, 0) : Color.argb(60, 255, 255, 255);
+        return new RippleDrawable(ColorStateList.valueOf(ripple), face, mask);
+    }
+
+    /** The folder path on the header: white on the tint, black on Ink's paper white. */
+    private int pathInk() {
+        return isInk() ? Color.BLACK : ContextCompat.getColor(requireContext(), R.color.white);
+    }
+
+    private static boolean isInk() {
+        return AppState.get().appTheme == AppState.THEME_INK;
     }
 
     private int openAsBookInk() {
         if (isOpenAsBookInHeader()) {
-            return Color.WHITE;
+            return isInk() ? Color.BLACK : Color.WHITE;
         }
         return getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() :
                 TintUtil.getColorInDayNighthBook();
@@ -284,7 +300,10 @@ import java.util.Map;
                 }
             });
             card.setClipToOutline(true);
-            ((TextView) view.findViewById(R.id.text1)).setTextColor(Color.WHITE);
+            ((TextView) view.findViewById(R.id.text1)).setTextColor(isInk() ? Color.BLACK : Color.WHITE);
+            if (isInk()) {
+                TintUtil.setTintImageNoAlpha((ImageView) view.findViewById(R.id.starIconDir), Color.BLACK);
+            }
         }
 
         starIcon = (ImageView) view.findViewById(R.id.starIcon);
@@ -1246,7 +1265,7 @@ import java.util.Map;
 
             TextView slash = new TextView(getActivity());
             slash.setText(id);
-            slash.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
+            slash.setTextColor(pathInk());
             paths.addView(slash);
         } else {
 
@@ -1266,7 +1285,7 @@ import java.util.Map;
                 } else {
                     nameView.setText(name + ":");
                 }
-                nameView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
+                nameView.setTextColor(pathInk());
                 nameView.setOnClickListener(new OnClickListener() {
 
                     @Override public void onClick(View v) {
@@ -1279,7 +1298,7 @@ import java.util.Map;
             if (split.length == 0 && Clouds.isCloud(AppState.get().displayPath)) {
                 TextView logout = new TextView(getActivity());
                 logout.setText(TxtUtils.underline(getActivity().getString(R.string.logout)));
-                logout.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
+                logout.setTextColor(pathInk());
                 logout.setOnClickListener(new OnClickListener() {
 
                     @Override public void onClick(View v) {
@@ -1326,13 +1345,13 @@ import java.util.Map;
                 slash.setText("/");
                 slash.setPadding(Dips.DP_2, 0, Dips.DP_2, 0);
                 slash.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-                slash.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
+                slash.setTextColor(pathInk());
 
                 TextView item = new TextView(getActivity());
                 item.setText(part);
                 item.setGravity(Gravity.CENTER);
                 item.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-                item.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
+                item.setTextColor(pathInk());
                 item.setSingleLine();
                 TypedValue outValue = new TypedValue();
                 getContext().getTheme()
@@ -1406,7 +1425,7 @@ import java.util.Map;
                 stub.setText("  " + itemsCount);
             }
             stub.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-            stub.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
+            stub.setTextColor(pathInk());
             stub.setSingleLine();
             paths.addView(stub);
 

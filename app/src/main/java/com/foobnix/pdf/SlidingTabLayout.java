@@ -156,7 +156,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
      */
     /** The tint the floating chrome is painted in: the colour, with the page kept showing. */
     public static int floatingTint(int color) {
-        return setColorAlpha(color, AppsConfig.APP_TRANSPARENCY);
+        return setColorAlpha(color, TintUtil.panelAlpha());
     }
 
     public void setTabsBackground(int color) {
@@ -169,7 +169,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         }
         boolean ink = AppState.get().appTheme == AppState.THEME_INK;
         floatingPill = new GradientDrawable();
-        floatingPill.setColor(ink ? pageColor() : setColorAlpha(color, AppsConfig.APP_TRANSPARENCY));
+        floatingPill.setColor(ink ? pageColor() : setColorAlpha(color, TintUtil.panelAlpha()));
         if (ink) {
             floatingPill.setStroke(Dips.DP_1, TintUtil.color);
         }

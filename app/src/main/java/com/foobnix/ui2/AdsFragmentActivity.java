@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
@@ -61,6 +62,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         } else {
             setTheme(R.style.StyledIndicatorsBlack);
         }
+        TintUtil.applyInkTheme(this);
         super.onCreate(arg0);
 
         handler = new Handler(Looper.getMainLooper());

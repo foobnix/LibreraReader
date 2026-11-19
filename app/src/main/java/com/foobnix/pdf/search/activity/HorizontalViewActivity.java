@@ -291,6 +291,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         } else {
             setTheme(R.style.StyledIndicatorsBlack);
         }
+        TintUtil.applyInkTheme(this);
 
         DocumentController.doRotation(this);
         DocumentController.doContextMenu(this);
@@ -1426,8 +1427,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void updateSeekBarColorAndSize() {
         // As see-through as the status bar settings have the panels
-        TintUtil.setTintBgSimple(actionBar, AppState.get().transparencyUI);
-        TintUtil.setTintBgSimple(bottomBar, AppState.get().transparencyUI);
+        TintUtil.setReaderBar(actionBar, AppState.get().transparencyUI, true);
+        TintUtil.setReaderBar(bottomBar, AppState.get().transparencyUI, false);
         DocumentController.repaintBarStrips(this);
 
         TintUtil.setTintText(pagesPower, TintUtil.getStatusBarTextColor());
@@ -2093,8 +2094,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     private void tinUI() {
         // The bars are painted first: on Ink a mark takes its colour from the surface under it.
-        TintUtil.setTintBgSimple(actionBar, AppState.get().transparencyUI);
-        TintUtil.setTintBgSimple(bottomBar, AppState.get().transparencyUI);
+        TintUtil.setReaderBar(actionBar, AppState.get().transparencyUI, true);
+        TintUtil.setReaderBar(bottomBar, AppState.get().transparencyUI, false);
         DocumentController.repaintBarStrips(this);
         TxtUtils.updateAllLinks(parentParent);
         // TintUtil.setBackgroundFillColorBottomRight(ttsActive,

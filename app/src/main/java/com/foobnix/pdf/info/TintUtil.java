@@ -3,6 +3,7 @@ package com.foobnix.pdf.info;
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.PorterDuff.Mode;
@@ -719,6 +720,74 @@ public class TintUtil {
         return img;
     }
 
+    public static boolean isInk() {
+        return AppState.get().appTheme == AppState.THEME_INK;
+    }
+
+    /** On Ink, menus, drop-downs and dialogs open without animating: see InkNoAnimations. */
+    public static void applyInkTheme(android.app.Activity a) {
+        if (isInk()) {
+            a.getTheme().applyStyle(R.style.InkNoAnimations, true);
+        }
+    }
+
+    /**
+     * The colour the reader's panels - bars, docked panels, the loading sheet - are filled
+     * with: the theme's, or paper white on Ink, where the bars are drawn black on white.
+     */
+    public static int readerPanelColor() {
+        return isInk() ? Color.WHITE : color;
+    }
+
+    /**
+     * On Ink, the marks and words set white on the panels - most by the buttonWhite style -
+     * are drawn black, as the panel under them is white there. A picture such as the book's
+     * cover is left as it is, and so is a mark in a colour of its own (a lock lit yellow).
+     */
+    public static void inkChrome(View root) {
+        if (root == null || !isInk()) {
+            return;
+        }
+        if (root instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) root;
+            for (int i = 0; i < group.getChildCount(); i++) {
+                inkChrome(group.getChildAt(i));
+            }
+        } else if (root instanceof ImageView) {
+            ImageView image = (ImageView) root;
+            Drawable d = image.getDrawable();
+            if (d == null || d instanceof BitmapDrawable || d instanceof android.graphics.drawable.TransitionDrawable) {
+                return;
+            }
+            ColorStateList tint = ImageViewCompat.getImageTintList(image);
+            if (tint == null || isLightInk(tint.getDefaultColor())) {
+                ImageViewCompat.setImageTintList(image, ColorStateList.valueOf(Color.BLACK));
+            }
+        } else if (root instanceof TextView) {
+            TextView text = (TextView) root;
+            if (isLightInk(text.getCurrentTextColor())) {
+                text.setTextColor(Color.BLACK);
+            }
+            for (Drawable d : text.getCompoundDrawablesRelative()) {
+                if (d != null) {
+                    d.mutate().setTint(Color.BLACK);
+                }
+            }
+        }
+    }
+
+    private static boolean isLightInk(int c) {
+        return Color.alpha(c) > 0 && ColorUtils.calculateLuminance(c) > 0.6;
+    }
+
+    /**
+     * How much the library's chrome lets the page show through: a little, or not at all on
+     * Ink, where a see-through panel is only grey smudge on e-paper.
+     */
+    public static int panelAlpha() {
+        return AppState.get().appTheme == AppState.THEME_INK ? 255 : AppsConfig.APP_TRANSPARENCY;
+    }
+
     public static ImageView setTintImageNoAlpha(ImageView img, int color) {
         //img.setColorFilter(color, Mode.SRC_ATOP);
         ImageViewCompat.setImageTintList(img, ColorStateList.valueOf(color));
@@ -735,12 +804,62 @@ public class TintUtil {
 
     @SuppressLint("NewApi")
     public static void setTintBgSimple(View txtView, int alpha) {
-        ColorDrawable colorDrawable = new ColorDrawable(color);
+        ColorDrawable colorDrawable = new ColorDrawable(readerPanelColor());
         colorDrawable.setAlpha(alpha);
         if (Build.VERSION.SDK_INT >= 16) {
             txtView.setBackground(colorDrawable.getCurrent());
         } else {
             txtView.setBackground(colorDrawable);
+        }
+        inkChrome(txtView);
+    }
+
+    /**
+     * A reader's bar: filled as {@link #setTintBgSimple(View, int)}, and on Ink ruled off from
+     * the page by a black line along the edge that faces it - the foot of the top bar, the
+     * head of the bottom one - as white bars on white paper would otherwise run into the page.
+     */
+    public static void setReaderBar(View bar, int alpha, boolean top) {
+        if (bar == null) {
+            return;
+        }
+        setTintBgSimple(bar, alpha);
+        ruleRoom(bar, top, isInk() ? Dips.DP_4 : 0);
+        if (!isInk()) {
+            return;
+        }
+        ColorDrawable fill = new ColorDrawable(readerPanelColor());
+        fill.setAlpha(alpha);
+        ColorDrawable rule = new ColorDrawable(Color.BLACK);
+        LayerDrawable layers = new LayerDrawable(new Drawable[]{fill, rule});
+        layers.setLayerGravity(1, (top ? Gravity.BOTTOM : Gravity.TOP) | Gravity.FILL_HORIZONTAL);
+        layers.setLayerHeight(1, Math.max(1, Dips.DP_1));
+        bar.setBackground(layers);
+    }
+
+    /**
+     * Room between a bar's buttons and the rule on its edge, so a ringed button does not sit
+     * on the line. Kept in the padding the bar is given back under the system's bars too.
+     */
+    private static void ruleRoom(View bar, boolean top, int pad) {
+        Object done = bar.getTag(R.id.inkRulePad);
+        int delta = pad - (done instanceof Integer ? (Integer) done : 0);
+        if (delta == 0) {
+            return;
+        }
+        bar.setTag(R.id.inkRulePad, pad);
+        if (top) {
+            bar.setPadding(bar.getPaddingLeft(), bar.getPaddingTop(), bar.getPaddingRight(), bar.getPaddingBottom() + delta);
+        } else {
+            bar.setPadding(bar.getPaddingLeft(), bar.getPaddingTop() + delta, bar.getPaddingRight(), bar.getPaddingBottom());
+        }
+        Object base = bar.getTag(R.id.basePadding);
+        if (base instanceof android.graphics.Rect) {
+            if (top) {
+                ((android.graphics.Rect) base).bottom += delta;
+            } else {
+                ((android.graphics.Rect) base).top += delta;
+            }
         }
     }
 

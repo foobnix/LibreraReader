@@ -821,6 +821,7 @@ public class AppState {
             isReverseKeys = true;
             isScrollAnimation = false;
             tintThemeColor = Color.BLACK;
+            transparencyUI = 255;
             bolderTextOnImage = true;
             isEnableBCOptional1 = true;
             brigtnessImage = -50;
@@ -847,6 +848,12 @@ public class AppState {
             colorNigthBg = AppState.COLOR_BLACK;
             colorNigthForeground = AppState.COLOR_NIGHT_FG;
        // }
+        // E-paper: plain white pages, no paper picture
+        if (Dips.isEInk()) {
+            isUseBGImageDay = false;
+            colorDayBg = AppState.COLOR_WHITE;
+            colorDayText = AppState.COLOR_BLACK;
+        }
     }
 
     /** Every setting in musician's mode's own settings back as it is on a first start. */

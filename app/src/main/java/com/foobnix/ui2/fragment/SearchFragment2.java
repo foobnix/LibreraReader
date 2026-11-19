@@ -352,6 +352,18 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         countBooks.setTextColor(Color.WHITE);
         TintUtil.setTintImageNoAlpha(cleanFilter, Color.WHITE);
         TintUtil.setTintImageNoAlpha(myAutoCompleteImage, Color.WHITE);
+
+        // On Ink the header is paper white (see UIFragment), and a well a shade lighter than
+        // the band would not show on it: the field is a black ring instead. The words and
+        // marks on the header are drawn black there too.
+        if (AppState.get().appTheme == AppState.THEME_INK) {
+            searchEditText.setBackgroundResource(R.drawable.bg_search_edit);
+            TintUtil.setStrokeColor(searchEditText, Color.BLACK);
+            searchEditText.setPadding(Dips.DP_15,
+                                      searchEditText.getPaddingTop(),
+                                      searchEditText.getPaddingRight(),
+                                      searchEditText.getPaddingBottom());
+        }
     }
 
     public void onGridList() {
