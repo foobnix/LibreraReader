@@ -619,7 +619,9 @@ public class DialogsPlaylist {
                 return;
             }
             dressedFor[0] = key;
-            final int ink = pill != null ? pill.getCurrentTextColor() : name.getCurrentTextColor();
+            // The colour the bar's icons and rings take, rather than a text colour read off a
+            // button that may not be coloured yet
+            final int ink = MagicHelper.getTextOrIconColor();
             button.setText(named ? shownPlaylistName : "");
             button.setTextColor(ink);
             button.setTag(R.id.pillRing, null);

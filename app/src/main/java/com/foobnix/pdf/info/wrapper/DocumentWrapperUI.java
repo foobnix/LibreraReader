@@ -1891,7 +1891,7 @@ public class DocumentWrapperUI {
         // As large as the marks of the buttons beside it, in the colour of the name
         final int size = Dips.dpToPx(24);
         icon = icon.mutate();
-        icon.setColorFilter(new PorterDuffColorFilter(button.getCurrentTextColor(), PorterDuff.Mode.SRC_IN));
+        icon.setColorFilter(new PorterDuffColorFilter(MagicHelper.getTextOrIconColor(), PorterDuff.Mode.SRC_IN));
         if (alone && ring != null) {
             final LayerDrawable layers = new LayerDrawable(new Drawable[]{(Drawable) ring, icon});
             layers.setLayerGravity(1, Gravity.CENTER);

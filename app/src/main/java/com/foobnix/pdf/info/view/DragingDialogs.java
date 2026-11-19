@@ -2762,6 +2762,12 @@ public class DragingDialogs {
             DrawPanel.stopPen(controller, drawView, onClose);
             return;
         }
+        // Opened by its button, the panel has no tool picked: the page is not drawn on until
+        // one is. Shown again in passing - put in a window, or back after a drawing - it keeps it.
+        if (!force) {
+            AppState.get().editShape = DrawPanel.NO_TOOL;
+            AppState.get().isEditShapeLocked = false;
+        }
         DrawPanel.startPen();
 
         final Runnable unpin = () -> {
