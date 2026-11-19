@@ -127,6 +127,23 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         if (clickUtils.isClickCenter(e.getX(), e.getY())) {
             docCtrl.onDoubleTap((int) e.getX(), (int) e.getY());
             // listener.onZoomInc();
+            return true;
+        }
+        // Two quick taps at an edge are two turns: the second comes as a double tap and not as a
+        // tap of its own, so it would be lost - every other tap when the screen is turned a
+        // little at a time and tapped quickly
+        if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) {
+            return true;
+        }
+        updateBorders();
+        if (clickUtils.isClickRight(e.getX(), e.getY())) {
+            docCtrl.onRightPress();
+        } else if (clickUtils.isClickLeft(e.getX(), e.getY())) {
+            docCtrl.onLeftPress();
+        } else if (clickUtils.isClickTop(e.getX(), e.getY())) {
+            docCtrl.onTopPress();
+        } else if (clickUtils.isClickBottom(e.getX(), e.getY())) {
+            docCtrl.onBottomPress();
         }
         return true;
     }

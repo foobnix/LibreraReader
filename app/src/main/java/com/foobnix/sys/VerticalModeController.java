@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.PointF;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Handler;
 import android.os.Looper;
@@ -234,7 +235,7 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public void onNextPage(final boolean animate) {
-        int page = ctr.getDocumentModel().getCurrentDocPageIndex() + 1;
+        int page = pageInMiddle() + 1;
 
         // if (AppState.get().isLoopAutoplay) {
         LOG.d("onNextPage", page, getPageCount());
@@ -242,14 +243,12 @@ public class VerticalModeController extends DocumentController {
             page = 0;
         }
         //}
-        ctr.getDocumentController().goToPage(page, animate);
-
-
+        goToPageCentered(page, animate);
     }
 
     @Override
     public void onPrevPage(final boolean animate) {
-        int page = ctr.getDocumentModel().getCurrentDocPageIndex() - 1;
+        int page = pageInMiddle() - 1;
 
         // if (AppState.get().isLoopAutoplay) {
         LOG.d("onPrevPage", page, getPageCount());
@@ -258,7 +257,56 @@ public class VerticalModeController extends DocumentController {
         }
         //}
 
-        ctr.getDocumentController().goToPage(page, animate);
+        goToPageCentered(page, animate);
+    }
+
+    /**
+     * The page across the middle of the screen: a page put in the middle with the ends of the
+     * pages either side of it showing is the one read, not the one whose end shows at the top.
+     */
+    private int pageInMiddle() {
+        final int current = ctr.getDocumentModel().getCurrentDocPageIndex();
+        try {
+            final IView view = ctr.getDocumentController().getView();
+            final float middle = view.getScrollY() + view.getHeight() / 2f;
+            final float zoom = ctr.getZoomModel().getZoom();
+            for (int i = Math.max(0, current - 2); i <= Math.min(getPageCount() - 1, current + 2); i++) {
+                final Page page = ctr.getDocumentModel().getPageObject(i);
+                if (page != null) {
+                    final RectF bounds = page.getBounds(zoom);
+                    if (bounds.top <= middle && middle < bounds.bottom) {
+                        return i;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return current;
+    }
+
+    /**
+     * Turns to a page by putting it in the middle of the screen, the end of the page before and
+     * the start of the one after showing round it; a page taller than the screen is put with its
+     * top at the top, to be read down from there.
+     */
+    private void goToPageCentered(int index, boolean animate) {
+        final Page page = index < 0 || index >= getPageCount() ? null : ctr.getDocumentModel().getPageObject(index);
+        final IView view = ctr.getDocumentController().getView();
+        if (page == null || view == null || view.getHeight() == 0) {
+            ctr.getDocumentController().goToPage(index, animate);
+            return;
+        }
+        final RectF bounds = page.getBounds(ctr.getZoomModel().getZoom());
+        final int height = view.getHeight();
+        int y = bounds.height() < height ? Math.round(bounds.centerY() - height / 2f) : Math.round(bounds.top);
+        final Rect limits = ctr.getDocumentController().getScrollLimits();
+        y = Math.max(limits.top, Math.min(limits.bottom, y));
+        if (animate) {
+            view.startPageScroll(0, y - view.getScrollY());
+        } else {
+            view.scrollTo(view.getScrollX(), y);
+        }
     }
 
     @Override
@@ -267,55 +315,56 @@ public class VerticalModeController extends DocumentController {
         ctr.getDocumentController().goToPage(page, (float) 0.25, 0);
     }
 
+    /**
+     * Musician's scroll runs round: past the end it starts again at the first page, and back
+     * past the start it goes to the last. Whether it is at the end or the start is read from
+     * where the page stands before it moves - a short scroll is still on its way a moment
+     * later, which looked like standing still and sent it back to the start.
+     */
+    private boolean musicianWrapped(boolean forward) {
+        if (AppSP.get().readingMode != AppState.READING_MODE_MUSICIAN) {
+            return false;
+        }
+        final Rect limits = ctr.getDocumentController().getScrollLimits();
+        final int y = ctr.getDocumentController().getView().getScrollY();
+        if (forward && y >= limits.bottom - 1) {
+            ctr.getDocumentController().getView().stopScroller();
+            ctr.getDocumentController().goToPage(0);
+            return true;
+        }
+        if (!forward && y <= limits.top) {
+            ctr.getDocumentController().getView().stopScroller();
+            ctr.getDocumentController().goToPage(getPageCount() - 1);
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void onNextScreen(boolean animate) {
         int nextScreenScrollBy = AppState.get().nextScreenScrollBy;
         LOG.d("nextScreenScrollBy", nextScreenScrollBy, "animate", animate);
-
-
-        int before = ctr.getDocumentController().getView().getScrollY();
+        if (musicianWrapped(true)) {
+            return;
+        }
         if (animate) {
             ctr.getDocumentController().getView().startPageScroll(0, 1 * nextScreenScrollBy * getScrollValue() / 100);
         } else {
             ctr.getDocumentController().getView().scrollBy(0, 1 * nextScreenScrollBy * getScrollValue() / 100);
         }
-
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                int after = ctr.getDocumentController().getView().getScrollY();
-                if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
-                    ctr.getDocumentController().getView().stopScroller();
-                    ctr.getDocumentController().goToPage(0);
-                }
-            }
-        }, 100);
-
-
     }
 
     @Override
     public void onPrevScreen(boolean animate) {
         int nextScreenScrollBy = AppState.get().nextScreenScrollBy;
-        int before = ctr.getDocumentController().getView().getScrollY();
-
+        if (musicianWrapped(false)) {
+            return;
+        }
         if (animate) {
             ctr.getDocumentController().getView().startPageScroll(0, -1 * nextScreenScrollBy * getScrollValue() / 100);
         } else {
             ctr.getDocumentController().getView().scrollBy(0, -1 * nextScreenScrollBy * getScrollValue() / 100);
         }
-
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                int after = ctr.getDocumentController().getView().getScrollY();
-                LOG.d(" before == after", before, after);
-                if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
-                    ctr.getDocumentController().getView().stopScroller();
-                    ctr.getDocumentController().goToPage(getPageCount() - 1);
-                }
-            }
-        }, 100);
     }
 
     @Override
@@ -786,11 +835,21 @@ public class VerticalModeController extends DocumentController {
 
         //ctr.getDocumentController().goToPage(curentPage, 0, 0);
         ctr.getDocumentController().goToPageAndCenter(curentPage);
-        //ctr.getDocumentController().goToPageAndCenter(curentPage);
 
-
-        //ctr.getDocumentController().toggleRenderingEffects();
+        // The zoom and the jump each lay out what is on screen, and the pages that come into view
+        // between them - the end of the page above - were left undrawn: once both have settled,
+        // every page on screen is drawn again
+        handler.removeCallbacks(redrawAfterAlign);
+        handler.postDelayed(redrawAfterAlign, 300);
     }
+
+    private final Runnable redrawAfterAlign = () -> {
+        try {
+            ctr.getDocumentController().toggleRenderingEffects();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    };
 
     @Override
     public void centerHorizontal() {
