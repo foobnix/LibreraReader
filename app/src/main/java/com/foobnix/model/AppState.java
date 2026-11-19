@@ -525,6 +525,8 @@ public class AppState {
     // Musician's tap zones where the user put them: the left one, then the right one, each as x, y,
     // width and height in fractions of the space under the title bar; empty for where they start
     @IgnoreHashCode public String musicTapZones = "";
+    // The same, kept apart for the screen turned on its side
+    @IgnoreHashCode public String musicTapZonesLandscape = "";
     // Musician's own settings, behind the round button on its title row with the panels up:
     // the size of its name button (and of the close button and page slider that take its
     // height), one of MUSIC_BUTTON_*; whether the page slider stands beside it with the panels
@@ -852,6 +854,7 @@ public class AppState {
         musicSpeedLineWidth = 2;
         musicTapZoneLineWidth = 2;
         musicTapZones = "";
+        musicTapZonesLandscape = "";
         isShowLastPageRed = false;
         isShowLineDividing = false;
     }

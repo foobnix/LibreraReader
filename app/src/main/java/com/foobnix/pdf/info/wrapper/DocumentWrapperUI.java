@@ -1133,6 +1133,12 @@ public class DocumentWrapperUI {
         zoomMinus.setOnClickListener(onMinus);
 
         tapZones = a.findViewById(R.id.tapZones);
+        // Turned, the zones the screen keeps for the other way are put in place
+        tapZones.addOnLayoutChangeListener((v, l, t, r, b, ol, ot, or, ob) -> {
+            if (r - l > 0 && b - t > 0 && (r - l > b - t) != tapZonesLandscape) {
+                layoutTapZones();
+            }
+        });
         line1 = a.findViewById(R.id.line1);
         line1.setOnClickListener(onPrevPage);
         line1.setOnTouchListener(new TapZoneDrag());
@@ -2535,15 +2541,21 @@ public class DocumentWrapperUI {
             if (w == 0 || h == 0) {
                 return;
             }
-            final float[] zones = tapZoneFractions(h);
+            tapZonesLandscape = w > h;
+            final float[] zones = tapZoneFractions(h, tapZonesLandscape);
             placeTapZone(line1, zones, 0, w, h);
             placeTapZone(line2, zones, 4, w, h);
         });
     }
 
-    private static float[] tapZoneFractions(int height) {
+    // Which way the screen was turned when the tap zones were last put in place: each way keeps
+    // its own, and they are put in place again on a turn
+    private boolean tapZonesLandscape;
+
+    private static float[] tapZoneFractions(int height, boolean landscape) {
         try {
-            final String[] saved = AppState.get().musicTapZones.split(",");
+            final String[] saved = (landscape ? AppState.get().musicTapZonesLandscape
+                    : AppState.get().musicTapZones).split(",");
             if (saved.length == 8) {
                 final float[] zones = new float[8];
                 for (int i = 0; i < 8; i++) {
@@ -2585,7 +2597,11 @@ public class DocumentWrapperUI {
                 zones.append(zones.length() == 0 ? "" : ",").append(value);
             }
         }
-        AppState.get().musicTapZones = zones.toString();
+        if (w > h) {
+            AppState.get().musicTapZonesLandscape = zones.toString();
+        } else {
+            AppState.get().musicTapZones = zones.toString();
+        }
     }
 
     /**
