@@ -63,6 +63,9 @@ public class SelfTestWorker extends MessageWorker {
     private static final String KEY_FRESH = "fresh";
     private static final String KEY_LOG = "log";
     private static final String KEY_NEXT = "next";
+    // The book to go on from, by its path: the library is listed again on a resume and may
+    // have changed - a scan still going adds books - so a place by number alone can drift
+    private static final String KEY_NEXT_PATH = "next_path";
     private static final String KEY_OPENING = "opening";
     private static final String KEY_ERRORS = "errors";
     private static final String KEY_BEGIN = "begin";
@@ -190,6 +193,23 @@ public class SelfTestWorker extends MessageWorker {
         final String name = path.toLowerCase(java.util.Locale.US);
         final int dot = name.lastIndexOf('.');
         return dot >= 0 && dot > name.lastIndexOf('/') ? name.substring(dot + 1) : "?";
+    }
+
+    private static int indexOf(List<FileMeta> all, String path) {
+        if (path == null) {
+            return -1;
+        }
+        for (int i = 0; i < all.size(); i++) {
+            if (path.equals(all.get(i).getPath())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /** Whether a run is going, to keep the screen on in the library meanwhile. */
+    public static androidx.lifecycle.LiveData<List<androidx.work.WorkInfo>> watch(Context c) {
+        return androidx.work.WorkManager.getInstance(c).getWorkInfosForUniqueWorkLiveData(WORKER_NAME);
     }
 
     private static void problem(SharedPreferences sp, String what, String path) {
@@ -472,6 +492,7 @@ public class SelfTestWorker extends MessageWorker {
               .putBoolean(KEY_FRESH, false)
               .putString(KEY_LOG, logFile.getPath())
               .putInt(KEY_NEXT, 0)
+              .remove(KEY_NEXT_PATH)
               .putInt(KEY_ERRORS, 0)
               .putLong(KEY_BEGIN, begin)
               .remove(KEY_OPENING)
@@ -483,11 +504,20 @@ public class SelfTestWorker extends MessageWorker {
         } else {
             logFile = new File(sp.getString(KEY_LOG, ""));
             start = sp.getInt(KEY_NEXT, 0);
+            final int found = indexOf(all, sp.getString(KEY_NEXT_PATH, null));
+            if (found >= 0) {
+                start = found;
+            }
             errors = sp.getInt(KEY_ERRORS, 0);
             begin = sp.getLong(KEY_BEGIN, System.currentTimeMillis());
         }
 
         BufferedWriter out = new BufferedWriter(new FileWriter(logFile, !fresh));
+        // The run goes on with the screen off; the library keeps the screen on while it is open
+        final android.os.PowerManager.WakeLock wakeLock = ((android.os.PowerManager) getApplicationContext()
+                .getSystemService(Context.POWER_SERVICE)).newWakeLock(android.os.PowerManager.PARTIAL_WAKE_LOCK,
+                "Librera:SelfTest");
+        wakeLock.acquire(60 * 60 * 1000L);
         // The engines chosen in the dialog, for this thread only
         Engines.TEST_ENGINES.set(new int[]{sp.getInt(KEY_PDF_ENGINE, AppState.PDF_ENGINE_MUPDF),
                 sp.getInt(KEY_EPUB_ENGINE, AppState.EPUB_ENGINE_MUPDF)});
@@ -515,11 +545,13 @@ public class SelfTestWorker extends MessageWorker {
                     errors++;
                     count(sp, crashed, CRASHES);
                     problem(sp, "CRASH", crashed);
-                    start++;
+                    final int at = indexOf(all, crashed);
+                    start = (at >= 0 ? at : start) + 1;
                     final String list = sp.getString(KEY_CRASHED, "");
                     sp.edit()
                       .remove(KEY_OPENING)
                       .putInt(KEY_NEXT, start)
+                      .putString(KEY_NEXT_PATH, start < count ? all.get(start).getPath() : null)
                       .putInt(KEY_ERRORS, errors)
                       .putString(KEY_CRASHED, list + crashed + "\n")
                       .commit();
@@ -540,11 +572,15 @@ public class SelfTestWorker extends MessageWorker {
                 if (TxtUtils.isEmpty(path)
                         || (ExtUtils.isZip(path) && !CacheZipUtils.isSingleAndSupportEntry(path).first)) {
                     writeLine(out, "Skip");
-                    sp.edit().putInt(KEY_NEXT, n + 1).putInt(KEY_SKIPPED, sp.getInt(KEY_SKIPPED, 0) + 1).commit();
+                    sp.edit()
+                      .putInt(KEY_NEXT, n + 1)
+                      .putString(KEY_NEXT_PATH, n + 1 < count ? all.get(n + 1).getPath() : null)
+                      .putInt(KEY_SKIPPED, sp.getInt(KEY_SKIPPED, 0) + 1)
+                      .commit();
                     continue;
                 }
                 sendTextMessage((n + 1) + "/" + count);
-                sp.edit().putString(KEY_OPENING, path).putInt(KEY_NEXT, n).commit();
+                sp.edit().putString(KEY_OPENING, path).putInt(KEY_NEXT, n).putString(KEY_NEXT_PATH, path).commit();
 
                 // Native heap once the book is let go of: growing from book to book is a leak
                 final String result = testBook(sp, path, w, h, s)
@@ -562,7 +598,12 @@ public class SelfTestWorker extends MessageWorker {
                     problem(sp, result.startsWith("Error: no pages") ? "0 pages" : result.replaceAll(" nativeMB=\\d+$", ""), path);
                 }
                 writeLine(out, result);
-                sp.edit().remove(KEY_OPENING).putInt(KEY_NEXT, n + 1).putInt(KEY_ERRORS, errors).commit();
+                sp.edit()
+                  .remove(KEY_OPENING)
+                  .putInt(KEY_NEXT, n + 1)
+                  .putString(KEY_NEXT_PATH, n + 1 < count ? all.get(n + 1).getPath() : null)
+                  .putInt(KEY_ERRORS, errors)
+                  .commit();
             }
 
             final String summary = summary(sp, count, (System.currentTimeMillis() - begin) / 1000L, logFile);
@@ -574,6 +615,9 @@ public class SelfTestWorker extends MessageWorker {
                     .sendBroadcast(new android.content.Intent(ACTION_FINISHED));
         } finally {
             Engines.TEST_ENGINES.remove();
+            if (wakeLock.isHeld()) {
+                wakeLock.release();
+            }
             out.close();
         }
 

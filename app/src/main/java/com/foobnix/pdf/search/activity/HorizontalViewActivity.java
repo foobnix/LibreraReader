@@ -275,6 +275,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        // Started again with no book - as Android can, bringing the task back after the app
+        // went down - there is nothing to show: everything below reads the book from the intent
+        if (getIntent() == null || getIntent().getData() == null) {
+            super.onCreate(savedInstanceState);
+            finish();
+            return;
+        }
         finishOtherViewer(this, VerticalViewActivity.class);
         quickBookmark = getString(R.string.fast_bookmark);
         LOG.d("getRequestedOrientation", AppState.get().orientation, getRequestedOrientation());

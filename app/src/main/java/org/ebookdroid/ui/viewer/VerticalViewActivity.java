@@ -100,6 +100,12 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
+        // Started again with no book, as after the app went down: nothing to show
+        if (getIntent() == null || getIntent().getData() == null) {
+            super.onCreate(savedInstanceState);
+            finish();
+            return;
+        }
         finishOtherViewer(this, HorizontalViewActivity.class);
         DocumentController.doRotation(this);
         DocumentController.doContextMenu(this);

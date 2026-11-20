@@ -133,6 +133,8 @@ public class MainTabs2 extends AdsFragmentActivity {
     public static String EXTRA_SEACH_TEXT = "EXTRA_SEACH_TEXT";
     public static String EXTRA_NOTIFY_REFRESH = "EXTRA_NOTIFY_REFRESH";
     public boolean isEink = false;
+    // A self test is running: the screen is kept on meanwhile
+    private boolean selfTestRunning = false;
     ViewPager pager;
     List<UIFragment> tabFragments;
     TabsAdapter2 adapter;
@@ -686,6 +688,25 @@ public class MainTabs2 extends AdsFragmentActivity {
         DocumentController.doContextMenu(this);
 
         setContentView(R.layout.main_tabs);
+        // A self test running: the screen stays on while the library is open, so it is not
+        // put to sleep part way through a long run
+        com.foobnix.work.SelfTestWorker.watch(this).observe(this, infos -> {
+            boolean running = false;
+            if (infos != null) {
+                for (androidx.work.WorkInfo info : infos) {
+                    if (info.getState() == androidx.work.WorkInfo.State.RUNNING
+                            || info.getState() == androidx.work.WorkInfo.State.ENQUEUED) {
+                        running = true;
+                    }
+                }
+            }
+            selfTestRunning = running;
+            if (running) {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            } else if (!Dips.isEInk()) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            }
+        });
         // With the tabs floating at the foot, the headers float at the top too: the page
         // runs the whole height of the screen and they are drawn over it.
         // The page runs the whole height of the screen either way: the chrome floats over
@@ -1168,7 +1189,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         AppsConfig.isCloudsEnable = false;
 
         LOG.d(TAG, "onResume");
-        if (Dips.isEInk()) {
+        if (Dips.isEInk() || selfTestRunning) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         } else {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);

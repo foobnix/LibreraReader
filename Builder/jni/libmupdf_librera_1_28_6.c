@@ -1367,7 +1367,8 @@ JNIEXPORT jobject
     fz_context* ctx = doc_t->ctx;
     fz_document* doc = doc_t->document;
 
-    if (!ctx || !doc || !page) {
+    /* A page that failed to load has no fz_page: MuPDF then gives no text page at all */
+    if (!ctx || !doc || !page || !page->page) {
         return NULL;
     }
 
@@ -1400,7 +1401,7 @@ JNIEXPORT jobject
         fz_stext_options opts;
         stext = fz_new_stext_page_from_page(ctx, page->page, NULL);
 
-        for (fz_stext_block* block = stext->first_block; block; block = block->next) {
+        for (fz_stext_block* block = stext ? stext->first_block : NULL; block; block = block->next) {
             if (block->type == FZ_STEXT_BLOCK_TEXT) {
                 for (fz_stext_line* line = block->u.t.first_line; line; line = line->next) {
                     for (fz_stext_char* ch = line->first_char; ch; ch = ch->next) {
@@ -2447,7 +2448,8 @@ JNIEXPORT jbyteArray
     fz_document* doc = doc_t->document;
     pdf_document* idoc = pdf_specifics(ctx, doc);
 
-    if (!ctx || !doc || !page) {
+    /* A page that failed to load has no fz_page to take text from */
+    if (!ctx || !doc || !page || !page->page) {
         return NULL;
     }
 
