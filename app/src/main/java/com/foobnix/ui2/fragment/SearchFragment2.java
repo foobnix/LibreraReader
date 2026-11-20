@@ -486,6 +486,15 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 ((MainTabs2) getActivity()).showLibraryFolders();
             }
         });
+        // With "Testing books" on, a long press opens the self test: what to test, then every
+        // book of the library opened in turn, the result logged to the test folder
+        view.findViewById(R.id.onUpdateLibrary).setOnLongClickListener(v -> {
+            if (!AppState.get().isShowTestBooks) {
+                return false;
+            }
+            com.foobnix.work.SelfTestWorker.showDialog(getActivity());
+            return true;
+        });
 
         sortBy.setOnClickListener(new OnClickListener() {
 

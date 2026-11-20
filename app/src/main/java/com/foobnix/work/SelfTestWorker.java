@@ -1,6 +1,7 @@
 package com.foobnix.work;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.RectF;
 import android.os.Build;
 
@@ -14,24 +15,24 @@ import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.model.AppBook;
-import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
+import org.ebookdroid.common.settings.books.SharedBooks;
+import org.ebookdroid.common.settings.SettingsManager;
+import com.foobnix.pdf.info.BookmarksData;
+import com.foobnix.model.SimpleMeta;
+import com.foobnix.model.AppBookmark;
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
-import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.BookmarksData;
+import com.foobnix.pdf.info.Engines;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.bitmaps.BitmapRef;
-import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.CodecContext;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
@@ -42,7 +43,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SelfTestWorker extends MessageWorker {
@@ -55,16 +55,397 @@ public class SelfTestWorker extends MessageWorker {
         super(context, workerParams);
     }
 
+    public static final String WORKER_NAME = "SelfTestWorker";
+
+    // Where a run stands, kept across the worker being stopped (WorkManager stops a worker
+    // after ten minutes and starts it again later) and across the app dying on a book
+    private static final String PREFS = "SelfTestWorker";
+    private static final String KEY_FRESH = "fresh";
+    private static final String KEY_LOG = "log";
+    private static final String KEY_NEXT = "next";
+    private static final String KEY_OPENING = "opening";
+    private static final String KEY_ERRORS = "errors";
+    private static final String KEY_BEGIN = "begin";
+
+    // What a run does with each book, chosen in the dialog. The first ones only read the book;
+    // the last ones write to the library and are off unless asked for.
+    private static final String[] OPTION_KEYS = {"opt_render", "opt_text", "opt_outline", "opt_annotations",
+            "opt_recent", "opt_favorite", "opt_bookmarks", "opt_progress", "opt_all_pages"};
+    private static final String[] OPTION_NAMES = {"Render first 2 pages", "Read text, links, HTML of first 2 pages",
+            "Read outline (contents)", "Read PDF annotations",
+            "Add every book to Recent", "Add every book to Favorites", "Add 5 bookmarks to every book",
+            "Save reading progress (last page)", "Render EVERY page (slow, finds more crashes)"};
+    private static final boolean[] OPTION_DEFAULTS = {true, true, true, true, false, false, false, false, false};
+    private static final int OPT_ALL_PAGES = 8;
+
+    // The engines to open books with: an AppState engine constant, or -1 for the reader's
+    // setting. MuPDF by default, as checking a new MuPDF is what the test is mostly for.
+    private static final String KEY_PDF_ENGINE = "pdf_engine";
+    private static final String KEY_EPUB_ENGINE = "epub_engine";
+    private static final int[] PDF_ENGINES = {-1, AppState.PDF_ENGINE_MUPDF, AppState.PDF_ENGINE_PDFIUM};
+    private static final String[] PDF_ENGINE_NAMES = {"As in settings", "MuPDF", "PDFium"};
+    private static final int[] EPUB_ENGINES = {-1, AppState.EPUB_ENGINE_MUPDF, AppState.EPUB_ENGINE_FOLIATE};
+    private static final String[] EPUB_ENGINE_NAMES = {"As in settings", "MuPDF", "HTML+JS (foliate)"};
+    // Books the app went down on, for the summary at the end
+    private static final String KEY_CRASHED = "crashed";
+    // Per format counts, kept across resumes: {"pdf":[tested, ok, zeroPages, errors, crashes], ...}
+    private static final String KEY_STATS = "stats";
+    private static final String KEY_SKIPPED = "skipped";
+    // The summary of the last finished run, waiting to be shown in the library
+    private static final String KEY_SUMMARY = "summary";
+    private static final String KEY_SUMMARY_PENDING = "summary_pending";
+    // The books that failed, one per line: "<what>\t<path>", to be opened from the summary
+    private static final String KEY_PROBLEMS = "problems";
+    // How many books of the library to test, from the top; 0 for all of them
+    private static final String KEY_LIMIT = "limit";
+    private static final int[] LIMITS = {50, 100, 0};
+    private static final String[] LIMIT_NAMES = {"50", "100", "All"};
+    public static final String ACTION_FINISHED = "com.foobnix.work.SelfTestWorker.FINISHED";
+    private static final int TESTED = 0, OK = 1, ZERO = 2, ERRORS = 3, CRASHES = 4;
+
+    private static boolean option(SharedPreferences sp, int i) {
+        return sp.getBoolean(OPTION_KEYS[i], OPTION_DEFAULTS[i]);
+    }
+
+    /** The self test's own dialog: engines, what to test, then Start. Internal, so in English only. */
+    public static void showDialog(final android.app.Activity a) {
+        final SharedPreferences sp = a.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        final int pad = Dips.dpToPx(20);
+        final android.widget.LinearLayout root = new android.widget.LinearLayout(a);
+        root.setOrientation(android.widget.LinearLayout.VERTICAL);
+        root.setPadding(pad, Dips.dpToPx(8), pad, 0);
+
+        final android.widget.RadioGroup pdf = engineGroup(a, root, "PDF engine", PDF_ENGINES, PDF_ENGINE_NAMES,
+                sp.getInt(KEY_PDF_ENGINE, AppState.PDF_ENGINE_MUPDF), 0);
+        final android.widget.RadioGroup epub = engineGroup(a, root, "EPUB, FB2, MOBI... engine", EPUB_ENGINES, EPUB_ENGINE_NAMES,
+                sp.getInt(KEY_EPUB_ENGINE, AppState.EPUB_ENGINE_MUPDF), 0);
+
+        final android.widget.RadioGroup limit = engineGroup(a, root, "Books to test, from the top of the library",
+                LIMITS, LIMIT_NAMES, sp.getInt(KEY_LIMIT, 0), LIMITS.length - 1);
+        limit.setOrientation(android.widget.RadioGroup.HORIZONTAL);
+
+        final android.widget.TextView checksTitle = new android.widget.TextView(a);
+        checksTitle.setText("Checks");
+        checksTitle.setTypeface(null, android.graphics.Typeface.BOLD);
+        checksTitle.setPadding(0, Dips.dpToPx(12), 0, 0);
+        root.addView(checksTitle);
+        final android.widget.CheckBox[] boxes = new android.widget.CheckBox[OPTION_KEYS.length];
+        for (int i = 0; i < OPTION_KEYS.length; i++) {
+            boxes[i] = new android.widget.CheckBox(a);
+            boxes[i].setText(OPTION_NAMES[i]);
+            boxes[i].setChecked(option(sp, i));
+            root.addView(boxes[i]);
+        }
+        // The runs before, newest first: a tap shows the result and the books that failed
+        final List<File> logs = previousLogs();
+        if (!logs.isEmpty()) {
+            final android.widget.TextView prevTitle = new android.widget.TextView(a);
+            prevTitle.setText("Previous results");
+            prevTitle.setTypeface(null, android.graphics.Typeface.BOLD);
+            prevTitle.setPadding(0, Dips.dpToPx(12), 0, 0);
+            root.addView(prevTitle);
+            for (int i = 0; i < logs.size() && i < 15; i++) {
+                final File log = logs.get(i);
+                final Object[] read = readLog(log);
+                final android.widget.TextView row = new android.widget.TextView(a);
+                row.setText(logTitle(log) + "\n" + read[2]);
+                row.setTextColor(0xFF2196F3);
+                row.setPadding(0, Dips.dpToPx(8), 0, Dips.dpToPx(8));
+                row.setOnClickListener(v -> {
+                    @SuppressWarnings("unchecked") final List<String[]> problems = (List<String[]>) read[1];
+                    showResult(a, logTitle(log), (String) read[0], problems);
+                });
+                root.addView(row);
+            }
+        }
+        final android.widget.ScrollView scroll = new android.widget.ScrollView(a);
+        scroll.addView(root);
+
+        new android.app.AlertDialog.Builder(a)
+                .setTitle("Self test: open every book of the library")
+                .setView(scroll)
+                .setPositiveButton("Start", (dialog, which) -> {
+                    SharedPreferences.Editor edit = sp.edit();
+                    for (int i = 0; i < boxes.length; i++) {
+                        edit.putBoolean(OPTION_KEYS[i], boxes[i].isChecked());
+                    }
+                    edit.putInt(KEY_LIMIT, LIMITS[limit.getCheckedRadioButtonId()]);
+                    edit.putInt(KEY_PDF_ENGINE, PDF_ENGINES[pdf.getCheckedRadioButtonId()]);
+                    edit.putInt(KEY_EPUB_ENGINE, EPUB_ENGINES[epub.getCheckedRadioButtonId()]);
+                    edit.commit();
+                    run(a);
+                    android.widget.Toast.makeText(a, "Self test started, log: " + AppProfile.syncTestFolder,
+                                                  android.widget.Toast.LENGTH_LONG).show();
+                })
+                .setNeutralButton("Stop", (dialog, which) -> {
+                    androidx.work.WorkManager.getInstance(a).cancelUniqueWork(WORKER_NAME);
+                    sp.edit().putBoolean(KEY_FRESH, true).commit();
+                    android.widget.Toast.makeText(a, "Self test stopped", android.widget.Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private static String formatOf(String path) {
+        final String name = path.toLowerCase(java.util.Locale.US);
+        final int dot = name.lastIndexOf('.');
+        return dot >= 0 && dot > name.lastIndexOf('/') ? name.substring(dot + 1) : "?";
+    }
+
+    private static void problem(SharedPreferences sp, String what, String path) {
+        sp.edit().putString(KEY_PROBLEMS, sp.getString(KEY_PROBLEMS, "") + what + "\t" + path + "\n").commit();
+    }
+
+    private static void count(SharedPreferences sp, String path, int what) {
+        try {
+            final org.json.JSONObject stats = new org.json.JSONObject(sp.getString(KEY_STATS, "{}"));
+            final String format = formatOf(path);
+            org.json.JSONArray row = stats.optJSONArray(format);
+            if (row == null) {
+                row = new org.json.JSONArray("[0,0,0,0,0]");
+            }
+            if (what != CRASHES) {
+                row.put(TESTED, row.getInt(TESTED) + 1);
+            }
+            row.put(what, row.getInt(what) + 1);
+            stats.put(format, row);
+            sp.edit().putString(KEY_STATS, stats.toString()).commit();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    /** The run in numbers: per format, then in all. */
+    private static String summary(SharedPreferences sp, int count, long seconds, File log) {
+        final StringBuilder b = new StringBuilder();
+        int[] total = new int[5];
+        try {
+            final org.json.JSONObject stats = new org.json.JSONObject(sp.getString(KEY_STATS, "{}"));
+            final List<String> formats = new java.util.ArrayList<>();
+            for (java.util.Iterator<String> it = stats.keys(); it.hasNext(); ) {
+                formats.add(it.next());
+            }
+            java.util.Collections.sort(formats);
+            for (String format : formats) {
+                final org.json.JSONArray row = stats.getJSONArray(format);
+                b.append(format.toUpperCase(java.util.Locale.US)).append(": ").append(row.getInt(TESTED)).append(" books");
+                b.append(" (OK ").append(row.getInt(OK));
+                if (row.getInt(ZERO) > 0) {
+                    b.append(", 0 pages ").append(row.getInt(ZERO));
+                }
+                if (row.getInt(ERRORS) > 0) {
+                    b.append(", errors ").append(row.getInt(ERRORS));
+                }
+                if (row.getInt(CRASHES) > 0) {
+                    b.append(", CRASHES ").append(row.getInt(CRASHES));
+                }
+                b.append(")\n");
+                for (int i = 0; i < total.length; i++) {
+                    total[i] += row.getInt(i);
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        b.append("\nLibrary: ").append(count).append(", tested ").append(total[TESTED])
+         .append(", skipped ").append(sp.getInt(KEY_SKIPPED, 0)).append("\n");
+        b.append("OK: ").append(total[OK]).append("\n");
+        b.append("0 pages: ").append(total[ZERO]).append("\n");
+        b.append("Errors: ").append(total[ERRORS]).append("\n");
+        b.append("Crashes: ").append(total[CRASHES]).append("\n");
+        final String crashed = sp.getString(KEY_CRASHED, "");
+        if (TxtUtils.isNotEmpty(crashed)) {
+            for (String line : crashed.split("\n")) {
+                if (TxtUtils.isNotEmpty(line.trim())) {
+                    b.append(line.trim()).append("\n");
+                }
+            }
+        }
+        b.append("Time: ").append(seconds / 60).append(" min ").append(seconds % 60).append(" s\n");
+        b.append("Log: ").append(log.getPath());
+        return b.toString();
+    }
+
+    /** The summary of a finished run, shown once, in the library. */
+    public static void showSummaryIfReady(final android.app.Activity a) {
+        final SharedPreferences sp = a.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        if (!sp.getBoolean(KEY_SUMMARY_PENDING, false) || a.isFinishing()) {
+            return;
+        }
+        sp.edit().putBoolean(KEY_SUMMARY_PENDING, false).commit();
+        showSummary(a);
+    }
+
+    /**
+     * The last run's numbers, and under them every book that failed: a tap opens it in the
+     * reader, to see for oneself what goes wrong.
+     */
+    public static void showSummary(final android.app.Activity a) {
+        final SharedPreferences sp = a.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        final List<String[]> problems = new java.util.ArrayList<>();
+        for (String line : sp.getString(KEY_PROBLEMS, "").split("\n")) {
+            final int tab = line.indexOf('\t');
+            if (tab > 0) {
+                problems.add(new String[]{line.substring(0, tab).trim(), line.substring(tab + 1).trim()});
+            }
+        }
+        showResult(a, "Self test result", sp.getString(KEY_SUMMARY, "No finished run yet"), problems);
+    }
+
+    /** A result: its numbers, and the books that failed, each opened in the reader by a tap. */
+    private static void showResult(final android.app.Activity a, String title, String text, final List<String[]> problems) {
+        final android.widget.TextView header = new android.widget.TextView(a);
+        final int pad = Dips.dpToPx(20);
+        header.setPadding(pad, Dips.dpToPx(8), pad, Dips.dpToPx(8));
+        header.setTextIsSelectable(true);
+        header.setText(text + (problems.isEmpty() ? "" : "\n\nTap a book to open it:"));
+
+        final android.widget.ListView list = new android.widget.ListView(a);
+        list.addHeaderView(header, null, false);
+        final List<String> rows = new java.util.ArrayList<>();
+        for (String[] p : problems) {
+            rows.add(p[0] + "\n" + new File(p[1]).getName());
+        }
+        list.setAdapter(new android.widget.ArrayAdapter<>(a, android.R.layout.simple_list_item_1, rows));
+        list.setOnItemClickListener((parent, view, position, id) -> {
+            final int index = position - list.getHeaderViewsCount();
+            if (index >= 0 && index < problems.size()) {
+                ExtUtils.openFile(a, new FileMeta(problems.get(index)[1]));
+            }
+        });
+        new android.app.AlertDialog.Builder(a)
+                .setTitle(title)
+                .setView(list)
+                .setPositiveButton("Close", null)
+                .show();
+    }
+
+    /** The logs of earlier runs, newest first. */
+    private static List<File> previousLogs() {
+        final List<File> logs = new java.util.ArrayList<>();
+        final File[] files = AppProfile.syncTestFolder == null ? null : AppProfile.syncTestFolder.listFiles();
+        if (files != null) {
+            for (File f : files) {
+                if (f.isFile() && f.getName().endsWith(".txt")) {
+                    logs.add(f);
+                }
+            }
+        }
+        java.util.Collections.sort(logs, (x, y) -> Long.compare(y.lastModified(), x.lastModified()));
+        return logs;
+    }
+
+    /**
+     * What a log says, read back: the summary of a run that finished, or the numbers so far
+     * of one that did not, and every book that failed. Logs of older versions read the same.
+     */
+    private static Object[] readLog(File log) {
+        final List<String[]> problems = new java.util.ArrayList<>();
+        final StringBuilder summary = new StringBuilder();
+        int ok = 0, failed = 0, skipped = 0, crashes = 0;
+        String lastPath = null, stopped = null;
+        boolean inSummary = false;
+        try (java.io.BufferedReader in = new java.io.BufferedReader(new java.io.FileReader(log))) {
+            String line;
+            while ((line = in.readLine()) != null) {
+                if (inSummary) {
+                    summary.append(line).append("\n");
+                    continue;
+                }
+                if (line.equals("[Summary]")) {
+                    inSummary = true;
+                } else if (line.matches("^\\d+:/.*")) {
+                    lastPath = line.substring(line.indexOf(':') + 1);
+                } else if (line.startsWith("OK")) {
+                    ok++;
+                } else if (line.equals("Skip") || line.startsWith("Password")) {
+                    skipped++;
+                } else if (line.startsWith("Error") && lastPath != null) {
+                    failed++;
+                    final String what = line.replaceAll(" nativeMB=\\d+$", "");
+                    problems.add(new String[]{what.startsWith("Error: no pages") ? "0 pages" : what, lastPath});
+                } else if (line.startsWith("Crashed: ")) {
+                    crashes++;
+                    problems.add(new String[]{"CRASH", line.substring("Crashed: ".length())});
+                } else if (line.startsWith("[Stopped")) {
+                    stopped = line;
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        final String text;
+        final String brief;
+        if (summary.length() > 0) {
+            text = summary.toString().trim();
+            brief = "OK " + ok + ", failed " + failed + ", crashes " + crashes;
+        } else {
+            text = "Not finished" + (stopped != null ? " " + stopped : "") + "\n\nOK: " + ok + "\nFailed: " + failed
+                    + "\nCrashes: " + crashes + "\nSkipped: " + skipped + "\nLog: " + log.getPath();
+            brief = "not finished, OK " + ok + ", failed " + failed + ", crashes " + crashes;
+        }
+        return new Object[]{text, problems, brief};
+    }
+
+    /** "2026-11-20 09:37, 10.1.7, MuPDF 1.28.6" from a log's name and time. */
+    private static String logTitle(File log) {
+        final String when = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.US)
+                .format(new java.util.Date(log.lastModified()));
+        // <app>_<version>_<mupdf>t+_<millis>.txt
+        final String[] parts = log.getName().replace(".txt", "").split("_");
+        if (parts.length >= 4) {
+            return when + ", " + parts[parts.length - 3] + ", MuPDF " + parts[parts.length - 2].replace("t+", "");
+        }
+        return when + ", " + log.getName();
+    }
+
+    /** A titled row of radio buttons, one per value; a button's id is its index. */
+    private static android.widget.RadioGroup engineGroup(Context c, android.widget.LinearLayout root, String title,
+                                                         int[] engines, String[] names, int selected, int fallback) {
+        final android.widget.TextView label = new android.widget.TextView(c);
+        label.setText(title);
+        label.setTypeface(null, android.graphics.Typeface.BOLD);
+        label.setPadding(0, Dips.dpToPx(12), 0, 0);
+        root.addView(label);
+        final android.widget.RadioGroup group = new android.widget.RadioGroup(c);
+        group.setOrientation(android.widget.RadioGroup.VERTICAL);
+        for (int i = 0; i < engines.length; i++) {
+            final android.widget.RadioButton button = new android.widget.RadioButton(c);
+            button.setId(i);
+            button.setText(names[i]);
+            group.addView(button);
+            if (engines[i] == selected) {
+                group.check(i);
+            }
+        }
+        // A value stored that is no longer offered (a count typed in before)
+        if (group.getCheckedRadioButtonId() == -1) {
+            group.check(fallback);
+        }
+        root.addView(group);
+        return group;
+    }
+
+    /**
+     * Opens every book of the library in turn and writes what it finds - pages, outline,
+     * links, text of the first pages - to a log in the test folder. The library is only
+     * changed where the dialog asked for it. Started again, the run before is given up and a
+     * new one begins.
+     */
+    public static void run(Context context) {
+        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().putBoolean(KEY_FRESH, true).commit();
+        androidx.work.OneTimeWorkRequest request =
+                new androidx.work.OneTimeWorkRequest.Builder(SelfTestWorker.class).build();
+        androidx.work.WorkManager.getInstance(context)
+                                 .enqueueUniqueWork(WORKER_NAME, androidx.work.ExistingWorkPolicy.REPLACE, request);
+    }
+
     @Override
     public boolean doWorkInner() throws IOException {
         TempHolder.get().loadingCancelled.set(false);
-        long begin = System.currentTimeMillis();
         AppProfile.init(getApplicationContext());
         AppProfile.syncTestFolder.mkdirs();
-        File logFile = AppData.getTestFileName();
-        logFile.delete();
-
-        BufferedWriter out = new BufferedWriter(new FileWriter(logFile));
+        final SharedPreferences sp = getApplicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
 
         List<FileMeta>
                 all =
@@ -73,10 +454,134 @@ public class SelfTestWorker extends MessageWorker {
         int w = Dips.screenWidth();
         int h = Dips.screenHeight();
         int s = BookCSS.get().fontSizeSp;
-        int count = all.size();
-        int n = 0;
-        int errors = 0;
+        final int limit = sp.getInt(KEY_LIMIT, 0);
+        int count = limit > 0 ? Math.min(limit, all.size()) : all.size();
 
+        final boolean fresh = sp.getBoolean(KEY_FRESH, true) || TxtUtils.isEmpty(sp.getString(KEY_LOG, null));
+        File logFile;
+        int start;
+        int errors;
+        long begin;
+        if (fresh) {
+            logFile = AppData.getTestFileName();
+            logFile.delete();
+            start = 0;
+            errors = 0;
+            begin = System.currentTimeMillis();
+            sp.edit()
+              .putBoolean(KEY_FRESH, false)
+              .putString(KEY_LOG, logFile.getPath())
+              .putInt(KEY_NEXT, 0)
+              .putInt(KEY_ERRORS, 0)
+              .putLong(KEY_BEGIN, begin)
+              .remove(KEY_OPENING)
+              .remove(KEY_CRASHED)
+              .remove(KEY_STATS)
+              .remove(KEY_PROBLEMS)
+              .putInt(KEY_SKIPPED, 0)
+              .commit();
+        } else {
+            logFile = new File(sp.getString(KEY_LOG, ""));
+            start = sp.getInt(KEY_NEXT, 0);
+            errors = sp.getInt(KEY_ERRORS, 0);
+            begin = sp.getLong(KEY_BEGIN, System.currentTimeMillis());
+        }
+
+        BufferedWriter out = new BufferedWriter(new FileWriter(logFile, !fresh));
+        // The engines chosen in the dialog, for this thread only
+        Engines.TEST_ENGINES.set(new int[]{sp.getInt(KEY_PDF_ENGINE, AppState.PDF_ENGINE_MUPDF),
+                sp.getInt(KEY_EPUB_ENGINE, AppState.EPUB_ENGINE_MUPDF)});
+        try {
+            if (fresh) {
+                writeHeader(out, count);
+                // As the engines are asked for on this thread, with the dialog's choice in force
+                writeLine(out, "PDF engine: " + (AppState.get().getPdfEngine() == AppState.PDF_ENGINE_PDFIUM ? "PDFium" : "MuPDF")
+                        + ", EPUB engine: " + (AppState.get().getEpubEngine() == AppState.EPUB_ENGINE_FOLIATE ? "foliate" : "MuPDF"));
+                writeLine(out, "[Options]");
+                for (int i = 0; i < OPTION_KEYS.length; i++) {
+                    writeLine(out, (option(sp, i) ? "[x] " : "[ ] ") + OPTION_NAMES[i]);
+                }
+            } else {
+                writeLine(out, "[Resumed at " + (start + 1) + "/" + count + "]");
+                // The book being opened when the app went down: counted, and not opened again
+                final String crashed = sp.getString(KEY_OPENING, null);
+                if (crashed != null && com.foobnix.librerax.BookOpenGuard.lastRunEndedNormally(getApplicationContext())) {
+                    // The app was updated, stopped or closed while this book was open, not
+                    // brought down by it: the book is tested again
+                    writeLine(out, "Interrupted (app closed or updated), again: " + crashed);
+                    sp.edit().remove(KEY_OPENING).commit();
+                } else if (crashed != null) {
+                    writeLine(out, "Crashed: " + crashed);
+                    errors++;
+                    count(sp, crashed, CRASHES);
+                    problem(sp, "CRASH", crashed);
+                    start++;
+                    final String list = sp.getString(KEY_CRASHED, "");
+                    sp.edit()
+                      .remove(KEY_OPENING)
+                      .putInt(KEY_NEXT, start)
+                      .putInt(KEY_ERRORS, errors)
+                      .putString(KEY_CRASHED, list + crashed + "\n")
+                      .commit();
+                }
+            }
+
+            sendNotifyAll();
+
+            for (int n = start; n < count; n++) {
+                if (isStopped()) {
+                    writeLine(out, "[Stopped at " + (n + 1) + "/" + count + "]");
+                    return false;
+                }
+                final FileMeta item = all.get(n);
+                final String path = item.getPath();
+                writeLine(out, (n + 1) + ":" + path);
+
+                if (TxtUtils.isEmpty(path)
+                        || (ExtUtils.isZip(path) && !CacheZipUtils.isSingleAndSupportEntry(path).first)) {
+                    writeLine(out, "Skip");
+                    sp.edit().putInt(KEY_NEXT, n + 1).putInt(KEY_SKIPPED, sp.getInt(KEY_SKIPPED, 0) + 1).commit();
+                    continue;
+                }
+                sendTextMessage((n + 1) + "/" + count);
+                sp.edit().putString(KEY_OPENING, path).putInt(KEY_NEXT, n).commit();
+
+                // Native heap once the book is let go of: growing from book to book is a leak
+                final String result = testBook(sp, path, w, h, s)
+                        + " nativeMB=" + (android.os.Debug.getNativeHeapAllocatedSize() >> 20);
+                if (result.startsWith("Error")) {
+                    errors++;
+                    sendNotifyAll();
+                }
+                if (result.startsWith("Password")) {
+                    sp.edit().putInt(KEY_SKIPPED, sp.getInt(KEY_SKIPPED, 0) + 1).commit();
+                } else {
+                    count(sp, path, result.startsWith("OK") ? OK : result.startsWith("Error: no pages") ? ZERO : ERRORS);
+                }
+                if (!result.startsWith("OK") && !result.startsWith("Password")) {
+                    problem(sp, result.startsWith("Error: no pages") ? "0 pages" : result.replaceAll(" nativeMB=\\d+$", ""), path);
+                }
+                writeLine(out, result);
+                sp.edit().remove(KEY_OPENING).putInt(KEY_NEXT, n + 1).putInt(KEY_ERRORS, errors).commit();
+            }
+
+            final String summary = summary(sp, count, (System.currentTimeMillis() - begin) / 1000L, logFile);
+            writeLine(out, "[Summary]");
+            writeLine(out, summary);
+            sp.edit().putBoolean(KEY_FRESH, true).putString(KEY_SUMMARY, summary).putBoolean(KEY_SUMMARY_PENDING, true).commit();
+            // The library, if it is open, shows it straight away
+            androidx.localbroadcastmanager.content.LocalBroadcastManager.getInstance(getApplicationContext())
+                    .sendBroadcast(new android.content.Intent(ACTION_FINISHED));
+        } finally {
+            Engines.TEST_ENGINES.remove();
+            out.close();
+        }
+
+        sendNotifyAll();
+        return true;
+    }
+
+    private void writeHeader(BufferedWriter out, int count) throws IOException {
         writeLine(out, "ApplicationName: " + Apps.getApplicationName(getApplicationContext()));
         writeLine(out, "VersionName: " + Apps.getVersionName(getApplicationContext()));
         writeLine(out, "PackageName: " + Apps.getPackageName(getApplicationContext()));
@@ -97,106 +602,104 @@ public class SelfTestWorker extends MessageWorker {
         writeLine(out, Objects.toJSONString(BookCSS.get()).replace(",", ",\n"));
         writeLine(out, "[AppState]");
         writeLine(out, Objects.toJSONString(AppState.get()).replace(",", ",\n"));
-
         writeLine(out, "Books: " + count);
+    }
 
-        sendNotifyAll();
-
-        for (FileMeta item : all) {
-            if (isStopped()) {
-                return false;
+    /**
+     * Opens one book, reads its outline and the first two pages - picture, text, links, PDF
+     * annotations - and lets go of all of it again. Returns "OK ..." or "Error ..." for the log.
+     */
+    private String testBook(SharedPreferences sp, String path, int w, int h, int s) {
+        final boolean render = option(sp, 0), text = option(sp, 1), outline = option(sp, 2), annotations = option(sp, 3);
+        final long t0 = System.currentTimeMillis();
+        CodecDocument codecDocument = null;
+        try {
+            CodecContext codecContex = BookType.getCodecContextByPath(path);
+            codecDocument = codecContex.openDocument(path, "");
+            if (codecDocument == null) {
+                return "Error: not opened";
             }
-
-            n++;
-
-            writeLine(out, n + ":" + item.getPath());
-
-            if (TxtUtils.isEmpty(item.getPath())) {
-                writeLine(out, "Skip");
-                continue;
+            int pageCount = codecDocument.getPageCount(w, h, s);
+            if (pageCount == 0) {
+                return "Error: no pages";
             }
-
-            if (ExtUtils.isZip(item.getPath()) && !CacheZipUtils.isSingleAndSupportEntry(item.getPath()).first) {
-                writeLine(out, "Skip");
-                continue;
-            }
-            sendTextMessage(n + "/" + count);
-            try {
-                CodecContext codecContex = BookType.getCodecContextByPath(item.getPath());
-                CodecDocument codecDocument = codecContex.openDocument(item.getPath(), "");
-                int pageCount = codecDocument.getPageCount(w, h, s);
-                if (pageCount == 0) {
-                    codecDocument.recycle();
-                    writeLine(out, "Error");
-                    errors++;
-                    sendNotifyAll();
-                    continue;
+            int outlineItems = 0;
+            for (OutlineLink ol : outline ? codecDocument.getOutline() : new java.util.ArrayList<OutlineLink>()) {
+                if (TempHolder.get().loadingCancelled.get() || isStopped() || codecDocument.isRecycled()) {
+                    break;
                 }
-                for (OutlineLink ol : codecDocument.getOutline()) {
-                    if (TempHolder.get().loadingCancelled.get() || isStopped()) {
-                        return false;
+                if (TxtUtils.isNotEmpty(ol.getTitle())) {
+                    // As the contents panel reads it: "#<page>" as it is, anything else asked of MuPDF
+                    if (!(ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0"))) {
+                        MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri);
                     }
-                    List<OutlineLinkWrapper> outline = new ArrayList<>();
-                    if (!codecDocument.isRecycled() && TxtUtils.isNotEmpty(ol.getTitle())) {
-                        if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
-                            outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.linkUri));
-                        } else {
-                            int p = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
-                            outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + p, ol.getLevel(), ol.linkUri));
+                    outlineItems++;
+                }
+            }
+
+            final int pages = option(sp, OPT_ALL_PAGES) ? pageCount : Math.min(2, pageCount);
+            for (int pageNumber = 0; pageNumber < pages; pageNumber++) {
+                if (isStopped()) {
+                    break;
+                }
+                CodecPage page = codecDocument.getPage(pageNumber);
+                try {
+                    if (render || pages > 2) {
+                        BitmapRef bitmapRef = page.renderBitmap(w, h, new RectF(0, 0, 1f, 1f), false);
+                        if (bitmapRef == null || bitmapRef.getBitmap() == null) {
+                            return "Error: page " + (pageNumber + 1) + " not drawn";
                         }
+                        bitmapRef.getBitmap().recycle();
                     }
-                }
-
-                for (int pageNumber = 0; pageNumber < 2 && pageNumber < pageCount; pageNumber++) {
-                    CodecPage page = codecDocument.getPage(pageNumber);
-                    RectF rectF = new RectF(0, 0, 1f, 1f);
-                    BitmapRef bitmapRef = page.renderBitmap(w, h, rectF, false);
-                    bitmapRef.getBitmap().recycle();
-                    page.getText();
-                    page.getPageLinks();
-                    page.getPageHTML();
-
-                    if (BookType.PDF.is(item.getPath())) {
+                    if (text && pageNumber < 2) {
+                        page.getText();
+                        page.getPageLinks();
+                        page.getPageHTML();
+                    }
+                    if (annotations && pageNumber < 2 && BookType.PDF.is(path)) {
                         page.getAnnotations();
                     }
-
+                } finally {
                     if (!page.isRecycled()) {
                         page.recycle();
                     }
                 }
-                AppBook bs = SettingsManager.getBookSettings(item.getPath());
+            }
+            // What the dialog asked to be written to the library
+            if (option(sp, 7)) {
+                AppBook bs = SettingsManager.getBookSettings(path);
                 bs.currentPageChanged(pageCount - 1, pageCount + 1);
                 SharedBooks.save(bs);
-
-                if (!BookType.DJVU.is(item.getPath())) {
-                    codecDocument.recycle();
-                }
-
-                AppData.get().addRecent(new SimpleMeta(item.getPath()));
-                AppData.get().addFavorite(new SimpleMeta(item.getPath()));
-                for (int i = 0; i < 5; i++) {
-                    BookmarksData.get().add(new AppBookmark(item.getPath(), i + " : " + item.getPath(), i / 10f));
-                }
-
-                //AppData.get().addFavorite(new SimpleMeta(item.getPath()));
-            } catch (Exception e) {
-                LOG.e(e, "Error:" + item.getPath());
-                writeLine(out, "Error");
-                errors++;
-                sendNotifyAll();
             }
-
+            if (option(sp, 4)) {
+                AppData.get().addRecent(new SimpleMeta(path));
+            }
+            if (option(sp, 5)) {
+                AppData.get().addFavorite(new SimpleMeta(path));
+            }
+            if (option(sp, 6)) {
+                for (int i = 0; i < 5; i++) {
+                    BookmarksData.get().add(new AppBookmark(path, i + " : " + path, i / 10f));
+                }
+            }
+            return "OK pages=" + pageCount + " outline=" + outlineItems + " ms=" + (System.currentTimeMillis() - t0);
+        } catch (Throwable e) {
+            // A book behind a password is not a failure of the engine
+            if (e.getClass().getSimpleName().contains("PasswordRequired")) {
+                return "Password";
+            }
+            LOG.e(e, "Error:" + path);
+            return "Error: " + e;
+        } finally {
+            // DjVu documents are left open here, as the test always did
+            if (codecDocument != null && !codecDocument.isRecycled() && !BookType.DJVU.is(path)) {
+                try {
+                    codecDocument.recycle();
+                } catch (Throwable e) {
+                    LOG.e(e);
+                }
+            }
         }
-        writeLine(out, "Errors: " + errors);
-        long end = System.currentTimeMillis();
-        long res = (end - begin) / 1000L;
-
-        writeLine(out, "Finish in second: " + res);
-        out.close();
-
-        sendNotifyAll();
-        return true;
-
     }
 
     public void writeLine(BufferedWriter out, String line) throws IOException {

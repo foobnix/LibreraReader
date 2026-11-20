@@ -1132,6 +1132,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         super.onPause();
 
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(selfTestFinished);
         AppProfile.save(this);
         IMG.pauseRequests(this);
 
@@ -1139,6 +1140,12 @@ public class MainTabs2 extends AdsFragmentActivity {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     }
+
+    private final android.content.BroadcastReceiver selfTestFinished = new android.content.BroadcastReceiver() {
+        @Override public void onReceive(Context context, Intent intent) {
+            com.foobnix.work.SelfTestWorker.showSummaryIfReady(MainTabs2.this);
+        }
+    };
 
     /**
      * On Ink the chrome is paper white, the strip at the head and the header alike, so the
@@ -1176,6 +1183,11 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         LocalBroadcastManager.getInstance(this)
                              .registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
+        // A self test that finished while the library was away shows its result now, and one
+        // finishing while it is open, as it does
+        LocalBroadcastManager.getInstance(this)
+                             .registerReceiver(selfTestFinished, new IntentFilter(com.foobnix.work.SelfTestWorker.ACTION_FINISHED));
+        com.foobnix.work.SelfTestWorker.showSummaryIfReady(this);
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
         }

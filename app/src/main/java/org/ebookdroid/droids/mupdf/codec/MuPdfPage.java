@@ -509,11 +509,11 @@ public class MuPdfPage extends AbstractCodecPage {
             TempHolder.lock.unlock();
         }
 
-        LOG.d("text116 size", chars.size());
-
+        // The native side gives no list at all for some broken pages: checked before it is used
         if (TxtUtils.isListEmpty(chars)) {
             return new TextWord[0][0];
         }
+        LOG.d("text116 size", chars.size());
 
         ArrayList<TextWord[]> lns = new ArrayList<TextWord[]>();
 

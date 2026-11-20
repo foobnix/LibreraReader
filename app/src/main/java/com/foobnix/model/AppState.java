@@ -451,6 +451,10 @@ public class AppState {
         if (!Engines.IS_MUPDF) {
             return PDF_ENGINE_PDFIUM;
         }
+        final int[] test = Engines.TEST_ENGINES.get();
+        if (test != null && test[0] >= 0) {
+            return test[0];
+        }
         return pdfEngine;
     }
 
@@ -461,6 +465,10 @@ public class AppState {
     public int getEpubEngine() {
         if (!Engines.IS_MUPDF) {
             return EPUB_ENGINE_FOLIATE;
+        }
+        final int[] test = Engines.TEST_ENGINES.get();
+        if (test != null && test[1] >= 0) {
+            return test[1];
         }
         return epubEngine;
     }

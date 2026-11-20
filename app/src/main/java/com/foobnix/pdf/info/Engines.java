@@ -51,4 +51,11 @@ public final class Engines {
 
     private Engines() {
     }
+
+    /**
+     * The engines the self test opens books with, on its own thread only, so a book read at
+     * the same time keeps the reader's settings: {pdf, epub}, each an AppState engine constant
+     * or -1 for the setting. See com.foobnix.work.SelfTestWorker.
+     */
+    public static final ThreadLocal<int[]> TEST_ENGINES = new ThreadLocal<>();
 }
