@@ -818,6 +818,12 @@ class Loader {
             || !doc.documentElement?.namespaceURI)) {
                 console.warn(doc.querySelector('parsererror')?.innerText ?? 'Invalid XHTML')
                 item.mediaType = MIME.HTML
+                // Librera: an empty element written the XML way stays open in HTML, where `<a/>`
+                // is a start tag only - libmobi writes one per removed filepos, and the link it
+                // opens takes in the text after it, painted in the reader's link colour. Written
+                // out as start and end, as XML means it, for every element HTML does not close
+                // itself (`<br/>`, `<img/>` and the other void ones are fine as they are).
+                str = str.replace(/<(?!(?:area|base|br|col|embed|hr|img|input|keygen|link|meta|param|source|track|wbr)[\s/>])([A-Za-z][\w:.-]*)((?:\s[^<>]*?)?)\s*\/>/gi, '<$1$2></$1>')
                 doc = new DOMParser().parseFromString(str, item.mediaType)
             }
             // replace hrefs in XML processing instructions
