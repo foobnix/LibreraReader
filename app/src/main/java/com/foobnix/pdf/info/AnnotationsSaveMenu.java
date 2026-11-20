@@ -37,8 +37,9 @@ public final class AnnotationsSaveMenu {
                 if (AppState.get().annotationsSaveMode != mode) {
                     AppState.get().annotationsSaveMode = mode;
                     AppState.get().save(anchor.getContext());
-                    onChanged.run();
                 }
+                // Shown again on every pick: the button can be behind the setting
+                onChanged.run();
                 return false;
             });
         }

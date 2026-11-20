@@ -138,6 +138,13 @@ public class TintUtil {
             color = ((ColorDrawable) current).getColor();
         } else if (current instanceof GradientDrawable && ((GradientDrawable) current).getColor() != null) {
             color = ((GradientDrawable) current).getColor().getDefaultColor();
+        } else if (current instanceof LayerDrawable && !(current instanceof android.graphics.drawable.RippleDrawable)
+                && ((LayerDrawable) current).getNumberOfLayers() > 0) {
+            // A bar on Ink is its fill with a rule laid over one edge (setReaderBar): the fill
+            // at the bottom is the surface. Passed over, the marks took the colour of the window
+            // behind the bar - black in night mode - and went white on the white bar. A ripple's
+            // first layer is only its mask, and is not looked into.
+            return paintedColor(((LayerDrawable) current).getDrawable(0));
         }
         return color == null || Color.alpha(color) == 0 ? null : color;
     }

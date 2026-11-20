@@ -47,6 +47,16 @@ public final class EpubEngineMenu {
      * @param onChanged runs when another engine was picked
      */
     public static void show(final View anchor, final Runnable onChanged) {
+        show(anchor, onChanged, null);
+    }
+
+    /**
+     * @param onPicked runs on every pick, the same engine included: what a button shows can be
+     *                 behind the setting - settings read again from sync or another profile - and
+     *                 picking what is already set changed nothing, the button went on showing the
+     *                 old engine
+     */
+    public static void show(final View anchor, final Runnable onChanged, final Runnable onPicked) {
         final PopupMenu popupMenu = new PopupMenu(anchor.getContext(), anchor);
         for (final int engine : EPUB_ENGINES) {
             popupMenu.getMenu().add(name(anchor.getContext(), engine)).setOnMenuItemClickListener(item -> {
@@ -60,6 +70,9 @@ public final class EpubEngineMenu {
                     CacheZipUtils.removeOutlineCache();
                     TempHolder.listHash++;
                     onChanged.run();
+                }
+                if (onPicked != null) {
+                    onPicked.run();
                 }
                 return false;
             });

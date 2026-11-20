@@ -98,7 +98,18 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     private native static String setMetaData(long docHandle, final String key, String value);
 
-    private static long openFile(final int format, String fname, final String pwd, String css) {
+    private static long openFile(final int format, String fname, String pwd, String css) {
+        // The native open reads every string, and a null one aborts the whole app (CheckJNI):
+        // a book without a file is a book that cannot be opened, said here instead
+        if (fname == null) {
+            throw new IllegalArgumentException("MuPDF has no file to open");
+        }
+        if (pwd == null) {
+            pwd = "";
+        }
+        if (css == null) {
+            css = "";
+        }
         if (!Engines.IS_MUPDF) {
             // A flavour built without MuPDF, reached through a format whose context has no other
             // engine to offer - see Engines. The reader reports the file as one it cannot open,

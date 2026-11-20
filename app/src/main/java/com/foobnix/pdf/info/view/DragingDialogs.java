@@ -5885,7 +5885,8 @@ public class DragingDialogs {
                 final TextView epubEngine = inflate.findViewById(R.id.epubEngine);
                 epubEngine.setText(EpubEngineMenu.name(epubEngine.getContext(), AppState.get().epubEngine));
                 TxtUtils.underlineTextView(epubEngine);
-                epubEngine.setOnClickListener(v -> EpubEngineMenu.show(v, controller::restartActivity));
+                epubEngine.setOnClickListener(v -> EpubEngineMenu.show(v, controller::restartActivity,
+                        () -> epubEngine.setText(EpubEngineMenu.name(epubEngine.getContext(), AppState.get().epubEngine))));
 
                 // The same for a PDF. Strokes drawn but not saved are asked about first, as on
                 // closing the book, since reopening it in the other engine would drop them.

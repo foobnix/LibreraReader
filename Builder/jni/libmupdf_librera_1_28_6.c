@@ -1437,6 +1437,9 @@ JNIEXPORT jobject
             if (block->type == FZ_STEXT_BLOCK_TEXT) {
                 for (fz_stext_line* line = block->u.t.first_line; line; line = line->next) {
                     for (fz_stext_char* ch = line->first_char; ch; ch = ch->next) {
+                        /* Librera: stopped from another thread - see abortInternal */
+                        if (page->cookie && page->cookie->abort)
+                            fz_throw(ctx, FZ_ERROR_GENERIC, "aborted");
                         fz_rect bbox = fz_rect_from_quad(ch->quad);
                         jobject cobj =
                           (*env)->NewObject(env, textCharClass, ctor, bbox.x0, bbox.y0, bbox.x1, bbox.y1, ch->c);

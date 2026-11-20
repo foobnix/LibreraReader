@@ -1040,16 +1040,14 @@ public class PrefFragment2 extends UIFragment {
         // Which engine renders a PDF
         final TextView pdfEngine = inflate.findViewById(R.id.pdfEngine);
         asButton(pdfEngine, PdfEngineMenu.name(getContext(), AppState.get().pdfEngine));
-        pdfEngine.setOnClickListener(v -> PdfEngineMenu.show(v, () -> {
-            ImageExtractor.clearCodeDocument();
-            asButton(pdfEngine, PdfEngineMenu.name(getContext(), AppState.get().pdfEngine));
-        }));
+        pdfEngine.setOnClickListener(v -> PdfEngineMenu.show(v, ImageExtractor::clearCodeDocument,
+                () -> asButton(pdfEngine, PdfEngineMenu.name(getContext(), AppState.get().pdfEngine))));
 
         // Which engine lays out a reflowable book
         final TextView epubEngine = inflate.findViewById(R.id.epubEngine);
         asButton(epubEngine, EpubEngineMenu.name(getContext(), AppState.get().epubEngine));
-        epubEngine.setOnClickListener(v -> EpubEngineMenu.show(v,
-                () -> asButton(epubEngine, EpubEngineMenu.name(v.getContext(), AppState.get().epubEngine))));
+        epubEngine.setOnClickListener(v -> EpubEngineMenu.show(v, () -> {
+        }, () -> asButton(epubEngine, EpubEngineMenu.name(v.getContext(), AppState.get().epubEngine))));
 
 //        appEngine.setOnClickListener(v -> {
 //            if (BooksService.isRunning) {

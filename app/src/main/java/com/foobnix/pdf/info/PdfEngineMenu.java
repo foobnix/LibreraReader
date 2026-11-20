@@ -33,6 +33,11 @@ public final class PdfEngineMenu {
      *                  it to let go of: a reader writes the strokes drawn on it first.
      */
     public static void show(final View anchor, final Runnable onChanged) {
+        show(anchor, onChanged, null);
+    }
+
+    /** @param onPicked runs on every pick, the same engine included - see EpubEngineMenu. */
+    public static void show(final View anchor, final Runnable onChanged, final Runnable onPicked) {
         final PopupMenu popupMenu = new PopupMenu(anchor.getContext(), anchor);
         for (final int engine : PDF_ENGINES) {
             popupMenu.getMenu().add(name(anchor.getContext(), engine)).setOnMenuItemClickListener(item -> {
@@ -44,6 +49,9 @@ public final class PdfEngineMenu {
                     AppState.get().pdfEngine = engine;
                     TempHolder.listHash++;
                     onChanged.run();
+                }
+                if (onPicked != null) {
+                    onPicked.run();
                 }
                 return false;
             });

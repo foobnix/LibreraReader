@@ -70,6 +70,13 @@ public class MobiContext extends PdfContext {
             }
         }
 
+        // A book the conversion gave nothing for cannot be opened; its null path reached MuPDF's
+        // native open and killed the app (a .chm in the self-test)
+        if (fileNameEpub == null || !new File(fileNameEpub).isFile()) {
+            LOG.d("Context", "MobiContext nothing converted", fileName, fileNameEpub);
+            return null;
+        }
+
         final AbstractCodecDocument muPdfDocument = openReflowable(fileNameEpub, password);
         if (muPdfDocument == null) {
             // No engine could open it; openReflowable has logged why

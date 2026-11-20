@@ -527,8 +527,12 @@ public class SelfTestWorker extends MessageWorker {
      */
     public static void run(Context context) {
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().putBoolean(KEY_FRESH, true).commit();
+        // A run restarted after a book took the app down goes on soon after, not after a
+        // backoff that doubles each time
         androidx.work.OneTimeWorkRequest request =
-                new androidx.work.OneTimeWorkRequest.Builder(SelfTestWorker.class).build();
+                new androidx.work.OneTimeWorkRequest.Builder(SelfTestWorker.class)
+                        .setBackoffCriteria(androidx.work.BackoffPolicy.LINEAR, 10, java.util.concurrent.TimeUnit.SECONDS)
+                        .build();
         androidx.work.WorkManager.getInstance(context)
                                  .enqueueUniqueWork(WORKER_NAME, androidx.work.ExistingWorkPolicy.REPLACE, request);
     }
