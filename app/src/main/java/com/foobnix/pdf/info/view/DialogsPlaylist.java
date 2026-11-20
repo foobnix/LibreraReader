@@ -585,7 +585,35 @@ public class DialogsPlaylist {
     private static final int ROW_OWN = 0, ROW_ICON = 2, ROW_ICON_OPEN = 3;
 
     // How tall the strip of covers last stood with covers in it, to keep when it has none
-    private static int stripHeight;
+    // As tall as the strip last stood with covers in it, upright [0] and on its side [1]
+    private static final int[] stripHeight = new int[2];
+
+    /** The covers in the strip under the reader: three quarters of their size on its side. */
+    public static int stripCoverWidth() {
+        final int size = (int) (IMG.getImageSize() * 0.7);
+        return isLandscape() ? size * 3 / 4 : size;
+    }
+
+    /**
+     * After a turn: the covers made again at the size for the way the screen now stands, and the
+     * strip kept only as tall as they are.
+     */
+    public static void fitStrip(Activity a) {
+        final RecyclerView strip = a.findViewById(R.id.playlistRecycleView);
+        if (strip == null) {
+            return;
+        }
+        strip.setMinimumHeight(stripMinHeight(strip));
+        if (strip.getAdapter() != null) {
+            strip.getAdapter().notifyDataSetChanged();
+        }
+    }
+
+    private static int stripMinHeight(View strip) {
+        final int coverHeight = (int) (stripCoverWidth() * IMG.WIDTH_DK) + Dips.dpToPx(2)
+                + strip.getPaddingTop() + strip.getPaddingBottom();
+        return Math.max(stripHeight[isLandscape() ? 1 : 0], coverHeight);
+    }
 
     // The list the strip of covers shows, whose mark the Recent button carries
     private static String shownPlaylist = L_PLAYLIST_RECENT;
@@ -755,16 +783,15 @@ public class DialogsPlaylist {
         // The strip keeps the height of its covers even when the list shown has none, so the
         // panel does not fold up under the tabs: as tall as it last stood with covers in it,
         // or as one cover is made
-        final int coverHeight = (int) (IMG.getImageSize() * 0.7 * IMG.WIDTH_DK) + Dips.dpToPx(2)
-                + playlistRecycleView.getPaddingTop() + playlistRecycleView.getPaddingBottom();
-        playlistRecycleView.setMinimumHeight(Math.max(stripHeight, coverHeight));
+        playlistRecycleView.setMinimumHeight(stripMinHeight(playlistRecycleView));
         if (playlistRecycleView.getTag(R.id.playlistRecycleView) == null) {
             playlistRecycleView.setTag(R.id.playlistRecycleView, Boolean.TRUE);
             playlistRecycleView.addOnLayoutChangeListener((v, l, t, r, b, ol, ot, or, ob) -> {
                 final RecyclerView strip = (RecyclerView) v;
-                if (strip.getAdapter() != null && strip.getAdapter().getItemCount() > 0 && b - t > stripHeight) {
-                    stripHeight = b - t;
-                    strip.post(() -> strip.setMinimumHeight(stripHeight));
+                final int way = isLandscape() ? 1 : 0;
+                if (strip.getAdapter() != null && strip.getAdapter().getItemCount() > 0 && b - t > stripHeight[way]) {
+                    stripHeight[way] = b - t;
+                    strip.post(() -> strip.setMinimumHeight(stripMinHeight(strip)));
                 }
             });
         }
@@ -786,10 +813,13 @@ public class DialogsPlaylist {
                 }
                 // The Recent button stands among the buttons below; the row's own is never shown
                 ((View) playListName.getParent()).setVisibility(View.GONE);
+                // On its side the tabs stand over the strip instead (LandscapeSplit), and the
+                // controls keep the row
+                final boolean tabsInRow = tabs && LandscapeSplit.tabsBesideControls(tabsScroll);
                 if (ttsSlot != null && ttsSlot.getLayoutParams() instanceof LinearLayout.LayoutParams) {
                     final LinearLayout.LayoutParams slotLp = (LinearLayout.LayoutParams) ttsSlot.getLayoutParams();
-                    final int slotWidth = tabs ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
-                    final float slotWeight = tabs ? 0 : 1;
+                    final int slotWidth = tabsInRow ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
+                    final float slotWeight = tabsInRow ? 0 : 1;
                     if (slotLp.width != slotWidth || slotLp.weight != slotWeight) {
                         slotLp.width = slotWidth;
                         slotLp.weight = slotWeight;

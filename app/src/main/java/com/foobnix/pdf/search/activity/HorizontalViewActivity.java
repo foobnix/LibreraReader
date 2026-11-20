@@ -2124,19 +2124,44 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     // The name and chapter keep a fixed width, 60% of the screen but clear of the corner
     // buttons, so the cover beside them stays in place when the chapter changes. Turned on its
-    // side the name has the left half of the bar, and all the room in it.
+    // side the name stands in the left half of the bar beside its buttons (LandscapeSplit): it
+    // takes what that half leaves after the library button and the cover, read from the left,
+    // and the close button has gone to the end of the bar, so no room is kept for it. A width
+    // worked out from the screen there ran past the half, and the row, centred, pushed the
+    // cover under the library button.
     private void updateTitleBlockWidth() {
         final View titleBlock = findViewById(R.id.titleBlock);
-        if (titleBlock == null) {
+        if (titleBlock == null || !(titleBlock.getLayoutParams() instanceof LinearLayout.LayoutParams)) {
             return;
         }
         final boolean split = LandscapeSplit.isLandscape(this);
-        final int bar = Dips.dpToPx(getResources().getConfiguration().screenWidthDp);
-        final int screen = split ? bar / 2 : bar;
-        // the bar's side margins (2 x 50dip) and the cover with its gap (34 + 8dip)
-        final int room = screen - Dips.dpToPx(2 * 50 + 34 + 8);
-        titleBlock.getLayoutParams().width = split ? room : Math.min(screen * 6 / 10, room);
-        titleBlock.requestLayout();
+        final LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) titleBlock.getLayoutParams();
+        if (split) {
+            lp.width = 0;
+            lp.weight = 1;
+        } else {
+            // The screen's own width: this screen's configuration keeps the width it opened with
+            final int screen = Dips.screenWidth();
+            // the bar's side margins (2 x 50dip) and the cover with its gap (34 + 8dip)
+            final int room = screen - Dips.dpToPx(2 * 50 + 34 + 8);
+            lp.width = Math.min(screen * 6 / 10, room);
+            lp.weight = 0;
+        }
+        titleBlock.setLayoutParams(lp);
+        if (titleBlock.getParent() instanceof View
+                && ((View) titleBlock.getParent()).getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            final View row = (View) titleBlock.getParent();
+            final ViewGroup.MarginLayoutParams rowLp = (ViewGroup.MarginLayoutParams) row.getLayoutParams();
+            rowLp.rightMargin = Dips.dpToPx(split ? 8 : 50);
+            row.setLayoutParams(rowLp);
+        }
+        final int gravity = split ? Gravity.START | Gravity.CENTER_VERTICAL : Gravity.CENTER;
+        for (int id : new int[]{R.id.title, R.id.chapter}) {
+            final TextView line = findViewById(id);
+            if (line != null) {
+                line.setGravity(gravity);
+            }
+        }
     }
 
     // @Override

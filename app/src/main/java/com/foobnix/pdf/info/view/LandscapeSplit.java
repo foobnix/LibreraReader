@@ -1,7 +1,6 @@
 package com.foobnix.pdf.info.view;
 
 import android.app.Activity;
-import android.content.res.Configuration;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.foobnix.pdf.info.R;
+import com.foobnix.tts.TTSControlsView;
 
 /**
  * Turned on its side the reading panels stand two of their rows side by side, each in its half of
@@ -37,15 +37,85 @@ public final class LandscapeSplit {
         ViewGroup.LayoutParams tailLp;
     }
 
+    /**
+     * The screen's own measure, not the activity's configuration: the reading screens wrap their
+     * context for the app's language (MyContextWrapper), and that configuration keeps the
+     * orientation the screen was opened in through every turn.
+     */
     public static boolean isLandscape(Activity a) {
-        return a.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        return DialogsPlaylist.isLandscape();
     }
 
     /** The bottom panel's two pairs of rows, in both reading screens. */
     public static void footer(Activity a) {
         final boolean split = isLandscape(a);
-        apply(a.findViewById(R.id.playListParent), a.findViewById(R.id.footerButtons), null, split);
+        final View controls = a.findViewById(R.id.playListParent);
+        if (!split) {
+            recentOnTop(a, controls, false);
+        }
+        apply(controls, a.findViewById(R.id.footerButtons), null, split);
         apply(a.findViewById(R.id.seekLine), a.findViewById(R.id.footerLastRow), null, split);
+        if (split) {
+            recentOnTop(a, controls, true);
+        }
+        DialogsPlaylist.fitStrip(a);
+        // The reading controls go back into their row, or up a line, for where the tabs now are
+        final View tts = a.findViewById(R.id.ttsActive);
+        if (tts instanceof TTSControlsView) {
+            tts.post(((TTSControlsView) tts)::standInPanel);
+        }
+    }
+
+    /**
+     * The recent books at the head of the panel while it stands on its side: the tabs of their
+     * lists, then the strip of covers, over the reading controls and the buttons. Upright the
+     * tabs share the controls' row and the strip is under it, and the controls go up a line
+     * while the tabs are out; on its side that row is half the bar, too narrow for both.
+     */
+    private static void recentOnTop(Activity a, View controls, boolean top) {
+        final View tabs = a.findViewById(R.id.playListTabsScroll);
+        final View strip = a.findViewById(R.id.playlistRecycleView);
+        if (controls == null || tabs == null || strip == null || !(controls instanceof ViewGroup)) {
+            return;
+        }
+        final Object tag = tabs.getTag(R.id.landscapeSplit);
+        if (top && tag == null) {
+            final Object placed = controls.getTag(R.id.landscapeSplit);
+            if (!(placed instanceof Placed) || strip.getParent() != ((Placed) placed).parent) {
+                return;
+            }
+            final ViewGroup column = ((Placed) placed).parent;
+            final LinearLayout row = ((Placed) placed).row;
+            final Placed was = new Placed();
+            was.parent = (ViewGroup) controls;
+            was.firstIndex = was.parent.indexOfChild(tabs);
+            was.firstLp = tabs.getLayoutParams();
+            detach(tabs);
+            column.removeView(strip);
+            final int at = column.indexOfChild(row);
+            column.addView(strip, at);
+            column.addView(tabs, at, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                                                   ViewGroup.LayoutParams.WRAP_CONTENT));
+            tabs.setTag(R.id.landscapeSplit, was);
+        } else if (!top && tag instanceof Placed) {
+            final Placed was = (Placed) tag;
+            tabs.setTag(R.id.landscapeSplit, null);
+            final Object placed = controls.getTag(R.id.landscapeSplit);
+            detach(tabs);
+            was.parent.addView(tabs, Math.min(was.firstIndex, was.parent.getChildCount()), was.firstLp);
+            // The strip back under the row, where the split puts the controls' row back
+            if (placed instanceof Placed && strip.getParent() == ((Placed) placed).parent) {
+                final ViewGroup column = ((Placed) placed).parent;
+                column.removeView(strip);
+                column.addView(strip, column.indexOfChild(((Placed) placed).row) + 1);
+            }
+        }
+    }
+
+    /** True while the tabs of the recent lists stand in the reading controls' row. */
+    public static boolean tabsBesideControls(View tabs) {
+        return tabs != null && tabs.getParent() instanceof View
+                && ((View) tabs.getParent()).getId() == R.id.playListParent;
     }
 
     /**

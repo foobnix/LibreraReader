@@ -21,6 +21,7 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.UnderlineImageView;
+import com.foobnix.pdf.info.view.DialogsPlaylist;
 
 import java.util.Collections;
 import java.util.List;
@@ -77,7 +78,8 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
             }
         });
 
-        int size = (int) (IMG.getImageSize() * 0.7);
+        // The strip under the reader is smaller turned on its side, where the height is short
+        int size = horizontal ? DialogsPlaylist.stripCoverWidth() : (int) (IMG.getImageSize() * 0.7);
 
         holder.imageView.getLayoutParams().width = size;
         holder.imageView.getLayoutParams().height = (int) (size * IMG.WIDTH_DK);

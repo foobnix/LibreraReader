@@ -30,6 +30,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.view.LandscapeSplit;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -503,7 +504,9 @@ public class TTSControlsView extends FrameLayout {
         final ViewGroup parent = (ViewGroup) getParent();
         final boolean mp3 = TTSEngine.get().isMp3();
         final View tabs = getRootView().findViewById(R.id.playListTabsScroll);
-        final boolean above = mp3 || tabs != null && tabs.getVisibility() == View.VISIBLE;
+        // Tabs over the strip at the head of the panel (LandscapeSplit) leave the row to them
+        final boolean above = mp3 || tabs != null && tabs.getVisibility() == View.VISIBLE
+                && LandscapeSplit.tabsBesideControls(tabs);
         final int target;
         if (above && parent.getId() == R.id.ttsControlsSlot) {
             target = R.id.ttsControlsSlotTop;
