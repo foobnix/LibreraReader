@@ -27,9 +27,19 @@ fi
 
 cd ../
 
-#./gradlew clean incVersion
+# One gradle run at a time, and nothing is built until the raised version is on disk.
+CODE_BEFORE=$(sed -n 's/^appCodeNumber=//p' app/gradle.properties | tr -d ' \r')
+
 ./gradlew clean || exit 1
+./gradlew incVersion || exit 1
 ./gradlew updateFDroid || exit 1
+
+CODE_AFTER=$(sed -n 's/^appCodeNumber=//p' app/gradle.properties | tr -d ' \r')
+if [ -z "$CODE_AFTER" ] || [ "$CODE_AFTER" = "$CODE_BEFORE" ]; then
+  echo "ERROR: incVersion left appCodeNumber at $CODE_BEFORE"
+  exit 1
+fi
+echo "Version raised: $CODE_BEFORE -> $CODE_AFTER"
 
 #./gradlew assemblePdf_v2Release bundlePdf_v2Release
 #./gradlew assembleEbookaRelease bundleEbookaRelease
