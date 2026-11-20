@@ -1046,8 +1046,14 @@ static void layout_flow(fz_context *ctx, layout_data *ld, fz_html_box *box, fz_h
 
 		case FLOW_SHYPHEN:
 			// default width if broken, zero width if unbroken
-			candidate = node;
-			candidate_w = line_w + node->w;
+			/* Librera: a break here draws a hyphen at the end of the line. Taken only
+			 * where the hyphen still fits: past the edge, justifying took its width out
+			 * of the line's spaces and ran the words together. */
+			if (!candidate || line_w + node->w <= bounds_w)
+			{
+				candidate = node;
+				candidate_w = line_w + node->w;
+			}
 			break;
 		}
 
