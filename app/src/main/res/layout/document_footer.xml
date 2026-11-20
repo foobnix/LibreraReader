@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <!-- Turned on its side the reading controls' row and the buttons under it stand side by
+         side, as do the seek line and the row under it: see LandscapeSplit. -->
     <LinearLayout
-
+        android:id="@+id/footerColumn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -299,6 +301,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/footerLastRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"

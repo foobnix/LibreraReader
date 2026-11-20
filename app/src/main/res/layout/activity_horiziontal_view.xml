@@ -185,7 +185,10 @@
             android:orientation="vertical"
             android:visibility="visible">
 
+            <!-- Turned on its side this row and the buttons under it stand side by side, the
+                 close button at the end of both: see LandscapeSplit. -->
             <RelativeLayout
+                android:id="@+id/titleRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -307,6 +310,7 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:id="@+id/titleButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"

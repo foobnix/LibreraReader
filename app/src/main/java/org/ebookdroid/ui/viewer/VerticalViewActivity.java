@@ -35,6 +35,7 @@ import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
+import com.foobnix.pdf.info.view.LandscapeSplit;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.ViewBinder;
@@ -341,6 +342,8 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        // The bottom panel's rows side by side on its side, one above the other upright
+        LandscapeSplit.footer(this);
         TempHolder.isActiveSpeedRead.set(false);
         if (isInitPosition == null) {
             return;

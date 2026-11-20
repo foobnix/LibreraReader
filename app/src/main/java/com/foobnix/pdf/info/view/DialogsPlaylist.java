@@ -674,7 +674,10 @@ public class DialogsPlaylist {
             }
         };
 
-        final View parent = (View) chipRow.getParent();
+        // The panel's column, not the row's own parent: turned on its side the row stands in
+        // half of another row (LandscapeSplit), which goes when the screen is upright again
+        final View column = chipRow.getRootView().findViewById(R.id.footerColumn);
+        final View parent = column != null ? column : (View) chipRow.getParent();
         final View toggle = chipRow.findViewById(R.id.playListToggle);
         final View chip = name.getParent() instanceof View ? (View) name.getParent() : null;
         parent.addOnLayoutChangeListener((v, l, t, r, b, ol, ot, or, ob) -> {
@@ -717,9 +720,11 @@ public class DialogsPlaylist {
                     toggle.setVisibility(View.GONE);
                 }
                 chipRow.setPadding(chipRow.getPaddingLeft(), paddingTop, chipRow.getPaddingRight(), chipRow.getPaddingBottom());
-                rowLp.height = height;
-                rowLp.bottomMargin = 0;
-                chipRow.setLayoutParams(rowLp);
+                // Read again: the row may have moved in or out of the landscape split since
+                final ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) chipRow.getLayoutParams();
+                lp.height = height;
+                lp.bottomMargin = 0;
+                chipRow.setLayoutParams(lp);
             });
         });
     }

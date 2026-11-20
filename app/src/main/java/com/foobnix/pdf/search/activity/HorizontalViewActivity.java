@@ -81,6 +81,7 @@ import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DrawView;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
+import com.foobnix.pdf.info.view.LandscapeSplit;
 import com.foobnix.pdf.info.view.HypenPanelHelper;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.ProgressDraw;
@@ -698,6 +699,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
         ttsActive = findViewById(R.id.ttsActive);
         moveTtsControlsIntoPanel();
+        splitPanels();
         ttsActivePage = findViewById(R.id.ttsActivePage);
         ttsActivePage.onPage();
 
@@ -2110,17 +2112,30 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     }
 
+    /**
+     * Turned on its side the panels stand their rows side by side: the book's name beside its
+     * buttons, with the close button at the end of both, and the same in the bottom panel.
+     */
+    private void splitPanels() {
+        LandscapeSplit.apply(findViewById(R.id.titleRow), findViewById(R.id.titleButtons),
+                             findViewById(R.id.bookClose), LandscapeSplit.isLandscape(this));
+        LandscapeSplit.footer(this);
+    }
+
     // The name and chapter keep a fixed width, 60% of the screen but clear of the corner
-    // buttons, so the cover beside them stays in place when the chapter changes.
+    // buttons, so the cover beside them stays in place when the chapter changes. Turned on its
+    // side the name has the left half of the bar, and all the room in it.
     private void updateTitleBlockWidth() {
         final View titleBlock = findViewById(R.id.titleBlock);
         if (titleBlock == null) {
             return;
         }
-        final int screen = Dips.dpToPx(getResources().getConfiguration().screenWidthDp);
+        final boolean split = LandscapeSplit.isLandscape(this);
+        final int bar = Dips.dpToPx(getResources().getConfiguration().screenWidthDp);
+        final int screen = split ? bar / 2 : bar;
         // the bar's side margins (2 x 50dip) and the cover with its gap (34 + 8dip)
         final int room = screen - Dips.dpToPx(2 * 50 + 34 + 8);
-        titleBlock.getLayoutParams().width = Math.min(screen * 6 / 10, room);
+        titleBlock.getLayoutParams().width = split ? room : Math.min(screen * 6 / 10, room);
         titleBlock.requestLayout();
     }
 
@@ -2128,6 +2143,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        splitPanels();
         updateTitleBlockWidth();
         TempHolder.isActiveSpeedRead.set(false);
         clickUtils.init();
@@ -2496,15 +2512,16 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     /**
-     * The reading controls stand with the panels while they are open. With the panels closed a
-     * second line of them stands on the page, below the words, unless the TTS dialog's advanced
-     * settings turn it off.
+     * The reading controls stand with the panels whenever they are open, read or not, so the book
+     * can be started from there. With the panels closed a second line of them stands on the page,
+     * below the words, while speech is running, unless the TTS dialog's advanced settings turn it
+     * off.
      */
     private void showTtsControls() {
         if (ttsActive == null) {
             return;
         }
-        ttsActive.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown() && AppState.get().isEditMode));
+        ttsActive.setVisibility(TxtUtils.visibleIf(AppState.get().isEditMode));
         showTtsPageControls();
     }
 

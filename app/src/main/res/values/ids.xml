@@ -5,6 +5,8 @@
     <item name="inkRulePad" type="id" />
     <item name="navigationBarPaint" type="id" />
     <item name="pillRing" type="id" />
+    <!-- Where a row stood before LandscapeSplit put it beside another. -->
+    <item name="landscapeSplit" type="id" />
     <!-- Set on a settings button drawn as a box rather than a pill: see bg_button_outline_card. -->
     <item name="cardShape" type="id" />
     <!-- The shadow a library row's card was laid out with, to give back when borders return. -->

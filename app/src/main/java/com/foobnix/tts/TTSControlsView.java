@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -108,7 +109,9 @@ public class TTSControlsView extends FrameLayout {
                     margins += ((MarginLayoutParams) child.getLayoutParams()).leftMargin;
                 }
             }
-            final int full = getResources().getDimensionPixelSize(R.dimen.wh_tts_button);
+            // Beside the bottom bar's buttons, turned on its side, as small as they are
+            final int full = getResources().getDimensionPixelSize(
+                    inLandscapeSplit() ? R.dimen.wh_button : R.dimen.wh_tts_button);
             final int size = visible == 0 ? full : Math.min(full, (available - margins) / visible);
             for (int i = 0; i < row.getChildCount(); i++) {
                 final ViewGroup.LayoutParams params = row.getChildAt(i).getLayoutParams();
@@ -117,6 +120,16 @@ public class TTSControlsView extends FrameLayout {
             }
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    /** Standing in a row LandscapeSplit put beside another. */
+    private boolean inLandscapeSplit() {
+        for (ViewParent p = getParent(); p instanceof View; p = p.getParent()) {
+            if (((View) p).getTag(R.id.landscapeSplit) != null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

@@ -3,7 +3,6 @@
  */
 package com.foobnix.pdf.info.wrapper;
 
-import android.content.res.Configuration;
 import androidx.core.content.ContextCompat;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -63,6 +62,7 @@ import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.search.view.SpeedBgView;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.AnchorHelper;
+import com.foobnix.pdf.info.view.LandscapeSplit;
 import com.foobnix.pdf.info.view.BookmarkPanel;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.CustomSeek;
@@ -1293,6 +1293,8 @@ public class DocumentWrapperUI {
         ttsActive.setDC(dc);
         ttsActive.hideStop();
         moveTtsControlsIntoPanel();
+        // Turned on its side the bottom panel stands its rows side by side
+        LandscapeSplit.footer(a);
         ttsActivePage = a.findViewById(R.id.ttsActivePage);
         ttsActivePage.setDC(dc);
         ttsActivePage.onPage();
@@ -1914,9 +1916,6 @@ public class DocumentWrapperUI {
         }
     }
 
-    // The orientation the scroll button was last laid out for, to lay it out again on a turn
-    private int nextTypeOrientation = -1;
-
     public void initNextType() {
         final String name;
         if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
@@ -1931,38 +1930,24 @@ public class DocumentWrapperUI {
             nextScreenType.setImageResource(R.drawable.my_glyphicons_halp_page);
         }
 
-        // Upright the button is the icon of the scroll it is set to, alone; turned on its side,
-        // where the row has room, the icon before the scroll's name
-        // The screen's own measure: the reading screen keeps its configuration through a turn
-        final int orientation = DialogsPlaylist.isLandscape() ? Configuration.ORIENTATION_LANDSCAPE : Configuration.ORIENTATION_PORTRAIT;
-        final boolean iconOnly = orientation != Configuration.ORIENTATION_LANDSCAPE;
-        nextTypeOrientation = orientation;
-        nextTypeBootom.setText(iconOnly ? "" : name);
+        // The button is the icon of the scroll it is set to, alone, in either orientation:
+        // turned on its side the row has only half the bar beside the reading controls
+        // (LandscapeSplit), so the name goes into the description only
+        nextTypeBootom.setText("");
         nextTypeBootom.setContentDescription(name);
-        nextTypeBootom.setMinWidth(iconOnly ? 0 : Dips.dpToPx(120));
-        nextTypeBootom.setMinimumWidth(iconOnly ? 0 : Dips.dpToPx(120));
-        // The icon alone, the button is no wider than it and its ring, so it stands in the middle:
-        // the room the row gives a name is not taken
+        nextTypeBootom.setMinWidth(0);
+        nextTypeBootom.setMinimumWidth(0);
+        // No wider than the icon and its ring, so it stands in the middle
         if (nextTypeBootom.getLayoutParams() instanceof LinearLayout.LayoutParams) {
             final LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) nextTypeBootom.getLayoutParams();
-            final float weight = iconOnly ? 0 : 1;
-            if (lp.weight != weight) {
-                lp.weight = weight;
+            if (lp.weight != 0) {
+                lp.weight = 0;
                 nextTypeBootom.setLayoutParams(lp);
             }
         }
         final Drawable icon = ContextCompat.getDrawable(a, scrollByIcon(AppState.get().nextScreenScrollBy));
         if (icon != null) {
-            pillIcon(nextTypeBootom, icon, iconOnly);
-        }
-        // The reading screen keeps itself through a turn, so the button is laid out again then
-        if (nextTypeBootom.getTag(R.id.nextTypeBootom) == null) {
-            nextTypeBootom.setTag(R.id.nextTypeBootom, Boolean.TRUE);
-            nextTypeBootom.addOnLayoutChangeListener((v, l, t, r, b, ol, ot, or, ob) -> {
-                if ((DialogsPlaylist.isLandscape() ? Configuration.ORIENTATION_LANDSCAPE : Configuration.ORIENTATION_PORTRAIT) != nextTypeOrientation) {
-                    v.post(this::initNextType);
-                }
-            });
+            pillIcon(nextTypeBootom, icon, true);
         }
     }
 
@@ -2089,15 +2074,16 @@ public class DocumentWrapperUI {
     }
 
     /**
-     * The reading controls stand with the panels while they are open. With the panels closed a
-     * second line of them stands on the page, below the words, unless the TTS dialog's advanced
-     * settings turn it off.
+     * The reading controls stand with the panels whenever they are open, read or not, so the book
+     * can be started from there. With the panels closed a second line of them stands on the page,
+     * below the words, while speech is running, unless the TTS dialog's advanced settings turn it
+     * off.
      */
     private void showTtsControls() {
         if (ttsActive == null) {
             return;
         }
-        ttsActive.setVisibility(TxtUtils.visibleIf(!TTSEngine.get().isShutdown() && AppState.get().isEditMode));
+        ttsActive.setVisibility(TxtUtils.visibleIf(AppState.get().isEditMode));
         showTtsPageControls();
     }
 
