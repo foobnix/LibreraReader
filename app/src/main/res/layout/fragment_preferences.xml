@@ -289,7 +289,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minWidth="110dp"
-                    android:text="MOBI/AZW"
+                    android:text="MOBI/AZW/LIT"
                     android:textSize="11sp" />
 
                 <CheckBox
@@ -365,7 +365,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minWidth="110dp"
-                    android:text="HTML/TXT"
+                    android:text="HTML/TXT/CHM"
                     android:textSize="11sp" />
 
 

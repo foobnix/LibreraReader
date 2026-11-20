@@ -33,6 +33,10 @@ struct renderdocument_s
     fz_outline* outline;
     char* accel;
     unsigned char format; // save current document format.
+    /* Librera: what the document is doing now - a page opened, drawn or read - can be
+     * stopped from another thread through this: see MuPdfDocument_abortInternal. Every
+     * operation clears it as it starts, so an abort only stops what is running then. */
+    fz_cookie cookie;
 };
 
 typedef struct renderpage_s renderpage_t;
@@ -42,6 +46,7 @@ struct renderpage_s
     fz_page* page;
     int number;
     fz_display_list* pageList;
+    fz_cookie* cookie; /* the document's: an abort reaches every page of it */
     // fz_display_list* annot_list;
 };
 
@@ -383,7 +388,7 @@ JNIEXPORT jlong
     password = (char*)(*env)->GetStringUTFChars(env, pwd, &iscopy);
     css = (char*)(*env)->GetStringUTFChars(env, jcss, NULL);
 
-    doc = malloc(sizeof(renderdocument_t));
+    doc = calloc(1, sizeof(renderdocument_t));
     if (!doc) {
         mupdf_throw_exception(env, "Out of Memory");
         goto cleanup;
@@ -493,6 +498,18 @@ cleanup:
     (*env)->ReleaseStringUTFChars(env, jcss, css);
 
     return (jlong)(long)doc;
+}
+
+/* Librera: stops what the document is doing - a page being opened, drawn or read - from
+ * any thread, without the lock that operation holds. MuPDF looks at the flag between
+ * operators and between drawn objects; one image being decoded runs to its end. */
+JNIEXPORT void JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_abortInternal(JNIEnv* env, jclass clazz, jlong handle)
+{
+    renderdocument_t* doc = (renderdocument_t*)(long)handle;
+    if (doc) {
+        doc->cookie.abort = 1;
+    }
 }
 
 JNIEXPORT void JNICALL
@@ -855,6 +872,8 @@ JNIEXPORT jlong
     page->ctx = ctx;
     page->page = NULL;
     page->pageList = NULL;
+    page->cookie = &doc->cookie;
+    doc->cookie.abort = 0;
     // page->annot_list = NULL;
 
     // fz_rect mediabox = fz_empty_rect;
@@ -868,7 +887,7 @@ JNIEXPORT jlong
 
         dev = fz_new_list_device(ctx, page->pageList);
 
-        fz_run_page(ctx, page->page, dev, fz_identity, NULL);
+        fz_run_page(ctx, page->page, dev, fz_identity, page->cookie);
     }
     fz_always(ctx)
     {
@@ -893,6 +912,13 @@ JNIEXPORT jlong
         // page = NULL;
         // ctx = NULL;
         // mupdf_throw_exception(env, "error loading page");
+    }
+
+    /* Stopped part way: what was put in the list is not the page, so there is none to draw */
+    if (doc->cookie.abort && page->pageList) {
+        fz_drop_display_list(ctx, page->pageList);
+        page->pageList = NULL;
+        DEBUG("MuPdfPage_open(%p, %d): aborted", doc, pageno);
     }
 
     DEBUG("MuPdfPage_open(%p, %d): finish: %p", doc, pageno, page);
@@ -1045,7 +1071,10 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPage(JNIEnv* env,
 
         dev = fz_new_draw_device(ctx, fz_identity, pixmap);
 
-        fz_run_display_list(ctx, page->pageList, dev, ctm, viewbox, NULL);
+        if (page->cookie) {
+            page->cookie->abort = 0;
+        }
+        fz_run_display_list(ctx, page->pageList, dev, ctm, viewbox, page->cookie);
 
         fz_drop_pixmap(ctx, pixmap);
     }
@@ -1399,7 +1428,10 @@ JNIEXPORT jobject
     fz_try(ctx)
     {
         fz_stext_options opts;
-        stext = fz_new_stext_page_from_page(ctx, page->page, NULL);
+        if (page->cookie) {
+            page->cookie->abort = 0;
+        }
+        stext = fz_new_stext_page_from_page_with_cookie(ctx, page->page, NULL, page->cookie);
 
         for (fz_stext_block* block = stext ? stext->first_block : NULL; block; block = block->next) {
             if (block->type == FZ_STEXT_BLOCK_TEXT) {
@@ -2332,8 +2364,38 @@ fz_print_stext_image_as_html_my(fz_context* ctx, fz_output* out, fz_stext_block*
     fz_write_printf(ctx, out, "<br/>");
 }
 
+/* Librera: the characters of a page written so far, to leave out the copies a PDF prints over
+ * itself. Some PDFs fake bold by drawing a word twice, the second time a fraction of a point to
+ * the side (the bold keywords of code listings, for one). MuPDF only folds those copies together
+ * when it collects styles, which this text does not ask for, so TTS read every such word twice.
+ * A character is a copy when the same character was already written within a tenth of its size
+ * of it - MuPDF's own fake-bold distance. MuPdfPage.withoutOverprint does the same for selection. */
+typedef struct {
+    fz_stext_char** chars;
+    int len;
+    int cap;
+} written_chars_t;
+
+static int
+is_overprint(written_chars_t* written, fz_stext_char* ch)
+{
+    int i;
+    float tolerance = ch->size * 0.1f;
+    if (ch->c == ' ' || tolerance <= 0)
+        return 0;
+    for (i = 0; i < written->len; i++) {
+        fz_stext_char* before = written->chars[i];
+        if (before->c == ch->c && fabsf(before->origin.x - ch->origin.x) < tolerance &&
+            fabsf(before->origin.y - ch->origin.y) < tolerance)
+            return 1;
+    }
+    if (written->len < written->cap)
+        written->chars[written->len++] = ch;
+    return 0;
+}
+
 void
-fz_print_stext_block_as_html_my(fz_context* ctx, fz_output* out, fz_stext_block* block)
+fz_print_stext_block_as_html_my(fz_context* ctx, fz_output* out, fz_stext_block* block, written_chars_t* written)
 {
     fz_stext_line* line;
     fz_stext_char* ch;
@@ -2368,6 +2430,9 @@ fz_print_stext_block_as_html_my(fz_context* ctx, fz_output* out, fz_stext_block*
         int i, n;
         char utf[10];
         for (ch = line->first_char; ch; ch = ch->next) {
+            if (is_overprint(written, ch))
+                continue;
+
             int is_bold_ch = !is_block_bold && fz_font_is_bold(ctx, ch->font);
             int is_italic_ch = !is_block_italic && fz_font_is_italic(ctx, ch->font);
 
@@ -2422,12 +2487,34 @@ void
 fz_print_stext_page_as_html_my(fz_context* ctx, fz_output* out, fz_stext_page* page, int id)
 {
     fz_stext_block* block;
+    fz_stext_line* line;
+    fz_stext_char* ch;
+    written_chars_t written = { NULL, 0, 0 };
 
-    for (block = page->first_block; block; block = block->next) {
-        if (block->type == FZ_STEXT_BLOCK_IMAGE)
-            fz_print_stext_image_as_html_my(ctx, out, block);
-        else if (block->type == FZ_STEXT_BLOCK_TEXT)
-            fz_print_stext_block_as_html_my(ctx, out, block);
+    for (block = page->first_block; block; block = block->next)
+        if (block->type == FZ_STEXT_BLOCK_TEXT)
+            for (line = block->u.t.first_line; line; line = line->next)
+                for (ch = line->first_char; ch; ch = ch->next)
+                    written.cap++;
+
+    fz_var(written.chars);
+    fz_try(ctx)
+    {
+        written.chars = fz_malloc_array(ctx, written.cap > 0 ? written.cap : 1, fz_stext_char*);
+        for (block = page->first_block; block; block = block->next) {
+            if (block->type == FZ_STEXT_BLOCK_IMAGE)
+                fz_print_stext_image_as_html_my(ctx, out, block);
+            else if (block->type == FZ_STEXT_BLOCK_TEXT)
+                fz_print_stext_block_as_html_my(ctx, out, block, &written);
+        }
+    }
+    fz_always(ctx)
+    {
+        fz_free(ctx, written.chars);
+    }
+    fz_catch(ctx)
+    {
+        fz_rethrow(ctx);
     }
 }
 
@@ -2488,7 +2575,10 @@ JNIEXPORT jbyteArray
 
         dev = fz_new_stext_device(ctx, text, &opts);
 
-        fz_run_page(ctx, page->page, dev, ctm, NULL);
+        if (page->cookie) {
+            page->cookie->abort = 0;
+        }
+        fz_run_page(ctx, page->page, dev, ctm, page->cookie);
         fz_close_device(ctx, dev);
         // fz_drop_device(ctx, dev);
         // dev = NULL;

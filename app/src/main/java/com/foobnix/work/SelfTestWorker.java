@@ -105,6 +105,14 @@ public class SelfTestWorker extends MessageWorker {
     private static final String[] LIMIT_NAMES = {"50", "100", "All"};
     public static final String ACTION_FINISHED = "com.foobnix.work.SelfTestWorker.FINISHED";
     private static final int TESTED = 0, OK = 1, ZERO = 2, ERRORS = 3, CRASHES = 4;
+    // A book that takes longer than this is given up on: a MuPDF call cannot be stopped, and
+    // it holds the document lock, so the run starts again in a new process after it
+    private static final long HANG_MS = 3 * 60 * 1000L;
+    // After an abort, how long the book is given to let go before the app is restarted
+    private static final long ABORT_GRACE_MS = 30 * 1000L;
+    // The document being tested now, for the watchdog to abort
+    private volatile CodecDocument current;
+    private volatile boolean aborted;
 
     private static boolean option(SharedPreferences sp, int i) {
         return sp.getBoolean(OPTION_KEYS[i], OPTION_DEFAULTS[i]);
@@ -193,6 +201,71 @@ public class SelfTestWorker extends MessageWorker {
         final String name = path.toLowerCase(java.util.Locale.US);
         final int dot = name.lastIndexOf('.');
         return dot >= 0 && dot > name.lastIndexOf('/') ? name.substring(dot + 1) : "?";
+    }
+
+    /**
+     * Gives up on a book that takes too long: logged and counted, the run's place moved past
+     * it, and the app's process ended - WorkManager starts the run again from there.
+     */
+    private Thread watchdog(final SharedPreferences sp, final BufferedWriter out, final String path, final String next) {
+        aborted = false;
+        final Thread tested = Thread.currentThread();
+        final Thread t = new Thread(() -> {
+            try {
+                Thread.sleep(HANG_MS);
+            } catch (InterruptedException e) {
+                return;
+            }
+            // Where the book is stuck, for the log: the top of the test's own stack
+            try {
+                final StringBuilder where = new StringBuilder("Stuck in:");
+                final StackTraceElement[] stack = tested.getStackTrace();
+                for (int i = 0; i < stack.length && i < 12; i++) {
+                    where.append("\n    ").append(stack[i]);
+                }
+                writeLine(out, where.toString());
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+            // First asked to stop: MuPDF stops between operators and drawn objects
+            final CodecDocument doc = current;
+            if (doc != null) {
+                aborted = true;
+                doc.abort();
+                try {
+                    Thread.sleep(ABORT_GRACE_MS);
+                } catch (InterruptedException e) {
+                    return;
+                }
+            }
+            // Still not done - one image being decoded is not stopped - so the app goes
+            try {
+                writeLine(out, "HANG: no result in " + (HANG_MS + ABORT_GRACE_MS) / 1000 + " s, restarting the app to go on");
+                count(sp, path, ERRORS);
+                problem(sp, "HANG (over " + HANG_MS / 60000 + " min)", path);
+                sp.edit()
+                  .remove(KEY_OPENING)
+                  .putInt(KEY_NEXT, sp.getInt(KEY_NEXT, 0) + 1)
+                  .putString(KEY_NEXT_PATH, next)
+                  .putInt(KEY_ERRORS, sp.getInt(KEY_ERRORS, 0) + 1)
+                  .commit();
+                restartProcess(out);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }, "SelfTestWatchdog");
+        t.setDaemon(true);
+        t.start();
+        return t;
+    }
+
+    private void restartProcess(BufferedWriter out) {
+        try {
+            out.flush();
+        } catch (IOException e) {
+            LOG.e(e);
+        }
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     private static int indexOf(List<FileMeta> all, String path) {
@@ -582,9 +655,20 @@ public class SelfTestWorker extends MessageWorker {
                 sendTextMessage((n + 1) + "/" + count);
                 sp.edit().putString(KEY_OPENING, path).putInt(KEY_NEXT, n).putString(KEY_NEXT_PATH, path).commit();
 
+                final String next = n + 1 < count ? all.get(n + 1).getPath() : null;
+                final Thread watchdog = watchdog(sp, out, path, next);
+                String test;
+                try {
+                    test = testBook(sp, path, w, h, s);
+                } finally {
+                    watchdog.interrupt();
+                    current = null;
+                }
+                if (aborted) {
+                    test = "Error: HANG, aborted after " + HANG_MS / 1000 + " s";
+                }
                 // Native heap once the book is let go of: growing from book to book is a leak
-                final String result = testBook(sp, path, w, h, s)
-                        + " nativeMB=" + (android.os.Debug.getNativeHeapAllocatedSize() >> 20);
+                final String result = test + " nativeMB=" + (android.os.Debug.getNativeHeapAllocatedSize() >> 20);
                 if (result.startsWith("Error")) {
                     errors++;
                     sendNotifyAll();
@@ -595,7 +679,8 @@ public class SelfTestWorker extends MessageWorker {
                     count(sp, path, result.startsWith("OK") ? OK : result.startsWith("Error: no pages") ? ZERO : ERRORS);
                 }
                 if (!result.startsWith("OK") && !result.startsWith("Password")) {
-                    problem(sp, result.startsWith("Error: no pages") ? "0 pages" : result.replaceAll(" nativeMB=\\d+$", ""), path);
+                    problem(sp, result.startsWith("Error: no pages") ? "0 pages"
+                            : result.startsWith("Error: HANG") ? "HANG (aborted)" : result.replaceAll(" nativeMB=\\d+$", ""), path);
                 }
                 writeLine(out, result);
                 sp.edit()
@@ -604,6 +689,12 @@ public class SelfTestWorker extends MessageWorker {
                   .putString(KEY_NEXT_PATH, n + 1 < count ? all.get(n + 1).getPath() : null)
                   .putInt(KEY_ERRORS, errors)
                   .commit();
+                // Native memory is not given back after running out of it: the run goes on in
+                // a new process, with its place kept
+                if (result.contains("OutOfMemoryError")) {
+                    writeLine(out, "[Out of memory: restarting the app to go on]");
+                    restartProcess(out);
+                }
             }
 
             final String summary = summary(sp, count, (System.currentTimeMillis() - begin) / 1000L, logFile);
@@ -660,6 +751,7 @@ public class SelfTestWorker extends MessageWorker {
         try {
             CodecContext codecContex = BookType.getCodecContextByPath(path);
             codecDocument = codecContex.openDocument(path, "");
+            current = codecDocument;
             if (codecDocument == null) {
                 return "Error: not opened";
             }
@@ -683,10 +775,15 @@ public class SelfTestWorker extends MessageWorker {
 
             final int pages = option(sp, OPT_ALL_PAGES) ? pageCount : Math.min(2, pageCount);
             for (int pageNumber = 0; pageNumber < pages; pageNumber++) {
-                if (isStopped()) {
+                if (isStopped() || aborted) {
                     break;
                 }
                 CodecPage page = codecDocument.getPage(pageNumber);
+                // Stopped by the watchdog: each step would only run the same page again
+                if (aborted) {
+                    page.recycle();
+                    break;
+                }
                 try {
                     if (render || pages > 2) {
                         BitmapRef bitmapRef = page.renderBitmap(w, h, new RectF(0, 0, 1f, 1f), false);
@@ -695,12 +792,12 @@ public class SelfTestWorker extends MessageWorker {
                         }
                         bitmapRef.getBitmap().recycle();
                     }
-                    if (text && pageNumber < 2) {
+                    if (text && pageNumber < 2 && !aborted) {
                         page.getText();
                         page.getPageLinks();
                         page.getPageHTML();
                     }
-                    if (annotations && pageNumber < 2 && BookType.PDF.is(path)) {
+                    if (annotations && pageNumber < 2 && !aborted && BookType.PDF.is(path)) {
                         page.getAnnotations();
                     }
                 } finally {

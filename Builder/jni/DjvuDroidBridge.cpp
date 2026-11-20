@@ -5,6 +5,7 @@
  *      Author: Cool
  */
 
+#include <string>
 #include <jni.h>
 #include <stdlib.h>
 #include <DjvuDroidTrace.h>
@@ -722,20 +723,23 @@ extern "C" jstring Java_org_ebookdroid_droids_djvu_codec_DjvuDocument_getMetaKey
         	miniexp_t *iter =  NULL;
 
 
-        	char result[2024];
-        	strcpy(result, "");
+        	// As long as the book's keys make it: their names and number are the book's own, and
+        	// a fixed buffer was overrun by them
+        	std::string result;
 
-        	for (iter = keys; *iter; ++iter)
+        	for (iter = keys; iter && *iter; ++iter)
         	{
         		const char* item = miniexp_to_name(iter[0]);
                 DEBUG_PRINT("getMetaKeys %s",item);
-                strcat(result, item);
-                strcat(result, ",");
+                if (item) {
+                    result += item;
+                    result += ",";
+                }
 
 			}
         	free(keys);
 
-        	return env->NewStringUTF(result);
+        	return env->NewStringUTF(result.c_str());
         }
 
     return NULL;

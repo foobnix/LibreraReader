@@ -1790,7 +1790,7 @@ public class PrefFragment2 extends UIFragment {
         supportOther.setChecked(AppState.get().supportOther);
         supportOther.setText(
 
-                getString(R.string.other) + " (CHM/...)");
+                getString(R.string.other) + " (CHM/LIT/...)");
         supportOther.setOnCheckedChangeListener((buttonView, isChecked) -> {
             AppState.get().supportOther = isChecked;
             ExtUtils.updateSearchExts();
@@ -1813,18 +1813,18 @@ public class PrefFragment2 extends UIFragment {
         // app password
         final CheckBox isAppPassword = inflate.findViewById(R.id.isAppPassword);
         isAppPassword.setChecked(PasswordState.get()
-                                              .hasPassword() && AppState.get().isAppPassword);
+                                              .hasPassword() && PasswordState.get().isAppPassword);
         isAppPassword.setOnCheckedChangeListener((buttonView, isChecked) -> {
 
             if (isChecked && PasswordState.get()
                                           .hasPassword()) {
-                AppState.get().isAppPassword = true;
+                PasswordState.get().setAppPassword(true);
             } else if (!PasswordState.get()
                                      .hasPassword()) {
                 PasswordDialog.showDialog(getActivity(), true, () -> isAppPassword.setChecked(PasswordState.get()
                                                                                                            .hasPassword()));
             } else {
-                AppState.get().isAppPassword = false;
+                PasswordState.get().setAppPassword(false);
                 isAppPassword.setChecked(false);
             }
         });
@@ -1834,7 +1834,7 @@ public class PrefFragment2 extends UIFragment {
                     if (PasswordState.get()
                                      .hasPassword()) {
                         isAppPassword.setChecked(true);
-                        AppState.get().isAppPassword = true;
+                        PasswordState.get().setAppPassword(true);
                     }
                 }));
 

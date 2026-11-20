@@ -50,13 +50,22 @@ import static com.foobnix.pdf.info.AppsConfig.CURRENT_BITMAP_ARGB;
 @GlideModule
 public class LibreraAppGlideModule extends AppGlideModule {
 
-    static Bitmap cache;
-    static String path;
+    /** The last page decoded and its url, as one pair: two threads decode. */
+    private static final class Last {
+        final String path;
+        final Bitmap bitmap;
+
+        Last(final String path, final Bitmap bitmap) {
+            this.path = path;
+            this.bitmap = bitmap;
+        }
+    }
+
+    private static volatile Last last;
 
     /** The last page decoded is a whole page, and it outlives everything that shows it. */
     public static void clearCache() {
-        path = null;
-        cache = null;
+        last = null;
     }
 
     final static ModelLoader<String, Bitmap> modelLoader = new ModelLoader<String, Bitmap>() {
@@ -76,9 +85,9 @@ public class LibreraAppGlideModule extends AppGlideModule {
                         if (isCanced) {
                             return;
                         }
-                        final Bitmap last = cache;
-                        if (s.equals(path) && last != null && !last.isRecycled()) {
-                            callback.onDataReady(last);
+                        final Last before = last;
+                        if (before != null && s.equals(before.path) && !before.bitmap.isRecycled()) {
+                            callback.onDataReady(before.bitmap);
                             return;
                         }
                         LOG.d("LibreraAppGlideModule loadData", s);
@@ -106,8 +115,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
                             LOG.d("Bitmap-test-1", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
                             callback.onDataReady(bitmap);
 
-                            cache = bitmap;
-                            path = s;
+                            last = new Last(s, bitmap);
                         } else {
                             callback.onDataReady(BitmapFactory.decodeStream(stream));
                             stream.close();
@@ -202,7 +210,9 @@ public class LibreraAppGlideModule extends AppGlideModule {
                 newSourceBuilder()
 
                         .setUncaughtThrowableStrategy(GlideExecutor.UncaughtThrowableStrategy.IGNORE)
-                        .setThreadCount(1)
+                        // Two: a cover the cover process is slow on - see CoverProcess - leaves
+                        // the other thread to the covers that need no engine (EPUB, FB2...)
+                        .setThreadCount(2)
                         //.setThreadTimeoutMillis(2000)
                         .build());
 

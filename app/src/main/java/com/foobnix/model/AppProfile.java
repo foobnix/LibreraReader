@@ -186,6 +186,30 @@ public class AppProfile {
     }
 
     /**
+     * The profile's settings for a process that only reads books - the cover process, see
+     * com.foobnix.sys.CoverRenderService: the settings and the CSS a book is opened with, without
+     * the library, the sync or anything else {@link #init} writes, which is the app's own process's
+     * to do.
+     */
+    public synchronized static void initToRead(Context c) {
+        AppSP.get().init(c);
+        profile = getCurrent();
+        profileRootPath = AppSP.get().getRootPath(c);
+        SYNC_FOLDER_ROOT = new File(profileRootPath);
+        SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
+        SYNC_FOLDER_DICT = new File(SYNC_FOLDER_ROOT, "dict");
+        FONT_LOCAL_ZIP = new File(SYNC_FOLDER_ROOT, "fonts.zip.pack");
+        syncFontFolder = new File(SYNC_FOLDER_ROOT, "Fonts");
+        syncTestFolder = new File(SYNC_FOLDER_ROOT, "Test");
+        SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent());
+        SYNC_FOLDER_DEVICE_PROFILE = new File(SYNC_FOLDER_PROFILE, DEVICE_MODEL);
+        syncState = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_STATE_JSON);
+        syncCSS = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_CSS_JSON);
+        AppState.get().loadInit(c);
+        BookCSS.get().load1(c);
+    }
+
+    /**
      * The folders the library is built from: the user's, and Librera/Books, where synced books
      * arrive. That one is not theirs to manage, so it stays out of the list settings shows, and it
      * is left out here too when a folder of theirs already holds it.

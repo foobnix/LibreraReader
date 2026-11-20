@@ -1406,9 +1406,11 @@ public abstract class DocumentController {
             AppBook bs = SettingsManager.getBookSettings();
             bs.updateFromAppState();
             if (bs.pt == null && bs.getCurrentPage(getPageCount()).viewIndex + 1 == getCurentPageFirst1()) {
-                // foliate answers only off the main thread, which is where this save runs: there
-                // the page text and the place are read on a thread of their own and written after
-                if (getCodecDocument() instanceof FoliateDocument && Looper.myLooper() == Looper.getMainLooper()) {
+                // On the main thread the page text and the place are read on a thread of their own
+                // and written after: they need the document, whose lock a page being drawn holds -
+                // a page MuPDF or PDFium takes minutes over froze the reader ("not responding").
+                // foliate answers only off the main thread anyway.
+                if (Looper.myLooper() == Looper.getMainLooper()) {
                     savePlaceInBackground(bs, getCurentPageFirst1());
                 } else {
                     bs.pt = getBookmarkText();
@@ -1451,10 +1453,11 @@ public abstract class DocumentController {
                 if (doc == null || bs.p != p || bs.pt != null) {
                     return;
                 }
-                final String pt = doc.getBookmarkText(page);
+                // As getBookmarkText(): no page text while the page is cut in two
+                final String pt = AppSP.get().isCut ? null : doc.getBookmarkText(page);
                 final String cfi = doc.getLocation(page);
                 // the page turned meanwhile: currentPageChanged has cleared the place for the new one
-                if (pt == null || bs.p != p || bs.pt != null) {
+                if ((pt == null && cfi == null) || bs.p != p || bs.pt != null) {
                     return;
                 }
                 bs.pt = pt;

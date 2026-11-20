@@ -29,9 +29,7 @@ pdfmpCompose = "1.1.2"
 recyclerview = "1.4.0"
 review = "2.0.2"
 room = "2.8.5"
-rtfparserkit = "1.16.0"
 runner = "1.7.0"
-staxApi = "1.0-2"
 userMessagingPlatform = "4.0.0"
 
 xmlutil = "1.0.2.1"
@@ -92,7 +90,6 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version = "4.16.0" }#not update
 glide = { module = "com.github.bumptech.glide:glide", version = "4.16.0" } #not update
-mammoth = { module = "org.zwobble.mammoth:mammoth", version = "1.5.0" } #app not compatible with new versions
 
 google-api-client-android = { module = "com.google.api-client:google-api-client-android", version = "2.9.2" }
 google-api-services-drive = { module = "com.google.apis:google-api-services-drive", version = "v3-rev20261106-2.9.2" }
@@ -126,9 +123,7 @@ pdfmp-compose = { module = "com.dshatz.pdfmp:pdfmp-compose", version.ref = "pdfm
 
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 review = { module = "com.google.android.play:review", version.ref = "review" }
-rtfparserkit = { module = "com.github.joniles:rtfparserkit", version.ref = "rtfparserkit" }
 runner = { module = "androidx.test:runner", version.ref = "runner" }
-stax-api = { module = "javax.xml.stream:stax-api", version.ref = "staxApi" }
 user-messaging-platform = { module = "com.google.android.ump:user-messaging-platform", version.ref = "userMessagingPlatform" }
 work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
 zip4j = { module = "net.lingala.zip4j:zip4j", version.ref = "zip4j" }

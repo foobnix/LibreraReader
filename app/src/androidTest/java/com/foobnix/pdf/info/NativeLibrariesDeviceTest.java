@@ -130,17 +130,17 @@ public class NativeLibrariesDeviceTest {
     }
 
     @Test
-    public void docConvertsWithLibAntiword() throws Exception {
+    public void docConvertsToEpub() throws Exception {
+        // .doc is read by Librera's own converter now, not by a native library
         final File book = book("sample.doc");
-        final File html = new File(out, "sample.doc.html");
-        html.delete();
+        final File epub = new File(out, "sample.doc.epub");
+        epub.delete();
         final long t = System.nanoTime();
-        final int result = LibMobi.convertDocToHtml(book.getPath(), html.getPath());
-        Log.i(TAG, String.format(Locale.US, "doc -> html: %d, %d bytes, %d ms", result, html.length(), ms(t)));
-        assertTrue("an html came out", html.isFile() && html.length() > 0);
-        final String text = read(html);
-        assertTrue("with the document in it: " + text.substring(0, Math.min(200, text.length())),
-                text.toLowerCase(Locale.US).contains("<html") || text.length() > 100);
+        final boolean result = com.foobnix.ext.office.DocToEpub.convert(book.getPath(), epub);
+        Log.i(TAG, String.format(Locale.US, "doc -> epub: %b, %d bytes, %d ms", result, epub.length(), ms(t)));
+        assertTrue("the doc converted", result);
+        assertTrue("an epub came out", epub.isFile() && epub.length() > 0);
+        assertTrue("and it is a zip", startsWith(epub, "PK"));
     }
 
     @Test

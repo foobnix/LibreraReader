@@ -101,4 +101,4 @@ rm -rf "$SYMBOLS"
 # Native debug end
 
 cd Builder
-./remove_all.sh
+#./remove_all.sh

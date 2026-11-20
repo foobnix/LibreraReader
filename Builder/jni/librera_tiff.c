@@ -280,6 +280,13 @@ decode_into(JNIEnv *env, TIFF *tif, jint sample, jobject bitmap)
     }
 
     band = band_rows(tif, w, h);
+    /* The width is the file's own: on 32 bits w * band * 4 can wrap to a small number, and
+       libtiff would then write a whole row into it */
+    if (w == 0 || band == 0 || w > SIZE_MAX / 4 / band)
+    {
+        LOGE("too wide: %u", w);
+        goto done;
+    }
     raster = malloc((size_t)w * band * 4);
     sums = s > 1 ? calloc((size_t)out_w * 4, sizeof(uint32_t)) : NULL;
     if (!raster || (s > 1 && !sums))

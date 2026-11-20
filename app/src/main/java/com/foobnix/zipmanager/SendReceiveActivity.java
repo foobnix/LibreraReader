@@ -14,6 +14,7 @@ import androidx.core.content.FileProvider;
 import com.foobnix.OpenerActivity;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.IMG;
@@ -136,12 +137,23 @@ public class SendReceiveActivity extends Activity {
 
         LOG.d("SendReceiveActivity", "fileUri final:", fileUri);
 
+        // Only what another app hands over as content. A file:// path is read with Librera's own
+        // rights, so a sender could have Librera copy its private files out to shared storage.
+        if (fileUri != null && !"content".equalsIgnoreCase(fileUri.getScheme())) {
+            fileUri = null;
+        }
+
         String fileName = "downloaded_file.pdf";
         if (fileUri != null) {
             Cursor cursor = getContentResolver().query(fileUri, null, null, null, null);
-            if (cursor != null && cursor.moveToFirst()) {
-                int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-                fileName = cursor.getString(nameIndex);
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                    if (nameIndex >= 0) {
+                        // The sender names it: "../../" would write outside the downloads
+                        fileName = ExtUtils.safeFileName(cursor.getString(nameIndex), fileName);
+                    }
+                }
                 cursor.close();
             }
         }
@@ -205,7 +217,10 @@ public class SendReceiveActivity extends Activity {
                 //String contentType = response.header("Content-Type");
                 String contentDisposition = response.header("content-disposition");
                 if (contentDisposition != null && contentDisposition.contains("filename=")) {
-                    String filename = contentDisposition.split("filename=")[1].replaceAll("\"", "");
+                    // The server names it: "../../" would write outside the downloads
+                    String filename = ExtUtils.safeFileName(
+                            contentDisposition.split("filename=")[1].split(";")[0].replaceAll("\"", ""),
+                            "downloaded_file");
 
                     File file = new File(BookCSS.get().downlodsPath, filename);
                     file.delete();
@@ -227,7 +242,9 @@ public class SendReceiveActivity extends Activity {
             if (uri != null && ((String) text).endsWith(".pdf")) {
                 LOG.d("SendReceiveActivity", "updateIntent is Uri", uri);
 
-                File file = new File(BookCSS.get().downlodsPath, uri.getLastPathSegment());
+                // Decoded, so %2F..%2F in the link would be a way out of the downloads
+                File file = new File(BookCSS.get().downlodsPath,
+                                     ExtUtils.safeFileName(uri.getLastPathSegment(), "downloaded_file.pdf"));
                 file.delete();
 
                 Request request = new Request.Builder().cacheControl(

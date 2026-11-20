@@ -88,6 +88,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.DecimalFormat;
@@ -276,6 +277,7 @@ public class ExtUtils {
             result.add(".mhtml");
             result.add(".shtml");
             result.add(".md");
+            result.add(".chm");
             if (!AppState.get().supportZIP) {
                 result.add(".txt.zip");
             }
@@ -285,6 +287,7 @@ public class ExtUtils {
             result.add(".mobi");
             result.add(".azw");
             result.add(".azw3");
+            result.add(".lit");
         }
         if (AppState.get().supportCBZ) {
             result.add(".cbz");
@@ -1302,7 +1305,49 @@ public class ExtUtils {
         }
     }
 
+    /**
+     * A name from outside - a shared file's, a server's, an OPDS feed's - as a plain file name in
+     * the folder it is saved to: without folders in it, so it cannot reach out of that folder.
+     */
+    public static String safeFileName(String name, String fallback) {
+        if (name != null) {
+            name = name.substring(Math.max(name.lastIndexOf('/'), name.lastIndexOf('\\')) + 1);
+            name = TxtUtils.fixFileName(name).trim();
+        }
+        if (TxtUtils.isEmpty(name) || ".".equals(name) || "..".equals(name)) {
+            return fallback;
+        }
+        return name;
+    }
+
+    /**
+     * Whether a file is in the app's own private storage, which is never handed to another app.
+     * The provider covers the whole file system, for books on any card, so the check is here: a
+     * path another app passed in - OpenerActivity opens "file://" paths with "open with" - would
+     * otherwise come back to it as a readable and writable content URI.
+     */
+    public static boolean isAppPrivateFile(Context a, File file) {
+        try {
+            final String path = file.getCanonicalPath() + "/";
+            final String cache = a.getCacheDir().getCanonicalPath() + "/";
+            if (path.startsWith(cache)) {
+                return false;
+            }
+            if (path.startsWith(new File(a.getApplicationInfo().dataDir).getCanonicalPath() + "/")) {
+                return true;
+            }
+            // The storage kept apart for before the device is unlocked
+            return Build.VERSION.SDK_INT >= 24 && a.getApplicationInfo().deviceProtectedDataDir != null
+                    && path.startsWith(new File(a.getApplicationInfo().deviceProtectedDataDir).getCanonicalPath() + "/");
+        } catch (IOException e) {
+            return true;
+        }
+    }
+
     public static Uri getUriProvider(Context a, File file) {
+        if (isAppPrivateFile(a, file)) {
+            throw new IllegalArgumentException("Private file is not shared: " + file);
+        }
         Uri uriForFile = null;
         // if (Apps.getTargetSdkVersion(a) >= 24) {
         // if (Apps.getTargetSdkVersion(a) >= 24) {
@@ -1370,8 +1415,14 @@ public class ExtUtils {
 
     private static void sharePage(final Activity a, final File file, int page, String pageUrl) {
 
+        // The snapshot shared last time. The path is read back from the settings on shared
+        // storage, so only a file in the snapshots' own folder is taken for it.
         if (AppState.get().fileToDelete != null) {
-            new File(AppState.get().fileToDelete).delete();
+            final File old = new File(AppState.get().fileToDelete);
+            if (CacheZipUtils.ATTACHMENTS_CACHE_DIR != null
+                    && CacheZipUtils.ATTACHMENTS_CACHE_DIR.equals(old.getParentFile())) {
+                old.delete();
+            }
         }
 
         if (TxtUtils.isEmpty(pageUrl)) {

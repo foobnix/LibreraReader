@@ -7,7 +7,6 @@ MUPDF_ROOT := $(realpath $(LOCAL_PATH)/../../..)
 include $(TOP_LOCAL_PATH)/libmobi-0.12/Android.mk
 include $(TOP_LOCAL_PATH)/libhqx-1.2/Android.mk
 include $(TOP_LOCAL_PATH)/libdjvu-3.5.28/Android.mk
-include $(TOP_LOCAL_PATH)/libantiword-1.3.1/Android.mk
 include $(TOP_LOCAL_PATH)/libwebp-1.3.2/Android.mk
 include $(TOP_LOCAL_PATH)/liblame-1.0.9/Android.mk
 include $(TOP_LOCAL_PATH)/libarchive-3.8.10/Android.mk
@@ -16,7 +15,7 @@ include $(TOP_LOCAL_PATH)/libtiff-4.7.2/Android.mk
 
 include $(TOP_LOCAL_PATH)/MuPDF-1.28.5.mk
 
-# libdjvu.so, libmobi.so, libantiword.so and libhqx.so - see that file
+# libdjvu.so, libmobi.so, libhqx.so and libpdfannot.so - see that file
 include $(TOP_LOCAL_PATH)/Librera-libs.mk
 
 # --- libmupdf.so: MuPDF and its JNI, for the flavours built with it ---

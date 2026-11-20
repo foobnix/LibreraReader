@@ -32,9 +32,10 @@ import com.foobnix.ext.CbzCbrExtractor;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.ext.LitExtract;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.ext.OdtExtractor;
-import com.foobnix.ext.RtfExtract;
+import com.foobnix.ext.office.RtfToEpub;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AnnotationsFinder;
@@ -348,21 +349,23 @@ public class ImageExtractor {
             cover = BaseExtractor.arrayToBitmap(Fb2Extractor.get().getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.MOBI.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(MobiExtract.getBookCover(unZipPath), pageUrl.getWidth());
+        } else if (BookType.LIT.is(unZipPath)) {
+            cover = BaseExtractor.arrayToBitmap(LitExtract.getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.RTF.is(unZipPath)) {
-            cover = BaseExtractor.arrayToBitmap(RtfExtract.getImageCover(unZipPath), pageUrl.getWidth());
+            cover = BaseExtractor.arrayToBitmap(RtfToEpub.coverImage(unZipPath), pageUrl.getWidth());
         } else if (BookType.PDF.is(unZipPath)) {
             // With the engine the book is read with, which IMG.toUrl keeps in the cover's url
-            cover = proccessOtherPage(pageUrl);
+            cover = drawnCover(pageUrl);
         } else if (BookType.DJVU.is(unZipPath)) {
-            cover = proccessOtherPage(pageUrl);
+            cover = drawnCover(pageUrl);
             LOG.d("BookType.DJVU", cover, pageUrl);
         } else if (BookType.TIFF.is(unZipPath)) {
             try {
-                cover = proccessOtherPage(pageUrl);
+                cover = drawnCover(pageUrl);
             } catch (Exception e) {
                 LOG.e(e, unZipPath);
             }
-            if (cover == null) {
+            if (cover == null && !CoverProcess.isFailed(LibreraApp.context, unZipPath)) {
                 // A TIFF libtiff does not read - a kind of image it does not draw, or a damaged
                 // file - says so, under its name, rather than #error
                 cover = BaseExtractor.getBookCoverWithTitle(LibreraApp.context.getString(R.string.not_supported),
@@ -396,6 +399,16 @@ public class ImageExtractor {
         LOG.d("udpateFullMeta ImageExtractor", fileMeta.getAuthor());
 
         return cover;
+    }
+
+    /**
+     * A cover the engine draws from the book's first page, drawn in the cover process: a page
+     * that takes minutes would otherwise hold the engine lock all that time, and no other cover
+     * would be drawn and no book opened meanwhile. A page that took too long gets the cover with
+     * the book's title, see {@link CoverProcess}.
+     */
+    private Bitmap drawnCover(PageUrl pageUrl) {
+        return CoverProcess.render(LibreraApp.context, pageUrl).bitmap;
     }
 
     public Bitmap generalCoverWithEffect(PageUrl pageUrl, Bitmap cover) {

@@ -1,43 +1,5 @@
 package org.ebookdroid.droids;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.RtfExtract;
-import com.foobnix.model.AppSP;
-import com.foobnix.pdf.info.model.BookCSS;
-
-import org.ebookdroid.core.codec.CodecDocument;
-import org.ebookdroid.core.codec.AbstractCodecDocument;
-import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
-import org.ebookdroid.droids.mupdf.codec.PdfContext;
-
-import java.io.File;
-
-public class RtfContext extends PdfContext {
-
-    File cacheFile;
-
-    @Override
-    public File getCacheFileName(String fileNameOriginal) {
-        fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + BookCSS.get().isEnableBBCode;
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".html");
-        return cacheFile;
-    }
-
-    @Override
-    public CodecDocument openDocumentInner(String fileName, String password) {
-        if (cacheFile == null) {
-            getCacheFileName(fileName);
-        }
-        if (!cacheFile.isFile()) {
-            try {
-                RtfExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), cacheFile.getName());
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
-
-        AbstractCodecDocument muPdfDocument = openReflowableHtml(cacheFile.getPath(), password);
-        return muPdfDocument;
-    }
+/** A {@code .rtf}, Rich Text Format. See {@link OfficeContext}. */
+public class RtfContext extends OfficeContext {
 }

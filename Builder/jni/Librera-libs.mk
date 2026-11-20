@@ -1,11 +1,10 @@
 # Librera's native code that is not MuPDF, each part a library of its own. Every flavour carries
 # all of them - the ones built with MuPDF and the JS ones without it alike - and the JS flavours
-# leave out libMuPDF.so alone (app/build.gradle), so a DjVu, a .doc or a .mobi is read by the same
+# leave out libMuPDF.so alone (app/build.gradle), so a DjVu or a .mobi is read by the same
 # library in both. AppsConfig loads them.
 #
 #   libdjvu.so      DjVuLibre + DjvuDroidBridge.cpp   org.ebookdroid.droids.djvu.codec.*
 #   libmobi.so      libmobi (tools/mobitool.c)        LibMobi.convertToEpub
-#   libantiword.so  antiword (main_u.c)               LibMobi.convertDocToHtml
 #   libhqx.so       hqx + cbdroidbridge.c             RawBitmap (the bitmap scaler)
 #   libpdfannot.so  librera_pdfannot.c                PdfiumAnnots (annotations through PDFium)
 #
@@ -37,15 +36,6 @@ LOCAL_MODULE    := mobi
 # the JNI entry point is in the static library, which is why the whole of it goes in
 LOCAL_WHOLE_STATIC_LIBRARIES := libmobi_012
 LOCAL_LDLIBS    := -lz -llog -lm
-include $(BUILD_SHARED_LIBRARY)
-
-# --- libantiword.so ---
-include $(CLEAR_VARS)
-LOCAL_PATH      := $(TOP_LOCAL_PATH)
-LOCAL_MODULE    := antiword
-# the JNI entry point is in the static library, which is why the whole of it goes in
-LOCAL_WHOLE_STATIC_LIBRARIES := antiword_static
-LOCAL_LDLIBS    := -llog -lm
 include $(BUILD_SHARED_LIBRARY)
 
 # --- libhqx.so ---

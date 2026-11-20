@@ -16,6 +16,8 @@ import org.ebookdroid.droids.EpubContext;
 import org.ebookdroid.droids.Fb2Context;
 import org.ebookdroid.droids.FolderContext;
 import org.ebookdroid.droids.HtmlContext;
+import org.ebookdroid.droids.ChmContext;
+import org.ebookdroid.droids.LitContext;
 import org.ebookdroid.droids.MdContext;
 import org.ebookdroid.droids.MhtContext;
 import org.ebookdroid.droids.MobiContext;
@@ -61,6 +63,12 @@ public enum BookType {
             list("application/fb2", "application/x-fictionbook", "application/x-fictionbook+xml", "application/x-fb2", "application/fb2+zip", "application/fb2.zip", "application/x-zip-compressed-fb2")),
 
     MOBI(MobiContext.class, true, true, list("mobi", "azw", "azw3", "azw4", "pdb", "prc"), list("application/x-mobipocket-ebook", "application/x-palm-database","application/x-mobi8-ebook","application/x-kindle-application","application/vnd.amazon.mobi8-ebook")),
+
+    // Microsoft Reader, converted to EPUB
+    LIT(LitContext.class, true, true, list("lit"), list("application/x-ms-reader")),
+
+    // Converted to an EPUB (ChmToEpub), so every build reads it, foliate where there is no MuPDF
+    CHM(ChmContext.class, true, true, list("chm"), list("application/x-chm", "application/vnd.ms-htmlhelp", "application/x-ms-chm")),
 
     TXT(TxtContext.class, true, true, list("txt", "playlist","log","ini"), list("text/plain","text/x-log")),
 

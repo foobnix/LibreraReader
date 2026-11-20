@@ -204,10 +204,19 @@ class PdfiumText {
             if (answer != null && !answer.isEmpty()) {
                 final Map<Integer, RectF> byStart = new HashMap<Integer, RectF>(answer.size() * 2);
                 for (WordRangeRect r : answer) {
-                    // A range on two lines has a rectangle on each; the first is where it starts
-                    if (r != null && r.getRect() != null && !byStart.containsKey(r.getRangeStart())) {
-                        byStart.put(r.getRangeStart(), r.getRect());
+                    if (r == null || r.getRect() == null) {
+                        continue;
                     }
+                    final RectF first = byStart.get(r.getRangeStart());
+                    if (first == null) {
+                        byStart.put(r.getRangeStart(), new RectF(r.getRect()));
+                    } else if (sameLine(first, r.getRect())) {
+                        // PDFium gives a rectangle per run of the same style, so a word set in
+                        // two colours - "frag=new" in a code listing - comes in pieces: all of
+                        // them make the word, or it is only as wide as its first piece.
+                        unionPdf(first, r.getRect());
+                    }
+                    // A range on two lines has a rectangle on each; the first is where it starts
                 }
                 if (!byStart.isEmpty()) {
                     return new RangeRects() {
@@ -241,15 +250,29 @@ class PdfiumText {
             if (union == null) {
                 union = new RectF(box);
             } else {
-                // The boxes are in PDF space, where "top" is the larger y, so RectF.union would
-                // read them upside down: take the extremes by value instead.
-                union.left = Math.min(union.left, Math.min(box.left, box.right));
-                union.right = Math.max(union.right, Math.max(box.left, box.right));
-                union.top = Math.max(union.top, Math.max(box.top, box.bottom));
-                union.bottom = Math.min(union.bottom, Math.min(box.top, box.bottom));
+                unionPdf(union, box);
             }
         }
         return union;
+    }
+
+    /**
+     * Grows <code>union</code> over <code>box</code>. The boxes are in PDF space, where "top" is
+     * the larger y, so RectF.union would read them upside down: take the extremes by value instead.
+     */
+    private static void unionPdf(final RectF union, final RectF box) {
+        union.left = Math.min(union.left, Math.min(box.left, box.right));
+        union.right = Math.max(union.right, Math.max(box.left, box.right));
+        union.top = Math.max(union.top, Math.max(box.top, box.bottom));
+        union.bottom = Math.min(union.bottom, Math.min(box.top, box.bottom));
+    }
+
+    /** Whether two PDF-space boxes are on one line: the middle of either is within the other. */
+    static boolean sameLine(final RectF a, final RectF b) {
+        final float aLow = Math.min(a.top, a.bottom), aHigh = Math.max(a.top, a.bottom);
+        final float bLow = Math.min(b.top, b.bottom), bHigh = Math.max(b.top, b.bottom);
+        final float aMiddle = (aLow + aHigh) / 2, bMiddle = (bLow + bHigh) / 2;
+        return (bMiddle >= aLow && bMiddle <= aHigh) || (aMiddle >= bLow && aMiddle <= bHigh);
     }
 
     /** The whole page's text, with the trailing padding PDFium leaves behind removed. */

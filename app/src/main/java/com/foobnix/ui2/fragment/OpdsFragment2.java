@@ -45,6 +45,7 @@ import com.foobnix.opds.Link;
 import com.foobnix.opds.OPDS;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.ADS;
+import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -368,7 +369,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 proxyServer.setText(AppState.get().proxyServer);
                 proxyPort.setText(AppState.get().proxyPort == 0 ? "" : "" + AppState.get().proxyPort);
                 proxyUser.setText(AppState.get().proxyUser);
-                proxyPassword.setText(AppState.get().proxyPassword);
+                proxyPassword.setText(PasswordState.get().proxyPassword);
 
                 proxyEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -436,7 +437,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         }
 
                         AppState.get().proxyUser = proxyUser.getText().toString().trim();
-                        AppState.get().proxyPassword = proxyPassword.getText().toString().trim();
+                        PasswordState.get().proxyPassword = proxyPassword.getText().toString().trim();
+                        PasswordState.get().save(getActivity());
 
                         OPDS.buildProxy();
 
@@ -592,7 +594,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                         LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath, displayName);
                                     } else {
                                         if (TxtUtils.isNotEmpty(link.author)) {
-                                            LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath, TxtUtils.fixFileName(link.author));
+                                            LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath, ExtUtils.safeFileName(link.author, "."));
                                         } else {
                                             LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath);
                                         }

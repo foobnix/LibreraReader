@@ -433,6 +433,52 @@ public class PdfiumEngineDeviceTest {
         }
     }
 
+    /**
+     * A code listing's keyword: "frag=new" with "new" in another colour, and printed a second
+     * time 0.2pt to the right to fake bold. MuPDF gave "new" twice, so a selection over it was
+     * painted twice; PDFium boxed the word by its first colour only, so "=new" was not selected.
+     */
+    @Test
+    public void aWordInTwoColoursPrintedTwiceIsOneWord() throws Exception {
+        final File bold = new File(file.getParentFile(), "pdfium-engine-test-bold.pdf");
+        final OutputStream out = new FileOutputStream(bold);
+        try {
+            out.write(fakeBoldPdf());
+        } finally {
+            out.close();
+        }
+        final File before = file;
+        file = bold;
+        final CodecDocument mupdf = open(AppState.PDF_ENGINE_MUPDF);
+        final CodecDocument pdfium = open(AppState.PDF_ENGINE_PDFIUM);
+        try {
+            final List<TextWord> expected = words(mupdf);
+            final List<TextWord> actual = words(pdfium);
+            assertEquals("A frag=new", join(expected));
+            assertEquals("the words PDFium found: " + join(actual), join(expected), join(actual));
+            for (int i = 0; i < expected.size(); i++) {
+                final TextWord e = expected.get(i);
+                final TextWord a = actual.get(i);
+                assertClose("left of '" + e.w + "'", e.left, a.left);
+                assertClose("right of '" + e.w + "'", e.right, a.right);
+            }
+            // Courier: "A frag=new" is ten 7.2pt characters from x=20
+            assertClose("'frag=new' ends after 'new'", (20 + 10 * 7.2f) / PAGE_WIDTH, actual.get(1).right);
+
+            // Read aloud, "new" is said once
+            for (CodecDocument document : new CodecDocument[]{mupdf, pdfium}) {
+                final String html = document.getPage(0).getPageHTML();
+                assertTrue("the page is read: " + html, html.contains("A frag=new"));
+                assertEquals("'new' is read once: " + html, html.indexOf("new"), html.lastIndexOf("new"));
+            }
+        } finally {
+            mupdf.recycle();
+            pdfium.recycle();
+            file = before;
+            bold.delete();
+        }
+    }
+
     @Test
     public void aFreshDocumentHasNoChanges() {
         final CodecDocument pdfium = open(AppState.PDF_ENGINE_PDFIUM);
@@ -607,6 +653,20 @@ public class PdfiumEngineDeviceTest {
                 + " /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>");
         objects.add("<< /Length " + content.length() + " >>\nstream\n" + content + "endstream");
         objects.add("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>");
+        return pdf(objects);
+    }
+
+    /** "A frag=new" in Courier, "new" in green and printed again 0.2pt to the right. */
+    private static byte[] fakeBoldPdf() {
+        final String content = "BT /F1 12 Tf 20 70 Td (A frag=) Tj 0 0.5 0 rg (new) Tj ET\n"
+                + "BT /F1 12 Tf 0 0.5 0 rg 1 0 0 1 70.6 70 Tm (new) Tj ET\n";
+        final List<String> objects = new ArrayList<String>();
+        objects.add("<< /Type /Catalog /Pages 2 0 R >>");
+        objects.add("<< /Type /Pages /Kids [3 0 R] /Count 1 >>");
+        objects.add("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 " + PAGE_WIDTH + " " + PAGE_HEIGHT + "]"
+                + " /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>");
+        objects.add("<< /Length " + content.length() + " >>\nstream\n" + content + "endstream");
+        objects.add("<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>");
         return pdf(objects);
     }
 

@@ -17,6 +17,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.XmlParser;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.widget.AddCatalogDialog;
+import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.sys.TempHolder;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -31,12 +32,15 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Authenticator;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.Route;
 
 public class OPDS {
     public static final String CODE_401 = "401";
@@ -66,8 +70,8 @@ public class OPDS {
                     LOG.d("Proxy: Server", http.name(), AppState.get().proxyServer, AppState.get().proxyPort);
                     builder.proxy(new Proxy(http, new InetSocketAddress(AppState.get().proxyServer, AppState.get().proxyPort)));
                     if (TxtUtils.isNotEmpty(AppState.get().proxyUser)) {
-                        LOG.d("Proxy: User", AppState.get().proxyUser, AppState.get().proxyPassword);
-                        builder.proxyAuthenticator(new BasicAuthenticator(new Credentials(AppState.get().proxyUser, AppState.get().proxyPassword)));
+                        LOG.d("Proxy: User", AppState.get().proxyUser);
+                        builder.proxyAuthenticator(new BasicAuthenticator(new Credentials(AppState.get().proxyUser, PasswordState.get().proxyPassword)));
                     }
                 } else {
                     builder.proxy(null);
@@ -76,6 +80,24 @@ public class OPDS {
             }
         }, "@T buildProxy").start();
 
+    }
+
+    /**
+     * The login answered only to the server it was given for. The client is one for the whole
+     * app - covers, shared links, fonts go through it too - and any of their servers asking for
+     * a login would otherwise have been sent the catalogue's.
+     */
+    static Authenticator forHost(String url, final Authenticator authenticator) {
+        final HttpUrl parsed = HttpUrl.parse(url);
+        final String host = parsed == null ? null : parsed.host();
+        return new Authenticator() {
+            @Override public Request authenticate(Route route, Response response) throws IOException {
+                if (host == null || !host.equalsIgnoreCase(response.request().url().host())) {
+                    return null;
+                }
+                return authenticator.authenticate(route, response);
+            }
+        };
     }
 
     public static String getHttpResponseNoException(String url) {
@@ -131,7 +153,7 @@ public class OPDS {
 
 
                 client = builder //
-                        .authenticator(new CachingAuthenticatorDecorator(authenticator, authCache)) //
+                        .authenticator(forHost(url, new CachingAuthenticatorDecorator(authenticator, authCache))) //
                         .addInterceptor(new AuthenticationCacheInterceptor(authCache)) //
                         .build();
 
@@ -164,7 +186,7 @@ public class OPDS {
 
 
                     client = builder //
-                            .authenticator(new CachingAuthenticatorDecorator(authenticator, authCache)) //
+                            .authenticator(forHost(url, new CachingAuthenticatorDecorator(authenticator, authCache))) //
                             .addInterceptor(new AuthenticationCacheInterceptor(authCache)) //
                             .build();
 
@@ -227,7 +249,7 @@ public class OPDS {
 
 
             client = builder //
-                    .authenticator(new CachingAuthenticatorDecorator(authenticator, authCache)) //
+                    .authenticator(forHost(url, new CachingAuthenticatorDecorator(authenticator, authCache))) //
                     .addInterceptor(new AuthenticationCacheInterceptor(authCache)) //
                     .build();
 

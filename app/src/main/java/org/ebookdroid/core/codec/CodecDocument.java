@@ -34,6 +34,10 @@ public interface CodecDocument {
 
     void recycle();
 
+    /** Stops the work the document is doing now, from any thread; only MuPDF can. */
+    default void abort() {
+    }
+
     BookType getBookType();
 
     /**

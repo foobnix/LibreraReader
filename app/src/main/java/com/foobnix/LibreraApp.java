@@ -26,6 +26,7 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.sys.CoverRenderService;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSNotification;
 import com.google.android.gms.ads.MobileAds;
@@ -108,7 +109,13 @@ public class LibreraApp extends Application {
 
         // The DjVu render service's process draws pages for another app and nothing else:
         // it needs none of the reader, and must not cancel or prune the reader's work.
-        if (isDjvuRenderProcess()) {
+        if (isProcess(":djvu")) {
+            return;
+        }
+        // The cover process draws covers and nothing else, see CoverRenderService
+        if (isProcess(":covers")) {
+            AppsConfig.init(this);
+            CoverRenderService.initProcess(this);
             return;
         }
         if (!WorkManager.isInitialized()) {
@@ -242,7 +249,7 @@ public class LibreraApp extends Application {
 
 
 
-    private static boolean isDjvuRenderProcess() {
+    private static boolean isProcess(final String suffix) {
         String name = null;
         if (Build.VERSION.SDK_INT >= 28) {
             name = Application.getProcessName();
@@ -261,7 +268,7 @@ public class LibreraApp extends Application {
                 LOG.e(e);
             }
         }
-        return name != null && name.endsWith(":djvu");
+        return name != null && name.endsWith(suffix);
     }
 
     @Override

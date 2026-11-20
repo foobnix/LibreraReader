@@ -23,6 +23,8 @@ import com.foobnix.ext.DocxExtractor;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.ext.LitExtract;
+import com.foobnix.ext.chm.ChmToEpub;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.ext.PageEstimate;
 import com.foobnix.ext.PdfExtract;
@@ -141,6 +143,8 @@ public class FileMetaCore {
                 info = Fb2Extractor.get().getBookOverview(path);
             } else if (BookType.MOBI.is(path)) {
                 info = MobiExtract.getBookOverview(path);
+            } else if (BookType.LIT.is(path)) {
+                info = LitExtract.getBookOverview(path);
             } else if (BookType.DJVU.is(path)) {
                 info = DjvuExtract.getBookOverview(path);
             } else if (BookType.PDF.is(path)) {
@@ -351,6 +355,12 @@ public class FileMetaCore {
             ebookMeta = Fb2Extractor.get().getBookMetaInformation(unZipPath);
         } else if (BookType.MOBI.is(unZipPath)) {
             ebookMeta = MobiExtract.getBookMetaInformation(unZipPath, true);
+        } else if (BookType.LIT.is(unZipPath)) {
+            ebookMeta = LitExtract.getBookMetaInformation(unZipPath, true);
+        } else if (BookType.CHM.is(unZipPath)) {
+            final String[] chm = ChmToEpub.getTitleAndLanguage(new File(unZipPath));
+            ebookMeta.setTitle(chm[0]);
+            ebookMeta.setLang(chm[1]);
         } else if (BookType.DJVU.is(unZipPath)) {
             ebookMeta = DjvuExtract.getBookMetaInformation(unZipPath);
         } else if (BookType.DOCX.is(unZipPath)) {

@@ -29,16 +29,26 @@ import java.util.concurrent.Executors;
 public class PasswordDialog {
     public static String EXTRA_APP_PASSWORD = "EXTRA_APP_PASSWORD";
 
+    /**
+     * What a fingerprint given in this process puts in the intents that follow. Only that value
+     * lets them by: the screens are exported, and any value at all in the extra used to do as
+     * well as the finger for whatever app sent it.
+     */
+    private static volatile String fingerprintToken;
+
     public static boolean isNeedPasswordDialog(final Activity a) {
         if (a == null || a.getIntent() == null) {
             return false;
         }
 
-        if (!AppState.get().isAppPassword) {
+        // The private copy, not AppState's: that file is on shared storage
+        if (!PasswordState.get().isAppPassword) {
             return false;
         }
 
-        if (PasswordState.get().isFingerPrintPassword && TxtUtils.isNotEmpty(a.getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD))) {
+        final String token = fingerprintToken;
+        if (PasswordState.get().isFingerPrintPassword && token != null
+                && token.equals(a.getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD))) {
             return false;
         }
 
@@ -76,7 +86,8 @@ public class PasswordDialog {
                     public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
                         super.onAuthenticationSucceeded(result);
                         Toast.makeText(a, R.string.success, Toast.LENGTH_SHORT).show();
-                        a.getIntent().putExtra(PasswordDialog.EXTRA_APP_PASSWORD, UUID.randomUUID().toString());
+                        fingerprintToken = UUID.randomUUID().toString();
+                        a.getIntent().putExtra(PasswordDialog.EXTRA_APP_PASSWORD, fingerprintToken);
                         a.finish();
                         a.startActivity(a.getIntent());
 

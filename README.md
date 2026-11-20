@@ -150,7 +150,6 @@ Full release notes: https://github.com/foobnix/LibreraReader/releases
 |------------|------------------|----------------------|
 | MuPDF      | 1.28.5           | AGPL-3.0             |
 | DjVuLibre  | 3.5.28           | GPL-2.0-or-later     |
-| antiword   | 1.3.1            | GPL-2.0              |
 | libmobi    | 0.12             | LGPL-3.0-or-later    |
 | hqx        | 1.2              | LGPL-2.1-or-later    |
 | LAME       | 3.100            | LGPL-2.0-or-later    |
@@ -182,9 +181,6 @@ Full release notes: https://github.com/foobnix/LibreraReader/releases
 | com.squareup.okhttp3:okhttp                 | 3.12.6         | Apache-2.0                  |
 | io.github.rburgst:okhttp-digest             | 3.1.1          | Apache-2.0                  |
 | com.squareup.okio:okio                      | 1.17.6         | Apache-2.0                  |
-| com.github.joniles:rtfparserkit             | 1.16.0         | Apache-2.0                  |
-| org.zwobble.mammoth:mammoth                 | 1.5.0          | BSD-2-Clause                |
-| javax.xml.stream:stax-api                   | 1.0-2          | CDDL-1.0 / GPL-2.0          |
 | net.lingala.zip4j:zip4j                     | 2.11.6         | Apache-2.0                  |
 | com.github.bumptech.glide:glide             | 4.16.0         | BSD-2-Clause and Apache-2.0 |
 | commons-logging:commons-logging-api         | 1.1            | Apache-2.0                  |

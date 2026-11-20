@@ -1,77 +1,16 @@
 package org.ebookdroid.droids;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.CbzCbrExtractor;
-import com.foobnix.ext.Fb2Extractor;
-import com.foobnix.hypen.HypenUtils;
-import com.foobnix.libmobi.LibMobi;
-import com.foobnix.model.AppSP;
-import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.model.BookCSS;
-
 import org.ebookdroid.core.codec.CodecDocument;
-import org.ebookdroid.core.codec.AbstractCodecDocument;
-import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
-import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.util.ArrayList;
-
-public class DocContext extends PdfContext {
-
-    public static String EXT_DOC_HTML = ".doc.html";
-
-    File cacheFile;
+/**
+ * A {@code .doc}: Word 97-2003, or what is often saved under that name - RTF, a .docx, plain
+ * text. See {@link OfficeContext}.
+ */
+public class DocContext extends OfficeContext {
 
     @Override
-    public File getCacheFileName(String fileNameOriginal) {
-        fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + AppSP.get().hypenLang + AppSP.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isEnableBBCode + BookCSS.get().isCapitalLetter;
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + EXT_DOC_HTML);
-        return cacheFile;
+    protected CodecDocument openOther(String fileName, String password) {
+        // neither Word nor RTF: as text, as the name was given to it
+        return new TxtContext().openDocumentInner(fileName, password);
     }
-
-    @Override
-    public CodecDocument openDocumentInner(String fileName, String password) {
-        boolean isDoc = CbzCbrExtractor.isDoc(fileName);
-        LOG.d("isDOC", "isDOC" + isDoc);
-        if (!isDoc) {
-            return new TxtContext().openDocumentInner(fileName, password);
-        }
-
-        if (!cacheFile.isFile()) {
-            String outputTemp = cacheFile.getPath() + ".tmp";
-            final int res = LibMobi.convertDocToHtml(fileName, outputTemp);
-            LOG.d("convertDocToHtml", res);
-            if (res == 0) {
-                return new RtfContext().openDocumentInner(fileName, password);
-            }
-
-
-            try {
-                FileInputStream in = new FileInputStream(outputTemp);
-                OutputStream out = new BufferedOutputStream(new FileOutputStream(cacheFile));
-
-                HypenUtils.applyLanguage(AppSP.get().hypenLang);
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null, out, null, 0, new ArrayList<>());
-                out.close();
-                in.close();
-
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-
-
-        }
-
-        AbstractCodecDocument muPdfDocument = openReflowableHtml(cacheFile.getPath(), password);
-        return muPdfDocument;
-    }
-
-
 }

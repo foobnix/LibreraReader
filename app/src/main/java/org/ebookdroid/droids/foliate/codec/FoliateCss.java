@@ -30,6 +30,12 @@ import java.util.regex.Pattern;
  *     user's fonts would silently not load.</li>
  * <li><b>{@code font-family:'Charis SIL'}</b> and the other fonts built into MuPDF get a generic
  *     family after them, as the WebView has no font by that name (see {@link #BUILT_IN_FONT}).</li>
+ * <li><b>{@code body, div, p{line-height:1.2em !important}}</b> loses its unit. MuPDF reads the
+ *     em of each element against that element's own font size; a browser works it out once, at
+ *     the body's size, and every heading inherits that length - a heading twice the text's size
+ *     got a line only 1.2 times the text's, and its lines ran into each other. A unitless line
+ *     height is inherited as the factor and applied to each element's own size, as MuPDF does
+ *     (see {@link #LINE_HEIGHT}).</li>
  * </ul>
  *
  * The result is handed to foliate's {@code renderer.setStyles([before, after])}: {@link #before()}
@@ -43,6 +49,10 @@ public class FoliateCss {
 
     /** `src:url('...')` as BookCSS writes it, with a bare filesystem path inside. */
     private static final Pattern FONT_URL = Pattern.compile("src:url\\('([^']*)'\\)");
+
+    /** The line height BookCSS gives the text, in em; see the class comment. */
+    private static final Pattern LINE_HEIGHT = Pattern.compile(
+            "(body, div, p\\{line-height:)(\\d+(?:\\.\\d+)?)em( !important;\\})");
 
     /** The exact declaration BookCSS emits; see the class comment. */
     private static final String FONT_SIZE_HACK = "font-size:medium !important;";
@@ -151,6 +161,7 @@ public class FoliateCss {
         }
         css = css.replace(FONT_SIZE_HACK, "");
         css = PAGE_RULE.matcher(css).replaceAll("");
+        css = LINE_HEIGHT.matcher(css).replaceAll("$1$2$3");
         return withGenericFallback(rewriteFontUrls(css)) + overrides();
     }
 

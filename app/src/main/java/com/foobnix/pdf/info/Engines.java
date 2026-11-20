@@ -47,7 +47,7 @@ public final class Engines {
      * {@code lib<name>.so} each. libarchive.so and liblame.so are loaded by the classes that use
      * them ({@link com.foobnix.ext.NativeArchive}, the MP3 encoder).
      */
-    public static final String[] NATIVE_LIBRARIES = {"djvu", "mobi", "antiword", "hqx"};
+    public static final String[] NATIVE_LIBRARIES = {"djvu", "mobi", "hqx"};
 
     private Engines() {
     }

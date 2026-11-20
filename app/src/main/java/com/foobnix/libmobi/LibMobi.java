@@ -6,6 +6,4 @@ public class LibMobi {
     // }
 
     public static native int convertToEpub(String input, String output);
-
-    public static native int convertDocToHtml(String input, String output);
 }

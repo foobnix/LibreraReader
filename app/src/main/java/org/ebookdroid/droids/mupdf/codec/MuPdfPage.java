@@ -29,9 +29,11 @@ import org.emdev.utils.LengthUtils;
 import org.emdev.utils.MatrixUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class MuPdfPage extends AbstractCodecPage {
@@ -514,6 +516,7 @@ public class MuPdfPage extends AbstractCodecPage {
             return new TextWord[0][0];
         }
         LOG.d("text116 size", chars.size());
+        chars = withoutOverprint(chars);
 
         ArrayList<TextWord[]> lns = new ArrayList<TextWord[]>();
 
@@ -554,6 +557,43 @@ public class MuPdfPage extends AbstractCodecPage {
             }
         }
 
+        return res;
+    }
+
+    /**
+     * The characters without the copies a PDF prints over themselves. Some PDFs fake bold by
+     * drawing a word twice, the second time a fraction of a point to the side (the bold keywords
+     * of code listings, for one). MuPDF only folds those copies together when it collects styles,
+     * which the text for selection does not ask for, so every such word came twice and a selection
+     * over it was painted twice. A character is a copy when the same character was already placed
+     * within a tenth of its height - MuPDF's own fake-bold distance.
+     */
+    static List<TextChar> withoutOverprint(final List<TextChar> chars) {
+        final Map<Integer, List<TextChar>> placed = new HashMap<Integer, List<TextChar>>();
+        final List<TextChar> res = new ArrayList<TextChar>(chars.size());
+        for (TextChar tc : chars) {
+            final float tolerance = tc.height() * 0.1f;
+            if (tc.c == ' ' || tolerance <= 0) {
+                res.add(tc);
+                continue;
+            }
+            List<TextChar> same = placed.get(tc.c);
+            if (same == null) {
+                same = new ArrayList<TextChar>();
+                placed.put(tc.c, same);
+            }
+            boolean copy = false;
+            for (TextChar before : same) {
+                if (Math.abs(before.left - tc.left) < tolerance && Math.abs(before.bottom - tc.bottom) < tolerance) {
+                    copy = true;
+                    break;
+                }
+            }
+            if (!copy) {
+                same.add(tc);
+                res.add(tc);
+            }
+        }
         return res;
     }
 

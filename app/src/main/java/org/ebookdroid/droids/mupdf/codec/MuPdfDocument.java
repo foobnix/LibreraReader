@@ -13,6 +13,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.core.codec.AbstractCodecContext;
 import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.CodecPageInfo;
@@ -114,8 +115,13 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
             LOG.d("accel cache1", fname);
             // MuPDF checks a saved layout against the page size, the font size and the CSS, but
-            // knows nothing of Librera's image scaling, so that goes into the name
-            String accel = new EpubContext().getCacheFileName(fname + isImageScale)
+            // knows nothing of Librera's image scaling, so that goes into the name. Nor does it
+            // check the book itself: a converted book is written to the same file every time -
+            // every GitBook SUMMARY.md becomes md.epub - and took the page counts of the one
+            // opened before it, a page that was not there among them. The file's size and time
+            // tell one book from the next.
+            String accel = new EpubContext().getCacheFileName(fname + isImageScale
+                                                    + "_" + AbstractCodecContext.getFileNameSalt(fname))
                                             .getPath() + "+accel";
             accel = accel.replace(CacheZipUtils.CACHE_BOOK_DIR.getPath(), CacheZipUtils.CACHE_TEMP.getPath());
             LOG.d("accel cache2", accel, new File(accel).exists());
@@ -350,7 +356,24 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
     }
 
+    /**
+     * Stops what the document is doing - a page being opened, drawn or read - from any thread,
+     * without waiting for the lock that work holds. A page stopped while it opened has nothing
+     * to draw. One image being decoded is not stopped part way.
+     */
+    @Override public void abort() {
+        final long handle = documentHandle;
+        if (handle != 0 && !isRecycled()) {
+            abortInternal(handle);
+        }
+    }
+
+    private static native void abortInternal(long handle);
+
     @Override protected void freeDocument() {
+        // A page still being opened or drawn would hold the lock for as long as it takes:
+        // stopped first, the book closes at once
+        abort();
         TempHolder.lock.lock();
         try {
             pageCountCache = null;

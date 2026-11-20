@@ -33,6 +33,13 @@ public class MobiContext extends PdfContext {
         return cacheFile;
     }
 
+    /**
+     * Writes the book as {@code outName}.epub in {@code outDir}.
+     */
+    protected FooterNote convert(String fileName, String outDir, String outName) throws Exception {
+        return MobiExtract.extract(fileName, outDir, outName);
+    }
+
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
 
@@ -44,9 +51,11 @@ public class MobiContext extends PdfContext {
 
         } else {
             try {
-                int outName = BookCSS.get().isAutoHypens ? "temp".hashCode() : originalHashCode;
+                // Without hyphens the converted book is the cached one, so it gets the cache file's
+                // name: under any other the next open neither finds it nor keeps it
+                String outName = BookCSS.get().isAutoHypens ? "temp".hashCode() + "" : originalHashCode + "" + originalHashCode;
 
-                FooterNote extract = MobiExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), outName + "");
+                FooterNote extract = convert(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), outName);
                 fileNameEpub = extract.path;
                 LOG.d("Context", "MobiContext outName", outName, extract.path);
                 if (BookCSS.get().isAutoHypens) {

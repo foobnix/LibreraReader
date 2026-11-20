@@ -392,10 +392,7 @@ dependencies {
 
 
 
-    implementation(libs.rtfparserkit)
 
-    implementation(libs.mammoth)
-    implementation(libs.stax.api)
 
 
     implementation(libs.zip4j)

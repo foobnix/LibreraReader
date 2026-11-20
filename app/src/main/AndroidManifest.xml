@@ -165,6 +165,8 @@
                 <data android:mimeType="application/octet-stream" />
                 <data android:mimeType="application/vnd.ms-xpsdocument" />
                 <data android:mimeType="application/oxps" />
+                <data android:mimeType="application/x-chm" />
+                <data android:mimeType="application/vnd.ms-htmlhelp" />
 
                 <data android:mimeType="text/rtf" />
                 <data android:mimeType="text/richtext" />
@@ -226,6 +228,7 @@
                 <data android:pathPattern=".*\\.xps" />
                 <data android:pathPattern=".*\\.zip" />
                 <data android:pathPattern=".*\\.md" />
+                <data android:pathPattern=".*\\.chm" />
             </intent-filter>
 
             <intent-filter>
@@ -276,6 +279,13 @@
             android:exported="false" />
 
             -->
+
+        <!-- PDF, DjVu and TIFF covers are drawn in a process of their own, which is killed when a
+             page takes too long: see com.foobnix.sys.CoverProcess -->
+        <service
+            android:name="com.foobnix.sys.CoverRenderService"
+            android:exported="false"
+            android:process=":covers" />
 
         <service
             android:name="com.foobnix.tts.TTSService"

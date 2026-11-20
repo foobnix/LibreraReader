@@ -1382,11 +1382,12 @@ static void gen2_image_fb2(fz_context *ctx, struct genstate *g, fz_html_box *roo
 	{
 		fz_image *img = fz_tree_lookup(ctx, g->images, src+1);
 		gen2_image_common(ctx, g, root_box, node, fz_keep_image(ctx, img), display, style);
-	}else{
+	}else if (src){
 	        fz_css_style local_style = *style;
 	        fz_image *img = load_html_image(ctx, g->zip, g->base_uri, src);
     		gen2_image_common(ctx, g, root_box, node, img, display, &local_style);
 	}
+	/* An image with no link names nothing to show: load_html_image would read a NULL name */
 }
 
 static void gen2_image_svg(fz_context *ctx, struct genstate *g, fz_html_box *root_box, fz_xml *node, int display, fz_css_style *style)

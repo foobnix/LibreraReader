@@ -126,10 +126,18 @@ public class Link {
 
     }
 
+    /**
+     * The name a download is saved under. Title and type are the feed's own, so it is a plain
+     * file name: a type such as "application/./../../x" made it a way out of the downloads.
+     */
     public String getDownloadName() {
         if (parentTitle == null) {
             return "";
         }
+        return ExtUtils.safeFileName(downloadName(), "book");
+    }
+
+    private String downloadName() {
         String name = TxtUtils.fixFileName(parentTitle);
         String ext = getDownloadDisplayFormat();
         
