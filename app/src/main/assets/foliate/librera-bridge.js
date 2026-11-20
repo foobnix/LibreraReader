@@ -174,6 +174,31 @@ const laidOut = () => {
     return Promise.race([fonts.ready, new Promise(resolve => setTimeout(resolve, FONTS_TIMEOUT_MS))])
 }
 
+/**
+ * Loads every font the section declares that is not in yet; true when one had to be.
+ *
+ * Waiting on `fonts.ready` is not enough: it only covers the faces already loading, and a face
+ * starts loading when text needs it, which can be after the check. A section is a new document
+ * every time it is loaded - and TTS reading ahead loads one on nearly every page - so its fonts
+ * load again each time. Headings and text are in different files (Literata Bold and Regular), and
+ * a page drawn while one of them was still loading came out with the heading and no text, or with
+ * nothing at all; the reader kept that bitmap.
+ */
+const loadFonts = async () => {
+    const current = contents()
+    const fonts = current && current.doc ? current.doc.fonts : null
+    if (!fonts) return false
+    const pending = []
+    fonts.forEach(face => {
+        if (face.status === 'unloaded' || face.status === 'loading') {
+            pending.push(face.load().catch(() => null))
+        }
+    })
+    if (!pending.length) return false
+    await Promise.race([Promise.all(pending), new Promise(resolve => setTimeout(resolve, FONTS_TIMEOUT_MS))])
+    return true
+}
+
 /** The section document currently loaded, or null. */
 const contents = () => {
     const all = view && view.renderer ? view.renderer.getContents() : null
@@ -874,13 +899,12 @@ const handlers = {
         const since = relocateCount
         await view.renderer.goTo({ index, anchor: fraction })
         await painted()
-        // The fonts of a section start loading at its first layout, which painted() has just
-        // forced, and until they are in its text is laid out but paints as nothing: a capture now
-        // is the background alone. Every section opens with this, as each is a new document, so a
-        // custom font in the settings made the page after any move across sections an empty one.
-        const current = contents()
-        if (current && current.doc && current.doc.fonts.status === 'loading') {
-            await laidOut()
+        // Until a section's fonts are in, its text is laid out but paints as nothing: a capture
+        // then is the background alone, or the headings alone when their font came first. Every
+        // section opens with this, as each is a new document. Laid out in the fallback font until
+        // now, the section may also have paginated differently, so the page is gone to again.
+        if (await loadFonts()) {
+            await view.renderer.goTo({ index, anchor: fraction })
             await painted()
         }
         // The count has to describe the page this call landed on, and `visible` only becomes that
@@ -1051,7 +1075,11 @@ const handlers = {
         for (const { index, fraction } of pages || []) {
             try {
                 await view.renderer.goTo({ index, anchor: fraction })
-                await laidOut()
+                // Measured in the fallback font, a page's text and word boxes are not the page
+                // that is drawn, so the fonts go in first and the page is found again in them
+                if (await loadFonts()) {
+                    await view.renderer.goTo({ index, anchor: fraction })
+                }
                 out.push({ text: collectText(), words: collectWords() })
             } catch (e) {
                 log('page ' + index + '/' + fraction + ' did not lay out: ' + e)
