@@ -7,6 +7,7 @@ plugins {
 android {
     namespace = "mobi.librera.libgoogleFree"
     compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdkMinor = libs.versions.compileSdkMinor.get().toInt()
 
 
 

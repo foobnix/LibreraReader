@@ -43,6 +43,7 @@ ext {
 
 android {
     compileSdk = libs.versions.compileSdk.get().toInteger()
+    compileSdkMinor = libs.versions.compileSdkMinor.get().toInteger()
 
     namespace = "com.foobnix.pdf.info"
 

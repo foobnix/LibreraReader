@@ -5,6 +5,7 @@ plugins {
 android {
     namespace = "mobi.librera.libdepro"
     compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdkMinor = libs.versions.compileSdkMinor.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
