@@ -1056,6 +1056,15 @@ public class BookCSS {
         builder.append("padding:0 !important;");
         builder.append("}");
 
+        // In day mode the page is the page colour whatever the book paints under its words, as
+        // it is at night in the night colours: a cover page set on black, say, is otherwise a
+        // black sheet round the picture, in every theme.
+        if (AppState.get().isDayNotInvert) {
+            builder.append("html, body, div, p, span, section, article {");
+            builder.append(String.format("background-color:%s !important;", backgroundColor));
+            builder.append("}");
+        }
+
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
 
             builder.append("a {color:" + (AppState.get().isDayNotInvert ? linkColorDay : linkColorNight) + " !important;}");
