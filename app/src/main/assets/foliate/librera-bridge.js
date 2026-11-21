@@ -63,6 +63,8 @@ const relocateWaiters = []
 const RELOCATE_TIMEOUT_MS = 400
 /** How long a section's embedded fonts may take to load before it is measured without them. */
 const FONTS_TIMEOUT_MS = 3000
+/** How long the images on a page may take to decode before it is drawn without them. */
+const IMAGES_TIMEOUT_MS = 3000
 
 const reply = (id, value) => window.librera.reply(id, JSON.stringify(value))
 const fail = (id, error) => window.librera.fail(id, String((error && error.stack) || error))
@@ -203,6 +205,45 @@ const loadFonts = async () => {
 const contents = () => {
     const all = view && view.renderer ? view.renderer.getContents() : null
     return all && all.length ? all[0] : null
+}
+
+/**
+ * Decodes the images on the page the book is on, and says how many there are.
+ *
+ * A picture reaches the view's frames some frames after the page is laid out, and this view,
+ * parked out of sight, is drawn without waiting for them: a full-page cover - a large JPEG -
+ * came out as a plain sheet of the background. The count is what tells Librera such a page is
+ * worth drawing again, as the text count does for a page of words; the decode, done before the
+ * next draw, makes the picture ready for it. Only the images on the page are asked for when the
+ * paginator has said which page that is: decode() on one already decoded costs nothing.
+ */
+const decodeImages = async () => {
+    const current = contents()
+    const doc = current && current.doc
+    if (!doc || !doc.images || !doc.images.length) return 0
+    // The page landed on, when the paginator has said which that is: right after a move it may
+    // not have yet, and the range is still the previous section's - then the whole section's
+    const page = visible && visible.startContainer && visible.startContainer.ownerDocument === doc
+        && typeof visible.intersectsNode === 'function' ? visible : null
+    const pending = []
+    for (const img of doc.images) {
+        if (!img.getAttribute('src') || typeof img.decode !== 'function') continue
+        if (page) {
+            try {
+                if (!page.intersectsNode(img)) continue
+            } catch (e) {
+                // not comparable: decode it anyway
+            }
+        }
+        // and drawn in the frame that has them: the compositor otherwise leaves a large picture
+        // out of the frame and paints it in a later one ("checker-imaging"), and a view parked
+        // out of sight gets no later frame before it is captured
+        if (img.decoding !== 'sync') img.decoding = 'sync'
+        pending.push(img.decode().catch(() => null))
+    }
+    if (!pending.length) return 0
+    await Promise.race([Promise.all(pending), new Promise(resolve => setTimeout(resolve, IMAGES_TIMEOUT_MS))])
+    return pending.length
 }
 
 /** The size of this page in CSS pixels: the whole shell, which is what gets captured. */
@@ -919,9 +960,11 @@ const handlers = {
 
     /** Waits for a re-columnisation to finish, after the page size changed. */
     async settle() {
+        // A page drawn blank is drawn again after this; a picture is the likeliest thing missing
+        const images = await decodeImages()
         await painted()
         await painted()
-        return {}
+        return { images }
     },
 
     /**

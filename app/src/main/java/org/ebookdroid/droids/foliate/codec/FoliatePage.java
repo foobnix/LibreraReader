@@ -36,6 +36,11 @@ public class FoliatePage extends AbstractCodecPage {
 
     /** How many times a page with text on it that drew as nothing is drawn again. */
     private static final int BLANK_REDRAWS = 10;
+    /**
+     * Fewer for a page whose only content is a picture: the cover took two, and a picture that is
+     * itself blank - white on a white page - must not hold the page up for all of them.
+     */
+    private static final int IMAGE_REDRAWS = 4;
 
     private final FoliateDocument document;
 
@@ -202,9 +207,11 @@ public class FoliatePage extends AbstractCodecPage {
             //
             // A count above 0 is proof the other way, though: there is text here, it just has not
             // reached the WebView's last frame, as with a book reopened while the window is still
-            // changing. Such a page goes on being redrawn, or the empty bitmap is what stays.
+            // changing. Such a page goes on being redrawn, or the empty bitmap is what stays. So
+            // does a page with a picture on it: a cover has no words, and its picture reaches the
+            // frames a few draws after the page is laid out - two more, for a large JPEG.
             for (int i = 0; i < BLANK_REDRAWS && drawn != null && isBlank(drawn)
-                    && (i == 0 || document.getPositionedChars() > 0); i++) {
+                    && (i == 0 || document.getPositionedChars() > 0 || (i < IMAGE_REDRAWS && renderer.getRedrawImages() > 0)); i++) {
                 LOG.d("FOLIATE! page drew blank, once more", pageNumber,
                         document.getPositionedChars(), i);
                 final Bitmap again = renderer.redraw(width, height);
@@ -214,7 +221,8 @@ public class FoliatePage extends AbstractCodecPage {
                 drawn.recycle();
                 drawn = again;
             }
-            if (drawn != null && document.getPositionedChars() > 0 && isBlank(drawn)) {
+            if (drawn != null && isBlank(drawn)
+                    && (document.getPositionedChars() > 0 || renderer.getRedrawImages() > 0)) {
                 LOG.d("FOLIATE! page still blank", pageNumber, document.getPositionedChars());
             }
             bitmap = drawn;

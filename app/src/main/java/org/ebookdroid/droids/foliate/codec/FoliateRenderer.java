@@ -406,12 +406,29 @@ class FoliateRenderer {
         }
     }
 
+    /** How many pictures the page had when it was last drawn again; see {@link #redraw}. */
+    private volatile int redrawImages;
+
     /** Draws the current page again, without moving the book. */
     Bitmap redraw(final int width, final int height) {
-        if (call("settle", new JSONObject(), CALL_TIMEOUT_MS) == null) {
+        final String answer = call("settle", new JSONObject(), CALL_TIMEOUT_MS);
+        if (answer == null) {
             return null;
         }
+        try {
+            redrawImages = Math.max(0, new JSONObject(answer).optInt("images", 0));
+        } catch (Throwable e) {
+            redrawImages = 0;
+        }
         return capture(width, height);
+    }
+
+    /**
+     * How many pictures are on the page the last {@link #redraw} drew: a page with one and no
+     * words - a cover - draws blank until the picture reaches the view's frames, a few draws on.
+     */
+    int getRedrawImages() {
+        return redrawImages;
     }
 
     /**
