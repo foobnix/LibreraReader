@@ -511,8 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">Показывать кнопки TTS внизу страницы</string>
    <string name="slider_scale">Шкала бегунка</string>
    <string name="chapter_format">Прогресс чтения</string>
-   <string name="play_a_music_file">Воспроизвести MP3</string>
+   <string name="play_a_music_file">MP3</string>
    <string name="play_stream">Воспроизвести поток</string>
+   <string name="radio">Радио</string>
    <string name="stream_address">Адрес потока или плейлиста .m3u</string>
    <string name="rate_app">Оценить приложение</string>
    <string name="reset">Сброс</string>

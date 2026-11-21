@@ -511,8 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">TTS түймелерін беттің төменгі жағында көрсету</string>
    <string name="slider_scale">Слайдер шкаласы</string>
    <string name="chapter_format">Мәтіннің пішімі</string>
-   <string name="play_a_music_file">MP3 ойнату</string>
+   <string name="play_a_music_file">MP3</string>
    <string name="play_stream">Ағынды ойнату</string>
+   <string name="radio">Радио</string>
    <string name="stream_address">Ағынның немесе .m3u тізімінің мекенжайы</string>
    <string name="rate_app">Баға қолданбасы</string>
    <string name="reset">Қалпына келтіру</string>

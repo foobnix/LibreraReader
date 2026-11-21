@@ -1,10 +1,13 @@
 package com.foobnix.tts;
 
+import com.foobnix.LibreraApp;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.opds.OPDS;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,18 +22,36 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class StreamPlaylist {
 
-    /** The list offered from the start: music radio stations of many kinds. */
-    public static final String DEFAULT =
-            "https://raw.githubusercontent.com/junguler/m3u-radio-music-playlists/main/various.m3u";
+    /**
+     * Every playlist of github.com/deroverda/recommended-radio-streams (CC0) in one file, each
+     * station marked with its group (Jazz & Blues, Electronic...).
+     */
+    public static final String RECOMMENDED = "asset://radio/recommended-radio.m3u";
 
-    /** A station: what it is called and where its stream is. */
+    /**
+     * The lists built into the app, by the name they have among the sources, and their copy in
+     * the app's assets: always first, in this order, never removed, there at once and offline.
+     */
+    private static final Map<String, String> BUILT_IN = new java.util.LinkedHashMap<String, String>();
+
+    static {
+        BUILT_IN.put(RECOMMENDED, "radio/recommended-radio.m3u");
+    }
+
+    /** A station: what it is called, the group its playlist puts it in, and where its stream is. */
     public static final class Entry {
         public final String title;
+        public final String group;
         public final String url;
         public final String source;
 
         Entry(String title, String url, String source) {
+            this(title, null, url, source);
+        }
+
+        Entry(String title, String group, String url, String source) {
             this.title = title;
+            this.group = group;
             this.url = url;
             this.source = source;
         }
@@ -53,8 +74,14 @@ public final class StreamPlaylist {
         return lower.startsWith("http://") || lower.startsWith("https://");
     }
 
+    /** The built-in list, which has no cross to take it away. */
+    public static boolean isBuiltIn(String source) {
+        return BUILT_IN.containsKey(source);
+    }
+
+    /** The built-in lists first, then the sources added, in the order they were added. */
     public static List<String> sources() {
-        final List<String> sources = new ArrayList<String>();
+        final List<String> sources = new ArrayList<String>(BUILT_IN.keySet());
         final String saved = AppState.get().streamSources;
         if (saved != null) {
             for (String line : saved.split("\n")) {
@@ -83,14 +110,20 @@ public final class StreamPlaylist {
     }
 
     public static void remove(String source) {
+        if (isBuiltIn(source)) {
+            return;
+        }
         final List<String> sources = sources();
         sources.remove(source);
         save(sources);
         loaded.remove(source);
     }
 
+    /** Only the sources added: the built-in lists are not kept, they are always there. */
     private static void save(List<String> sources) {
-        AppState.get().streamSources = TxtUtils.joinList("\n", sources);
+        final List<String> added = new ArrayList<String>(sources);
+        added.removeAll(BUILT_IN.keySet());
+        AppState.get().streamSources = TxtUtils.joinList("\n", added);
     }
 
     /**
@@ -136,10 +169,30 @@ public final class StreamPlaylist {
         return path.endsWith(".m3u") || path.endsWith(".m3u8") || path.endsWith(".pls");
     }
 
+    /** A built-in list from the app's own copy, any other from the web. */
+    private static String download(String source) throws Exception {
+        final String asset = BUILT_IN.get(source);
+        if (asset != null) {
+            if (LibreraApp.context == null) {
+                return null;
+            }
+            try (InputStream in = LibreraApp.context.getAssets().open(asset)) {
+                final ByteArrayOutputStream out = new ByteArrayOutputStream();
+                final byte[] buffer = new byte[8192];
+                int n;
+                while ((n = in.read(buffer)) > 0) {
+                    out.write(buffer, 0, n);
+                }
+                return out.toString("UTF-8");
+            }
+        }
+        return OPDS.getHttpResponse(source, "", "");
+    }
+
     private static List<Entry> read(String source) {
         final List<Entry> entries = new ArrayList<Entry>();
         try {
-            final String text = OPDS.getHttpResponse(source, "", "");
+            final String text = download(source);
             if (TxtUtils.isEmpty(text) || OPDS.CODE_401.equals(text)) {
                 return entries;
             }
@@ -152,26 +205,57 @@ public final class StreamPlaylist {
                 return readPls(text, source);
             }
             String title = null;
+            String group = null;
             for (String raw : text.split("\r?\n")) {
                 final String line = raw.trim();
                 if (line.length() == 0) {
                     continue;
                 }
                 if (line.startsWith("#EXTINF")) {
-                    final int comma = line.indexOf(',');
+                    final int comma = titleComma(line);
                     title = comma >= 0 ? line.substring(comma + 1).trim() : null;
+                    group = attribute(comma >= 0 ? line.substring(0, comma) : line, "group-title");
                 } else if (!line.startsWith("#")) {
                     final String url = resolve(source, line);
                     if (isStream(url)) {
-                        entries.add(new Entry(TxtUtils.isNotEmpty(title) ? title : name(url), url, source));
+                        entries.add(new Entry(TxtUtils.isNotEmpty(title) ? title : name(url), group, url, source));
                     }
                     title = null;
+                    group = null;
                 }
             }
         } catch (Exception e) {
             LOG.e(e, source);
         }
         return entries;
+    }
+
+    /**
+     * Where the station's name starts in an #EXTINF line: after the first comma outside quotes,
+     * as an attribute such as group-title="Ambient, Lo-Fi & Chill" can hold commas of its own.
+     */
+    static int titleComma(String line) {
+        boolean quoted = false;
+        for (int i = 0; i < line.length(); i++) {
+            final char c = line.charAt(i);
+            if (c == '"') {
+                quoted = !quoted;
+            } else if (c == ',' && !quoted) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /** An attribute's value in an #EXTINF line, as in name="value", or null. */
+    static String attribute(String head, String name) {
+        final String key = name + "=\"";
+        final int start = head.indexOf(key);
+        if (start < 0) {
+            return null;
+        }
+        final int end = head.indexOf('"', start + key.length());
+        return end < 0 ? null : head.substring(start + key.length(), end).trim();
     }
 
     private static List<Entry> readPls(String text, String source) {

@@ -511,8 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">पृष्ठ के नीचे TTS बटन दिखाएँ</string>
    <string name="slider_scale">स्लाइडर पैमाने</string>
    <string name="chapter_format">अध्याय प्रारूप</string>
-   <string name="play_a_music_file">MP3 चलाएँ</string>
+   <string name="play_a_music_file">MP3</string>
    <string name="play_stream">स्ट्रीम चलाएँ</string>
+   <string name="radio">रेडियो</string>
    <string name="stream_address">स्ट्रीम या .m3u प्लेलिस्ट का पता</string>
    <string name="rate_app">एप्प का मूल्यांकन</string>
    <string name="reset">रीसेट</string>

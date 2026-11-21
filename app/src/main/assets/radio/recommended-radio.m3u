@@ -1,0 +1,1443 @@
+#EXTM3U
+# Recommended radio streams, all playlists of
+# https://github.com/deroverda/recommended-radio-streams/tree/main/playlists
+# CC0-1.0. Merged into one file, built into Librera.
+
+# Group: Ambient, Lo-Fi & Chill
+# Homepage: https://9128.live
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",9128
+https://streams.radio.co/s0aa1e6f4a/listen
+# Homepage: https://amambient.com/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",a.m. Ambient
+http://radio.stereoscenic.com/ama-h
+# Homepage: https://stereoscenic.com/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Ambient Sleeping Pill
+http://radio.stereoscenic.com/asp-h
+# Homepage: https://ambient.fm/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Ambient.FM
+https://phoebe.streamerr.co:4140/ambient.mp3
+# Homepage: https://www.ambinature.xyz/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Ambinature Radio
+https://nature-rex.radioca.st/stream
+# Homepage: https://www.birdsong.fm/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Birdsong FM
+https://a1.radio.co/s5c5da6a36/listen
+# Homepage: https://cafedelmar.com/radio
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Cafe Del Mar
+https://streams.radio.co/se1a320b47/listen
+# Homepage: https://www.chilltrax.com/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",ChillTraxx
+https://streamssleu.chilltrax.com/stream
+# Homepage: https://www.freecodecamp.org/news/code-radio/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",CodeRadio
+https://coderadio-admin-v2.freecodecamp.org/listen/coderadio/radio.mp3
+# Homepage: https://www.darkambientradio.de/news.php
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Dark Ambient Radio
+http://s3.viastreaming.net:8835/
+# Homepage: https://dinamo.fm/content/4/channels
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Dinamo.FM - Sleep
+http://channels.dinamo.fm/sleep-mp3
+# Homepage: http://echoesofbluemars.org/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Echoes of Bluemars - Bluemars
+http://streams.echoesofbluemars.org:8000/bluemars
+# Homepage: http://echoesofbluemars.org/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Echoes of Bluemars - Cryosleep
+http://streams.echoesofbluemars.org:8000/cryosleep
+# Homepage: http://echoesofbluemars.org/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Echoes of Bluemars - Voices From Within
+http://streams.echoesofbluemars.org:8000/voicesfromwithin
+# Homepage: https://www.fluid-radio.co.uk/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Fluid Radio
+http://uk4-vn.webcast-server.net:9270/
+# Homepage: https://www.thekyotoconnection.com/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",The Kyoto Connection
+https://server.laradio.online:59009/live
+# Homepage: https://boxradio.net/en/radio/lofi-radio
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Lofi Radio
+https://boxradio-edge-00.streamafrica.net/lofi
+# Homepage: https://www.moonphaseradio.com/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Moon Phase Radio - Ambient
+https://cp12.serverse.com/proxy/moonphase/stream
+# Homepage: https://moss.garden
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Moss Garden
+https://radio.moss.garden/listen/moss_garden/radio.mp3
+# Homepage: https://mountainchill.com
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Mountain Chill
+https://mountain-chill.radiocult.fm/stream
+# Homepage: https://www.nordiclodgeradio.com/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Nordic Lodge
+http://radio.streemlion.com:1160/stream
+# Homepage: https://www.nts.live/infinite-mixtapes/field-recordings
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",NTS - Field Recordings
+https://stream-mixtape-geo.ntslive.net/mixtape23
+# Homepage: https://www.nts.live/infinite-mixtapes/slow-focus
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",NTS - Slow Focus
+https://stream-mixtape-geo.ntslive.net/mixtape
+# Homepage: https://www.psyndora.com/chill.html
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Psyndora - Chillout
+https://cast.magicstreams.gr:9125/;
+# Homepage: https://www.radioislanegra.com/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Radio Isla Negra - Slowbeat
+https://radioislanegra.org/radio/8000/basic.aac
+# Homepage: https://boxradio.net/en/radio/rain-thunderstorms-sounds
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Rain & Thunderstorms Sounds
+https://boxradio-edge-01.streamafrica.net/rain
+# Homepage: https://sleepbot.com/ambience/broadcast/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Sleepbot Environmental Broadcast
+http://primarystream.sleepbot.com:8218/seb
+# Homepage: https://www.willstare.com/sleep/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Sleepscapes - Rain
+https://stream.willstare.com:8850/
+# Homepage: https://www.willstare.com/sleep/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Sleepscapes - Waves
+https://stream.willstare.com:8860/
+# Homepage: https://somafm.com/doomed/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",SomaFM - Doomed
+https://ice5.somafm.com/doomed-256-mp3
+# Homepage: https://somafm.com/listen/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",SomaFM - Drone Zone
+https://somafm.com/dronezone256.pls
+# Homepage: https://somafm.com/groovesalad/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",SomaFM - Groove Salad
+https://somafm.com/groovesalad256.pls
+# Homepage: https://somafm.com/secretagent/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",SomaFM - Secret Agent
+https://ice6.somafm.com/secretagent-128-mp3
+# Homepage: https://www.subsonicradio.com/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Subsonic Radio - SR One
+https://www.subsonicradio.com:8443/requests.mp3
+# Homepage: https://www.subsonicradio.com/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Subsonic Radio - SR Two - Extended Plays
+https://www.subsonicradio.com:8443/longbois.mp3
+# Homepage: https://www.subsonicradio.com/
+#EXTINF:-1 group-title="Ambient, Lo-Fi & Chill",Subsonic Radio - WEDWay PeopleMover
+https://www.subsonicradio.com:8443/wedway.mp3
+
+# Group: Campus & Public Radio
+# Homepage: https://bff.fm/
+#EXTINF:-1 group-title="Campus & Public Radio",BFF.fm
+http://stream.bff.fm/1/BFF.fm.mp3
+# Homepage: https://www.ciut.fm/
+#EXTINF:-1 group-title="Campus & Public Radio",CIUT 89.5
+https://ice23.securenetsystems.net/CIUT
+# Homepage: https://ckut.ca
+#EXTINF:-1 group-title="Campus & Public Radio",CKUT 90.3
+https://ckut.out.airtime.pro/ckut_a
+# Homepage: https://kalx.berkeley.edu/
+#EXTINF:-1 group-title="Campus & Public Radio",KALX 90.7
+https://stream.kalx.berkeley.edu:8443/kalx-320.aac
+# Homepage: https://www.kcrw.com/
+#EXTINF:-1 group-title="Campus & Public Radio",KCRW - Eclectic24
+https://streams.kcrw.com/e24_mp3
+# Homepage: https://kfjc.org
+#EXTINF:-1 group-title="Campus & Public Radio",KFJC 89.7
+http://netcast.kfjc.org/kfjc-320k-aac
+# Homepage: https://kspc.org/
+#EXTINF:-1 group-title="Campus & Public Radio",KSPC 88.7
+https://kspc.radioca.st/stream
+# Homepage: https://www.kusf.org
+#EXTINF:-1 group-title="Campus & Public Radio",KUSF
+https://listen.kusf.org/stream
+# Homepage: https://kutx.org
+#EXTINF:-1 group-title="Campus & Public Radio",KUTX 98.9
+https://streams.kut.org/4428_192.mp3
+# Homepage: https://kvrx.org/
+#EXTINF:-1 group-title="Campus & Public Radio",KVRX 91.7
+https://kvrx.org/now_playing/stream
+# Homepage: https://kxlu.com/
+#EXTINF:-1 group-title="Campus & Public Radio",KXLU 88.9
+https://kxlu.streamguys1.com/kxlu-hi
+# Homepage: https://kzsu.stanford.edu
+#EXTINF:-1 group-title="Campus & Public Radio",KZSU Stanford 90.1
+http://kzsu-streams.stanford.edu/kzsu-1-256.mp3
+# Homepage: https://www.prun.net/
+#EXTINF:-1 group-title="Campus & Public Radio",Prun'
+https://www.prun.net/stream
+# Homepage: https://radiokrs.com/
+#EXTINF:-1 group-title="Campus & Public Radio",Radio KRŠ
+https://stream.radiokrs.me:8443/lq.mp3
+# Homepage: https://subcity.org/
+#EXTINF:-1 group-title="Campus & Public Radio",Subcity Radio
+https://stream.subcity.org/listen
+# Homepage: https://www.uct.ac.za/radio
+#EXTINF:-1 group-title="Campus & Public Radio",UCT Radio
+https://edge.iono.fm/xice/uctradio_live_high.aac
+# Homepage: https://www.wfmu.org/drummer
+#EXTINF:-1 group-title="Campus & Public Radio",WFMU - Give the Drummer Radio
+http://stream0.wfmu.org/drummer
+# Homepage: https://wfmu.org/
+#EXTINF:-1 group-title="Campus & Public Radio",WFMU - Rock 'n' Soul
+http://wfmu.org/wfmu_rock.pls
+# Homepage: https://wfmu.org/
+#EXTINF:-1 group-title="Campus & Public Radio",WFMU - Sheena's Jungle Room
+http://stream0.wfmu.org/sheena
+# Homepage: https://wfmu.org
+#EXTINF:-1 group-title="Campus & Public Radio",WFMU 91.1
+https://wfmu.org/wfmu.pls
+# Homepage: https://wmse.org/
+#EXTINF:-1 group-title="Campus & Public Radio",WMSE 91.7
+https://wmse.streamguys1.com/wmselivemp3
+# Homepage: https://www.wncw.org/
+#EXTINF:-1 group-title="Campus & Public Radio",WNCW 88.7
+https://wncw-live-a.edge.audiocdn.com/6286_56k.aac
+# Homepage: https://www.newsounds.org
+#EXTINF:-1 group-title="Campus & Public Radio",WNYC - New Sounds
+http://q2stream.wqxr.org/q2
+# Homepage: https://wrir.org
+#EXTINF:-1 group-title="Campus & Public Radio",WRIR 97.3
+https://live.wrir.org/
+# Homepage: https://wsum.org/
+#EXTINF:-1 group-title="Campus & Public Radio",WSUM 91.7
+https://ice23.securenetsystems.net/WSUMFM
+# Homepage: https://wtju.net
+#EXTINF:-1 group-title="Campus & Public Radio",WTJU 91.1
+https://streams.wtju.net/wtju-live.mp3
+# Homepage: https://wxyc.org/
+#EXTINF:-1 group-title="Campus & Public Radio",WXYC 89.3
+https://audio-mp3.ibiblio.org/wxyc.mp3
+# Homepage: https://wzrdchicago.org/
+#EXTINF:-1 group-title="Campus & Public Radio",WZRD 88.3
+https://wzrd.streamguys1.com/live
+
+# Group: Christmas & Holiday
+# Homepage: https://christmasfm.com/
+#EXTINF:-1 group-title="Christmas & Holiday",Christmas FM Ireland
+https://christmasfm.cdnstream1.com/2547_128.mp3
+# Homepage: https://thechristmasstation.org/
+#EXTINF:-1 group-title="Christmas & Holiday",The Christmas Station
+http://stream.radio.co/s63541ce9b/listen
+# Homepage: https://deadair.co/
+#EXTINF:-1 group-title="Christmas & Holiday",Dead Air
+https://screamcheese.radioca.st/stream
+# Homepage: https://holidazehalloweenradio.com/
+#EXTINF:-1 group-title="Christmas & Holiday",Holidaze Halloween Radio
+https://ec3.yesstreaming.net:4355/stream
+# Homepage: https://www.klassikradio.de/klassik-radio-select/weihnachtsmusik/
+#EXTINF:-1 group-title="Christmas & Holiday",Klassik Radio - Christmas
+http://stream.klassikradio.de/christmas/mp3-192
+# Homepage: https://walmradio.com/station.php?station=christmas
+#EXTINF:-1 group-title="Christmas & Holiday",WALM - Christmas Vinyl
+https://icecast.walmradio.com:8443/christmas
+
+# Group: Classical & Opera
+# Homepage: https://ancientfm.com/
+#EXTINF:-1 group-title="Classical & Opera",Ancient FM
+https://mediaserv73.live-streams.nl:18058/stream
+# Homepage: https://www.bbc.co.uk/sounds/play/live/bbc_radio_three
+#EXTINF:-1 group-title="Classical & Opera",BBC Radio 3
+http://as-hls-ww-live.akamaized.net/pool_23461179/live/ww/bbc_radio_three/bbc_radio_three.isml/bbc_radio_three-audio%3d128000.norewind.m3u8
+# Homepage: https://bru-zane.com/classical-radio/
+#EXTINF:-1 group-title="Classical & Opera",Bru Zane
+https://uk2.streamingpulse.com/ssl/bzr
+# Homepage: https://www.classicalcalifornia.org/
+#EXTINF:-1 group-title="Classical & Opera",Classical California
+https://14103.live.streamtheworld.com/KUSCAAC96.aac
+# Homepage: https://www.concertzender.nl/
+#EXTINF:-1 group-title="Classical & Opera",Concertzender - Baroque
+http://streams.greenhost.nl:8080/barok
+# Homepage: https://www.classicalwcrb.org/
+#EXTINF:-1 group-title="Classical & Opera",CRB Classical 99.5
+https://wgbh-live.streamguys1.com/classical-hi
+# Homepage: https://www.radiofrance.fr/francemusique
+#EXTINF:-1 group-title="Classical & Opera",France Musique
+http://icecast.radiofrance.fr/francemusique-hifi.aac
+# Homepage: https://www.radiofrance.fr/francemusique/radio-contemporaine
+#EXTINF:-1 group-title="Classical & Opera",France Musique - La Contemporaine
+http://icecast.radiofrance.fr/francemusiquelacontemporaine-hifi.aac
+# Homepage: https://www.linn.co.uk/linn-radio
+#EXTINF:-1 group-title="Classical & Opera",Linn Classical
+http://radio.linn.co.uk:8004/stream
+# Homepage: https://www.w.mrg.fm/
+#EXTINF:-1 group-title="Classical & Opera",MRG.fm - OperaRadio
+http://listen.mrg.fm:8110/
+# Homepage: https://www.nts.live/infinite-mixtapes/sheet-music
+#EXTINF:-1 group-title="Classical & Opera",NTS - Sheet Music
+https://stream-mixtape-geo.ntslive.net/mixtape35
+# Homepage: https://www.radioswissclassic.ch/en
+#EXTINF:-1 group-title="Classical & Opera",Radio Suisse Classique
+http://stream.srg-ssr.ch/m/rsc_fr/mp3_128
+# Homepage: https://www.concertgebouworkest.nl/nl/radio/
+#EXTINF:-1 group-title="Classical & Opera",RCO Live
+https://ice.cr1.streamzilla.xlcdn.com:8000/sz=RCOLiveWebradio=mp3-192
+# Homepage: https://www.wbjc.com/
+#EXTINF:-1 group-title="Classical & Opera",WBJC 91.5
+https://ice64.securenetsystems.net/WBJC
+# Homepage: https://www.wfmt.com/
+#EXTINF:-1 group-title="Classical & Opera",WFMT
+https://wfmt.streamguys1.com/main-source
+# Homepage: https://www.solopianoradio.com/
+#EXTINF:-1 group-title="Classical & Opera",Whisperings: Solo Piano Radio
+https://pianosolo.streamguys1.com/live
+# Homepage: https://www.wmnr.org/
+#EXTINF:-1 group-title="Classical & Opera",WMNR
+https://wmnr.streamguys1.com/live
+# Homepage: https://www.wqxr.org/
+#EXTINF:-1 group-title="Classical & Opera",WQXR 105.9
+http://stream.wqxr.org/wqxr
+
+# Group: Decades, Oldies & Nostalgia
+# Homepage: https://radio.macinmind.com/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Antioch OTR
+http://stream.radio.macinmind.com:8000/listen
+# Homepage: https://www.aor.am/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Arctic Outpost Radio
+https://radio.streemlion.com:3475/stream
+# Homepage: https://you.radio/station/exclusiveradio-beatles
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Beatles Radio
+http://stream.zeno.fm/e4auhdgm6cquv
+# Homepage: https://www.flowerpowerradio.com/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Flower Power Radio
+http://uk1.streamingpulse.com:7000/
+# Homepage: https://www.greatbigradio.com/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Great Big Radio
+https://pstnet8.shoutcastnet.com:10064/stream
+# Homepage: https://jclubbandstand.torontocast.stream/stations/index.html
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",J-Club Bandstand
+https://cast1.torontocast.com:2060/stream
+# Homepage: https://luxuriamusic.com
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",LuxuriaMusic
+http://ice10.securenetsystems.net/LUXOMP3
+# Homepage: https://wgdr.rocks/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Mad Music Radio - Oldies Radio
+http://janus.shoutca.st:8259/
+# Homepage: https://www.majesticjukeboxradio.com
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Majestic Jukebox
+https://uk3.internet-radio.com/proxy/majesticjukebox/live
+# Homepage: https://oldtime.radio/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Old Time Radio
+https://kea.cdnstream.com/1893_128
+# Homepage: https://psychedelicized.com/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Psychedelicized
+https://stream.psychedelicized.com/listen/psychedelicized/radio.mp3
+# Homepage: https://pumpkinfm.com/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Pumpkin FM - 1940s
+https://cast2.asurahosting.com/proxy/1940sradio/stream
+# Homepage: https://www.digitiki.com/radio.html
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",The Quiet Village
+http://broadcast.shoutcheap.com:8424/stream
+# Homepage: https://radiocaroline.co.uk
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Radio Caroline
+http://78.129.202.200:8040/
+# Homepage: http://dismuke.org
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Radio Dismuke
+http://stream2.early1900s.org:8000/
+# Homepage: https://www.retroatticrareoldiesradio.com/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",The Retro Attic
+http://103.226.246.212:8159/stream
+# Homepage: https://smrn5001.com/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",SMRN5001
+https://cast1.sql2.smrn.com/5001
+# Homepage: https://www.techwebsound.com/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Technicolor Web of Sound
+http://streaming.live365.com/a01650
+# Homepage: https://ultimateoldiesradio.com
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Ultimate Oldies Radio
+https://puma.streemlion.com:1785/stream
+# Homepage: https://you.radio/station/exclusiveradio-van-morrison
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Van Morrison Radio
+https://streaming.exclusive.radio/er/vanmorrison/icecast.audio
+# Homepage: https://vintageobscura.net/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Vintage Obscura Radio
+https://radio.vintageobscura.net/stream
+# Homepage: https://walmradio.com/classic/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",WALM - Classic Vinyl
+https://icecast.walmradio.com:8443/classic
+# Homepage: https://walmradio.com/otr
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",WALM - Old Time Radio
+https://icecast.walmradio.com:8443/otr
+# Homepage: https://www.waybackradio.org/
+#EXTINF:-1 group-title="Decades, Oldies & Nostalgia",Wayback Radio
+https://s5.citrus3.com:8244/stream
+
+# Group: Electronic
+# Homepage: https://www.54house.fm/
+#EXTINF:-1 group-title="Electronic",54house.fm
+https://54house.fm:9013/stream
+# Homepage: https://ah.fm
+#EXTINF:-1 group-title="Electronic",After Hours FM
+http://fr.ah.fm:8000/
+# Homepage: https://badradio.nz/
+#EXTINF:-1 group-title="Electronic",BADRADIO
+https://s2.radio.co/s2b2b68744/listen
+# Homepage: https://www.bassdrive.com
+#EXTINF:-1 group-title="Electronic",Bassdrive
+https://www.bassdrive.com/bassdrive.m3u
+# Homepage: http://www.bluemarlinibiza.com/radio/live
+#EXTINF:-1 group-title="Electronic",Blue Marlin Ibiza
+https://ibizasonica.streaming-pro.com:8001/bluemarlin
+# Homepage: https://bondiradio.com.au/
+#EXTINF:-1 group-title="Electronic",Bondi Radio
+https://streaming.radio.co/sfd68ddd77/listen
+# Homepage: https://cafemamboibiza.com/
+#EXTINF:-1 group-title="Electronic",Cafe Mambo
+http://streamer.radio.co/sd7b28e5f3/listen
+# Homepage: https://centreforceradio.com/
+#EXTINF:-1 group-title="Electronic",Centreforce
+http://centreforce.streamgb.com:8830/320
+# Homepage: https://radio.deepershades.net
+#EXTINF:-1 group-title="Electronic",Deeper Shades of House
+https://andromeda.housejunkie.ca/radio/8000/radio.mp3
+# Homepage: http://www.deepvibes.co.uk/
+#EXTINF:-1 group-title="Electronic",Deepvibes Radio
+http://88.208.218.19:9106/stream
+# Homepage: https://dogglounge.com/
+#EXTINF:-1 group-title="Electronic",Dogglounge
+http://dogglounge.com:8000/
+# Homepage: https://dub.ninja/
+#EXTINF:-1 group-title="Electronic",Dub Ninja
+https://dub.ninja/live
+# Homepage: https://www.ebm-radio.de/index.php
+#EXTINF:-1 group-title="Electronic",EBM Radio
+http://www.ebm-radio.org:7000/hq
+# Homepage: https://www.electroswing-radio.com/
+#EXTINF:-1 group-title="Electronic",Electro Swing Revolution
+https://streamer.radio.co/s2c3cc784b/listen
+# Homepage: https://www.eurodance-radio.com/
+#EXTINF:-1 group-title="Electronic",Eurodance Radio
+http://daydeeeurodance.stream.laut.fm/daydeeeurodance
+# Homepage: https://freakbeats.nexuscast.com
+#EXTINF:-1 group-title="Electronic",Freak Beats Tekno Radio
+http://fr1.nexuscast.com:8042/;stream.mp3
+# Homepage: https://frisky.fm/
+#EXTINF:-1 group-title="Electronic",Frisky Radio
+http://stream2.friskyradio.com/frisky_mp3_hi
+# Homepage: https://www.grooveradio.com/
+#EXTINF:-1 group-title="Electronic",GROOVE RADIO
+https://streams.radio.co/s14193ab17/listen
+# Homepage: https://intergalactic.fm/
+#EXTINF:-1 group-title="Electronic",Intergalactic FM - Cybernetic Broadcasting System
+http://radio.intergalactic.fm:80/1
+# Homepage: https://intergalactic.fm/
+#EXTINF:-1 group-title="Electronic",Intergalactic FM - Disco Fetish
+https://radio.intergalactic.fm/2A
+# Homepage: https://isekoi-radio.com/
+#EXTINF:-1 group-title="Electronic",ISEKOI Radio - Main Channel
+https://public.isekoi-radio.com/listen/isekoi/radio.mp3
+# Homepage: https://italoradio.fm/
+#EXTINF:-1 group-title="Electronic",Italoradio.fm
+http://cc6.beheerstream.com:8102/stream
+# Homepage: https://www.rinse.fm/channels/kool
+#EXTINF:-1 group-title="Electronic",Kool FM
+https://admin.stream.rinse.fm/proxy/kool/stream
+# Homepage: https://ksol.live/valleys-of-kasol
+#EXTINF:-1 group-title="Electronic",KSOL - From the Valleys of Kasol
+https://ksol.live/hls/from_the_valleys_of_kasol/aac_hifi.m3u8
+# Homepage: https://ksol.live/suno-toh-sahi
+#EXTINF:-1 group-title="Electronic",KSOL - Suno Toh Sahi
+https://ksol.live/hls/suno_toh_sahi/aac_hifi.m3u8
+# Homepage: https://limbikfreq.com/public/limbik_frequencies
+#EXTINF:-1 group-title="Electronic",Limbik Frequencies
+https://limbikfreq.com/listen/limbik_frequencies/320.mp3
+# Homepage: https://minimalmix.com/
+#EXTINF:-1 group-title="Electronic",Minimal Mix Radio
+http://orion.shoutca.st:8750/stream
+# Homepage: https://modular-station.com/
+#EXTINF:-1 group-title="Electronic",Modular Station
+https://broadcast.modular-station.com/listen/modular_station/radio.aac
+# Homepage: https://nightride.fm/
+#EXTINF:-1 group-title="Electronic",Nightride FM
+https://stream.nightride.fm/nightride.mp3
+# Homepage: https://plaza.one/
+#EXTINF:-1 group-title="Electronic",Nightwave Plaza
+https://radio.plaza.one/ogg
+# Homepage: https://www.nts.live/infinite-mixtapes/4-to-the-floor
+#EXTINF:-1 group-title="Electronic",NTS - 4 To The Floor
+https://stream-mixtape-geo.ntslive.net/mixtape5
+# Homepage: https://www.nts.live/infinite-mixtapes/labyrinth
+#EXTINF:-1 group-title="Electronic",NTS - Labyrinth
+https://stream-mixtape-geo.ntslive.net/mixtape31
+# Homepage: https://www.nts.live/infinite-mixtapes/poolside
+#EXTINF:-1 group-title="Electronic",NTS - Poolside
+https://stream-mixtape-geo.ntslive.net/mixtape4
+# Homepage: https://www.nts.live/infinite-mixtapes/sweat
+#EXTINF:-1 group-title="Electronic",NTS - Sweat
+https://stream-mixtape-geo.ntslive.net/mixtape24
+# Homepage: https://oldskoolravetapes.co.uk/
+#EXTINF:-1 group-title="Electronic",Old Skool Rave Tapes
+https://azuracast.oldskoolravetapes.co.uk/listen/old_skool_rave_tapes/listen
+# Homepage: https://openlab.fm
+#EXTINF:-1 group-title="Electronic",OpenLab FM
+https://ice09.fluidstream.net/openlab.aac
+# Homepage: https://poolsuite.net/
+#EXTINF:-1 group-title="Electronic",Poolsuite FM
+https://s5.radio.co/sc9cb59935/listen
+# Homepage: https://biptunia.com/
+#EXTINF:-1 group-title="Electronic",Radio BipTunia
+https://ecast.myautodj.com:1380/listen.mp3
+# Homepage: https://www.radiody10.com/
+#EXTINF:-1 group-title="Electronic",Radio DY10
+https://flux.radiody10.com/live
+# Homepage: https://www.radioislanegra.com/
+#EXTINF:-1 group-title="Electronic",Radio Isla Negra - Upbeat
+https://radioislanegra.org/listen/up/stream
+# Homepage: https://italopower.com
+#EXTINF:-1 group-title="Electronic",Radio ItaloPower!
+https://stream.deevaradio.net:10443/italopower
+# Homepage: https://rekt.network/
+#EXTINF:-1 group-title="Electronic",Rekt Network
+https://stream.rekt.network/hls/rekt/aac_hifi.m3u8
+# Homepage: https://www.sanctuaryradio.com/
+#EXTINF:-1 group-title="Electronic",Sanctuary Radio
+https://stream.sanctuaryradio.com/mainchannel_hq
+# Homepage: https://serrebiradio.com
+#EXTINF:-1 group-title="Electronic",SerrebiRadio
+https://radio.serrebiradio.com/listen/serrebiradio/SerrebiRadio
+# Homepage: https://skylab-radio.com/
+#EXTINF:-1 group-title="Electronic",Skylab Radio
+https://stream.skylab-radio.com/live
+# Homepage: https://sovietwave.su/
+#EXTINF:-1 group-title="Electronic",Sovietwave
+http://station.waveradio.org/soviet.mp3
+# Homepage: https://www.spacedogsradio.com/
+#EXTINF:-1 group-title="Electronic",Space dogs
+https://listen2.streamaudio.co:8042/stream
+# Homepage: https://www.sub.fm/
+#EXTINF:-1 group-title="Electronic",Sub.FM
+http://subfm.radioca.st/Sub.FM
+# Homepage: https://syntheticfm.com/about
+#EXTINF:-1 group-title="Electronic",Synthetic FM
+https://mediaserv38.live-streams.nl:18040/live
+# Homepage: https://syntheticfm.com/about
+#EXTINF:-1 group-title="Electronic",Synthetic FM - New Italo Generation
+https://mediaserv38.live-streams.nl:18030/stream
+# Homepage: https://systrum.net/
+#EXTINF:-1 group-title="Electronic",Systrum Sistum - SSR2
+https://systrum.net/SSR2
+# Homepage: https://teknivalradio.com/
+#EXTINF:-1 group-title="Electronic",TEKnival Radio
+https://listen.teknivalradio.com/listen/teknivalradio/radio.mp3
+# Homepage: https://tm-radio.com/
+#EXTINF:-1 group-title="Electronic",TM Radio
+https://stream.tm-radio.com/tribalmixes
+
+# Group: Experimental, Nerdy & Scanners
+# Homepage: https://ambientscape.com/crystal-radio-broadcast
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",Crystal Radio Receiver Broadcast
+https://listen.radioking.com/radio/504205/stream/561655
+# Homepage: https://driftconditions.org/
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",DriftConditions
+https://usa14.fastcast4u.com/proxy/wmodes?mp=/1
+# Homepage: https://mechanicalmusicradio.com
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",Mechanical Music Radio
+https://global.citrus3.com:2020/stream/mechanicalmusicradio
+# Homepage: https://p-node.org
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",P-Node
+http://stream.p-node.org/dab.mp3
+# Homepage: https://www.payphone-project.com/payphone-radio-network
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",Payphone Radio
+https://centova11.instainternet.com/proxy/marktho1?mp=/stream
+# Homepage: https://radiobrennpunkt.org/
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",Radio Brennpunkt
+https://radio-brennpunkt.radiocult.fm/stream
+# Homepage: https://www.radioisaforeigncountry.org/
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",Radio is a Foreign Country
+https://s5.radio.co/s20251311a/listen
+# Homepage: https://radiopaisajes.cl/
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",Radio Paisajes
+https://stream.zeno.fm/nftv61u086etv
+# Homepage: https://theradius.us/
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",The Radius
+https://partneraudio.wavefarm.org/radius.mp3
+# Homepage: https://extra.resonance.fm/
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",Resonance Extra
+https://stream.resonance.fm/resonance-extra
+# Homepage: https://compound-eye.org
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",Shirley & Spinoza
+https://s2.radio.co/sec5fa6199/listen
+# Homepage: https://zeno.fm/radio/SpinningSeal/
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",Spinning Seal FM
+https://stream.zeno.fm/9q3ez3k3fchvv
+# Homepage: https://tilderadio.org/
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",TildeRadio
+https://azuracast.tilderadio.org/radio/8000/radio.mp3
+# Homepage: https://wavefarm.org/
+#EXTINF:-1 group-title="Experimental, Nerdy & Scanners",Wave Farm
+https://audio.wavefarm.org/pondstation.mp3
+
+# Group: Funk, Soul, Hip-Hop & Disco
+# Homepage: https://www.90s90s.de/radios
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",90s90s - HipHop & Rap
+https://streams.90s90s.de/hiphop/mp3-192
+# Homepage: https://www.comalaradio.com/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Comala Radio
+https://listen.radioking.com/radio/38120/stream/74519
+# Homepage: https://dinamo.fm/content/4/channels
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",dinamo.fm - DiSCOTHEQUE
+http://channels.dinamo.fm/discotheque-mp3
+# Homepage: https://www.discofactory.fm
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Disco Factory FM
+https://s5.radio.co/s253044a7a/listen
+# Homepage: https://thefaceradio.com/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",The Face Radio
+https://the-face-radio.radiocult.fm/stream
+# Homepage: https://funkthepla.net/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Funk the Planet
+https://streaming.live365.com/a01484
+# Homepage: https://www.funkyasstunes.com/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Funky Ass Tunes
+https://ams1.reliastream.com/proxy/john12/stream
+# Homepage: https://thefunkychannel.com/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",The Funky Channel
+http://cast3.my-control-panel.com:8170/stream
+# Homepage: https://funky.radio/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Funky Radio
+https://funkyradio.streamingmedia.it/play.mp3
+# Homepage: https://www.groovecabane.com/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Groove Cabane
+https://listen.radioking.com/radio/314264/stream/361499
+# Homepage: https://www.irgradio.net/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",International Rare Groove
+https://s131.radiolize.com/radio/8110/radio.mp3
+# Homepage: https://www.lapatatedouceradio.com/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",La Patate Douce
+https://listen.radioking.com/radio/285742/stream/472984
+# Homepage: https://www.lebonmix.radio/en/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Le Bon Mix
+https://stream10.xdevel.com/audio13s976748-2017/stream/icecast.audio
+# Homepage: https://madradio.co/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Mad Radio - Bogotá
+https://c25.radioboss.fm/stream/171
+# Homepage: https://www.mojo.de/mojo-radio/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Mojo Radio
+https://stream.laut.fm/mojo
+# Homepage: https://www.w.mrg.fm/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",MRG.fm - Planet Hip Hop
+http://listen.mrg.fm:8100/stream
+# Homepage: https://nonstopcasiopea.com/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Nonstop Casiopea
+https://nonstopcasiopea.radioca.st/;
+# Homepage: https://www.nts.live/infinite-mixtapes/feelings
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",NTS - Feelings
+https://stream-mixtape-geo.ntslive.net/mixtape27
+# Homepage: https://www.nts.live/infinite-mixtapes/100-percent-hip-hop
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",NTS - Low Key
+https://stream-mixtape-geo.ntslive.net/mixtape2
+# Homepage: https://www.nts.live/infinite-mixtapes/rap-house
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",NTS - Rap House
+https://stream-mixtape-geo.ntslive.net/mixtape22
+# Homepage: https://nuance.radio/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Nuance Radio
+http://admin.nuance.radio/hls/nuance_radio/aac_hifi.m3u8
+# Homepage: https://www.panacearadio.net/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Panacea Radio
+https://stream-15.aiir.com/kqwcuxfxcwhtv
+# Homepage: https://www.poolfm.com.br/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Pool FM
+https://radios.poolwebwork.com.br/8010/stream
+# Homepage: https://radiobarsardine.wixsite.com/radio-bar-sardine
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Radio Bar Sardine
+https://listen.radioking.com/radio/552908/stream/612230
+# Homepage: http://radiokrimi.com
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Radio Krimi
+https://radio13.pro-fhi.net/flux-nwsimjda2/stream
+# Homepage: https://www.nova.fr/radios/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Radio Nova - Hip-Hop
+https://nova-odn.ice.infomaniak.ch/nova-odn-256.aac
+# Homepage: https://radionula.com
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Radio Nula - Classic
+https://strm.radionula.com/channel4
+# Homepage: https://sensimedia.net/radio/stations/hiphop
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Sensimedia Hip Hop
+https://sensihiphop.radioca.st/stream
+# Homepage: https://somafm.com/7soul/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",SomaFM - Seven Inch Soul
+https://ice2.somafm.com/7soul-128-aac
+# Homepage: https://www.streetsoundsradio.com/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Street Sounds Radio
+https://streaming.broadcastradio.com:10525/streetsd
+# Homepage: https://www.swissgroove.ch
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Swiss Groove
+https://relay1.swissgroove.ch/;
+# Homepage: https://totallywiredradio.com
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Totally Wired Radio
+https://totallywired.out.airtime.pro/totallywired_a
+# Homepage: https://wefunkradio.com/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",WEFUNK
+http://www.wefunkradio.com/play/radio.pls
+# Homepage: https://www.wwoz.org/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",WWOZ 90.7
+https://www.wwoz.org/listen/hi
+# Homepage: https://yumicoradio.net/
+#EXTINF:-1 group-title="Funk, Soul, Hip-Hop & Disco",Yumi Co. Radio
+https://yumicoradio.net:8443/stream
+
+# Group: Global Independent & Online Communities
+# Homepage: https://www.20ftradio.net/
+#EXTINF:-1 group-title="Global Independent & Online Communities",20ft Radio
+https://20ft-radio.radiocult.fm/stream
+# Homepage: https://8ballradio.nyc
+#EXTINF:-1 group-title="Global Independent & Online Communities",8 Ball Radio
+https://eightball.out.airtime.pro/eightball_a
+# Homepage: https://8radio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",8Radio.com
+https://edge4.audioxi.com/8RADIO
+# Homepage: https://aajamusic.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Aaja Music - Channel 1
+https://aaja.radiocult.fm/stream
+# Homepage: https://aajamusic.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Aaja Music - Channel 2
+https://aaja-2.radiocult.fm/stream
+# Homepage: https://amplitudesradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Amplitudes Radio
+https://listen.radioking.com/radio/591304/stream/654688
+# Homepage: https://badradio.biz/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Bad Radio
+http://server.badradio.biz:8000/stream
+# Homepage: https://www.bangkokcommunityradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Bangkok Community Radio (BCR)
+https://bcr.radiocult.fm/stream
+# Homepage: https://blt-radio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Behind Loud Tracks
+https://play.radioking.io/blt-radio
+# Homepage: https://blackrhinoradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Black Rhino Radio
+https://blackrhinoradio.out.airtime.pro/blackrhinoradio_a
+# Homepage: https://cashmereradio.com
+#EXTINF:-1 group-title="Global Independent & Online Communities",Cashmere Radio
+https://cashmereradio.out.airtime.pro/cashmereradio_a
+# Homepage: https://www.clydebuiltradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Clyde Built Radio
+https://clydebuiltradio.out.airtime.pro/clydebuiltradio_a
+# Homepage: https://dandelionradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Dandelion Radio
+https://www.dandelionradio.com/DandelionRadio.pls
+# Homepage: https://datafruits.fm/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Datafruits
+https://streampusher-relay.club/datafruits.mp3
+# Homepage: https://www.depa.radio/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Depa Radio
+https://servidor15-2.brlogic.com:7006/live
+# Homepage: https://www.diaradio.live/
+#EXTINF:-1 group-title="Global Independent & Online Communities",DIA!
+https://livestream.diaradio.live/main
+# Homepage: https://dialradio.live/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Dial Radio
+https://cast.dialradio.live/stream.aac
+# Homepage: https://doyou.world/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Do!! You!!! Radio
+https://doyouworld.out.airtime.pro/doyouworld_a
+# Homepage: https://dublab.com
+#EXTINF:-1 group-title="Global Independent & Online Communities",dublab
+http://dublab.out.airtime.pro:8000/dublab_a
+# Homepage: https://listen.dublindigitalradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Dublin Digital Radio
+https://dublin-digital-radio.radiocult.fm/stream
+# Homepage: https://www.thedumpradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",The Dump
+https://radio.turbo.net.au/stream-hq
+# Homepage: https://eastvillageradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",East Village Radio
+https://east-village-radio.radiocult.fm/stream
+# Homepage: https://www.fangoradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Fango Radio
+https://pantano.ovh:8444/pantano
+# Homepage: https://www.fbi.radio/
+#EXTINF:-1 group-title="Global Independent & Online Communities",fbi.radio
+https://streamer.fbiradio.com/stream
+# Homepage: https://foundation.fm/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Foundation FM
+https://streamer.radio.co/s0628bdd53/listen
+# Homepage: https://fritto.fm/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Fritto FM
+https://frittofm2020.out.airtime.pro/frittofm2020_a
+# Homepage: https://gatekeeperradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Gatekeeper Radio
+https://azuracast.gatekeeperradio.com/listen/gatekeeper_radio/radio.mp3
+# Homepage: https://greatcircles.net/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Great Circles
+https://audio-edge-ey5nr.ams.s.radiomast.io/799da8fd-389e-4923-9068-77c725c6e82f
+# Homepage: https://hkcr.live/
+#EXTINF:-1 group-title="Global Independent & Online Communities",HKCR
+https://stream-test.hkcr.live/hls/main.m3u8
+# Homepage: https://khuh.fm/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Hollow Earth Radio
+http://centova.rockhost.com:8001/stream
+# Homepage: https://www.idaidaida.net/
+#EXTINF:-1 group-title="Global Independent & Online Communities",IDA
+https://broadcast.idaidaida.net:8000/stream
+# Homepage: https://www.internetpublicradio.live/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Internet Public Radio
+https://stream-relay-geo.internetpublicradio.live/stream/main
+# Homepage: https://www.kchungradio.org/
+#EXTINF:-1 group-title="Global Independent & Online Communities",KCHUNG Radio
+https://kchung-radio-01e54a81.radiocult.fm/stream
+# Homepage: https://kindredeverything.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Kindred
+https://kindred.radiocult.fm/stream
+# Homepage: https://kioskradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Kiosk Radio
+https://kioskradiobxl.out.airtime.pro/kioskradiobxl_b
+# Homepage: https://kpiss.fm/
+#EXTINF:-1 group-title="Global Independent & Online Communities",KPISS
+https://das-edge14-live365-dal02.cdnstream.com/a18444
+# Homepage: https://radio.kwsx.online/
+#EXTINF:-1 group-title="Global Independent & Online Communities",KWSX Radio
+https://stream.kwsx.online/listen/kwsx/radio-med.mp3
+# Homepage: https://www.lahmacun.hu/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Lahmacun Radio
+https://streaming.lahmacun.hu/radio/8000/radio.mp3
+# Homepage: https://thelakeradio.com
+#EXTINF:-1 group-title="Global Independent & Online Communities",The Lake Radio
+http://hyades.shoutca.st:8627/stream
+# Homepage: https://www.le-grigri.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Le Grigri
+https://www.radioking.com/play/legrigri/273715
+# Homepage: https://lemellotron.com
+#EXTINF:-1 group-title="Global Independent & Online Communities",Le Mellotron
+https://listen.radioking.com/radio/477719/stream/534044
+# Homepage: https://looseantenna.fm/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Loose Antenna
+https://stream.looseantenna.fm/radio/8000/default.mp3
+# Homepage: https://loose.fm/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Loose FM
+https://loosefm.radiocult.fm/stream
+# Homepage: https://www.thelotradio.com
+#EXTINF:-1 group-title="Global Independent & Online Communities",The Lot Radio
+https://livepeercdn.studio/hls/85c28sa2o8wppm58/index.m3u8
+# Homepage: https://lyl.live/
+#EXTINF:-1 group-title="Global Independent & Online Communities",LYL Radio
+https://icecast.lyl.live/live
+# Homepage: https://mondobongoradio.com
+#EXTINF:-1 group-title="Global Independent & Online Communities",Mondo Bongo Radio
+https://cast.mndbng.com/hls/mondobongo/aac_hifi.m3u8
+# Homepage: https://radio.montezpress.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Montez Press Radio
+https://stream.montezpress.com/icecast/music
+# Homepage: https://mouthfull.live/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Mouthfull
+https://mouthfull-radio.radiocult.fm/stream
+# Homepage: https://www.muitoradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Muito Radio
+https://muitoradio.out.airtime.pro/muitoradio_a
+# Homepage: https://www.mutantradio.net
+#EXTINF:-1 group-title="Global Independent & Online Communities",Mutant Radio
+https://listen.radioking.com/radio/282820/stream/328621
+# Homepage: https://n10.as/
+#EXTINF:-1 group-title="Global Independent & Online Communities",n10.as
+https://n10as.radiocult.fm/stream
+# Homepage: https://www.nebulah-radio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Nebulah Radio
+https://listen.radioking.com/radio/314507/stream/361754
+# Homepage: https://nessradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Ness Radio
+https://radio.nessradio.net:8212/nessradio-hd
+# Homepage: https://netilradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Netil Radio
+https://netilradio.out.airtime.pro/netilradio_a
+# Homepage: https://www.neuradio.it/
+#EXTINF:-1 group-title="Global Independent & Online Communities",NEU Radio
+https://radio.eduneu.eu:8020/radio.mp3
+# Homepage: https://newtownradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Newtown Radio
+https://streaming.radio.co/s0d090ee43/listen
+# Homepage: https://noodsradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Noods Radio
+https://noods-radio.radiocult.fm/stream
+# Homepage: https://www.norrm.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Norrm
+https://listen.norrm.com/default
+# Homepage: https://www.nts.live/
+#EXTINF:-1 group-title="Global Independent & Online Communities",NTS - 1
+http://stream-relay-geo.ntslive.net/stream
+# Homepage: https://www.nts.live/
+#EXTINF:-1 group-title="Global Independent & Online Communities",NTS - 2
+http://stream-relay-geo.ntslive.net/stream2
+# Homepage: https://www.olaradio.fr/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Ola Radio
+https://ola-radio.radiocult.fm/stream
+# Homepage: https://operator-radio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Operator Radio
+https://origin.streamnerd.nl/operator/operator/icecast.audio
+# Homepage: https://palanga.live/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Palanga Street Radio
+https://stream.palanga.live:8443/palanga128.mp3
+# Homepage: https://www.paranoiseradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Paranoise Radio
+https://paranoisewebcast.radioca.st/stream
+# Homepage: https://parearadio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Parea Radio
+https://parea-radio-b7474105.radiocult.fm/stream
+# Homepage: https://www.pinataradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Piñata Radio
+https://listen.radioking.com/radio/96031/stream/134656
+# Homepage: https://www.radio80k.de/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio 80000
+https://radio80k.out.airtime.pro/radio80k_a
+# Homepage: https://rbl.media/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Banda Larga
+https://rblmedia-a4a44e62.radiocult.fm/stream
+# Homepage: https://buenavida.co.uk/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Buena Vida
+https://s4.radio.co/s69b281ac0/listen
+# Homepage: https://www.radiocentraal.be/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Centraal
+http://streams.movemedia.eu:8530/
+# Homepage: https://radiodopo.it/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Dopo
+https://streaming.radio.co/s807721f02/listen
+# Homepage: https://radiokapital.pl/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Kapitał
+https://radiokapitalpl.out.airtime.pro/radiokapitalpl_a
+# Homepage: https://www.radiomeuh.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Meuh
+http://radiomeuh.ice.infomaniak.ch/radiomeuh-128.mp3
+# Homepage: https://radionopal.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Nopal
+https://radio.mensajito.mx/nopalA
+# Homepage: https://www.nova.fr/radios/radio-nova/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Nova
+https://novazz.ice.infomaniak.ch/novazz-128.mp3
+# Homepage: https://www.facebook.com/radiopinpon/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Pinpon
+https://listen.radioking.com/radio/142627/stream/182797
+# Homepage: https://www.radioquantica.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Quantica
+https://libretime.radioquantica.com/main.mp3
+# Homepage: https://radioraheem.it/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Raheem
+https://radioraheem.out.airtime.pro/radioraheem_a
+# Homepage: https://radiorelativa.eu/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Relativa
+https://streamer.radio.co/sd6131729c/listen
+# Homepage: https://radioreverb.com
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Reverb 97.2
+http://edge-audio-03-gos2.sharp-stream.com/radioreverb.mp3
+# Homepage: https://samsam.world/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Sam Sam
+https://listen.radioking.com/radio/742276/stream/808768
+# Homepage: https://radiosantana.blogspot.com/?m=0
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Santana Breda
+https://server7.radio-streams.net/proxy/santana/stream
+# Homepage: https://www.radio-sofa.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Sofa
+https://radio.radio-sofa.com/listen/radio_sofa/radio.mp3
+# Homepage: https://radiotsonami.org/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Tsonami
+https://radio-tsonami-b24c40dc.radiocult.fm/stream
+# Homepage: https://radiovilnius.live/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Radio Vilnius
+https://transliacija.audiomastering.lt/radiovilnius-mp3
+# Homepage: https://www.reformradio.co.uk/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Reform Radio
+https://testform.out.airtime.pro/testform_a
+# Homepage: https://refugeworldwide.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Refuge Worldwide
+https://streaming.radio.co/s3699c5e49/listen
+# Homepage: https://www.resonancefm.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Resonance 104.4 FM
+http://stream.resonance.fm:8000/resonance
+# Homepage: https://www.retreatradio.net/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Retreat Radio
+https://retreatradio.out.airtime.pro/retreatradio_b
+# Homepage: https://www.rinse.fm/channels/uk
+#EXTINF:-1 group-title="Global Independent & Online Communities",Rinse FM
+https://admin.stream.rinse.fm/proxy/rinse_uk/stream
+# Homepage: https://www.rovr.live/
+#EXTINF:-1 group-title="Global Independent & Online Communities",ROVR
+https://hls-prod.rovr.live/prod/stream_plus02/llhls.m3u8
+# Homepage: https://rukh.live/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Rukh Radio
+https://a1.asurahosting.com/listen/rukh/radio.mp3
+# Homepage: https://rytmabad.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Rytmabad Radio
+https://dashboard.rytmabad.radio/listen/radio.mp3
+# Homepage: https://www.saunaradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Sauna Radio
+https://stream.saunaradio.com/live
+# Homepage: https://www.seydisfjordurcommunityradio.net/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Seyðisfjörður Community Radio
+https://seyisfjorur-community-radio.radiocult.fm/stream
+# Homepage: https://www.slackradio.org/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Slack Radio
+https://slackradiolive.com/listen/slack_radio/radio.mp3
+# Homepage: https://sohoradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Soho Radio
+https://sohoradiomusic.doughunt.co.uk:8010/320mp3
+# Homepage: https://stationstation.fr/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Station Station
+https://libretime.stationstation.fr/main
+# Homepage: https://stayfm.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",stayfm
+https://stayfm.com:8443/archive
+# Homepage: https://stegi.radio/
+#EXTINF:-1 group-title="Global Independent & Online Communities",STEGI.RADIO
+https://movementathens.out.airtime.pro/movementathens_a
+# Homepage: https://www.studioneau.be/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Studio Néau
+https://studioneau.out.airtime.pro/studioneau_a
+# Homepage: https://www.subtleradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Subtle Radio
+https://subtle-radio-dd2656d9.radiocult.fm/stream
+# Homepage: https://www.thfradio.de/
+#EXTINF:-1 group-title="Global Independent & Online Communities",THF Radio
+https://thf-radio-7ec0e6ee.radiocult.fm/stream
+# Homepage: https://www.threedradio.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Three D Radio 93.7 FM
+https://sounds.threedradio.com/stream
+# Homepage: https://www.tirkultura.lv/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Tīrkultūra
+https://s3.radio.co/s216811754/listen
+# Homepage: https://tsubakifm.com/
+#EXTINF:-1 group-title="Global Independent & Online Communities",TSUBAKI fm
+https://edge.mixlr.com/channel/vgmet
+# Homepage: https://veneno.live/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Veneno
+https://radio.veneno.live/stream/main
+# Homepage: https://wavefarm.org/radio/wgxc/schedule
+#EXTINF:-1 group-title="Global Independent & Online Communities",WGXC 90.7
+https://audio.wavefarm.org/wgxc.mp3
+# Homepage: https://www.worldwidefm.net/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Worldwide FM
+https://worldwide-fm.radiocult.fm/stream
+# Homepage: https://xray.fm/
+#EXTINF:-1 group-title="Global Independent & Online Communities",XRAY.fm
+https://listen.xray.fm/stream
+# Homepage: https://www.zabrijradio.org/
+#EXTINF:-1 group-title="Global Independent & Online Communities",Zabrij Radio
+https://zabrij-radio.radiocult.fm/stream
+
+# Group: Jazz & Blues
+# Homepage: https://aardvarkbluesfm.com/
+#EXTINF:-1 group-title="Jazz & Blues",Aardvark Blues FM
+http://edge4.peta.live365.net/b77280_128mp3
+# Homepage: https://abacolibrosycaferadio.blogspot.com/
+#EXTINF:-1 group-title="Jazz & Blues",Ábaco Libros y Café
+http://radio30.virtualtronics.com:8638/
+# Homepage: https://ashiya.radio/
+#EXTINF:-1 group-title="Jazz & Blues",AshiyaRadio
+https://s3.radio.co/sc8d895604/listen
+# Homepage: https://www.concertzender.nl/en
+#EXTINF:-1 group-title="Jazz & Blues",Concertzender - World of Jazz
+https://streams.greenhost.nl:8006/jazz
+# Homepage: https://www.dr.dk/lyd/p8jazz
+#EXTINF:-1 group-title="Jazz & Blues",DR P8 Jazz
+http://live-icy.gss.dr.dk/A/A22H.mp3
+# Homepage: https://www.fmr.co.za/
+#EXTINF:-1 group-title="Jazz & Blues",Fine Music Radio
+http://edge.iono.fm/xhls/fmr_live_medium.m3u8
+# Homepage: https://www.radiofrance.fr/musique/jazz
+#EXTINF:-1 group-title="Jazz & Blues",FIP Jazz
+http://icecast.radiofrance.fr/fipjazz-hifi.aac
+# Homepage: http://www.giantsofjazzradio.co.uk/
+#EXTINF:-1 group-title="Jazz & Blues",Giants of Jazz
+http://streaming.radio.co/s297e618a7/listen
+# Homepage: https://www.headwaxradio.ie/
+#EXTINF:-1 group-title="Jazz & Blues",Head Wax Radio
+https://headwaxradio.radioca.st/stream
+# Homepage: https://www.ifusionradio.com/
+#EXTINF:-1 group-title="Jazz & Blues",iFusion Radio
+https://listen.radioking.com/radio/523747/stream/582004
+# Homepage: https://www.jazz.fm
+#EXTINF:-1 group-title="Jazz & Blues",JAZZ.FM91
+https://jazzfm91.streamb.live/SB00009
+# Homepage: https://jclubbandstand.torontocast.stream/stations/index.html
+#EXTINF:-1 group-title="Jazz & Blues",J-Club Bandstand - Jazz Sakura
+https://kathy.torontocast.com:3330/
+# Homepage: https://jazzconclass.com
+#EXTINF:-1 group-title="Jazz & Blues",Jazz Con Class
+http://streaming.live365.com/a73229
+# Homepage: https://jazzgroove.org
+#EXTINF:-1 group-title="Jazz & Blues",The Jazz Groove
+http://east-mp3-128.streamthejazzgroove.com/stream
+# Homepage: https://jazzgroove.org/?channel=mix1
+#EXTINF:-1 group-title="Jazz & Blues",The Jazz Groove - Mix 1
+http://west-mp3-128.streamthejazzgroove.com/stream
+# Homepage: https://www.jazzradio.fr/radio/webradio
+#EXTINF:-1 group-title="Jazz & Blues",Jazz Radio - Afro Jazz
+https://jazz-radio-afro.ice.infomaniak.ch/jazz-radio-afro.mp3
+# Homepage: https://www.jazzradio.fr/radio/webradio
+#EXTINF:-1 group-title="Jazz & Blues",Jazz Radio - Blue
+http://jazzblues.ice.infomaniak.ch/jazzblues-high.mp3
+# Homepage: https://www.jazz24.org/
+#EXTINF:-1 group-title="Jazz & Blues",Jazz24
+https://knkx-live-a.edge.audiocdn.com/6285_256k
+# Homepage: https://kcsm.org/
+#EXTINF:-1 group-title="Jazz & Blues",KCSM Jazz 91.1
+http://ice7.securenetsystems.net/KCSM2
+# Homepage: https://www.ewu.edu/kewu/
+#EXTINF:-1 group-title="Jazz & Blues",KEWU 89.5
+https://streamer.radio.co/s3ba633066/listen
+# Homepage: https://kkjz.org/
+#EXTINF:-1 group-title="Jazz & Blues",KJazz 88.1
+https://streaming.live365.com/a49833
+# Homepage: https://www.jazz88.org/
+#EXTINF:-1 group-title="Jazz & Blues",KSDS Jazz 88.3
+https://ksds-ice.streamguys1.com/ksds.mp3
+# Homepage: https://www.linn.co.uk/linn-radio
+#EXTINF:-1 group-title="Jazz & Blues",Linn Jazz
+http://radio.linn.co.uk:8000/autodj
+# Homepage: http://www.newmorning.com/
+#EXTINF:-1 group-title="Jazz & Blues",New Morning
+https://listen.radioking.com/radio/605/stream/62902
+# Homepage: https://www.nts.live/infinite-mixtapes/expansions
+#EXTINF:-1 group-title="Jazz & Blues",NTS - Expansions
+https://stream-mixtape-geo.ntslive.net/mixtape3
+# Homepage: https://www.psaudio.com/blogs/pauls-posts/octave-radio
+#EXTINF:-1 group-title="Jazz & Blues",Octave Radio
+https://octaverecords.out.airtime.pro/octaverecords_a
+# Homepage: https://thepenthouse.fm/
+#EXTINF:-1 group-title="Jazz & Blues",The Penthouse
+http://sc1.mystreamserver.com:8052/
+# Homepage: http://www.radiomanouche.com/
+#EXTINF:-1 group-title="Jazz & Blues",Radio Manouche
+http://stream.radiomanouche.com:8118/listen
+# Homepage: https://www.radioswissjazz.ch/en
+#EXTINF:-1 group-title="Jazz & Blues",Radio Suisse Jazz
+https://stream.srg-ssr.ch/m/rsj/aacp_96
+# Homepage: https://www.beachfm.co.jp/
+#EXTINF:-1 group-title="Jazz & Blues",Shonan Beach FM
+http://shonanbeachfm.out.airtime.pro:8000/shonanbeachfm_a
+# Homepage: https://somafm.com/sonicuniverse/
+#EXTINF:-1 group-title="Jazz & Blues",SomaFM - Sonic Universe
+https://somafm.com/sonicuniverse256.pls
+# Homepage: https://www.swingstreetradio.org/
+#EXTINF:-1 group-title="Jazz & Blues",Swing Street
+https://s1.voscast.com:10413/stream
+# Homepage: https://www.tsfjazz.com/
+#EXTINF:-1 group-title="Jazz & Blues",TSF Jazz
+http://tsfjazz.ice.infomaniak.ch/tsfjazz-high.mp3
+# Homepage: https://walmradio.com/
+#EXTINF:-1 group-title="Jazz & Blues",WALM - Adroit Jazz Underground
+https://icecast.walmradio.com:8443/jazz
+# Homepage: https://www.wbgo.org/
+#EXTINF:-1 group-title="Jazz & Blues",WBGO 88.3
+https://ais-sa8.cdnstream1.com/3629_128.mp3
+# Homepage: https://wdnaradio.org
+#EXTINF:-1 group-title="Jazz & Blues",WDNA 88.9
+http://us9.streamingpulse.com:7033/stream
+# Homepage: https://www.cc-seas.columbia.edu/wkcr/
+#EXTINF:-1 group-title="Jazz & Blues",WKCR 89.9
+https://wkcr.streamguys1.com:80/live
+# Homepage: https://www.wucf.org
+#EXTINF:-1 group-title="Jazz & Blues",WUCF 89.9
+http://peridot.streamguys.com:7830/WUCF
+# Homepage: https://www.wvpe.org/show/blues-revue
+#EXTINF:-1 group-title="Jazz & Blues",WVPE - Blues3
+https://wvpe-live.streamguys1.com/live
+
+# Group: Metal & Heavy
+# Homepage: https://www.chronixradio.net/
+#EXTINF:-1 group-title="Metal & Heavy",ChroniX Radio - Aggression
+http://usa19.fastcast4u.com:5720/
+# Homepage: https://coreradio.online/
+#EXTINF:-1 group-title="Metal & Heavy",Core Radio
+http://serv.coreradio.online:8000/coreradio
+# Homepage: https://death.fm/
+#EXTINF:-1 group-title="Metal & Heavy",Death.FM
+http://hi5.death.fm/
+# Homepage: https://www.doomnationradio.com/
+#EXTINF:-1 group-title="Metal & Heavy",Doomnation Radio
+https://s2.voscast.com:11123/stream
+# Homepage: https://www.hrhradio.com/
+#EXTINF:-1 group-title="Metal & Heavy",Hard Rock Heaven
+http://hydra.cdnstream.com/1521_128
+# Homepage: https://hardrockhellradio.com/
+#EXTINF:-1 group-title="Metal & Heavy",Hard Rock Hell Radio
+https://tbfmonli.radioca.st/stream
+# Homepage: https://iskcrocks.com/
+#EXTINF:-1 group-title="Metal & Heavy",ISKC - Extreme Metal
+http://mediaserv68.live-streams.nl:8012/ExtremeMetal
+# Homepage: https://metaldevastationradio.com/
+#EXTINF:-1 group-title="Metal & Heavy",Metal Devastation
+https://c13.radioboss.fm:18099/stream
+# Homepage: https://www.nts.live/infinite-mixtapes/the-pit
+#EXTINF:-1 group-title="Metal & Heavy",NTS - The Pit
+https://stream-mixtape-geo.ntslive.net/mixtape34
+# Homepage: https://www.progpalaceradio.com/
+#EXTINF:-1 group-title="Metal & Heavy",Prog Palace Radio
+https://cheetah.streemlion.com/progpalace64
+# Homepage: https://somafm.com/metal/
+#EXTINF:-1 group-title="Metal & Heavy",SomaFM - Metal Detector
+https://ice1.somafm.com/metal-128-aac
+# Homepage: https://www.terrarelicta.com/
+#EXTINF:-1 group-title="Metal & Heavy",Terra Relicta Radio
+https://a3.asurahosting.com/listen/terra/radio.mp3
+# Homepage: https://www.totalrock.com/
+#EXTINF:-1 group-title="Metal & Heavy",TotalRock
+https://s3.citrus3.com:8056/stream
+# Homepage: https://www.violentforcesradio.com
+#EXTINF:-1 group-title="Metal & Heavy",Violent Forces Radio - General Thrash
+https://www.tuneintoradio1.com/listen/violent_forces_radio/radio.mp3
+
+# Group: News & Spoken Word
+# Homepage: http://www.audiobookradio.net/
+#EXTINF:-1 group-title="News & Spoken Word",AudioBookRadio
+https://audiobookradio.out.airtime.pro/audiobookradio_a
+# Homepage: https://www.bbc.co.uk/sounds/play/live/bbc_radio_fourfm
+#EXTINF:-1 group-title="News & Spoken Word",BBC Radio 4
+http://as-hls-ww-live.akamaized.net/pool_55057080/live/ww/bbc_radio_fourfm/bbc_radio_fourfm.isml/bbc_radio_fourfm-audio%3d128000.norewind.m3u8
+# Homepage: https://www.bbc.co.uk/sounds/play/live/bbc_world_service
+#EXTINF:-1 group-title="News & Spoken Word",BBC World Service
+http://stream.live.vc.bbcmedia.co.uk/bbc_world_service
+# Homepage: https://historyradio.org
+#EXTINF:-1 group-title="News & Spoken Word",Historyradio.org
+http://stream.radiojar.com/6bmecgg3wd5tv
+# Homepage: https://darkentertainments.com/
+#EXTINF:-1 group-title="News & Spoken Word",Horror Radio
+https://eu1.fastcast4u.com/proxy/stevende1?mp=/
+# Homepage: https://www.radioreloj.cu/
+#EXTINF:-1 group-title="News & Spoken Word",Radio Reloj
+https://icecast.teveo.cu/b3jbfThq
+# Homepage: https://www.willstare.com/art-bell-repository/
+#EXTINF:-1 group-title="News & Spoken Word",The Ultimate Art Bell
+http://stream.willstare.com:8450/
+# Homepage: https://rokitradio.com/
+#EXTINF:-1 group-title="News & Spoken Word",Vintage ROKiT Radio - Crime and Suspense
+http://streaming04.liveboxstream.uk:8168/stream
+
+# Group: Reggae & Dub
+# Homepage: https://alphaboysschoolradio.com/
+#EXTINF:-1 group-title="Reggae & Dub",Alpha Boys School Radio
+http://alphaboys-live.streamguys1.com/alphaboys.mp3
+# Homepage: https://badam-radio.radioweb.co/
+#EXTINF:-1 group-title="Reggae & Dub",Badam Radio
+https://listen.radioking.com/radio/105610/stream/144949
+# Homepage: https://www.bobskaradio.com/
+#EXTINF:-1 group-title="Reggae & Dub",Bob's Ska Radio
+http://51.255.235.165:5528/stream
+# Homepage: https://drdicksdubshack.com/
+#EXTINF:-1 group-title="Reggae & Dub",Dr. Dick's Dub Shack
+https://streamer.radio.co/s0635c8b0d/listen
+# Homepage: https://www.radiofrance.fr/fip/radio-reggae
+#EXTINF:-1 group-title="Reggae & Dub",FIP Reggae
+http://icecast.radiofrance.fr/fipreggae-hifi.aac
+# Homepage: https://iriefm.net/
+#EXTINF:-1 group-title="Reggae & Dub",Irie FM
+https://usa19.fastcast4u.com:7430/
+# Homepage: http://www.kingdubfamily.com/
+#EXTINF:-1 group-title="Reggae & Dub",King Dub Radio
+http://london-dedicated.myautodj.com:8862/stream
+# Homepage: https://www.nts.live/infinite-mixtapes/island-time
+#EXTINF:-1 group-title="Reggae & Dub",NTS - Island Time
+https://stream-mixtape-geo.ntslive.net/mixtape21
+# Homepage: https://realrootsradio.net/
+#EXTINF:-1 group-title="Reggae & Dub",Real Roots Radio
+https://streams.radio.co/s1df61e0af/listen
+# Homepage: https://somafm.com/reggae/
+#EXTINF:-1 group-title="Reggae & Dub",SomaFM - Heavyweight Reggae
+https://ice5.somafm.com/reggae-256-mp3
+# Homepage: https://ukrootsfm.com/
+#EXTINF:-1 group-title="Reggae & Dub",UK Roots FM
+http://138.201.198.218:8043/
+
+# Group: Rock, Indie, Alternative, Country & Folk
+# Homepage: https://acecafe.com/ace-cafe-radio/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Ace Cafe Radio
+https://listen.radioking.com/radio/69079/stream/106852
+# Homepage: https://www.bagelradio.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",BAGeL Radio
+http://ais-sa3.cdnstream1.com/2606_128.aac
+# Homepage: https://www.bbc.co.uk/sounds/play/live/bbc_6music
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",BBC Radio 6 Music
+http://as-hls-ww-live.akamaized.net/pool_81827798/live/ww/bbc_6music/bbc_6music.isml/bbc_6music-audio%3d320000.norewind.m3u8
+# Homepage: https://birchstreetradio.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Birch Street Radio
+https://streaming.live365.com/a97155
+# Homepage: https://www.boogalooradio.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Boogaloo Radio
+https://streams.radio.co/sb88c742f0/listen
+# Homepage: https://cathedral13.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Cathedral 13
+https://usa15.fastcast4u.com/proxy/tstamate?mp=/1
+# Homepage: https://cosmicfuzzfm.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Cosmic Fuzz
+https://15113.live.streamtheworld.com/SAM04AAC335_SC
+# Homepage: https://thecurrent.org
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",The Current
+https://current.stream.publicradio.org/current.mp3
+# Homepage: https://wdarefm.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",DARE FM
+http://hydra.cdnstream.com/1552_128
+# Homepage: http://www.deliciousagony.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Delicious Agony
+http://deliciousagony.streamguys1.com/
+# Homepage: https://folkalley.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Folk Alley
+https://freshgrass.streamguys1.com/folkalley-128mp3
+# Homepage: https://www.gdradio.net/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Grateful Dead Radio
+http://108.163.245.230:8100/stream
+# Homepage: https://ignoreradio.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Ignore Radio Shoegaze
+https://sp1.autopo.st/8026/stream
+# Homepage: https://www.jempradio.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",JEMP Radio
+https://streaming.radio.co/sd71de59b3/listen
+# Homepage: https://www.kexp.org/listen/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",KEXP 90.3
+https://edg1-iad-kexp.streamguys1.com/kexp64.aac
+# Homepage: https://krautrock-world.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Krautrock-World
+https://krautrockworld.stream.laut.fm/krautrockworld
+# Homepage: https://livejamradio.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Live Jam Radio
+https://stations.radio-host.com/proxy/livejam/stream
+# Homepage: https://www.morow.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Morow
+https://www.morow.com/morow.pls
+# Homepage: https://www.nts.live/infinite-mixtapes/memory-lane
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",NTS - Memory Lane
+https://stream-mixtape-geo.ntslive.net/mixtape6
+# Homepage: https://www.nts.live/infinite-mixtapes/the-tube
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",NTS - The Tube
+https://stream-mixtape-geo.ntslive.net/mixtape26
+# Homepage: https://www.nugs.net/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Nugs Radio
+https://radio.nugs.net/nugsnet
+# Homepage: https://www.radiobob.de/rockabilly-stream
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Radio BOB! - Rockabilly
+http://streams.radiobob.de/bob-rockabilly/mp3-192/mediaplayer
+# Homepage: https://radioparadise.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Radio Paradise
+http://stream-dc1.radioparadise.com/rp_192m.ogg
+# Homepage: https://radiowoodstock.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Radio Woodstock
+https://stream.revma.ihrhls.com/zc7332
+# Homepage: https://realpunkradio.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Real Punk Radio
+http://149.56.155.73:8080/stream
+# Homepage: https://thesocalsound.org/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",The SoCal Sound
+http://playerservices.streamtheworld.com/api/livestream-redirect/KCSNFMAAC.aac
+# Homepage: https://yachtrockmiami.com/
+#EXTINF:-1 group-title="Rock, Indie, Alternative, Country & Folk",Yacht Rock Miami
+https://usa20.fastcast4u.com:4100/1753014835
+
+# Group: Video Game, Chiptune & Soundtracks
+# Homepage: https://arcaderadio.com/index.html
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Arcade Radio
+https://server10.reliastream.com/proxy/arcaderadio?mp=/stream2
+# Homepage: https://www.cinemix.us/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Cinemix
+https://kathy.torontocast.com:1825/stream
+# Homepage: https://www.classicfm.com/discover-music/periods-genres/video-game/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Classic FM - Video Game Music
+https://icecast.thisisdax.com/ClassicFM-M-Gaming
+# Homepage: https://www.classic-videogames.de/radio/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Classic Videogames
+http://195.201.9.210:1541/stream/2/
+# Homepage: https://commodexplorer.c-prod.net/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",COMMODEXPLORER
+https://manager8.streamradio.fr:2295/stream
+# Homepage: https://www.cvgm.net/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",CVGM
+https://slacker.cvgm.net/cvgm192
+# Homepage: https://radio.ericade.net/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Ericade Radio
+https://radio.ericade.net/sc/stream/1/
+# Homepage: https://funkyunclefm.net
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",FunkyUncleFM
+https://funkyunclefm.net/stream_vorbis192
+# Homepage: https://gensokyoradio.net
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Gensokyo Radio
+https://stream.gensokyoradio.net/GensokyoRadio-enhanced.m3u
+# Homepage: https://laut.fm/gta-classics
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",GTA Radio
+https://stream.laut.fm/gta-classics
+# Homepage: http://gyusyabu.ddo.jp/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Gyusyabu
+http://gyusyabu.ddo.jp:8000/;stream.mp3
+# Homepage: https://intergalactic.fm/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Intergalactic FM - The Dream Machine
+https://radio.intergalactic.fm/3A
+# Homepage: https://kaaosradio.fi/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Kaaosradio
+https://kaaosradio.fi:8001/chip
+# Homepage: https://kohina.com
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Kohina
+https://kohina.duckdns.org/icecast/stream.ogg
+# Homepage: https://lapfoxradio.com
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",LapFox Radio
+https://radio.lapfoxradio.com/radio/8000/stream-ogg-320.ogg
+# Homepage: https://liquiddoom.net/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Liquid DooM Radio
+http://83.240.65.106:8000/doom
+# Homepage: https://www.scenestream.net/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Nectarine
+http://necta.burn.net:8000/nectarine
+# Homepage: https://nolife-radio.com/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",No Life Radio
+https://listen.nolife-radio.com/stream
+# Homepage: https://www.nts.live/infinite-mixtapes/otaku
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",NTS - Otaku
+https://stream-mixtape-geo.ntslive.net/mixtape36
+# Homepage: https://radiorivendell.com/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Radio Rivendell
+https://play.radiorivendell.com/radio/8000/radio.mp3
+# Homepage: https://www.radiosega.net/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",RadioSEGA
+http://content.radiosega.net:8006/live
+# Homepage: https://rainwave.cc/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Rainwave - Game
+http://allrelays.rainwave.cc/game.mp3
+# Homepage: https://www.rpgamers.net/radio/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",RPGamers Radio
+https://listen.rpgamers.net/rpgn
+# Homepage: https://scenesat.com/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",SceneSat
+https://streams.scenesat.com/main/hq.mp3
+# Homepage: https://shmupradio.com/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Shmup Radio
+https://stream.shmupradio.com/320
+# Homepage: https://slayradio.org/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Slay Radio
+http://relay4.slayradio.org:8300/
+# Homepage: https://www.spritelayerradio.com/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",SpriteLayer
+http://www.spritelayerradio.com:8010/all
+# Homepage: http://www.streamingsoundtracks.com/
+#EXTINF:-1 group-title="Video Game, Chiptune & Soundtracks",Streaming Soundtracks
+http://hi5.streamingsoundtracks.com/
+
+# Group: World & Regional
+# Homepage: https://3jradio.com/
+#EXTINF:-1 group-title="World & Regional",3j Radio
+https://de1.streamingpulse.com/ssl/9085
+# Homepage: https://alefamusic.net/
+#EXTINF:-1 group-title="World & Regional",Alefa Music
+http://www.radioking.com/play/alefamusic
+# Homepage: https://celtcast.com/
+#EXTINF:-1 group-title="World & Regional",CeltCast
+http://caster04.streampakket.com:8982/1_mp3_192
+# Homepage: https://www.celticmusicradio.net/
+#EXTINF:-1 group-title="World & Regional",Celtic Music Radio
+https://streaming.broadcastradio.com:11135/celtic
+# Homepage: https://ceol.fm/
+#EXTINF:-1 group-title="World & Regional",CeolFM
+https://listen.ceol.fm/auto
+# Homepage: https://daybreakstarradio.com
+#EXTINF:-1 group-title="World & Regional",Daybreak Star Radio
+http://ice9.securenetsystems.net/DSR
+# Homepage: https://gladyspalmera.com/coleccion
+#EXTINF:-1 group-title="World & Regional",Gladys Palmera Colección
+http://streams.radio.co/s496c4d2e8/listen
+# Homepage: https://hawaiianrainbow.com/
+#EXTINF:-1 group-title="World & Regional",Hawaiian Rainbow
+https://s1.autopo.st/proxy/nqjchago?mp=/stream
+# Homepage: https://www.j1fm.tokyo
+#EXTINF:-1 group-title="World & Regional",J1 Radio - Gold
+http://gold.j1fm.tokyo/
+# Homepage: https://www.kbon.com/
+#EXTINF:-1 group-title="World & Regional",KBON 101.1
+http://ice64.securenetsystems.net/KBON
+# Homepage: https://listen.moe/
+#EXTINF:-1 group-title="World & Regional",listen.moe
+https://listen.moe/stream
+# Homepage: https://oroko.live/
+#EXTINF:-1 group-title="World & Regional",Oroko Radio
+https://oroko-radio.radiocult.fm/stream
+# Homepage: https://panafricanspacestation.org.za/
+#EXTINF:-1 group-title="World & Regional",Pan African Space Station
+https://pass.out.airtime.pro/pass_a
+# Homepage: https://kfaspain.es/emisora-central-de-corea-pyongyang-fm/
+#EXTINF:-1 group-title="World & Regional",Pyongyang Radio FM
+https://listen7.myradio24.com/69366
+# Homepage: https://www.radioalhara.net/
+#EXTINF:-1 group-title="World & Regional",Radio Al-Hara
+https://stream.radioalhara.net/ra
+# Homepage: https://www.radioseribatu.com/radioseribatu
+#EXTINF:-1 group-title="World & Regional",Seribatu
+http://radioseribatu.out.airtime.pro:8000/radioseribatu_a
+# Homepage: https://www.svenskfolkmusik.nu/
+#EXTINF:-1 group-title="World & Regional",Svensk Folkmusik AkkA
+http://mediaserv38.live-streams.nl:8107/stream

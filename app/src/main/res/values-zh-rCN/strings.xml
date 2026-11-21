@@ -511,8 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">在页面底部显示 TTS 按钮</string>
    <string name="slider_scale">进度条刻度</string>
    <string name="chapter_format">章节格式</string>
-   <string name="play_a_music_file">播放 MP3</string>
+   <string name="play_a_music_file">MP3</string>
    <string name="play_stream">播放流媒体</string>
+   <string name="radio">电台</string>
    <string name="stream_address">流媒体或 .m3u 播放列表的地址</string>
    <string name="rate_app">评价应用</string>
    <string name="reset">重置</string>

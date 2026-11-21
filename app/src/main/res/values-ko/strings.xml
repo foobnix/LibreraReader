@@ -511,8 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">페이지 하단에 TTS 버튼 표시</string>
    <string name="slider_scale">슬라이더 크기</string>
    <string name="chapter_format">범례</string>
-   <string name="play_a_music_file">MP3 재생</string>
+   <string name="play_a_music_file">MP3</string>
    <string name="play_stream">스트림 재생</string>
+   <string name="radio">라디오</string>
    <string name="stream_address">스트림 또는 .m3u 재생 목록 주소</string>
    <string name="rate_app">앱 평가</string>
    <string name="reset">재설정</string>

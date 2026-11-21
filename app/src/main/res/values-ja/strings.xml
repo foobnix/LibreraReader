@@ -511,8 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">ページ下部にTTSボタンを表示</string>
    <string name="slider_scale">スライダーの目盛り</string>
    <string name="chapter_format">章形式</string>
-   <string name="play_a_music_file">MP3を再生</string>
+   <string name="play_a_music_file">MP3</string>
    <string name="play_stream">ストリームを再生</string>
+   <string name="radio">ラジオ</string>
    <string name="stream_address">ストリームまたは .m3u プレイリストのアドレス</string>
    <string name="rate_app">アプリを評価</string>
    <string name="reset">リセット</string>

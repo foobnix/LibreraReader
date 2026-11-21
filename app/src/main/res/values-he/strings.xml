@@ -511,8 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">הצג את כפתורי ה-TTS בתחתית העמוד</string>
    <string name="slider_scale">סולם המחוון</string>
    <string name="chapter_format">תבנית פרק</string>
-   <string name="play_a_music_file">השמעת MP3</string>
+   <string name="play_a_music_file">MP3</string>
    <string name="play_stream">השמעת זרם</string>
+   <string name="radio">רדיו</string>
    <string name="stream_address">כתובת של זרם או רשימת השמעה ‎.m3u</string>
    <string name="rate_app">דרג אפליקציה</string>
    <string name="reset">אפס</string>

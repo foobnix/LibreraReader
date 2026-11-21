@@ -511,8 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">Globulos TTS in imo paginae monstrare</string>
    <string name="slider_scale">Notatio paginae</string>
    <string name="chapter_format">Forma</string>
-   <string name="play_a_music_file">MP3 audi</string>
+   <string name="play_a_music_file">MP3</string>
    <string name="play_stream">Fluxum audi</string>
+   <string name="radio">Radiophonia</string>
    <string name="stream_address">Inscriptio fluxus vel indicis .m3u</string>
    <string name="rate_app">Applicationem aestima</string>
    <string name="reset">Restitue</string>

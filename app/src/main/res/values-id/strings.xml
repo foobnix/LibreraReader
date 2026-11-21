@@ -511,8 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">Tampilkan tombol TTS di bagian bawah halaman</string>
    <string name="slider_scale">Skala Slider</string>
    <string name="chapter_format">Format bab</string>
-   <string name="play_a_music_file">Putar MP3</string>
+   <string name="play_a_music_file">MP3</string>
    <string name="play_stream">Putar stream</string>
+   <string name="radio">Radio</string>
    <string name="stream_address">Alamat stream atau daftar putar .m3u</string>
    <string name="rate_app">Menilai aplikasi</string>
    <string name="reset">Setel ulang</string>

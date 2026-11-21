@@ -513,8 +513,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">Amosar os botóns de TTS na parte inferior da páxina</string>
    <string name="slider_scale">Escala do control deslizante</string>
    <string name="chapter_format">Lenda</string>
-   <string name="play_a_music_file">Reproducir MP3</string>
+   <string name="play_a_music_file">MP3</string>
    <string name="play_stream">Reproducir fluxo</string>
+   <string name="radio">Radio</string>
    <string name="stream_address">Enderezo dun fluxo ou dunha lista .m3u</string>
    <string name="rate_app">Valorar aplicación</string>
    <string name="reset">Restablecer</string>

@@ -126,7 +126,9 @@ public final class StreamDialog {
                 continue;
             }
             for (StreamPlaylist.Entry entry : StreamPlaylist.entries(source)) {
-                if (filter.length() == 0 || entry.title.toLowerCase(Locale.getDefault()).contains(filter)) {
+                // by its name or its group: "jazz" finds the Jazz & Blues stations, too
+                if (filter.length() == 0 || entry.title.toLowerCase(Locale.getDefault()).contains(filter)
+                        || entry.group != null && entry.group.toLowerCase(Locale.getDefault()).contains(filter)) {
                     rows.add(entry);
                 }
             }
@@ -228,7 +230,10 @@ public final class StreamDialog {
             final TextView name = (TextView) line.getChildAt(0);
             final int count = StreamPlaylist.isLoaded(source) ? StreamPlaylist.entries(source).size() : -1;
             name.setText(StreamPlaylist.name(source) + (count < 0 ? "  …" : "  (" + count + ")"));
-            line.getChildAt(1).setOnClickListener(v -> removeSource(source));
+            // The built-in list stays: no cross on it
+            final View delete = line.getChildAt(1);
+            delete.setVisibility(StreamPlaylist.isBuiltIn(source) ? View.INVISIBLE : View.VISIBLE);
+            delete.setOnClickListener(v -> removeSource(source));
             return line;
         }
 

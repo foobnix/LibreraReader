@@ -511,8 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">Näytä TTS-painikkeet sivun alaosassa</string>
    <string name="slider_scale">Slider-asteikko</string>
    <string name="chapter_format">Lukuformaatti</string>
-   <string name="play_a_music_file">Toista MP3</string>
+   <string name="play_a_music_file">MP3</string>
    <string name="play_stream">Toista suoratoisto</string>
+   <string name="radio">Radio</string>
    <string name="stream_address">Suoratoiston tai .m3u-soittolistan osoite</string>
    <string name="rate_app">Arvostele sovellus</string>
    <string name="reset">Nollaa</string>

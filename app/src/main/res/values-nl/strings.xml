@@ -511,8 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">TTS-knoppen onderaan de pagina tonen</string>
    <string name="slider_scale">Schuifschaal</string>
    <string name="chapter_format">Hoofdstuk formaat</string>
-   <string name="play_a_music_file">MP3 afspelen</string>
+   <string name="play_a_music_file">MP3</string>
    <string name="play_stream">Stream afspelen</string>
+   <string name="radio">Radio</string>
    <string name="stream_address">Adres van een stream of .m3u-afspeellijst</string>
    <string name="rate_app">Beoordeel app</string>
    <string name="reset">Reset</string>

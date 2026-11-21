@@ -511,8 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">Pokaż przyciski TTS na dole strony</string>
    <string name="slider_scale">Skala suwaka</string>
    <string name="chapter_format">Format legendy</string>
-   <string name="play_a_music_file">Odtwarzaj MP3</string>
+   <string name="play_a_music_file">MP3</string>
    <string name="play_stream">Odtwarzaj strumień</string>
+   <string name="radio">Radio</string>
    <string name="stream_address">Adres strumienia lub listy .m3u</string>
    <string name="rate_app">Oceń aplikację</string>
    <string name="reset">Resetuj</string>

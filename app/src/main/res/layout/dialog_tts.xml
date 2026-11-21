@@ -150,7 +150,7 @@
                 android:drawableStart="@drawable/ic_radio"
                 android:drawablePadding="6dip"
                 android:drawableTint="?android:attr/textColorLink"
-                android:text="@string/play_stream" />
+                android:text="@string/radio" />
         </LinearLayout>
 
         <CheckBox
