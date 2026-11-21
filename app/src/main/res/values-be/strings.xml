@@ -511,7 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">Паказваць кнопкі TTS унізе старонкі</string>
    <string name="slider_scale">Паўзунок шкалы</string>
    <string name="chapter_format">Легенда</string>
-   <string name="play_a_music_file">Прайграць аўдыёфайл</string>
+   <string name="play_a_music_file">Прайграць MP3</string>
+   <string name="play_stream">Прайграць струмень</string>
+   <string name="stream_address">Адрас струменя або спіса .m3u</string>
    <string name="rate_app">Ацэнка прыкладання</string>
    <string name="reset">Скід</string>
    <string name="status_bar_location">Становішча</string>

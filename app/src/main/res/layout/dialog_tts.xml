@@ -116,12 +116,42 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dip" />
 
-        <TextView
-            android:id="@+id/ttsPlayMusicFile"
-            style="@style/textLink"
-            android:layout_width="wrap_content"
+        <!-- Music beside the book: a file from the device, or internet radio -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/play_a_music_file" />
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <!-- Each as wide as its icon and name, the pair in the middle of the row: stretched
+                 to half the row, the icon would stand at its edge, away from the name -->
+            <TextView
+                android:id="@+id/ttsPlayMusicFile"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:singleLine="false"
+                android:maxLines="2"
+                android:drawableStart="@drawable/ic_music_note"
+                android:drawablePadding="6dip"
+                android:drawableTint="?android:attr/textColorLink"
+                android:text="@string/play_a_music_file" />
+
+            <TextView
+                android:id="@+id/ttsPlayStream"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dip"
+                android:gravity="center"
+                android:singleLine="false"
+                android:maxLines="2"
+                android:drawableStart="@drawable/ic_radio"
+                android:drawablePadding="6dip"
+                android:drawableTint="?android:attr/textColorLink"
+                android:text="@string/play_stream" />
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/ttsHighlightReading"

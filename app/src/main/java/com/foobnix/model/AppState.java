@@ -353,6 +353,10 @@ public class AppState {
     public boolean allowOtherMusic = false;
     // The audio file player plays along with other apps instead of taking the sound from them
     public boolean mp3MixWithOtherApps = false;
+    /** Internet radio for the audio player: stream or .m3u addresses, one a line. See StreamPlaylist. */
+    public String streamSources = com.foobnix.tts.StreamPlaylist.DEFAULT;
+    /** The name of the stream played last, for the player line after a restart. */
+    public String streamTitle;
     public boolean isSystemThemeColor = false;
     public String allOPDSLinks = OPDS_DEFAULT;
     public boolean opdsLargeCovers = true;

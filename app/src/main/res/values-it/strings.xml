@@ -511,7 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">Mostra i pulsanti TTS in fondo alla pagina</string>
    <string name="slider_scale">Scala del dispositivo di scorrimento</string>
    <string name="chapter_format">Formato del capitolo</string>
-   <string name="play_a_music_file">Riproduci un file musicale</string>
+   <string name="play_a_music_file">Riproduci MP3</string>
+   <string name="play_stream">Riproduci stream</string>
+   <string name="stream_address">Indirizzo di uno stream o di una playlist .m3u</string>
    <string name="rate_app">Tariffa app</string>
    <string name="reset">Ripristina</string>
    <string name="status_bar_location">Posizione della barra di stato</string>

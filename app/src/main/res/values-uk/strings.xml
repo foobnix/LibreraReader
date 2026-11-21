@@ -511,7 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">Показувати кнопки TTS унизу сторінки</string>
    <string name="slider_scale">Масштаб слайдера</string>
    <string name="chapter_format">Формат розділу</string>
-   <string name="play_a_music_file">Відтворити музичний файл</string>
+   <string name="play_a_music_file">Відтворити MP3</string>
+   <string name="play_stream">Відтворити потік</string>
+   <string name="stream_address">Адреса потоку або плейлиста .m3u</string>
    <string name="rate_app">Оцінити додаток</string>
    <string name="reset">Скинути</string>
    <string name="status_bar_location">Розташування панелі стану</string>

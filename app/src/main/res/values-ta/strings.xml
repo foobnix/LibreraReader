@@ -511,7 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">பக்கத்தின் கீழே TTS பொத்தான்களைக் காட்டு</string>
    <string name="slider_scale">ஸ்லைடர் அளவு</string>
    <string name="chapter_format">புராண</string>
-   <string name="play_a_music_file">ஆடியோ கோப்பை இயக்கு</string>
+   <string name="play_a_music_file">MP3 ஐ இயக்கு</string>
+   <string name="play_stream">ஸ்ட்ரீமை இயக்கு</string>
+   <string name="stream_address">ஸ்ட்ரீம் அல்லது .m3u பட்டியலின் முகவரி</string>
    <string name="rate_app">விகிதம் பயன்பாடு</string>
    <string name="reset">மீட்டமை</string>
    <string name="status_bar_location">நிலை</string>

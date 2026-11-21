@@ -16,6 +16,11 @@ import java.util.Locale;
 public class TTSTracks {
 
     public static boolean isMultyTracks() {
+        final String current = BookCSS.get().mp3BookPathGet();
+        if (StreamPlaylist.isStream(current)) {
+            // a station of a playlist has the others of it before and after it
+            return StreamPlaylist.neighbour(current, 1) != null || StreamPlaylist.neighbour(current, -1) != null;
+        }
         List<File> listFiles = getAllMp3InFolder();
         return listFiles != null && listFiles.size() >= 2;
     }
@@ -54,7 +59,11 @@ public class TTSTracks {
     }
 
     public static String getCurrentTrackName() {
-        return ExtUtils.getFileName(BookCSS.get().mp3BookPathGet());
+        final String current = BookCSS.get().mp3BookPathGet();
+        if (StreamPlaylist.isStream(current)) {
+            return StreamPlaylist.titleOf(current);
+        }
+        return ExtUtils.getFileName(current);
     }
 
     public static List<File> getAllMp3InFolder() {

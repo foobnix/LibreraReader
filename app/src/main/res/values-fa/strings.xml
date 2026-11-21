@@ -511,7 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">نمایش دکمه‌های TTS در پایین صفحه</string>
    <string name="slider_scale">مقیاس لغزان</string>
    <string name="chapter_format">فرمت فصل</string>
-   <string name="play_a_music_file">یک فایل موسیقی را پخش کنید</string>
+   <string name="play_a_music_file">پخش MP3</string>
+   <string name="play_stream">پخش جریان</string>
+   <string name="stream_address">نشانی جریان یا فهرست پخش ‎.m3u</string>
    <string name="rate_app">برنامه امتیاز دهی</string>
    <string name="reset">بازنشانی</string>
    <string name="status_bar_location">موقعیت محل نوار</string>

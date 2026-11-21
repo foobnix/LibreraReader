@@ -511,7 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">Afișează butoanele TTS în partea de jos a paginii</string>
    <string name="slider_scale">Glisor scară</string>
    <string name="chapter_format">Formatul capitolului</string>
-   <string name="play_a_music_file">Redați un fișier de muzică</string>
+   <string name="play_a_music_file">Redă MP3</string>
+   <string name="play_stream">Redă flux</string>
+   <string name="stream_address">Adresa unui flux sau a unei liste .m3u</string>
    <string name="rate_app">Rata aplicație</string>
    <string name="reset">Restabili</string>
    <string name="status_bar_location">Bara de stare</string>

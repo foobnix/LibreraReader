@@ -617,8 +617,6 @@ public class DialogsPlaylist {
 
     // The list the strip of covers shows, whose mark the Recent button carries
     private static String shownPlaylist = L_PLAYLIST_RECENT;
-    // Its name, short as its tab has it: a folder by its own name only
-    private static String shownPlaylistName = "";
 
     /** Turned on its side: the screen's own measure, as the reading screens keep their configuration through a turn. */
     public static boolean isLandscape() {
@@ -627,7 +625,7 @@ public class DialogsPlaylist {
 
     /**
      * The Recent button first in the row of buttons, ringed as the scroll button at the row's
-     * end is: named in landscape, its mark alone upright, as that button is - the mark of the
+     * end is: its mark alone, upright and on its side, as that button is - the mark of the
      * list it shows. It puts the strip of covers out and away again, and is the only button
      * for that: the row it had of its own keeps the strip's tabs while the strip is out and the
      * reading controls while they are up, and otherwise folds away.
@@ -664,12 +662,11 @@ public class DialogsPlaylist {
         buttonLp.rightMargin = Dips.DP_4;
         ((ViewGroup) buttons).addView(button, 0, buttonLp);
 
-        // Named in landscape, its mark alone upright; in the scroll button's colours and ring.
+        // Its mark alone, never the list's name; in the scroll button's colours and ring.
         // Only when that changes: dressed, it asks for another layout.
         final String[] dressedFor = {null};
         final Runnable dress = () -> {
-            final boolean named = isLandscape();
-            final String key = named + "|" + shownPlaylistName + "|" + shownPlaylist;
+            final String key = shownPlaylist;
             if (key.equals(dressedFor[0])) {
                 return;
             }
@@ -677,7 +674,7 @@ public class DialogsPlaylist {
             // The colour the bar's icons and rings take, rather than a text colour read off a
             // button that may not be coloured yet
             final int ink = MagicHelper.getTextOrIconColor();
-            button.setText(named ? shownPlaylistName : "");
+            button.setText("");
             button.setTextColor(ink);
             button.setTag(R.id.pillRing, null);
             // The mark of the list the strip shows, as its tab has it
@@ -698,7 +695,7 @@ public class DialogsPlaylist {
                 button.setTag(R.id.pillRing, copy);
             }
             if (mark != null) {
-                DocumentWrapperUI.pillIcon(button, mark, !named);
+                DocumentWrapperUI.pillIcon(button, mark, true);
             }
         };
 
@@ -755,6 +752,19 @@ public class DialogsPlaylist {
                 chipRow.setLayoutParams(lp);
             });
         });
+    }
+
+    /**
+     * The Recent button in the row of buttons, and its own row folded while nothing is in it,
+     * from the moment the screen is made: the panel stands over the book while it loads, and
+     * would otherwise grow the button and lose the empty row only once the book is up.
+     */
+    public static void preparePanel(final Activity a) {
+        if (Apps.isDestroyedActivity(a)) {
+            return;
+        }
+        keepBesideButtons(a.findViewById(R.id.playListParent), a.findViewById(R.id.footerButtons),
+                          a.findViewById(R.id.ttsControlsSlot), a.findViewById(R.id.playlistRecycleView));
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -869,7 +879,6 @@ public class DialogsPlaylist {
         }
         final String displayPath = palylistPathCheck;
         shownPlaylist = displayPath;
-        shownPlaylistName = tabName(a, displayPath);
         if (toggle != null) {
             toggle.setImageResource(tabIcon(displayPath));
         }

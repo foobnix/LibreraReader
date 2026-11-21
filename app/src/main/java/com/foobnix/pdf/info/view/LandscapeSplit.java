@@ -50,13 +50,17 @@ public final class LandscapeSplit {
     public static void footer(Activity a) {
         final boolean split = isLandscape(a);
         final View controls = a.findViewById(R.id.playListParent);
-        if (!split) {
-            recentOnTop(a, controls, false);
-        }
-        apply(controls, a.findViewById(R.id.footerButtons), null, split);
-        apply(a.findViewById(R.id.seekLine), a.findViewById(R.id.footerLastRow), null, split);
+        // Put back in the reverse order they were put side by side: each pair keeps the places it
+        // had in the column at the time, and parting the first while the second still stands as
+        // one row put the seek line and the row under it above the buttons
         if (split) {
+            apply(controls, a.findViewById(R.id.footerButtons), null, true);
+            apply(a.findViewById(R.id.seekLine), a.findViewById(R.id.footerLastRow), null, true);
             recentOnTop(a, controls, true);
+        } else {
+            recentOnTop(a, controls, false);
+            apply(a.findViewById(R.id.seekLine), a.findViewById(R.id.footerLastRow), null, false);
+            apply(controls, a.findViewById(R.id.footerButtons), null, false);
         }
         DialogsPlaylist.fitStrip(a);
         // The reading controls go back into their row, or up a line, for where the tabs now are

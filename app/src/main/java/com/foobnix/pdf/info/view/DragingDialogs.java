@@ -156,6 +156,8 @@ import com.foobnix.pdf.search.menu.MenuBuilderM;
 import com.foobnix.pdf.search.view.ProgressTask;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.ReadingHighlight;
+import com.foobnix.tts.StreamDialog;
+import com.foobnix.tts.StreamPlaylist;
 import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSService;
@@ -931,8 +933,9 @@ public class DragingDialogs {
                 final TextView timerTime = view.findViewById(R.id.timerTime);
 
                 final TextView timerStart = view.findViewById(R.id.timerStart);
+                // Marked by their icons, a note and a radio (dialog_tts.xml)
                 final TextView ttsPlayMusicFile = view.findViewById(R.id.ttsPlayMusicFile);
-                ttsPlayMusicFile.setText("▶ " + ttsPlayMusicFile.getText());
+                final TextView ttsPlayStream = view.findViewById(R.id.ttsPlayStream);
 
                 view.findViewById(R.id.onHelp).setOnClickListener(new OnClickListener() {
                     @Override public void onClick(final View v) {
@@ -1334,6 +1337,24 @@ public class DragingDialogs {
                     }
                 });
                 TxtUtils.underlineTextView(ttsPlayMusicFile);
+
+                // Internet radio: a station is played the way an audio file is, by the service
+                ttsPlayStream.setOnClickListener(v -> StreamDialog.show(v.getContext(), entry -> {
+                    TTSEngine.get().mp3Destroy();
+                    StreamPlaylist.playing(entry);
+                    BookCSS.get().mp3BookPath(entry.url);
+                    AppState.get().mp3seek = 0;
+                    tts.udateButtons();
+                    TTSService.playBookPage(controller.getCurentPageFirst1() - 1,
+                                            controller.getPageCount(),
+                                            controller.getCurrentBook().getPath(),
+                                            "",
+                                            controller.getBookWidth(),
+                                            controller.getBookHeight(),
+                                            BookCSS.get().fontSizeSp,
+                                            controller.getTitle());
+                }));
+                TxtUtils.underlineTextView(ttsPlayStream);
 
                 ttsSkeakToFile.setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View v) {

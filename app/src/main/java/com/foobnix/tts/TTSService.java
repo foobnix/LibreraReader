@@ -566,8 +566,9 @@ import java.util.concurrent.Executors;
             try {
                 final AssetFileDescriptor afd = getAssets().openFd("silence.mp3");
                 mp.setDataSource(afd);
+                // started once it is ready: started at once, it went to its error state instead
+                mp.setOnPreparedListener(MediaPlayer::start);
                 mp.prepareAsync();
-                mp.start();
                 mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override public void onCompletion(MediaPlayer mp) {
                         try {

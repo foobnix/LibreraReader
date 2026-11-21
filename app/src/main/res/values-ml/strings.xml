@@ -511,7 +511,9 @@
    <string name="show_tts_buttons_at_the_bottom_of_the_page">പേജിന്റെ താഴെ TTS ബട്ടണുകൾ കാണിക്കുക</string>
    <string name="slider_scale">സ്ലൈഡർ സ്കെയിൽ</string>
    <string name="chapter_format">ഇതിഹാസം</string>
-   <string name="play_a_music_file">ഒരു ഓഡിയോ ഫയൽ പ്ലേ ചെയ്യുക</string>
+   <string name="play_a_music_file">MP3 പ്ലേ ചെയ്യുക</string>
+   <string name="play_stream">സ്ട്രീം പ്ലേ ചെയ്യുക</string>
+   <string name="stream_address">സ്ട്രീമിന്റെയോ .m3u പ്ലേലിസ്റ്റിന്റെയോ വിലാസം</string>
    <string name="rate_app">റേറ്റ് ആപ്പ്</string>
    <string name="reset">പുന .സജ്ജമാക്കുക</string>
    <string name="status_bar_location">സ്ഥാനം</string>

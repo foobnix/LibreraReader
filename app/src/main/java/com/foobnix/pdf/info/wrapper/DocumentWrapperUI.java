@@ -1295,6 +1295,8 @@ public class DocumentWrapperUI {
         moveTtsControlsIntoPanel();
         // Turned on its side the bottom panel stands its rows side by side
         LandscapeSplit.footer(a);
+        // The panel over the loading book as it will stand once the book is up
+        DialogsPlaylist.preparePanel(a);
         ttsActivePage = a.findViewById(R.id.ttsActivePage);
         ttsActivePage.setDC(dc);
         ttsActivePage.onPage();
@@ -2073,17 +2075,22 @@ public class DocumentWrapperUI {
         ((ViewGroup) slot).addView(ttsActive, lp);
     }
 
+    /** Until the book is open the reading controls stay out of the upright panel. */
+    private boolean bookLoading = true;
+
     /**
-     * The reading controls stand with the panels whenever they are open, read or not, so the book
-     * can be started from there. With the panels closed a second line of them stands on the page,
-     * below the words, while speech is running, unless the TTS dialog's advanced settings turn it
-     * off.
+     * The reading controls stand with the panels while they are open: on their side always, as
+     * half of the split row, so the book can be started from there; upright only while speech is
+     * running, and never while the book is still loading. With the panels closed a second line of
+     * them stands on the page, below the words, while speech is running, unless the TTS dialog's
+     * advanced settings turn it off.
      */
-    private void showTtsControls() {
+    public void showTtsControls() {
         if (ttsActive == null) {
             return;
         }
-        ttsActive.setVisibility(TxtUtils.visibleIf(AppState.get().isEditMode));
+        final boolean shown = LandscapeSplit.isLandscape(a) || !bookLoading && !TTSEngine.get().isShutdown();
+        ttsActive.setVisibility(TxtUtils.visibleIf(AppState.get().isEditMode && shown));
         showTtsPageControls();
     }
 
@@ -2482,6 +2489,8 @@ public class DocumentWrapperUI {
 
     public void onLoadBookFinish() {
         onCloseBook.setVisibility(View.VISIBLE);
+        bookLoading = false;
+        showTtsControls();
     }
 
     Runnable updateUIRunnable = new Runnable() {

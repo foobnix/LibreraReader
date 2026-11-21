@@ -344,6 +344,10 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         super.onConfigurationChanged(newConfig);
         // The bottom panel's rows side by side on its side, one above the other upright
         LandscapeSplit.footer(this);
+        // The reading controls are always there on its side, upright only while speech runs
+        if (getController() != null && getController().getWrapperControlls() != null) {
+            getController().getWrapperControlls().showTtsControls();
+        }
         TempHolder.isActiveSpeedRead.set(false);
         if (isInitPosition == null) {
             return;

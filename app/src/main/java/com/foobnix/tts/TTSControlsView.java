@@ -53,6 +53,9 @@ public class TTSControlsView extends FrameLayout {
     private TextView seekMax;
     private TextView trackName;
     private ImageView ttsPrevTrack;
+    // Five seconds back and on in a file; a stream has nowhere to seek, so they go
+    private ImageView ttsPrev;
+    private ImageView ttsNext;
     private ImageView ttsNextTrack;
     private ImageView ttsCurrentPage;
     private Runnable onCurrentPage;
@@ -65,13 +68,19 @@ public class TTSControlsView extends FrameLayout {
                 standInPanel();
                 if (TTSEngine.get().isMp3()) {
                     initMp3();
-                    if (TTSEngine.get().mp != null) {
+                    // a stream has no length to seek in: only its name is shown
+                    final int seek = TTSEngine.get().isStream() ? View.GONE : View.VISIBLE;
+                    seekMp3.setVisibility(seek);
+                    seekCurrent.setVisibility(seek);
+                    seekMax.setVisibility(seek);
+                    if (TTSEngine.get().isMp3Seekable()) {
                         seekCurrent.setText(TxtUtils.getMp3TimeString(TTSEngine.get().mp.getCurrentPosition()));
                         seekMax.setText(TxtUtils.getMp3TimeString(TTSEngine.get().mp.getDuration()));
 
                         seekMp3.setMax(TTSEngine.get().mp.getDuration());
                         seekMp3.setProgress(TTSEngine.get().mp.getCurrentPosition());
-
+                    }
+                    if (TTSEngine.get().mp != null) {
                         udateButtons();
                     }
 
@@ -81,6 +90,8 @@ public class TTSControlsView extends FrameLayout {
                     trackName.setVisibility(View.GONE);
                     ttsPrevTrack.setVisibility(View.GONE);
                     ttsNextTrack.setVisibility(View.GONE);
+                    ttsPrev.setVisibility(View.VISIBLE);
+                    ttsNext.setVisibility(View.VISIBLE);
                 }
 
                 showCurrentPage();
@@ -151,8 +162,8 @@ public class TTSControlsView extends FrameLayout {
         ttsPlayPause = (ImageView) view.findViewById(R.id.ttsPlay);
 
 
-        final ImageView ttsNext = (ImageView) view.findViewById(R.id.ttsNext);
-        final ImageView ttsPrev = (ImageView) view.findViewById(R.id.ttsPrev);
+        ttsNext = (ImageView) view.findViewById(R.id.ttsNext);
+        ttsPrev = (ImageView) view.findViewById(R.id.ttsPrev);
 
         ttsPrevTrack = (ImageView) view.findViewById(R.id.ttsPrevTrack);
         ttsNextTrack = (ImageView) view.findViewById(R.id.ttsNextTrack);
@@ -293,6 +304,11 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
+                if (TTSEngine.get().isStream()) {
+                    TTSEngine.get().mp3Prev();
+                    udateButtons();
+                    return;
+                }
                 String track = TTSTracks.getPrevTrack();
                 if (track != null) {
                     BookCSS.get().mp3BookPath(track);
@@ -306,6 +322,11 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
+                if (TTSEngine.get().isStream()) {
+                    TTSEngine.get().mp3Next();
+                    udateButtons();
+                    return;
+                }
                 String track = TTSTracks.getNextTrack();
                 if (track != null) {
                     BookCSS.get().mp3BookPath(track);
@@ -329,6 +350,14 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
+                if (TTSEngine.get().isStream()) {
+                    // the stations to choose from, with the stream playing already
+                    StreamDialog.show(v.getContext(), entry -> {
+                        TTSEngine.get().playStream(entry);
+                        udateButtons();
+                    });
+                    return;
+                }
                 MyPopupMenu menu = new MyPopupMenu(v);
                 for (final File file : TTSTracks.getAllMp3InFolder()) {
                     menu.getMenu().add(file.getName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -458,7 +487,7 @@ public class TTSControlsView extends FrameLayout {
 
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    if (fromUser && TTSEngine.get().mp != null) {
+                    if (fromUser && TTSEngine.get().isMp3Seekable()) {
                         LOG.d("Seek-onProgressChanged", progress);
                         TTSEngine.get().mp.seekTo(progress);
                     }
@@ -471,9 +500,14 @@ public class TTSControlsView extends FrameLayout {
     public void udateButtons() {
         trackName.setText("☰ "+TTSTracks.getCurrentTrackName());
 
-        boolean isMulty = TTSTracks.isMultyTracks();
+        // A stream has no seconds to step through: < and > beside play change the station, as
+        // < || >, and the track buttons would only do the same again
+        final boolean stream = TTSEngine.get().isStream();
+        boolean isMulty = !stream && TTSTracks.isMultyTracks();
         ttsPrevTrack.setVisibility(TxtUtils.visibleIf(isMulty));
         ttsNextTrack.setVisibility(TxtUtils.visibleIf(isMulty));
+        ttsPrev.setVisibility(View.VISIBLE);
+        ttsNext.setVisibility(View.VISIBLE);
 
         //TintUtil.setTintImageWithAlpha(ttsPrevTrack, TTSTracks.getPrevTrack() != null ? colorTint : Color.GRAY);
         //TintUtil.setTintImageWithAlpha(ttsNextTrack, TTSTracks.getNextTrack() != null ? colorTint : Color.GRAY);
@@ -493,9 +527,9 @@ public class TTSControlsView extends FrameLayout {
 
     /**
      * In the recent panel the controls stand in the middle of the row that names it, but an MP3
-     * brings its name and seek line, too wide for that, and the panel's tabs want the row to
-     * themselves: while either is there they stand on a line of their own above the row, and
-     * go back into it after.
+     * brings its name and seek line, too wide for that upright, and the panel's tabs want the
+     * row to themselves: while either is there they stand on a line of their own above the row,
+     * and go back into it after.
      */
     public void standInPanel() {
         if (!(getParent() instanceof ViewGroup)) {
@@ -504,9 +538,21 @@ public class TTSControlsView extends FrameLayout {
         final ViewGroup parent = (ViewGroup) getParent();
         final boolean mp3 = TTSEngine.get().isMp3();
         final View tabs = getRootView().findViewById(R.id.playListTabsScroll);
-        // Tabs over the strip at the head of the panel (LandscapeSplit) leave the row to them
-        final boolean above = mp3 || tabs != null && tabs.getVisibility() == View.VISIBLE
+        // Turned on its side the row is half the bar beside the buttons (LandscapeSplit), room
+        // enough for the music's name and seek line: it stays where the reading controls stand.
+        // Tabs over the strip at the head of the panel leave the row to them.
+        final boolean above = mp3 && !LandscapeSplit.isLandscape(null)
+                || tabs != null && tabs.getVisibility() == View.VISIBLE
                 && LandscapeSplit.tabsBesideControls(tabs);
+        // Music takes the whole width of its slot, half the bar on its side: the name of a
+        // station is long, and wrapped round the buttons it was cut after a word
+        final ViewGroup.LayoutParams own = getLayoutParams();
+        final int width = mp3 ? ViewGroup.LayoutParams.MATCH_PARENT : ViewGroup.LayoutParams.WRAP_CONTENT;
+        if (own != null && own.width != width
+                && (parent.getId() == R.id.ttsControlsSlot || parent.getId() == R.id.ttsControlsSlotTop)) {
+            own.width = width;
+            setLayoutParams(own);
+        }
         final int target;
         if (above && parent.getId() == R.id.ttsControlsSlot) {
             target = R.id.ttsControlsSlotTop;

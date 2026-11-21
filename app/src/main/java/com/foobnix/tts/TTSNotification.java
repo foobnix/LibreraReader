@@ -27,7 +27,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -140,7 +139,7 @@ public class TTSNotification {
             String textLine = pageNumber + " " + fileMetaBookName;
 
             if (TxtUtils.isNotEmpty(BookCSS.get().mp3BookPathGet())) {
-                textLine = "[" + ExtUtils.getFileName(BookCSS.get().mp3BookPathGet()) + "] " + textLine;
+                textLine = "[" + TTSTracks.getCurrentTrackName() + "] " + textLine;
             }
 
             final String extraText = textLine;

@@ -700,6 +700,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         ttsActive = findViewById(R.id.ttsActive);
         moveTtsControlsIntoPanel();
         splitPanels();
+        // The panel over the loading book as it will stand once the book is up
+        DialogsPlaylist.preparePanel(this);
         ttsActivePage = findViewById(R.id.ttsActivePage);
         ttsActivePage.onPage();
 
@@ -1001,6 +1003,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             protected void onPreExecute() {
 
                 start = System.currentTimeMillis();
+                bookLoading = true;
+                showTtsControls();
                 // Nothing to close while the book is still coming up: the panel is what the
                 // reader is waiting on, and a close there would leave them looking at a blank
                 // page. The button comes back once the book is up.
@@ -1076,6 +1080,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             protected void onPostExecute(Object result) {
+                bookLoading = false;
+                showTtsControls();
                 if (AppsConfig.IS_LOG) {
                     long time = System.currentTimeMillis() - start;
                     float sec = (float) time / 1000;
@@ -2170,6 +2176,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         super.onConfigurationChanged(newConfig);
         splitPanels();
         updateTitleBlockWidth();
+        showTtsControls();
         TempHolder.isActiveSpeedRead.set(false);
         clickUtils.init();
         if (isInitPosistion == null) {
@@ -2536,17 +2543,22 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         ((ViewGroup) slot).addView(ttsActive, lp);
     }
 
+    /** While the book is coming up the reading controls stay out of the upright panel. */
+    private boolean bookLoading;
+
     /**
-     * The reading controls stand with the panels whenever they are open, read or not, so the book
-     * can be started from there. With the panels closed a second line of them stands on the page,
-     * below the words, while speech is running, unless the TTS dialog's advanced settings turn it
-     * off.
+     * The reading controls stand with the panels while they are open: on their side always, as
+     * half of the split row, so the book can be started from there; upright only while speech is
+     * running, and never while the book is still loading. With the panels closed a second line of
+     * them stands on the page, below the words, while speech is running, unless the TTS dialog's
+     * advanced settings turn it off.
      */
     private void showTtsControls() {
         if (ttsActive == null) {
             return;
         }
-        ttsActive.setVisibility(TxtUtils.visibleIf(AppState.get().isEditMode));
+        final boolean shown = LandscapeSplit.isLandscape(this) || !bookLoading && !TTSEngine.get().isShutdown();
+        ttsActive.setVisibility(TxtUtils.visibleIf(AppState.get().isEditMode && shown));
         showTtsPageControls();
     }
 

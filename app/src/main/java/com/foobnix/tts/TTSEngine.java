@@ -12,6 +12,7 @@ import android.content.pm.ResolveInfo;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.provider.Settings;
 import android.os.Build;
+import android.os.PowerManager;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.EngineInfo;
 import android.speech.tts.TextToSpeech.OnInitListener;
@@ -75,6 +76,14 @@ public class TTSEngine {
     private int generation;
     private final List<OnInitListener> lateInitListeners = new ArrayList<OnInitListener>();
     volatile MediaPlayer mp;
+    /**
+     * Whether the player is ready to play. A file is prepared at once; a stream from the network
+     * prepares in the background, and until then the player may not be started, paused, asked
+     * its position or moved - each of those would put it into its error state.
+     */
+    private volatile boolean mpPrepared;
+    /** A play asked for while the stream still prepares: it starts when it is ready. */
+    private volatile boolean mpStartWhenPrepared;
     Timer mTimer;
     Object helpObject = new Object();
     HashMap<String, String> map = new HashMap<String, String>();
@@ -587,7 +596,8 @@ public class TTSEngine {
             return false;
         }
         if (isMp3()) {
-            return mp != null && mp.isPlaying();
+            final MediaPlayer player = mp;
+            return player != null && (mpPrepared ? player.isPlaying() : mpStartWhenPrepared);
         }
 
         synchronized (helpObject) {
@@ -666,27 +676,61 @@ public class TTSEngine {
 
     public void loadMP3(String ttsPlayMp3Path, final boolean play) {
         LOG.d("loadMP3-", ttsPlayMp3Path);
-        if (TxtUtils.isEmpty(ttsPlayMp3Path) || !new File(ttsPlayMp3Path).isFile()) {
+        final boolean stream = StreamPlaylist.isStream(ttsPlayMp3Path);
+        if (TxtUtils.isEmpty(ttsPlayMp3Path) || (!stream && !new File(ttsPlayMp3Path).isFile())) {
             LOG.d("loadMP3-skip mp3");
             return;
         }
         try {
             mp3Destroy();
-            mp = new MediaPlayer();
-            mp.setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_MEDIA)
+            final MediaPlayer player = new MediaPlayer();
+            mp = player;
+            mpPrepared = false;
+            mpStartWhenPrepared = play;
+            player.setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_MEDIA)
                                                                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                                                                .build());
-            mp.setDataSource(ttsPlayMp3Path);
-            mp.prepare();
-            mp.setOnCompletionListener(new OnCompletionListener() {
+            player.setDataSource(ttsPlayMp3Path);
+            player.setOnCompletionListener(new OnCompletionListener() {
 
                 @Override public void onCompletion(MediaPlayer mp) {
                     mp.pause();
                     abandonMp3Focus();
                 }
             });
-            if (play) {
-                startMp3();
+            if (stream) {
+                // the screen may go off while it plays: the player keeps the device awake for it
+                player.setWakeMode(LibreraApp.context, PowerManager.PARTIAL_WAKE_LOCK);
+                player.setOnPreparedListener(prepared -> {
+                    if (prepared != mp) {
+                        return; // another stream was chosen meanwhile
+                    }
+                    mpPrepared = true;
+                    LOG.d("stream prepared", ttsPlayMp3Path, mpStartWhenPrepared);
+                    if (mpStartWhenPrepared) {
+                        mpStartWhenPrepared = false;
+                        startMp3();
+                    }
+                    EventBus.getDefault().post(new TtsStatus());
+                    TTSNotification.showLast();
+                });
+                player.setOnErrorListener((failed, what, extra) -> {
+                    LOG.d("stream error", what, extra, ttsPlayMp3Path);
+                    if (failed == mp) {
+                        mpStartWhenPrepared = false;
+                        abandonMp3Focus();
+                        EventBus.getDefault().post(new TtsStatus());
+                    }
+                    return true;
+                });
+                player.prepareAsync();
+            } else {
+                player.prepare();
+                mpPrepared = true;
+                mpStartWhenPrepared = false;
+                if (play) {
+                    startMp3();
+                }
             }
 
             mTimer = new Timer();
@@ -694,7 +738,10 @@ public class TTSEngine {
             mTimer.schedule(new TimerTask() {
 
                 @Override public void run() {
-                    AppState.get().mp3seek = mp.getCurrentPosition();
+                    final MediaPlayer current = mp;
+                    if (current != null && mpPrepared && !isStream()) {
+                        AppState.get().mp3seek = current.getCurrentPosition();
+                    }
                     //LOG.d("Run timer-task");
                     EventBus.getDefault()
                             .post(new TtsStatus());
@@ -712,12 +759,27 @@ public class TTSEngine {
         return mp;
     }
 
+    /** Whether the player can be asked its position and length: loaded, and not a stream. */
+    public boolean isMp3Seekable() {
+        return mp != null && mpPrepared && !isStream();
+    }
+
     public void mp3Destroy() {
         abandonMp3Focus();
-        if (mp != null) {
-            mp.stop();
-            mp.reset();
+        final MediaPlayer player = mp;
+        mpStartWhenPrepared = false;
+        if (player != null) {
             mp = null;
+            try {
+                if (mpPrepared) {
+                    player.stop();
+                }
+            } catch (IllegalStateException e) {
+                LOG.e(e);
+            }
+            mpPrepared = false;
+            player.reset();
+            player.release();
             if (mTimer != null) {
                 mTimer.purge();
                 mTimer.cancel();
@@ -728,13 +790,41 @@ public class TTSEngine {
     }
 
     public void mp3Next() {
-        int seek = mp.getCurrentPosition();
-        mp.seekTo(seek + 5 * 1000);
+        mp3Step(1);
     }
 
     public void mp3Prev() {
-        int seek = mp.getCurrentPosition();
-        mp.seekTo(seek - 5 * 1000);
+        mp3Step(-1);
+    }
+
+    /** Five seconds on or back in a file; the next or the previous station of a stream. */
+    private void mp3Step(int step) {
+        if (isStream()) {
+            final StreamPlaylist.Entry entry = StreamPlaylist.neighbour(BookCSS.get().mp3BookPathGet(), step);
+            if (entry != null) {
+                playStream(entry);
+            }
+            return;
+        }
+        final MediaPlayer player = mp;
+        if (player != null && mpPrepared) {
+            player.seekTo(player.getCurrentPosition() + step * 5 * 1000);
+        }
+    }
+
+    /** Plays a station of the internet radio in the audio player. */
+    public void playStream(StreamPlaylist.Entry entry) {
+        StreamPlaylist.playing(entry);
+        BookCSS.get().mp3BookPath(entry.url);
+        AppState.get().mp3seek = 0;
+        loadMP3(entry.url, true);
+        EventBus.getDefault().post(new TtsStatus());
+        TTSNotification.showLast();
+    }
+
+    /** Whether the audio player plays a stream from the network rather than a file. */
+    public boolean isStream() {
+        return StreamPlaylist.isStream(BookCSS.get().mp3BookPathGet());
     }
 
     public boolean isMp3PlayPause() {
@@ -746,7 +836,7 @@ public class TTSEngine {
             if (mp == null) {
                 return false;
             }
-            if (mp.isPlaying()) {
+            if (isPlaying()) {
                 pauseMp3();
             } else {
                 startMp3();
@@ -764,7 +854,8 @@ public class TTSEngine {
     }
 
     public void pauseMp3() {
-        if (mp != null) {
+        mpStartWhenPrepared = false;
+        if (mp != null && mpPrepared) {
             mp.pause();
         }
         abandonMp3Focus();
@@ -810,6 +901,10 @@ public class TTSEngine {
 
     private void startMp3() {
         if (mp == null) {
+            return;
+        }
+        if (!mpPrepared) {
+            mpStartWhenPrepared = true; // starts once the stream is ready
             return;
         }
         mp3PausedForFocus = false;
@@ -875,7 +970,7 @@ public class TTSEngine {
             if (mp != null) {
                 mp.setVolume(1f, 1f);
             }
-        } else if (mp != null && mp.isPlaying()) {
+        } else if (mp != null && mpPrepared && mp.isPlaying()) {
             requestMp3Focus();
         }
     }
@@ -886,7 +981,7 @@ public class TTSEngine {
     }
 
     public void seekTo(int i) {
-        if (mp != null) {
+        if (mp != null && mpPrepared && !isStream()) {
             mp.seekTo(i);
         }
 
