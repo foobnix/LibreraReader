@@ -1131,7 +1131,7 @@ import java.util.concurrent.Executors;
             claimMediaButtons();
         }
 
-        if (!AppState.get().allowOtherMusic) {
+        if (!AppState.get().mixWithOtherApps) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 mAudioManager.requestAudioFocus((AudioFocusRequest) audioFocusRequest);
             } else {

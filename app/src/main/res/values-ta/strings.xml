@@ -608,8 +608,7 @@
    <string name="show_book_title">எப்போதும் புத்தகத் தலைப்பை மேலே காண்பி</string>
    <string name="delete_reading_progress">முன்னேற்றத்தை மீட்டமை</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">.Nomedia கோப்புகளுடன் கோப்புறைகளை புறக்கணிக்கவும்</string>
-   <string name="record_in_mp3_format">MP3 இல் சேமிக்கவும்</string>
-   <string name="speak_into_file_wav">பதிவு TTS (MP3, WAV)</string>
+   <string name="speak_into_file_wav">புத்தகத்தை குரலில் பதிவு செய் (MP3)</string>
    <string name="text_is_too_long">எழுத்து வரம்பு மீறப்பட்டுள்ளது</string>
    <string name="settings">அமைப்புகள்</string>
    <string name="play_pause">தொடங்கு / இடைநிறுத்தம்</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">நிராகரிக்கப்பட்ட புத்தகங்கள்</string>
    <string name="show_print_edition_page_numbers_epub3">அச்சு பதிப்பு பக்க எண்களைக் காட்டு (epub3)</string>
    <string name="ad_privacy_settings">விளம்பர தனியுரிமை அமைப்புகள்</string>
-   <string name="allow_other_music_to_play">மற்ற இசையை இயக்க அனுமதிக்கவும்</string>
    <string name="mix_with_other_apps_sound">பிற ஆப்ஸின் ஒலியுடன் கலக்கவும்</string>
    <string name="enable_image_scale">பட அளவை இயக்கு</string>
    <string name="open_books_on_page_1">பக்கம் 1 இல் புத்தகங்களைத் திறக்கவும்</string>

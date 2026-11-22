@@ -608,8 +608,7 @@
    <string name="show_book_title">Видеть название книги в строке состояния</string>
    <string name="delete_reading_progress">Удалить прогресс чтения</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Не сканировать папки, если в них находится файл ".nomedia"</string>
-   <string name="record_in_mp3_format">Сохранить в формате .mp3</string>
-   <string name="speak_into_file_wav">Создание TTS-начитки (.mp3, .wav)</string>
+   <string name="speak_into_file_wav">Записать книгу голосом (MP3)</string>
    <string name="text_is_too_long">Текст слишком длинный</string>
    <string name="settings">Настройки</string>
    <string name="play_pause">Воспроизведение / пауза</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Исключенные книги</string>
    <string name="show_print_edition_page_numbers_epub3">Показывать номера страниц печатного издания (для EPUB3-формата)</string>
    <string name="ad_privacy_settings">Настройки конфиденциальности рекламы</string>
-   <string name="allow_other_music_to_play">Разрешить воспроизведение другой музыки</string>
    <string name="mix_with_other_apps_sound">Смешивать со звуком других приложений</string>
    <string name="enable_image_scale">Включить масштаб изображения</string>
    <string name="open_books_on_page_1">Открыть книги на странице 1</string>

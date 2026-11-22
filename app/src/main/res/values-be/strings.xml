@@ -608,8 +608,7 @@
    <string name="show_book_title">Заўсёды паказваць назву кнігі зверху</string>
    <string name="delete_reading_progress">Скінуць прагрэс</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ігнараваць тэчкі з файламі .nomedia</string>
-   <string name="record_in_mp3_format">Захаваць у mp3</string>
-   <string name="speak_into_file_wav">Запіс tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">Запісаць кнігу голасам (MP3)</string>
    <string name="text_is_too_long">Перавышаны ліміт сімвалаў</string>
    <string name="settings">Налады</string>
    <string name="play_pause">Прайграванне/паўза</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Выкінутыя кнігі</string>
    <string name="show_print_edition_page_numbers_epub3">Паказаць нумары старонак друкаванага выдання (epub3)</string>
    <string name="ad_privacy_settings">Налады прыватнасці рэкламы</string>
-   <string name="allow_other_music_to_play">Дазволіць прайграваць іншую музыку</string>
    <string name="mix_with_other_apps_sound">Змешваць з гукам іншых праграм</string>
    <string name="enable_image_scale">Уключыць маштаб выявы</string>
    <string name="open_books_on_page_1">Адкрытыя кнігі на старонцы 1</string>

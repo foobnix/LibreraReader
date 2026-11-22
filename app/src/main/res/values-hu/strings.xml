@@ -608,8 +608,7 @@
    <string name="show_book_title">A könyv címe az állapotsoron</string>
    <string name="delete_reading_progress">Törölje az olvasási folyamatot</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Figyelmen kívül hagyja a .nomedia fájlokat tartalmazó mappákat</string>
-   <string name="record_in_mp3_format">Rögzítés .mp3 formátumban</string>
-   <string name="speak_into_file_wav">Rekord tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">Könyv felvétele hanggal (MP3)</string>
    <string name="text_is_too_long">A szöveg túl hosszú</string>
    <string name="settings">Beállítások</string>
    <string name="play_pause">Lejátszás / szünet</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Kiselejtezett könyveket</string>
    <string name="show_print_edition_page_numbers_epub3">Nyomtatott kiadás oldalszámainak megjelenítése (epub3)</string>
    <string name="ad_privacy_settings">A hirdetések adatvédelmi beállításait</string>
-   <string name="allow_other_music_to_play">Engedélyezze más zenék lejátszását</string>
    <string name="mix_with_other_apps_sound">Keverés más alkalmazások hangjával</string>
    <string name="enable_image_scale">Képméretezés engedélyezése</string>
    <string name="open_books_on_page_1">Nyitott könyvek az 1. oldalon</string>

@@ -608,8 +608,7 @@
    <string name="show_book_title">Винаги показвайте заглавието на книгата отгоре</string>
    <string name="delete_reading_progress">Нулиране на напредъка</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Игнорирайте папки с .nomedia файлове</string>
-   <string name="record_in_mp3_format">Запишете в mp3</string>
-   <string name="speak_into_file_wav">Запис на tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">Запис на книгата с глас (MP3)</string>
    <string name="text_is_too_long">Ограничението на знака е надвишено</string>
    <string name="settings">Настройки</string>
    <string name="play_pause">Възпроизвеждане / пауза</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Изхвърлени книги</string>
    <string name="show_print_edition_page_numbers_epub3">Показване на номерата на страниците на печатното издание (epub3)</string>
    <string name="ad_privacy_settings">Настройки за поверителност на рекламите</string>
-   <string name="allow_other_music_to_play">Позволяват възпроизвеждането на друга музика</string>
    <string name="mix_with_other_apps_sound">Смесване със звука на други приложения</string>
    <string name="enable_image_scale">Активирайте мащаба на изображението</string>
    <string name="open_books_on_page_1">Отворени книги на страница 1</string>

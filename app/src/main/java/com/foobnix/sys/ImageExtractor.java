@@ -553,6 +553,13 @@ public class ImageExtractor {
         }
 
         LOG.d("pageUrl", pageUrl.isDoText(), pageCodec.isRecycled(), codeCache.isRecycled());
+        if (pageUrl.isDoText() && pageCodec.isRecycled() && !codeCache.isRecycled()) {
+            // The document hands the same page object to every thread that asks for this page,
+            // and the sharp part of a zoomed page (PageImaveView.renderDetail) closes it when it
+            // is drawn. Opened zoomed, the page lost that race, kept no text and could not be
+            // selected or searched on screen: the page is opened again for its text.
+            pageCodec = codeCache.getPage(page);
+        }
         if (pageUrl.isDoText() && !pageCodec.isRecycled() && !codeCache.isRecycled()) {
 
             //if (HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {

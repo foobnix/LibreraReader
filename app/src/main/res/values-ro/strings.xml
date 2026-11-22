@@ -608,8 +608,7 @@
    <string name="show_book_title">Arată titlul cărții în bara de stare</string>
    <string name="delete_reading_progress">Ștergeți progresul lecturii</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ignorați folderele cu fișiere .nomedia</string>
-   <string name="record_in_mp3_format">Înregistrare în format .mp3</string>
-   <string name="speak_into_file_wav">Înregistrare tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">Înregistrează cartea cu voce (MP3)</string>
    <string name="text_is_too_long">Textul este prea lung</string>
    <string name="settings">Setări</string>
    <string name="play_pause">Redare / pauză</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Cărți aruncate</string>
    <string name="show_print_edition_page_numbers_epub3">Afișați numerele paginilor ediției tipărite (epub3)</string>
    <string name="ad_privacy_settings">Setări de confidențialitate a anunțurilor</string>
-   <string name="allow_other_music_to_play">Permiteți să redea altă muzică</string>
    <string name="mix_with_other_apps_sound">Amestecă cu sunetul altor aplicații</string>
    <string name="enable_image_scale">Activați scara imaginii</string>
    <string name="open_books_on_page_1">Cărți deschise de la pagina 1</string>

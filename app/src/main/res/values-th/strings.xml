@@ -608,8 +608,7 @@
    <string name="show_book_title">แสดงชื่อหนังสือในแถบสถานะ</string>
    <string name="delete_reading_progress">ลบความคืบหน้าการอ่าน</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">ละเว้นโฟลเดอร์ที่มีไฟล์. สื่อ</string>
-   <string name="record_in_mp3_format">บันทึกในรูปแบบ. mp3</string>
-   <string name="speak_into_file_wav">บันทึก tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">บันทึกหนังสือเป็นเสียง (MP3)</string>
    <string name="text_is_too_long">ข้อความยาวเกินไป</string>
    <string name="settings">การตั้งค่า</string>
    <string name="play_pause">เล่น / หยุดชั่วคราว</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">หนังสือที่ถูกทิ้ง</string>
    <string name="show_print_edition_page_numbers_epub3">แสดงหมายเลขหน้าฉบับพิมพ์ (epub3)</string>
    <string name="ad_privacy_settings">การตั้งค่าความเป็นส่วนตัวของโฆษณา</string>
-   <string name="allow_other_music_to_play">อนุญาตให้เล่นเพลงอื่นได้</string>
    <string name="mix_with_other_apps_sound">ผสมกับเสียงของแอปอื่น</string>
    <string name="enable_image_scale">เปิดใช้งานขนาดภาพ</string>
    <string name="open_books_on_page_1">เปิดหนังสือในหน้า 1</string>

@@ -608,8 +608,7 @@
    <string name="show_book_title">Titel in der Statusleiste anzeigen</string>
    <string name="delete_reading_progress">Lesefortschritt löschen</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ordner mit .nomedia-Dateien ignorieren</string>
-   <string name="record_in_mp3_format">Als MP3 speichern</string>
-   <string name="speak_into_file_wav">Text-zu-Sprache aufnehmen (MP3, WAV)</string>
+   <string name="speak_into_file_wav">Buch per Sprachausgabe aufnehmen (MP3)</string>
    <string name="text_is_too_long">Maximale Zeichenanzahl überschritten</string>
    <string name="settings">Einstellungen</string>
    <string name="play_pause">Play/Pause</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Weggeworfene Bücher</string>
    <string name="show_print_edition_page_numbers_epub3">Seitenzahlen der gedruckten Ausgabe anzeigen (epub3)</string>
    <string name="ad_privacy_settings">Datenschutzeinstellungen für Anzeigen</string>
-   <string name="allow_other_music_to_play">Andere Musik abspielen lassen</string>
    <string name="mix_with_other_apps_sound">Mit dem Ton anderer Apps mischen</string>
    <string name="enable_image_scale">Bildskalierung aktivieren</string>
    <string name="open_books_on_page_1">Bücher auf Seite 1 öffnen</string>

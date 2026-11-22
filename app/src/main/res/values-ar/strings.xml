@@ -608,8 +608,7 @@
    <string name="show_book_title">إظهار عنوان الكتاب في شريط الحالة</string>
    <string name="delete_reading_progress">حذف تقدم القراءة</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">تجاهل المجلدات مع ملفات .nomedia</string>
-   <string name="record_in_mp3_format">سجل بتنسيق mp3</string>
-   <string name="speak_into_file_wav">سجل تحويل النص إلى كلام (mp3 ، wav)</string>
+   <string name="speak_into_file_wav">تسجيل الكتاب بالصوت (MP3)</string>
    <string name="text_is_too_long">النص طويل جدًا</string>
    <string name="settings">الإعدادات</string>
    <string name="play_pause">تشغيل / إيقاف مؤقت</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">الكتب المهملة</string>
    <string name="show_print_edition_page_numbers_epub3">إظهار أرقام صفحات الطبعة المطبوعة (epub3)</string>
    <string name="ad_privacy_settings">إعدادات خصوصية الإعلان</string>
-   <string name="allow_other_music_to_play">السماح بتشغيل الموسيقى الأخرى</string>
    <string name="mix_with_other_apps_sound">المزج مع صوت التطبيقات الأخرى</string>
    <string name="enable_image_scale">تمكين مقياس الصورة</string>
    <string name="open_books_on_page_1">افتح الكتب في الصفحة 1</string>

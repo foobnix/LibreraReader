@@ -275,25 +275,30 @@ class PdfiumText {
         return (bMiddle >= aLow && bMiddle <= aHigh) || (aMiddle >= bLow && aMiddle <= bHigh);
     }
 
-    /** The whole page's text, with the trailing padding PDFium leaves behind removed. */
+    /**
+     * The whole page's text, one character per PDFium character index, so a position in it is
+     * the index PDFium's boxes and font sizes are asked for by.
+     *
+     * Not FPDFText_GetText: it leaves out the characters with no Unicode value - TeX's unmapped
+     * math glyphs - and writes a character beyond the BMP as two, so after either every word
+     * was boxed as the word before or after it ("test" highlighted on "any", Kirillov p. 64).
+     * A character with no Unicode value stays here as 0, which ends a word.
+     */
     static String text(final PdfTextPage textPage) {
         try {
             final int count = textPage.textPageCountChars();
             if (count <= 0) {
                 return "";
             }
-            String text = textPage.textPageGetText(0, count);
-            if (text == null) {
-                return "";
+            final char[] chars = new char[count];
+            for (int i = 0; i < count; i++) {
+                chars[i] = textPage.textPageGetUnicode(i);
             }
-            if (text.length() > count) {
-                text = text.substring(0, count);
-            }
-            int end = text.length();
-            while (end > 0 && text.charAt(end - 1) == 0) {
+            int end = count;
+            while (end > 0 && chars[end - 1] == 0) {
                 end--;
             }
-            return text.substring(0, end);
+            return new String(chars, 0, end);
         } catch (Throwable e) {
             LOG.e(e);
             return "";
@@ -394,8 +399,9 @@ class PdfiumText {
     private static void escape(final StringBuilder out, final String text) {
         for (int i = 0; i < text.length(); i++) {
             final char c = text.charAt(i);
-            if (isLineEndHyphen(c)) {
-                // The broken word is read whole: the line it was broken at is not there
+            if (isLineEndHyphen(c) || c == 0) {
+                // The broken word is read whole: the line it was broken at is not there.
+                // 0 is a glyph with no Unicode value, nothing to read.
                 continue;
             }
             switch (c) {

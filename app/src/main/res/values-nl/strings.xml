@@ -608,8 +608,7 @@
    <string name="show_book_title">Boektitel weergeven in de statusbalk</string>
    <string name="delete_reading_progress">Leesvoortgang verwijderen</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Negeer mappen met .nomedia-bestanden</string>
-   <string name="record_in_mp3_format">Opnemen in .mp3-indeling</string>
-   <string name="speak_into_file_wav">Record tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">Boek opnemen met spraak (MP3)</string>
    <string name="text_is_too_long">Tekst is te lang</string>
    <string name="settings">Instellingen</string>
    <string name="play_pause">Speel af/pauzeer</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Weggegooide boeken</string>
    <string name="show_print_edition_page_numbers_epub3">Toon de paginanummers van de gedrukte editie (epub3)</string>
    <string name="ad_privacy_settings">Privacy-instellingen voor advertenties</string>
-   <string name="allow_other_music_to_play">Laat andere muziek spelen</string>
    <string name="mix_with_other_apps_sound">Mengen met het geluid van andere apps</string>
    <string name="enable_image_scale">Schakel afbeeldingsschaal in</string>
    <string name="open_books_on_page_1">Open boeken op pagina 1</string>

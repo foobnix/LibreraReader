@@ -608,8 +608,7 @@
    <string name="show_book_title">상태 표시 줄에 책 제목 표시</string>
    <string name="delete_reading_progress">읽기 진행률 삭제</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">.nomedia 파일이있는 폴더 무시</string>
-   <string name="record_in_mp3_format">.mp3 형식으로 저장</string>
-   <string name="speak_into_file_wav">TTS 녹음 (MP3, WAV)</string>
+   <string name="speak_into_file_wav">책을 음성으로 녹음 (MP3)</string>
    <string name="text_is_too_long">텍스트가 너무 깁니다</string>
    <string name="settings">설정</string>
    <string name="play_pause">재생 / 일시 중지</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">버려진 책들</string>
    <string name="show_print_edition_page_numbers_epub3">인쇄판 페이지 번호 표시(epub3)</string>
    <string name="ad_privacy_settings">광고 개인정보 보호 설정</string>
-   <string name="allow_other_music_to_play">다른 음악이 재생되도록 허용</string>
    <string name="mix_with_other_apps_sound">다른 앱의 소리와 함께 재생</string>
    <string name="enable_image_scale">이미지 크기 활성화</string>
    <string name="open_books_on_page_1">1페이지의 책을 펴세요</string>

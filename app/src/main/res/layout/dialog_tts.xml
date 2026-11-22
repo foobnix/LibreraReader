@@ -153,6 +153,14 @@
                 android:text="@string/radio" />
         </LinearLayout>
 
+        <!-- Reading aloud and the MP3 and radio player both: play along with other apps rather
+             than pausing them and pausing for them -->
+        <CheckBox
+            android:id="@+id/mixWithOtherApps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mix_with_other_apps_sound" />
+
         <CheckBox
             android:id="@+id/ttsHighlightReading"
             android:layout_width="wrap_content"
@@ -284,20 +292,6 @@
             android:layout_marginLeft="40dip" />
 
 
-        <CheckBox
-            android:id="@+id/allowOtherMusic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/allow_other_music_to_play" />
-
-        <!-- The audio file player ("Play an audio file"): play along with other apps rather
-             than pausing them and pausing for them. -->
-        <CheckBox
-            android:id="@+id/mp3MixWithOtherApps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mix_with_other_apps_sound" />
-
 
         <CheckBox
             android:id="@+id/ttsTunnOnLastWord"
@@ -322,6 +316,10 @@
             style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_mic"
+            android:drawablePadding="6dip"
+            android:drawableTint="?android:attr/textColorLink"
             android:text="@string/speak_into_file_wav" />
         </LinearLayout>
     </LinearLayout>

@@ -608,8 +608,7 @@
    <string name="show_book_title">Mostra sempre el títol del llibre a dalt</string>
    <string name="delete_reading_progress">Restableix el progrés</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ignora les carpetes amb fitxers .nomedia</string>
-   <string name="record_in_mp3_format">Desa en MP3</string>
-   <string name="speak_into_file_wav">Grava el TTS (MP3, WAV)</string>
+   <string name="speak_into_file_wav">Enregistra el llibre amb veu (MP3)</string>
    <string name="text_is_too_long">S\'ha superat el límit de caràcters</string>
    <string name="settings">Configuració</string>
    <string name="play_pause">Reprodueix/pausa</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Llibres descartats</string>
    <string name="show_print_edition_page_numbers_epub3">Mostra els números de pàgina de l\'edició impresa (Epub3)</string>
    <string name="ad_privacy_settings">Configuració de privadesa dels anuncis</string>
-   <string name="allow_other_music_to_play">Permetre que es reprodueixi una altra música</string>
    <string name="mix_with_other_apps_sound">Barrejar amb el so d\'altres aplicacions</string>
    <string name="enable_image_scale">Habilitar l\'escala d\'imatge</string>
    <string name="open_books_on_page_1">Llibres oberts a la pàgina 1</string>

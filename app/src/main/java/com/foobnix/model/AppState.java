@@ -350,8 +350,10 @@ public class AppState {
         TTS_ENGINES.put("SherpaTTS (F-Droid)", "https://f-droid.org/packages/org.woheller69.ttsengine");
     }
 
+    /** Reading aloud and the MP3 and radio player play along with other apps instead of taking the sound from them. */
+    public boolean mixWithOtherApps = false;
+    /** Old: the same, one for the voice and one for the player. Read once into mixWithOtherApps. */
     public boolean allowOtherMusic = false;
-    // The audio file player plays along with other apps instead of taking the sound from them
     public boolean mp3MixWithOtherApps = false;
     /** Internet radio added to the built-in list: stream or .m3u addresses, one a line. See StreamPlaylist. */
     public String streamSources = "";
@@ -410,7 +412,6 @@ public class AppState {
 
     public boolean isPlayListVisible = true;
     public String playlistDefault = L_PLAYLIST_RECENT;
-    public boolean isConvertToMp3 = true;
     public boolean isShowPanelBookNameScrollMode = true;
     public boolean isShowPanelBookNameBookMode = false;
     public boolean isShowReadingProgress = true;
@@ -953,6 +954,16 @@ public class AppState {
             instance.readColors = instance.readColors.replace(OLD_NIGHT_GREEN, "B,#2b2620,#d8c7a3,1;");
         }
         migrateAnnotationsSave(instance);
+        migrateMixWithOtherApps(instance);
+    }
+
+    /** Two settings, for the voice and for the player, now one for both: on if either was. */
+    private static void migrateMixWithOtherApps(AppState state) {
+        if (state.allowOtherMusic || state.mp3MixWithOtherApps) {
+            state.mixWithOtherApps = true;
+            state.allowOtherMusic = false;
+            state.mp3MixWithOtherApps = false;
+        }
     }
 
     /** The yes or no of saving annotations automatically, now one of three choices. */

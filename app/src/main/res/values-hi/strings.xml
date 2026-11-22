@@ -608,8 +608,7 @@
    <string name="show_book_title">स्टेटस बार में पुस्तक का शीर्षक दिखाएं</string>
    <string name="delete_reading_progress">पढ़ने की प्रगति को हटा दें</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">.nomedia फ़ाइलों के साथ फ़ोल्डरों को अनदेखा करें</string>
-   <string name="record_in_mp3_format">.mp3 प्रारूप में रिकॉर्ड करें</string>
-   <string name="speak_into_file_wav">रिकॉर्ड tts (एमपी 3, wav)</string>
+   <string name="speak_into_file_wav">पुस्तक को आवाज़ में रिकॉर्ड करें (MP3)</string>
    <string name="text_is_too_long">पाठ बहुत लंबा है</string>
    <string name="settings">समायोजन</string>
    <string name="play_pause">चालू करे रोके</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">छोड़ी गई किताबें</string>
    <string name="show_print_edition_page_numbers_epub3">प्रिंट संस्करण पृष्ठ क्रमांक दिखाएँ (epub3)</string>
    <string name="ad_privacy_settings">विज्ञापन गोपनीयता सेटिंग</string>
-   <string name="allow_other_music_to_play">अन्य संगीत बजाने की अनुमति दें</string>
    <string name="mix_with_other_apps_sound">अन्य ऐप्स की ध्वनि के साथ मिलाएँ</string>
    <string name="enable_image_scale">छवि स्केल सक्षम करें</string>
    <string name="open_books_on_page_1">पृष्ठ 1 पर खुली किताबें</string>

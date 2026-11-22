@@ -160,6 +160,7 @@ import com.foobnix.tts.StreamDialog;
 import com.foobnix.tts.StreamPlaylist;
 import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSRecorder;
 import com.foobnix.tts.TTSService;
 import com.foobnix.tts.TTSTracks;
 import com.foobnix.tts.TtsStatus;
@@ -1242,19 +1243,13 @@ public class DragingDialogs {
                         Dialogs.replaceTTSDialog(activity);
                     }
                 });
-                CheckBox allowOtherMusic = view.findViewById(R.id.allowOtherMusic);
-                allowOtherMusic.setChecked(AppState.get().allowOtherMusic);
-                allowOtherMusic.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                // One setting for reading aloud and for the MP3 and radio player
+                CheckBox mixWithOtherApps = view.findViewById(R.id.mixWithOtherApps);
+                mixWithOtherApps.setChecked(AppState.get().mixWithOtherApps);
+                mixWithOtherApps.setOnCheckedChangeListener(new OnCheckedChangeListener() {
                     @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().allowOtherMusic = isChecked;
-                    }
-                });
-                CheckBox mp3MixWithOtherApps = view.findViewById(R.id.mp3MixWithOtherApps);
-                mp3MixWithOtherApps.setChecked(AppState.get().mp3MixWithOtherApps);
-                mp3MixWithOtherApps.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().mp3MixWithOtherApps = isChecked;
-                        TTSEngine.get().mp3MixChanged();
+                        AppState.get().mixWithOtherApps = isChecked;
+                        TTSEngine.get().mixChanged();
                     }
                 });
 
@@ -1378,10 +1373,6 @@ public class DragingDialogs {
                         TintUtil.asLinkButton(delete);
                         TintUtil.asLinkButton(start, 0);
                         TintUtil.asLinkButton(stop, 0);
-                        final CheckBox isConvertToMp3 = inflate.findViewById(R.id.isConvertToMp3);
-                        isConvertToMp3.setChecked(AppState.get().isConvertToMp3);
-                        isConvertToMp3.setOnCheckedChangeListener((buttonView, isChecked) ->
-                                                                          AppState.get().isConvertToMp3 = isChecked);
 
                         final EditText from = inflate.findViewById(R.id.from);
                         final EditText to = inflate.findViewById(R.id.to);
@@ -1498,10 +1489,10 @@ public class DragingDialogs {
                                 if (!hasErorrs && !TempHolder.isRecordTTS) {
                                     TempHolder.isRecordTTS = true;
                                     MyProgressBar1.setVisibility(View.VISIBLE);
-                                    TTSEngine.get().speakToFile(controller,
-                                                                info,
-                                                                TempHolder.isRecordFrom,
-                                                                TempHolder.isRecordTo);
+                                    TTSRecorder.record(controller,
+                                                       info,
+                                                       TempHolder.isRecordFrom,
+                                                       TempHolder.isRecordTo);
                                 }
                             }
                         });

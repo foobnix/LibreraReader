@@ -608,8 +608,7 @@
    <string name="show_book_title">Показати назву книги в рядку стану</string>
    <string name="delete_reading_progress">Видалити хід читання</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ігнорувати теки з файлами .nomedia</string>
-   <string name="record_in_mp3_format">Запис у форматі .mp3</string>
-   <string name="speak_into_file_wav">Запис tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">Записати книгу голосом (MP3)</string>
    <string name="text_is_too_long">Текст занадто довгий</string>
    <string name="settings">Налаштування</string>
    <string name="play_pause">Відтворення / пауза</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Викинуті книги</string>
    <string name="show_print_edition_page_numbers_epub3">Показати номери сторінок друкованого видання (epub3)</string>
    <string name="ad_privacy_settings">Налаштування конфіденційності реклами</string>
-   <string name="allow_other_music_to_play">Дозволити відтворення іншої музики</string>
    <string name="mix_with_other_apps_sound">Змішувати зі звуком інших застосунків</string>
    <string name="enable_image_scale">Включити масштаб зображення</string>
    <string name="open_books_on_page_1">Відкрити книги на сторінці 1</string>

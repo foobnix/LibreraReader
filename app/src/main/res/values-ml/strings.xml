@@ -608,8 +608,7 @@
    <string name="show_book_title">എല്ലായ്പ്പോഴും മുകളിൽ പുസ്തക ശീർഷകം പ്രദർശിപ്പിക്കുക</string>
    <string name="delete_reading_progress">പുരോഗതി പുന reset സജ്ജമാക്കുക</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">.nomedia ഫയലുകൾ ഉള്ള ഫോൾഡറുകൾ അവഗണിക്കുക</string>
-   <string name="record_in_mp3_format">Mp3- ലേക്ക് സംരക്ഷിക്കുക</string>
-   <string name="speak_into_file_wav">റെക്കോർഡ് tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">പുസ്തകം ശബ്ദത്തിൽ റെക്കോർഡ് ചെയ്യുക (MP3)</string>
    <string name="text_is_too_long">പ്രതീക പരിധി കവിഞ്ഞു</string>
    <string name="settings">ക്രമീകരണങ്ങൾ</string>
    <string name="play_pause">പ്ലേ / താൽക്കാലികമായി നിർത്തുക</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">ഉപേക്ഷിച്ച പുസ്തകങ്ങൾ</string>
    <string name="show_print_edition_page_numbers_epub3">പ്രിന്റ് എഡിഷൻ പേജ് നമ്പറുകൾ കാണിക്കുക (epub3)</string>
    <string name="ad_privacy_settings">പരസ്യ സ്വകാര്യതാ ക്രമീകരണങ്ങൾ</string>
-   <string name="allow_other_music_to_play">മറ്റ് സംഗീതം പ്ലേ ചെയ്യാൻ അനുവദിക്കുക</string>
    <string name="mix_with_other_apps_sound">മറ്റ് ആപ്പുകളുടെ ശബ്ദവുമായി ചേർക്കുക</string>
    <string name="enable_image_scale">ഇമേജ് സ്കെയിൽ പ്രാപ്തമാക്കുക</string>
    <string name="open_books_on_page_1">പേജ് 1-ൽ പുസ്തകങ്ങൾ തുറക്കുക</string>

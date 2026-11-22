@@ -608,8 +608,7 @@
    <string name="show_book_title">הצג כותרת ספר בשורת המצב</string>
    <string name="delete_reading_progress">מחק את התקדמות הקריאה</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">התעלם מתיקיות עם קבצי .Nomedia</string>
-   <string name="record_in_mp3_format">להקליט בפורמט .mp3</string>
-   <string name="speak_into_file_wav">הקלטות tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">הקלטת הספר בקול (MP3)</string>
    <string name="text_is_too_long">הטקסט ארוך מדי</string>
    <string name="settings">הגדרות</string>
    <string name="play_pause">הפעל / השהה</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">ספרים שנזרקו</string>
    <string name="show_print_edition_page_numbers_epub3">הצג מספרי עמודים במהדורה מודפסת (epub3)</string>
    <string name="ad_privacy_settings">הגדרות פרטיות המודעה</string>
-   <string name="allow_other_music_to_play">לאפשר למוזיקה אחרת להתנגן</string>
    <string name="mix_with_other_apps_sound">מיזוג עם הצליל של אפליקציות אחרות</string>
    <string name="enable_image_scale">אפשר קנה מידה תמונה</string>
    <string name="open_books_on_page_1">פתח ספרים בעמוד 1</string>

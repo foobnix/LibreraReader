@@ -608,8 +608,7 @@
    <string name="show_book_title">Να εμφανίζεται πάντα ο τίτλος του βιβλίου στην κορυφή</string>
    <string name="delete_reading_progress">Επαναφορά προόδου</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Αγνοήστε τους φακέλους με αρχεία .nomedia</string>
-   <string name="record_in_mp3_format">Αποθήκευση σε mp3</string>
-   <string name="speak_into_file_wav">Εγγραφή tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">Εγγραφή βιβλίου με φωνή (MP3)</string>
    <string name="text_is_too_long">Έχει ξεπεραστεί το όριο χαρακτήρων</string>
    <string name="settings">Ρυθμίσεις</string>
    <string name="play_pause">Αναπαραγωγή / παύση</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Πεταμένα βιβλία</string>
    <string name="show_print_edition_page_numbers_epub3">Εμφάνιση αριθμών σελίδων έντυπης έκδοσης (epub3)</string>
    <string name="ad_privacy_settings">Ρυθμίσεις απορρήτου διαφημίσεων</string>
-   <string name="allow_other_music_to_play">Επιτρέψτε την αναπαραγωγή άλλης μουσικής</string>
    <string name="mix_with_other_apps_sound">Μίξη με τον ήχο άλλων εφαρμογών</string>
    <string name="enable_image_scale">Ενεργοποίηση κλίμακας εικόνας</string>
    <string name="open_books_on_page_1">Ανοίξτε τα βιβλία στη σελίδα 1</string>

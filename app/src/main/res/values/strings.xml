@@ -610,8 +610,7 @@
    <string name="show_book_title">Always display book title on top</string>
    <string name="delete_reading_progress">Reset progress</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ignore folders with .nomedia files</string>
-   <string name="record_in_mp3_format">Save to MP3</string>
-   <string name="speak_into_file_wav">Record TTS (MP3, WAV)</string>
+   <string name="speak_into_file_wav">Record book by voice (MP3)</string>
    <string name="text_is_too_long">Character limit is exceeded</string>
    <string name="settings">Settings</string>
    <string name="play_pause">Play/pause</string>
@@ -687,7 +686,6 @@
    <string name="discarded_books">Discarded books</string>
    <string name="show_print_edition_page_numbers_epub3">Show print edition page numbers (Epub3)</string>
    <string name="ad_privacy_settings">Ad privacy settings</string>
-   <string name="allow_other_music_to_play">Allow other music to play</string>
    <string name="mix_with_other_apps_sound">Mix with other apps\' sound</string>
    <string name="enable_image_scale">Enable image scale</string>
    <string name="open_books_on_page_1">Open books on page 1</string>

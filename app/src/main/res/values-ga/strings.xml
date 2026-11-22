@@ -608,8 +608,7 @@
    <string name="show_book_title">Taispeáin teideal an leabhair ar an mbarr i gcónaí</string>
    <string name="delete_reading_progress">Dul chun cinn a athshocrú</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Neamhaird a dhéanamh ar fhillteáin le comhaid .nomedia</string>
-   <string name="record_in_mp3_format">Sábháil go mp3</string>
-   <string name="speak_into_file_wav">Tts taifead (mp3, wav)</string>
+   <string name="speak_into_file_wav">Taifead an leabhar le guth (MP3)</string>
    <string name="text_is_too_long">Sáraítear an teorainn carachtar</string>
    <string name="settings">Socruithe</string>
    <string name="play_pause">Imirt / sos</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Leabhair caite</string>
    <string name="show_print_edition_page_numbers_epub3">Taispeáin uimhreacha leathanaigh eagrán priontála (epub3)</string>
    <string name="ad_privacy_settings">Socruithe príobháideachais fógraí</string>
-   <string name="allow_other_music_to_play">Cead a thabhairt do cheol eile a sheinm</string>
    <string name="mix_with_other_apps_sound">Measc le fuaim aipeanna eile</string>
    <string name="enable_image_scale">Chumasú scála íomhá</string>
    <string name="open_books_on_page_1">Leabhair a oscailt ar leathanach 1</string>

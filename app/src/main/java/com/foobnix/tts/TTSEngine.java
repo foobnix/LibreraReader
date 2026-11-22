@@ -348,7 +348,7 @@ public class TTSEngine {
         ReadingHighlight.clear();
         // The media session is left active: a paused player keeps it, and switching it off
         // even for a moment may hand the headphone buttons to another app's session
-        if (!AppState.get().allowOtherMusic) {
+        if (!AppState.get().mixWithOtherApps) {
             try {
 
                 TTSService.abandonAudioFocusCompat();
@@ -470,116 +470,6 @@ public class TTSEngine {
             String textToPlay = text.replace(TxtUtils.TTS_PAUSE, "");
             LOG.d("pageHTML-parts-single", text);
             ttsEngine.speak(textToPlay, TextToSpeech.QUEUE_FLUSH, map);
-        }
-
-    }
-
-    public void speakToFile(final DocumentController controller, final ResultResponse<String> info, int from, int to) {
-        File dirFolder = new File(BookCSS.get().ttsSpeakPath, "TTS_" + controller.getCurrentBook()
-                                                                                 .getName());
-        if (!dirFolder.exists()) {
-            dirFolder.mkdirs();
-        }
-        if (!dirFolder.exists()) {
-            info.onResultRecive(controller.getActivity()
-                                          .getString(R.string.file_not_found) + " " + dirFolder.getPath());
-            return;
-        }
-
-        String path = dirFolder.getPath();
-        speakToFile(controller, from - 1, path, info, from - 1, to);
-    }
-
-    public void speakToFile(final DocumentController controller, final int page, final String folder,
-                            final ResultResponse<String> info, int from, int to) {
-        LOG.d("speakToFile", page, controller.getPageCount());
-        if (ttsEngine == null) {
-            LOG.d("TTS is null");
-            if (controller != null && controller.getActivity() != null) {
-                Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT)
-                     .show();
-            }
-            return;
-        }
-
-        ttsEngine.setPitch(AppState.get().ttsPitch);
-        ttsEngine.setSpeechRate(AppState.get().ttsSpeed);
-
-        if (page >= to || !TempHolder.isRecordTTS) {
-            LOG.d("speakToFile finish", page, controller.getPageCount());
-            info.onResultRecive((controller.getActivity()
-                                           .getString(R.string.success)));
-            TempHolder.isRecordTTS = false;
-            return;
-        }
-
-        info.onResultRecive((page + 1) + " / " + to);
-
-        DecimalFormat df = new DecimalFormat("0000");
-        String pageName = "page-" + df.format(page + 1);
-        final String wav = new File(folder, pageName + WAV).getPath();
-        String fileText = controller.getTextForPage(page);
-        controller.recyclePage(page);
-
-        LOG.d("synthesizeToFile", fileText);
-        if (TxtUtils.isEmpty(fileText)) {
-            speakToFile(controller, page + 1, folder, info, from, to);
-        } else {
-
-            if (fileText.length() > 3950) {
-                fileText =
-                        TxtUtils.substringSmart(fileText, 3950) + " " + controller.getString(R.string.text_is_too_long);
-                LOG.d("Text-too-long", page);
-            }
-
-            ttsEngine.synthesizeToFile(fileText, map, wav);
-
-            TTSEngine.get()
-                     .getTTS()
-                     .setOnUtteranceCompletedListener(new OnUtteranceCompletedListener() {
-
-                         @Override public void onUtteranceCompleted(String utteranceId) {
-                             LOG.d("speakToFile onUtteranceCompleted", page, controller.getPageCount());
-
-                             if (AppState.get().isConvertToMp3) {
-                                 try {
-                                     File file = new File(wav);
-                                     Lame lame = new Lame();
-
-                                     InputStream input = new BufferedInputStream(new FileInputStream(file));
-                                     input.mark(44);
-                                     int bitrate = MobiParserIS.asInt_LITTLE_ENDIAN(input, 24, 4);
-                                     LOG.d("bitrate", bitrate);
-                                     input.close();
-                                     input = new FileInputStream(file);
-
-                                     byte[] bytes = IOUtils.toByteArray(input);
-
-                                     short[] shorts = new short[bytes.length / 2];
-                                     ByteBuffer.wrap(bytes)
-                                               .order(ByteOrder.LITTLE_ENDIAN)
-                                               .asShortBuffer()
-                                               .get(shorts);
-
-                                     lame.open(1, bitrate, 128, 4);
-                                     byte[] res = lame.encode(shorts, 44, shorts.length);
-                                     lame.close();
-                                     File toFile = new File(wav.replace(".wav", ".mp3"));
-                                     toFile.delete();
-                                     IO.copyFile(new ByteArrayInputStream(res), toFile);
-                                     input.close();
-                                     file.delete();
-
-                                 } catch (Exception e) {
-                                     LOG.e(e);
-                                 }
-                             }
-                             //lame.encode();
-
-                             speakToFile(controller, page + 1, folder, info, from, to);
-                         }
-
-                     });
         }
 
     }
@@ -908,7 +798,7 @@ public class TTSEngine {
             return;
         }
         mp3PausedForFocus = false;
-        if (!AppState.get().mp3MixWithOtherApps && !requestMp3Focus()) {
+        if (!AppState.get().mixWithOtherApps && !requestMp3Focus()) {
             LOG.d("mp3 audio focus refused");
             return;
         }
@@ -963,9 +853,15 @@ public class TTSEngine {
         }
     }
 
-    /** The setting changed while a file plays: take the sound now, or give it back. */
-    public void mp3MixChanged() {
-        if (AppState.get().mp3MixWithOtherApps) {
+    /** The mix setting changed: give the sound back now, or take it for a file playing. */
+    public void mixChanged() {
+        if (AppState.get().mixWithOtherApps) {
+            // the voice too: it takes the sound again only when reading starts with this off
+            try {
+                TTSService.abandonAudioFocusCompat();
+            } catch (Exception e) {
+                LOG.e(e);
+            }
             abandonMp3Focus();
             if (mp != null) {
                 mp.setVolume(1f, 1f);

@@ -608,8 +608,7 @@
    <string name="show_book_title">Ammustra semper su tìtulu de su libru in pitzos</string>
    <string name="delete_reading_progress">Reseta su progressu</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ignora sas cartellas cun documentos .nomedia</string>
-   <string name="record_in_mp3_format">Sarva in MP3</string>
-   <string name="speak_into_file_wav">Registra sa boghe TTS (MP3, WAV)</string>
+   <string name="speak_into_file_wav">Registra su libru cun sa boghe (MP3)</string>
    <string name="text_is_too_long">As barigadu su lìmite de caràteres</string>
    <string name="settings">Impostatziones</string>
    <string name="play_pause">Riprodutzione/pàusa</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Libros iscartados</string>
    <string name="show_print_edition_page_numbers_epub3">Ammustra sos nùmeros de pàgina de s\'editzione imprentada (Epub3)</string>
    <string name="ad_privacy_settings">Impostatziones de riservadesa de sos annùntzios</string>
-   <string name="allow_other_music_to_play">Permite sa riprodutzione de àtera mùsica</string>
    <string name="mix_with_other_apps_sound">Mistura cun su sonu de àteras aplicatziones</string>
    <string name="enable_image_scale">Abilita s\'iscala de s\'immàgine</string>
    <string name="open_books_on_page_1">Aberi sos libros in sa pàgina 1</string>

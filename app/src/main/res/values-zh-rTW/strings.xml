@@ -608,8 +608,7 @@
    <string name="show_book_title">頂部顯示書名</string>
    <string name="delete_reading_progress">重置進度</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">忽略帶有.nomedia文件的文件夾</string>
-   <string name="record_in_mp3_format">以mp3格式錄製</string>
-   <string name="speak_into_file_wav">Tts錄製（mp3，wav）</string>
+   <string name="speak_into_file_wav">用語音錄製書籍 (MP3)</string>
    <string name="text_is_too_long">文本過長</string>
    <string name="settings">設置</string>
    <string name="play_pause">播放/暫停</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">廢棄的書籍</string>
    <string name="show_print_edition_page_numbers_epub3">顯示印刷版頁碼 (epub3)</string>
    <string name="ad_privacy_settings">廣告隱私設定</string>
-   <string name="allow_other_music_to_play">允許播放其他音樂</string>
    <string name="mix_with_other_apps_sound">與其他應用程式的聲音混音</string>
    <string name="enable_image_scale">啟用圖像縮放</string>
    <string name="open_books_on_page_1">打開第1頁的書</string>

@@ -608,8 +608,7 @@
    <string name="show_book_title">Onyesha kichwa cha kitabu kwenye upau wa hali</string>
    <string name="delete_reading_progress">Futa maendeleo ya kusoma</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Puuza folda zilizo na faili za .nomedia</string>
-   <string name="record_in_mp3_format">Rekodi katika .mp3 format</string>
-   <string name="speak_into_file_wav">Rekodi tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">Rekodi kitabu kwa sauti (MP3)</string>
    <string name="text_is_too_long">Maandishi ni marefu sana</string>
    <string name="settings">Mipangilio</string>
    <string name="play_pause">Cheza / pumzika</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Vitabu vilivyotupwa</string>
    <string name="show_print_edition_page_numbers_epub3">Onyesha nambari za kurasa za toleo la kuchapisha (epub3)</string>
    <string name="ad_privacy_settings">Mipangilio ya faragha ya tangazo</string>
-   <string name="allow_other_music_to_play">Kuruhusu muziki mwingine kucheza</string>
    <string name="mix_with_other_apps_sound">Changanya na sauti ya programu nyingine</string>
    <string name="enable_image_scale">Wezesha kiwango cha picha</string>
    <string name="open_books_on_page_1">Fungua vitabu kwenye ukurasa wa 1</string>

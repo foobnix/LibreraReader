@@ -608,8 +608,7 @@
    <string name="show_book_title">Erakutsi liburuaren izenburua egoera-barran</string>
    <string name="delete_reading_progress">Berrabiarazi aurrerapena</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ez ikusi .nomedia duten karpetak</string>
-   <string name="record_in_mp3_format">Grabatu .mp3 formatuan</string>
-   <string name="speak_into_file_wav">Grabatu tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">Grabatu liburua ahotsez (MP3)</string>
    <string name="text_is_too_long">Testua luzegia da</string>
    <string name="settings">Ezarpenak</string>
    <string name="play_pause">Erreproduzitu Pausatu</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Baztertutako liburuak</string>
    <string name="show_print_edition_page_numbers_epub3">Erakutsi inprimatutako edizioaren orriaren zenbakiak (epub3)</string>
    <string name="ad_privacy_settings">Iragarkien pribatutasun ezarpenak</string>
-   <string name="allow_other_music_to_play">Beste musikari erreproduzitzeko baimena eman</string>
    <string name="mix_with_other_apps_sound">Nahastu beste aplikazioen soinuarekin</string>
    <string name="enable_image_scale">Gaitu irudien eskala</string>
    <string name="open_books_on_page_1">Ireki liburuak 1. orrialdean</string>

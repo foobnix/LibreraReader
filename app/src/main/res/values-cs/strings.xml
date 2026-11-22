@@ -608,8 +608,7 @@
    <string name="show_book_title">Zobrazit název knihy ve stavovém řádku</string>
    <string name="delete_reading_progress">Smazat průběh čtení</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ignorovat složky se soubory .nomedia</string>
-   <string name="record_in_mp3_format">Záznam ve formátu .mp3</string>
-   <string name="speak_into_file_wav">Záznam tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">Nahrát knihu hlasem (MP3)</string>
    <string name="text_is_too_long">Text je příliš dlouhý</string>
    <string name="settings">Nastavení</string>
    <string name="play_pause">Přehrát / pozastavit</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Vyřazené knihy</string>
    <string name="show_print_edition_page_numbers_epub3">Zobrazit čísla stránek tištěného vydání (epub3)</string>
    <string name="ad_privacy_settings">Nastavení soukromí reklam</string>
-   <string name="allow_other_music_to_play">Povolit přehrávání jiné hudby</string>
    <string name="mix_with_other_apps_sound">Míchat se zvukem jiných aplikací</string>
    <string name="enable_image_scale">Povolit měřítko obrazu</string>
    <string name="open_books_on_page_1">Otevřené knihy na straně 1</string>

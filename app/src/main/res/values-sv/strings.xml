@@ -608,8 +608,7 @@
    <string name="show_book_title">Visa boktitel i statusfältet</string>
    <string name="delete_reading_progress">Radera läsningen</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ignorera mappar med .nomedia-filer</string>
-   <string name="record_in_mp3_format">Spela in i .mp3-format</string>
-   <string name="speak_into_file_wav">Spela in tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">Spela in boken med röst (MP3)</string>
    <string name="text_is_too_long">Texten är för lång</string>
    <string name="settings">Inställningar</string>
    <string name="play_pause">Spela / paus</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Kasserade böcker</string>
    <string name="show_print_edition_page_numbers_epub3">Visa sidnummer i den tryckta utgåvan (epub3)</string>
    <string name="ad_privacy_settings">Annonssekretessinställningar</string>
-   <string name="allow_other_music_to_play">Låta annan musik spelas</string>
    <string name="mix_with_other_apps_sound">Mixa med ljud från andra appar</string>
    <string name="enable_image_scale">Aktivera bildskala</string>
    <string name="open_books_on_page_1">Öppna böcker på sidan 1</string>

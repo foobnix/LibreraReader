@@ -610,8 +610,7 @@
    <string name="show_book_title">Amosar sempre o título na parte superior</string>
    <string name="delete_reading_progress">Restablecer progreso</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ignorar cartafoles con ficheiro .nomedia</string>
-   <string name="record_in_mp3_format">Gardar en MP3</string>
-   <string name="speak_into_file_wav">Gravar TTS (MP3, WAV)</string>
+   <string name="speak_into_file_wav">Gravar o libro con voz (MP3)</string>
    <string name="text_is_too_long">Superouse o límite de caracteres</string>
    <string name="settings">Axustes</string>
    <string name="play_pause">Reproducir/pausar</string>
@@ -687,7 +686,6 @@
    <string name="discarded_books">Libros descartados</string>
    <string name="show_print_edition_page_numbers_epub3">Amosar números de páxina da edición impresa (EPUB3)</string>
    <string name="ad_privacy_settings">Axustes de privacidade de anuncios</string>
-   <string name="allow_other_music_to_play">Permitir reproducir outra música</string>
    <string name="mix_with_other_apps_sound">Mesturar co son doutras aplicacións</string>
    <string name="enable_image_scale">Activar escala de imaxe</string>
    <string name="open_books_on_page_1">Abrir libros na páxina 1</string>

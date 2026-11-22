@@ -608,8 +608,7 @@
    <string name="show_book_title">Күй жолағында кітап атауын көрсету</string>
    <string name="delete_reading_progress">Оқу үлгерімін жою</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">.nomedia файлдары бар қалталарды елемеңіз</string>
-   <string name="record_in_mp3_format">.mp3 форматында жазу</string>
-   <string name="speak_into_file_wav">Жазба tts (mp3, wav)</string>
+   <string name="speak_into_file_wav">Кітапты дауыспен жазу (MP3)</string>
    <string name="text_is_too_long">Мәтін тым ұзын</string>
    <string name="settings">Параметрлерін таңдаңыз</string>
    <string name="play_pause">Ойнату / тоқтата тұру</string>
@@ -685,7 +684,6 @@
    <string name="discarded_books">Лақтырылған кітаптар</string>
    <string name="show_print_edition_page_numbers_epub3">Баспа басылымының бет нөмірлерін көрсету (epub3)</string>
    <string name="ad_privacy_settings">Жарнаманың құпиялылық параметрлері</string>
-   <string name="allow_other_music_to_play">Басқа музыканы ойнатуға мүмкіндік беріңіз</string>
    <string name="mix_with_other_apps_sound">Басқа қолданбалардың дыбысымен араластыру</string>
    <string name="enable_image_scale">Кескін масштабын қосыңыз</string>
    <string name="open_books_on_page_1">1 беттегі кітаптарды ашыңыз</string>
