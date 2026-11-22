@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">Törölje az olvasási folyamatot</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Figyelmen kívül hagyja a .nomedia fájlokat tartalmazó mappákat</string>
    <string name="speak_into_file_wav">Könyv felvétele hanggal (MP3)</string>
+   <string name="record_whole_book">Az egész könyv</string>
+   <string name="record_from_this_page">Ettől az oldaltól</string>
+   <string name="record_pages_hint">Minden oldal külön MP3-fájlba kerül.</string>
+   <string name="record_files_count">Felvételek ebben a mappában: %1$d</string>
+   <string name="record_delete_confirm">Törli a könyv összes felvételét? Nem állíthatók vissza.</string>
+   <string name="record_progress">%1$d. oldal / %2$d</string>
+   <string name="record_done">Kész. Mentett fájlok: %1$d</string>
+   <string name="record_stopped">Leállítva. Mentett fájlok: %1$d</string>
+   <string name="record_keep_open">Hagyja nyitva ezt az ablakot, amíg a felvétel be nem fejeződik.</string>
    <string name="text_is_too_long">A szöveg túl hosszú</string>
    <string name="settings">Beállítások</string>
    <string name="play_pause">Lejátszás / szünet</string>

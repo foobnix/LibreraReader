@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">重置进度</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">忽略包含.nomedia文件的文件夹</string>
    <string name="speak_into_file_wav">用语音录制图书 (MP3)</string>
+   <string name="record_whole_book">整本书</string>
+   <string name="record_from_this_page">从本页开始</string>
+   <string name="record_pages_hint">每一页都保存为单独的 MP3 文件。</string>
+   <string name="record_files_count">此文件夹中的录音：%1$d</string>
+   <string name="record_delete_confirm">删除这本书的所有录音？删除后无法恢复。</string>
+   <string name="record_progress">第 %1$d 页，共 %2$d 页</string>
+   <string name="record_done">完成。已保存文件：%1$d</string>
+   <string name="record_stopped">已停止。已保存文件：%1$d</string>
+   <string name="record_keep_open">录制完成前请保持此窗口打开。</string>
    <string name="text_is_too_long">文本过长</string>
    <string name="settings">设置</string>
    <string name="play_pause">播放/暂停</string>

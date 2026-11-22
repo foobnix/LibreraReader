@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">Xóa tiến trình đọc</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Bỏ qua các thư mục với tập tin .nomedia</string>
    <string name="speak_into_file_wav">Ghi âm sách bằng giọng đọc (MP3)</string>
+   <string name="record_whole_book">Cả cuốn sách</string>
+   <string name="record_from_this_page">Từ trang này</string>
+   <string name="record_pages_hint">Mỗi trang được lưu thành một tệp MP3 riêng.</string>
+   <string name="record_files_count">Bản ghi trong thư mục này: %1$d</string>
+   <string name="record_delete_confirm">Xóa tất cả bản ghi của cuốn sách này? Không thể khôi phục.</string>
+   <string name="record_progress">Trang %1$d / %2$d</string>
+   <string name="record_done">Xong. Số tệp đã lưu: %1$d</string>
+   <string name="record_stopped">Đã dừng. Số tệp đã lưu: %1$d</string>
+   <string name="record_keep_open">Hãy giữ cửa sổ này mở cho đến khi ghi xong.</string>
    <string name="text_is_too_long">Văn bản quá dài</string>
    <string name="settings">Cài đặt</string>
    <string name="play_pause">Tạm dừng chơi</string>

@@ -1,64 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Recording the book read aloud into MP3 files: which pages, where the files go, and the
+     progress. One button starts the recording and, while it runs, stops it. See TTSRecordDialog. -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:focusableInTouchMode="false">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="2dip">
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingLeft="20dip"
+        android:paddingTop="8dip"
+        android:paddingRight="20dip">
 
         <TextView
-            android:id="@+id/ttsSpeakPath"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:gravity="center_vertical"
-            android:text="[]" />
-
-        <!-- Drawn as a ringed button in the screen's own hand, rather than as the filled
-             box the system gives a Button. -->
-        <TextView
-            android:id="@+id/delete"
-            style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:contentDescription="@string/delete"
-            android:text="@string/delete" />
-
-    </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <com.foobnix.pdf.info.view.MyProgressBar
-                android:id="@+id/MyProgressBarTTS"
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                android:saveEnabled="false"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/progressText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dip"
-                android:text="5 / 10" />
-        </LinearLayout>
+            android:text="@string/page_range"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,50 +32,148 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="4"
-                android:inputType="number" />
+                android:gravity="center"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:selectAllOnFocus="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" - " />
+                android:paddingLeft="8dip"
+                android:paddingRight="8dip"
+                android:text="–"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/to"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="4"
-                android:inputType="number" />
-
+                android:gravity="center"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:selectAllOnFocus="true" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/wholeBook"
+                style="@style/textLink"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/record_whole_book" />
+
+            <TextView
+                android:id="@+id/fromThisPage"
+                style="@style/textLink"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/record_from_this_page" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dip"
+            android:text="@string/record_pages_hint"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:text="@string/folder"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="14sp" />
+
+        <!-- The folder the files go to; a tap chooses another -->
+        <TextView
+            android:id="@+id/ttsSpeakPath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dip"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableStart="@drawable/ic_folder"
+            android:drawablePadding="8dip"
+            android:drawableTint="?android:attr/textColorLink"
+            android:gravity="center_vertical"
+            android:minHeight="40dip"
+            android:textColor="?android:attr/textColorLink"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/filesRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <!-- The two share the row evenly, so they come out one width and a long word in
-                 any language shortens rather than pushing its neighbour off the end. -->
             <TextView
-                android:id="@+id/start"
-                style="@style/textLink"
+                android:id="@+id/filesCount"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/start_recording" />
+                android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/stop"
+                android:id="@+id/delete"
                 style="@style/textLink"
-                android:layout_width="0dip"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/to_stop" />
-
-
-
-
+                android:contentDescription="@string/delete"
+                android:text="@string/delete" />
         </LinearLayout>
+
+        <!-- Shown once a recording starts, and its outcome after it ends -->
+        <LinearLayout
+            android:id="@+id/progressBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dip"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/progressText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dip"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/progressHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/record_keep_open"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Start, and Stop while it records -->
+        <TextView
+            android:id="@+id/start"
+            style="@style/textLink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dip"
+            android:drawableStart="@drawable/ic_mic"
+            android:drawablePadding="8dip"
+            android:drawableTint="?android:attr/textColorLink"
+            android:text="@string/start_recording" />
     </LinearLayout>
 
 </ScrollView>

@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">Berrabiarazi aurrerapena</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ez ikusi .nomedia duten karpetak</string>
    <string name="speak_into_file_wav">Grabatu liburua ahotsez (MP3)</string>
+   <string name="record_whole_book">Liburu osoa</string>
+   <string name="record_from_this_page">Orrialde honetatik</string>
+   <string name="record_pages_hint">Orrialde bakoitza MP3 fitxategi bereizi batean gordetzen da.</string>
+   <string name="record_files_count">Grabazioak karpeta honetan: %1$d</string>
+   <string name="record_delete_confirm">Liburu honen grabazio guztiak ezabatu? Ezin izango dira berreskuratu.</string>
+   <string name="record_progress">%1$d. orrialdea, guztira %2$d</string>
+   <string name="record_done">Eginda. Gordetako fitxategiak: %1$d</string>
+   <string name="record_stopped">Geldituta. Gordetako fitxategiak: %1$d</string>
+   <string name="record_keep_open">Mantendu leiho hau irekita grabazioa amaitu arte.</string>
    <string name="text_is_too_long">Testua luzegia da</string>
    <string name="settings">Ezarpenak</string>
    <string name="play_pause">Erreproduzitu Pausatu</string>

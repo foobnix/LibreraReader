@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">पढ़ने की प्रगति को हटा दें</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">.nomedia फ़ाइलों के साथ फ़ोल्डरों को अनदेखा करें</string>
    <string name="speak_into_file_wav">पुस्तक को आवाज़ में रिकॉर्ड करें (MP3)</string>
+   <string name="record_whole_book">पूरी पुस्तक</string>
+   <string name="record_from_this_page">इस पृष्ठ से</string>
+   <string name="record_pages_hint">हर पृष्ठ एक अलग MP3 फ़ाइल में सहेजा जाता है।</string>
+   <string name="record_files_count">इस फ़ोल्डर में रिकॉर्डिंग: %1$d</string>
+   <string name="record_delete_confirm">इस पुस्तक की सभी रिकॉर्डिंग हटाएँ? इन्हें वापस नहीं लाया जा सकता।</string>
+   <string name="record_progress">पृष्ठ %1$d / %2$d</string>
+   <string name="record_done">हो गया। सहेजी गई फ़ाइलें: %1$d</string>
+   <string name="record_stopped">रोका गया। सहेजी गई फ़ाइलें: %1$d</string>
+   <string name="record_keep_open">रिकॉर्डिंग पूरी होने तक यह विंडो खुली रखें।</string>
    <string name="text_is_too_long">पाठ बहुत लंबा है</string>
    <string name="settings">समायोजन</string>
    <string name="play_pause">चालू करे रोके</string>

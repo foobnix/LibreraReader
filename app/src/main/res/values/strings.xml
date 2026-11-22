@@ -611,6 +611,15 @@
    <string name="delete_reading_progress">Reset progress</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ignore folders with .nomedia files</string>
    <string name="speak_into_file_wav">Record book by voice (MP3)</string>
+   <string name="record_whole_book">Whole book</string>
+   <string name="record_from_this_page">From this page</string>
+   <string name="record_pages_hint">Each page is saved as a separate MP3 file.</string>
+   <string name="record_files_count">Recordings in this folder: %1$d</string>
+   <string name="record_delete_confirm">Delete all recordings of this book? They can\'t be recovered.</string>
+   <string name="record_progress">Page %1$d of %2$d</string>
+   <string name="record_done">Done. Files saved: %1$d</string>
+   <string name="record_stopped">Stopped. Files saved: %1$d</string>
+   <string name="record_keep_open">Keep this window open until the recording finishes.</string>
    <string name="text_is_too_long">Character limit is exceeded</string>
    <string name="settings">Settings</string>
    <string name="play_pause">Play/pause</string>

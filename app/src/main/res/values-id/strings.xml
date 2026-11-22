@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">Hapus kemajuan membaca</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Abaikan folder dengan file .nomedia</string>
    <string name="speak_into_file_wav">Rekam buku dengan suara (MP3)</string>
+   <string name="record_whole_book">Seluruh buku</string>
+   <string name="record_from_this_page">Dari halaman ini</string>
+   <string name="record_pages_hint">Setiap halaman disimpan sebagai file MP3 terpisah.</string>
+   <string name="record_files_count">Rekaman di folder ini: %1$d</string>
+   <string name="record_delete_confirm">Hapus semua rekaman buku ini? Rekaman tidak dapat dipulihkan.</string>
+   <string name="record_progress">Halaman %1$d dari %2$d</string>
+   <string name="record_done">Selesai. File tersimpan: %1$d</string>
+   <string name="record_stopped">Dihentikan. File tersimpan: %1$d</string>
+   <string name="record_keep_open">Biarkan jendela ini terbuka sampai perekaman selesai.</string>
    <string name="text_is_too_long">Teks terlalu panjang</string>
    <string name="settings">Pengaturan</string>
    <string name="play_pause">Play / pause</string>

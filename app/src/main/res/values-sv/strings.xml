@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">Radera läsningen</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ignorera mappar med .nomedia-filer</string>
    <string name="speak_into_file_wav">Spela in boken med röst (MP3)</string>
+   <string name="record_whole_book">Hela boken</string>
+   <string name="record_from_this_page">Från den här sidan</string>
+   <string name="record_pages_hint">Varje sida sparas som en egen MP3-fil.</string>
+   <string name="record_files_count">Inspelningar i den här mappen: %1$d</string>
+   <string name="record_delete_confirm">Radera alla inspelningar av den här boken? De kan inte återställas.</string>
+   <string name="record_progress">Sida %1$d av %2$d</string>
+   <string name="record_done">Klart. Sparade filer: %1$d</string>
+   <string name="record_stopped">Stoppad. Sparade filer: %1$d</string>
+   <string name="record_keep_open">Håll det här fönstret öppet tills inspelningen är klar.</string>
    <string name="text_is_too_long">Texten är för lång</string>
    <string name="settings">Inställningar</string>
    <string name="play_pause">Spela / paus</string>

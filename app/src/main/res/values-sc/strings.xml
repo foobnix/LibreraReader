@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">Reseta su progressu</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ignora sas cartellas cun documentos .nomedia</string>
    <string name="speak_into_file_wav">Registra su libru cun sa boghe (MP3)</string>
+   <string name="record_whole_book">Totu su libru</string>
+   <string name="record_from_this_page">Dae custa pàgina</string>
+   <string name="record_pages_hint">Onni pàgina est sarvada in d\'unu file MP3 a parte.</string>
+   <string name="record_files_count">Registratziones in custa cartella: %1$d</string>
+   <string name="record_delete_confirm">Boles cantzellare totu sas registratziones de custu libru? No ant a pòdere èssere recuperadas.</string>
+   <string name="record_progress">Pàgina %1$d de %2$d</string>
+   <string name="record_done">Fatu. File sarvados: %1$d</string>
+   <string name="record_stopped">Firmadu. File sarvados: %1$d</string>
+   <string name="record_keep_open">Mantene aberta custa ventana finas a cando acabat sa registratzione.</string>
    <string name="text_is_too_long">As barigadu su lìmite de caràteres</string>
    <string name="settings">Impostatziones</string>
    <string name="play_pause">Riprodutzione/pàusa</string>

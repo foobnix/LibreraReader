@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">Ištrinti skaitymo eigą</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ignoruoti aplankus su .nomedia failais</string>
    <string name="speak_into_file_wav">Įrašyti knygą balsu (MP3)</string>
+   <string name="record_whole_book">Visa knyga</string>
+   <string name="record_from_this_page">Nuo šio puslapio</string>
+   <string name="record_pages_hint">Kiekvienas puslapis įrašomas į atskirą MP3 failą.</string>
+   <string name="record_files_count">Įrašų šiame aplanke: %1$d</string>
+   <string name="record_delete_confirm">Ištrinti visus šios knygos įrašus? Jų nebus galima atkurti.</string>
+   <string name="record_progress">Puslapis %1$d iš %2$d</string>
+   <string name="record_done">Baigta. Išsaugota failų: %1$d</string>
+   <string name="record_stopped">Sustabdyta. Išsaugota failų: %1$d</string>
+   <string name="record_keep_open">Neuždarykite šio lango, kol įrašymas nesibaigs.</string>
    <string name="text_is_too_long">Tekstas per ilgas</string>
    <string name="settings">Nustatymai</string>
    <string name="play_pause">Žaisti / pristabdyti</string>

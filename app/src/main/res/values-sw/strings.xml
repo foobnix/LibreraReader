@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">Futa maendeleo ya kusoma</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Puuza folda zilizo na faili za .nomedia</string>
    <string name="speak_into_file_wav">Rekodi kitabu kwa sauti (MP3)</string>
+   <string name="record_whole_book">Kitabu chote</string>
+   <string name="record_from_this_page">Kutoka ukurasa huu</string>
+   <string name="record_pages_hint">Kila ukurasa huhifadhiwa kama faili tofauti la MP3.</string>
+   <string name="record_files_count">Rekodi katika folda hii: %1$d</string>
+   <string name="record_delete_confirm">Futa rekodi zote za kitabu hiki? Haziwezi kurejeshwa.</string>
+   <string name="record_progress">Ukurasa %1$d kati ya %2$d</string>
+   <string name="record_done">Imekamilika. Faili zilizohifadhiwa: %1$d</string>
+   <string name="record_stopped">Imesimamishwa. Faili zilizohifadhiwa: %1$d</string>
+   <string name="record_keep_open">Acha dirisha hili wazi hadi kurekodi kukamilike.</string>
    <string name="text_is_too_long">Maandishi ni marefu sana</string>
    <string name="settings">Mipangilio</string>
    <string name="play_pause">Cheza / pumzika</string>

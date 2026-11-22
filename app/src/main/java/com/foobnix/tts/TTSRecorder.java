@@ -5,7 +5,6 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -60,13 +59,39 @@ public final class TTSRecorder {
     private TTSRecorder() {
     }
 
-    /** Records the 1-based pages from..to; info hears the progress, and the word success at the end. */
-    public static void record(final DocumentController controller, final ResultResponse<String> info, final int from,
+    /** What a recording tells its window, on the recording's own thread. */
+    public interface Listener {
+        /** The engine and the book are being made ready. */
+        void onPreparing();
+
+        /** The 1-based page being recorded, of the pages first..last. */
+        void onPage(int page, int first, int last);
+
+        /** Ended: all done, or stopped; saved is the files written. */
+        void onFinished(int saved, boolean stopped);
+
+        void onFailed(String message);
+    }
+
+    /** The folder a book's recordings go to. */
+    public static File folder(String bookName) {
+        return new File(BookCSS.get().ttsSpeakPath, "TTS_" + bookName);
+    }
+
+    /** The recordings of a book already in its folder. */
+    public static File[] recordings(String bookName) {
+        final File[] files = folder(bookName).listFiles(f -> f.getName().endsWith(TTSEngine.MP3)
+                || f.getName().endsWith(TTSEngine.WAV));
+        return files == null ? new File[0] : files;
+    }
+
+    /** Records the 1-based pages from..to, while {@link TempHolder#isRecordTTS} stays set. */
+    public static void record(final DocumentController controller, final Listener listener, final int from,
                               final int to) {
         final String path = controller.getCurrentBook().getPath();
         final String bookName = controller.getCurrentBook().getName();
-        final String success = controller.getString(R.string.success);
         final String fail = controller.getString(R.string.msg_unexpected_error);
+        final String noFolder = controller.getString(R.string.file_not_found);
         final int width = AppSP.get().lastBookWidth > 0 ? AppSP.get().lastBookWidth : controller.getBookWidth();
         final int height = AppSP.get().lastBookHeight > 0 ? AppSP.get().lastBookHeight : controller.getBookHeight();
         // reading aloud and recording share the one engine and its listener
@@ -75,18 +100,18 @@ public final class TTSRecorder {
         executor.execute(() -> {
             CodecDocument own = null;
             try {
-                final File folder = new File(BookCSS.get().ttsSpeakPath, "TTS_" + bookName);
+                listener.onPreparing();
+                final File folder = folder(bookName);
                 folder.mkdirs();
                 if (!folder.isDirectory()) {
-                    info.onResultRecive(controller.getString(R.string.file_not_found) + " " + folder.getPath());
+                    listener.onFailed(noFolder + " " + folder.getPath());
                     return;
                 }
                 final TextToSpeech tts = engine();
                 if (tts == null) {
-                    info.onResultRecive(fail);
+                    listener.onFailed(fail);
                     return;
                 }
-                info.onResultRecive("…");
                 CodecDocument dc = FoliateDocument.current();
                 if (dc == null) {
                     own = TempHolder.get().loadingCancelled.ignoredWhile(() -> {
@@ -99,24 +124,27 @@ public final class TTSRecorder {
                     dc = own;
                 }
                 if (dc == null) {
-                    info.onResultRecive(fail);
+                    listener.onFailed(fail);
                     return;
                 }
                 final int last = Math.min(to, dc.getPageCount());
                 final DecimalFormat df = new DecimalFormat("0000");
+                int saved = 0;
                 for (int page = from - 1; page < last && TempHolder.isRecordTTS; page++) {
-                    info.onResultRecive((page + 1) + " / " + last);
+                    listener.onPage(page + 1, from, last);
                     final String text = pageText(dc, page);
                     if (TxtUtils.isEmpty(text)) {
                         continue;
                     }
                     final String name = "page-" + df.format(page + 1);
-                    recordPage(tts, text, folder, name, new File(folder, name + TTSEngine.MP3));
+                    if (recordPage(tts, text, folder, name, new File(folder, name + TTSEngine.MP3))) {
+                        saved++;
+                    }
                 }
-                info.onResultRecive(success);
+                listener.onFinished(saved, !TempHolder.isRecordTTS);
             } catch (Throwable e) {
                 LOG.e(e);
-                info.onResultRecive(fail);
+                listener.onFailed(fail);
             } finally {
                 if (own != null) {
                     own.recycle();
@@ -168,7 +196,7 @@ public final class TTSRecorder {
     }
 
     /** Speaks a page part by part into WAV files, then joins them into the page's file. */
-    private static void recordPage(TextToSpeech tts, String text, File folder, String name, File out)
+    private static boolean recordPage(TextToSpeech tts, String text, File folder, String name, File out)
             throws Exception {
         final List<String> parts = split(text, Math.max(500, TextToSpeech.getMaxSpeechInputLength() - 100));
         final List<File> wavs = new ArrayList<File>();
@@ -180,11 +208,12 @@ public final class TTSRecorder {
                 }
             }
             if (wavs.isEmpty() || !TempHolder.isRecordTTS) {
-                return;
+                return false;
             }
             out.delete();
             toMp3(wavs, out);
             LOG.d(TAG, "page", out.getName(), out.length());
+            return true;
         } finally {
             for (File wav : wavs) {
                 wav.delete();

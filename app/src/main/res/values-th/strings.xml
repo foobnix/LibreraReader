@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">ลบความคืบหน้าการอ่าน</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">ละเว้นโฟลเดอร์ที่มีไฟล์. สื่อ</string>
    <string name="speak_into_file_wav">บันทึกหนังสือเป็นเสียง (MP3)</string>
+   <string name="record_whole_book">ทั้งเล่ม</string>
+   <string name="record_from_this_page">ตั้งแต่หน้านี้</string>
+   <string name="record_pages_hint">แต่ละหน้าจะบันทึกเป็นไฟล์ MP3 แยกกัน</string>
+   <string name="record_files_count">ไฟล์บันทึกในโฟลเดอร์นี้: %1$d</string>
+   <string name="record_delete_confirm">ลบไฟล์บันทึกทั้งหมดของหนังสือเล่มนี้หรือไม่? จะกู้คืนไม่ได้</string>
+   <string name="record_progress">หน้า %1$d จาก %2$d</string>
+   <string name="record_done">เสร็จแล้ว บันทึกไฟล์แล้ว: %1$d</string>
+   <string name="record_stopped">หยุดแล้ว บันทึกไฟล์แล้ว: %1$d</string>
+   <string name="record_keep_open">เปิดหน้าต่างนี้ไว้จนกว่าการบันทึกจะเสร็จ</string>
    <string name="text_is_too_long">ข้อความยาวเกินไป</string>
    <string name="settings">การตั้งค่า</string>
    <string name="play_pause">เล่น / หยุดชั่วคราว</string>

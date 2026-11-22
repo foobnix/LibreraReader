@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">Lesefortschritt löschen</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ordner mit .nomedia-Dateien ignorieren</string>
    <string name="speak_into_file_wav">Buch per Sprachausgabe aufnehmen (MP3)</string>
+   <string name="record_whole_book">Ganzes Buch</string>
+   <string name="record_from_this_page">Ab dieser Seite</string>
+   <string name="record_pages_hint">Jede Seite wird als eigene MP3-Datei gespeichert.</string>
+   <string name="record_files_count">Aufnahmen in diesem Ordner: %1$d</string>
+   <string name="record_delete_confirm">Alle Aufnahmen dieses Buches löschen? Sie können nicht wiederhergestellt werden.</string>
+   <string name="record_progress">Seite %1$d von %2$d</string>
+   <string name="record_done">Fertig. Gespeicherte Dateien: %1$d</string>
+   <string name="record_stopped">Angehalten. Gespeicherte Dateien: %1$d</string>
+   <string name="record_keep_open">Lassen Sie dieses Fenster geöffnet, bis die Aufnahme beendet ist.</string>
    <string name="text_is_too_long">Maximale Zeichenanzahl überschritten</string>
    <string name="settings">Einstellungen</string>
    <string name="play_pause">Play/Pause</string>

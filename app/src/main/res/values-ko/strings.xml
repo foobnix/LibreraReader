@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">읽기 진행률 삭제</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">.nomedia 파일이있는 폴더 무시</string>
    <string name="speak_into_file_wav">책을 음성으로 녹음 (MP3)</string>
+   <string name="record_whole_book">책 전체</string>
+   <string name="record_from_this_page">이 페이지부터</string>
+   <string name="record_pages_hint">각 페이지는 별도의 MP3 파일로 저장됩니다.</string>
+   <string name="record_files_count">이 폴더의 녹음: %1$d</string>
+   <string name="record_delete_confirm">이 책의 녹음을 모두 삭제할까요? 복구할 수 없습니다.</string>
+   <string name="record_progress">%2$d페이지 중 %1$d페이지</string>
+   <string name="record_done">완료. 저장된 파일: %1$d</string>
+   <string name="record_stopped">중지됨. 저장된 파일: %1$d</string>
+   <string name="record_keep_open">녹음이 끝날 때까지 이 창을 열어 두세요.</string>
    <string name="text_is_too_long">텍스트가 너무 깁니다</string>
    <string name="settings">설정</string>
    <string name="play_pause">재생 / 일시 중지</string>

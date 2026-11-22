@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">முன்னேற்றத்தை மீட்டமை</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">.Nomedia கோப்புகளுடன் கோப்புறைகளை புறக்கணிக்கவும்</string>
    <string name="speak_into_file_wav">புத்தகத்தை குரலில் பதிவு செய் (MP3)</string>
+   <string name="record_whole_book">முழு புத்தகம்</string>
+   <string name="record_from_this_page">இந்தப் பக்கத்திலிருந்து</string>
+   <string name="record_pages_hint">ஒவ்வொரு பக்கமும் தனி MP3 கோப்பாகச் சேமிக்கப்படும்.</string>
+   <string name="record_files_count">இந்தக் கோப்புறையில் பதிவுகள்: %1$d</string>
+   <string name="record_delete_confirm">இந்தப் புத்தகத்தின் எல்லாப் பதிவுகளையும் நீக்கவா? அவற்றை மீட்டெடுக்க முடியாது.</string>
+   <string name="record_progress">பக்கம் %1$d / %2$d</string>
+   <string name="record_done">முடிந்தது. சேமிக்கப்பட்ட கோப்புகள்: %1$d</string>
+   <string name="record_stopped">நிறுத்தப்பட்டது. சேமிக்கப்பட்ட கோப்புகள்: %1$d</string>
+   <string name="record_keep_open">பதிவு முடியும் வரை இந்தச் சாளரத்தைத் திறந்தே வைத்திருங்கள்.</string>
    <string name="text_is_too_long">எழுத்து வரம்பு மீறப்பட்டுள்ளது</string>
    <string name="settings">அமைப்புகள்</string>
    <string name="play_pause">தொடங்கு / இடைநிறுத்தம்</string>

@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">പുരോഗതി പുന reset സജ്ജമാക്കുക</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">.nomedia ഫയലുകൾ ഉള്ള ഫോൾഡറുകൾ അവഗണിക്കുക</string>
    <string name="speak_into_file_wav">പുസ്തകം ശബ്ദത്തിൽ റെക്കോർഡ് ചെയ്യുക (MP3)</string>
+   <string name="record_whole_book">മുഴുവൻ പുസ്തകം</string>
+   <string name="record_from_this_page">ഈ പേജിൽ നിന്ന്</string>
+   <string name="record_pages_hint">ഓരോ പേജും പ്രത്യേക MP3 ഫയലായി സേവ് ചെയ്യുന്നു.</string>
+   <string name="record_files_count">ഈ ഫോൾഡറിലെ റെക്കോർഡിംഗുകൾ: %1$d</string>
+   <string name="record_delete_confirm">ഈ പുസ്തകത്തിന്റെ എല്ലാ റെക്കോർഡിംഗുകളും ഇല്ലാതാക്കണോ? അവ വീണ്ടെടുക്കാനാവില്ല.</string>
+   <string name="record_progress">പേജ് %1$d / %2$d</string>
+   <string name="record_done">പൂർത്തിയായി. സേവ് ചെയ്ത ഫയലുകൾ: %1$d</string>
+   <string name="record_stopped">നിർത്തി. സേവ് ചെയ്ത ഫയലുകൾ: %1$d</string>
+   <string name="record_keep_open">റെക്കോർഡിംഗ് പൂർത്തിയാകുന്നത് വരെ ഈ വിൻഡോ തുറന്നിടുക.</string>
    <string name="text_is_too_long">പ്രതീക പരിധി കവിഞ്ഞു</string>
    <string name="settings">ക്രമീകരണങ്ങൾ</string>
    <string name="play_pause">പ്ലേ / താൽക്കാലികമായി നിർത്തുക</string>

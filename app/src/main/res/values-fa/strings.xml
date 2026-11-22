@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">پیشرفت خواندن را حذف کنید</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">پوشه ها را با پرونده های .nomedia نادیده بگیرید</string>
    <string name="speak_into_file_wav">ضبط کتاب با صدا (MP3)</string>
+   <string name="record_whole_book">کل کتاب</string>
+   <string name="record_from_this_page">از این صفحه</string>
+   <string name="record_pages_hint">هر صفحه در یک فایل MP3 جداگانه ذخیره می‌شود.</string>
+   <string name="record_files_count">ضبط‌های این پوشه: %1$d</string>
+   <string name="record_delete_confirm">همه ضبط‌های این کتاب حذف شوند؟ قابل بازیابی نیستند.</string>
+   <string name="record_progress">صفحه %1$d از %2$d</string>
+   <string name="record_done">انجام شد. فایل‌های ذخیره‌شده: %1$d</string>
+   <string name="record_stopped">متوقف شد. فایل‌های ذخیره‌شده: %1$d</string>
+   <string name="record_keep_open">تا پایان ضبط این پنجره را باز نگه دارید.</string>
    <string name="text_is_too_long">متن خیلی طولانی است</string>
    <string name="settings">تنظیمات</string>
    <string name="play_pause">پخش توقف</string>

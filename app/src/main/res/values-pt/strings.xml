@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">Excluir o progresso da leitura</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ignorar pastas com arquivos .nomedia</string>
    <string name="speak_into_file_wav">Gravar o livro por voz (MP3)</string>
+   <string name="record_whole_book">Livro inteiro</string>
+   <string name="record_from_this_page">A partir desta página</string>
+   <string name="record_pages_hint">Cada página é salva como um arquivo MP3 separado.</string>
+   <string name="record_files_count">Gravações nesta pasta: %1$d</string>
+   <string name="record_delete_confirm">Excluir todas as gravações deste livro? Elas não poderão ser recuperadas.</string>
+   <string name="record_progress">Página %1$d de %2$d</string>
+   <string name="record_done">Pronto. Arquivos salvos: %1$d</string>
+   <string name="record_stopped">Interrompido. Arquivos salvos: %1$d</string>
+   <string name="record_keep_open">Mantenha esta janela aberta até a gravação terminar.</string>
    <string name="text_is_too_long">O texto é muito longo</string>
    <string name="settings">Configurações</string>
    <string name="play_pause">Reproduzir</string>

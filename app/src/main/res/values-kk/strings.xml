@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">Оқу үлгерімін жою</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">.nomedia файлдары бар қалталарды елемеңіз</string>
    <string name="speak_into_file_wav">Кітапты дауыспен жазу (MP3)</string>
+   <string name="record_whole_book">Бүкіл кітап</string>
+   <string name="record_from_this_page">Осы беттен</string>
+   <string name="record_pages_hint">Әр бет жеке MP3 файлына сақталады.</string>
+   <string name="record_files_count">Осы қалтадағы жазбалар: %1$d</string>
+   <string name="record_delete_confirm">Осы кітаптың барлық жазбаларын жою керек пе? Оларды қалпына келтіру мүмкін емес.</string>
+   <string name="record_progress">%2$d беттің %1$d-беті</string>
+   <string name="record_done">Дайын. Сақталған файлдар: %1$d</string>
+   <string name="record_stopped">Тоқтатылды. Сақталған файлдар: %1$d</string>
+   <string name="record_keep_open">Жазба аяқталғанша осы терезені жаппаңыз.</string>
    <string name="text_is_too_long">Мәтін тым ұзын</string>
    <string name="settings">Параметрлерін таңдаңыз</string>
    <string name="play_pause">Ойнату / тоқтата тұру</string>

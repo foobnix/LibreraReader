@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">読書の進捗状況を削除する</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">.nomediaファイルのあるフォルダを無視する</string>
    <string name="speak_into_file_wav">本を音声で録音（MP3）</string>
+   <string name="record_whole_book">本全体</string>
+   <string name="record_from_this_page">このページから</string>
+   <string name="record_pages_hint">各ページは個別のMP3ファイルとして保存されます。</string>
+   <string name="record_files_count">このフォルダーの録音: %1$d</string>
+   <string name="record_delete_confirm">この本の録音をすべて削除しますか？元に戻せません。</string>
+   <string name="record_progress">%1$d / %2$d ページ</string>
+   <string name="record_done">完了。保存したファイル: %1$d</string>
+   <string name="record_stopped">停止しました。保存したファイル: %1$d</string>
+   <string name="record_keep_open">録音が終わるまでこのウィンドウを開いたままにしてください。</string>
    <string name="text_is_too_long">テキストが長すぎます</string>
    <string name="settings">設定</string>
    <string name="play_pause">プレイ/一時停止</string>

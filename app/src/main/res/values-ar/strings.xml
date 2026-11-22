@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">حذف تقدم القراءة</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">تجاهل المجلدات مع ملفات .nomedia</string>
    <string name="speak_into_file_wav">تسجيل الكتاب بالصوت (MP3)</string>
+   <string name="record_whole_book">الكتاب كاملاً</string>
+   <string name="record_from_this_page">من هذه الصفحة</string>
+   <string name="record_pages_hint">تُحفظ كل صفحة في ملف MP3 منفصل.</string>
+   <string name="record_files_count">التسجيلات في هذا المجلد: %1$d</string>
+   <string name="record_delete_confirm">حذف جميع تسجيلات هذا الكتاب؟ لا يمكن استعادتها.</string>
+   <string name="record_progress">الصفحة %1$d من %2$d</string>
+   <string name="record_done">تم. الملفات المحفوظة: %1$d</string>
+   <string name="record_stopped">توقف. الملفات المحفوظة: %1$d</string>
+   <string name="record_keep_open">أبقِ هذه النافذة مفتوحة حتى ينتهي التسجيل.</string>
    <string name="text_is_too_long">النص طويل جدًا</string>
    <string name="settings">الإعدادات</string>
    <string name="play_pause">تشغيل / إيقاف مؤقت</string>

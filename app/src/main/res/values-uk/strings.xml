@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">Видалити хід читання</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">Ігнорувати теки з файлами .nomedia</string>
    <string name="speak_into_file_wav">Записати книгу голосом (MP3)</string>
+   <string name="record_whole_book">Уся книга</string>
+   <string name="record_from_this_page">З цієї сторінки</string>
+   <string name="record_pages_hint">Кожна сторінка зберігається в окремий файл MP3.</string>
+   <string name="record_files_count">Записів у цій папці: %1$d</string>
+   <string name="record_delete_confirm">Видалити всі записи цієї книги? Їх не можна буде відновити.</string>
+   <string name="record_progress">Сторінка %1$d з %2$d</string>
+   <string name="record_done">Готово. Збережено файлів: %1$d</string>
+   <string name="record_stopped">Зупинено. Збережено файлів: %1$d</string>
+   <string name="record_keep_open">Не закривайте це вікно, поки триває запис.</string>
    <string name="text_is_too_long">Текст занадто довгий</string>
    <string name="settings">Налаштування</string>
    <string name="play_pause">Відтворення / пауза</string>

@@ -609,6 +609,15 @@
    <string name="delete_reading_progress">Okuma işlemini sil</string>
    <string name="ignore_folder_scan_if_nomedia_file_exists">.nomedia dosyalarıyla klasörleri yoksay</string>
    <string name="speak_into_file_wav">Kitabı sesle kaydet (MP3)</string>
+   <string name="record_whole_book">Tüm kitap</string>
+   <string name="record_from_this_page">Bu sayfadan itibaren</string>
+   <string name="record_pages_hint">Her sayfa ayrı bir MP3 dosyası olarak kaydedilir.</string>
+   <string name="record_files_count">Bu klasördeki kayıtlar: %1$d</string>
+   <string name="record_delete_confirm">Bu kitabın tüm kayıtları silinsin mi? Geri alınamaz.</string>
+   <string name="record_progress">Sayfa %1$d / %2$d</string>
+   <string name="record_done">Tamamlandı. Kaydedilen dosyalar: %1$d</string>
+   <string name="record_stopped">Durduruldu. Kaydedilen dosyalar: %1$d</string>
+   <string name="record_keep_open">Kayıt bitene kadar bu pencereyi açık tutun.</string>
    <string name="text_is_too_long">Metin çok uzun</string>
    <string name="settings">Ayarlar</string>
    <string name="play_pause">Oynat/durdur</string>
