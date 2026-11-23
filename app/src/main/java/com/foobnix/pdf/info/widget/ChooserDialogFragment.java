@@ -79,10 +79,18 @@ public class ChooserDialogFragment extends DialogFragment {
     }
 
     public static ChooserDialogFragment chooseFileorFolder(FragmentActivity a, String text) {
+        return chooseFileorFolder(a, text, null);
+    }
+
+    /** Opens in initPath when it is given, else where the chooser was last. */
+    public static ChooserDialogFragment chooseFileorFolder(FragmentActivity a, String text, String initPath) {
         ChooserDialogFragment ch = new ChooserDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(BrowseFragment2.EXTRA_TYPE, BrowseFragment2.TYPE_SELECT_FILE_OR_FOLDER);
         bundle.putString(BrowseFragment2.EXTRA_TEXT, text);
+        if (initPath != null) {
+            bundle.putString(BrowseFragment2.EXTRA_INIT_PATH, initPath);
+        }
         ch.setArguments(bundle);
         ch.show(a.getSupportFragmentManager(), "da");
         return ch;

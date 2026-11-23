@@ -47,10 +47,15 @@ public class MultiTouchGestureDetector implements IGestureDetector {
 
             if (twoFingerPress && ev.getPointerCount() >= 2) {
                 final PointF newCenter = calculateCenter(ev);
-                // First time movement distance should be more than 10, next - without limitation
-                if (distance(newCenter, multiCenter) > 10.0f || twoFingerMove) {
-                    final float zoomDistance = getTwoFingerDistance(ev);
-                    listener.onTwoFingerPinch(calculateCenterEvent(ev), twoFingerDistance, zoomDistance);
+                final float zoomDistance = getTwoFingerDistance(ev);
+                // Starts once the fingers move 10 px together or apart, then follows every move.
+                // Moving together only, a pinch that kept its middle still never started, and
+                // then jumped by all it had spread when the middle moved at last.
+                if (twoFingerMove || distance(newCenter, multiCenter) > 10.0f || Math.abs(zoomDistance - twoFingerDistance) > 10.0f) {
+                    final MotionEvent center = calculateCenterEvent(ev);
+                    listener.onTwoFingerPinch(center, twoFingerDistance, zoomDistance);
+                    center.recycle(); // one per move
+
                     twoFingerDistance = zoomDistance;
                     twoFingerMove = true;
                 }

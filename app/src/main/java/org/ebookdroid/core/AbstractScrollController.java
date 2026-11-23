@@ -99,15 +99,41 @@ public abstract class AbstractScrollController extends AbstractViewController {
     @Override
     public final void onScrollChanged(final int dX, final int dY) {
         if (inZoom.get()) {
+            // Fingers that pinch also move the page. Draw it where it is now: the last zoom
+            // step's view state still holds the old scroll, and a two-finger pan stuck to it
+            // until the next step. Only the visible pages, no decoding: that waits for the
+            // zoom to be committed.
+            getView().redrawView(visibleState());
             return;
         }
 
         EventPool.newEventScroll(this, mode == DocumentViewMode.VERTICALL_SCROLL ? dY : dX).process();
     }
 
+    /** The view as it is now, with the pages it shows. */
+    private ViewState visibleState() {
+        final ViewState initial = new ViewState(this);
+        if (model == null) {
+            return initial;
+        }
+        int first = -1;
+        int last = -1;
+        for (final Page page : model.getPages()) {
+            if (isPageVisible(page, initial)) {
+                if (first == -1) {
+                    first = page.index.viewIndex;
+                }
+                last = page.index.viewIndex;
+            } else if (first != -1) {
+                break;
+            }
+        }
+        return new ViewState(initial, first, last);
+    }
+
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.core.AbstractViewController#isPageVisible(org.ebookdroid.core.Page,
      *      org.ebookdroid.core.ViewState)
      */

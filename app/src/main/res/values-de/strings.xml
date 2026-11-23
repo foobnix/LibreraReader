@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">Textauswahl ist eingeschaltet</string>
    <string name="text_highlight_mode_is_disable">Textauswahl ist ausgeschaltet</string>
    <string name="application_error_please_send_this_report_by_emial">Anwendungsfehler, bitte diesen Bericht per E-Mail senden</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Lesen unterbrechen, wenn ein Anruf oder andere Geräusche erkannt werden</string>
    <string name="add_resource">Speicher hinzufügen</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Weitere Schriftarten herunterladen (10 MB)?</string>
    <string name="hyphenation_language">Sprache der Silbentrennung</string>

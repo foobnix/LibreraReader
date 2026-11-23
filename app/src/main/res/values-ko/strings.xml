@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">텍스트 선택 모드 사용</string>
    <string name="text_highlight_mode_is_disable">텍스트 선택 모드 중지</string>
    <string name="application_error_please_send_this_report_by_emial">응용 프로그램 오류입니다. 오류를 수정할수 있도록 리포트를 이메일로 전달해주세요.</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">전화, 메시지 등 수신시 독서 중단</string>
    <string name="add_resource">저장소 추가</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">도서 글꼴 (10MB)을 더 다운로드 하시겠습니까?</string>
    <string name="hyphenation_language">언어</string>

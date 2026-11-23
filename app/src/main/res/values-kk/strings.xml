@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">Мәтінді таңдау қосылды</string>
    <string name="text_highlight_mode_is_disable">Мәтінді таңдау өшірілген</string>
    <string name="application_error_please_send_this_report_by_emial">Бірдеңе дұрыс болмады! Қате жіберіп, біз бұл қатені түзете аламыз.</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Кіріс қоңыраулар, хабарлар және т.б.</string>
    <string name="add_resource">Кітапшаны қосыңыз</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Қосымша қаріптерді жүктеу (10MB)?</string>
    <string name="hyphenation_language">Тіл</string>

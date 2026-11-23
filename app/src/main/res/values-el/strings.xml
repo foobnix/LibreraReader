@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">Η επιλογή κειμένου είναι ενεργοποιημένη</string>
    <string name="text_highlight_mode_is_disable">Η επιλογή κειμένου είναι απενεργοποιημένη</string>
    <string name="application_error_please_send_this_report_by_emial">Κάτι πήγε στραβά! παρακαλώ στείλτε με email αυτήν την αναφορά για να διορθώσουμε το σφάλμα το συντομότερο δυνατόν.</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Παύση στις εισερχόμενες κλήσεις, μηνύματα κ.λπ.</string>
    <string name="add_resource">Νέο αποθηκευτικό χώρο</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Λήψη επιπλέον γραμματοσειρών (10mb);</string>
    <string name="hyphenation_language">Γλώσσα</string>

@@ -385,6 +385,11 @@ public class DecodeServiceBase implements DecodeService {
                 BitmapManager.release(bitmap);
                 return;
             }
+            // Sent to the GPU now, in the background, and not by the frame that first draws it:
+            // that frame waited for a tile of 3-14 MB to upload, a stall in a scroll or a zoom
+            if (bitmap != null && bitmap.getBitmap() != null) {
+                bitmap.getBitmap().prepareToDraw();
+            }
             // TempHolder.lock.lock();
             if (task.node.page.links == null) {
                 task.node.page.links = vuPage.getPageLinks();

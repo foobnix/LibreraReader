@@ -26,6 +26,8 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -48,6 +50,8 @@ public final class StreamDialog {
     private final Adapter adapter = new Adapter();
     private String filter = "";
     private AlertDialog dialog;
+    /** The station in use, above the list and not scrolled with it. */
+    private TextView current;
 
     private StreamDialog(Context context, OnPick onPick) {
         this.context = context;
@@ -81,13 +85,22 @@ public final class StreamDialog {
         layout.addView(search, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                                              ViewGroup.LayoutParams.WRAP_CONTENT));
 
+        current = stationView();
+        current.setOnClickListener(v -> {
+            final StreamPlaylist.Entry entry = currentEntry();
+            if (entry != null) {
+                choose(entry);
+            }
+        });
+        layout.addView(current, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                                              ViewGroup.LayoutParams.WRAP_CONTENT));
+
         final ListView list = new ListView(context);
         list.setAdapter(adapter);
         list.setOnItemClickListener((parent, view, position, id) -> {
             final Object row = rows.get(position);
             if (row instanceof StreamPlaylist.Entry) {
-                onPick.onPick((StreamPlaylist.Entry) row);
-                adapter.notifyDataSetChanged();
+                choose((StreamPlaylist.Entry) row);
             }
         });
         layout.addView(list, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Dips.dpToPx(360)));
@@ -118,7 +131,27 @@ public final class StreamDialog {
         }, "@T streams").start();
     }
 
+    /** The station in use pauses and plays on; any other is played. */
+    private void choose(StreamPlaylist.Entry entry) {
+        if (entry.url.equals(BookCSS.get().mp3BookPathGet()) && TTSEngine.get().isMp3PlayPause()) {
+            EventBus.getDefault().post(new TtsStatus());
+            refresh();
+            return;
+        }
+        onPick.onPick(entry);
+        // kept at once: the station of this book and the names of the stations played lately
+        AppProfile.save(context);
+        refresh();
+    }
+
     private void refresh() {
+        final StreamPlaylist.Entry station = currentEntry();
+        if (current != null) {
+            current.setVisibility(station == null ? View.GONE : View.VISIBLE);
+            if (station != null) {
+                showStation(current, station);
+            }
+        }
         rows.clear();
         for (String source : StreamPlaylist.sources()) {
             rows.add(source);
@@ -126,14 +159,50 @@ public final class StreamDialog {
                 continue;
             }
             for (StreamPlaylist.Entry entry : StreamPlaylist.entries(source)) {
-                // by its name or its group: "jazz" finds the Jazz & Blues stations, too
-                if (filter.length() == 0 || entry.title.toLowerCase(Locale.getDefault()).contains(filter)
-                        || entry.group != null && entry.group.toLowerCase(Locale.getDefault()).contains(filter)) {
+                if (matches(entry)) {
                     rows.add(entry);
                 }
             }
         }
         adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * The station above the list: the one playing, else the one chosen last for this book, so it
+     * is at hand without looking for it among hundreds. Null when there is none.
+     */
+    private StreamPlaylist.Entry currentEntry() {
+        String station = BookCSS.get().mp3BookPathGet();
+        if (!StreamPlaylist.isStream(station)) {
+            station = BookCSS.get().radioGet();
+        }
+        if (!StreamPlaylist.isStream(station)) {
+            return null;
+        }
+        return new StreamPlaylist.Entry(StreamPlaylist.titleOf(station), null, station, StreamPlaylist.RECENT);
+    }
+
+    /** One line for a station, in the list or above it. */
+    private TextView stationView() {
+        final TextView text = new TextView(context);
+        text.setSingleLine();
+        text.setEllipsize(TextUtils.TruncateAt.END);
+        text.setPadding(Dips.DP_10, Dips.DP_8, 0, Dips.DP_8);
+        text.setTextSize(16);
+        return text;
+    }
+
+    /** The station in use: ▶ while it plays, ❚❚ while paused, and bold. */
+    private void showStation(TextView text, StreamPlaylist.Entry entry) {
+        final boolean inUse = entry.url.equals(BookCSS.get().mp3BookPathGet());
+        text.setText((inUse ? (TTSEngine.get().isPlaying() ? "▶ " : "❚❚ ") : "") + entry.title);
+        text.setTypeface(inUse ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
+    }
+
+    /** By its name or its group: "jazz" finds the Jazz & Blues stations, too. */
+    private boolean matches(StreamPlaylist.Entry entry) {
+        return filter.length() == 0 || entry.title.toLowerCase(Locale.getDefault()).contains(filter)
+                || entry.group != null && entry.group.toLowerCase(Locale.getDefault()).contains(filter);
     }
 
     private void askAddress() {
@@ -228,27 +297,18 @@ public final class StreamDialog {
                 line.addView(delete, new LinearLayout.LayoutParams(Dips.dpToPx(36), Dips.dpToPx(36)));
             }
             final TextView name = (TextView) line.getChildAt(0);
+            final View delete = line.getChildAt(1);
             final int count = StreamPlaylist.isLoaded(source) ? StreamPlaylist.entries(source).size() : -1;
             name.setText(StreamPlaylist.name(source) + (count < 0 ? "  …" : "  (" + count + ")"));
             // The built-in list stays: no cross on it
-            final View delete = line.getChildAt(1);
             delete.setVisibility(StreamPlaylist.isBuiltIn(source) ? View.INVISIBLE : View.VISIBLE);
             delete.setOnClickListener(v -> removeSource(source));
             return line;
         }
 
         private View entry(StreamPlaylist.Entry entry, View convertView) {
-            TextView text = (TextView) convertView;
-            if (text == null) {
-                text = new TextView(context);
-                text.setSingleLine();
-                text.setEllipsize(TextUtils.TruncateAt.END);
-                text.setPadding(Dips.DP_10, Dips.DP_8, 0, Dips.DP_8);
-                text.setTextSize(16);
-            }
-            final boolean playing = entry.url.equals(BookCSS.get().mp3BookPathGet());
-            text.setText((playing ? "▶ " : "") + entry.title);
-            text.setTypeface(playing ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
+            final TextView text = convertView != null ? (TextView) convertView : stationView();
+            showStation(text, entry);
             return text;
         }
     }

@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">Tryb zaznaczania tekstu jest włączony</string>
    <string name="text_highlight_mode_is_disable">Tryb zaznaczania tekstu jest wyłączony</string>
    <string name="application_error_please_send_this_report_by_emial">Coś poszło nie tak! Prześlij ten raportu pocztą e-mail, abyśmy mogli jak najszybciej naprawić błąd.</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Wstrzymaj połączenia przychodzące, wiadomości itp.</string>
    <string name="add_resource">Dodaj zasób</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Pobrać dodatkowe czcionki (10 MB)?</string>
    <string name="hyphenation_language">Język</string>

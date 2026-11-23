@@ -20,6 +20,12 @@ public interface IView {
 
     void invalidateScroll(final float newZoom, final float oldZoom);
 
+    /**
+     * The point on the screen a zoom keeps in place, the middle of the fingers that pinch;
+     * NaN for the middle of the view.
+     */
+    void setZoomFocus(float x, float y);
+
     void startPageScroll(final int dx, final int dy);
 
     void startFling(final float vX, final float vY, final Rect limits);

@@ -23,6 +23,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.tts.StreamPlaylist;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
@@ -189,6 +190,12 @@ public class BookCSS {
     }
     public float appFontScale = 1.0f;
     public String mp3BookPathJson;
+    /** The music file chosen for each book, by its path; kept when the player stops, apart from the radio. */
+    @IgnoreHashCode
+    public String mp3FileJson;
+    /** The radio station chosen for each book, by its path; kept when the player stops, apart from the music file. */
+    @IgnoreHashCode
+    public String radioJson;
     public String dirLastPath;
     public String pathSAF = "";
     public boolean isSyncWifiOnly;
@@ -288,6 +295,39 @@ public class BookCSS {
 
         trackPathCache = track;
         lastBookPathCache = AppSP.get().lastBookPath;
+
+        // The track in use is cleared when the player stops; what was chosen is kept, the music
+        // file and the station each on its own, so choosing one does not lose the other.
+        if (TxtUtils.isNotEmpty(track)) {
+            if (StreamPlaylist.isStream(track)) {
+                radioJson = putForBook(radioJson, track);
+            } else {
+                mp3FileJson = putForBook(mp3FileJson, track);
+            }
+        }
+    }
+
+    /** The music file chosen last for the book open, or "". */
+    public String mp3FileGet() {
+        return getForBook(mp3FileJson);
+    }
+
+    /** The radio station chosen last for the book open, or "". */
+    public String radioGet() {
+        return getForBook(radioJson);
+    }
+
+    private static String putForBook(String json, String value) {
+        final LinkedJSONObject obj = json == null ? new LinkedJSONObject() : new LinkedJSONObject(json);
+        obj.put(AppSP.get().lastBookPath, value);
+        return obj.toString();
+    }
+
+    private static String getForBook(String json) {
+        if (json == null) {
+            return "";
+        }
+        return new LinkedJSONObject(json).optString(AppSP.get().lastBookPath);
     }
 
     public String mp3BookPathGet() {

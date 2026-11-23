@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">Modo de resaltado de texto habilitado</string>
    <string name="text_highlight_mode_is_disable">Modo de resaltado de texto deshabilitado</string>
    <string name="application_error_please_send_this_report_by_emial">Error. Por favor, envíe este informe por email</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pausar lectura en llamadas entrantes, mensajes, etc-</string>
    <string name="add_resource">Agregar recurso</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">¿Desea descargar más fuentes (10 MB)?</string>
    <string name="hyphenation_language">Idioma</string>

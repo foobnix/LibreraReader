@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">உரை தேர்வு இயக்கப்பட்டது</string>
    <string name="text_highlight_mode_is_disable">உரை தேர்வு முடக்கப்பட்டுள்ளது</string>
    <string name="application_error_please_send_this_report_by_emial">ஏதோ தவறு நடந்துவிட்டது!  தயவுசெய்து இந்த அறிக்கையை மின்னஞ்சல் செய்வதன் மூலம் பிழையை விரைவில் சரிசெய்யலாம்.</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">உள்வரும் அழைப்புகள், செய்திகள் போன்றவற்றில் இடைநிறுத்தம் செய்யுங்கள்.</string>
    <string name="add_resource">புதிய சேமிப்பு</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">கூடுதல் எழுத்துருக்களை (10MB) பதிவிறக்கவா?</string>
    <string name="hyphenation_language">மொழி</string>

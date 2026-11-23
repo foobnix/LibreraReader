@@ -38,6 +38,10 @@ public class ViewStub implements IView {
     }
 
     @Override
+    public void setZoomFocus(final float x, final float y) {
+    }
+
+    @Override
     public void startPageScroll(final int dx, final int dy) {
     }
 

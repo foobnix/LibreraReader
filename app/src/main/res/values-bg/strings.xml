@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">Избор на текст е активиран</string>
    <string name="text_highlight_mode_is_disable">Изборът на текст е деактивиран</string>
    <string name="application_error_please_send_this_report_by_emial">Нещо се обърка! любезно изпратете по имейл този доклад, за да можем да поправим грешката в най-скоро време</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Пауза при входящи повиквания, съобщения и т.н.</string>
    <string name="add_resource">Ново съхранение</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Изтегляне на допълнителни шрифтове (10mb)?</string>
    <string name="hyphenation_language">Език</string>

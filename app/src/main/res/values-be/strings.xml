@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">Выбар тэксту ўключаны</string>
    <string name="text_highlight_mode_is_disable">Выбар тэксту адключаны</string>
    <string name="application_error_please_send_this_report_by_emial">Нешта пайшло не так! калі ласка, адпраўце справаздачу па электроннай пошце, каб мы маглі як мага хутчэй выправіць памылку.</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Ставіць на паўзу ўваходныя званкі, паведамленні і інш.</string>
    <string name="add_resource">Дадаць сховішча</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Спампаваць дадатковыя шрыфты (10мб)?</string>
    <string name="hyphenation_language">Мове</string>

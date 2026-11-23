@@ -579,13 +579,25 @@ extern "C" jboolean Java_org_ebookdroid_droids_djvu_codec_DjvuPage_renderPage(JN
         DEBUG_WRITE("Rendering status 2 ... ");
     }
 
-    // Taken only once decoding is done: an error thrown while waiting makes JNI calls, which
-    // are not allowed while the array is held
-    char *pBuffer = (char *) env->GetPrimitiveArrayCritical(buffer, 0);
+    // Rendered into memory of its own and copied into the array after, in about a millisecond.
+    // Holding the array (GetPrimitiveArrayCritical) for the whole render, 20-70 ms a tile, kept
+    // the garbage collector waiting, and every thread that needed it: the reader froze tile after
+    // tile while a zoom or a scroll decoded ("JNI critical lock held for 65ms" in the log).
+    const jsize pixels = targetWidth * targetHeight;
+    jint *pBuffer = (jint *) malloc((size_t) pixels * sizeof(jint));
+    if (pBuffer == NULL)
+    {
+        ddjvu_format_release(pixelFormat);
+        return JNI_FALSE;
+    }
 
     jboolean result = ddjvu_page_render(page, (ddjvu_render_mode_t) rendermode, &pageRect, &targetRect, pixelFormat,
-        targetWidth * 4, pBuffer);
-    env->ReleasePrimitiveArrayCritical(buffer, pBuffer, 0);
+        targetWidth * 4, (char *) pBuffer);
+    if (result)
+    {
+        env->SetIntArrayRegion(buffer, 0, pixels, pBuffer);
+    }
+    free(pBuffer);
 
     ddjvu_format_release(pixelFormat);
     return result;

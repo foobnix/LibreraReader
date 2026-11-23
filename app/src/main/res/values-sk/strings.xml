@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">Zvýraznenie textu je zapnuté</string>
    <string name="text_highlight_mode_is_disable">Zvýraznenie textu je vypnuté</string>
    <string name="application_error_please_send_this_report_by_emial">Niečo sa pokazilo! Pošlite nám správu, aby sme mohli chybu čo najskôr opraviť.</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pozastaviť pri prichádzajúcom hovore, správach, atď.</string>
    <string name="add_resource">Pridať úložisko</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Stiahnuť ďalšie písma (10 MB)?</string>
    <string name="hyphenation_language">Jazyk</string>

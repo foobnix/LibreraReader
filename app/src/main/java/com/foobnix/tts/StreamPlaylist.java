@@ -286,10 +286,47 @@ public final class StreamPlaylist {
         return entries;
     }
 
-    /** Remembers the name of a station about to be played. */
+    /** The source of the station shown above every other list: the one playing, or chosen for the book. */
+    public static final String RECENT = "recent://";
+
+    /** How many names of stations played lately are kept. */
+    private static final int RECENT_MAX = 10;
+
+    /**
+     * Remembers the name of a station about to be played, among the stations played lately: a book
+     * opened again shows the name of its station, not the one played last in another book.
+     */
     public static void playing(Entry entry) {
         titles.put(entry.url, entry.title);
         AppState.get().streamTitle = entry.title;
+        final List<Entry> recent = recent();
+        for (int i = recent.size() - 1; i >= 0; i--) {
+            if (recent.get(i).url.equals(entry.url)) {
+                recent.remove(i);
+            }
+        }
+        recent.add(0, new Entry(entry.title, entry.group, entry.url, RECENT));
+        final List<String> lines = new ArrayList<String>();
+        for (int i = 0; i < recent.size() && i < RECENT_MAX; i++) {
+            lines.add(recent.get(i).title.replace('\t', ' ').replace('\n', ' ') + "\t" + recent.get(i).url);
+        }
+        AppState.get().streamRecent = TxtUtils.joinList("\n", lines);
+    }
+
+    /** The stations played lately, the last first. */
+    public static List<Entry> recent() {
+        final List<Entry> recent = new ArrayList<Entry>();
+        final String saved = AppState.get().streamRecent;
+        if (saved == null) {
+            return recent;
+        }
+        for (String line : saved.split("\n")) {
+            final int tab = line.indexOf('\t');
+            if (tab > 0 && isStream(line.substring(tab + 1).trim())) {
+                recent.add(new Entry(line.substring(0, tab), line.substring(tab + 1).trim(), RECENT));
+            }
+        }
+        return recent;
     }
 
     /** The name of a stream: the one it had in its playlist, else its address. */
@@ -297,6 +334,12 @@ public final class StreamPlaylist {
         final String title = titles.get(url);
         if (title != null) {
             return title;
+        }
+        // a station of a book opened again: its name as it was played
+        for (Entry entry : recent()) {
+            if (entry.url.equals(url)) {
+                return entry.title;
+            }
         }
         if (TxtUtils.isNotEmpty(AppState.get().streamTitle) && url != null) {
             return AppState.get().streamTitle;

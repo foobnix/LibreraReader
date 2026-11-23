@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">Výběr textu je povolen</string>
    <string name="text_highlight_mode_is_disable">Výběr textu je zakázán</string>
    <string name="application_error_please_send_this_report_by_emial">Něco se pokazilo! Tuto zprávu zašlete prosím e-mailem, abychom mohli chybu co nejdříve opravit.</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pozastavení příchozích hovorů, zpráv atd.</string>
    <string name="add_resource">Přidat úložiště</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Stáhnout další fonty (10 MB)?</string>
    <string name="hyphenation_language">Jazyk</string>

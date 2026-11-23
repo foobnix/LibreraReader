@@ -203,9 +203,8 @@ import java.util.concurrent.Executors;
                 return;
             }
 
-            if (!AppState.get().stopReadingOnCall) {
-                return;
-            }
+            // Reading pauses for a call or another app's sound, as a music player does: the focus
+            // is only taken when the voice is not to mix with other apps (requestAudioFocus).
             if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
                 LOG.d("Ingore Duck");
                 return;
@@ -836,8 +835,9 @@ import java.util.concurrent.Executors;
         }
         if (TTSNotification.TTS_PAUSE.equals(intent.getAction())) {
 
+            // pause pauses and play plays: sent twice, or late, neither turns into the other
             if (TTSEngine.get()
-                         .isMp3PlayPause()) {
+                         .isMp3Pause()) {
                 return START_STICKY;
             }
 
@@ -848,7 +848,7 @@ import java.util.concurrent.Executors;
         if (TTSNotification.TTS_PLAY.equals(intent.getAction())) {
 
             if (TTSEngine.get()
-                         .isMp3PlayPause()) {
+                         .isMp3Play()) {
 
                 return START_STICKY;
             }
@@ -884,7 +884,7 @@ import java.util.concurrent.Executors;
 
         if (ACTION_PLAY_CURRENT_PAGE.equals(intent.getAction())) {
             if (TTSEngine.get()
-                         .isMp3PlayPause()) {
+                         .isMp3Play()) {
                 TTSNotification.show(AppSP.get().lastBookPath, -1, -1);
                 return START_STICKY;
             }

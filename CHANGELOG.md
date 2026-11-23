@@ -4,6 +4,10 @@ All notable changes to Librera Reader.
 
 Release builds: https://github.com/foobnix/LibreraReader/releases · [Unreleased APK Direct Download](http://beta.librera.mobi)
 
+* Radio: the station playing, or the one chosen for the book, stays above the station list; tap it to pause or play
+* The music file and the radio station are remembered separately for each book; MP3 opens in the folder of the book's music file
+* Play and pause of the radio work when tapped quickly one after the other
+* Removed the "Pause on incoming calls" option: reading always pauses for a call, unless it mixes with other apps' sound
 * Changelog link at the bottom of the preferences, opens this page in the browser
 * New option in Preferences › Advanced Settings: open books on page 1 instead of where you left off (also in Preferences › General, and for books opened in LibreraX)
 * PDF search highlights the found word itself: with the PDFium engine the box was one word off on pages with math symbols

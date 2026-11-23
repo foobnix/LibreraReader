@@ -359,6 +359,8 @@ public class AppState {
     public String streamSources = "";
     /** The name of the stream played last, for the player line after a restart. */
     public String streamTitle;
+    /** The names of the stations played lately, the last first, a "title\turl" line each. See StreamPlaylist. */
+    @IgnoreHashCode public String streamRecent = "";
     public boolean isSystemThemeColor = false;
     public String allOPDSLinks = OPDS_DEFAULT;
     public boolean opdsLargeCovers = true;
@@ -511,7 +513,6 @@ public class AppState {
     public boolean isEnableBCOptional1 = false;
 
     @IgnoreHashCode public boolean isShowContrastButton = false;
-    @IgnoreHashCode public boolean stopReadingOnCall = true;
     @IgnoreHashCode public int appBrightness = AUTO_BRIGTNESS;
     @IgnoreHashCode public int appBrightnessNight = AUTO_BRIGTNESS;
     public volatile int fastReadSpeed = 200;

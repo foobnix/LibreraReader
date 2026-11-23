@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">文本高亮已經啟用</string>
    <string name="text_highlight_mode_is_disable">文本高亮已被禁用</string>
    <string name="application_error_please_send_this_report_by_emial">程式出錯請用電子郵件傳送報告</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">語音來電暫停</string>
    <string name="add_resource">創建索引</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">需要下載更多書籍字體（10MB）？</string>
    <string name="hyphenation_language">斷字語言</string>

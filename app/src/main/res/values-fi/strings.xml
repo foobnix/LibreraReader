@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">Tekstin valinta on käytössä</string>
    <string name="text_highlight_mode_is_disable">Tekstin valinta on poistettu käytöstä</string>
    <string name="application_error_please_send_this_report_by_emial">Sovellusvirhe, lähetä tämä raportti sähköpostitse jotta bugi voidaan korjata!</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Keskeytä lukeminen, jos vastaanotetaan puhelu tai muita ilmoituksia</string>
    <string name="add_resource">Lisää sijainti</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Ladataanko lisää fontteja (10 Mt)?</string>
    <string name="hyphenation_language">Kieli</string>

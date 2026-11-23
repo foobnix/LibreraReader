@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">A szövegkijelölés engedélyezve van</string>
    <string name="text_highlight_mode_is_disable">A szövegkijelölés le van tiltva</string>
    <string name="application_error_please_send_this_report_by_emial">Hiba történt. Kérjük, küldje el ezt a jelentést, hogy kijavíthassuk a hibát.</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Szüneteltetés bejövő hívások, üzenetek, stb esetén</string>
    <string name="add_resource">Könyvespolc hozzáadása</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Több betűtípust szeretne letölteni (10MB)?</string>
    <string name="hyphenation_language">Nyelv</string>

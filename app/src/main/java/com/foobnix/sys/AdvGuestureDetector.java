@@ -153,6 +153,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     @Override
     public boolean onDown(final MotionEvent e) {
+        clearPending();
         EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
         isScrollFinished = avc.getView().getScroller().isFinished();
         if (!isScrollFinished) {
@@ -319,6 +320,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) {
                 return false;
             }
+            applyPending(); // the fling goes on from where the fingers left the page
             final Rect l = avc.getScrollLimits();
             float x = vX, y = vY;
             if (Math.abs(vX / vY) < 0.5) {
@@ -348,9 +350,49 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
      * @see android.view.GestureDetector.SimpleOnGestureListener#onScroll(android.view.MotionEvent,
      * android.view.MotionEvent, float, float)
      */
-    long t;
+    // Moves and zoom waiting for the next frame. Touch events come faster than frames on some
+    // screens and slower on others; each frame applies, once, all that came since the last one.
+    // A timer instead (10 ms for a move, 25 ms for a zoom) skipped frames at random, and the
+    // whole pixels it scrolled by dropped the fractions of every move.
+    private float pendingDx, pendingDy;
+    private float pendingZoom = 1f;
+    private float zoomFocusX, zoomFocusY;
+    private boolean framePosted;
+    private final Runnable applyFrame = this::applyPending;
 
-    int d1, d2;
+    private void postFrame() {
+        if (!framePosted) {
+            framePosted = true;
+            avc.getView().getView().postOnAnimation(applyFrame);
+        }
+    }
+
+    private void applyPending() {
+        framePosted = false;
+        if (pendingZoom != 1f) {
+            final float factor = pendingZoom;
+            pendingZoom = 1f;
+            avc.getView().setZoomFocus(zoomFocusX, zoomFocusY);
+            try {
+                avc.base.getZoomModel().scaleZoom(factor);
+            } finally {
+                avc.getView().setZoomFocus(Float.NaN, Float.NaN);
+            }
+        }
+        final int dx = (int) pendingDx;
+        final int dy = (int) pendingDy;
+        if (dx != 0 || dy != 0) {
+            // the fractions stay for the next frame
+            pendingDx -= dx;
+            pendingDy -= dy;
+            avc.getView().scrollBy(dx, dy);
+        }
+    }
+
+    private void clearPending() {
+        pendingDx = pendingDy = 0;
+        pendingZoom = 1f;
+    }
 
     @Override
     public boolean onScroll(final MotionEvent e1, final MotionEvent e2, final float distanceX, final float distanceY) {
@@ -360,26 +402,11 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         if (brightnessHelper.onActionMove(e2)) {
             return true;
         }
-        final float x = distanceX, y = distanceY;
-        d1 += x;
-        d2 += y;
-
-        long delta = System.currentTimeMillis() - t;
-        long value = AppSP.get().isLocked ? 5 : 10;
-
-        if (delta > value) {
-            t = System.currentTimeMillis();
-            if (isNoLock() || (e2.getPointerCount() == 2 && !(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) && AppState.get().isZoomInOutWithLock)) {
-                avc.getView().scrollBy(d1, d2);
-            } else {
-                avc.getView().scrollBy(0, d2);
-            }
-            d1 = d2 = 0;
-            LOG.d("onScroll yes", avc.getView().getScrollY(), avc.getView().getHeight(), avc.getScrollLimits().bottom);
-
+        if (isNoLock() || (e2.getPointerCount() == 2 && !(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) && AppState.get().isZoomInOutWithLock)) {
+            pendingDx += distanceX;
         }
-
-
+        pendingDy += distanceY;
+        postFrame();
         return true;
     }
 
@@ -440,9 +467,6 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
      * float)
      */
 
-    long time = 0;
-    float factor1 = 1;
-
     @Override
     public void onTwoFingerPinch(final MotionEvent e, final float oldDistance, final float newDistance) {
         LOG.d("onTwoFingerPinch", oldDistance, newDistance);
@@ -455,15 +479,16 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             }
         }
 
-        final float factor = (float) Math.sqrt(newDistance / oldDistance);
-        factor1 *= factor;
-        long delta = System.currentTimeMillis() - time;
-        if (delta > 25) {
-            time = System.currentTimeMillis();
-            avc.base.getZoomModel().scaleZoom(factor1);
-            factor1 = 1;
+        if (oldDistance <= 0 || newDistance <= 0) {
+            return;
         }
-
+        // As far as the fingers spread: the page stays under both of them. The square root of it
+        // zoomed half as much, and the page slid from under the fingers.
+        pendingZoom *= newDistance / oldDistance;
+        // e is the middle of the fingers
+        zoomFocusX = e.getX();
+        zoomFocusY = e.getY();
+        postFrame();
     }
 
     /**
@@ -482,6 +507,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             }
         }
 
+        applyPending(); // the last step before the zoom is committed
         avc.base.getZoomModel().commit();
     }
 

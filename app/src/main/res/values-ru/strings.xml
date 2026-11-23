@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">Возможность выделения текста включена</string>
    <string name="text_highlight_mode_is_disable">Возможность выделения текста отключена</string>
    <string name="application_error_please_send_this_report_by_emial">Что-то пошло не так! Очень просим вам отправить этот отчет об ошибке по почте, т.к. он, возможно, помог бы разобраться в проблеме</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Ставить чтение на паузу при входящих вызовах, уведомлениях и т. д.</string>
    <string name="add_resource">Добавить ресурс</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Для удобства чтения можно скачать дополнительный набор книжных шрифтов размером 10 Мб. Хотите это сделать?</string>
    <string name="hyphenation_language">Язык переносов</string>

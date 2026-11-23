@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">ടെക്സ്റ്റ് തിരഞ്ഞെടുക്കൽ പ്രാപ്തമാക്കി</string>
    <string name="text_highlight_mode_is_disable">വാചകം തിരഞ്ഞെടുക്കൽ പ്രവർത്തനരഹിതമാക്കി</string>
    <string name="application_error_please_send_this_report_by_emial">എന്തോ കുഴപ്പം സംഭവിച്ചു! ഈ റിപ്പോർട്ട് ദയവായി ഇമെയിൽ ചെയ്യുന്നതിലൂടെ ഞങ്ങൾക്ക് ബഗ് അസാപ് പരിഹരിക്കാൻ കഴിയും.</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">ഇൻകമിംഗ് കോളുകൾ, സന്ദേശങ്ങൾ മുതലായവ താൽക്കാലികമായി നിർത്തുക.</string>
    <string name="add_resource">പുതിയ സംഭരണം</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">അധിക ഫോണ്ടുകൾ (10mb) ഡ download ൺ‌ലോഡുചെയ്യണോ?</string>
    <string name="hyphenation_language">ഭാഷ</string>

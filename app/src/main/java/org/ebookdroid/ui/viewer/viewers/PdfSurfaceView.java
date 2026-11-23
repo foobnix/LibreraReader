@@ -90,14 +90,24 @@ public final class PdfSurfaceView extends android.view.View implements IView{
         stopScroller();
 
         final float ratio = newZoom / oldZoom;
-        final float halfWidth = getWidth() / 2.0f;
-        final float halfHeight = getHeight() / 2.0f;
+        // the point that stays where it is: between the fingers of a pinch, else the middle
+        final float fx = Float.isNaN(zoomFocusX) ? getWidth() / 2.0f : zoomFocusX;
+        final float fy = Float.isNaN(zoomFocusY) ? getHeight() / 2.0f : zoomFocusY;
 
-        final int x = (int) ((getScrollX() + halfWidth) * ratio - halfWidth);
-        final int y = (int) ((getScrollY() + halfHeight) * ratio - halfHeight);
+        final int x = Math.round((getScrollX() + fx) * ratio - fx);
+        final int y = Math.round((getScrollY() + fy) * ratio - fy);
 
 
         scrollTo(x, y);
+    }
+
+    private float zoomFocusX = Float.NaN;
+    private float zoomFocusY = Float.NaN;
+
+    @Override
+    public void setZoomFocus(final float x, final float y) {
+        zoomFocusX = x;
+        zoomFocusY = y;
     }
 
     /**

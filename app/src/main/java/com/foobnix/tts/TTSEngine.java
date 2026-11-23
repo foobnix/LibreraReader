@@ -84,6 +84,12 @@ public class TTSEngine {
     private volatile boolean mpPrepared;
     /** A play asked for while the stream still prepares: it starts when it is ready. */
     private volatile boolean mpStartWhenPrepared;
+    /**
+     * Whether the player was started and not paused since. MediaPlayer.isPlaying() is false for a
+     * while each time a stream fills its buffer again, after a pause too: asked then, a second tap
+     * on play/pause took the radio for stopped and started it once more instead of pausing it.
+     */
+    private volatile boolean mp3Started;
     Timer mTimer;
     Object helpObject = new Object();
     HashMap<String, String> map = new HashMap<String, String>();
@@ -487,7 +493,7 @@ public class TTSEngine {
         }
         if (isMp3()) {
             final MediaPlayer player = mp;
-            return player != null && (mpPrepared ? player.isPlaying() : mpStartWhenPrepared);
+            return player != null && (mpPrepared ? mp3Started && !mp3PausedForFocus : mpStartWhenPrepared);
         }
 
         synchronized (helpObject) {
@@ -584,6 +590,7 @@ public class TTSEngine {
             player.setOnCompletionListener(new OnCompletionListener() {
 
                 @Override public void onCompletion(MediaPlayer mp) {
+                    mp3Started = false;
                     mp.pause();
                     abandonMp3Focus();
                 }
@@ -608,6 +615,7 @@ public class TTSEngine {
                     LOG.d("stream error", what, extra, ttsPlayMp3Path);
                     if (failed == mp) {
                         mpStartWhenPrepared = false;
+                        mp3Started = false;
                         abandonMp3Focus();
                         EventBus.getDefault().post(new TtsStatus());
                     }
@@ -658,6 +666,7 @@ public class TTSEngine {
         abandonMp3Focus();
         final MediaPlayer player = mp;
         mpStartWhenPrepared = false;
+        mp3Started = false;
         if (player != null) {
             mp = null;
             try {
@@ -717,6 +726,34 @@ public class TTSEngine {
         return StreamPlaylist.isStream(BookCSS.get().mp3BookPathGet());
     }
 
+    /** Plays the audio file or the radio, never pauses it; false when TTS speaks instead. */
+    public boolean isMp3Play() {
+        if (!isMp3()) {
+            return false;
+        }
+        if (mp == null) {
+            loadMP3(BookCSS.get().mp3BookPathGet());
+        }
+        if (mp == null) {
+            return false;
+        }
+        if (!isPlaying()) {
+            startMp3();
+        }
+        TTSNotification.showLast();
+        return true;
+    }
+
+    /** Pauses the audio file or the radio, never plays it; false when TTS speaks instead. */
+    public boolean isMp3Pause() {
+        if (!isMp3()) {
+            return false;
+        }
+        pauseMp3();
+        TTSNotification.showLast();
+        return true;
+    }
+
     public boolean isMp3PlayPause() {
         if (isMp3()) {
             if (mp == null) {
@@ -745,6 +782,7 @@ public class TTSEngine {
 
     public void pauseMp3() {
         mpStartWhenPrepared = false;
+        mp3Started = false;
         if (mp != null && mpPrepared) {
             mp.pause();
         }
@@ -773,7 +811,7 @@ public class TTSEngine {
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
                 mp.setVolume(0.2f, 0.2f);
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
-                if (mp.isPlaying()) {
+                if (mp3Started) {
                     mp3PausedForFocus = true;
                     mp.pause();
                 }
@@ -804,6 +842,7 @@ public class TTSEngine {
         }
         mp.setVolume(1f, 1f);
         mp.start();
+        mp3Started = true;
     }
 
     private boolean requestMp3Focus() {
@@ -866,7 +905,7 @@ public class TTSEngine {
             if (mp != null) {
                 mp.setVolume(1f, 1f);
             }
-        } else if (mp != null && mpPrepared && mp.isPlaying()) {
+        } else if (mp != null && mpPrepared && mp3Started) {
             requestMp3Focus();
         }
     }

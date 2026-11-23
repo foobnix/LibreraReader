@@ -471,7 +471,6 @@
    <string name="text_highlight_mode_is_enable">A selección de texto está activada</string>
    <string name="text_highlight_mode_is_disable">A selección de texto está desactivada</string>
    <string name="application_error_please_send_this_report_by_emial">Produciuse un erro! Envía o informe por correo para solucionar o problema canto antes.</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pausar con chamadas, mensaxes, etc.</string>
    <string name="add_resource">Engadir almacenamento</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Descargar fontes adicionais (10MB)?</string>
    <string name="hyphenation_language">Idioma</string>

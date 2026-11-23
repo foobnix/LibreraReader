@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">文本选取已启用</string>
    <string name="text_highlight_mode_is_disable">文本选取已禁用</string>
    <string name="application_error_please_send_this_report_by_emial">出错了！请用邮件报告以便我们尽快修复。</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">来电、来短信等时候暂停</string>
    <string name="add_resource">添加文件位置</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">下载额外的字体(10MB)?</string>
    <string name="hyphenation_language">语言</string>

@@ -469,7 +469,6 @@
    <string name="text_highlight_mode_is_enable">Testua nabarmentzeko modua gaituta</string>
    <string name="text_highlight_mode_is_disable">Testua nabarmentzeko modua desgaituta</string>
    <string name="application_error_please_send_this_report_by_emial">Errorea. Mesedez, bidali txosten hau posta elektronikoz</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Eten ezazu irakurketa deiak, mezuak eta abar sartzean-</string>
    <string name="add_resource">Baliabidea gehitu</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Letra-tipo gehiago deskargatu nahi dituzu (10 MB)?</string>
    <string name="hyphenation_language">Hizkuntza</string>

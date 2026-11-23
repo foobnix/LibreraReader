@@ -4,14 +4,25 @@ import org.ebookdroid.core.models.ZoomModel;
 
 public class PageTreeLevel {
 
-    public static final int ZOOM_THRESHOLD = 3;
+    /**
+     * The zoom the page is first split at, into 4 tiles; every level after splits each tile into
+     * 4 again at twice the zoom of the one before. As the tiles halve each side, a tile stays
+     * 0.75-1.5 screen widths at any zoom: the whole page at 1x, the default, is still one bitmap.
+     * The split used to come only every 3x of zoom, and the tiles grew half again each level: at
+     * 13.5x and over a DjVu tile was 3638x4753 px, 69 MB, slow to decode and to send to the GPU,
+     * and zooming out stalled while the GPU re-uploaded them every frame.
+     */
+    public static final float FIRST_SPLIT_ZOOM = 1.5f;
+    public static final int ZOOM_THRESHOLD = 2;
 
     public static final PageTreeLevel ROOT;
     public static final PageTreeLevel[] LEVELS;
     public static final int NODES;
 
     static {
-        int count = 1 + (int) Math.ceil(Math.log(ZoomModel.MAX_ZOOM) / Math.log(2));
+        // the root, then a level from FIRST_SPLIT_ZOOM on, and one more at every doubling up to the
+        // largest zoom
+        int count = 2 + (int) Math.floor(Math.log(ZoomModel.MAX_ZOOM / FIRST_SPLIT_ZOOM) / Math.log(ZOOM_THRESHOLD));
         ROOT = new PageTreeLevel(count);
         LEVELS = new PageTreeLevel[count];
         LEVELS[0] = ROOT;
@@ -45,7 +56,7 @@ public class PageTreeLevel {
 
     private PageTreeLevel(final PageTreeLevel parent, int count) {
         this.level = parent.level + 1;
-        this.zoom = parent.zoom * ZOOM_THRESHOLD;
+        this.zoom = parent.level == 0 ? FIRST_SPLIT_ZOOM : parent.zoom * ZOOM_THRESHOLD;
         this.start = parent.end;
         this.end = this.start + (int) Math.pow(PageTree.splitMasks.length, this.level);
 

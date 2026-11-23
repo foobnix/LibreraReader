@@ -1193,14 +1193,6 @@ public class DragingDialogs {
                             });
                 //
 
-                CheckBox stopReadingOnCall = view.findViewById(R.id.stopReadingOnCall);
-                stopReadingOnCall.setChecked(AppState.get().stopReadingOnCall);
-                stopReadingOnCall.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().stopReadingOnCall = isChecked;
-                    }
-                });
-
                 // read by sentences
                 ttsSentecesDivs.setText(AppState.get().ttsSentecesDivs);
                 ttsSentecesDivs.addTextChangedListener(new SmallTextWatcher() {
@@ -1290,8 +1282,13 @@ public class DragingDialogs {
                 ttsPlayMusicFile.setOnClickListener(new OnClickListener() {
                     @Override public void onClick(View v) {
 
+                        // in the folder of the music file chosen for this book, if it is still there
+                        final File bookMp3 = new File(BookCSS.get().mp3FileGet());
+                        final File bookMp3Folder = bookMp3.getParentFile();
                         ChooserDialogFragment.chooseFileorFolder((FragmentActivity) controller.getActivity(),
-                                                                 controller.getString(R.string.open_file))
+                                                                 controller.getString(R.string.open_file),
+                                                                 bookMp3Folder != null && bookMp3Folder.isDirectory()
+                                                                 ? bookMp3Folder.getPath() : null)
                                              .setOnSelectListener(new ResultResponse2<String, Dialog>() {
                                                  @Override
                                                  public boolean onResultRecive(String result1, Dialog result2) {
