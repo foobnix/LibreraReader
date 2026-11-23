@@ -4,6 +4,65 @@ layout: main
 
 # What is new
 
+### [10.1.16] Record books to MP3, internet radio, DOC/DOCX/RTF/CHM/LIT books, MuPDF 1.28.6
+
+**Text-to-speech**
+
+* Record book by voice: the book read aloud is saved as MP3 files, one per page, with the MuPDF, PDFium and HTML engines. Choose the pages (whole book or from this page) and the folder, follow the progress, stop at any time, delete old recordings
+* One "Mix with other apps' sound" option, for both reading aloud and music
+* The text being read is highlighted, now also with the MuPDF engine in paged and vertical modes; it can be turned off in the TTS settings
+* An animated sound icon shows while TTS is reading
+* TTS buttons at the bottom of the reader
+
+**Music and internet radio**
+
+* Play a stream: add or remove a stream URL or an M3U playlist, every station of a playlist is listed
+* A built-in list of recommended radio stations
+* Music and radio buttons in the TTS panel, with < || > buttons for streams in all panels
+
+**Formats**
+
+* DOC, DOCX and RTF books open with Librera's own converters (text, styles and images), without third-party libraries
+* CHM and LIT books open, converted to EPUB
+* Comic books (CBZ, CBR) open from the archive without unpacking it first
+* TIFF images and books open without MuPDF
+* MuPDF engine upgraded to 1.28.6
+
+**Reading**
+
+* Open books on page 1 instead of where you left off (Preferences › Advanced Settings)
+* New screen orientation in the book settings: Portrait (flipped)
+* Links in the table of contents and in PDFs go to their page in paged and vertical modes
+* A long press on the Back button clears the jump history and hides the button
+* PDF search highlights the found word itself, also on pages with math symbols
+* PDF text can be selected and searched on a page the book opened on zoomed in
+* Book search and text replacements work with the HTML engine
+* Reflow to EPUB works with PDFium
+* Pages with only a picture (an EPUB cover) are no longer blank in the HTML engine
+* In day mode the page colour is used for the whole page, also where the book sets its own background
+* Draw shapes on PDF pages, also in paged mode
+* Vertical and Musician's mode show the bookmarks panel and icon only if they are turned on for that mode
+* Show or hide the Musician's mode button
+* Panels and buttons adjusted for landscape
+
+**Library**
+
+* Page count for EPUB and other reflowable books: estimated (≈) at first, the real count once the book has been opened, and used for sorting
+* Home screen widget and shortcut for a book
+
+**LibreraX**
+
+* Send a book with its bookmarks and progress to LibreraX; a book that crashed can be opened in LibreraX
+
+**Other**
+
+* JS build: reads without MuPDF, with the HTML engine and PDFium
+* Fonts included by default
+* Self test of the reading engines on your own books
+* Security fixes
+* Changelog link at the bottom of the preferences
+* Fixed hyphenation, fonts, the e-ink theme, double tap, paged mode, splitting pages, right-to-left reading, Google Drive sync, SVG and FB2 images, the dictionary and bookmark panels
+
 ### [10.0.0] foliate-js and PDFium engines, SAF folders in the library, highlights in EPUB
 
 **Reading engines**

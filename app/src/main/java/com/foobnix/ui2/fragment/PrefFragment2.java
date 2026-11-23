@@ -158,6 +158,7 @@ public class PrefFragment2 extends UIFragment {
             new Pair<>(R.string.preferences, R.drawable.glyphicons_5_settings);
 
     private static final String WWW_SITE = "https://librera.app/librera-reader/";
+    private static final String WWW_CHANGELOG = WWW_SITE + "changelog/";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
     private static final String WWW_WIKI_SITE = "https://librera.mobi/faq";
     View section1, section2, section3, section4, section5, section6, section7, section8, section9, panelRecent,
@@ -2624,6 +2625,9 @@ public class PrefFragment2 extends UIFragment {
                 Urls.open(getActivity(), WWW_SITE);
             }
         });
+
+        // every release's changes, on the web site, in the browser
+        asButton(inflate.findViewById(R.id.openChangelog)).setOnClickListener(v -> Urls.open(getActivity(), WWW_CHANGELOG));
 
         asButton(inflate.findViewById(R.id.openBeta)).
 

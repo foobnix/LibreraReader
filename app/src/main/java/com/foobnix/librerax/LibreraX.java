@@ -62,6 +62,8 @@ public class LibreraX {
 
     public static final String EXTRA_PERCENT = "librera.percent";
     public static final String EXTRA_PAGE_TEXT = "librera.pageText";
+    // LibreraX's own: the page to open on, 0-based; without a place it opens where it last was
+    public static final String EXTRA_PAGE = "page";
     // the foliate engine's CFI of the place, of Librera's own copy of the book: right to the paragraph
     public static final String EXTRA_CFI = "librera.cfi";
     // a JSON array of {text, p, pt, t}

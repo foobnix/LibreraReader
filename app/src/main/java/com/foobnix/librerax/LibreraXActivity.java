@@ -75,6 +75,12 @@ public class LibreraXActivity extends Activity {
             pageText = bs.pt;
             cfi = bs.cfi;
         }
+        // as in Librera's own reading modes: the book opens on its first page, whatever place is kept
+        if (AppState.get().isAlwaysOpenOnPage1) {
+            percent = 0f;
+            pageText = null;
+            cfi = null;
+        }
 
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setClassName(LibreraX.PACKAGE, LibreraX.READER_FOR_RESULT);
@@ -88,6 +94,9 @@ public class LibreraXActivity extends Activity {
         intent.putExtra(LibreraX.EXTRA_PERCENT, percent);
         intent.putExtra(LibreraX.EXTRA_PAGE_TEXT, pageText);
         intent.putExtra(LibreraX.EXTRA_CFI, cfi);
+        if (AppState.get().isAlwaysOpenOnPage1) {
+            intent.putExtra(LibreraX.EXTRA_PAGE, 0);
+        }
         intent.putExtra(LibreraX.EXTRA_VIEW, LibreraX.view());
         intent.putExtra(LibreraX.EXTRA_FULLSCREEN, LibreraX.fullscreen());
         if (path != null) {

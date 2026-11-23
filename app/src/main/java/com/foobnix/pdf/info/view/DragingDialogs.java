@@ -4354,6 +4354,11 @@ public class DragingDialogs {
                     }
                 });
 
+                // the same setting as in the app preferences: every book opens on its first page
+                CheckBox isAlwaysOpenOnPage1 = inflate.findViewById(R.id.isAlwaysOpenOnPage1);
+                isAlwaysOpenOnPage1.setChecked(AppState.get().isAlwaysOpenOnPage1);
+                isAlwaysOpenOnPage1.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isAlwaysOpenOnPage1 = isChecked);
+
                 CheckBox alwaysTwoPages = inflate.findViewById(R.id.alwaysTwoPages);
                 alwaysTwoPages.setVisibility(TxtUtils.visibleIf(AppSP.get().readingMode == AppState.READING_MODE_BOOK));
                 alwaysTwoPages.setChecked(AppState.get().alwaysTwoPages);
