@@ -755,4 +755,5 @@
    <string name="paused">Pozastavené</string>
    <string name="tap_zones_drag_note">* Dotykové zóny možno počas pozastavenia presúvať a meniť ich veľkosť</string>
    <string name="show_close_button">Zobraziť tlačidlo zavrieť</string>
+   <string name="show_go_to_page_1_button">Zobraziť tlačidlo prejsť na stranu 1</string>
 </resources>

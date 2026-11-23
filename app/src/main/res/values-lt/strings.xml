@@ -755,4 +755,5 @@
    <string name="paused">Pristabdyta</string>
    <string name="tap_zones_drag_note">* Pristabdžius palietimo zonas galima tempti ir keisti jų dydį</string>
    <string name="show_close_button">Rodyti uždarymo mygtuką</string>
+   <string name="show_go_to_page_1_button">Rodyti mygtuką „Į 1 puslapį“</string>
 </resources>

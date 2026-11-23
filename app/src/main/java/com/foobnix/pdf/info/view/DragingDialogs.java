@@ -3945,6 +3945,13 @@ public class DragingDialogs {
                     refresh.run();
                 });
 
+                final CheckBox isShowMusicPage1 = inflate.findViewById(R.id.isShowMusicPage1);
+                isShowMusicPage1.setChecked(AppState.get().isShowMusicPage1);
+                isShowMusicPage1.setOnCheckedChangeListener((b, isChecked) -> {
+                    AppState.get().isShowMusicPage1 = isChecked;
+                    refresh.run();
+                });
+
                 final CheckBox isShowBookmarks = inflate.findViewById(R.id.isShowBookmarsPanelInMusicMode);
                 isShowBookmarks.setChecked(AppState.get().isShowBookmarsPanelInMusicMode);
                 isShowBookmarks.setOnCheckedChangeListener((b, isChecked) -> {

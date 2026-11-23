@@ -755,4 +755,5 @@
    <string name="paused">暫停時</string>
    <string name="tap_zones_drag_note">* 暫停時可以拖曳點按區域並調整其大小</string>
    <string name="show_close_button">顯示關閉按鈕</string>
+   <string name="show_go_to_page_1_button">顯示跳到第 1 頁按鈕</string>
 </resources>

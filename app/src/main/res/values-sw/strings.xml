@@ -755,4 +755,5 @@
    <string name="paused">Imesitishwa</string>
    <string name="tap_zones_drag_note">* Maeneo ya kugusa yanaweza kuburutwa na kubadilishwa ukubwa yakiwa yamesitishwa</string>
    <string name="show_close_button">Onyesha kitufe cha kufunga</string>
+   <string name="show_go_to_page_1_button">Onyesha kitufe cha kwenda ukurasa wa 1</string>
 </resources>

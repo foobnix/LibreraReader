@@ -755,4 +755,5 @@
    <string name="paused">En pausa</string>
    <string name="tap_zones_drag_note">* Les zones tàctils es poden arrossegar i redimensionar en pausa</string>
    <string name="show_close_button">Mostra el botó de tancar</string>
+   <string name="show_go_to_page_1_button">Mostra el botó per anar a la pàgina 1</string>
 </resources>

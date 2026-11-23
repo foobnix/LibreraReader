@@ -101,6 +101,14 @@
             android:text="@string/tap_zones_drag_note"
             android:textSize="13sp" />
 
+        <!-- In the order the buttons stand on the bar: page 1, slider, close; the bookmarks under it -->
+        <CheckBox
+            android:id="@+id/isShowMusicPage1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_go_to_page_1_button" />
+
         <CheckBox
             android:id="@+id/isShowMusicSeekBar"
             android:layout_width="match_parent"

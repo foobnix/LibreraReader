@@ -755,4 +755,5 @@
    <string name="paused">متوقف مؤقتًا</string>
    <string name="tap_zones_drag_note">* يمكن سحب مناطق النقر وتغيير حجمها أثناء الإيقاف المؤقت</string>
    <string name="show_close_button">إظهار زر الإغلاق</string>
+   <string name="show_go_to_page_1_button">إظهار زر الانتقال إلى الصفحة 1</string>
 </resources>

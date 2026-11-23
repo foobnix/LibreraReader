@@ -4,6 +4,8 @@ All notable changes to Librera Reader.
 
 Release builds: https://github.com/foobnix/LibreraReader/releases · [Unreleased APK Direct Download](http://beta.librera.mobi)
 
+* Musician's mode: a round button beside the mode's name goes to page 1; it can be hidden in the mode's settings
+* Smoother vertical scrolling: two-finger zoom and scroll follow the fingers frame by frame and zoom around the point between them; DjVu pages no longer freeze the screen while they render, and high zoom stays smooth with smaller page tiles
 * Radio: the station playing, or the one chosen for the book, stays above the station list; tap it to pause or play
 * The music file and the radio station are remembered separately for each book; MP3 opens in the folder of the book's music file
 * Play and pause of the radio work when tapped quickly one after the other

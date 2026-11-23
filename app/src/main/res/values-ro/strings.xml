@@ -755,4 +755,5 @@
    <string name="paused">În pauză</string>
    <string name="tap_zones_drag_note">* Zonele de atingere pot fi trase și redimensionate în pauză</string>
    <string name="show_close_button">Afișează butonul de închidere</string>
+   <string name="show_go_to_page_1_button">Afișează butonul de mers la pagina 1</string>
 </resources>

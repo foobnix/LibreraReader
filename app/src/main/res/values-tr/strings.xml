@@ -755,4 +755,5 @@
    <string name="paused">Duraklatıldı</string>
    <string name="tap_zones_drag_note">* Dokunma alanları duraklatıldığında sürüklenebilir ve yeniden boyutlandırılabilir</string>
    <string name="show_close_button">Kapat düğmesini göster</string>
+   <string name="show_go_to_page_1_button">1. sayfaya git düğmesini göster</string>
 </resources>

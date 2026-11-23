@@ -755,4 +755,5 @@
    <string name="paused">Satt på pause</string>
    <string name="tap_zones_drag_note">* Trykksonene kan dras og endre størrelse mens de er satt på pause</string>
    <string name="show_close_button">Vis lukkeknappen</string>
+   <string name="show_go_to_page_1_button">Vis knappen for å gå til side 1</string>
 </resources>

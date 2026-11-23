@@ -755,4 +755,5 @@
    <string name="paused">일시 정지</string>
    <string name="tap_zones_drag_note">* 일시 정지 중에는 탭 영역을 끌어서 옮기고 크기를 바꿀 수 있습니다</string>
    <string name="show_close_button">닫기 버튼 표시</string>
+   <string name="show_go_to_page_1_button">1페이지로 이동 버튼 표시</string>
 </resources>

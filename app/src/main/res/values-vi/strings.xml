@@ -755,4 +755,5 @@
    <string name="paused">Tạm dừng</string>
    <string name="tap_zones_drag_note">* Có thể kéo và đổi kích thước vùng chạm khi tạm dừng</string>
    <string name="show_close_button">Hiện nút đóng</string>
+   <string name="show_go_to_page_1_button">Hiện nút về trang 1</string>
 </resources>

@@ -283,7 +283,7 @@ public class DocumentWrapperUI {
     };
     ImageView pagesBookmark;
     View line1, line2, lineFirst, lineClose, closeTop, musicButtonPanel, parentParent, documentTitleBar, musicSeekRow, tapZones;
-    ImageView musicClose, musicSettings;
+    ImageView musicClose, musicSettings, musicPage1;
     SeekBar musicSeekBar;
     TextView musicCurrent, musicMax;
     TTSControlsView ttsActive;
@@ -1160,6 +1160,8 @@ public class DocumentWrapperUI {
         musicClose = a.findViewById(R.id.musicClose);
         musicClose.setOnClickListener(onClose);
         musicClose.setOnLongClickListener(onCloseLongClick);
+        musicPage1 = a.findViewById(R.id.musicPage1);
+        musicPage1.setOnClickListener(onGoToPAge1);
         musicSettings = a.findViewById(R.id.musicSettings);
         musicSettings.setOnClickListener(v -> DragingDialogs.dialogMusicianSettings(anchor, dc, onRefresh));
 
@@ -1426,7 +1428,7 @@ public class DocumentWrapperUI {
         // The close and settings buttons are circles as tall as the mode's name beside them
         lirbiLogo.addOnLayoutChangeListener((v, l, t, r, b, ol, ot, or, ob) -> {
             final int size = b - t;
-            for (final View round : new View[]{musicClose, musicSettings}) {
+            for (final View round : new View[]{musicClose, musicSettings, musicPage1}) {
                 final ViewGroup.LayoutParams lp = round.getLayoutParams();
                 if (size > 0 && (lp.width != size || lp.height != size)) {
                     lp.width = lp.height = size;
@@ -1562,6 +1564,7 @@ public class DocumentWrapperUI {
             musicSettings.setPadding(inner, inner, inner, inner);
             final int close = Dips.dpToPx(Math.round(8 * scale));
             musicClose.setPadding(close, close, close, close);
+            musicPage1.setPadding(close, close, close, close);
             lirbiLogo.requestLayout();
         }
 
@@ -1828,6 +1831,7 @@ public class DocumentWrapperUI {
                     : AppState.get().isShowMusicSeekBar ? View.VISIBLE : View.INVISIBLE);
             final boolean closeShown = musicianBare && AppState.get().isShowMusicClose;
             musicClose.setVisibility(closeShown ? View.VISIBLE : View.GONE);
+            musicPage1.setVisibility(musicianBare && AppState.get().isShowMusicPage1 ? View.VISIBLE : View.GONE);
             // Without the close button the slider keeps the gap from the edge it kept
             final ViewGroup.MarginLayoutParams seekLp = (ViewGroup.MarginLayoutParams) musicSeekRow.getLayoutParams();
             final int seekRight = closeShown ? 0 : Dips.dpToPx(8);
@@ -2793,6 +2797,8 @@ public class DocumentWrapperUI {
         lirbiLogo.setBackground(musicButton(GradientDrawable.RECTANGLE, onBar && !chosen ? Color.TRANSPARENT : fill,
                                             onBar ? ring : Color.TRANSPARENT));
         musicClose.setBackground(musicButton(GradientDrawable.OVAL, fill, Color.TRANSPARENT));
+        musicPage1.setBackground(musicButton(GradientDrawable.OVAL, fill, Color.TRANSPARENT));
+        musicPage1.setImageTintList(ColorStateList.valueOf(ring));
         // Only ever on the bar, so ringed and filled like the name
         musicSettings.setBackground(musicButton(GradientDrawable.OVAL, chosen ? fill : Color.TRANSPARENT, ring));
         musicSettings.setImageTintList(ColorStateList.valueOf(ring));

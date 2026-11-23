@@ -755,4 +755,5 @@
    <string name="paused">Пауза</string>
    <string name="tap_zones_drag_note">* Зоните за докосване могат да се местят и преоразмеряват по време на пауза</string>
    <string name="show_close_button">Показване на бутона за затваряне</string>
+   <string name="show_go_to_page_1_button">Показване на бутона за отиване на страница 1</string>
 </resources>

@@ -755,4 +755,5 @@
    <string name="paused">Пауза</string>
    <string name="tap_zones_drag_note">* Зони гортання можна перетягувати й змінювати їх розмір під час паузи</string>
    <string name="show_close_button">Показувати кнопку закриття</string>
+   <string name="show_go_to_page_1_button">Показувати кнопку переходу на сторінку 1</string>
 </resources>

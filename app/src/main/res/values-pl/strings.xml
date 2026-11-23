@@ -755,4 +755,5 @@
    <string name="paused">Wstrzymane</string>
    <string name="tap_zones_drag_note">* Strefy dotyku można przeciągać i zmieniać ich rozmiar podczas wstrzymania</string>
    <string name="show_close_button">Pokaż przycisk zamykania</string>
+   <string name="show_go_to_page_1_button">Pokaż przycisk przejścia do strony 1</string>
 </resources>

@@ -755,4 +755,5 @@
    <string name="paused">En pausa</string>
    <string name="tap_zones_drag_note">* As zonas táctiles pódense arrastrar e redimensionar en pausa</string>
    <string name="show_close_button">Amosar o botón de pechar</string>
+   <string name="show_go_to_page_1_button">Amosar o botón de ir á páxina 1</string>
 </resources>

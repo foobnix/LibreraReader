@@ -553,6 +553,8 @@ public class AppState {
     @IgnoreHashCode public int musicButtonSize = MUSIC_BUTTON_NORMAL;
     @IgnoreHashCode public boolean isShowMusicSeekBar = true;
     @IgnoreHashCode public boolean isShowMusicClose = true;
+    // A round "1" beside its name, with the panels away, that goes to page 1
+    @IgnoreHashCode public boolean isShowMusicPage1 = true;
     // Whether the speed bar and the tap zones are seen while the music scrolls and while it is
     // paused; tap zones seen in neither still turn the page
     @IgnoreHashCode public boolean isShowMusicSpeedScrolling = true;
@@ -876,6 +878,7 @@ public class AppState {
         musicButtonSize = MUSIC_BUTTON_NORMAL;
         isShowMusicSeekBar = true;
         isShowMusicClose = true;
+        isShowMusicPage1 = true;
         isShowBookmarsPanelInMusicMode = true;
         musicColorDay = 0;
         musicColorNight = 0;

@@ -755,4 +755,5 @@
    <string name="paused">מושהה</string>
    <string name="tap_zones_drag_note">* ניתן לגרור את אזורי ההקשה ולשנות את גודלם בזמן השהיה</string>
    <string name="show_close_button">הצג כפתור סגירה</string>
+   <string name="show_go_to_page_1_button">הצג כפתור מעבר לעמוד 1</string>
 </resources>

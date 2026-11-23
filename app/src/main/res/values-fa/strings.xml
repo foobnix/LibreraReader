@@ -755,4 +755,5 @@
    <string name="paused">متوقف</string>
    <string name="tap_zones_drag_note">* نواحی لمسی را می‌توان هنگام توقف جابه‌جا کرد و اندازه‌شان را تغییر داد</string>
    <string name="show_close_button">نمایش دکمه بستن</string>
+   <string name="show_go_to_page_1_button">نمایش دکمه رفتن به صفحه 1</string>
 </resources>

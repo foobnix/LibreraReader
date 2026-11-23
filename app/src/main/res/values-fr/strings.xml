@@ -755,4 +755,5 @@
    <string name="paused">En pause</string>
    <string name="tap_zones_drag_note">* Les zones tactiles peuvent être déplacées et redimensionnées en pause</string>
    <string name="show_close_button">Afficher le bouton de fermeture</string>
+   <string name="show_go_to_page_1_button">Afficher le bouton pour aller à la page 1</string>
 </resources>

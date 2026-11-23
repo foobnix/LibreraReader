@@ -755,4 +755,5 @@
    <string name="paused">一時停止中</string>
    <string name="tap_zones_drag_note">* 一時停止中はタップゾーンをドラッグしてサイズを変更できます</string>
    <string name="show_close_button">閉じるボタンを表示</string>
+   <string name="show_go_to_page_1_button">1ページへ移動ボタンを表示</string>
 </resources>

@@ -755,4 +755,5 @@
    <string name="paused">Паўза</string>
    <string name="tap_zones_drag_note">* Зоны націску можна перацягваць і змяняць іх памер падчас паўзы</string>
    <string name="show_close_button">Паказваць кнопку закрыцця</string>
+   <string name="show_go_to_page_1_button">Паказваць кнопку пераходу на старонку 1</string>
 </resources>

@@ -755,4 +755,5 @@
    <string name="paused">Кідірту</string>
    <string name="tap_zones_drag_note">* Кідірту кезінде түрту аймақтарын жылжытуға және өлшемін өзгертуге болады</string>
    <string name="show_close_button">Жабу түймесін көрсету</string>
+   <string name="show_go_to_page_1_button">1-бетке өту түймесін көрсету</string>
 </resources>

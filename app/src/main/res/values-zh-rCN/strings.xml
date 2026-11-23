@@ -755,4 +755,5 @@
    <string name="paused">暂停时</string>
    <string name="tap_zones_drag_note">* 暂停时可以拖动点击区域并调整其大小</string>
    <string name="show_close_button">显示关闭按钮</string>
+   <string name="show_go_to_page_1_button">显示转到第 1 页按钮</string>
 </resources>

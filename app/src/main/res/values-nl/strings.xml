@@ -755,4 +755,5 @@
    <string name="paused">Gepauzeerd</string>
    <string name="tap_zones_drag_note">* Tikzones kunnen tijdens pauze worden versleept en van grootte veranderd</string>
    <string name="show_close_button">Sluitknop tonen</string>
+   <string name="show_go_to_page_1_button">Knop naar pagina 1 tonen</string>
 </resources>

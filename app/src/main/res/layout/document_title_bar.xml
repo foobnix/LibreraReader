@@ -224,6 +224,23 @@
                 android:tint="@color/tint_gray" />
         </LinearLayout>
 
+        <!-- Musician's mode with the panels away: a round button between its name and the page
+             slider that goes to page 1, unless put away in the mode's settings -->
+        <ImageView
+            android:id="@+id/musicPage1"
+            android:layout_width="36dip"
+            android:layout_height="36dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginTop="6dip"
+            android:layout_marginBottom="6dip"
+            android:layout_weight="0"
+            android:background="@drawable/bg_button_outline"
+            android:contentDescription="@string/go_to_page_dialog"
+            android:padding="8dip"
+            android:scaleType="fitCenter"
+            android:src="@drawable/glyphicons_172_skip_to_start"
+            android:visibility="gone" />
+
         <!-- Musician's mode with the panels away: only its name at the left, at the right a round
              close button as tall as it, and between them the page slider of the bottom panel.
              DocumentWrapperUI sizes and paints all three. -->

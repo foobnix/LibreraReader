@@ -755,4 +755,5 @@
    <string name="paused">Szüneteltetve</string>
    <string name="tap_zones_drag_note">* Az érintési zónák szüneteltetéskor áthelyezhetők és átméretezhetők</string>
    <string name="show_close_button">Bezárás gomb megjelenítése</string>
+   <string name="show_go_to_page_1_button">Ugrás az 1. oldalra gomb megjelenítése</string>
 </resources>

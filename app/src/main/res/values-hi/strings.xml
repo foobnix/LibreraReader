@@ -755,4 +755,5 @@
    <string name="paused">रुका हुआ</string>
    <string name="tap_zones_drag_note">* रुके होने पर टैप ज़ोन को खींचा और उनका आकार बदला जा सकता है</string>
    <string name="show_close_button">बंद करें बटन दिखाएँ</string>
+   <string name="show_go_to_page_1_button">पृष्ठ 1 पर जाएँ बटन दिखाएँ</string>
 </resources>

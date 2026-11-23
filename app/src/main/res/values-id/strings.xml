@@ -755,4 +755,5 @@
    <string name="paused">Dijeda</string>
    <string name="tap_zones_drag_note">* Zona ketuk dapat diseret dan diubah ukurannya saat dijeda</string>
    <string name="show_close_button">Tampilkan tombol tutup</string>
+   <string name="show_go_to_page_1_button">Tampilkan tombol ke halaman 1</string>
 </resources>

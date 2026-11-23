@@ -755,4 +755,5 @@
    <string name="paused">Tauko</string>
    <string name="tap_zones_drag_note">* Napautusalueita voi siirtää ja muuttaa niiden kokoa tauon aikana</string>
    <string name="show_close_button">Näytä sulkemispainike</string>
+   <string name="show_go_to_page_1_button">Näytä sivulle 1 siirtymisen painike</string>
 </resources>

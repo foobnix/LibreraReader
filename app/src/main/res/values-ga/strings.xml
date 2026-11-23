@@ -755,4 +755,5 @@
    <string name="paused">Ar sos</string>
    <string name="tap_zones_drag_note">* Is féidir na criosanna tapála a tharraingt agus a athmhéadú agus iad ar sos</string>
    <string name="show_close_button">Taispeáin an cnaipe dúnta</string>
+   <string name="show_go_to_page_1_button">Taispeáin an cnaipe chun dul go leathanach 1</string>
 </resources>

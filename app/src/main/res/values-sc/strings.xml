@@ -755,4 +755,5 @@
    <string name="paused">In pàusa</string>
    <string name="tap_zones_drag_note">* Sas zonas de tocu si podent tragare e cambiare de mannària in pàusa</string>
    <string name="show_close_button">Ammustra su butone de serrare</string>
+   <string name="show_go_to_page_1_button">Ammustra su butone pro andare a sa pàgina 1</string>
 </resources>

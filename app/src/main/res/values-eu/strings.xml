@@ -755,4 +755,5 @@
    <string name="paused">Pausatuta</string>
    <string name="tap_zones_drag_note">* Ukipen-guneak arrastatu eta tamainaz alda daitezke pausatuta dagoenean</string>
    <string name="show_close_button">Erakutsi ixteko botoia</string>
+   <string name="show_go_to_page_1_button">Erakutsi 1. orrialdera joateko botoia</string>
 </resources>

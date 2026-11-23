@@ -755,4 +755,5 @@
    <string name="paused">Intermissum</string>
    <string name="tap_zones_drag_note">* Zonae tactus, dum intermissum est, trahi et magnitudine mutari possunt</string>
    <string name="show_close_button">Monstrare globulum claudendi</string>
+   <string name="show_go_to_page_1_button">Monstrare globulum ad paginam 1 eundi</string>
 </resources>

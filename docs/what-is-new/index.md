@@ -30,6 +30,7 @@ layout: main
 
 **Reading**
 
+* Smoother vertical scrolling: two-finger zoom and scroll follow the fingers frame by frame and zoom around the point between them; DjVu pages no longer freeze the screen while they render, and high zoom stays smooth with smaller page tiles
 * Open books on page 1 instead of where you left off (Preferences › Advanced Settings)
 * New screen orientation in the book settings: Portrait (flipped)
 * Links in the table of contents and in PDFs go to their page in paged and vertical modes

@@ -755,4 +755,5 @@
    <string name="paused">Paused</string>
    <string name="tap_zones_drag_note">* Tap zones can be dragged and resized while paused</string>
    <string name="show_close_button">Show close button</string>
+   <string name="show_go_to_page_1_button">Show go to page 1 button</string>
 </resources>

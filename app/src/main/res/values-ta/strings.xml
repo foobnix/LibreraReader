@@ -755,4 +755,5 @@
    <string name="paused">இடைநிறுத்தம்</string>
    <string name="tap_zones_drag_note">* இடைநிறுத்தத்தில் தட்டும் பகுதிகளை இழுக்கவும் அளவை மாற்றவும் முடியும்</string>
    <string name="show_close_button">மூடு பொத்தானைக் காட்டு</string>
+   <string name="show_go_to_page_1_button">பக்கம் 1-க்குச் செல் பொத்தானைக் காட்டு</string>
 </resources>

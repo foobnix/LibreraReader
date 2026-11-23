@@ -755,4 +755,5 @@
    <string name="paused">หยุดชั่วคราว</string>
    <string name="tap_zones_drag_note">* ลากและปรับขนาดโซนแตะได้ขณะหยุดชั่วคราว</string>
    <string name="show_close_button">แสดงปุ่มปิด</string>
+   <string name="show_go_to_page_1_button">แสดงปุ่มไปที่หน้า 1</string>
 </resources>

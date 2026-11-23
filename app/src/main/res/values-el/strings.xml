@@ -755,4 +755,5 @@
    <string name="paused">Σε παύση</string>
    <string name="tap_zones_drag_note">* Οι ζώνες αφής μπορούν να μετακινηθούν και να αλλάξουν μέγεθος σε παύση</string>
    <string name="show_close_button">Εμφάνιση κουμπιού κλεισίματος</string>
+   <string name="show_go_to_page_1_button">Εμφάνιση κουμπιού μετάβασης στη σελίδα 1</string>
 </resources>

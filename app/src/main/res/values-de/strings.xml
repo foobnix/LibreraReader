@@ -755,4 +755,5 @@
    <string name="paused">Pausiert</string>
    <string name="tap_zones_drag_note">* Tippzonen können im pausierten Zustand verschoben und in der Größe geändert werden</string>
    <string name="show_close_button">Schaltfläche „Schließen“ anzeigen</string>
+   <string name="show_go_to_page_1_button">Schaltfläche „Zu Seite 1“ anzeigen</string>
 </resources>
