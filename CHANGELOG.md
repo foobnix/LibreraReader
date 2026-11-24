@@ -9,7 +9,8 @@ Release builds: https://github.com/foobnix/LibreraReader/releases · [Unreleased
 * The Sync tab names the profile its progress belongs to, and a tap on it switches profile
 * The Sync tab lists books by sync date, the latest first: a book read on any device moves to the top
 * A running sync turns the Sync tab's icon, instead of a line across the whole tab bar
-* Reading position across devices and engines (MuPDF, foliate, scroll and page modes): the book opens at the words that were at the top of the screen, not at the start of that page
+* Contents: sections inside one chapter file open at their own page, not at the chapter's start (EPUBs that mark headings with an inline span)
+* Reading position across devices and engines (MuPDF, foliate, scroll and page modes): the book opens at the words that were at the top of the screen, not at the start of that page; looked for up to 50 pages away, and kept when the book is closed straight after a page turn
 * New catalog: optional user name and password, kept for that server and asked with at once
 * Search in catalogs that describe it in an OpenSearch file (Ebooks libres et gratuits, textos.info...); searches with several words work on Calibre-Web
 * A tapped catalog cover opens the picture itself instead of a blank book; download buttons are round

@@ -351,7 +351,8 @@ public class CacheZipUtils {
         if (file == null) {
             return "no-file-outline";
         }
-        return "" + MagicHelper.hash() + pageCount + BookCSS.get().toCssString(file.getPath()).hashCode()
+        // v2: sections placed on their own pages (OutlineHelper.placeSectionsInFile)
+        return "v2-" + MagicHelper.hash() + pageCount + BookCSS.get().toCssString(file.getPath()).hashCode()
                 + file.lastModified() + file.getName() + "-outline";
     }
 

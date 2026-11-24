@@ -1092,6 +1092,7 @@ public class VerticalModeController extends DocumentController {
                         LOG.e(e);
                     }
                 }
+                com.foobnix.pdf.info.OutlineHelper.placeSectionsInFile(ctr.getDocumentModel().decodeService.getCodecDocument(), result);
                 if (!result.isEmpty()) {
                     CacheZipUtils.savaJavaCache(result, getCurrentBook(), getPageCount());
                 }

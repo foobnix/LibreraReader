@@ -979,6 +979,7 @@ public abstract class HorizontalModeController extends DocumentController {
                     }
                 }
 
+                com.foobnix.pdf.info.OutlineHelper.placeSectionsInFile(codeDocument, result);
                 if (!result.isEmpty()) {
                     CacheZipUtils.savaJavaCache(result, getCurrentBook(), getPageCount());
                 }

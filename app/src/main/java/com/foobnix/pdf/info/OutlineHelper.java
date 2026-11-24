@@ -19,6 +19,53 @@ import java.util.List;
 
 public class OutlineHelper {
 
+    /** Pages a section's heading is looked for past the page its file starts on. */
+    private static final int SECTION_RANGE = 30;
+
+    /**
+     * Puts each section of a chapter file on its own page.
+     * <p>
+     * MuPDF resolves a contents entry's {@code file.xhtml#id} to the page the file starts on when
+     * the id is on an inline element wrapped round blocks - {@code <span id="x"><div>Heading</div>}
+     * - as some EPUBs mark every heading. Each later section of that file then showed, and opened,
+     * the chapter's first page. An entry that lands on the same page as the entry before it in the
+     * same file is looked for by its title, which is the heading's text, from that page on; it is
+     * only ever moved forward, and left where it is when its title is not found.
+     * <p>
+     * Off the main thread only: it reads pages.
+     */
+    public static void placeSectionsInFile(org.ebookdroid.core.codec.CodecDocument doc, List<OutlineLinkWrapper> outline) {
+        if (doc == null || outline == null || AppSP.get().isCut
+            || android.os.Looper.myLooper() == android.os.Looper.getMainLooper()) {
+            return;
+        }
+        String prevFile = null;
+        int prevResolved = -1;
+        for (OutlineLinkWrapper item : outline) {
+            if (TempHolder.get().loadingCancelled.get() || doc.isRecycled()) {
+                return;
+            }
+            final String uri = item.linkUri;
+            final int hash = uri == null ? -1 : uri.indexOf('#');
+            final String file = hash > 0 ? uri.substring(0, hash) : uri;
+            final int resolved = item.targetPage;
+            if (hash > 0 && resolved > 0 && resolved == prevResolved && file.equals(prevFile)) {
+                final String title = item.getTitleAsString();
+                try {
+                    final int found = TxtUtils.isEmpty(title) ? -1 : doc.findBookmarkPage(resolved, title, null, SECTION_RANGE);
+                    if (found > resolved) {
+                        LOG.d("placeSectionsInFile", title, resolved, "->", found);
+                        item.targetPage = found;
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            }
+            prevFile = file;
+            prevResolved = resolved;
+        }
+    }
+
     public final static List<Integer> CHAPTER_FORMATS = Arrays.asList(//
             AppState.CHAPTER_FORMAT_1, //
             AppState.CHAPTER_FORMAT_4, //

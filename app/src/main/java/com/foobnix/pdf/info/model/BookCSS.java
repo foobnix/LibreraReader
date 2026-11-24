@@ -199,7 +199,7 @@ public class BookCSS {
     public String dirLastPath;
     public String pathSAF = "";
     public boolean isSyncWifiOnly;
-    public boolean isSyncPullToRefresh = true;
+    public boolean isSyncPullToRefresh = false; // the Sync tab has its own button
     public boolean isSyncAnimation = true;
     public int documentStyle = STYLES_DOC_AND_USER;
     public int marginTop;
