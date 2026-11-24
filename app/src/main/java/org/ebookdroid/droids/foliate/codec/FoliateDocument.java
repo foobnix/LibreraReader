@@ -490,6 +490,11 @@ public class FoliateDocument extends AbstractCodecDocument {
      */
     @Override
     public int findBookmarkPage(final int page, final String text, final String pageText) {
+        return findBookmarkPage(page, text, pageText, BookmarkText.RANGE);
+    }
+
+    @Override
+    public int findBookmarkPage(final int page, final String text, final String pageText, final int range) {
         if (!FoliateRenderer.canWait()) {
             // AbstractViewController.show() asks for this on the UI thread
             LOG.d("FOLIATE! findBookmarkPage skipped on the main thread");
@@ -502,7 +507,7 @@ public class FoliateDocument extends AbstractCodecDocument {
         }
         final int count = getPageCount();
         int found2 = -1;
-        for (int i = 0; i <= 2 * BookmarkText.RANGE && (needle1 != null || found2 == -1); i++) {
+        for (int i = 0; i <= 2 * range && (needle1 != null || found2 == -1); i++) {
             if (isRecycled()) {
                 return -1;
             }

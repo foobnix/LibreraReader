@@ -277,6 +277,7 @@
    <string name="by_file_name">Nume de fișier</string>
    <string name="by_size">Mărimea</string>
    <string name="by_date">Data</string>
+   <string name="by_sync_date">Data sincronizării</string>
    <string name="by_title">Titlul cartii</string>
    <string name="by_author">Autor de carte</string>
    <string name="by_series">Serie</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Accesibilitate</string>
    <string name="web_search_google">Căutare pe web (Google,...)</string>
    <string name="synced_books">Cărți sincronizate</string>
+   <string name="sync_status_synced">Sincronizat</string>
+   <string name="sync_status_syncing">Se sincronizează…</string>
+   <string name="sync_status_never">Nesincronizat încă</string>
    <string name="user_styles">Stiluri de utilizare</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Această modificare necesită o repornire manuală a aplicației</string>

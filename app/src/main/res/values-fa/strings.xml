@@ -277,6 +277,7 @@
    <string name="by_file_name">نام فایل</string>
    <string name="by_size">اندازه</string>
    <string name="by_date">تاریخ</string>
+   <string name="by_sync_date">تاریخ همگام‌سازی</string>
    <string name="by_title">عنوان کتاب</string>
    <string name="by_author">نویسنده کتاب</string>
    <string name="by_series">سلسله</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">دسترسی</string>
    <string name="web_search_google">جستجوی وب (گوگل، ...)</string>
    <string name="synced_books">کتاب های همگام شده</string>
+   <string name="sync_status_synced">همگام‌سازی شد</string>
+   <string name="sync_status_syncing">در حال همگام‌سازی…</string>
+   <string name="sync_status_never">هنوز همگام‌سازی نشده</string>
    <string name="user_styles">سبک های کاربر</string>
    <string name="engine">موتور</string>
    <string name="restart_manually">این تغییر نیاز به راه اندازی مجدد دستی برنامه دارد</string>

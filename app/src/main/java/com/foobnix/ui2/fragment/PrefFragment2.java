@@ -303,15 +303,17 @@ public class PrefFragment2 extends UIFragment {
 
     }
 
-    // The sync-now button stands only while an account is signed in.
+    // The sync-now button: syncs when an account is signed in, signs in when none is.
     private void updateSyncNow() {
         if (syncLibrary != null) {
-            syncLibrary.setVisibility(AppSP.get().isEnableSync ? View.VISIBLE : View.GONE);
+            // Always there, beside Update: signed out it signs in, sync off it turns it on
+            syncLibrary.setVisibility(View.VISIBLE);
         }
         if (syncNow == null || getActivity() == null) {
             return;
         }
-        syncNow.setVisibility(TxtUtils.isNotEmpty(GFile.getDisplayInfo(getActivity())) ? View.VISIBLE : View.GONE);
+        // Shown signed out too: there it signs in, which is the first step of a sync
+        syncNow.setVisibility(View.VISIBLE);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN) public void onSync(MessageSync msg) {
@@ -346,7 +348,7 @@ public class PrefFragment2 extends UIFragment {
         // says so as it is sent; before any message has come, the saved status does.
         if (syncProgress != null) {
             boolean running = msg != null ? msg.state == MessageSync.STATE_VISIBLE
-                                          : AppSP.get().syncTimeStatus == MessageSync.STATE_VISIBLE;
+                                          : com.foobnix.work.SynctornizatoinWorker.isRunning;
             syncProgress.setVisibility(running ? View.VISIBLE : View.GONE);
         }
     }
@@ -371,6 +373,11 @@ public class PrefFragment2 extends UIFragment {
         // A sync by hand. With sync switched off the service does nothing, so the button
         // switches it on through its own box, whose listener starts the first run.
         syncNow.setOnClickListener(v -> {
+            if (TxtUtils.isEmpty(GFile.getDisplayInfo(getActivity()))) {
+                // Signed out: the Google sign-in, which turns the sync on and runs it
+                GFile.init(getActivity());
+                return;
+            }
             if (!AppSP.get().isEnableSync) {
                 isEnableSync.setChecked(true);
             } else {
@@ -1915,7 +1922,7 @@ public class PrefFragment2 extends UIFragment {
         updateLibrary.setOnClickListener(v -> onScan());
         syncLibrary = inflate.findViewById(R.id.onSyncLibrary);
         PrefDialogs.asSyncButton(syncLibrary, accent);
-        syncLibrary.setOnClickListener(v -> GFile.runSyncService(getActivity(), true));
+        syncLibrary.setOnClickListener(v -> syncNow.performClick());
         updateSyncNow();
 
         asButton(inflate.findViewById(R.id.importButton))
@@ -2854,54 +2861,7 @@ public class PrefFragment2 extends UIFragment {
         onProfile.setContentDescription(p + " " + getString(R.string.profile));
 
         asButton(onProfile);
-        onProfile.setOnClickListener(v ->
-
-        {
-
-            if (BooksService.isRunning) {
-                Toast.makeText(getActivity(), R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT)
-                     .show();
-                return;
-            }
-
-            MyPopupMenu popup = new MyPopupMenu(getActivity(), v);
-
-            // The head names what the rows under it choose between, now that the panel no
-            // longer carries the word beside the button.
-            popup.getMenu()
-                 .add(R.string.profile)
-                 .asTitle();
-
-            List<String> all = AppProfile.getAllProfiles();
-            for (String profile : all) {
-
-                popup.getMenu()
-                     .setDrawable(TxtUtils.getFirstLetter(profile),
-                             AppProfile.getProfileColorDrawable(getActivity(), profile))
-                     .add(profile)
-                     .setOnMenuItemClickListener(menu -> {
-                         {
-                             if (!profile.equals(AppProfile.getCurrent())) {
-
-                                 AlertDialogs.showOkDialog(getActivity(),
-                                         getActivity().getString(R.string.do_you_want_to_switch_profile_),
-                                         new Runnable() {
-
-                                             @Override public void run() {
-                                                 AppProfile.saveCurrent(getActivity(), profile);
-                                                 RecentUpates.updateAll();
-                                                 onTheme();
-                                             }
-                                         });
-                             }
-
-                             return false;
-                         }
-                     });
-            }
-            popup.show();
-
-        });
+        onProfile.setOnClickListener(v -> showProfileMenu(getActivity(), v));
         profileLetter.setOnClickListener(v -> onProfile.performClick());
 
         final View.OnLongClickListener onDefaultProfile = v -> {
@@ -3456,6 +3416,53 @@ public class PrefFragment2 extends UIFragment {
 
     public String getFullDeviceInfo() {
         return "(" + Build.BRAND + ", " + Build.MODEL + ", " + android.os.Build.VERSION.RELEASE + ", " + Dips.screenWidthDP() + "dp" + ")";
+    }
+
+    /**
+     * The profiles to switch to, under the view tapped: Settings' profile button and the Sync
+     * tab's header both open it. A switch asks first, then reopens the library on the new one.
+     */
+    public static void showProfileMenu(final FragmentActivity a, View anchor) {
+        if (a == null) {
+            return;
+        }
+        if (BooksService.isRunning) {
+            Toast.makeText(a, R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        MyPopupMenu popup = new MyPopupMenu(a, anchor);
+
+        // The head names what the rows under it choose between, now that the panel no
+        // longer carries the word beside the button.
+        popup.getMenu().add(R.string.profile).asTitle();
+
+        for (String profile : AppProfile.getAllProfiles()) {
+            popup.getMenu()
+                 .setDrawable(TxtUtils.getFirstLetter(profile), AppProfile.getProfileColorDrawable(a, profile))
+                 .add(profile)
+                 .setOnMenuItemClickListener(menu -> {
+                     if (!profile.equals(AppProfile.getCurrent())) {
+                         AlertDialogs.showOkDialog(a, a.getString(R.string.do_you_want_to_switch_profile_), () -> {
+                             AppProfile.saveCurrent(a, profile);
+                             RecentUpates.updateAll();
+                             reopenLibrary(a);
+                         });
+                     }
+                     return false;
+                 });
+        }
+        popup.show();
+    }
+
+    /** The library opened again, on whatever profile and theme are now set. */
+    private static void reopenLibrary(FragmentActivity a) {
+        Apps.accessibilityText(a, R.string.apply);
+        IMG.clearMemoryCache();
+        AppProfile.save(a);
+        AppProfile.clear();
+        a.finish();
+        MainTabs2.startActivity(a, TempHolder.get().currentTab);
     }
 
     public void onTheme() {

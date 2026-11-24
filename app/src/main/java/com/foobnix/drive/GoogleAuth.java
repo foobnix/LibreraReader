@@ -1,5 +1,6 @@
 package com.foobnix.drive;
 
+import com.foobnix.model.AppState;
 import android.accounts.Account;
 import android.app.Activity;
 import android.content.Context;
@@ -336,5 +337,7 @@ public class GoogleAuth {
         } catch (Throwable e) {
             LOG.e(e);
         }
+        // Signed in again later, the Sync tab is shown again
+        AppState.get().isSyncTabShownForSignIn = false;
     }
 }

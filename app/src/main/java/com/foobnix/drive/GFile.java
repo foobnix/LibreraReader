@@ -1,5 +1,9 @@
 package com.foobnix.drive;
 
+import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.MainTabs2;
+import com.foobnix.pdf.info.wrapper.UITab;
+import com.foobnix.model.AppState;
 import android.accounts.Account;
 import android.app.Activity;
 import android.content.Context;
@@ -176,6 +180,16 @@ public class GFile {
 
         EventBus.getDefault().post(new GDriveSycnEvent());
         runSyncService(c);
+
+        // The Sync tab shown for the new account: the main screen opened again to have it
+        AppState.get().isSyncTabShownForSignIn = false;
+        if (UITab.showSyncTabOnce()) {
+            AppProfile.save(c);
+            if (c instanceof MainTabs2) {
+                c.finish();
+                MainTabs2.startActivity(c, TempHolder.get().currentTab);
+            }
+        }
     }
 
     /**
@@ -619,6 +633,10 @@ public class GFile {
     public static long getLastModified(java.io.File file) {
         if (file.lastModified() == 0) {
             return 0;
+        }
+        if (sp == null) {
+            // Before the drive is set up this run: the file's own time
+            return file.lastModified();
         }
         return sp.getLong(file.getPath() + file.lastModified(), file.lastModified());
     }

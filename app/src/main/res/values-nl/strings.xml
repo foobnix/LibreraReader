@@ -277,6 +277,7 @@
    <string name="by_file_name">Bestandsnaam</string>
    <string name="by_size">Grootte</string>
    <string name="by_date">Datum</string>
+   <string name="by_sync_date">Synchronisatiedatum</string>
    <string name="by_title">Titel</string>
    <string name="by_author">Boekauteur</string>
    <string name="by_series">Serie</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Toegankelijkheid</string>
    <string name="web_search_google">Zoeken op internet (Google, ...)</string>
    <string name="synced_books">Gesynchroniseerde boeken</string>
+   <string name="sync_status_synced">Gesynchroniseerd</string>
+   <string name="sync_status_syncing">Synchroniseren…</string>
+   <string name="sync_status_never">Nog niet gesynchroniseerd</string>
    <string name="user_styles">Gebruiker stijlen</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Deze wijziging vereist een handmatige herstart van de applicatie</string>

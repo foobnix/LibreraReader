@@ -277,6 +277,7 @@
    <string name="by_file_name">கோப்பு பெயர்</string>
    <string name="by_size">கோப்பின் அளவு</string>
    <string name="by_date">தேதி</string>
+   <string name="by_sync_date">ஒத்திசைவு தேதி</string>
    <string name="by_title">தலைப்பு</string>
    <string name="by_author">நூலாசிரியர்</string>
    <string name="by_series">தொடர்</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">அணுகல்</string>
    <string name="web_search_google">இணைய தேடல் (Google, ...)</string>
    <string name="synced_books">ஒத்திசைக்கப்பட்ட புத்தகங்கள்</string>
+   <string name="sync_status_synced">ஒத்திசைக்கப்பட்டது</string>
+   <string name="sync_status_syncing">ஒத்திசைக்கிறது…</string>
+   <string name="sync_status_never">இன்னும் ஒத்திசைக்கப்படவில்லை</string>
    <string name="user_styles">பயனர் வரையறுத்த</string>
    <string name="engine">இயந்திரம்</string>
    <string name="restart_manually">இந்த மாற்றத்திற்கு பயன்பாட்டை கைமுறையாக மறுதொடக்கம் செய்ய வேண்டும்</string>

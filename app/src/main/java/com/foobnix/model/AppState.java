@@ -253,6 +253,10 @@ public class AppState {
     public final static int MODE_LANGUAGES = 10;
     public final static int MODE_PUBLICATION_DATE = 11;
     public final static int MODE_PUBLISHER = 12;
+    public final static int SYNC_SORT_DATE = 0;
+    public final static int SYNC_SORT_TITLE = 1;
+    public final static int SYNC_SORT_AUTHOR = 2;
+    public final static int SYNC_SORT_PROGRESS = 3;
     public final static int BOOKMARK_MODE_BY_DATE = 1;
     public final static int BOOKMARK_MODE_BY_BOOK = 2;
     // end
@@ -434,6 +438,8 @@ public class AppState {
     @IgnoreHashCode public String streamRecent = "";
     public boolean isSystemThemeColor = false;
     public String allOPDSLinks = opdsDefaults();
+    // The Sync tab was turned on for the account signed in now (UITab.showSyncTabOnce)
+    @IgnoreHashCode public boolean isSyncTabShownForSignIn = false;
     public boolean opdsLargeCovers = true;
     public boolean createBookNameFolder = false;
     public String readColors = READ_COLORS_DEAFAUL;
@@ -703,6 +709,10 @@ public class AppState {
     public int libraryMode = MODE_GRID;
     public int broseMode = MODE_LIST;
     public int recentMode = MODE_LIST;
+    // The Sync tab: how its books are shown, and in which order
+    public int syncMode = MODE_LIST;
+    public int syncSortBy = SYNC_SORT_DATE;
+    public boolean isSyncSortAsc = false;
     public int cloudMode = MODE_LIST_COMPACT;
     public int bookmarksMode = BOOKMARK_MODE_BY_DATE;
     public int starsMode = MODE_LIST_COMPACT;
@@ -841,7 +851,7 @@ public class AppState {
     public boolean isShowFavPlaylist = true;
     public boolean isShowFavFolders = true;
     public boolean isShowFavBooks = true;
-    public boolean isShowSyncBooks = true;
+    public boolean isShowSyncBooks = false; // The Sync tab shows them now
     public boolean isShowTestBooks = false;
     public boolean isShowDiscardedBooks = true;
     @IgnoreHashCode public int sortBookmarksOrder = BOOKMARK_SORT_PAGE_ASC;

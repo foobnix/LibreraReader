@@ -277,6 +277,7 @@
    <string name="by_file_name">File name</string>
    <string name="by_size">Kích thước</string>
    <string name="by_date">Ngày</string>
+   <string name="by_sync_date">Ngày đồng bộ</string>
    <string name="by_title">Tên sách</string>
    <string name="by_author">Tác giả cuốn sách</string>
    <string name="by_series">Loạt</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Khả năng tiếp cận</string>
    <string name="web_search_google">Tìm kiếm trên web (Google, ...)</string>
    <string name="synced_books">Sách được đồng bộ hóa</string>
+   <string name="sync_status_synced">Đã đồng bộ</string>
+   <string name="sync_status_syncing">Đang đồng bộ…</string>
+   <string name="sync_status_never">Chưa đồng bộ</string>
    <string name="user_styles">Phong cách người dùng</string>
    <string name="engine">Động cơ</string>
    <string name="restart_manually">Thay đổi này yêu cầu khởi động lại ứng dụng theo cách thủ công</string>

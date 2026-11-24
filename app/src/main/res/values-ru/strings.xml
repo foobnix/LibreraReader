@@ -277,6 +277,7 @@
    <string name="by_file_name">Имя файла</string>
    <string name="by_size">Размер</string>
    <string name="by_date">Дата добавления</string>
+   <string name="by_sync_date">Дата синхронизации</string>
    <string name="by_title">Заголовок книги</string>
    <string name="by_author">Автор книги</string>
    <string name="by_series">Серия</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Доступность</string>
    <string name="web_search_google">Веб-поиск (Google, ...)</string>
    <string name="synced_books">Синхронизированные книги</string>
+   <string name="sync_status_synced">Синхронизировано</string>
+   <string name="sync_status_syncing">Синхронизация…</string>
+   <string name="sync_status_never">Ещё не синхронизировано</string>
    <string name="user_styles">Пользовательские</string>
    <string name="engine">Движок</string>
    <string name="restart_manually">Это изменение требует ручного перезапуска приложения</string>

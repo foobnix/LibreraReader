@@ -306,12 +306,16 @@ public class MuPdfDocument extends AbstractCodecDocument {
     }
 
     @Override public int findBookmarkPage(int page, String text, String pageText) {
+        return findBookmarkPage(page, text, pageText, 10);
+    }
+
+    @Override public int findBookmarkPage(int page, String text, String pageText, int range) {
         if (!lockBookmark()) {
             LOG.d("findBookmarkPage skip, the document is busy");
             return -1;
         }
         try {
-            return isRecycled() || !hasBookmarkNatives ? -1 : findBookmarkPageInternal(documentHandle, page, text, pageText, 10);
+            return isRecycled() || !hasBookmarkNatives ? -1 : findBookmarkPageInternal(documentHandle, page, text, pageText, range);
         } catch (UnsatisfiedLinkError e) {
             hasBookmarkNatives = false;
             LOG.e(e);

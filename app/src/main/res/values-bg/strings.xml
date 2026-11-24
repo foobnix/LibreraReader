@@ -277,6 +277,7 @@
    <string name="by_file_name">Име на файл</string>
    <string name="by_size">Размер на файла</string>
    <string name="by_date">Дата</string>
+   <string name="by_sync_date">Дата на синхронизиране</string>
    <string name="by_title">Заглавие</string>
    <string name="by_author">Автор</string>
    <string name="by_series">Серия</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Достъпност</string>
    <string name="web_search_google">Търсене в мрежата (Google, ...)</string>
    <string name="synced_books">Синхронизирани книги</string>
+   <string name="sync_status_synced">Синхронизирано</string>
+   <string name="sync_status_syncing">Синхронизиране…</string>
+   <string name="sync_status_never">Още не е синхронизирано</string>
    <string name="user_styles">Дефинирани от потребителя</string>
    <string name="engine">Двигател</string>
    <string name="restart_manually">Тази промяна изисква ръчно рестартиране на приложението</string>

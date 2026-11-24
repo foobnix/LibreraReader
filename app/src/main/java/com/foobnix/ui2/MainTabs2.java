@@ -95,6 +95,7 @@ import com.foobnix.ui2.adapter.TabsAdapter2;
 import com.foobnix.ui2.fragment.BookmarksFragment2;
 import com.foobnix.ui2.fragment.BrowseFragment2;
 import com.foobnix.ui2.fragment.OpdsFragment2;
+import com.foobnix.ui2.fragment.GoogleDriveFragment2;
 import com.foobnix.ui2.fragment.PrefFragment2;
 import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
@@ -741,6 +742,10 @@ public class MainTabs2 extends AdsFragmentActivity {
         toastBrightnessText.setVisibility(View.GONE);
         TintUtil.setDrawableTint(toastBrightnessText.getCompoundDrawables()[0], Color.WHITE);
 
+        // Signed in to sync: its tab shown, once
+        if (GoogleAuth.isAuthorized(this) && UITab.showSyncTabOnce()) {
+            AppProfile.save(this);
+        }
         tabFragments = new ArrayList<UIFragment>();
 
         try {
@@ -858,7 +863,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
         indicator.addSwipeRefreshLayout(swipeRefreshLayout);
         indicator.setVisibility(View.VISIBLE);
-        syncProgress = findViewById(R.id.syncNavProgress);
         indicator.init();
 
         indicator.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -1073,51 +1077,48 @@ public class MainTabs2 extends AdsFragmentActivity {
         });
     }
 
-    private View syncProgress;
-    private ObjectAnimator syncAnimator;
-
-    // Most syncs find nothing to do and are over in a moment: only one that takes a while is shown
+    // Most syncs find nothing to do and are over in a moment: only one that takes a while is
+    // shown, as the Sync tab's icon turning - no line across the whole bar
     private final Runnable showSyncProgress = () -> {
-        final boolean tabsAtTop = AppState.get().tapPositionTop;
-        final FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) syncProgress.getLayoutParams();
-        // Above the icons: the tabs at the foot sit higher or lower with the system's own bars
-        params.topMargin = tabsAtTop ? findViewById(R.id.imageParent1).getHeight()
-                                     : indicator.getTop() + Dips.dpToPx(4);
-        if (tabsAtTop) {
-            params.leftMargin = 0;
-            params.rightMargin = 0;
+        final int tab = syncTabIndex();
+        if (tab >= 0 && indicator != null) {
+            indicator.spinTabIcon(tab, R.drawable.glyphicons_82_refresh);
         }
-        syncProgress.setLayoutParams(params);
-        syncProgress.setVisibility(View.VISIBLE);
-        syncProgress.post(() -> {
-            final View bar = syncProgress.findViewById(R.id.syncNavBar);
-            syncAnimator = ObjectAnimator.ofFloat(bar, View.TRANSLATION_X, 0, syncProgress.getWidth() - bar.getWidth());
-            syncAnimator.setDuration(900);
-            syncAnimator.setRepeatCount(ValueAnimator.INFINITE);
-            syncAnimator.setRepeatMode(ValueAnimator.REVERSE);
-            syncAnimator.start();
-        });
     };
 
-    // A sync shows as a line in the tabs; the message also lets go of the pull-to-refresh wheel
-    // that may have started it.
+    /** Where the Sync tab stands in the bar, -1 when it is not shown. */
+    private int syncTabIndex() {
+        if (tabFragments == null) {
+            return -1;
+        }
+        for (int i = 0; i < tabFragments.size(); i++) {
+            if (tabFragments.get(i) instanceof GoogleDriveFragment2) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // The message also lets go of the pull-to-refresh wheel that may have started the sync.
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onShowSycn(MessageSync msg) {
         try {
             swipeRefreshLayout.setRefreshing(false);
-            if (syncProgress != null) {
-                syncProgress.removeCallbacks(showSyncProgress);
-                if (msg.state == MessageSync.STATE_VISIBLE) {
-                    syncProgress.postDelayed(showSyncProgress, 400);
-                } else {
-                    syncProgress.setVisibility(View.GONE);
-                    if (syncAnimator != null) {
-                        syncAnimator.cancel();
-                    }
-                }
-            }
+            showSyncState(msg.state == MessageSync.STATE_VISIBLE);
         } catch (Exception e) {
             LOG.e(e);
+        }
+    }
+
+    private void showSyncState(boolean running) {
+        if (indicator == null) {
+            return;
+        }
+        indicator.removeCallbacks(showSyncProgress);
+        if (running) {
+            indicator.postDelayed(showSyncProgress, 400);
+        } else {
+            indicator.stopTabIcon();
         }
     }
 
@@ -1184,6 +1185,8 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        // A sync that started or ended while the library was away
+        showSyncState(com.foobnix.work.SynctornizatoinWorker.isRunning);
 
         //AppsConfig.isCloudsEnable = UITab.isShowCloudsPreferences();
         AppsConfig.isCloudsEnable = false;

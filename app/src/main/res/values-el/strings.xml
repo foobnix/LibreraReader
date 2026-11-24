@@ -277,6 +277,7 @@
    <string name="by_file_name">Όνομα αρχείου</string>
    <string name="by_size">Μέγεθος αρχείου</string>
    <string name="by_date">Ημερομηνία</string>
+   <string name="by_sync_date">Ημερομηνία συγχρονισμού</string>
    <string name="by_title">Τίτλος</string>
    <string name="by_author">Συντάκτης</string>
    <string name="by_series">Σειρά</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Προσιτότητα</string>
    <string name="web_search_google">Αναζήτηση ιστού (Google, ...)</string>
    <string name="synced_books">Συγχρονισμένα βιβλία</string>
+   <string name="sync_status_synced">Συγχρονίστηκε</string>
+   <string name="sync_status_syncing">Συγχρονισμός…</string>
+   <string name="sync_status_never">Δεν έχει συγχρονιστεί ακόμη</string>
    <string name="user_styles">Ορισμένο από τον χρήστη</string>
    <string name="engine">Κινητήρας</string>
    <string name="restart_manually">Αυτή η αλλαγή απαιτεί μη αυτόματη επανεκκίνηση της εφαρμογής</string>

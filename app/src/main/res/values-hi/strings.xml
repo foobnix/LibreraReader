@@ -277,6 +277,7 @@
    <string name="by_file_name">फ़ाइल का नाम</string>
    <string name="by_size">आकार</string>
    <string name="by_date">तारीख</string>
+   <string name="by_sync_date">सिंक तिथि</string>
    <string name="by_title">पुस्तक का शीर्षक</string>
    <string name="by_author">पुस्तक के लेखक</string>
    <string name="by_series">शृंखला</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">पहुँच</string>
    <string name="web_search_google">वेब खोज (गूगल,...)</string>
    <string name="synced_books">समन्वयित पुस्तकें</string>
+   <string name="sync_status_synced">सिंक हो गया</string>
+   <string name="sync_status_syncing">सिंक हो रहा है…</string>
+   <string name="sync_status_never">अभी तक सिंक नहीं हुआ</string>
    <string name="user_styles">उपयोगकर्ता शैलियों</string>
    <string name="engine">यन्त्र</string>
    <string name="restart_manually">इस परिवर्तन के लिए एप्लिकेशन के मैन्युअल पुनरारंभ की आवश्यकता है</string>

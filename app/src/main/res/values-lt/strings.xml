@@ -277,6 +277,7 @@
    <string name="by_file_name">Failo pavadinimas</string>
    <string name="by_size">Dydis</string>
    <string name="by_date">Data</string>
+   <string name="by_sync_date">Sinchronizavimo data</string>
    <string name="by_title">Knygos pavadinimas</string>
    <string name="by_author">Knygos autorius</string>
    <string name="by_series">Serija</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Prieinamumas</string>
    <string name="web_search_google">Žiniatinklio paieška (Google,...)</string>
    <string name="synced_books">Sinchronizuotos knygos</string>
+   <string name="sync_status_synced">Sinchronizuota</string>
+   <string name="sync_status_syncing">Sinchronizuojama…</string>
+   <string name="sync_status_never">Dar nesinchronizuota</string>
    <string name="user_styles">Vartotojo</string>
    <string name="engine">Variklis</string>
    <string name="restart_manually">Dėl šio pakeitimo reikia rankiniu būdu iš naujo paleisti programą</string>

@@ -277,6 +277,7 @@
    <string name="by_file_name">Název souboru</string>
    <string name="by_size">Velikost souboru</string>
    <string name="by_date">Datum</string>
+   <string name="by_sync_date">Datum synchronizace</string>
    <string name="by_title">Název</string>
    <string name="by_author">Autor</string>
    <string name="by_series">Série</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Přístupnost</string>
    <string name="web_search_google">Vyhledávání na webu (Google, ...)</string>
    <string name="synced_books">Synchronizované knihy</string>
+   <string name="sync_status_synced">Synchronizováno</string>
+   <string name="sync_status_syncing">Synchronizace…</string>
+   <string name="sync_status_never">Zatím nesynchronizováno</string>
    <string name="user_styles">Uživatelsky definované</string>
    <string name="engine">Jádro</string>
    <string name="restart_manually">Tato změna vyžaduje ruční restart aplikace</string>

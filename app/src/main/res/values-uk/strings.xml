@@ -277,6 +277,7 @@
    <string name="by_file_name">Назва файлу</string>
    <string name="by_size">Розмір</string>
    <string name="by_date">Дата створення файлу</string>
+   <string name="by_sync_date">Дата синхронізації</string>
    <string name="by_title">Назва книги</string>
    <string name="by_author">Автор книги</string>
    <string name="by_series">Серія</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Доступність</string>
    <string name="web_search_google">Веб-пошук (Google, ...)</string>
    <string name="synced_books">Синхронізовані книги</string>
+   <string name="sync_status_synced">Синхронізовано</string>
+   <string name="sync_status_syncing">Синхронізація…</string>
+   <string name="sync_status_never">Ще не синхронізовано</string>
    <string name="user_styles">Користувацькі</string>
    <string name="engine">Двигун</string>
    <string name="restart_manually">Ця зміна вимагає ручного перезапуску програми</string>

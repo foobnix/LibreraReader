@@ -277,6 +277,7 @@
    <string name="by_file_name">Nom del fitxer</string>
    <string name="by_size">Mida del fitxer</string>
    <string name="by_date">Data</string>
+   <string name="by_sync_date">Data de sincronització</string>
    <string name="by_title">Títol</string>
    <string name="by_author">Autor</string>
    <string name="by_series">Sèrie</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Accessibilitat</string>
    <string name="web_search_google">Cerca web (Google, ...)</string>
    <string name="synced_books">Llibres sincronitzats</string>
+   <string name="sync_status_synced">Sincronitzat</string>
+   <string name="sync_status_syncing">S\'està sincronitzant…</string>
+   <string name="sync_status_never">Encara no s\'ha sincronitzat</string>
    <string name="user_styles">Estils d\'usuari</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Aquest canvi requereix reiniciar manualment l\'aplicació</string>

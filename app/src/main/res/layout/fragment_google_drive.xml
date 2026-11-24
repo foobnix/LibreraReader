@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- The Sync tab: the band with the count and the view buttons, then where the sync stands and
+     the button that runs it, then the synced books themselves. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
 
     <LinearLayout
         android:id="@+id/topPanel"
@@ -14,77 +15,153 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-
-        <ImageView
-            android:layout_width="@dimen/wh_button_small"
-            android:layout_height="@dimen/wh_button_small"
-            android:layout_weight="0"
-            android:padding="2dip"
-            android:src="@drawable/gdrive"
-            android:visibility="gone" />
-
+        <!-- As wide as its words: the tap on it (the profile) answers on them alone -->
         <TextView
             android:id="@+id/syncHeader"
-            style="@style/textLinkWhite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/clouds" />
-
-
-        <TextView
-            android:id="@+id/signIn"
-            style="@style/textLinkWhite"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="36dip"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dip"
+            android:paddingRight="8dip"
             android:singleLine="true"
-            android:text="@string/sign_in" />
+            android:text="@string/sync"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
+        <View
+            android:layout_width="0dip"
+            android:layout_height="1dip"
+            android:layout_weight="1" />
 
+        <ImageView
+            android:id="@+id/onSort"
+            style="@style/buttonTop"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:contentDescription="@string/cd_sort_order"
+            android:src="@drawable/glyphicons_476_sort_attributes" />
+
+        <ImageView
+            android:id="@+id/onListGrid"
+            style="@style/buttonTop"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:contentDescription="@string/list"
+            android:src="@drawable/glyphicons_157_thumbnails" />
+
+        <ImageView
+            android:id="@+id/onMenu"
+            style="@style/buttonTop"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:contentDescription="@string/menu"
+            android:src="@drawable/glyphicons_498_more_vertical" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/syncInfo"
+    <!-- Part of the chrome: it floats over the books with the band, in the band's colour -->
+    <LinearLayout
+        android:id="@+id/headerChrome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="4dip"
-        android:text="ivan@gmail.com" />
-
-    <TextView
-        android:id="@+id/syncInfo2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="4dip"
-        android:text="ivan@gmail.com" />
+        android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="6dip"
+        android:paddingLeft="12dip"
+        android:paddingRight="8dip">
 
-
-        <CheckBox
-            android:id="@+id/isEnableSync"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/syncStatus"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/enable" />
+            android:background="?android:attr/selectableItemBackground"
+            android:orientation="vertical"
+            android:paddingBottom="4dip"
+            android:paddingTop="4dip">
 
+            <TextView
+                android:id="@+id/syncInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textSize="13sp" />
 
-        <ImageView
-            android:id="@+id/isEnableSyncSettings"
-            android:layout_width="@dimen/wh_button"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dip"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/syncInfo2"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/syncNow"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/wh_button"
-            android:layout_weight="0"
-            android:padding="4dip"
-            android:src="@drawable/glyphicons_137_cogwheel" />
+            android:layout_marginLeft="8dip"
+            android:gravity="center_vertical"
+            android:minWidth="96dip"
+            android:orientation="horizontal"
+            android:paddingLeft="14dip"
+            android:paddingRight="18dip">
+
+            <ImageView
+                android:id="@+id/syncNowIcon"
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:layout_marginRight="8dip"
+                android:src="@drawable/glyphicons_82_refresh" />
+
+            <TextView
+                android:id="@+id/syncNowText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/sync"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/syncEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="12dip"
+        android:paddingLeft="12dip"
+        android:paddingRight="12dip"
+        android:text="@string/msg_sync"
+        android:visibility="gone" />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 
 </LinearLayout>

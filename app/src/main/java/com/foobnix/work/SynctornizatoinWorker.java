@@ -20,6 +20,13 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecovera
 import org.greenrobot.eventbus.EventBus;
 
 public class SynctornizatoinWorker extends MessageWorker{
+
+    /**
+     * True for as long as a sync runs in this process. The saved status cannot say so: a
+     * screen opened mid-sync (the library reopens after a sign-in) reads it from a profile
+     * saved before the sync began.
+     */
+    public static volatile boolean isRunning;
     public SynctornizatoinWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
     }
@@ -29,22 +36,28 @@ public class SynctornizatoinWorker extends MessageWorker{
     boolean doWorkInner() {
         if (AppSP.get().isEnableSync) {
             AppProfile.save(getApplicationContext());
+            isRunning = true;
             try {
-                EventBus.getDefault().post(new MessageSync(MessageSync.STATE_VISIBLE));
                 AppSP.get().syncTimeStatus = MessageSync.STATE_VISIBLE;
+                EventBus.getDefault().post(new MessageSync(MessageSync.STATE_VISIBLE));
                 GFile.sycnronizeAll(getApplicationContext());
 
                 AppSP.get().syncTime = System.currentTimeMillis();
                 AppSP.get().syncTimeStatus = MessageSync.STATE_SUCCESS;
+                isRunning = false;
                 EventBus.getDefault().post(new MessageSync(MessageSync.STATE_SUCCESS));
             } catch (UserRecoverableAuthIOException e) {
+                isRunning = false;
                 GFile.logout(getApplicationContext());
                 AppSP.get().syncTimeStatus = MessageSync.STATE_FAILE;
                 EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
             } catch (Exception e) {
+                isRunning = false;
                 AppSP.get().syncTimeStatus = MessageSync.STATE_FAILE;
                 EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
                 LOG.e(e);
+            } finally {
+                isRunning = false;
             }
             if (GFile.isNeedUpdate) {
                 LOG.d("GFILE-isNeedUpdate", GFile.isNeedUpdate);

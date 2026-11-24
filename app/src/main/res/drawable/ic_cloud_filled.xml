@@ -1,0 +1,13 @@
+<!-- The sync cloud, filled and round, as LibreraX draws it: the Sync tab and the mark on a
+     synced book. Tinted where it is used. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="960"
+    android:viewportHeight="960">
+    <group android:translateY="960">
+        <path
+            android:fillColor="@color/black"
+            android:pathData="M260,-160Q169,-160 104.5,-223Q40,-286 40,-377Q40,-455 87,-516Q134,-577 210,-594Q235,-686 310,-743Q385,-800 480,-800Q597,-800 678.5,-718.5Q760,-637 760,-520Q829,-512 874.5,-460.5Q920,-409 920,-340Q920,-265 867.5,-212.5Q815,-160 740,-160L260,-160Z" />
+    </group>
+</vector>

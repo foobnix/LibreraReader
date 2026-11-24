@@ -277,6 +277,7 @@
    <string name="by_file_name">ชื่อไฟล์</string>
    <string name="by_size">ขนาด</string>
    <string name="by_date">วันที่</string>
+   <string name="by_sync_date">วันที่ซิงค์</string>
    <string name="by_title">ชื่อหนังสือ</string>
    <string name="by_author">ผู้เขียนหนังสือ</string>
    <string name="by_series">ชุด</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">การเข้าถึง</string>
    <string name="web_search_google">ค้นเว็บ (Google, ...)</string>
    <string name="synced_books">หนังสือที่ซิงค์</string>
+   <string name="sync_status_synced">ซิงค์แล้ว</string>
+   <string name="sync_status_syncing">กำลังซิงค์…</string>
+   <string name="sync_status_never">ยังไม่ได้ซิงค์</string>
    <string name="user_styles">สไตล์ของผู้ใช้</string>
    <string name="engine">เครื่องยนต์</string>
    <string name="restart_manually">การเปลี่ยนแปลงนี้ต้องรีสตาร์ทแอปพลิเคชันด้วยตนเอง</string>

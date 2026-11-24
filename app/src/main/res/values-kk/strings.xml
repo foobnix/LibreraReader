@@ -277,6 +277,7 @@
    <string name="by_file_name">Файл атауы</string>
    <string name="by_size">Файл өлшемі</string>
    <string name="by_date">Күні</string>
+   <string name="by_sync_date">Синхрондау күні</string>
    <string name="by_title">Атауы</string>
    <string name="by_author">Автор</string>
    <string name="by_series">Серия</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Қолжетімділік</string>
    <string name="web_search_google">Веб-іздеу (Google, ...)</string>
    <string name="synced_books">Синхрондалған кітаптар</string>
+   <string name="sync_status_synced">Синхрондалды</string>
+   <string name="sync_status_syncing">Синхрондалуда…</string>
+   <string name="sync_status_never">Әлі синхрондалмаған</string>
    <string name="user_styles">Пайдаланушы анықтаған</string>
    <string name="engine">Қозғалтқыш</string>
    <string name="restart_manually">Бұл өзгеріс қолданбаны қолмен қайта іске қосуды талап етеді</string>

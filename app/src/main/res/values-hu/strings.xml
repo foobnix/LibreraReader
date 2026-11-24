@@ -277,6 +277,7 @@
    <string name="by_file_name">Fájlnév</string>
    <string name="by_size">Fájlméret</string>
    <string name="by_date">Dátum</string>
+   <string name="by_sync_date">Szinkronizálás dátuma</string>
    <string name="by_title">Cím</string>
    <string name="by_author">Szerző</string>
    <string name="by_series">Sorozatok</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Megközelíthetőség</string>
    <string name="web_search_google">Webes kereső (Google,...)</string>
    <string name="synced_books">Szinkronizált könyvek</string>
+   <string name="sync_status_synced">Szinkronizálva</string>
+   <string name="sync_status_syncing">Szinkronizálás…</string>
+   <string name="sync_status_never">Még nincs szinkronizálva</string>
    <string name="user_styles">Felhasználó által meghatározott</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Ehhez a módosításhoz az alkalmazás manuális újraindítása szükséges</string>

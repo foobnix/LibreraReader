@@ -4,6 +4,12 @@ All notable changes to Librera Reader.
 
 Release builds: https://github.com/foobnix/LibreraReader/releases · [Unreleased APK Direct Download](http://beta.librera.mobi)
 
+* The Clouds tab is now called Sync, and it is shown once you sign in to Google Drive
+* The Sync tab shows your synced books as a grid or list, sorted as you choose, with the last sync's time and status and a Sync button; Favourites no longer lists them by default
+* The Sync tab names the profile its progress belongs to, and a tap on it switches profile
+* The Sync tab lists books by sync date, the latest first: a book read on any device moves to the top
+* A running sync turns the Sync tab's icon, instead of a line across the whole tab bar
+* Reading position across devices and engines (MuPDF, foliate, scroll and page modes): the book opens at the words that were at the top of the screen, not at the start of that page
 * New catalog: optional user name and password, kept for that server and asked with at once
 * Search in catalogs that describe it in an OpenSearch file (Ebooks libres et gratuits, textos.info...); searches with several words work on Calibre-Web
 * A tapped catalog cover opens the picture itself instead of a blank book; download buttons are round

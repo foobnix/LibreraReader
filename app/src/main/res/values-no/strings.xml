@@ -277,6 +277,7 @@
    <string name="by_file_name">Filnavn</string>
    <string name="by_size">Størrelse</string>
    <string name="by_date">Dato</string>
+   <string name="by_sync_date">Synkroniseringsdato</string>
    <string name="by_title">Boktittel</string>
    <string name="by_author">Bokforfatter</string>
    <string name="by_series">Serie</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Tilgjengelighet</string>
    <string name="web_search_google">Nettsøk (Google, ...)</string>
    <string name="synced_books">Synkroniserte bøker</string>
+   <string name="sync_status_synced">Synkronisert</string>
+   <string name="sync_status_syncing">Synkroniserer…</string>
+   <string name="sync_status_never">Ikke synkronisert ennå</string>
    <string name="user_styles">Brukerstiler</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Denne endringen krever en manuell omstart av programmet</string>

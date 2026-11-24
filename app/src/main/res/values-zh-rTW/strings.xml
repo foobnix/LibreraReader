@@ -277,6 +277,7 @@
    <string name="by_file_name">文件名</string>
    <string name="by_size">文件大小</string>
    <string name="by_date">日期</string>
+   <string name="by_sync_date">同步日期</string>
    <string name="by_title">書名</string>
    <string name="by_author">作者</string>
    <string name="by_series">叢書</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">可訪問性</string>
    <string name="web_search_google">網絡搜索（谷歌，...）</string>
    <string name="synced_books">同步書籍</string>
+   <string name="sync_status_synced">已同步</string>
+   <string name="sync_status_syncing">正在同步…</string>
+   <string name="sync_status_never">尚未同步</string>
    <string name="user_styles">用戶樣式</string>
    <string name="engine">引擎</string>
    <string name="restart_manually">此更改需要手動重新啟動應用程序</string>

@@ -277,6 +277,7 @@
    <string name="by_file_name">Tiedoston nimi</string>
    <string name="by_size">Tiedoston koko</string>
    <string name="by_date">Päivämäärä</string>
+   <string name="by_sync_date">Synkronointipäivä</string>
    <string name="by_title">Kirjan nimi</string>
    <string name="by_author">Tekijä</string>
    <string name="by_series">Sarja</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Saavutettavuus</string>
    <string name="web_search_google">Verkkohaku (Google,...)</string>
    <string name="synced_books">Synkronoidut kirjat</string>
+   <string name="sync_status_synced">Synkronoitu</string>
+   <string name="sync_status_syncing">Synkronoidaan…</string>
+   <string name="sync_status_never">Ei vielä synkronoitu</string>
    <string name="user_styles">Käyttäjän tyylit</string>
    <string name="engine">Moottori</string>
    <string name="restart_manually">Tämä muutos vaatii sovelluksen manuaalisen uudelleenkäynnistyksen</string>

@@ -279,6 +279,7 @@
    <string name="by_file_name">Nome do ficheiro</string>
    <string name="by_size">Tamaño do ficheiro</string>
    <string name="by_date">Data</string>
+   <string name="by_sync_date">Data de sincronización</string>
    <string name="by_title">Título</string>
    <string name="by_author">Autor</string>
    <string name="by_series">Serie</string>
@@ -683,6 +684,9 @@
    <string name="accessibility">Accesibilidade</string>
    <string name="web_search_google">Procura web (Google, ...)</string>
    <string name="synced_books">Libros sincronizados</string>
+   <string name="sync_status_synced">Sincronizado</string>
+   <string name="sync_status_syncing">Sincronizando…</string>
+   <string name="sync_status_never">Aínda sen sincronizar</string>
    <string name="user_styles">Estilos do usuario</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Este troco require reiniciar manualmente a aplicación</string>

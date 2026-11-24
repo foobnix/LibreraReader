@@ -277,6 +277,7 @@
    <string name="by_file_name">Dosya adı</string>
    <string name="by_size">Boyut</string>
    <string name="by_date">Tarih</string>
+   <string name="by_sync_date">Eşitleme tarihi</string>
    <string name="by_title">Başık</string>
    <string name="by_author">Yazar</string>
    <string name="by_series">Dizi</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Ulaşılabilirlik</string>
    <string name="web_search_google">Web araması (Google, ...)</string>
    <string name="synced_books">Senkronize edilmiş kitaplar</string>
+   <string name="sync_status_synced">Eşitlendi</string>
+   <string name="sync_status_syncing">Eşitleniyor…</string>
+   <string name="sync_status_never">Henüz eşitlenmedi</string>
    <string name="user_styles">Kullanıcı</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Bu değişiklik, uygulamanın manuel olarak yeniden başlatılmasını gerektirir</string>

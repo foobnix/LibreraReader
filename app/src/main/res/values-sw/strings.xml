@@ -277,6 +277,7 @@
    <string name="by_file_name">Jina la faili</string>
    <string name="by_size">Ukubwa</string>
    <string name="by_date">Tarehe</string>
+   <string name="by_sync_date">Tarehe ya kusawazisha</string>
    <string name="by_title">Title kitabu</string>
    <string name="by_author">Mwandishi kitabu</string>
    <string name="by_series">Mfululizo</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Upatikanaji</string>
    <string name="web_search_google">Utafutaji wa wavuti (Google, ...)</string>
    <string name="synced_books">Vitabu vilivyosawazishwa</string>
+   <string name="sync_status_synced">Imesawazishwa</string>
+   <string name="sync_status_syncing">Inasawazisha…</string>
+   <string name="sync_status_never">Bado haijasawazishwa</string>
    <string name="user_styles">Mitindo user</string>
    <string name="engine">Injini</string>
    <string name="restart_manually">Mabadiliko haya yanahitaji kuanzishwa upya kwa programu mwenyewe</string>

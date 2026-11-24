@@ -277,6 +277,7 @@
    <string name="by_file_name">Nama file</string>
    <string name="by_size">Ukuran</string>
    <string name="by_date">Tanggal</string>
+   <string name="by_sync_date">Tanggal sinkron</string>
    <string name="by_title">Judul buku</string>
    <string name="by_author">Penulis buku</string>
    <string name="by_series">Seri</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Aksesibilitas</string>
    <string name="web_search_google">Pencarian web (Google, ...)</string>
    <string name="synced_books">Buku yang disinkronkan</string>
+   <string name="sync_status_synced">Tersinkron</string>
+   <string name="sync_status_syncing">Menyinkronkan…</string>
+   <string name="sync_status_never">Belum disinkronkan</string>
    <string name="user_styles">Gaya pengguna</string>
    <string name="engine">Mesin</string>
    <string name="restart_manually">Perubahan ini memerlukan restart manual aplikasi</string>

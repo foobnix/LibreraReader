@@ -277,6 +277,7 @@
    <string name="by_file_name">Nombre del archivo</string>
    <string name="by_size">Tamaño</string>
    <string name="by_date">Fecha</string>
+   <string name="by_sync_date">Fecha de sincronización</string>
    <string name="by_title">Titulo</string>
    <string name="by_author">Autor</string>
    <string name="by_series">Serie</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Accesibilidad</string>
    <string name="web_search_google">Búsqueda web (Google, ...)</string>
    <string name="synced_books">Libros sincronizados</string>
+   <string name="sync_status_synced">Sincronizado</string>
+   <string name="sync_status_syncing">Sincronizando…</string>
+   <string name="sync_status_never">Aún no sincronizado</string>
    <string name="user_styles">Estilos de usuario</string>
    <string name="engine">Motor</string>
    <string name="restart_manually">Este cambio requiere un reinicio manual de la aplicación</string>

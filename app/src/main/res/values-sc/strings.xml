@@ -277,6 +277,7 @@
    <string name="by_file_name">Nùmene documentu</string>
    <string name="by_size">Mannària de su documentu</string>
    <string name="by_date">Data</string>
+   <string name="by_sync_date">Data de sincronizatzione</string>
    <string name="by_title">Tìtulu</string>
    <string name="by_author">Autore</string>
    <string name="by_series">Sèrie</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Atzessibilidade</string>
    <string name="web_search_google">Chirca in lìnia (Google, ...)</string>
    <string name="synced_books">Libros sincronizados</string>
+   <string name="sync_status_synced">Sincronizadu</string>
+   <string name="sync_status_syncing">Sincronizende…</string>
+   <string name="sync_status_never">Galu no sincronizadu</string>
    <string name="user_styles">Definidu dae s\'utente</string>
    <string name="engine">Motore</string>
    <string name="restart_manually">Pro custa modìfica tocat a torrare a allughere s\'aplicatzione a manera manuale</string>

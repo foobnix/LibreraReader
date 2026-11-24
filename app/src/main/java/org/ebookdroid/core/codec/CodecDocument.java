@@ -118,4 +118,13 @@ public interface CodecDocument {
     // page is estimated by the bookmark percent, returns the nearest page (+-10) with the text,
     // else the nearest page with the page text, else -1
     int findBookmarkPage(int page, String text, String pageText);
+
+    /**
+     * The same over {@code range} pages either side. A book laid out on another device, by another
+     * engine or at another font size can put the text further from its percentage than the usual
+     * ten pages; a fixed layout never moves it, and searches only the usual range.
+     */
+    default int findBookmarkPage(int page, String text, String pageText, int range) {
+        return findBookmarkPage(page, text, pageText);
+    }
 }

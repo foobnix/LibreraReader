@@ -277,6 +277,7 @@
    <string name="by_file_name">Nomen plicae</string>
    <string name="by_size">Mensura</string>
    <string name="by_date">Datum</string>
+   <string name="by_sync_date">Dies synchronizationis</string>
    <string name="by_title">Titulus</string>
    <string name="by_author">Effector</string>
    <string name="by_series">Series</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Accessibilitas</string>
    <string name="web_search_google">Interretialem inquisitionem (Google, ...)</string>
    <string name="synced_books">Synced libri</string>
+   <string name="sync_status_synced">Synchronizatum</string>
+   <string name="sync_status_syncing">Synchronizatur…</string>
+   <string name="sync_status_never">Nondum synchronizatum</string>
    <string name="user_styles">Styli usufructuarii</string>
    <string name="engine">Machina</string>
    <string name="restart_manually">Haec mutatio requirit a manual sileo applicationis</string>

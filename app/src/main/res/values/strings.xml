@@ -279,6 +279,7 @@
    <string name="by_file_name">Filename</string>
    <string name="by_size">File Size</string>
    <string name="by_date">Date</string>
+   <string name="by_sync_date">Sync date</string>
    <string name="by_title">Title</string>
    <string name="by_author">Author</string>
    <string name="by_series">Series</string>
@@ -683,6 +684,9 @@
    <string name="accessibility">Accessibility</string>
    <string name="web_search_google">Web Search (Google, ...)</string>
    <string name="synced_books">Synced books</string>
+   <string name="sync_status_synced">Synced</string>
+   <string name="sync_status_syncing">Syncing…</string>
+   <string name="sync_status_never">Not synced yet</string>
    <string name="user_styles">User styles</string>
    <string name="engine">Engine</string>
    <string name="restart_manually">This change requires a manual restart of the application</string>

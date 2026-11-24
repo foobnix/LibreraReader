@@ -294,6 +294,70 @@ public class SlidingTabLayout extends HorizontalScrollView {
         return AppState.get().appTheme == AppState.THEME_INK && !tabsOnTint;
     }
 
+    private android.animation.ValueAnimator iconSpin;
+    private TextView spinningTab;
+    private Drawable spinningWas;
+
+    /**
+     * The tab's icon swapped for another that turns, for as long as something it stands for is
+     * running (the Sync tab while a sync runs). Drawn the size and colour its own icon was.
+     */
+    public void spinTabIcon(int index, int iconRes) {
+        stopTabIcon();
+        final View view = getmTabStrip() == null ? null : getmTabStrip().getChildAt(index);
+        if (!(view instanceof TextView)) {
+            return;
+        }
+        final TextView tab = (TextView) view;
+        final int slot = myPOS == POS_VERTICAL ? 1 : 0;
+        final Drawable was = tab.getCompoundDrawables()[slot];
+        if (was == null) {
+            return;
+        }
+        final Drawable icon = ContextCompat.getDrawable(getContext(), iconRes);
+        if (icon == null) {
+            return;
+        }
+        icon.mutate();
+        if (!isInkOnPage()) {
+            TintUtil.setDrawableTint(icon, Color.WHITE);
+        }
+        final android.graphics.drawable.RotateDrawable turning = new android.graphics.drawable.RotateDrawable();
+        turning.setDrawable(icon);
+        turning.setFromDegrees(0);
+        turning.setToDegrees(360);
+        turning.setBounds(was.getBounds());
+        setTabIcon(tab, slot, turning);
+
+        spinningTab = tab;
+        spinningWas = was;
+        iconSpin = android.animation.ValueAnimator.ofInt(0, 10000);
+        iconSpin.setDuration(1000);
+        iconSpin.setRepeatCount(android.animation.ValueAnimator.INFINITE);
+        iconSpin.setInterpolator(new android.view.animation.LinearInterpolator());
+        iconSpin.addUpdateListener(a -> turning.setLevel((Integer) a.getAnimatedValue()));
+        iconSpin.start();
+    }
+
+    /** The turning icon put back to the tab's own. */
+    public void stopTabIcon() {
+        if (iconSpin != null) {
+            iconSpin.cancel();
+            iconSpin = null;
+        }
+        if (spinningTab != null && spinningWas != null) {
+            setTabIcon(spinningTab, myPOS == POS_VERTICAL ? 1 : 0, spinningWas);
+        }
+        spinningTab = null;
+        spinningWas = null;
+    }
+
+    private static void setTabIcon(TextView tab, int slot, Drawable icon) {
+        final Drawable[] all = tab.getCompoundDrawables();
+        all[slot] = icon;
+        tab.setCompoundDrawables(all[0], all[1], all[2], all[3]);
+    }
+
     private void setTabPatch(View tab, boolean isSelected) {
         if (!isFloating()) {
             return;

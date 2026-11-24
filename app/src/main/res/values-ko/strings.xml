@@ -277,6 +277,7 @@
    <string name="by_file_name">파일 이름</string>
    <string name="by_size">크기</string>
    <string name="by_date">날짜</string>
+   <string name="by_sync_date">동기화 날짜</string>
    <string name="by_title">책 제목</string>
    <string name="by_author">저자</string>
    <string name="by_series">시리즈</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">접근성</string>
    <string name="web_search_google">웹 검색(구글, ...)</string>
    <string name="synced_books">동기화된 책</string>
+   <string name="sync_status_synced">동기화됨</string>
+   <string name="sync_status_syncing">동기화 중…</string>
+   <string name="sync_status_never">아직 동기화되지 않음</string>
    <string name="user_styles">사용자 스타일</string>
    <string name="engine">엔진</string>
    <string name="restart_manually">이 변경 사항을 적용하기 위해서는 응용 프로그램을 수동으로 다시 시작해야 합니다.</string>

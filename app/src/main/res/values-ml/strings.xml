@@ -277,6 +277,7 @@
    <string name="by_file_name">ഫയലിന്റെ പേര്</string>
    <string name="by_size">ഫയൽ വലുപ്പം</string>
    <string name="by_date">തീയതി</string>
+   <string name="by_sync_date">സമന്വയ തീയതി</string>
    <string name="by_title">ശീർഷകം</string>
    <string name="by_author">രചയിതാവ്</string>
    <string name="by_series">സീരീസ്</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">പ്രവേശനക്ഷമത</string>
    <string name="web_search_google">വെബ് തിരയൽ (ഗൂഗിൾ, ...)</string>
    <string name="synced_books">സമന്വയിപ്പിച്ച പുസ്തകങ്ങൾ</string>
+   <string name="sync_status_synced">സമന്വയിപ്പിച്ചു</string>
+   <string name="sync_status_syncing">സമന്വയിപ്പിക്കുന്നു…</string>
+   <string name="sync_status_never">ഇതുവരെ സമന്വയിപ്പിച്ചിട്ടില്ല</string>
    <string name="user_styles">ഉപയോക്താവ് നിർവചിച്ചിരിക്കുന്നത്</string>
    <string name="engine">എഞ്ചിൻ</string>
    <string name="restart_manually">ഈ മാറ്റത്തിന് ആപ്ലിക്കേഷൻ സ്വമേധയാ പുനരാരംഭിക്കേണ്ടതുണ്ട്</string>

@@ -277,6 +277,7 @@
    <string name="by_file_name">Ainm comhaid</string>
    <string name="by_size">Méid comhaid</string>
    <string name="by_date">Dáta</string>
+   <string name="by_sync_date">Dáta sioncronaithe</string>
    <string name="by_title">Teideal</string>
    <string name="by_author">Údar</string>
    <string name="by_series">Sraith</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">Inrochtaineacht</string>
    <string name="web_search_google">Cuardach gréasáin (Google, ...)</string>
    <string name="synced_books">Leabhair synced</string>
+   <string name="sync_status_synced">Sioncronaithe</string>
+   <string name="sync_status_syncing">Á shioncronú…</string>
+   <string name="sync_status_never">Gan sioncronú fós</string>
    <string name="user_styles">Sainithe ag an úsáideoir</string>
    <string name="engine">Inneall</string>
    <string name="restart_manually">Teastaíonn atosú láimhe den fheidhmchlár leis an athrú seo</string>

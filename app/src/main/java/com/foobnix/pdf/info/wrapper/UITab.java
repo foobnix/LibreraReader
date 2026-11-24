@@ -117,6 +117,31 @@ public enum UITab {
         }
     }
 
+    /**
+     * The Sync tab turned on, once, for a signed-in user: at the sign-in, and at a start for an
+     * account signed in before this. Hidden again in the tab settings, it stays hidden until the
+     * next sign-in.
+     *
+     * @return <code>true</code> when the tab was hidden and is shown now: the tabs are to be built again
+     */
+    public static boolean showSyncTabOnce() {
+        if (AppState.get().isSyncTabShownForSignIn) {
+            return false;
+        }
+        AppState.get().isSyncTabShownForSignIn = true;
+        synchronized (AppState.get().tabsOrder9) {
+            final String order = AppState.get().tabsOrder9;
+            final String shown = ("," + order + ",").replace("," + GoogleDrive2Fragment.index + "#0,",
+                                                              "," + GoogleDrive2Fragment.index + "#1,");
+            final String result = shown.substring(1, shown.length() - 1);
+            if (result.equals(order)) {
+                return false;
+            }
+            AppState.get().tabsOrder9 = result;
+            return true;
+        }
+    }
+
     public static boolean isShowCloudsPreferences() {
         synchronized (AppState.get().tabsOrder9) {
             return AppState.get().tabsOrder9.contains(UITab.GoogleDrive2Fragment.index + "#1");

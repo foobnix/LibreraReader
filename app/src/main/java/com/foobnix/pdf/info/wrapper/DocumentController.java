@@ -1299,6 +1299,15 @@ public abstract class DocumentController {
                 if (found > 0) {
                     return found;
                 }
+                // Off the main thread the search goes on further out: another device's layout or
+                // engine can put the text well past the usual ten pages from its percentage
+                if (Looper.myLooper() != Looper.getMainLooper()) {
+                    found = doc.findBookmarkPage(page, text, pageText, ReadingPlace.WIDE_RANGE);
+                    if (found > 0) {
+                        LOG.d("findBookmarkPage wide", page, "->", found);
+                        return found;
+                    }
+                }
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -1405,7 +1414,7 @@ public abstract class DocumentController {
             }
             AppBook bs = SettingsManager.getBookSettings();
             bs.updateFromAppState();
-            if (bs.pt == null && bs.getCurrentPage(getPageCount()).viewIndex + 1 == getCurentPageFirst1()) {
+            if (placeStale(bs) && bs.getCurrentPage(getPageCount()).viewIndex + 1 == getCurentPageFirst1()) {
                 // On the main thread the page text and the place are read on a thread of their own
                 // and written after: they need the document, whose lock a page being drawn holds -
                 // a page MuPDF or PDFium takes minutes over froze the reader ("not responding").
@@ -1413,7 +1422,9 @@ public abstract class DocumentController {
                 if (Looper.myLooper() == Looper.getMainLooper()) {
                     savePlaceInBackground(bs, getCurentPageFirst1());
                 } else {
-                    bs.pt = getBookmarkText();
+                    final float y = bs.y;
+                    bs.pt = readingText(getCodecDocument(), getCurentPageFirst1(), y);
+                    anchoredY = y;
                     // The exact place, when the engine can name one. It is written beside the
                     // percentage and the page text, never instead of them: another engine, an older
                     // version or another device has to be able to restore the position without it.
@@ -1444,29 +1455,95 @@ public abstract class DocumentController {
     // same renderer and are not kept waiting on this. A newer page cancels the read still to come.
     private void savePlaceInBackground(final AppBook bs, final int page) {
         final float p = bs.p;
+        final float y = bs.y;
         if (placeRead != null) {
             placeRead.cancel(false);
         }
         placeRead = placeReader.schedule(() -> {
             try {
                 final CodecDocument doc = getCodecDocument();
-                if (doc == null || bs.p != p || bs.pt != null) {
+                if (doc == null || bs.p != p || bs.y != y) {
                     return;
                 }
-                // As getBookmarkText(): no page text while the page is cut in two
-                final String pt = AppSP.get().isCut ? null : doc.getBookmarkText(page);
+                final String pt = readingText(doc, page, y);
                 final String cfi = doc.getLocation(page);
-                // the page turned meanwhile: currentPageChanged has cleared the place for the new one
-                if ((pt == null && cfi == null) || bs.p != p || bs.pt != null) {
+                // The page turned or the reader scrolled on meanwhile: a newer read is coming
+                if ((pt == null && cfi == null) || bs.p != p || bs.y != y) {
                     return;
                 }
                 bs.pt = pt;
                 bs.cfi = cfi;
+                anchoredY = y;
                 SharedBooks.save(bs);
             } catch (Exception e) {
                 LOG.e(e);
             }
         }, PLACE_READ_DELAY_MS, TimeUnit.MILLISECONDS);
+    }
+
+    /** How far down its page the saved page text was taken; NaN until it has been. */
+    private volatile float anchoredY = Float.NaN;
+
+    /**
+     * The saved page text no longer says where the reader is: there is none yet, or in the
+     * scroll mode the reader has scrolled on down the page since it was taken.
+     */
+    private boolean placeStale(AppBook bs) {
+        if (bs.pt == null) {
+            return true;
+        }
+        return isScrollMode() && !(Math.abs(bs.y - anchoredY) < 0.03f);
+    }
+
+    /**
+     * The text at the top of what is on screen. In the book mode that is the start of the page;
+     * in the scroll mode it is where the reader has scrolled to, which may well be part way down
+     * the page - or in the page above, when the page counted as the current one starts lower
+     * down the screen. See {@link ReadingPlace}.
+     *
+     * @param page1 the 1-based current page
+     * @param y     how far down it the top of the screen is, a fraction of its height
+     */
+    public String readingText(CodecDocument doc, int page1, float y) {
+        if (doc == null || AppSP.get().isCut) {
+            // No page text while the page is cut in two, as getBookmarkText()
+            return null;
+        }
+        if (!isScrollMode() || Math.abs(y) < ReadingPlace.INSIDE_PAGE) {
+            return ReadingPlace.shorter(doc.getBookmarkText(page1));
+        }
+        if (y < 0 && page1 > 1) {
+            page1 = page1 - 1;
+            y = 1 + y;
+        }
+        final String text = ReadingPlace.textFrom(ReadingPlace.words(doc, page1 - 1), y);
+        if (text == null || text.length() < 20) {
+            // Near the foot of the page: the next page's start is what is in view
+            final String next = ReadingPlace.shorter(doc.getBookmarkText(page1 + 1));
+            if (TxtUtils.isNotEmpty(next)) {
+                return next;
+            }
+        }
+        return text != null ? text : ReadingPlace.shorter(doc.getBookmarkText(page1));
+    }
+
+    private final Runnable placeSettled = () -> {
+        final AppBook bs = SettingsManager.getBookSettings();
+        if (bs != null && placeStale(bs)) {
+            saveCurrentPageAsync();
+        }
+    };
+
+    /**
+     * The scroll mode moved the book. Once it has stood still for a moment the place is taken
+     * again: scrolling within a page turns no page, and nothing else would.
+     */
+    public void onPositionMoved() {
+        if (!isScrollMode()) {
+            return;
+        }
+        handler2.removeCallbacks(placeSettled);
+        handler2.postDelayed(placeSettled, 1500);
     }
 
     public boolean isBookMode() {
@@ -1494,7 +1571,22 @@ public abstract class DocumentController {
         if (activity.isFinishing()) {
             // The document may already be closed, so its text cannot be asked for: what is in
             // memory - the page, kept up to date on every page turn - is what is written.
-            SharedBooks.save(SettingsManager.getBookSettings());
+            final AppBook bs = SettingsManager.getBookSettings();
+            if (bs != null && bs.pt == null) {
+                // Closed within moments of a page turn, before the page's text was read: without
+                // it another device has only the percentage, which on its layout can be pages
+                // away. MuPDF gives it here or gives up within a moment, never blocking;
+                // foliate gives nothing on this thread.
+                try {
+                    final CodecDocument doc = getCodecDocument();
+                    if (doc != null && !doc.isRecycled() && !AppSP.get().isCut) {
+                        bs.pt = ReadingPlace.shorter(doc.getBookmarkText(getCurentPageFirst1()));
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            }
+            SharedBooks.save(bs);
         } else {
             saveCurrentPageAsync();
         }

@@ -324,9 +324,10 @@ public abstract class UIFragment<T> extends Fragment {
             floatingHeader.getBackground()
                           .setAlpha(TintUtil.panelAlpha());
         }
-        // Every notice raised at the top of a page stands in the chrome, whichever it is.
+        // Every notice raised at the top of a page stands in the chrome, whichever it is, and
+        // so does a second row a tab keeps under its header (the Sync tab's status and button).
         floatingNotices.clear();
-        for (int id : new int[]{R.id.layoutOnGrant, R.id.layoutError}) {
+        for (int id : new int[]{R.id.layoutOnGrant, R.id.layoutError, R.id.headerChrome}) {
             View notice = column.findViewById(id);
             if (notice != null) {
                 floatingNotices.add(notice);

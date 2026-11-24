@@ -277,6 +277,7 @@
    <string name="by_file_name">ファイル名</string>
    <string name="by_size">サイズ</string>
    <string name="by_date">日付</string>
+   <string name="by_sync_date">同期日時</string>
    <string name="by_title">タイトル</string>
    <string name="by_author">著者</string>
    <string name="by_series">シリーズ</string>
@@ -681,6 +682,9 @@
    <string name="accessibility">アクセシビリティ</string>
    <string name="web_search_google">Web 検索 (Google など)</string>
    <string name="synced_books">同期書籍</string>
+   <string name="sync_status_synced">同期済み</string>
+   <string name="sync_status_syncing">同期中…</string>
+   <string name="sync_status_never">未同期</string>
    <string name="user_styles">ユーザーのスタイル</string>
    <string name="engine">エンジン</string>
    <string name="restart_manually">この変更には、アプリの手動再起動が必要です</string>

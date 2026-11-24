@@ -1805,7 +1805,7 @@
                         android:visibility="gone" />
                 </LinearLayout>
 
-                <!-- Starts a sync by hand; shown only while an account is signed in. -->
+                <!-- Starts a sync by hand; signed out, it signs in. -->
                 <TextView
                     android:id="@+id/syncNow"
                     style="@style/textLink"

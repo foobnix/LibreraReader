@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 
 import android.util.Pair;
 import com.foobnix.pdf.info.AnnotationsFinder;
+import com.foobnix.pdf.info.wrapper.ReadingPlace;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBook;
@@ -188,12 +189,16 @@ public abstract class AbstractViewController extends AbstractComponentController
             }
 
 
-            final boolean find = later && !split && !AppState.get().isAlwaysOpenOnPage1;
+            // The words the reader had at the top of the screen are looked for on the page found,
+            // on a thread of its own, and brought to the top: the page alone is only where the
+            // place is, and on another device's layout it may be well down that page
+            final boolean find = !split && !AppState.get().isAlwaysOpenOnPage1
+                                 && (later || TxtUtils.isNotEmpty(bs.pt));
             final String cfi = bs.cfi;
             final String pt = bs.pt;
             goToPage(toPage, bs.x, bs.y);
             if (find) {
-                goToPlaceLater(doc, cfi, pt, bs.x, toPage);
+                goToPlaceLater(doc, later, cfi, pt, bs.x, toPage);
             }
 
         }
@@ -220,19 +225,47 @@ public abstract class AbstractViewController extends AbstractComponentController
      * The place is taken before the book is opened at the percentage: that clears it for the page
      * opened at, and the save that follows writes that page's own.
      */
-    private void goToPlaceLater(final CodecDocument doc, final String cfi, final String pt, final float x,
-                                final int opened) {
+    private void goToPlaceLater(final CodecDocument doc, final boolean findPage, final String cfi, final String pt,
+                                final float x, final int opened) {
         if (TxtUtils.isEmpty(cfi) && TxtUtils.isEmpty(pt)) {
             return;
         }
         new Thread(() -> {
-            final int found = placeOf(doc, cfi, pt, opened);
-            if (found <= 0 || found - 1 == opened) {
+            int found = findPage ? placeOf(doc, cfi, pt, opened) : -1;
+            if (found <= 0) {
+                found = opened + 1;
+            }
+            // The page found by the CFI or the page text, or a page either side of it: the words
+            // were taken from the top of the screen, which can be in the page above the current one
+            int page = found;
+            float y = ReadingPlace.topOf(ReadingPlace.words(doc, found - 1), pt);
+            for (int near : new int[]{found - 1, found + 1}) {
+                if (y >= 0 || near < 1 || near > getBase().getDocumentModel().getPageCount()) {
+                    continue;
+                }
+                y = ReadingPlace.topOf(ReadingPlace.words(doc, near - 1), pt);
+                if (y >= 0) {
+                    page = near;
+                }
+            }
+            if (y < 0 && TxtUtils.isNotEmpty(pt)) {
+                // Not where the percentage and the usual ten pages put it: further out
+                final int wide = doc.findBookmarkPage(found, null, pt, ReadingPlace.WIDE_RANGE);
+                if (wide > 0) {
+                    page = wide;
+                    y = ReadingPlace.topOf(ReadingPlace.words(doc, wide - 1), pt);
+                    LOG.d("goToPlaceLater wide", found, "->", wide, y);
+                }
+            }
+            if (y < 0 && page - 1 == opened) {
                 return;
             }
+            final int to = page - 1;
+            final float top = Math.max(0f, y);
+            LOG.d("goToPlaceLater", opened, "->", to, top);
             base.getActivity().runOnUiThread(() -> {
                 if (getBase().getDocumentModel().getCurrentViewPageIndex() == opened) {
-                    goToPage(found - 1, x, 0);
+                    goToPage(to, x, top);
                 }
             });
         }, "@T PlaceFind").start();
@@ -242,6 +275,11 @@ public abstract class AbstractViewController extends AbstractComponentController
         if (page != null) {
             final PointF pos = viewState.getPositionOnPage(page);
             SettingsManager.positionChanged(pos.x, pos.y);
+            // The place in words follows the scroll within a page, not only page turns
+            final com.foobnix.sys.VerticalModeController dc = base != null ? base.getListener() : null;
+            if (dc != null) {
+                dc.onPositionMoved();
+            }
         }
     }
 
