@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7699
-    FDroidVersionNumber = "10.1.21"
+    FDroidCodeNumber = 7707
+    FDroidVersionNumber = "10.2.1"
 }
 
 
@@ -519,10 +519,25 @@ tasks.register("copyApks") {
             delete fileTree("$releaseDir/$versionNumber").include("${own}.apk", "${own}.aab", "${own}-mapping.txt")
         }
 
-        def destinations = ["$buildsDir/$betaFolder"]
+        // The Testing folders (Google Drive, Dropbox) get only the builds that are tested: the
+        // 64-bit and the universal APK of these four flavours. Every other APK and the bundles go
+        // to the Downloads folder instead (librera_downloads_dir in the global
+        // ~/.gradle/gradle.properties, else ~/Downloads).
+        def testingApks = [
+                fdroid  : ["*-arm64.apk", "*-uni.apk"],
+                fdroidJS: ["*-arm64.apk", "*-uni.apk"],
+                pro     : ["*-arm64.apk", "*-uni.apk"],
+                proJS   : ["*-arm64.apk", "*-uni.apk"],
+        ]
+        def testingDestinations = ["$buildsDir/$betaFolder"]
         if (betaDir) {
-            destinations.add("$betaDir/$betaFolder")
+            testingDestinations.add("$betaDir/$betaFolder")
         }
+        def downloadsDir = project.findProperty("librera_downloads_dir") ?: "${System.getProperty('user.home')}/Downloads"
+        // Only Librera's own builds there are replaced; nothing else in Downloads is touched
+        delete fileTree(downloadsDir) { include "Librera *.apk", "Librera *.aab" }
+
+        def destinations = []
         if (project.hasProperty("release")) {
             destinations.add("$releaseDir/$versionNumber")
         }
@@ -550,8 +565,36 @@ tasks.register("copyApks") {
                 // Both F-Droid flavours carry the F-Droid version; a build of either of them sets
                 // versionNumber to it anyway, since the task name holds "Fdroid".
                 def appName = "Librera ${flavor.capitalize()}-${flavor.startsWith('fdroid') ? FDroidVersionNumber : versionNumber}${mupdfSuffixFor(flavor)}"
+                def tested = testingApks.containsKey(flavor) ? testingApks[flavor] : []
 
                 //println "====  " + variant.buildType.name + " " +  flavor
+
+                // The tested builds to the Testing folders
+                if (!tested.isEmpty()) {
+                    testingDestinations.each { dest ->
+                        copy {
+                            from(file("build/outputs/apk/${flavor}/release/")) {
+                                tested.each { pattern -> include pattern }
+                            }
+                            into file(dest)
+                        }
+                        println "Copy (testing): '" + flavor + "' to " + dest
+                    }
+                }
+
+                // Everything else - the other APKs and the bundle - to Downloads
+                copy {
+                    from(file("build/outputs/apk/${flavor}/release/")) {
+                        include "*.apk"
+                        tested.each { pattern -> exclude pattern }
+                    }
+                    from(file("build/outputs/bundle/${flavor}Release/")) {
+                        include "*.aab"
+                        rename { "${appName}.aab" }
+                    }
+                    into file(downloadsDir)
+                }
+                println "Copy (other): '" + flavor + "' to " + downloadsDir
 
                 destinations.each { dest ->
 
@@ -603,7 +646,7 @@ tasks.register("copyApks") {
         // per destination, and the one from the pass before is cleared first, so what is named
         // there is what the builds in that folder actually carry.
         if (mupdfVersion) {
-            destinations.each { dest ->
+            (testingDestinations + destinations).each { dest ->
                 def folder = project.file(dest)
                 if (folder.exists()) {
                     delete fileTree(folder).include("mupdf*.txt")
