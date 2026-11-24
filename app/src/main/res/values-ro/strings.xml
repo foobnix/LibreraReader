@@ -152,6 +152,7 @@
    <string name="brightness">Strălucire</string>
    <string name="bluelight_filter">Filtru BlueLight</string>
    <string name="password">Parola</string>
+   <string name="optional">opțional</string>
    <string name="restore_defaults_short">Restabili implicit</string>
    <string name="customize">Personaliza</string>
    <string name="color">Culoare</string>
@@ -192,7 +193,7 @@
    <string name="filter">Filtru</string>
    <string name="bookmark_by_date">Până la data</string>
    <string name="bookmark_by_book">Prin carte</string>
-   <string name="network">Reţea</string>
+   <string name="network">OPDS</string>
    <string name="catalogs">Cataloage</string>
    <string name="proxy_server_settings">Setările serverului proxy</string>
    <string name="use_proxy_server">Utilizați serverul proxy</string>
@@ -214,7 +215,6 @@
    <string name="user_name">Nume de utilizator</string>
    <string name="favorites">Favorite</string>
    <string name="my_favorites_links">Link-urile mele favorite</string>
-   <string name="what_is_the_opds_online_catalog_">Ce este catalogul online OPDS?</string>
    <string name="___DIALOGS___SECTION___"></string>
    <string name="ok">OK</string>
    <string name="yes">Da</string>

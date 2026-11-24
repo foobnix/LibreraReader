@@ -88,7 +88,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     ImageView onPlus, onProxy;
     View pathContainer;
     long enqueue;
-    TextView defaults, faq;
     ImageView starIcon;
     boolean isNeedLoginPassword = false;
 
@@ -109,6 +108,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             return Arrays.asList(new Entry(test, test));
         }
 
+        AppState.get().allOPDSLinks = AppState.opdsMigrated(AppState.get().allOPDSLinks);
         String[] list = AppState.get().allOPDSLinks.split(";");
         List<Entry> res = new ArrayList<Entry>();
         boolean hasStars = false;
@@ -180,33 +180,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         });
 
         searchAdapter = new EntryAdapter();
-
-        defaults = (TextView) view.findViewById(R.id.defaults);
-        faq = (TextView) view.findViewById(R.id.faq);
-        defaults.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults_full), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        AppState.get().allOPDSLinks = AppState.OPDS_DEFAULT;
-                        url = "/";
-                        populate();
-                    }
-                });
-
-            }
-        });
-        faq.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Urls.open(getActivity(), "https://wiki.mobileread.com/wiki/OPDS");
-
-            }
-        });
 
         onGridList();
 
@@ -335,7 +308,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                     @Override
                     public void run() {
-                        AppState.get().allOPDSLinks = AppState.OPDS_DEFAULT;
+                        AppState.get().allOPDSLinks = AppState.opdsRestored(AppState.get().allOPDSLinks);
                         populate();
                     }
                 });
@@ -492,7 +465,17 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 });
 
                 builder.setView(view);
-                builder.show();
+                final AlertDialog settings = builder.show();
+
+                view.findViewById(R.id.restoreCatalogs).setOnClickListener(r -> AlertDialogs.showOkDialog(getActivity(),
+                        getActivity().getString(R.string.restore_defaults_full), () -> {
+                            AppState.get().allOPDSLinks = AppState.opdsRestored(AppState.get().allOPDSLinks);
+                            AppProfile.save(getActivity());
+                            url = "/";
+                            stack.clear();
+                            populate();
+                            settings.dismiss();
+                        }));
 
             }
         });
@@ -639,9 +622,24 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                         .newCall(request)//
                                         .execute();
 
+                                // A refusal or a missing book is not saved as the book: its
+                                // error page was, and the download said it went well
+                                if (!response.isSuccessful()) {
+                                    LOG.d("Download failed", response.code(), href);
+                                    response.close();
+                                    outStream.close();
+                                    if (ExtUtils.isExteralSD(bookPath)) {
+                                        DocumentsContract.deleteDocument(getActivity().getContentResolver(), Uri.parse(bookPath));
+                                    } else {
+                                        new File(bookPath).delete();
+                                    }
+                                    return false;
+                                }
+
                                 BufferedSink sink = Okio.buffer(Okio.sink(outStream));
                                 sink.writeAll(response.body().source());
                                 sink.close();
+                                response.close();
 
                                 outStream.close();
 
@@ -744,6 +742,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
             LOG.d("Load: >>>", feed.title, url);
 
+            OPDS.resolveOpenSearch(feed, url, getContext());
             feed.updateLinksForUI();
 
             if (urlRoot.contains("My:")) {
@@ -841,8 +840,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         }
         int isHomeVisible = url == "/" ? View.VISIBLE : View.GONE;
         onPlus.setVisibility(isHomeVisible);
-        defaults.setVisibility(isHomeVisible);
-        faq.setVisibility(isHomeVisible);
         onProxy.setVisibility(isHomeVisible);
 
         starIcon.setVisibility(url == "/" ? View.GONE : View.VISIBLE);

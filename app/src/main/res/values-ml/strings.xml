@@ -152,6 +152,7 @@
    <string name="brightness">തെളിച്ചം</string>
    <string name="bluelight_filter">ബ്ലൂലൈറ്റ് ഫിൽട്ടർ</string>
    <string name="password">പാസ്‌വേഡ്</string>
+   <string name="optional">ഐച്ഛികം</string>
    <string name="restore_defaults_short">നേരത്തെയുള്ളത് പുനസ്ഥാപിക്കുക</string>
    <string name="customize">ക്രമീകരിക്കുക</string>
    <string name="color">നിറം</string>
@@ -192,7 +193,7 @@
    <string name="filter">ഫിൽട്ടർ</string>
    <string name="bookmark_by_date">തീയതി</string>
    <string name="bookmark_by_book">ശീർഷകം</string>
-   <string name="network">നെറ്റ്‌വർക്ക്</string>
+   <string name="network">OPDS</string>
    <string name="catalogs">കാറ്റലോഗുകൾ</string>
    <string name="proxy_server_settings">പ്രോക്സി സെർവർ ക്രമീകരണങ്ങൾ</string>
    <string name="use_proxy_server">പ്രോക്സി ഉപയോഗിക്കുക</string>
@@ -214,7 +215,6 @@
    <string name="user_name">ഉപയോക്തൃ നാമം</string>
    <string name="favorites">പ്രിയങ്കരങ്ങൾ</string>
    <string name="my_favorites_links">എന്റെ പ്രിയപ്പെട്ട ലിങ്കുകൾ</string>
-   <string name="what_is_the_opds_online_catalog_">ഓപ്‌ഡ്‌സ് ഓൺലൈൻ കാറ്റലോഗ് എന്താണ്?</string>
    <string name="___DIALOGS___SECTION___"></string>
    <string name="ok">ശരി</string>
    <string name="yes">അതെ</string>

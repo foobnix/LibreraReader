@@ -4,6 +4,14 @@ All notable changes to Librera Reader.
 
 Release builds: https://github.com/foobnix/LibreraReader/releases · [Unreleased APK Direct Download](http://beta.librera.mobi)
 
+* New catalog: optional user name and password, kept for that server and asked with at once
+* Search in catalogs that describe it in an OpenSearch file (Ebooks libres et gratuits, textos.info...); searches with several words work on Calibre-Web
+* A tapped catalog cover opens the picture itself instead of a blank book; download buttons are round
+* A book in a catalog with no picture, or one that does not load, shows a green book with its format (EPUB)
+* A catalog with no picture of its own shows the first letter of its name; Restore default in the catalog settings brings back the built-in catalogs and keeps your own
+* The Network tab is now called OPDS, with a new list of free catalogs (Project Gutenberg, Unglue.it, Gallica, Ebooks libres et gratuits, Bibliothèque numérique romande, textos.info); those in your language come first
+* Adding a catalog: the address of a server's page is enough, its login page too, or just "192.168.1.5:8083"; the app finds the OPDS catalog on it (Calibre-Web and others) and asks for the login
+* Downloaded books keep their names when the catalog puts titles on several lines, and a failed download no longer saves the error page as the book
 * Musician's mode: a round button beside the mode's name goes to page 1; it can be hidden in the mode's settings
 * Smoother vertical scrolling: two-finger zoom and scroll follow the fingers frame by frame and zoom around the point between them; DjVu pages no longer freeze the screen while they render, and high zoom stays smooth with smaller page tiles
 * Radio: the station playing, or the one chosen for the book, stays above the station list; tap it to pause or play

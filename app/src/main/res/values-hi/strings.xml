@@ -152,6 +152,7 @@
    <string name="brightness">चमक</string>
    <string name="bluelight_filter">ब्लूलाइट फिल्टर</string>
    <string name="password">पासवर्ड</string>
+   <string name="optional">वैकल्पिक</string>
    <string name="restore_defaults_short">पहले जैसा कर देना</string>
    <string name="customize">अनुकूलित करें</string>
    <string name="color">रंग</string>
@@ -192,7 +193,7 @@
    <string name="filter">फ़िल्टर</string>
    <string name="bookmark_by_date">तिथि के अनुसार</string>
    <string name="bookmark_by_book">द्वारा पुस्तक</string>
-   <string name="network">नेटवर्क</string>
+   <string name="network">OPDS</string>
    <string name="catalogs">कैटलॉग</string>
    <string name="proxy_server_settings">प्रॉक्सी सर्वर सेटिंग्स</string>
    <string name="use_proxy_server">प्रॉक्सी सर्वर का उपयोग करें</string>
@@ -214,7 +215,6 @@
    <string name="user_name">उपयोगकर्ता नाम</string>
    <string name="favorites">पसंदीदा</string>
    <string name="my_favorites_links">मेरे पसंदीदा लिंक</string>
-   <string name="what_is_the_opds_online_catalog_">ओपीडीएस ऑनलाइन कैटलॉग क्या है?</string>
    <string name="___DIALOGS___SECTION___"></string>
    <string name="ok">ठीक</string>
    <string name="yes">हाँ</string>

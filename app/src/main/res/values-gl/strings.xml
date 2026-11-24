@@ -154,6 +154,7 @@
    <string name="brightness">Brillo</string>
    <string name="bluelight_filter">Filtro de luz azul</string>
    <string name="password">Contrasinal</string>
+   <string name="optional">opcional</string>
    <string name="restore_defaults_short">Restaurar predeterminado</string>
    <string name="customize">Configurar</string>
    <string name="color">Cor</string>
@@ -194,7 +195,7 @@
    <string name="filter">Filtro</string>
    <string name="bookmark_by_date">Data</string>
    <string name="bookmark_by_book">Título</string>
-   <string name="network">Rede</string>
+   <string name="network">OPDS</string>
    <string name="catalogs">Catálogos</string>
    <string name="proxy_server_settings">Configuración do proxy</string>
    <string name="use_proxy_server">Usar proxy</string>
@@ -216,7 +217,6 @@
    <string name="user_name">Nome de usuario</string>
    <string name="favorites">Favoritos</string>
    <string name="my_favorites_links">As miñas ligazóns favoritas</string>
-   <string name="what_is_the_opds_online_catalog_">Que é un catálogo en liña OPDS?</string>
    <string name="___DIALOGS___SECTION___"></string>
    <string name="ok">Aceptar</string>
    <string name="yes">Si</string>

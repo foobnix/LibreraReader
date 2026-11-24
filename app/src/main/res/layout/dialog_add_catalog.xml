@@ -30,6 +30,25 @@
         android:layout_height="wrap_content"
         android:hint="@string/description" />
 
+    <!-- Optional: a catalog that asks for a login gets it at once, else it is asked for -->
+    <EditText
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="username"
+        android:hint="@string/user_name"
+        android:inputType="text"
+        android:maxLines="1" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="password"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:maxLines="1" />
+
     <CheckBox
         android:id="@+id/addAsWEb"
         android:layout_width="wrap_content"

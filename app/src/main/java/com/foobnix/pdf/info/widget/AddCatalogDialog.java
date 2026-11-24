@@ -37,8 +37,10 @@ import com.foobnix.sys.TempHolder;
 
 import com.foobnix.LibreraApp;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class AddCatalogDialog {
 
@@ -56,23 +58,13 @@ public class AddCatalogDialog {
         final EditText login = (EditText) dialog.findViewById(R.id.login);
 
         final EditText password = (EditText) dialog.findViewById(R.id.password);
-        password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
-        final String string = sp.getString(url, "");
-        if (TxtUtils.isNotEmpty(string)) {
-            try {
-                final String[] split = string.split(TxtUtils.TTS_PAUSE);
-                TempHolder.get().login = split[0];
-                TempHolder.get().password = split[1];
-                LOG.d("showDialogLogin GET", url);
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
-
-
-        login.setText(TempHolder.get().login);
-        password.setText(TempHolder.get().password);
+        // The login kept for this server, where it was saved: never the one of another
+        final String string = sp.getString(Uri.parse(url).getHost(), "");
+        final String[] split = string.split(TxtUtils.TTS_PAUSE);
+        login.setText(split.length == 2 ? split[0] : "");
+        password.setText(split.length == 2 ? split[1] : "");
 
 
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -116,6 +108,108 @@ public class AddCatalogDialog {
 
     }
 
+    private static final List<String> PATHS = Arrays.asList("/opds", "/opds/", "/opds-catalog", "/catalog",
+                                                            "/feeds/opds", "/opds/v1.2/catalog", "/opds/v2/catalog",
+                                                            "/opds-books/", "/feed.php", "/opds.xml", "/catalog.atom",
+                                                            "/ebooks.opds/", "/api/opds");
+
+    /**
+     * Where a catalog may be, from what was typed: the address itself, the same with "/opds"
+     * after it, and the places OPDS servers keep their catalog on that server (Calibre-Web
+     * /opds, Calibre /opds, Kavita, Komga...). So the page of a server opened in a browser, its
+     * login page too, or "192.168.1.5:8083" alone is enough. Typed without "http", a server at
+     * home is asked over http first; one at home is asked the other way, too.
+     */
+    static List<String> candidates(String typed) {
+        String text = typed.trim();
+        final List<String> res = new ArrayList<>();
+        if (text.isEmpty()) {
+            return res;
+        }
+        final boolean schemeGiven = text.matches("(?i)^[a-z][a-z0-9+.-]*://.*");
+        String bare = text.replaceFirst("(?i)^[a-z][a-z0-9+.-]*://", "");
+        if (bare.isEmpty()) {
+            return res;
+        }
+        final String host = bare.split("[/?#:]", 2)[0].toLowerCase(Locale.US);
+        final boolean local = isLocal(host);
+        final List<String> schemes = new ArrayList<>();
+        if (schemeGiven) {
+            schemes.add(text.substring(0, text.indexOf("://") + 3).toLowerCase(Locale.US));
+        } else {
+            schemes.add(local ? "http://" : "https://");
+        }
+        if (local) {
+            final String other = schemes.get(0).equals("http://") ? "https://" : "http://";
+            if (!schemes.contains(other)) {
+                schemes.add(other);
+            }
+        }
+        for (String scheme : schemes) {
+            final String given = scheme + bare;
+            final Uri uri = Uri.parse(given);
+            if (uri.getHost() == null) {
+                continue;
+            }
+            final String root = uri.getScheme() + "://" + uri.getEncodedAuthority();
+            final String path = uri.getEncodedPath() == null ? "" : uri.getEncodedPath();
+            add(res, given);
+            if (path.length() > 1 && !path.toLowerCase(Locale.US).contains("opds")) {
+                add(res, root + TxtUtils.replaceLast(path, "/", "") + "/opds");
+            }
+            for (String p : PATHS) {
+                add(res, root + p);
+            }
+        }
+        return res;
+    }
+
+    private static void add(List<String> list, String url) {
+        if (!list.contains(url)) {
+            list.add(url);
+        }
+    }
+
+    private static boolean isLocal(String host) {
+        return host.equals("localhost") || host.endsWith(".local") || host.endsWith(".lan") || host.endsWith(".home")
+                || host.matches("^\\d{1,3}(\\.\\d{1,3}){3}$");
+    }
+
+    /** The server of an address as typed, "192.168.1.5:8083" too: the key its login is kept under. */
+    private static String hostOf(String typed) {
+        final List<String> all = candidates(typed);
+        return all.isEmpty() ? null : Uri.parse(all.get(0)).getHost();
+    }
+
+    /** The login kept for the server of this address: {user, password}, empty when there is none. */
+    static String[] savedLogin(Context c, String url) {
+        final String host = hostOf(url);
+        final String[] split = host == null ? new String[0]
+                : c.getSharedPreferences(OPDS, Context.MODE_PRIVATE).getString(host, "").split(TxtUtils.TTS_PAUSE);
+        return split.length == 2 ? split : new String[]{"", ""};
+    }
+
+    /**
+     * Keeps the login given for the server of this address, the one the catalog is then asked
+     * with. Both fields emptied forget it while a catalog is edited; a new one left without
+     * keeps the login another catalog of that server has. Only a user name, or only a
+     * password, is not kept.
+     */
+    static void saveLogin(Context c, String url, String user, String pass, boolean forgetIfEmpty) {
+        final String host = hostOf(url);
+        if (host == null) {
+            return;
+        }
+        final SharedPreferences sp = c.getSharedPreferences(OPDS, Context.MODE_PRIVATE);
+        if (TxtUtils.isEmpty(user) && TxtUtils.isEmpty(pass)) {
+            if (forgetIfEmpty && sp.contains(host)) {
+                sp.edit().remove(host).commit();
+            }
+        } else if (TxtUtils.isNotEmpty(user) && TxtUtils.isNotEmpty(pass)) {
+            sp.edit().putString(host, user + TxtUtils.TTS_PAUSE + pass).commit();
+        }
+    }
+
     public static void showDialog(final Activity a, final Runnable onRefresh, final Entry e, final boolean validate) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -131,6 +225,14 @@ public class AddCatalogDialog {
 
         final EditText name = (EditText) dialog.findViewById(R.id.name);
         final EditText description = (EditText) dialog.findViewById(R.id.description);
+        final EditText login = (EditText) dialog.findViewById(R.id.login);
+        final EditText password = (EditText) dialog.findViewById(R.id.password);
+        final String optional = " (" + a.getString(R.string.optional) + ")";
+        login.setHint(a.getString(R.string.user_name) + optional);
+        password.setHint(a.getString(R.string.password) + optional);
+        // A favourite link is saved as it is, with no check: no login asked for it
+        login.setVisibility(validate ? View.VISIBLE : View.GONE);
+        password.setVisibility(validate ? View.VISIBLE : View.GONE);
         final MyProgressBar MyProgressBar = (MyProgressBar) dialog.findViewById(R.id.MyProgressBarAdd);
         TintUtil.setDrawableTint(MyProgressBar.getIndeterminateDrawable().getCurrent(), TintUtil.color);
         final ImageView image = (ImageView) dialog.findViewById(R.id.image);
@@ -148,6 +250,9 @@ public class AddCatalogDialog {
             if (e.logo != null) {
                 image.setTag(e.logo);
             }
+            final String[] saved = savedLogin(a, line[0]);
+            login.setText(saved[0]);
+            password.setText(saved[1]);
         }
 
         MyProgressBar.setVisibility(View.GONE);
@@ -205,6 +310,7 @@ public class AddCatalogDialog {
             @Override
             public void onClick(View v) {
                 final String feedUrl = url.getText().toString().trim();
+                saveLogin(a, feedUrl, login.getText().toString().trim(), password.getText().toString().trim(), editAppState != null);
                 //url.setText(feedUrl);
                 boolean isOk = infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).getText().equals(a.getString(R.string.ok));
                 if (isOk || addAsWEb.isChecked() || !validate) {
@@ -229,18 +335,18 @@ public class AddCatalogDialog {
                 asyncTask = new AsyncTask() {
                     @Override
                     protected Object doInBackground(Object... params) {
-                        List<String> suffixes = Arrays.asList("", "/opds", ":8080", ":8080/opds","/opds/v1.2/catalog");
-                        for (String suffix : suffixes) {
-                            final String uri = TxtUtils.replaceLast(feedUrl, "/", "") + suffix;
+                        // The catalog where it is given, else where servers keep it: a login
+                        // asked for is a catalog found, the login is asked for it
+                        for (final String uri : candidates(feedUrl)) {
                             LOG.d("OPDS-uri", uri);
                             Feed feed = com.foobnix.opds.OPDS.getFeed(uri, a);
-                            if (feed != null && !feed.entries.isEmpty()) {
-                                LOG.d("OPDS-uri-success", uri);
+                            if (feed != null && (feed.isNeedLoginPassword || !feed.entries.isEmpty())) {
+                                LOG.d("OPDS-uri-success", uri, feed.isNeedLoginPassword);
                                 a.runOnUiThread(() -> url.setText(uri));
                                 return feed;
                             }
                         }
-                        return com.foobnix.opds.OPDS.getFeed(feedUrl, a);
+                        return null;
                     }
 
                     @Override
@@ -256,12 +362,14 @@ public class AddCatalogDialog {
                             MyProgressBar.setVisibility(View.GONE);
                             if (result == null || ((Feed) result).entries.isEmpty()) {
                                 if (result != null && ((Feed) result).isNeedLoginPassword) {
-                                    AddCatalogDialog.showDialogLogin(a, feedUrl, new Runnable() {
-
-                                        @Override
-                                        public void run() {
-
-                                        }
+                                    // Once the login is given the catalog is looked at again
+                                    final String found = url.getText().toString().trim();
+                                    AddCatalogDialog.showDialogLogin(a, found, () -> {
+                                        // The login given there is the one the check goes on with
+                                        final String[] given = savedLogin(a, found);
+                                        login.setText(given[0]);
+                                        password.setText(given[1]);
+                                        infoDialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();
                                     });
 
                                 } else {

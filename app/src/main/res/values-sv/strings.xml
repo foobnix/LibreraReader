@@ -152,6 +152,7 @@
    <string name="brightness">Ljusstyrka</string>
    <string name="bluelight_filter">BlueLight-filter</string>
    <string name="password">Lösenord</string>
+   <string name="optional">valfritt</string>
    <string name="restore_defaults_short">Återställa standard</string>
    <string name="customize">Skräddarsy</string>
    <string name="color">Färg</string>
@@ -192,7 +193,7 @@
    <string name="filter">Filtrera</string>
    <string name="bookmark_by_date">Efter datum</string>
    <string name="bookmark_by_book">Genom boken</string>
-   <string name="network">Nätverk</string>
+   <string name="network">OPDS</string>
    <string name="catalogs">Kataloger</string>
    <string name="proxy_server_settings">Inställningar för proxyserver</string>
    <string name="use_proxy_server">Använd proxyserver</string>
@@ -214,7 +215,6 @@
    <string name="user_name">Användarnamn</string>
    <string name="favorites">Favoriter</string>
    <string name="my_favorites_links">Mina favoriter länkar</string>
-   <string name="what_is_the_opds_online_catalog_">Vad är OPDS online katalog?</string>
    <string name="___DIALOGS___SECTION___"></string>
    <string name="ok">Ok</string>
    <string name="yes">Ja</string>

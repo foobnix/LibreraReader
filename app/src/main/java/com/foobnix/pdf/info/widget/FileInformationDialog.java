@@ -772,8 +772,9 @@ public class FileInformationDialog {
 
             }
         });
-        IMG.getCoverPageWithEffect(LibreraApp.context, path, null)
-           .into(imageView);
+        // A picture on the web (a catalog's cover): loaded as it is, through the catalog's own
+        // client and its login. The cover maker takes it for a book file and drew its own.
+        IMG.with(a).load(path).into(imageView);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 (int) (Dips.screenWidth() * 0.9), RelativeLayout.LayoutParams.WRAP_CONTENT);

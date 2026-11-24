@@ -44,10 +44,13 @@ import okhttp3.Route;
 
 public class OPDS {
     public static final String CODE_401 = "401";
+    final static Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<String, CachingAuthenticator>();
     static Cache cache = new Cache(CacheZipUtils.CACHE_WEB, 5 * 1024 * 1024);
 
     public static OkHttpClient.Builder builder = new OkHttpClient.Builder()//
             .cookieJar(new WebviewCookieHandler())//
+            // Once: it was added again with every login sent, one more on each request
+            .addInterceptor(new AuthenticationCacheInterceptor(authCache))//
             .connectTimeout(20, TimeUnit.SECONDS)//
             .writeTimeout(20, TimeUnit.SECONDS)//
             .readTimeout(30, TimeUnit.SECONDS)//
@@ -55,7 +58,6 @@ public class OPDS {
 
     public static OkHttpClient client = builder.build();//
 
-    final static Map<String, CachingAuthenticator> authCache = new ConcurrentHashMap<String, CachingAuthenticator>();
 
     public static int random = new Random().nextInt();
     public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64; Librera) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.2997." + random + " Safari/537.36";
@@ -110,7 +112,7 @@ public class OPDS {
     }
 
     public static String getHttpResponse(String url, String login, String password) throws IOException {
-        LOG.d("getHttpResponse", url, login, password);
+        LOG.d("getHttpResponse", url, login);
 
         Request request = new Request.Builder()//
                 .header("User-Agent", USER_AGENT)
@@ -139,7 +141,9 @@ public class OPDS {
         if (response.code() == 401 && TxtUtils.isEmpty(login)) {
             response.close();
             return CODE_401;
-        } else {
+        } else if (response.code() == 401 || response.code() == 400) {
+            // Asked again with the login only when the server asked for it: every page was
+            // fetched twice before
 
             {
                 Credentials credentials = new Credentials(login, password);
@@ -154,10 +158,9 @@ public class OPDS {
 
                 client = builder //
                         .authenticator(forHost(url, new CachingAuthenticatorDecorator(authenticator, authCache))) //
-                        .addInterceptor(new AuthenticationCacheInterceptor(authCache)) //
                         .build();
 
-                LOG.d("getHttpResponse Credentials", login, password);
+                LOG.d("getHttpResponse Credentials", login);
 
                 response.close();
                 response = client.newCall(request).execute();
@@ -187,8 +190,7 @@ public class OPDS {
 
                     client = builder //
                             .authenticator(forHost(url, new CachingAuthenticatorDecorator(authenticator, authCache))) //
-                            .addInterceptor(new AuthenticationCacheInterceptor(authCache)) //
-                            .build();
+                                .build();
 
                     response = client.newCall(request).execute();
                 }
@@ -250,7 +252,6 @@ public class OPDS {
 
             client = builder //
                     .authenticator(forHost(url, new CachingAuthenticatorDecorator(authenticator, authCache))) //
-                    .addInterceptor(new AuthenticationCacheInterceptor(authCache)) //
                     .build();
 
             response.close();
@@ -262,6 +263,67 @@ public class OPDS {
         }
 
         return response.body();
+    }
+
+    /** The Atom search address read from each OpenSearch description, "" where it has none. */
+    private static final Map<String, String> openSearch = new ConcurrentHashMap<String, String>();
+
+    /**
+     * A catalog that points to an OpenSearch description for its search, and has no search
+     * address of its own (Ebooks libres et gratuits, textos.info...), had no search field:
+     * its description is read once and its Atom address becomes the feed's search link.
+     */
+    public static void resolveOpenSearch(Feed feed, String feedUrl, Context c) {
+        for (Link l : feed.links) {
+            if (l.isSearchLink()) {
+                return;
+            }
+        }
+        for (Link l : feed.links) {
+            if (!"search".equals(l.rel) || l.href == null || l.type == null
+                    || !l.type.startsWith("application/opensearchdescription+xml")) {
+                continue;
+            }
+            final String osd = Hrefs.fixHref(l.href, feedUrl);
+            String template = openSearch.get(osd);
+            if (template == null) {
+                template = openSearchTemplate(osd, c);
+                openSearch.put(osd, template);
+            }
+            if (TxtUtils.isNotEmpty(template)) {
+                l.href = template;
+                l.type = Link.APPLICATION_ATOM_XML;
+            }
+            return;
+        }
+    }
+
+    private static String openSearchTemplate(String osd, Context c) {
+        try {
+            final String xml = responseWithSavedLogin(osd, c);
+            final XmlPullParser xpp = XmlParser.buildPullParser();
+            xpp.setInput(new StringReader(xml));
+            for (int event = xpp.getEventType(); event != XmlPullParser.END_DOCUMENT; event = xpp.next()) {
+                if (event == XmlPullParser.START_TAG && "Url".equalsIgnoreCase(xpp.getName())) {
+                    final String type = xpp.getAttributeValue(null, "type");
+                    final String template = xpp.getAttributeValue(null, "template");
+                    if (type != null && type.startsWith(Link.APPLICATION_ATOM_XML) && template != null) {
+                        // Optional parameters ({startPage?}) left out, as a search asks for none
+                        return Hrefs.fixHref(template.replaceAll("\\{[^}]*\\?\\}", ""), osd);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e, osd);
+        }
+        return "";
+    }
+
+    /** The answer of a server, with the login kept for it when there is one. */
+    private static String responseWithSavedLogin(String url, Context c) throws IOException {
+        final SharedPreferences sp = c.getSharedPreferences(AddCatalogDialog.OPDS, android.content.Context.MODE_PRIVATE);
+        final String[] split = sp.getString(Uri.parse(url).getHost(), "").split(TxtUtils.TTS_PAUSE);
+        return split.length == 2 ? getHttpResponse(url, split[0], split[1]) : getHttpResponse(url, "", "");
     }
 
     public static Feed getFeed(String url, Context c) {

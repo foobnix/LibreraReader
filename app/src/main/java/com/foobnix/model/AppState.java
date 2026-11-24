@@ -35,6 +35,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -133,20 +134,90 @@ public class AppState {
             "#00897B", //
             "#FFFFFF", //
             "#000000");
-    public final static String OPDS_DEFAULT = "" + //
+    /**
+     * The catalogs a first start has, the same ones LibreraX offers: url, name, description,
+     * icon and the language of its books (empty for every language). Those in the language of
+     * the phone come first.
+     */
+    private static final String[][] OPDS_CATALOGS = {
+            {"https://www.gutenberg.org/ebooks.opds/", "Project Gutenberg", "Free eBooks since 1971", ""},
+            {"https://unglue.it/api/opds/", "Unglue.it", "Free Creative Commons eBooks", "en"},
+            {"https://gallica.bnf.fr/opds", "Gallica", "Bibliothèque nationale de France", "fr"},
+            {"https://www.ebooksgratuits.com/opds/", "Ebooks libres et gratuits", "Livres numériques gratuits", "fr"},
+            {"https://ebooks-bnr.com/opds/", "Bibliothèque numérique romande", "Ebooks gratuits", "fr"},
+            {"https://www.textos.info/catalogo.atom", "textos.info", "Biblioteca virtual abierta y gratuita", "es"},
+    };
 
-            //"https://www.feedbooks.com/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
-            "https://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/opds.png;" +
-            //
-            "https://bookserver.archive.org/catalog/,Internet Archive,Internet Archive,assets://opds/opds.png;" +
-            //
-//            "http://opds.oreilly.com/opds/,O'Reilly,O'Reilly,assets://opds/opds.png;" + //
-            //"http://www.epubbud.com/feeds/catalog.atom,ePubBud Children's books,ePubBud Children's books,assets://opds/opds.png;" + //
+    /** The catalogs the app had before, as they were kept: taken away from the list once. */
+    private static final List<String> OPDS_OLD_DEFAULTS = Arrays.asList(
+            "https://m.gutenberg.org/ebooks.opds/,Project Gutenberg,Free ebooks since 1971,assets://opds/opds.png;",
+            "https://bookserver.archive.org/catalog/,Internet Archive,Internet Archive,assets://opds/opds.png;",
+            SamlibOPDS.ROOT_AWARDS + ",Top Books to Read, Complete award winners listing,assets://opds/rating.png;");
 
-            SamlibOPDS.ROOT_AWARDS + ",Top Books to Read, Complete award winners listing,assets://opds/rating.png;"
-            //
-            // end
-            ;
+    public static String opdsDefaults() {
+        final String language = Locale.getDefault().getLanguage();
+        final StringBuilder first = new StringBuilder();
+        final StringBuilder rest = new StringBuilder();
+        for (String[] c : OPDS_CATALOGS) {
+            final String line = c[0] + "," + c[1] + "," + c[2] + ",assets://opds/opds.png;";
+            (c[3].isEmpty() || c[3].equals(language) ? first : rest).append(line);
+        }
+        return first.toString() + rest;
+    }
+
+    /**
+     * The built-in catalogs back, all of them and in their order, after the catalogs added by
+     * hand, which stay: a restore must not lose a catalog of one's own and its login.
+     */
+    public static String opdsRestored(String links) {
+        final String defaults = opdsDefaults();
+        final StringBuilder own = new StringBuilder();
+        if (links != null) {
+            for (String line : links.split(";")) {
+                if (line.trim().isEmpty() || line.indexOf(',') < 0) {
+                    continue;
+                }
+                final String url = line.substring(0, line.indexOf(','));
+                boolean builtIn = false;
+                for (String[] c : OPDS_CATALOGS) {
+                    builtIn |= c[0].equals(url);
+                }
+                if (!builtIn) {
+                    own.append(line).append(';');
+                }
+            }
+        }
+        return own + defaults;
+    }
+
+    /**
+     * The list kept from before, with the old built-in catalogs swapped for the new ones: the
+     * catalogs added by hand stay where they are, the new ones after them. The same list when
+     * there is nothing to swap.
+     */
+    public static String opdsMigrated(String links) {
+        if (links == null) {
+            return opdsDefaults();
+        }
+        boolean old = false;
+        for (String line : OPDS_OLD_DEFAULTS) {
+            if (links.contains(line)) {
+                links = links.replace(line, "");
+                old = true;
+            }
+        }
+        if (!old) {
+            return links;
+        }
+        final StringBuilder res = new StringBuilder(links);
+        for (String line : opdsDefaults().split(";")) {
+            if (!links.contains(line.substring(0, line.indexOf(',')))) {
+                res.append(line).append(';');
+            }
+        }
+        return res.toString();
+    }
+
     public final static String READ_COLORS_DEAFAUL =
             // (name),(bg),(text),(0-day 1-nigth)
             "" + //
@@ -362,7 +433,7 @@ public class AppState {
     /** The names of the stations played lately, the last first, a "title\turl" line each. See StreamPlaylist. */
     @IgnoreHashCode public String streamRecent = "";
     public boolean isSystemThemeColor = false;
-    public String allOPDSLinks = OPDS_DEFAULT;
+    public String allOPDSLinks = opdsDefaults();
     public boolean opdsLargeCovers = true;
     public boolean createBookNameFolder = false;
     public String readColors = READ_COLORS_DEAFAUL;

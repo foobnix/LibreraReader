@@ -152,6 +152,7 @@
    <string name="brightness">Kirkkaus</string>
    <string name="bluelight_filter">Sinivalosuodatin</string>
    <string name="password">Salasana</string>
+   <string name="optional">valinnainen</string>
    <string name="restore_defaults_short">Palauta oletusarvot</string>
    <string name="customize">Mukauta</string>
    <string name="color">Väri</string>
@@ -192,7 +193,7 @@
    <string name="filter">Suodata</string>
    <string name="bookmark_by_date">Päivämäärä</string>
    <string name="bookmark_by_book">Nimi</string>
-   <string name="network">Verkko</string>
+   <string name="network">OPDS</string>
    <string name="catalogs">Luettelot</string>
    <string name="proxy_server_settings">Välityspalvelimen asetukset</string>
    <string name="use_proxy_server">Käytä välityspalvelinta</string>
@@ -214,7 +215,6 @@
    <string name="user_name">Käyttäjänimi</string>
    <string name="favorites">Suosikit</string>
    <string name="my_favorites_links">Suosikkilinkkini</string>
-   <string name="what_is_the_opds_online_catalog_">Mikä on OPDS-verkkoluettelo?</string>
    <string name="___DIALOGS___SECTION___"></string>
    <string name="ok">OK</string>
    <string name="yes">Kyllä</string>

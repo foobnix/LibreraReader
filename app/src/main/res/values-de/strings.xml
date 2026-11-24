@@ -152,6 +152,7 @@
    <string name="brightness">Helligkeit</string>
    <string name="bluelight_filter">Blaulichtfilter</string>
    <string name="password">Passwort</string>
+   <string name="optional">optional</string>
    <string name="restore_defaults_short">Standard wiederherstellen</string>
    <string name="customize">Anpassen</string>
    <string name="color">Farbe</string>
@@ -192,7 +193,7 @@
    <string name="filter">Filter</string>
    <string name="bookmark_by_date">Datum</string>
    <string name="bookmark_by_book">Titel</string>
-   <string name="network">Netzwerk</string>
+   <string name="network">OPDS</string>
    <string name="catalogs">Kataloge</string>
    <string name="proxy_server_settings">Proxy-Servereinstellungen</string>
    <string name="use_proxy_server">Proxy-Server verwenden</string>
@@ -214,7 +215,6 @@
    <string name="user_name">Benutzername</string>
    <string name="favorites">Favoriten</string>
    <string name="my_favorites_links">Meine Favoriten-Links</string>
-   <string name="what_is_the_opds_online_catalog_">Was ist der OPDS Online-Katalog?</string>
    <string name="___DIALOGS___SECTION___"></string>
    <string name="ok">OK</string>
    <string name="yes">Ja</string>

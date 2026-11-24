@@ -152,6 +152,7 @@
    <string name="brightness">பிரகாசம்</string>
    <string name="bluelight_filter">நீல நிற ஒளி வடிகட்டி</string>
    <string name="password">கடவுச்சொல்</string>
+   <string name="optional">விருப்பத்தேர்வு</string>
    <string name="restore_defaults_short">இயல்புநிலையை மீட்டமை</string>
    <string name="customize">உள்ளமைக்கவும்</string>
    <string name="color">நிறம்</string>
@@ -192,7 +193,7 @@
    <string name="filter">வடிகட்டி</string>
    <string name="bookmark_by_date">தேதி</string>
    <string name="bookmark_by_book">தலைப்பு</string>
-   <string name="network">வலைப்பின்னல்</string>
+   <string name="network">OPDS</string>
    <string name="catalogs">பட்டியல்கள்</string>
    <string name="proxy_server_settings">ப்ராக்ஸி சேவையக அமைப்புகள்</string>
    <string name="use_proxy_server">பினாமி  பயன்படுத்தவும்</string>
@@ -214,7 +215,6 @@
    <string name="user_name">பயனர் பெயர்</string>
    <string name="favorites">பிடித்தவை</string>
    <string name="my_favorites_links">எனக்கு பிடித்த இணைப்புகள்</string>
-   <string name="what_is_the_opds_online_catalog_">OPDS ஆன்லைன் பட்டியல் என்றால் என்ன?</string>
    <string name="___DIALOGS___SECTION___"></string>
    <string name="ok">சரி</string>
    <string name="yes">ஆம்</string>

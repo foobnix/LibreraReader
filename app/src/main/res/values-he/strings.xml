@@ -152,6 +152,7 @@
    <string name="brightness">בְּהִירוּת</string>
    <string name="bluelight_filter">מסנן</string>
    <string name="password">סיסמה</string>
+   <string name="optional">אופציונלי</string>
    <string name="restore_defaults_short">להחזיר לברירת מחדל</string>
    <string name="customize">התאמה אישית</string>
    <string name="color">צבע</string>
@@ -192,7 +193,7 @@
    <string name="filter">סנן</string>
    <string name="bookmark_by_date">לפי תאריך</string>
    <string name="bookmark_by_book">ספר</string>
-   <string name="network">רשת</string>
+   <string name="network">OPDS</string>
    <string name="catalogs">קטלוגים</string>
    <string name="proxy_server_settings">הגדרות שרת פרוקסי</string>
    <string name="use_proxy_server">השתמש בשרת proxy</string>
@@ -214,7 +215,6 @@
    <string name="user_name">שם משתמש</string>
    <string name="favorites">מועדפים</string>
    <string name="my_favorites_links">הקישורים המועדפים שלי</string>
-   <string name="what_is_the_opds_online_catalog_">מהו הקטלוג המקוון של OPDS?</string>
    <string name="___DIALOGS___SECTION___"></string>
    <string name="ok">בסדר</string>
    <string name="yes">כן</string>

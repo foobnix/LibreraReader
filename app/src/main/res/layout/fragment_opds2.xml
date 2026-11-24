@@ -99,22 +99,4 @@
         </com.foobnix.ui2.fast.FastScrollRecyclerView>
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/defaults"
-        style="@style/textLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2dip"
-        android:text="@string/restore_defaults_short"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/faq"
-        style="@style/textLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2dip"
-        android:text="@string/what_is_the_opds_online_catalog_"
-        android:textSize="12sp" />
-
 </LinearLayout>

@@ -80,7 +80,8 @@ public class Link {
     }
 
     public boolean isSearchLink() {
-        return "search".equals(rel) && APPLICATION_ATOM_XML.equals(type);
+        // "application/atom+xml;profile=opds-catalog;kind=acquisition" is a search address too
+        return "search".equals(rel) && type != null && type.startsWith(APPLICATION_ATOM_XML);
 
     }
 
@@ -138,9 +139,11 @@ public class Link {
     }
 
     private String downloadName() {
-        String name = TxtUtils.fixFileName(parentTitle);
+        // Catalogs put their titles on lines of their own (Unglue.it): a name with line breaks
+        // was refused, and the book saved under a number
+        String name = TxtUtils.fixFileName(parentTitle.replaceAll("\\s+", " ").trim());
         String ext = getDownloadDisplayFormat();
-        
+
 
         if (ext != null) {
             ext = ext.replace("x-cbz", "cbz").replace("x-cbr", "cbr");

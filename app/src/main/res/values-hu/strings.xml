@@ -152,6 +152,7 @@
    <string name="brightness">Fényerő</string>
    <string name="bluelight_filter">Kékfény szűrő</string>
    <string name="password">Jelszó</string>
+   <string name="optional">nem kötelező</string>
    <string name="restore_defaults_short">Alapértelmezett visszaállítása</string>
    <string name="customize">Konfigurálás</string>
    <string name="color">Szín</string>
@@ -192,7 +193,7 @@
    <string name="filter">Szűrő</string>
    <string name="bookmark_by_date">Dátum</string>
    <string name="bookmark_by_book">Cím</string>
-   <string name="network">Hálózat</string>
+   <string name="network">OPDS</string>
    <string name="catalogs">Katalógusok</string>
    <string name="proxy_server_settings">Proxykiszolgáló-beállításai</string>
    <string name="use_proxy_server">Proxykiszolgáló használata</string>
@@ -214,7 +215,6 @@
    <string name="user_name">Felhasználónév</string>
    <string name="favorites">Kedvencek</string>
    <string name="my_favorites_links">Kedvenc linkjeim</string>
-   <string name="what_is_the_opds_online_catalog_">Mi az OPDS online katalógus?</string>
    <string name="___DIALOGS___SECTION___"></string>
    <string name="ok">OK</string>
    <string name="yes">Igen</string>

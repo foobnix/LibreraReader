@@ -157,13 +157,36 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
         holder.image.setVisibility(View.GONE);
 
+        // A book: the format of its first download, drawn on a stub when it has no picture
+        String bookFormat = null;
+        for (Link link : entry.links) {
+            if (link.type != null && !link.isOpdsLink() && !link.isImageLink() && !link.isWebLink()
+                    && !Link.TYPE_LOGO.equals(link.type)) {
+                bookFormat = link.getDownloadDisplayFormat();
+                if (bookFormat != null) {
+                    break;
+                }
+            }
+        }
+        final Drawable bookStub = bookFormat == null ? null : new BookStubDrawable(bookFormat, Dips.dpToPx(42));
+
         String imgLink = "";
         for (final Link link : entry.links) {
             link.author = entry.author;
-            if (link.TYPE_LOGO.equals(link.type) || link.isThumbnail()) {
+            if (Link.TYPE_LOGO.equals(link.type)) {
                 holder.image.setVisibility(View.VISIBLE);
-                //ImageLoader.getInstance().displayImage(link.href, holder.image, IMG.displayOPDSOptions);
-                Glide.with(context).load(link.href).into(holder.image);
+                // A catalog with no picture of its own, or one that does not load: the first
+                // letter of its name on a round, instead of the same "OPDS" on every one
+                final Drawable letter = new LetterDrawable(entry.title, TintUtil.color, Dips.dpToPx(42));
+                if (link.href == null || link.href.equals("assets://opds/opds.png") || link.href.equals("assets://opds/web.png")) {
+                    Glide.with(context).clear(holder.image);
+                    holder.image.setImageDrawable(letter);
+                } else {
+                    Glide.with(context).load(link.href).error(letter).into(holder.image);
+                }
+            } else if (link.isThumbnail()) {
+                holder.image.setVisibility(View.VISIBLE);
+                Glide.with(context).load(link.href).error(bookStub).into(holder.image);
 
             } else if (link.isSearchLink()) {
                 LinearLayout l = new LinearLayout(context);
@@ -188,9 +211,10 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
                     @Override
                     public void onClick(View v) {
-                        if (TxtUtils.isNotEmpty(search.toString())) {
+                        if (TxtUtils.isNotEmpty(search.getText().toString().trim())) {
                             String encode = Urls.encode(search.getText().toString());
-                            encode = encode.replace(" ", "+");
+                            // A space as %20: a "+" in a path is a plus (Calibre-Web /opds/search/{searchTerms})
+                            encode = encode.replace("+", "%20").replace(" ", "%20");
 
                             String replace = link.href.replace("{searchterms}", encode).replace("{searchTerms}", encode);
                             Link l = new Link(replace);
@@ -272,6 +296,8 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     t.setText(link.title != null ? link.title : downloadFormat.replace(".zip", ""));
                     t.setGravity(Gravity.CENTER);
                     t.setBackgroundResource(R.drawable.bg_border_blue_entry);
+                    // A pill: room at its round ends for the text and the book mark
+                    t.setPadding(Dips.dpToPx(12), PD, Dips.dpToPx(12), PD);
                     t.setMinimumWidth(Dips.dpToPx(40));
 
                     if (link.filePath != null) {
@@ -312,6 +338,12 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 }
 
             }
+        }
+        // A book with no picture at all: the stub in its place
+        if (bookStub != null && holder.image.getVisibility() != View.VISIBLE) {
+            holder.image.setVisibility(View.VISIBLE);
+            Glide.with(context).clear(holder.image);
+            holder.image.setImageDrawable(bookStub);
         }
 
         bindItemClickAndLongClickListeners(holder.parent, entry);

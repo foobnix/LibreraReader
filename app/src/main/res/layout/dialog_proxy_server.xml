@@ -136,6 +136,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/display_large_book_covers_in_the_catalog" />
+
+        <!-- The built-in catalogs back, in their order; catalogs added by hand stay -->
+        <TextView
+            android:id="@+id/restoreCatalogs"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dip"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="6dip"
+            android:text="@string/restore_defaults_short" />
     </LinearLayout>
 
 </ScrollView>

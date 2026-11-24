@@ -152,6 +152,7 @@
    <string name="brightness">Distira</string>
    <string name="bluelight_filter">Urdinen iragazkia</string>
    <string name="password">Pasahitza</string>
+   <string name="optional">aukerakoa</string>
    <string name="restore_defaults_short">Leheneratu berezkoak</string>
    <string name="customize">Pertsonalizatu</string>
    <string name="color">Kolorea</string>
@@ -192,7 +193,7 @@
    <string name="filter">Iragazi</string>
    <string name="bookmark_by_date">Data</string>
    <string name="bookmark_by_book">Liburua</string>
-   <string name="network">Sarea</string>
+   <string name="network">OPDS</string>
    <string name="catalogs">Katalogoa</string>
    <string name="proxy_server_settings">Proxy zerbitzariaren ezarpenak</string>
    <string name="use_proxy_server">Erabili proxy zerbitzaria</string>
@@ -214,7 +215,6 @@
    <string name="user_name">Erabiltzaile izena</string>
    <string name="favorites">Gogokoak</string>
    <string name="my_favorites_links">Nire gogoko estekak</string>
-   <string name="what_is_the_opds_online_catalog_">Zer da OPDS lineako katalogoa?</string>
    <string name="___DIALOGS___SECTION___"></string>
    <string name="ok">Ados</string>
    <string name="yes">Bai</string>
