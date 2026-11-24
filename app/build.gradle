@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7707
-    FDroidVersionNumber = "10.2.1"
+    FDroidCodeNumber = 7711
+    FDroidVersionNumber = "10.2.2"
 }
 
 
@@ -520,9 +520,9 @@ tasks.register("copyApks") {
         }
 
         // The Testing folders (Google Drive, Dropbox) get only the builds that are tested: the
-        // 64-bit and the universal APK of these four flavours. Every other APK and the bundles go
-        // to the Downloads folder instead (librera_downloads_dir in the global
-        // ~/.gradle/gradle.properties, else ~/Downloads).
+        // 64-bit and the universal APK of these four flavours. Every APK and the bundles go to a
+        // folder of the version in Downloads, "Librera-<version>" (librera_downloads_dir in the
+        // global ~/.gradle/gradle.properties, else ~/Downloads).
         def testingApks = [
                 fdroid  : ["*-arm64.apk", "*-uni.apk"],
                 fdroidJS: ["*-arm64.apk", "*-uni.apk"],
@@ -533,8 +533,8 @@ tasks.register("copyApks") {
         if (betaDir) {
             testingDestinations.add("$betaDir/$betaFolder")
         }
-        def downloadsDir = project.findProperty("librera_downloads_dir") ?: "${System.getProperty('user.home')}/Downloads"
-        // Only Librera's own builds there are replaced; nothing else in Downloads is touched
+        def downloadsDir = "${project.findProperty("librera_downloads_dir") ?: "${System.getProperty('user.home')}/Downloads"}/Librera-$versionNumber"
+        // The builds of this version there are replaced; nothing else is touched
         delete fileTree(downloadsDir) { include "Librera *.apk", "Librera *.aab" }
 
         def destinations = []
@@ -582,11 +582,10 @@ tasks.register("copyApks") {
                     }
                 }
 
-                // Everything else - the other APKs and the bundle - to Downloads
+                // Every APK and the bundle to the version's folder in Downloads
                 copy {
                     from(file("build/outputs/apk/${flavor}/release/")) {
                         include "*.apk"
-                        tested.each { pattern -> exclude pattern }
                     }
                     from(file("build/outputs/bundle/${flavor}Release/")) {
                         include "*.aab"
@@ -594,7 +593,7 @@ tasks.register("copyApks") {
                     }
                     into file(downloadsDir)
                 }
-                println "Copy (other): '" + flavor + "' to " + downloadsDir
+                println "Copy (all): '" + flavor + "' to " + downloadsDir
 
                 destinations.each { dest ->
 
