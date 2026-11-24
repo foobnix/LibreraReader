@@ -77,6 +77,11 @@ public final class ReadingHighlight {
                     break;
                 }
             }
+            // No longer than the sentence itself: when the sentences after it are not found among
+            // the page's words - changed by the TTS replacements, say - the mark ran on to the
+            // next one that was, or to the end of the page, and the last sentence took in the
+            // unfinished one the next page reads
+            next = Math.max(start, Math.min(next, start + TxtUtils.lettersOf(parts[i]).length()));
             final List<TextWord> run = new ArrayList<TextWord>();
             for (int w = 0; w < words.size(); w++) {
                 if (offsets.get(w) >= start && offsets.get(w) < next) {
