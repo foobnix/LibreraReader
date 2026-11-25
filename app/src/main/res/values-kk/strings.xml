@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Кітапхана</string>
    <string name="extracting_information_from_books">Файлдардан ақпарат алу</string>
+   <string name="processing_books_percent">%1$d%% Кітаптарды өңдеу</string>
    <string name="no_author">Автор жоқ</string>
    <string name="no_serie">Серия жоқ</string>
    <string name="no_genre">Жанр жоқ</string>

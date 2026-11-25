@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">书库</string>
    <string name="extracting_information_from_books">建立索引</string>
+   <string name="processing_books_percent">%1$d%% 正在处理书籍</string>
    <string name="no_author">无作者</string>
    <string name="no_serie">无丛书</string>
    <string name="no_genre">无流派</string>

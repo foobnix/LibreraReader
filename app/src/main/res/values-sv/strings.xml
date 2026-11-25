@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotek</string>
    <string name="extracting_information_from_books">Extrahera information från böcker</string>
+   <string name="processing_books_percent">%1$d%% Bearbetar böcker</string>
    <string name="no_author">Ingen författare</string>
    <string name="no_serie">Ingen serie</string>
    <string name="no_genre">Ingen genre</string>

@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Liburutegia</string>
    <string name="extracting_information_from_books">Liburuetatik informazioa erauzten</string>
+   <string name="processing_books_percent">%1$d%% Liburuak prozesatzen</string>
    <string name="no_author">Egilerik gabe</string>
    <string name="no_serie">Sailik gabe</string>
    <string name="no_genre">Generorik gabe</string>

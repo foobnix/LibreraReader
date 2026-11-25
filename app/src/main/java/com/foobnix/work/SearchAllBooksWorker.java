@@ -47,6 +47,8 @@ public class SearchAllBooksWorker extends MessageWorker {
 
     Handler handler;
     List<FileMeta> itemsMeta;
+    private volatile int metaDone;
+    private volatile int metaTotal;
 
     public SearchAllBooksWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
@@ -177,6 +179,8 @@ public class SearchAllBooksWorker extends MessageWorker {
 
             sendFinishMessage();
 
+            metaDone = 0;
+            metaTotal = itemsMeta.size();
             handler.post(refreshTimer);
 
             for (FileMeta meta : itemsMeta) {
@@ -200,6 +204,7 @@ public class SearchAllBooksWorker extends MessageWorker {
                 if (isStopped()) {
                     return false;
                 }
+                metaDone++;
                 if (ExtUtils.isExteralSD(meta.getPath())) {
                     FileMetaCore.get().udpateFullMetaSaf(getApplicationContext(), meta);
                     continue;
@@ -291,7 +296,8 @@ public class SearchAllBooksWorker extends MessageWorker {
         @Override
         public void run() {
             LOG.d("timer2");
-            sendBuildingLibrary();
+            final int total = metaTotal;
+            sendBuildingLibrary(total > 0 ? Math.min(100, metaDone * 100 / total) : -1);
             handler.postDelayed(refreshTimer, 500);
         }
     };

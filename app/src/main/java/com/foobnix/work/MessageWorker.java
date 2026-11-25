@@ -97,8 +97,13 @@ abstract class MessageWorker extends Worker {
     }
 
     protected void sendBuildingLibrary() {
+        sendBuildingLibrary(-1);
+    }
+
+    protected void sendBuildingLibrary(int percent) {
         Intent itent =
-                new Intent(BooksService.INTENT_NAME).putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_BUILD_LIBRARY);
+                new Intent(BooksService.INTENT_NAME).putExtra(Intent.EXTRA_TEXT, BooksService.RESULT_BUILD_LIBRARY)
+                                                    .putExtra(BooksService.EXTRA_PERCENT, percent);
         LocalBroadcastManager.getInstance(getApplicationContext())
                              .sendBroadcast(itent);
     }

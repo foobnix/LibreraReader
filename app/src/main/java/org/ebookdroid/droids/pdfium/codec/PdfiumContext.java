@@ -1,5 +1,7 @@
 package org.ebookdroid.droids.pdfium.codec;
 
+import org.ebookdroid.droids.mupdf.codec.PdfContext;
+import com.foobnix.pdf.info.Engines;
 import android.graphics.Bitmap;
 
 import com.foobnix.android.utils.LOG;
@@ -78,7 +80,12 @@ public class PdfiumContext extends AbstractCodecContext {
 
     @Override
     public CodecDocument openDocumentInner(String fileName, final String password) {
-        return PdfiumDocument.open(this, fileName, password);
+        final CodecDocument document = PdfiumDocument.open(this, fileName, password);
+        if (document != null || !Engines.IS_MUPDF) {
+            return document;
+        }
+        LOG.d("PDFIUM! not opened, MuPDF instead", fileName);
+        return new PdfContext().openDocumentInner(fileName, password);
     }
 
     @Override

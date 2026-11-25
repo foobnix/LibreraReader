@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">کتابخانه</string>
    <string name="extracting_information_from_books">استخراج اطلاعات از کتاب</string>
+   <string name="processing_books_percent">%1$d%% پردازش کتاب‌ها</string>
    <string name="no_author">بدون نویسنده</string>
    <string name="no_serie">هیچ سریالی وجود ندارد</string>
    <string name="no_genre">هیچ ژانر نیست</string>

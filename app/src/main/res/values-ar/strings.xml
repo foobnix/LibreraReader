@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">المكتبة</string>
    <string name="extracting_information_from_books">استخراج المعلومات من الكتب</string>
+   <string name="processing_books_percent">%1$d%% معالجة الكتب</string>
    <string name="no_author">لا مؤلف</string>
    <string name="no_serie">لا دوري الدرجة الاولى الايطالي</string>
    <string name="no_genre">لا يوجد نوع</string>

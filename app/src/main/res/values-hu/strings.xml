@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Könyvtár</string>
    <string name="extracting_information_from_books">Információk kiolvasása a fájlokból</string>
+   <string name="processing_books_percent">%1$d%% Könyvek feldolgozása</string>
    <string name="no_author">Nincs szerző</string>
    <string name="no_serie">Nincsenek sorozatok</string>
    <string name="no_genre">Nincs műfaj</string>

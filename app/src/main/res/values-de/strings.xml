@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliothek</string>
    <string name="extracting_information_from_books">Extrahieren von Informationen aus Dokumenten</string>
+   <string name="processing_books_percent">%1$d%% Bücher werden verarbeitet</string>
    <string name="no_author">Kein Autor</string>
    <string name="no_serie">Keine Reihe</string>
    <string name="no_genre">Kein Genre</string>

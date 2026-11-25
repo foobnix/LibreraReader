@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Knihovna</string>
    <string name="extracting_information_from_books">Získat informace ze souborů</string>
+   <string name="processing_books_percent">%1$d%% Zpracování knih</string>
    <string name="no_author">Žádný autor</string>
    <string name="no_serie">Žádná série</string>
    <string name="no_genre">Žádný žánr</string>

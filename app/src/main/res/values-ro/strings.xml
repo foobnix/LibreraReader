@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotecă</string>
    <string name="extracting_information_from_books">Dezarhivarea informații din cărți</string>
+   <string name="processing_books_percent">%1$d%% Procesarea cărților</string>
    <string name="no_author">Nici un autor</string>
    <string name="no_serie">Nici o serie</string>
    <string name="no_genre">Nici un gen</string>

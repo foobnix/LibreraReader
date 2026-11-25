@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">पुस्तकालय</string>
    <string name="extracting_information_from_books">पुस्तकों से जानकारी निकालने</string>
+   <string name="processing_books_percent">%1$d%% पुस्तकों का प्रसंस्करण</string>
    <string name="no_author">कोई लेखक नहीं</string>
    <string name="no_serie">कोई सीरी नहीं</string>
    <string name="no_genre">कोई शैली नहीं</string>

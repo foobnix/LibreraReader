@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">라이브러리</string>
    <string name="extracting_information_from_books">책에서 정보 추출</string>
+   <string name="processing_books_percent">%1$d%% 책 처리 중</string>
    <string name="no_author">저자 정보 없음</string>
    <string name="no_serie">시리즈 정보 없음</string>
    <string name="no_genre">장르 정보 없음</string>

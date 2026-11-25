@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___">Sekmeler</string>
    <string name="library">Kütüphane</string>
    <string name="extracting_information_from_books">Kitaplardan bilgi ayıklanıyor</string>
+   <string name="processing_books_percent">%1$d%% Kitaplar işleniyor</string>
    <string name="no_author">Yazar yok</string>
    <string name="no_serie">Dizi yok</string>
    <string name="no_genre">Tür yok</string>

@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___">標籤區域</string>
    <string name="library">書架</string>
    <string name="extracting_information_from_books">書籍資訊</string>
+   <string name="processing_books_percent">%1$d%% 正在處理書籍</string>
    <string name="no_author">無作者</string>
    <string name="no_serie">無叢書</string>
    <string name="no_genre">無流派</string>

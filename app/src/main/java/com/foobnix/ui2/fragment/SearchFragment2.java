@@ -179,7 +179,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 isLibraryReady = false;
             } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 isLibraryReady = false;
-                setSearchHint(R.string.extracting_information_from_books);
+                final int percent = intent.getIntExtra(BooksService.EXTRA_PERCENT, -1);
+                if (percent >= 0 && getContext() != null) {
+                    setSearchHint(getString(R.string.processing_books_percent, percent));
+                } else {
+                    setSearchHint(R.string.extracting_information_from_books);
+                }
             } else if (BooksService.RESULT_SEARCH_MESSAGE_TXT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 setSearchHint(intent.getStringExtra("TEXT"));
             } else if (BooksService.RESULT_NOTIFY_ALL.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {

@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotheek</string>
    <string name="extracting_information_from_books">Extraheren van informatie uit boeken</string>
+   <string name="processing_books_percent">%1$d%% Boeken verwerken</string>
    <string name="no_author">Geen auteur</string>
    <string name="no_serie">Geen serie</string>
    <string name="no_genre">Geen genre</string>

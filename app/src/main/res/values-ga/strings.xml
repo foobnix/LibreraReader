@@ -170,6 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Leabharlann</string>
    <string name="extracting_information_from_books">Ag baint faisnéise as comhaid</string>
+   <string name="processing_books_percent">%1$d%% Leabhair á bpróiseáil</string>
    <string name="no_author">Gan údar</string>
    <string name="no_serie">Gan aon tsraith</string>
    <string name="no_genre">Aon seánra</string>

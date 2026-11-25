@@ -159,7 +159,7 @@ public class SelfTestWorker extends MessageWorker {
                 final File log = logs.get(i);
                 final Object[] read = readLog(log);
                 final android.widget.TextView row = new android.widget.TextView(a);
-                row.setText(logTitle(log) + "\n" + read[2]);
+                row.setText(logTitle(log) + "\n" + logEngines(log) + read[2]);
                 row.setTextColor(0xFF2196F3);
                 row.setPadding(0, Dips.dpToPx(8), 0, Dips.dpToPx(8));
                 row.setOnClickListener(v -> {
@@ -492,6 +492,24 @@ public class SelfTestWorker extends MessageWorker {
         return when + ", " + log.getName();
     }
 
+    private static String logEngines(File log) {
+        try (java.io.BufferedReader in = new java.io.BufferedReader(new java.io.FileReader(log))) {
+            String line;
+            while ((line = in.readLine()) != null) {
+                if (line.startsWith("PDF engine: ")) {
+                    final String[] engines = line.substring("PDF engine: ".length()).split(", EPUB engine: ");
+                    return engines.length == 2 ? "PDF: " + engines[0] + ", EPUB: " + engines[1] + "\n" : "";
+                }
+                if (line.startsWith("[Options]") || line.startsWith("OK") || line.startsWith("Error")) {
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return "";
+    }
+
     /** A titled row of radio buttons, one per value; a button's id is its index. */
     private static android.widget.RadioGroup engineGroup(Context c, android.widget.LinearLayout root, String title,
                                                          int[] engines, String[] names, int selected, int fallback) {
@@ -754,7 +772,7 @@ public class SelfTestWorker extends MessageWorker {
         CodecDocument codecDocument = null;
         try {
             CodecContext codecContex = BookType.getCodecContextByPath(path);
-            codecDocument = codecContex.openDocument(path, "");
+            codecDocument = TempHolder.get().loadingCancelled.ignoredWhile(() -> codecContex.openDocument(path, ""));
             current = codecDocument;
             if (codecDocument == null) {
                 return "Error: not opened";
