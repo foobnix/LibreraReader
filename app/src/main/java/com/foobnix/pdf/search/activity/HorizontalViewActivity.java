@@ -1558,6 +1558,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void showHideHistory() {
         linkHistory.setVisibility(!dc.getLinkHistory().isEmpty() ? View.VISIBLE : View.GONE);
+        // It is in the seek line's row, which stands for it when the seek bar is off
+        com.foobnix.pdf.info.view.SeekLine.show(seekLine, AppState.get().isEditMode);
 
     }
 
@@ -2370,7 +2372,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         showPagesHelper();
 
         if (seekLine != null) {
-            seekLine.setVisibility(AppState.get().isEditMode && AppState.get().isShowBottomSeekBar ? View.VISIBLE : View.GONE);
+            com.foobnix.pdf.info.view.SeekLine.show(seekLine, AppState.get().isEditMode);
         }
 
         if (prev == AppState.get().isEditMode) {
@@ -2388,7 +2390,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             actionBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
             bottomBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
             if (seekLine != null) {
-                seekLine.setVisibility(AppState.get().isEditMode && AppState.get().isShowBottomSeekBar ? View.VISIBLE : View.GONE);
+                com.foobnix.pdf.info.view.SeekLine.show(seekLine, AppState.get().isEditMode);
             }
             //adFrame.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
 
@@ -2432,7 +2434,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         actionBar.setVisibility(View.VISIBLE);
                         bottomBar.setVisibility(View.VISIBLE);
                         if (seekLine != null) {
-                            seekLine.setVisibility(AppState.get().isShowBottomSeekBar ? View.VISIBLE : View.GONE);
+                            com.foobnix.pdf.info.view.SeekLine.show(seekLine, true);
                         }
                         //adFrame.setVisibility(View.VISIBLE);
                         ///adFrame.setTag(null);

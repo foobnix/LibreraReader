@@ -137,8 +137,9 @@
 
         <!-- The same room above it as the top bar keeps under its own row of buttons (6dip).
              As wide as its buttons, so the scroll-by button can give way, and only it: where the
-             row is wider than the screen it shrinks, rather than the back button at the end being
-             pushed off. Where the row fits nothing grows. -->
+             row is wider than the screen it shrinks, rather than a button at the end being pushed
+             off. Where the row fits nothing grows. The back button is in the seek line below: at
+             the end of this row there was no room for it on a phone. -->
         <LinearLayout
             android:id="@+id/footerButtons"
             android:layout_width="wrap_content"
@@ -236,68 +237,81 @@
                 android:textColor="#ffffff"
                 android:textSize="14sp" />
 
-            <ImageView
-                android:id="@+id/linkHistory"
-                style="@style/buttonWhite"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_marginLeft="4dip"
-                android:layout_weight="0"
-                android:contentDescription="@string/back"
-                android:src="@drawable/glyphicons_885_step_back"
-                android:visibility="visible" />
         </LinearLayout>
 
+        <!-- The seek bar, as the setting shows it, and the back button: the row stands while
+             either is there (SeekLine). Gravity end keeps the button at the end on its own. -->
         <LinearLayout
 			android:id="@+id/seekLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:gravity="center_vertical"
+            android:gravity="end|center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="2dip"
             android:paddingRight="2dip">
 
-            <TextView
-                android:id="@+id/currentSeek"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="4dip"
-                android:layout_weight="0"
-                android:clickable="true"
-                android:gravity="center"
-                android:minEms="2"
-                android:text="--"
-                android:textColor="#ffffff"
-                android:textSize="14sp"
-                android:textStyle="normal" />
-
-            <SeekBar
-                android:id="@+id/seekBar1"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/seekParts"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="2dip"
-                android:layout_marginBottom="2dip"
                 android:layout_weight="1"
-                android:paddingTop="3dip"
-                android:paddingBottom="3dip"
-                android:progressTint="@android:color/white"
-                android:thumbTint="@android:color/white" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/maxSeek"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="4dip"
+                <TextView
+                    android:id="@+id/currentSeek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="4dip"
+                    android:layout_weight="0"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:minEms="2"
+                    android:text="--"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+
+                <SeekBar
+                    android:id="@+id/seekBar1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="2dip"
+                    android:layout_marginBottom="2dip"
+                    android:layout_weight="1"
+                    android:paddingTop="3dip"
+                    android:paddingBottom="3dip"
+                    android:progressTint="@android:color/white"
+                    android:thumbTint="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/maxSeek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="4dip"
+                    android:layout_weight="0"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:minEms="2"
+                    android:text="--"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <!-- Back to where a link was followed from; shown only after one was -->
+            <ImageView
+                android:id="@+id/linkHistory"
+                style="@style/buttonWhite"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_marginRight="2dip"
                 android:layout_weight="0"
-                android:clickable="true"
-                android:gravity="center"
-                android:minEms="2"
-                android:text="--"
-                android:textColor="#ffffff"
-                android:textSize="14sp"
-                android:textStyle="normal" />
+                android:contentDescription="@string/back"
+                android:src="@drawable/glyphicons_885_step_back"
+                android:visibility="visible" />
         </LinearLayout>
 
         <LinearLayout

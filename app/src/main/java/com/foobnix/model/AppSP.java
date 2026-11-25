@@ -20,6 +20,11 @@ public class AppSP {
     public int lastBookPageCount = 0;
     public int tempBookPage = 0;
     public volatile int lastBookParagraph = 0;
+    // The words reading started from on the page lastBookParagraph counts on: the paragraphs are
+    // counted from there, so play after pause starts at the same place only from the same words
+    public String lastBookParagraphAnchor;
+    public int lastBookParagraphAnchorOccurrence = 0;
+    public int lastBookParagraphAnchorPage = -1;
     public String lastBookTitle;
     public int lastBookWidth = 0;
     public int lastBookHeight = 0;

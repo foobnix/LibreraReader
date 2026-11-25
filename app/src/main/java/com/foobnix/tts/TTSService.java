@@ -1182,7 +1182,18 @@ import java.util.concurrent.Executors;
                 mainHandler.post(() -> {
                     if (request == playRequest) {
                         readingWords = pageWords;
-                        speakPage(preText, number, placeText(pageNumber, number, anchor), pageCount, html);
+                        String start = placeText(pageNumber, number, anchor);
+                        // Play after pause: the page is read from the words it was started from, or
+                        // the saved paragraph counts from the top of the page and reading goes back
+                        final AppSP sp = AppSP.get();
+                        if (TxtUtils.isEmpty(start) && TxtUtils.isEmpty(preText)
+                                && number == sp.lastBookParagraphAnchorPage
+                                && TxtUtils.isNotEmpty(sp.lastBookParagraphAnchor)) {
+                            start = sp.lastBookParagraphAnchor;
+                            anchorOccurrence = sp.lastBookParagraphAnchorOccurrence;
+                            LOG.d(TAG, "resume from", start, anchorOccurrence, "par", sp.lastBookParagraph);
+                        }
+                        speakPage(preText, number, start, pageCount, html);
                     }
                 });
             });
@@ -1268,13 +1279,23 @@ import java.util.concurrent.Executors;
         }
         pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
 
+        boolean cut = false;
         if (TxtUtils.isNotEmpty(anchor)) {
-            int indexOf = TxtUtils.indexOfLetters(pageHTML, anchor, anchorOccurrence);
+            final int occurrence = anchorOccurrence;
+            int indexOf = TxtUtils.indexOfLetters(pageHTML, anchor, occurrence);
             anchorOccurrence = 0;
             if (indexOf > 0) {
                 pageHTML = pageHTML.substring(indexOf);
                 LOG.d("find anchor new text", pageHTML);
+                AppSP.get().lastBookParagraphAnchor = anchor;
+                AppSP.get().lastBookParagraphAnchorOccurrence = occurrence;
+                AppSP.get().lastBookParagraphAnchorPage = pageNumber;
+                cut = true;
             }
+        }
+        if (!cut) {
+            AppSP.get().lastBookParagraphAnchor = null;
+            AppSP.get().lastBookParagraphAnchorPage = -1;
         }
 
         LOG.d(TAG, pageHTML);

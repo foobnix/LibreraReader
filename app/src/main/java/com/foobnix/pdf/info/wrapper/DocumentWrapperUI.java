@@ -60,6 +60,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.search.view.SpeedBgView;
+import com.foobnix.pdf.info.view.SeekLine;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.LandscapeSplit;
@@ -977,6 +978,8 @@ public class DocumentWrapperUI {
 
     public void showHideHistory() {
         linkHistory.setVisibility(dc.getLinkHistory().isEmpty() ? View.GONE : View.VISIBLE);
+        // It is in the seek line's row, which stands for it when the seek bar is off
+        SeekLine.show(seekLine, true);
     }
 
     @Subscribe
@@ -2142,7 +2145,7 @@ public class DocumentWrapperUI {
         updateLock();
 
         bottomBar.setVisibility(View.VISIBLE);
-        seekLine.setVisibility(AppState.get().isShowBottomSeekBar ? View.VISIBLE : View.GONE);
+        SeekLine.show(seekLine, true);
         //adFrame.setVisibility(View.VISIBLE);
         // adFrame.setClickable(true);
         // adFrame.setTag(null);
