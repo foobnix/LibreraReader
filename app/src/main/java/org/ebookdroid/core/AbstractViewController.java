@@ -15,6 +15,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -184,7 +185,8 @@ public abstract class AbstractViewController extends AbstractComponentController
                 }
             }
 
-            if (AppState.get().isAlwaysOpenOnPage1) {
+            final boolean page1 = DocumentController.openOnPage1(base.getActivity());
+            if (page1) {
                 toPage = 0;
             }
 
@@ -192,11 +194,25 @@ public abstract class AbstractViewController extends AbstractComponentController
             // The words the reader had at the top of the screen are looked for on the page found,
             // on a thread of its own, and brought to the top: the page alone is only where the
             // place is, and on another device's layout it may be well down that page
-            final boolean find = !split && !AppState.get().isAlwaysOpenOnPage1
+            final boolean find = !split && !page1
                                  && (later || TxtUtils.isNotEmpty(bs.pt));
             final String cfi = bs.cfi;
             final String pt = bs.pt;
             goToPage(toPage, bs.x, bs.y);
+            // The view can take the scroll before it has laid the pages out, and it then stops
+            // at the top: the book opened again for the font size stood on page 1. Once laid
+            // out, the page is gone to again.
+            final int opened = toPage;
+            final float x = bs.x;
+            final float y = bs.y;
+            if (opened > 0 && getBase().getDocumentModel().getCurrentViewPageIndex() != opened) {
+                LOG.d("show: on", getBase().getDocumentModel().getCurrentViewPageIndex(), "not", opened);
+                getView().getView().post(() -> {
+                    if (getBase().getDocumentModel().getCurrentViewPageIndex() != opened) {
+                        goToPage(opened, x, y);
+                    }
+                });
+            }
             if (find) {
                 goToPlaceLater(doc, later, cfi, pt, bs.x, toPage);
             }

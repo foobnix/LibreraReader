@@ -10,6 +10,7 @@ import org.ebookdroid.droids.comic.codec.ComicDocument;
 import org.ebookdroid.droids.tiff.codec.TiffDocument;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -117,6 +118,8 @@ public abstract class DocumentController {
 
     public static final String EXTRA_PASSWORD = "password";
     public static final String EXTRA_PERCENT = "p";
+    /** On the intent of a reader opened again by {@link #restartActivity()}, not by the reader. */
+    public static final String EXTRA_REOPENED = "reopened";
     public static final String EXTRA_BOOKMARK_TEXT = "bt"; // with EXTRA_PERCENT, finds the bookmark page by the text
     public static final String EXTRA_BOOKMARK_PAGE_TEXT = "bpt";
     public static final String EXTRA_PLAYLIST = "playlist";
@@ -1754,12 +1757,43 @@ public abstract class DocumentController {
                 }
                 ImageExtractor.clearCodeDocument();
                 activity.finish();
-                activity.startActivity(activity.getIntent());
+                // The same book opened again for a setting - the font size - stays where it was
+                final Intent intent = activity.getIntent();
+                intent.putExtra(EXTRA_REOPENED, true);
+                activity.startActivity(intent);
             }
         });
     }
 
-    public void saveAppState() {
+    /**
+     * Whether the book goes to page 1 as it opens: with the setting on, when the reader opens it,
+     * and not when it is opened again from the reader - for a setting changed in it, the font
+     * size, or for the other reading mode - which kept those and lost the place.
+     */
+    /** Set by a switch of the reading mode: the next reader opened is the same book again. */
+    private static volatile boolean reopenNext;
+
+    /** The next reader opened shows the book that is open now: a switch of the reading mode. */
+    public static void reopenNext() {
+        reopenNext = true;
+    }
+
+    /** Marks the intent of a reader opened as {@link #reopenNext()} asked, once. */
+    public static void markReopened(Intent intent) {
+        if (reopenNext) {
+            reopenNext = false;
+            intent.putExtra(EXTRA_REOPENED, true);
+        }
+    }
+
+        public static boolean openOnPage1(Activity a) {
+        if (!AppState.get().isAlwaysOpenOnPage1) {
+            return false;
+        }
+        return a == null || a.getIntent() == null || !a.getIntent().getBooleanExtra(EXTRA_REOPENED, false);
+    }
+
+        public void saveAppState() {
         AppBook bs = SettingsManager.getBookSettings();
         bs.updateFromAppState();
         SharedBooks.save(bs);

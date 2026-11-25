@@ -29,9 +29,10 @@ class FoliateIndex {
 
     /**
      * Bumped when the bridge lays a page out differently for the same settings, which the key
-     * cannot see otherwise. 2: the root font size became !important.
+     * cannot see otherwise. 2: the root font size became !important. 3: forced page breaks are
+     * dropped.
      */
-    private static final int FORMAT = 2;
+    private static final int FORMAT = 3;
 
     /** Pages in each section, in spine order. At least 1 each, so no section is unreachable. */
     private final int[] sectionPages;

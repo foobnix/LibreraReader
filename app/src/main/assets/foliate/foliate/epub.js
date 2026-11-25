@@ -875,6 +875,14 @@ class Loader {
         return this.createURL(href, result, mediaType, parent)
     }
     async replaceCSS(str, href, parents = []) {
+        // Librera: no forced page breaks. In columns each one is a column break, and a book that
+        // marks pages with empty paragraphs breaking before and after (`.saut_fullpage`) then
+        // shows a blank page for every one. Only the forced values go: `avoid`, which keeps a
+        // heading with its text, stays. Here, because this sees the book's stylesheets, its
+        // <style> elements and its style attributes alike.
+        str = str.replace(
+            /(break-(?:before|after)\s*:\s*)(always|page|left|right|recto|verso|column)\b/gi,
+            '$1auto')
         const replacedUrls = await replaceSeries(str,
             /url\(\s*["']?([^'"\n]*?)\s*["']?\s*\)/gi,
             (_, url) => this.loadHref(url, href, parents)

@@ -1179,6 +1179,7 @@ public class ExtUtils {
         }
 
         final Intent intent = new Intent(c, VerticalViewActivity.class);
+        DocumentController.markReopened(intent);
         try {
             intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD,
                             ((Activity) c).getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
@@ -1215,6 +1216,8 @@ public class ExtUtils {
             @Override public void run() {
                 AppSP.get().readingMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK
                         ? AppState.READING_MODE_SCROLL : AppState.READING_MODE_BOOK;
+                // The same book in the other mode keeps its place, also with "open on page 1"
+                DocumentController.reopenNext();
                 showDocumentWithoutDialog(a, file, playlist);
             }
         });
@@ -1248,6 +1251,7 @@ public class ExtUtils {
 
         final Intent intent = new Intent(c, HorizontalViewActivity.class);
         intent.setData(checkPlaylisturi(uri, intent, playlist));
+        DocumentController.markReopened(intent);
 
         try {
             intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD,

@@ -201,7 +201,7 @@ public abstract class HorizontalModeController extends DocumentController {
         } else if (pagesCount > 0) {
             currentPage = findBookmarkPage(bs.getCurrentPage(getPageCount()).viewIndex + 1, null, bs.pt, bs.cfi) - 1;
         }
-        if (AppState.get().isAlwaysOpenOnPage1) {
+        if (openOnPage1(activity)) {
             currentPage = 0;
         }
 
