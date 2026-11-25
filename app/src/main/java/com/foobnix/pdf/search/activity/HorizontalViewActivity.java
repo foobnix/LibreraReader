@@ -518,6 +518,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 @Override public void onClick(View v) {
                     // Close the book and come back to the library, landing on the same tab the
                     // nav bar's Library opens. The page is saved first, as a normal close does.
+                    // Tapped while the book is still opening there is no book yet, nor a page
+                    // to save: the reader just goes (a crash on Play, 10.1.9).
+                    if (dc == null) {
+                        MainTabs2.startActivity(HorizontalViewActivity.this, UITab.getCurrentTabIndex(UITab.SearchFragment));
+                        finish();
+                        return;
+                    }
                     dc.saveCurrentPageAsync();
                     MainTabs2.startActivity(HorizontalViewActivity.this, UITab.getCurrentTabIndex(UITab.SearchFragment));
                     dc.closeActivity();
