@@ -125,7 +125,7 @@ public class OpenerActivity extends Activity {
 
         LOG.d(TAG, "id", id, "name", name, "size", size);
 
-        if (!file.isFile()) {
+        if (!readable(file)) {
             LOG.d(TAG, "Find file in getLastPathSegment");
             if (id != null) {
                 String utfID = Uri.decode(id).replace("file://", "");
@@ -136,12 +136,12 @@ public class OpenerActivity extends Activity {
         }
 
 
-        if (!file.isFile()) {
+        if (!readable(file)) {
             LOG.d(TAG, "Find file in getDataPath");
             file = new File(dataPath);
             LOG.d(TAG, "File:", file.getPath());
         }
-        if (!file.isFile()) {
+        if (!readable(file)) {
             LOG.d(TAG, "Find file in getDataPath /indexOf 1");
             int beginIndex = dataPath.indexOf("/", 1);
             if (beginIndex > 0) {
@@ -149,7 +149,7 @@ public class OpenerActivity extends Activity {
             }
             LOG.d(TAG, "File:", file.getPath());
         }
-        if (!file.isFile()) {
+        if (!readable(file)) {
             LOG.d(TAG, "Find file in getDataPath /indexOf 2");
             int beginIndex = dataPath.indexOf("/", 1);
             if (beginIndex > 0) {
@@ -158,7 +158,7 @@ public class OpenerActivity extends Activity {
             LOG.d(TAG, "File:", file.getPath());
         }
 
-        if (!file.isFile()) {
+        if (!readable(file)) {
             LOG.d(TAG, "Find file in Telegram");
             if (dataPath.startsWith("/media/Android/data/org.telegram.messenger/files/")) {
                 file = new File(AppProfile.DOWNLOADS_DIR, "Telegram/" + name);
@@ -166,7 +166,7 @@ public class OpenerActivity extends Activity {
             LOG.d(TAG, "File:", file.getPath());
         }
 
-        if (!file.isFile() && id != null) {
+        if (!readable(file) && id != null) {
             LOG.d(TAG, "Find file in all Downloads by name and id", name, id);
             String documentID = id.replaceAll("\\D", "");
             LOG.d(TAG, "documentID", documentID);
@@ -177,7 +177,7 @@ public class OpenerActivity extends Activity {
             }
             LOG.d(TAG, "File:", file.getPath());
         }
-//        if (!file.isFile()) {
+//        if (!readable(file)) {
 //            LOG.d(TAG, "Find file in [Downloads]");
 //            if (TxtUtils.isEmpty(ExtUtils.getFileExtension(name))) {
 //                String extByMimeType = ExtUtils.getExtByMimeType(getIntent().getType());
@@ -188,7 +188,7 @@ public class OpenerActivity extends Activity {
 //            file = new File(AppProfile.DOWNLOADS_DIR, name);
 //        }
 
-        if (!file.isFile()) {
+        if (!readable(file)) {
             LOG.d(TAG, "Find file in [Librera/Downloads]");
             downloadsDir.mkdirs();
             LOG.d(TAG, "Find file in [Downloads]");
@@ -227,6 +227,16 @@ public class OpenerActivity extends Activity {
         }
         LOG.d(TAG, "Open file", file);
         ExtUtils.openFile(this, new FileMeta(file.getPath()));
+    }
+
+    /**
+     * A path taken from the link counts only when the app can read it. Another Librera's provider
+     * puts the whole real path in the link (its roots share one name, so the root "/" wins), and
+     * without the storage permission the file is there but cannot be opened: the copy through
+     * the link, which the sending app granted, has to be made then.
+     */
+    private static boolean readable(File file) {
+        return file != null && file.isFile() && file.canRead();
     }
 
     public String getCursorValue(String id) {
