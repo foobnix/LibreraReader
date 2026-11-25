@@ -322,7 +322,7 @@ public abstract class HorizontalModeController extends DocumentController {
                           .reset();
             matrixSP.edit()
                     .remove("" + bookPath.hashCode())
-                    .commit();
+                    .apply();
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -511,9 +511,10 @@ public abstract class HorizontalModeController extends DocumentController {
 
             @Override public void run() {
                 isClosed = true;
-                if (codeDocument != null) {
-                    codeDocument.recycle();
-                    codeDocument = null;
+                final CodecDocument closed = codeDocument;
+                codeDocument = null;
+                if (closed != null) {
+                    ImageExtractor.closeInBackground(closed::recycle);
                 }
                 try {
                     if (!ExtUtils.isTextFomat(bookPath)) {
@@ -521,7 +522,7 @@ public abstract class HorizontalModeController extends DocumentController {
                         matrixSP.edit()
                                 .putString(bookPath.hashCode() + "", PageImageState.get()
                                                                                    .getMatrixAsString() + "," + imageWidth)
-                                .commit();
+                                .apply();
                         LOG.d("MATRIX", "SAVE", bookPath.hashCode() + "", PageImageState.get()
                                                                                         .getMatrixAsString());
                     }
@@ -536,7 +537,7 @@ public abstract class HorizontalModeController extends DocumentController {
                 activity.setResult(Activity.RESULT_OK, i);
                 activity.finish();
 
-                ImageExtractor.clearCodeDocument();
+                ImageExtractor.closeInBackground(ImageExtractor::clearCodeDocument);
                 if (run != null) {
                     run.run();
                 }

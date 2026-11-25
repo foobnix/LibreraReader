@@ -146,12 +146,11 @@ public abstract class DragingPopup {
     public static void saveCache(final Context c) {
         try {
             SharedPreferences sp = c.getSharedPreferences(DRAGGING_POPUPS, Context.MODE_PRIVATE);
-            sp.edit().clear().commit();
-            Editor edit = sp.edit();
+            Editor edit = sp.edit().clear();
             for (String key : cache.keySet()) {
                 edit.putString(key, cache.get(key).toString());
             }
-            edit.commit();
+            edit.apply();
         } catch (Exception e) {
             LOG.e(e);
         }

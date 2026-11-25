@@ -128,7 +128,7 @@ public class Objects {
                 LOG.e(e, f.getName());
             }
         }
-        edit.commit();
+        edit.apply();
     }
 
     public static void loadFromSp(Object obj, SharedPreferences sp) {

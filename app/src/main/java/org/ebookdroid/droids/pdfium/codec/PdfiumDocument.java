@@ -379,7 +379,11 @@ public class PdfiumDocument extends AbstractCodecDocument {
 
     @Override
     public String getBookmarkText(final int page) {
-        TempHolder.lock.lock();
+        // Only a hint: on the main thread it is gone without while a page is drawn
+        if (!TempHolder.lockForHint()) {
+            LOG.d("getBookmarkText skip, the document is busy");
+            return null;
+        }
         try {
             if (isRecycled()) {
                 return null;
@@ -410,7 +414,11 @@ public class PdfiumDocument extends AbstractCodecDocument {
         final int count = getPageCount();
         int found2 = -1;
 
-        TempHolder.lock.lock();
+        // The page the percentage points at is used without it (-1), as when nothing is found
+        if (!TempHolder.lockForHint()) {
+            LOG.d("findBookmarkPage skip, the document is busy");
+            return -1;
+        }
         try {
             for (int i = 0; i <= 2 * BookmarkText.RANGE && (needle1 != null || found2 == -1); i++) {
                 if (isRecycled()) {

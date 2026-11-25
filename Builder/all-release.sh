@@ -61,6 +61,9 @@ echo "Version raised: $CODE_BEFORE -> $CODE_AFTER"
 
 
 ./gradlew copyApks -Prelease -Pmupdf=$MUPDF || exit 1
+# Crash reports on Play stay obfuscated for an app uploaded as APKs: Play gets the R8 mapping only
+# inside an .aab. For each app uploaded as APKs, upload "<app>-mapping.txt" from the release folder
+# in Play Console > App bundle explorer > the version > Downloads > ReTrace mapping file.
 ./gradlew -stop
 
 # Native debug symbols for Play Console crash reports (App bundle explorer > Downloads > Assets):

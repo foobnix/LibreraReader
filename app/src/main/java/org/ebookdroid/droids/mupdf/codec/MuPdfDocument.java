@@ -275,18 +275,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
     // the bookmark text is only a hint, on the ui thread it is skipped while a page is rendered
     // (a heavy page holds the lock for seconds, waiting for it froze the ui: ANR)
     private static boolean lockBookmark() {
-        if (Looper.myLooper() != Looper.getMainLooper()) {
-            TempHolder.lock.lock();
-            return true;
-        }
-        try {
-            return TempHolder.lock.tryLock(BOOKMARK_UI_LOCK_MS, TimeUnit.MILLISECONDS);
-        } catch (InterruptedException e) {
-            return false;
-        }
+        return TempHolder.lockForHint();
     }
-
-    private static final long BOOKMARK_UI_LOCK_MS = 200;
 
     @Override public String getBookmarkText(int page) {
         if (!lockBookmark()) {
@@ -458,6 +448,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
     private native boolean hasChangesInternal(long handle);
 
     boolean isHasChanges = false;
+    volatile boolean edited = false;
 
     @Override public boolean hasChanges() {
 
@@ -465,7 +456,9 @@ public class MuPdfDocument extends AbstractCodecDocument {
             LOG.d("hasChanges cache");
             return true;
         }
-        TempHolder.lock.lock();
+        if (!TempHolder.lockForHint()) {
+            return edited;
+        }
         try {
             if (isRecycled()) {
                 return false;
@@ -489,6 +482,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
             saveInternal(documentHandle, path);
             // Asked again from the document: the book stays open after a save to send it
             isHasChanges = false;
+            edited = false;
             LOG.d("Save Annotations saveInternal 2");
         } finally {
             TempHolder.lock.unlock();
@@ -506,6 +500,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
                 return;
             }
             deleteAnnotationInternal(documentHandle, pageHandle, index);
+            edited = true;
         } finally {
             TempHolder.lock.unlock();
         }
@@ -521,6 +516,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
                 return;
             }
             moveAnnotationInternal(documentHandle, pageHandle, index, dx, dy);
+            edited = true;
         } finally {
             TempHolder.lock.unlock();
         }
@@ -535,6 +531,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
                 return;
             }
             styleAnnotationInternal(documentHandle, pageHandle, index, color, width);
+            edited = true;
         } finally {
             TempHolder.lock.unlock();
         }

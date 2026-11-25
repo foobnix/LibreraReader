@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 #include <unistd.h>
 
 #include "../ebookdroid.h"
@@ -1571,6 +1572,60 @@ bookmark_needle(JNIEnv* env, jstring jtext, char* needle, int size)
     }
 }
 
+static void
+bookmark_lower(char* text)
+{
+    char utf[8];
+    char* dst = text;
+    const char* src = text;
+    int rune, len;
+
+    while (*src) {
+        src += fz_chartorune(&rune, src);
+        len = fz_runetochar(utf, fz_tolower(rune));
+        if (dst + len > src) {
+            break;
+        }
+        memcpy(dst, utf, len);
+        dst += len;
+    }
+    *dst = 0;
+}
+
+static char*
+bookmark_haystack(fz_context* ctx, fz_stext_page* stext)
+{
+    fz_buffer* buf = NULL;
+    char* text = NULL;
+    size_t size;
+
+    fz_var(buf);
+    fz_var(text);
+
+    fz_try(ctx)
+    {
+        buf = fz_new_buffer_from_stext_page(ctx, stext);
+        const char* src = fz_string_from_buffer(ctx, buf);
+        size = strlen(src) * 3 + 8;
+        if (size > INT_MAX) {
+            fz_throw(ctx, FZ_ERROR_LIMIT, "page text too long");
+        }
+        text = fz_malloc(ctx, size);
+        bookmark_text(src, text, (int)size);
+        bookmark_lower(text);
+    }
+    fz_always(ctx)
+    {
+        fz_drop_buffer(ctx, buf);
+    }
+    fz_catch(ctx)
+    {
+        fz_free(ctx, text);
+        text = NULL;
+    }
+    return text;
+}
+
 // pageno is estimated by the bookmark percent, search pageno, pageno+1, pageno-1 ... pageno+-range,
 // returns the nearest page with text1 (bookmark text), else the nearest page with text2 (page text), else -1
 JNIEXPORT jint JNICALL
@@ -1585,9 +1640,9 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_findBookmarkPageInternal(JN
     renderdocument_t* doc = (renderdocument_t*)(long)handle;
     fz_stext_options opts = { FZ_STEXT_DEHYPHENATE };
     fz_stext_page* stext = NULL;
+    char* haystack = NULL;
     char needle1[BOOKMARK_NEEDLE_SIZE];
     char needle2[BOOKMARK_NEEDLE_SIZE];
-    fz_quad quad;
     int count = 0;
     int found1 = -1;
     int found2 = -1;
@@ -1601,6 +1656,8 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_findBookmarkPageInternal(JN
     if (!needle1[0] && !needle2[0]) {
         return -1;
     }
+    bookmark_lower(needle1);
+    bookmark_lower(needle2);
 
     fz_try(doc->ctx)
     {
@@ -1612,6 +1669,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_findBookmarkPageInternal(JN
     }
 
     fz_var(stext);
+    fz_var(haystack);
     fz_var(found1);
     fz_var(found2);
 
@@ -1624,14 +1682,19 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_findBookmarkPageInternal(JN
         fz_try(doc->ctx)
         {
             stext = fz_new_stext_page_from_page_number(doc->ctx, doc->document, page - 1, &opts);
-            if (needle1[0] && fz_search_stext_page(doc->ctx, stext, needle1, NULL, &quad, 1) > 0) {
-                found1 = page;
-            } else if (needle2[0] && found2 == -1 && fz_search_stext_page(doc->ctx, stext, needle2, NULL, &quad, 1) > 0) {
-                found2 = page;
+            haystack = bookmark_haystack(doc->ctx, stext);
+            if (haystack) {
+                if (needle1[0] && strstr(haystack, needle1)) {
+                    found1 = page;
+                } else if (needle2[0] && found2 == -1 && strstr(haystack, needle2)) {
+                    found2 = page;
+                }
             }
         }
         fz_always(doc->ctx)
         {
+            fz_free(doc->ctx, haystack);
+            haystack = NULL;
             fz_drop_stext_page(doc->ctx, stext);
             stext = NULL;
         }

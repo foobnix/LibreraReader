@@ -606,8 +606,10 @@ tasks.register("copyApks") {
                             include "*.aab"
                             rename { "${appName}.aab" }
                         }
-                        // R8 mapping for deobfuscating crash stack traces: release folder, Librera and Pro only
-                        if (project.hasProperty("release") && dest.endsWith("/$versionNumber") && flavor in ["librera", "pro"]) {
+                        // R8 mapping for deobfuscating crash stack traces, in the release folder, for
+                        // every app on Play: each is obfuscated its own way, so one app's mapping
+                        // reads nothing of another's (a PDF Reader ANR could not be read without it)
+                        if (project.hasProperty("release") && dest.endsWith("/$versionNumber")) {
                             from(file("build/outputs/mapping/${flavor}Release/")) {
                                 include "mapping.txt"
                                 rename { "${appName}-mapping.txt" }

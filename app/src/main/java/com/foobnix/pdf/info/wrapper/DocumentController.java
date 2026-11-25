@@ -1755,7 +1755,7 @@ public abstract class DocumentController {
                 if (activity.isFinishing()) {
                     return;
                 }
-                ImageExtractor.clearCodeDocument();
+                ImageExtractor.closeInBackground(ImageExtractor::clearCodeDocument);
                 activity.finish();
                 // The same book opened again for a setting - the font size - stays where it was
                 final Intent intent = activity.getIntent();

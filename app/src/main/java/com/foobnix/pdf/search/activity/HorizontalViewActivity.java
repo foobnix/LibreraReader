@@ -1778,6 +1778,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public synchronized void nextPage() {
+        if (dc == null || viewPager == null) {
+            return;
+        }
         flippingTimer = 0;
 
         boolean isAnimate = AppState.get().isScrollAnimation;
@@ -1808,6 +1811,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     };
 
     public synchronized void prevPage() {
+        if (dc == null || viewPager == null) {
+            return;
+        }
         flippingTimer = 0;
 
         boolean isAnimate = AppState.get().isScrollAnimation;
@@ -2593,7 +2599,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     public boolean onKeyUp(final int keyCode, final KeyEvent event) {
-        if (anchor == null) {
+        if (anchor == null || dc == null) {
             return false;
         }
         LOG.d("getChildCount", anchor.getChildCount(), anchor.getVisibility() == View.VISIBLE, keyCode, isMyKey);
@@ -2669,6 +2675,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         LOG.d("onKeyDown", keyCode, event);
 
         isMyKey = false;
+        if (dc == null || viewPager == null) {
+            return super.onKeyDown(keyCode1, event);
+        }
 
         if (AppState.get().isUseVolumeKeys) {
 

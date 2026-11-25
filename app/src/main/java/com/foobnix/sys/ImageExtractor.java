@@ -15,6 +15,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Looper;
 import android.util.Base64;
 import android.util.Pair;
 
@@ -70,6 +71,9 @@ import org.ebookdroid.droids.mupdf.codec.PdfContext;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -167,6 +171,34 @@ public class ImageExtractor {
         }
     }
 
+    private static final ExecutorService closer = Executors.newSingleThreadExecutor(r -> new Thread(r, "@T DocClose"));
+    private static final AtomicInteger closing = new AtomicInteger();
+
+    public static void closeInBackground(final Runnable close) {
+        closing.incrementAndGet();
+        closer.execute(() -> {
+            try {
+                close.run();
+            } catch (Throwable e) {
+                LOG.e(e);
+            } finally {
+                closing.decrementAndGet();
+            }
+        });
+    }
+
+    public static void awaitClosed() {
+        if (closing.get() == 0 || Looper.myLooper() == Looper.getMainLooper()) {
+            return;
+        }
+        try {
+            closer.submit(() -> {
+            }).get();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     public static synchronized void clearCodeDocument() {
         if (codeCache != null) {
             codeCache.recycle();
@@ -188,7 +220,12 @@ public class ImageExtractor {
         pathCache = path;
     }
 
-    public static synchronized CodecDocument singleCodecContext(final String path, String
+    public static CodecDocument singleCodecContext(final String path, String passw) {
+        awaitClosed();
+        return singleCodecContextLocked(path, passw);
+    }
+
+    private static synchronized CodecDocument singleCodecContextLocked(final String path, String
             passw) {
         try {
             CodecContext codecContex = BookType.getCodecContextByPath(path);
@@ -209,7 +246,12 @@ public class ImageExtractor {
         }
     }
 
-    public static synchronized CodecDocument getNewCodecContext(final String path, String
+    public static CodecDocument getNewCodecContext(final String path, String passw, int w, int h) {
+        awaitClosed();
+        return getNewCodecContextLocked(path, passw, w, h);
+    }
+
+    private static synchronized CodecDocument getNewCodecContextLocked(final String path, String
             passw, int w, int h) {
 
         if (path.equals(pathCache) /* && whCache == h + w */ && codeCache != null && !codeCache.isRecycled()) {

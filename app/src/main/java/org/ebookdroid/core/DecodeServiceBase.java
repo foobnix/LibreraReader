@@ -138,6 +138,7 @@ public class DecodeServiceBase implements DecodeService {
 
     @Override
     public void open(final String fileName, final String password) {
+        ImageExtractor.awaitClosed();
         ImageExtractor.clearCodeDocument();
         codecDocument = codecContext.openDocument(fileName, password);
         ImageExtractor.init(codecDocument, fileName);
@@ -906,7 +907,7 @@ public class DecodeServiceBase implements DecodeService {
                 }
 
                 // tasks.add(new ShutdownTask());
-                shutdownInner();
+                ImageExtractor.closeInBackground(this::shutdownInner);
 
                 synchronized (run) {
                     run.notifyAll();

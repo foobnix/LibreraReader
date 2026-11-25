@@ -406,6 +406,7 @@ public class MuPdfPage extends AbstractCodecPage {
                 return;
             }
             addMarkupAnnotationInternal(docHandle, pageHandle, quadPoints, type.ordinal(), color);
+            muPdfDocument.edited = true;
         } finally {
             TempHolder.lock.unlock();
         }
@@ -449,6 +450,7 @@ public class MuPdfPage extends AbstractCodecPage {
                 return;
             }
             addInkAnnotationInternal(docHandle, pageHandle, color, points, (int) width, alpha);
+            muPdfDocument.edited = true;
         } finally {
             TempHolder.lock.unlock();
         }
