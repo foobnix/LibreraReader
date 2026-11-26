@@ -15,6 +15,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.os.Looper;
 import android.util.Base64;
 import android.util.Pair;
@@ -82,6 +83,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.ebookdroid.core.codec.Annotation;
+import org.ebookdroid.core.codec.PageLink;
+import org.greenrobot.eventbus.EventBus;
+import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import java.util.Locale;
 
 
@@ -114,6 +120,14 @@ public class ImageExtractor {
     public static void clearErrors() {
         if (sp != null) {
             sp.edit().clear().commit();
+        }
+        if (instance != null) {
+            final File[] marks = instance.markDir().listFiles();
+            if (marks != null) {
+                for (File mark : marks) {
+                    mark.delete();
+                }
+            }
         }
     }
 
@@ -595,31 +609,19 @@ public class ImageExtractor {
         }
 
         LOG.d("pageUrl", pageUrl.isDoText(), pageCodec.isRecycled(), codeCache.isRecycled());
-        if (pageUrl.isDoText() && pageCodec.isRecycled() && !codeCache.isRecycled()) {
-            // The document hands the same page object to every thread that asks for this page,
-            // and the sharp part of a zoomed page (PageImaveView.renderDetail) closes it when it
-            // is drawn. Opened zoomed, the page lost that race, kept no text and could not be
-            // selected or searched on screen: the page is opened again for its text.
-            pageCodec = codeCache.getPage(page);
-        }
-        if (pageUrl.isDoText() && !pageCodec.isRecycled() && !codeCache.isRecycled()) {
-
-            //if (HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {
-            TextWord[][] text = pageCodec.getText();
-            PageImageState.get().pagesText.put(pageUrl.getPage(), text);
-            PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
-            // The reader's own marks, resolved on this thread for the same reason the text is:
-            // finding one in a reflowable book means searching, and the page is about to be drawn.
-            PageImageState.get().pagesMarks.put(pageUrl.getPage(),
-                    AnnotationsFinder.forCurrentBook().forPage(codeCache, pageCodec, pageUrl.getPage()));
-            if (BookType.PDF.is(path)) {
-                PageImageState.get().pagesAnnotation.put(pageUrl.getPage(), pageCodec.getAnnotations());
-            }
-            LOG.d("pageUrl Load-page-text", text != null ? text.length : 0);
-            //}
-        }
-
-        if (!pageCodec.isRecycled()) {
+        final List<Runnable> later = TEXT_LATER.get();
+        if (pageUrl.isDoText() && later != null && !isNeedDisableMagicInPDFDjvu) {
+            // The page is shown first and its text read after: 7 to 44 ms of each page turned,
+            // 100 on the first page of a book. The page is let go of once it is read.
+            final CodecPage textPage = pageCodec;
+            final CodecDocument textDoc = codeCache;
+            final int textPageNumber = pageUrl.getPage();
+            final String textPath = path;
+            final int codecPageNumber = page;
+            later.add(() -> readPageText(textDoc, textPage, codecPageNumber, textPageNumber, textPath, true));
+        } else if (pageUrl.isDoText()) {
+            readPageText(codeCache, pageCodec, page, pageUrl.getPage(), path, false);
+        } else if (!pageCodec.isRecycled()) {
             pageCodec.recycle();
         }
         if (isNeedDisableMagicInPDFDjvu) {
@@ -631,6 +633,74 @@ public class ImageExtractor {
         }
 
         return bitmap;
+    }
+
+    /**
+     * Set by the reader's page loader: the text of each page it draws is read only after the page
+     * is handed over to be shown - the tasks are left here, and the loader runs them then.
+     */
+    public static final ThreadLocal<List<Runnable>> TEXT_LATER = new ThreadLocal<>();
+
+    /**
+     * Reads the text, the links, the reader's marks and the PDF's annotations of a page drawn
+     * for reading, then lets go of the page.
+     *
+     * @param onMain whether the page is shown already: what was read is then put in place on the
+     *               main thread, which draws from it, and the pages are drawn again with it
+     */
+    private static void readPageText(final CodecDocument doc, final CodecPage drawn, final int page,
+                                     final int key, final String path, final boolean onMain) {
+        CodecPage pageCodec = drawn;
+        try {
+            if (pageCodec.isRecycled() && !doc.isRecycled()) {
+                // The document hands the same page object to every thread that asks for this
+                // page, and the sharp part of a zoomed page (PageImaveView.renderDetail) closes
+                // it when it is drawn. Opened zoomed, the page lost that race, kept no text and
+                // could not be selected or searched on screen: the page is opened again for it.
+                pageCodec = doc.getPage(page);
+            }
+            if (pageCodec.isRecycled() || doc.isRecycled()) {
+                return;
+            }
+            final TextWord[][] text = pageCodec.getText();
+            final List<PageLink> links = pageCodec.getPageLinks();
+            // The reader's own marks, resolved here for the same reason the text is: finding one
+            // in a reflowable book means searching
+            final List<AnnotationsFinder.Drawn> marks =
+                    AnnotationsFinder.forCurrentBook().forPage(doc, pageCodec, key);
+            final List<Annotation> annotations = BookType.PDF.is(path) ? pageCodec.getAnnotations() : null;
+            LOG.d("pageUrl Load-page-text", key, text != null ? text.length : 0);
+            final Runnable put = () -> {
+                final PageImageState state = PageImageState.get();
+                state.pagesText.put(key, text);
+                state.pagesLinks.put(key, links);
+                state.pagesMarks.put(key, marks);
+                if (annotations != null) {
+                    state.pagesAnnotation.put(key, annotations);
+                }
+            };
+            if (!onMain) {
+                put.run();
+                return;
+            }
+            new Handler(Looper.getMainLooper()).post(() -> {
+                // Another book opened meanwhile: its pages are not this one's
+                if (doc != codeCache || doc.isRecycled()) {
+                    return;
+                }
+                put.run();
+                EventBus.getDefault().post(new InvalidateMessage());
+            });
+        } catch (Exception e) {
+            LOG.e(e);
+        } finally {
+            if (!pageCodec.isRecycled()) {
+                pageCodec.recycle();
+            }
+            if (pageCodec != drawn && !drawn.isRecycled()) {
+                drawn.recycle();
+            }
+        }
     }
 
     @Deprecated
@@ -667,7 +737,7 @@ public class ImageExtractor {
         // same page still under way, not a crash; one of an earlier run is a crash only if that
         // run ended in one - an update, or the app stopped by the user or the system while the
         // page was being drawn, left marks that kept good pages out for good.
-        final Object mark = sp.getAll().get(hash);
+        final Object mark = readMark(hash);
         if (mark != null) {
             final boolean thisRun = mark instanceof String && mark.equals(BookOpenGuard.RUN);
             if (!thisRun && !BookOpenGuard.lastRunEndedNormally(c)) {
@@ -679,10 +749,106 @@ public class ImageExtractor {
             }
         }
         try {
-            sp.edit().putString(hash, BookOpenGuard.RUN).commit();
+            writeMark(hash);
             return getStreamInner(imageUri, hash);
         } finally {
+            clearMark(hash);
+        }
+    }
+
+    /** Whether drawing the page the url names took the app down in an earlier run. */
+    public boolean crashedBefore(final String imageUri) {
+        final Object mark = readMark("" + imageUri.hashCode());
+        return mark != null && !BookOpenGuard.RUN.equals(mark) && !BookOpenGuard.lastRunEndedNormally(c);
+    }
+
+    /**
+     * Draws a part of a page under a mark of its own, as a page is drawn (see getStream): a
+     * part that took the app down is not drawn again, and its page is still shown.
+     *
+     * @return null, not drawn, if drawing it took the app down before
+     */
+    public <T> T drawGuarded(final String key, final java.util.concurrent.Callable<T> draw) throws Exception {
+        final String hash = "" + key.hashCode();
+        final Object mark = readMark(hash);
+        if (mark != null && !BookOpenGuard.RUN.equals(mark)) {
+            if (!BookOpenGuard.lastRunEndedNormally(c)) {
+                LOG.d("Error-crash", key, hash);
+                return null;
+            }
+        } else if (mark != null) {
+            return draw.call();
+        }
+        try {
+            writeMark(hash);
+            return draw.call();
+        } finally {
+            clearMark(hash);
+        }
+    }
+
+    private Object readMark(final String hash) {
+        // Marks were kept in preferences before: one left by a crash then still counts
+        if (sp != null && sp.contains(hash)) {
+            return sp.getAll().get(hash);
+        }
+        return readMark(new File(markDir(), hash));
+    }
+
+    private void writeMark(final String hash) {
+        writeMark(new File(markDir(), hash));
+    }
+
+    private void clearMark(final String hash) {
+        new File(markDir(), hash).delete();
+        if (sp != null && sp.contains(hash)) {
             sp.edit().remove(hash).commit();
+        }
+    }
+
+    /**
+     * Each page being drawn is marked with a small file of its own. A crash takes only the
+     * process down, and a file written survives that; the marks were two synchronous preference
+     * commits, each writing the whole file out and waiting for the disk - 3 to 30 ms of each
+     * page turned, before it was shown.
+     */
+    private File markDir() {
+        if (markDir == null) {
+            final File dir = new File(c.getFilesDir(), "page-marks");
+            dir.mkdirs();
+            markDir = dir;
+        }
+        return markDir;
+    }
+
+    private volatile File markDir;
+
+    private static String readMark(final File file) {
+        if (!file.isFile()) {
+            return null;
+        }
+        try (java.io.FileInputStream in = new java.io.FileInputStream(file)) {
+            final byte[] bytes = new byte[(int) Math.min(file.length(), 256)];
+            int read = 0;
+            while (read < bytes.length) {
+                final int n = in.read(bytes, read, bytes.length - read);
+                if (n < 0) {
+                    break;
+                }
+                read += n;
+            }
+            return new String(bytes, 0, read, "UTF-8");
+        } catch (Exception e) {
+            LOG.e(e);
+            return "";
+        }
+    }
+
+    private static void writeMark(final File file) {
+        try (java.io.FileOutputStream out = new java.io.FileOutputStream(file)) {
+            out.write(BookOpenGuard.RUN.getBytes("UTF-8"));
+        } catch (Exception e) {
+            LOG.e(e);
         }
     }
 

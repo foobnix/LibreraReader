@@ -52,7 +52,7 @@ public class ImagePageFragment extends Fragment {
 
         @Override
         public void run() {
-            if (!isDetached() && !released) {
+            if (!isDetached() && !released && image != null) {
                 loadImageGlide();
             } else {
                 LOG.d("Image page is detached");
@@ -76,29 +76,30 @@ public class ImagePageFragment extends Fragment {
         image = (PageImaveView) view.findViewById(R.id.myImage1);
 
         image.setPageNumber(page);
+        image.setPageUrl(getPath());
         text.setText(getString(R.string.page) + " " + (page + 1));
 
         text.setTextColor(MagicHelper.getTextColor());
         //TxtUtils.setLinkTextColor(text);
 
         handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-
+        // The page read is asked for as soon as its view has a size - it was asked for 150 ms
+        // after the view was made, and the pages beside it 200 ms later still: 350 ms of each
+        // turn spent waiting, three times the drawing of the page. The pages beside it, made
+        // on a turn and read only on the next one, wait a tenth of a second, so the pages
+        // passed by while the seek bar is dragged are let go of undrawn. A page passed by
+        // before it is laid out is never asked for.
+        image.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
-            public void run() {
-                LOG.d("ImagePageFragment1  run ", page, "getPriority", getPriority(), "counter", count);
-                if (isVisible()) {
-                    if (0 == getPriority()) {
-                        handler.post(callback);
-                    } else if (1 == getPriority()) {
-                        handler.postDelayed(callback, 200);
-                    } else {
-                        handler.postDelayed(callback, getPriority() * 200);
-                    }
+            public void onLayoutChange(View v, int left, int top, int right, int bottom,
+                                       int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                if (v.getWidth() > 0) {
+                    v.removeOnLayoutChangeListener(this);
+                    // Out of the layout pass: the page is added to the view, which lays it out
+                    handler.postDelayed(callback, getPriority() == 0 ? 0 : 100);
                 }
-
             }
-        }, 150);
+        });
         lifeTime = System.currentTimeMillis();
 
 
@@ -194,8 +195,13 @@ public class ImagePageFragment extends Fragment {
 
         };
         LOG.d("Glide-load-into", getActivity());
+        // The page read first, then those either side of it, which are turned to next
+        final int distance = getPriority();
         IMG.with(getActivity())
                 .asBitmap()
+                .priority(distance == 0 ? com.bumptech.glide.Priority.IMMEDIATE
+                                  : distance == 1 ? com.bumptech.glide.Priority.HIGH
+                                  : com.bumptech.glide.Priority.NORMAL)
                 .load(getPath())
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .signature(new ObjectKey(PageImageState.get().pagesGeneration))

@@ -80,6 +80,40 @@ public class LibreraAppGlideModule extends AppGlideModule {
 
                 @Override
                 public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super Bitmap> callback) {
+                    // The text of a page is read once the page is handed over: Glide decodes it on
+                    // this thread inside onDataReady and posts it to the screen, so the page shows
+                    // while the text is still being read
+                    final java.util.List<Runnable> later = new java.util.ArrayList<>();
+                    ImageExtractor.TEXT_LATER.set(later);
+                    try {
+                        loadDataNow(callback);
+                    } finally {
+                        ImageExtractor.TEXT_LATER.remove();
+                        if (!later.isEmpty()) {
+                            readTextLater(later);
+                        }
+                    }
+                }
+
+                /** Under the page's own crash mark, as it was read while the page was drawn. */
+                private void readTextLater(final java.util.List<Runnable> later) {
+                    try {
+                        ImageExtractor.getInstance(LibreraApp.context).drawGuarded(s, () -> {
+                            for (Runnable task : later) {
+                                try {
+                                    task.run();
+                                } catch (Exception e) {
+                                    LOG.e(e);
+                                }
+                            }
+                            return null;
+                        });
+                    } catch (Throwable e) {
+                        LOG.e(e);
+                    }
+                }
+
+                private void loadDataNow(@NonNull DataCallback<? super Bitmap> callback) {
                     try {
 
                         if (isCanced) {

@@ -113,7 +113,9 @@ public class PageImaveView extends View {
             invalidate();
 
             if (more) {
-                handler.post(scrolling);
+                // Once a frame: posted to the handler it ran over and over between frames, and
+                // kept the main thread busy while the page was flung
+                postOnAnimation(scrolling);
             }
 
         }
@@ -747,6 +749,7 @@ public class PageImaveView extends View {
         final RectF textureRegion = new RectF(region.left / drawableWidth, region.top / drawableHeight,
                                               region.right / drawableWidth, region.bottom / drawableHeight);
         final int page = pageNumber;
+        final String url = pageUrl;
         final int generation = ++detailGeneration;
         final boolean invert = !AppState.get().isDayNotInvert;
         final boolean background = MagicHelper.isNeedBookBackgroundImage();
@@ -756,8 +759,24 @@ public class PageImaveView extends View {
             final long start = System.currentTimeMillis();
             Bitmap bitmap = null;
             try {
-                if (generation == detailGeneration) {
-                    bitmap = drawDetail(page, width, height, slice, invert, background, textureRegion);
+                // Drawn under the page's crash marks: not over a page that took the app down - a
+                // small "crash" picture in its place reads here as a page zoomed far in - and not
+                // again where a part of it did, the page itself still shown
+                final com.foobnix.sys.ImageExtractor extractor =
+                        com.foobnix.sys.ImageExtractor.getInstance(LibreraApp.context);
+                if (generation == detailGeneration && url != null && !extractor.crashedBefore(url)) {
+                    bitmap = extractor.drawGuarded(url + "#detail",
+                            () -> drawDetail(page, width, height, slice, invert, background, textureRegion));
+                }
+                // Put on the GPU here, off the screen's threads: a part is as large as 2.25
+                // screens, and drawn as it was, the render thread stopped to upload it in the
+                // middle of a fling - a dropped frame or two for every part, many in a fast one
+                if (bitmap != null && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    final Bitmap onGpu = bitmap.copy(Bitmap.Config.HARDWARE, false);
+                    if (onGpu != null) {
+                        bitmap.recycle();
+                        bitmap = onGpu;
+                    }
                 }
             } catch (Throwable e) {
                 LOG.e(e);
@@ -874,10 +893,20 @@ public class PageImaveView extends View {
         }
     }
 
+    // The page's url, as the page is drawn from it: its crash marks are kept by it
+    private String pageUrl;
+
+    public void setPageUrl(final String pageUrl) {
+        this.pageUrl = pageUrl;
+    }
+
     public void addBitmap(Bitmap bitmap) {
         dropDetail();
         detailRetries = 0;
         java.util.Arrays.fill(detailMatrix, 0);
+        // Uploaded to the GPU now, while the page waits beside the one read, not as it slides
+        // in on the turn
+        bitmap.prepareToDraw();
         imageDrawable = new BitmapDrawable(getResources(), bitmap);
         drawableHeight = bitmap.getHeight();
         drawableWidth = bitmap.getWidth();
@@ -1545,7 +1574,8 @@ public class PageImaveView extends View {
             if (isReadyForMove) {
                 isIgronerClick = true;
                 scroller.fling((int) e2.getX(), (int) e2.getY(), (int) velocityX / 3, (int) velocityY / 3, Integer.MIN_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MAX_VALUE);
-                handler.post(scrolling);
+                removeCallbacks(scrolling);
+                postOnAnimation(scrolling);
             }
             return true;
         }
