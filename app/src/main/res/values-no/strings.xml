@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotek</string>
    <string name="extracting_information_from_books">Utpakking av informasjon fra bøker</string>
-   <string name="processing_books_percent">%1$d%% Behandler bøker</string>
+   <string name="processing_books_percent">%1$d%% Behandler</string>
    <string name="no_author">Ingen forfatter</string>
    <string name="no_serie">Ingen serie</string>
    <string name="no_genre">Ingen sjanger</string>

@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Бібліотека</string>
    <string name="extracting_information_from_books">Добувається інформація з файлів</string>
-   <string name="processing_books_percent">%1$d%% Обробка книг</string>
+   <string name="processing_books_percent">%1$d%% Обробка</string>
    <string name="no_author">Без автора</string>
    <string name="no_serie">Без серії</string>
    <string name="no_genre">Без жанру</string>

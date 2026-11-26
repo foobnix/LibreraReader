@@ -48,6 +48,7 @@ layout: main
 
 **Library**
 
+* Faster library processing: books are read in several threads at once and the progress is shown in percent; if the app is closed during processing it continues where it stopped instead of starting again; reading a book while processing runs stays safe
 * Page count for EPUB and other reflowable books: estimated (≈) at first, the real count once the book has been opened, and used for sorting
 * Home screen widget and shortcut for a book
 

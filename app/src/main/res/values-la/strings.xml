@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Librarium</string>
    <string name="extracting_information_from_books">Desumo informationem ex plicis</string>
-   <string name="processing_books_percent">%1$d%% Libri tractantur</string>
+   <string name="processing_books_percent">%1$d%% Tractatur</string>
    <string name="no_author">Nullus effector denotum</string>
    <string name="no_serie">Nulla catena</string>
    <string name="no_genre">Nullum generis</string>

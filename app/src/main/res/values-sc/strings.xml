@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Biblioteca</string>
    <string name="extracting_information_from_books">Estraende informatziones dae sos documentos</string>
-   <string name="processing_books_percent">%1$d%% Elaborende sos libros</string>
+   <string name="processing_books_percent">%1$d%% Elaborende</string>
    <string name="no_author">Perunu autore</string>
    <string name="no_serie">Peruna sèrie</string>
    <string name="no_genre">Perunu gènere</string>

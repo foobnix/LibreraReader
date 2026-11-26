@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Biblioteka</string>
    <string name="extracting_information_from_books">Išskleidžiama knygų informacija</string>
-   <string name="processing_books_percent">%1$d%% Apdorojamos knygos</string>
+   <string name="processing_books_percent">%1$d%% Apdorojama</string>
    <string name="no_author">Ne autorius</string>
    <string name="no_serie">Nėra serijos</string>
    <string name="no_genre">Nėra žanro</string>

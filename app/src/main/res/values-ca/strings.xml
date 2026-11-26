@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Biblioteca</string>
    <string name="extracting_information_from_books">Extreu informació dels fitxers</string>
-   <string name="processing_books_percent">%1$d%% Processant els llibres</string>
+   <string name="processing_books_percent">%1$d%% Processant</string>
    <string name="no_author">Sense autor</string>
    <string name="no_serie">Sense sèrie</string>
    <string name="no_genre">Sense gènere</string>

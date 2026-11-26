@@ -77,6 +77,43 @@ public class MyContextWrapper {
         return new ContextWrapper(context);
     }
 
+    /**
+     * The context {@link #wrap} makes for another language keeps the screen it was made on: an
+     * activity that turns itself (configChanges orientation) went on measuring as it was when it
+     * opened. A dialog opened upright after the app started in landscape was laid out for the
+     * landscape width and ran off the screen. The new size and orientation are put into it, the
+     * language kept.
+     */
+    @SuppressWarnings("deprecation")
+    public static void onConfigurationChanged(Context activity, Configuration newConfig) {
+        try {
+            final Resources res = activity.getResources();
+            final Configuration current = res.getConfiguration();
+            if (current.orientation == newConfig.orientation && current.screenWidthDp == newConfig.screenWidthDp
+                    && current.screenHeightDp == newConfig.screenHeightDp) {
+                return;
+            }
+            final Configuration updated = new Configuration(current);
+            updated.orientation = newConfig.orientation;
+            updated.screenWidthDp = newConfig.screenWidthDp;
+            updated.screenHeightDp = newConfig.screenHeightDp;
+            updated.smallestScreenWidthDp = newConfig.smallestScreenWidthDp;
+            updated.screenLayout = newConfig.screenLayout;
+            updated.densityDpi = newConfig.densityDpi;
+
+            final android.util.DisplayMetrics metrics = new android.util.DisplayMetrics();
+            metrics.setTo(res.getDisplayMetrics());
+            final float density = newConfig.densityDpi / 160f;
+            metrics.widthPixels = Math.round(newConfig.screenWidthDp * density);
+            metrics.heightPixels = Math.round(newConfig.screenHeightDp * density);
+
+            res.updateConfiguration(updated, metrics);
+            LOG.d("ContextWrapper screen", newConfig.orientation, newConfig.screenWidthDp, newConfig.screenHeightDp);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     @SuppressWarnings("deprecation")
     public static Locale getSystemLocaleLegacy(Configuration config) {
         return config.locale;

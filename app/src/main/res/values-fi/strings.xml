@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Kirjasto</string>
    <string name="extracting_information_from_books">Haetaan kirjojen tietoja</string>
-   <string name="processing_books_percent">%1$d%% Kirjoja käsitellään</string>
+   <string name="processing_books_percent">%1$d%% Käsitellään</string>
    <string name="no_author">Ei tekijää</string>
    <string name="no_serie">Ei sarjaa</string>
    <string name="no_genre">Ei lajia</string>

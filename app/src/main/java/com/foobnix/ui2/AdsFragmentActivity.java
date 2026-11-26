@@ -156,6 +156,9 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        // The library and the readers turn themselves, in a context made for the app's language:
+        // without this they go on measuring - dialogs, panels - as on the screen they opened on
+        MyContextWrapper.onConfigurationChanged(this, newConfig);
     }
 
     @Override

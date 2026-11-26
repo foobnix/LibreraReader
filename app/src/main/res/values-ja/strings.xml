@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">ライブラリ</string>
    <string name="extracting_information_from_books">書籍から情報の抽出中</string>
-   <string name="processing_books_percent">%1$d%% 書籍を処理中</string>
+   <string name="processing_books_percent">%1$d%% 処理中</string>
    <string name="no_author">著者なし</string>
    <string name="no_serie">シリーズなし</string>
    <string name="no_genre">ジャンルなし</string>

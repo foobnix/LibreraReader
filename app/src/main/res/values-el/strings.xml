@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Βιβλιοθήκη</string>
    <string name="extracting_information_from_books">Εξαγωγή πληροφοριών από αρχεία</string>
-   <string name="processing_books_percent">%1$d%% Επεξεργασία βιβλίων</string>
+   <string name="processing_books_percent">%1$d%% Επεξεργασία</string>
    <string name="no_author">Κανένας συγγραφέας</string>
    <string name="no_serie">Καμία σειρά</string>
    <string name="no_genre">Κανένα είδος</string>

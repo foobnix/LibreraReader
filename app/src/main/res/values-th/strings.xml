@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">ห้องสมุด</string>
    <string name="extracting_information_from_books">การดึงข้อมูลจากหนังสือ</string>
-   <string name="processing_books_percent">%1$d%% กำลังประมวลผลหนังสือ</string>
+   <string name="processing_books_percent">%1$d%% กำลังประมวลผล</string>
    <string name="no_author">ไม่มีผู้แต่ง</string>
    <string name="no_serie">ไม่มีซีรี่ส์</string>
    <string name="no_genre">ไม่มีประเภท</string>

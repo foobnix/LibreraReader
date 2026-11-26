@@ -184,6 +184,17 @@ public class AppDB {
 
     }
 
+    public void deleteByPaths(java.util.Collection<String> paths) {
+        if (fileMetaDao == null || paths == null || paths.isEmpty()) {
+            return;
+        }
+        try {
+            fileMetaDao.deleteByKeyInTx(paths);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
     public List<FileMeta> deleteAllSafe() {
         try {
             List<FileMeta> list = fileMetaDao.queryBuilder().whereOr(FileMetaDao.Properties.Tag.isNotNull(), FileMetaDao.Properties.IsStar.eq(1), FileMetaDao.Properties.IsRecent.eq(1)).list();

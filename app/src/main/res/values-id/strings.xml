@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">Perpustakaan</string>
    <string name="extracting_information_from_books">Mengekstrak informasi dari buku</string>
-   <string name="processing_books_percent">%1$d%% Memproses buku</string>
+   <string name="processing_books_percent">%1$d%% Memproses</string>
    <string name="no_author">Tidak ada penulis</string>
    <string name="no_serie">Tidak ada serie</string>
    <string name="no_genre">Tidak ada genre</string>

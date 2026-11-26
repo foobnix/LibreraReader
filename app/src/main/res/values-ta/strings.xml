@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">நூலகம்</string>
    <string name="extracting_information_from_books">கோப்புகளிலிருந்து தகவல்களைப் பிரித்தெடுக்கிறது</string>
-   <string name="processing_books_percent">%1$d%% புத்தகங்கள் செயலாக்கப்படுகின்றன</string>
+   <string name="processing_books_percent">%1$d%% செயலாக்கம்</string>
    <string name="no_author">எழுத்தாளர் இல்லை</string>
    <string name="no_serie">தொடர் இல்லை</string>
    <string name="no_genre">எந்த வகையும் இல்லை</string>

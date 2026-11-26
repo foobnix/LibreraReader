@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">ספריה</string>
    <string name="extracting_information_from_books">להוציא מידע מתוך ספרים</string>
-   <string name="processing_books_percent">%1$d%% מעבד ספרים</string>
+   <string name="processing_books_percent">%1$d%% מעבד</string>
    <string name="no_author">אין מחבר</string>
    <string name="no_serie">אין סרייה</string>
    <string name="no_genre">אין ז\'אנר</string>

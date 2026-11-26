@@ -170,7 +170,7 @@
    <string name="___TABS___SECTION___"></string>
    <string name="library">പുസ്തകശാല</string>
    <string name="extracting_information_from_books">ഫയലുകളിൽ നിന്ന് വിവരങ്ങൾ എക്‌സ്‌ട്രാക്റ്റുചെയ്യുന്നു</string>
-   <string name="processing_books_percent">%1$d%% പുസ്തകങ്ങൾ പ്രോസസ്സ് ചെയ്യുന്നു</string>
+   <string name="processing_books_percent">%1$d%% പ്രോസസ്സ് ചെയ്യുന്നു</string>
    <string name="no_author">രചയിതാവില്ല</string>
    <string name="no_serie">സീരീസ് ഇല്ല</string>
    <string name="no_genre">ഒരു വിഭാഗവുമില്ല</string>

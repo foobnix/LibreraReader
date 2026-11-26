@@ -175,7 +175,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 if (count > 0) {
                     countBooks.setText("" + count);
                 }
-                setSearchHint(R.string.please_wait);
+                setSearchHint(R.string.searching_please_wait_);
                 isLibraryReady = false;
             } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 isLibraryReady = false;
@@ -541,7 +541,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             layoutError.setVisibility(View.GONE);
         }
 
-        if (!BooksService.isRunning && SearchAllBooksWorker.canResume(getActivity())) {
+        // Not "unless a scan is running": the scan WorkManager starts again in a new process is
+        // cancelled by the app a moment later, and was taken for one going on. canResume() is
+        // false for a scan started in this process.
+        if (SearchAllBooksWorker.canResume(getActivity())) {
             // The app was killed while the library was being built: carry on from where it stopped
             LOG.d("worker-starts", "resume");
             layoutError.setVisibility(View.GONE);

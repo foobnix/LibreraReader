@@ -125,6 +125,8 @@ public class SearchAllBooksWorker extends MessageWorker {
                 && (workId.equals(resume.workId) || getInputData().getBoolean(KEY_RESUME, false));
         // The books the stopped run of this scan had already read, by path
         final Map<String, FileMeta> alreadyRead = new HashMap<>();
+        // Every book in the library when this scan carries on, by path
+        final Set<String> inLibrary = new java.util.HashSet<>();
         Set<String> skip = Collections.emptySet();
         try {
             // First: in a process WorkManager started with no screen open the profile is not
@@ -134,8 +136,12 @@ public class SearchAllBooksWorker extends MessageWorker {
             itemsMeta = new LinkedList<FileMeta>();
 
             if (isResume) {
-                for (FileMeta m : AppDB.get().getAllByState(FileMetaCore.STATE_FULL)) {
-                    alreadyRead.put(m.getPath(), m);
+                for (FileMeta m : AppDB.get().getAll()) {
+                    inLibrary.add(m.getPath());
+                    final Integer state = m.getState();
+                    if (state != null && state == FileMetaCore.STATE_FULL) {
+                        alreadyRead.put(m.getPath(), m);
+                    }
                 }
                 LOG.d("SearchAllBooksWorker", "resume", alreadyRead.size(), "stopped on", resume.current);
                 skip = resume.carryOn(workId);
@@ -156,8 +162,11 @@ public class SearchAllBooksWorker extends MessageWorker {
             });
 
 
-            AppDB.get().deleteAllData();
+            // A scan that carries on keeps the library: WorkManager starts a killed scan again
+            // when the app starts, and the app cancels it at once - a run that emptied the table
+            // first lost every book read so far
             if (!isResume) {
+                AppDB.get().deleteAllData();
                 resume.start(workId, errorID);
             }
 
@@ -244,6 +253,42 @@ public class SearchAllBooksWorker extends MessageWorker {
             itemsMeta.addAll(AppData.get().getAllFavoriteFolders());
 
 
+            if (isResume) {
+                // A book the stopped run read, and that has not changed since, is not read again
+                int kept = 0;
+                for (ListIterator<FileMeta> it = itemsMeta.listIterator(); it.hasNext(); ) {
+                    final FileMeta meta = it.next();
+                    final FileMeta read = alreadyRead.get(meta.getPath());
+                    if (read == null) {
+                        continue;
+                    }
+                    final long size;
+                    final long date;
+                    if (ExtUtils.isExteralSD(meta.getPath())) {
+                        // The walk that found it filled these in from the provider's answer
+                        size = meta.getSize() != null ? meta.getSize() : -1;
+                        date = meta.getDate() != null ? meta.getDate() : -1;
+                    } else {
+                        final File file = new File(meta.getPath());
+                        size = file.length();
+                        date = file.lastModified();
+                    }
+                    if (read.getSize() != null && read.getSize() == size && read.getDate() != null && read.getDate() == date) {
+                        read.setIsSearchBook(meta.getIsSearchBook());
+                        it.set(read);
+                        kept++;
+                    }
+                }
+                alreadyRead.clear();
+                // What the walk no longer finds goes, as a scan from the beginning drops it
+                for (FileMeta meta : itemsMeta) {
+                    inLibrary.remove(meta.getPath());
+                }
+                AppDB.get().deleteByPaths(inLibrary);
+                LOG.d("SearchAllBooksWorker", "resume kept", kept, "of", itemsMeta.size(), "gone", inLibrary.size());
+                inLibrary.clear();
+            }
+
             AppDB.get().saveAll(itemsMeta);
 
             handler.removeCallbacks(timer);
@@ -263,25 +308,12 @@ public class SearchAllBooksWorker extends MessageWorker {
                 if (ExtUtils.isExteralSD(meta.getPath())) {
                     continue;
                 }
+                final Integer state = meta.getState();
+                if (state != null && state == FileMetaCore.STATE_FULL) {
+                    continue;
+                }
                 File file = new File(meta.getPath());
                 FileMetaCore.get().upadteBasicMeta(meta, file);
-            }
-
-            if (!alreadyRead.isEmpty()) {
-                // A book the stopped run read, and that has not changed since, is not read again
-                int kept = 0;
-                for (ListIterator<FileMeta> it = itemsMeta.listIterator(); it.hasNext(); ) {
-                    final FileMeta meta = it.next();
-                    final FileMeta read = alreadyRead.get(meta.getPath());
-                    if (read != null && meta.getSize() != null && meta.getSize().equals(read.getSize())
-                            && meta.getDate() != null && meta.getDate().equals(read.getDate())) {
-                        read.setIsSearchBook(meta.getIsSearchBook());
-                        it.set(read);
-                        kept++;
-                    }
-                }
-                alreadyRead.clear();
-                LOG.d("SearchAllBooksWorker", "resume kept", kept, "of", itemsMeta.size());
             }
 
             AppDB.get().updateAll(itemsMeta);
