@@ -1277,7 +1277,8 @@ import java.util.concurrent.Executors;
             stopSelf();
             return;
         }
-        pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
+        pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML, AppState.get().ttsPauseAfterParagraph
+                && ExtUtils.isTextFomat(AppSP.get().lastBookPath));
 
         boolean cut = false;
         if (TxtUtils.isNotEmpty(anchor)) {

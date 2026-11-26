@@ -546,6 +546,7 @@
    <string name="zoom_in_out_with_lock_enable">Блоктау мүмкіндігімен масштабтау / ұлғайту</string>
    <string name="show_footnotes_directly_in_text">Тікелей мәтінге сілтемелерді көрсету</string>
    <string name="read_by_sentences">Белгіден кейін қысқа үзіліс</string>
+   <string name="pause_after_paragraph">Абзацтан кейін қысқа үзіліс (мәтіндік кітаптар)</string>
    <string name="tts_highlight_reading">Оқылып жатқан мәтінді бөлектеу</string>
    <string name="do_not_read_characters">Таңбаларды оқымаңыз</string>
    <string name="show_in_scroll_mode">Жылжу режимінде көрсетіледі</string>

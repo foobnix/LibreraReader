@@ -546,6 +546,7 @@
    <string name="zoom_in_out_with_lock_enable">Павялічваць/памяншаць \"заблакіраваныя\" старонкі</string>
    <string name="show_footnotes_directly_in_text">Нататкі ў тэксце (замест зносак/канчаткоў)</string>
    <string name="read_by_sentences">Кароткая паўза пасля сімвала</string>
+   <string name="pause_after_paragraph">Кароткая паўза пасля абзаца (тэкставыя кнігі)</string>
    <string name="tts_highlight_reading">Вылучаць тэкст, які чытаецца</string>
    <string name="do_not_read_characters">Прапусціць сімвалы:</string>
    <string name="show_in_scroll_mode">Рэжым пракруткі</string>

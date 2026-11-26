@@ -508,14 +508,22 @@ public class TxtUtils {
     }
 
     public static String replaceHTMLforTTS(String pageHTML) {
+        return replaceHTMLforTTS(pageHTML, false);
+    }
+
+    public static String replaceHTMLforTTS(String pageHTML, boolean pauseAfterParagraph) {
         try {
-            return replaceHTMLforTTSAll(pageHTML);
+            return replaceHTMLforTTSAll(pageHTML, pauseAfterParagraph);
         } catch (Throwable e) {
             return pageHTML;
         }
     }
 
     public static String replaceHTMLforTTSAll(String pageHTML) {
+        return replaceHTMLforTTSAll(pageHTML, false);
+    }
+
+    public static String replaceHTMLforTTSAll(String pageHTML, boolean pauseAfterParagraph) {
         if (pageHTML == null) {
             return "";
         }
@@ -549,6 +557,9 @@ public class TxtUtils {
 
         LOG.d("pageHTML [1]", pageHTML);
 
+        if (pauseAfterParagraph) {
+            pageHTML = pageHTML.replace("</p>", TTS_PAUSE);
+        }
         pageHTML = pageHTML.replace("<p>", " ")
                            .replace("</p>", " ");
         pageHTML = pageHTML.replace("&nbsp;", " ")

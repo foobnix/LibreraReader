@@ -410,8 +410,12 @@ public abstract class UIFragment<T> extends Fragment {
             return;
         }
         if (scroller.getPaddingTop() != above || scroller.getPaddingBottom() != under) {
+            boolean atTop = scroller == recyclerView && !recyclerView.canScrollVertically(-1);
             ((ViewGroup) scroller).setClipToPadding(false);
             scroller.setPadding(scroller.getPaddingLeft(), above, scroller.getPaddingRight(), under);
+            if (atTop) {
+                recyclerView.scrollToPosition(0);
+            }
         }
     }
 

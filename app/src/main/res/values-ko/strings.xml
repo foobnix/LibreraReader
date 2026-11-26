@@ -546,6 +546,7 @@
    <string name="zoom_in_out_with_lock_enable">잠금 상태에서 확대 / 축소</string>
    <string name="show_footnotes_directly_in_text">각주를 텍스트에 직접 표시</string>
    <string name="read_by_sentences">기호 다음에 잠시 멈춤</string>
+   <string name="pause_after_paragraph">단락 다음에 잠시 멈춤 (텍스트 책)</string>
    <string name="tts_highlight_reading">읽고 있는 텍스트 강조 표시</string>
    <string name="do_not_read_characters">특수 문자를 읽지 않는다.</string>
    <string name="show_in_scroll_mode">스크롤 모드</string>

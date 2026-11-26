@@ -39,8 +39,12 @@ import org.ebookdroid.common.settings.books.SharedBooks;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 
 
 public class SearchAllBooksWorker extends MessageWorker {
@@ -49,6 +53,10 @@ public class SearchAllBooksWorker extends MessageWorker {
     List<FileMeta> itemsMeta;
     private volatile int metaDone;
     private volatile int metaTotal;
+
+    /** Books read since the last save: saved in batches, so a killed scan keeps what it read. */
+    private static final int SAVE_EVERY_BOOKS = 50;
+    private static final long SAVE_EVERY_MS = 2000;
 
     public SearchAllBooksWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
@@ -71,14 +79,37 @@ public class SearchAllBooksWorker extends MessageWorker {
         LOG.d("worker-starts","SearchAllBooksWorker");
         String errorID = AppProfile.getCurrent();
         Prefs.get().put(errorID, 0);
+        final LibraryScanResume resume = LibraryScanResume.read(getApplicationContext());
+        final boolean isResume = resume.isFor(getId().toString(), errorID);
+        // The books the stopped run of this scan had already read, by path
+        final Map<String, FileMeta> alreadyRead = new HashMap<>();
+        String skipPath = null;
         try {
             Tags2.migration();
             itemsMeta = new LinkedList<FileMeta>();
 
             AppProfile.init(getApplicationContext());
 
+            if (isResume) {
+                for (FileMeta m : AppDB.get().getAllByState(FileMetaCore.STATE_FULL)) {
+                    alreadyRead.put(m.getPath(), m);
+                }
+                if (resume.current != null) {
+                    if (resume.current.equals(resume.retried)) {
+                        skipPath = resume.current;
+                    } else {
+                        resume.retried = resume.current;
+                    }
+                }
+                LOG.d("SearchAllBooksWorker", "resume", alreadyRead.size(), "stopped on", resume.current,
+                      "skip", skipPath);
+            }
+
             ImageExtractor.clearErrors();
-            IMG.clearDiscCache();
+            if (!isResume) {
+                // Covers of the books already read stay right: kept when the scan carries on
+                IMG.clearDiscCache();
+            }
 
             handler.post(new Runnable() {
                 @Override
@@ -89,6 +120,12 @@ public class SearchAllBooksWorker extends MessageWorker {
 
 
             AppDB.get().deleteAllData();
+            if (isResume) {
+                resume.current = null;
+                resume.save();
+            } else {
+                resume.start(getId().toString(), errorID);
+            }
 
 
             itemsMeta.clear();
@@ -196,24 +233,63 @@ public class SearchAllBooksWorker extends MessageWorker {
                 FileMetaCore.get().upadteBasicMeta(meta, file);
             }
 
+            if (!alreadyRead.isEmpty()) {
+                // A book the stopped run read, and that has not changed since, is not read again
+                int kept = 0;
+                for (ListIterator<FileMeta> it = itemsMeta.listIterator(); it.hasNext(); ) {
+                    final FileMeta meta = it.next();
+                    final FileMeta read = alreadyRead.get(meta.getPath());
+                    if (read != null && meta.getSize() != null && meta.getSize().equals(read.getSize())
+                            && meta.getDate() != null && meta.getDate().equals(read.getDate())) {
+                        read.setIsSearchBook(meta.getIsSearchBook());
+                        it.set(read);
+                        kept++;
+                    }
+                }
+                alreadyRead.clear();
+                LOG.d("SearchAllBooksWorker", "resume kept", kept, "of", itemsMeta.size());
+            }
+
             AppDB.get().updateAll(itemsMeta);
             sendFinishMessage();
 
 
+            final List<FileMeta> unsaved = new ArrayList<>();
+            long savedAt = System.currentTimeMillis();
             for (FileMeta meta : itemsMeta) {
                 if (isStopped()) {
+                    AppDB.get().updateAll(unsaved);
                     return false;
                 }
                 metaDone++;
-                if (ExtUtils.isExteralSD(meta.getPath())) {
-                    FileMetaCore.get().udpateFullMetaSaf(getApplicationContext(), meta);
+                final Integer state = meta.getState();
+                if (state != null && state == FileMetaCore.STATE_FULL) {
                     continue;
                 }
-                //if(FileMetaCore.isSafeToExtactBook(meta.getPath())) {
-                EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheZipUtils.CacheDir.ZipService, true);
-                FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
-                //}
+                if (meta.getPath().equals(skipPath)) {
+                    LOG.d("SearchAllBooksWorker", "skip, the scan stopped on it twice", skipPath);
+                    continue;
+                }
+                resume.setCurrent(meta.getPath());
+                if (ExtUtils.isExteralSD(meta.getPath())) {
+                    FileMetaCore.get().udpateFullMetaSaf(getApplicationContext(), meta);
+                } else {
+                    //if(FileMetaCore.isSafeToExtactBook(meta.getPath())) {
+                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheZipUtils.CacheDir.ZipService, true);
+                    FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
+                    //}
+                }
+                unsaved.add(meta);
+                final long now = System.currentTimeMillis();
+                if (unsaved.size() >= SAVE_EVERY_BOOKS || now - savedAt >= SAVE_EVERY_MS) {
+                    AppDB.get().updateAll(unsaved);
+                    unsaved.clear();
+                    savedAt = now;
+                }
             }
+            AppDB.get().updateAll(unsaved);
+            unsaved.clear();
+            resume.setCurrent(null);
 
             SharedBooks.updateProgress(itemsMeta, true, -1);
             AppDB.get().updateAll(itemsMeta);
@@ -252,6 +328,7 @@ public class SearchAllBooksWorker extends MessageWorker {
                 return false;
             }
             updateBookAnnotations();
+            resume.delete();
         } finally {
             Prefs.get().remove(errorID, 0);
             handler.removeCallbacksAndMessages(null);

@@ -291,6 +291,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dip" />
 
+        <CheckBox
+            android:id="@+id/ttsPauseAfterParagraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pause_after_paragraph" />
+
 
 
         <CheckBox

@@ -546,6 +546,7 @@
    <string name="zoom_in_out_with_lock_enable">زوم در داخل / خارج با فعال کردن قفل</string>
    <string name="show_footnotes_directly_in_text">پانویسها را مستقیما در متن نشان دهید</string>
    <string name="read_by_sentences">یک مکث کوتاه بعد از نماد</string>
+   <string name="pause_after_paragraph">یک مکث کوتاه بعد از پاراگراف (کتاب‌های متنی)</string>
    <string name="tts_highlight_reading">برجسته کردن متنی که خوانده می‌شود</string>
    <string name="do_not_read_characters">شخصیت ها را بخوانید</string>
    <string name="show_in_scroll_mode">نمایش در حالت اسکرول</string>

@@ -1213,6 +1213,13 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox ttsPauseAfterParagraph = view.findViewById(R.id.ttsPauseAfterParagraph);
+                ttsPauseAfterParagraph.setChecked(AppState.get().ttsPauseAfterParagraph);
+                ttsPauseAfterParagraph.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().ttsPauseAfterParagraph = isChecked;
+                    TTSEngine.get().stop();
+                });
+
                 CheckBox ttsHighlightReading = view.findViewById(R.id.ttsHighlightReading);
                 ttsHighlightReading.setChecked(AppState.get().isTTSHighlightReading);
                 ttsHighlightReading.setOnCheckedChangeListener((buttonView, isChecked) -> {
