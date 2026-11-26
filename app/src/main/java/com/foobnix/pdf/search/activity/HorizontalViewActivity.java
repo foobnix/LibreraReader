@@ -1045,19 +1045,22 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     LOG.d("doRotation(this)", AppState.get().orientation, HorizontalViewActivity.this.getRequestedOrientation());
                     try {
                         //Thread.sleep(3000);
-
+                        // The book is laid out at the size of the pager, so it waits for the pager
+                        // to have one. Looked at every 10 ms: every 250 ms, each book opened waited
+                        // a whole step - the pager was laid out long before
                         while (viewPager.getHeight() == 0) {
-                            Thread.sleep(250);
+                            Thread.sleep(10);
                         }
+                        // A turn the book asks for: up to 5 seconds for the screen to turn
                         int count = 0;
                         if (AppState.get().orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE || AppState.get().orientation == ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE) {
-                            while (viewPager.getHeight() > viewPager.getWidth() && count < 20) {
-                                Thread.sleep(250);
+                            while (viewPager.getHeight() > viewPager.getWidth() && count < 500) {
+                                Thread.sleep(10);
                                 count++;
                             }
                         } else if (AppState.get().orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT || AppState.get().orientation == ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT || AppState.get().orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT) {
-                            while (viewPager.getWidth() > viewPager.getHeight() && count < 20) {
-                                Thread.sleep(250);
+                            while (viewPager.getWidth() > viewPager.getHeight() && count < 500) {
+                                Thread.sleep(10);
                                 count++;
                             }
                         }
@@ -1895,7 +1898,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             } else {
                 LOG.d("Click-center!", x, y);
                 handler.removeCallbacks(doShowHideWrapperControllsRunnable);
-                handler.postDelayed(doShowHideWrapperControllsRunnable, 250);
+                if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_NOTHING) {
+                    // No double tap to wait for: the panels come at once
+                    doShowHideWrapperControllsRunnable.run();
+                } else {
+                    // A second tap within the moment is a double tap, and shows no panels
+                    handler.postDelayed(doShowHideWrapperControllsRunnable, 250);
+                }
                 // Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();
             }
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_DOUBLE_TAP)) {

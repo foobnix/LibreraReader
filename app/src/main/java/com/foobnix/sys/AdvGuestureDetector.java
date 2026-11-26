@@ -295,7 +295,13 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             docCtrl.onBottomPress();
 
         } else if (clickUtils.isClickCenter(e.getX(), e.getY())) {
-            // docCtrl.onSingleTap();
+            if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_NOTHING) {
+                // No double tap to wait for: the panels come at once, not once the system has
+                // ruled one out (300 ms)
+                alowConfirm = false;
+                docCtrl.onSingleTap();
+                return true;
+            }
             alowConfirm = true;
             return false;
         }

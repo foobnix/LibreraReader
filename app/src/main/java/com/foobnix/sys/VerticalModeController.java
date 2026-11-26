@@ -877,15 +877,17 @@ public class VerticalModeController extends DocumentController {
 
     }
 
+    /**
+     * The zoom the buttons and keys set, drawn sharp once they stop being pressed. It waited 2
+     * seconds after each press, the page blurred all that time, and every press drew it again.
+     */
     public void commit() {
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                ctr.getZoomModel().commit();
-            }
-        }, 2000);
+        zoomHandler.removeCallbacks(commitZoom);
+        zoomHandler.postDelayed(commitZoom, 400);
     }
+
+    private final Handler zoomHandler = new Handler(Looper.getMainLooper());
+    private final Runnable commitZoom = () -> ctr.getZoomModel().commit();
 
     @Override
     public void saveAnnotationsToFile() {
