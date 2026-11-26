@@ -161,6 +161,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     Dialog rotatoinDialog;
     volatile Boolean isInitPosistion = null;
     volatile int isInitOrientation;
+    /** The size of the page a reflowed book was laid out for when it was opened. */
+    volatile int laidOutWidth, laidOutHeight;
+    /** Lays a reflowed book out again once its window has been made another size - see relayoutIfResized. */
+    final Runnable relayoutIfResized = this::relayoutIfResized;
     ProgressDraw progressDraw;
     View seekLine;
     LinearLayout pageshelper;
@@ -334,6 +338,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         viewPager.setAccessibilityDelegate(new View.AccessibilityDelegate());
 
         viewPager.setBackgroundColor(MagicHelper.getBgColor());
+        viewPager.addOnLayoutChangeListener((v, l, t, r, b, ol, ot, or, ob) -> {
+            if (r - l != or - ol || b - t != ob - ot) {
+                checkRelayoutLater();
+            }
+        });
 
         parentParent = findViewById(R.id.parentParent);
         pannelBookTitle = findViewById(R.id.pannelBookTitle);
@@ -1944,7 +1953,50 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         hideShow();
     }
 
+    /** Has the page size looked at again once the window has settled. */
+    void checkRelayoutLater() {
+        if (viewPager == null) {
+            return;
+        }
+        viewPager.removeCallbacks(relayoutIfResized);
+        viewPager.postDelayed(relayoutIfResized, 700);
+    }
+
+    /**
+     * A reflowed book is laid out once, for the size the page had when it was opened, and its
+     * pages are pictures of that size. A window that is made another size on its own - a
+     * Samsung DeX or other free window, or one beside another app - does not turn the screen,
+     * so nothing else lays the book out again, and the pages are cut off or leave a band of the
+     * background. It is opened again for the new size, where it was, the way a turn of the
+     * screen opens it. A turn itself is asked about in onConfigurationChanged. While the
+     * panels are up the system's bars may take some of the window, so the size is only
+     * compared with them down.
+     */
+    void relayoutIfResized() {
+        if (isInitPosistion == null || dc == null || !dc.isTextFormat() || isFinishing()) {
+            return;
+        }
+        if (!isInMultiWindowMode() || AppState.get().isEditMode) {
+            return;
+        }
+        final int w = viewPager.getWidth();
+        final int h = viewPager.getHeight();
+        if (w == 0 || h == 0 || laidOutWidth == 0 || laidOutHeight == 0) {
+            return;
+        }
+        if (Math.abs(w - laidOutWidth) <= 1 && Math.abs(h - laidOutHeight) <= 1) {
+            return;
+        }
+        if ((h > w) != (laidOutHeight > laidOutWidth)) {
+            return;
+        }
+        LOG.d("relayoutIfResized", laidOutWidth + "x" + laidOutHeight, "->", w + "x" + h);
+        onRotateScreen();
+    }
+
     public void initAsync(int w, int h) {
+        laidOutWidth = w;
+        laidOutHeight = h;
         dc = new HorizontalModeController(this, w, h) {
             @Override
             public void togglePanels() {
@@ -2394,6 +2446,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             return;
         }
         prev = AppState.get().isEditMode;
+        if (!AppState.get().isEditMode) {
+            // A window resized while the panels were up is only looked at now - relayoutIfResized
+            checkRelayoutLater();
+        }
 
         if (AppsConfig.IS_LOG && animated) {
             modeName.setText(R.string.mode_horizontally);

@@ -296,14 +296,12 @@ public abstract class DocumentController {
     }
 
     /**
-     * The window always reaches into the camera's cut-out (EdgeToEdge sets that up); whether
-     * the page follows it there is the page's own affair - see keptClearOf.
+     * The mode a book was left in when it still differed from full screen, by running under
+     * the camera. Full screen does that too now, so the two are the same - see keptClearOf.
      */
     public static void runFullScreenCutOut(final Activity a) {
         try {
-            // The cut-out itself is EdgeToEdge's doing and holds whatever the bars are up to;
-            // what this mode adds over the plain one is only how far the page is let out, which
-            // keptClearOf works out from the insets.
+            // The cut-out itself is EdgeToEdge's doing and holds whatever the bars are up to
             applyBars(a, true, navigationBarHidden);
 
             Keyboards.hideNavigation(a);
@@ -376,8 +374,7 @@ public abstract class DocumentController {
         } else if (mode == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT) {
             runFullScreenCutOut(a);
         }
-        // Between the two modes with the bars away nothing the system reports changes, only
-        // whether the page keeps clear of the camera, so the page is asked to look again.
+        // Into or out of normal screen the page is asked to look at the bars again.
         ViewCompat.requestApplyInsets(a.getWindow().getDecorView());
 
         try {
@@ -449,36 +446,18 @@ public abstract class DocumentController {
                                                                .getDecorView()
                                                                .getRootWindowInsets()
                                                                .getDisplayCutout() != null) {
-            List<Integer>
-                    ids =
-                    Arrays.asList(AppState.FULL_SCREEN_FULLSCREEN_CUTOUT, AppState.FULL_SCREEN_FULLSCREEN, AppState.FULL_SCREEN_NORMAL);
+            // Full screen runs under the camera on every version now - see keptClearOf - so the
+            // mode with the cut-out is the same as it and is no longer offered.
+            List<Integer> ids = Arrays.asList(AppState.FULL_SCREEN_FULLSCREEN, AppState.FULL_SCREEN_NORMAL);
 
             MyPopupMenu popup = new MyPopupMenu(a, v);
             for (int id : ids) {
-
-                if (Build.VERSION.SDK_INT >= 35 && id == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT) {
-                    continue;
-                }
-
-                if (id == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT && Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                    LOG.d("getDisplayCutout", a.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout());
-                    // if (getActivity().getWindow().getDecorView().getRootWindowInsets().getDisplayCutout() != null) {
-                    popup.getMenu()
-                         .add(DocumentController.getFullScreenName(a, id))
-                         .setOnMenuItemClickListener(item -> {
-                             response.onResultRecive(id);
-                             return false;
-                         });
-                    //}
-                } else {
-                    popup.getMenu()
-                         .add(DocumentController.getFullScreenName(a, id))
-                         .setOnMenuItemClickListener(item -> {
-                             response.onResultRecive(id);
-                             return false;
-                         });
-
-                }
+                popup.getMenu()
+                     .add(DocumentController.getFullScreenName(a, id))
+                     .setOnMenuItemClickListener(item -> {
+                         response.onResultRecive(id);
+                         return false;
+                     });
                 popup.show();
             }
         } else {
@@ -573,8 +552,8 @@ public abstract class DocumentController {
                         statusBarHackLayoutParams.height = top;
                         statusBarHack.setLayoutParams(statusBarHackLayoutParams);
                     }
-                    // With the status bar put away, all the strip still keeps clear of is the
-                    // camera, and that is boxed off in black the way the system used to do it.
+                    // With the status bar put away, all the strip could still keep clear of is
+                    // the camera - only in normal screen up to Android 14 - boxed off in black.
                     statusBarHack.setBackgroundColor(barsShown(a, windowInsets).top > 0 ? stripColor : Color.BLACK);
                 }
 
@@ -682,10 +661,9 @@ public abstract class DocumentController {
 
     /**
      * The room at the edges of the screen the page keeps clear of: the bars while they are
-     * up, and - up to Android 14 - the camera's cut-out, the way each mode's cut-out setting
-     * boxed it off there: full screen and normal screen stay clear of it, the notched mode runs
-     * round it. From Android 15 on the page runs the full height of the screen in every mode,
-     * camera and all, as the system itself has it there.
+     * up, and - up to Android 14, in normal screen only - the camera's cut-out. In full screen
+     * the page runs the full height of the screen, camera and all, on every version; from
+     * Android 15 on it does in normal screen as well, as the system itself has it there.
      */
     public static Insets keptClearOf(Activity a, WindowInsetsCompat windowInsets) {
         if (windowInsets == null) {
@@ -695,13 +673,38 @@ public abstract class DocumentController {
         int mode = a instanceof MainTabs2 ? AppState.get().fullScreenMainMode : AppState.get().fullScreenMode;
         // A reader in full screen has the bars only while its panels are up, and lays them
         // over the page rather than making room - see isBarsWithPanels.
-        if (mode != AppState.FULL_SCREEN_NORMAL && isReader(a) && !a.isInMultiWindowMode()) {
+        if (mode != AppState.FULL_SCREEN_NORMAL && isReader(a) && !barsStayUp(a)) {
             bars = Insets.NONE;
         }
-        if (Build.VERSION.SDK_INT >= 35 || mode == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT) {
+        // In full screen the page runs under the camera on every version, as Android 15 has it:
+        // kept clear of it, the strip it took was boxed off in black over the top of the page.
+        if (Build.VERSION.SDK_INT >= 35 || mode != AppState.FULL_SCREEN_NORMAL) {
             return bars;
         }
         return Insets.max(bars, windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout()));
+    }
+
+    /**
+     * Whether the system keeps its bars up whatever the app asks: beside another app, or in a
+     * window of its own smaller than the screen. A Samsung DeX window opened to the whole
+     * screen is in multi-window mode as well, yet its bars - the DeX title bar among them - go
+     * away and come back the way a phone's do, so it is the same full screen as a phone's.
+     */
+    private static boolean barsStayUp(Activity a) {
+        if (!a.isInMultiWindowMode()) {
+            return false;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                WindowManager wm = a.getWindowManager();
+                Rect window = wm.getCurrentWindowMetrics().getBounds();
+                Rect screen = wm.getMaximumWindowMetrics().getBounds();
+                return !window.equals(screen);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+        return true;
     }
 
     /**
