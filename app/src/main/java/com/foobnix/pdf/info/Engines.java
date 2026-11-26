@@ -30,7 +30,8 @@ public final class Engines {
      * application ID of the flavour it replaces, so it is installed over it and reads its
      * settings.
      */
-    public static final boolean IS_MUPDF = !LibreraBuildConfig.FLAVOR.endsWith("WebView");
+    // The WebView flavours are proW and fdroidW; no flavour with MuPDF ends in a capital W
+    public static final boolean IS_MUPDF = !LibreraBuildConfig.FLAVOR.endsWith("W");
 
     /**
      * Whether the reader picks the engines: every flavour with MuPDF, which carries the JS engines

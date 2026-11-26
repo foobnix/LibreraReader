@@ -1,5 +1,5 @@
 package com.foobnix;
 
 public class LibreraBuildConfig {
-      public static final String FLAVOR = "proWebView";
+      public static final String FLAVOR = "proW";
 }

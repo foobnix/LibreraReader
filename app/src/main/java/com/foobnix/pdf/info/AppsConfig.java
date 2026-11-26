@@ -42,7 +42,7 @@ public class AppsConfig {
     public static final int APP_TRANSPARENCY = 240;
     /**
      * The flavours that are not published on Google Play and are built without Google Play
-     * services: the F-Droid one and the MuPDF-free build of it, fdroidWebView.
+     * services: the F-Droid one and the MuPDF-free build of it, fdroidW.
      */
     public static final boolean
             IS_FDROID =

@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7739
-    FDroidVersionNumber = "10.2.9"
+    FDroidCodeNumber = 7743
+    FDroidVersionNumber = "10.2.10"
 }
 
 
@@ -35,7 +35,7 @@ ext {
     // whatever it was built against. The WebView flavours ship no MuPDF at all and say nothing, the
     // same rule the app itself uses to decide whether MuPDF is there (see Engines.IS_MUPDF).
     mupdfSuffix = "-mupdf"
-    mupdfSuffixFor = { String flavorName -> flavorName?.endsWith("WebView") ? "" : mupdfSuffix }
+    mupdfSuffixFor = { String flavorName -> flavorName?.endsWith("W") ? "" : mupdfSuffix }
 
     println ""
     println "Version: [" + versionNumber + " - " + codeNumber + "]" + (mupdfVersion ? " MuPDF " + mupdfVersion : "")
@@ -145,12 +145,12 @@ android {
          * .mobi converters, the bitmap scaler, the comic archives, LAME, each a library of its
          * own (Builder/jni/Librera-libs.mk) - but the 23 MB libmupdf.so.
          *
-         * The name is what tells the app so: com.foobnix.pdf.info.Engines reads the "WebView" suffix,
+         * The name is what tells the app so: com.foobnix.pdf.info.Engines reads the "W" suffix,
          * and AppsConfig.IS_FDROID the "fdroid" prefix. Each carries the application ID of the
          * flavour it is built from, so it replaces that one on a device rather than sitting
          * beside it.
          */
-        fdroidWebView {
+        fdroidW {
             minSdk = libs.versions.minSdk.get().toInteger()
             dimension = "version"
             applicationId = "com.foobnix.pro.pdf.reader"
@@ -168,7 +168,7 @@ android {
             ]
             versionNameSuffix = '-fdroid-webview'
         }
-        proWebView {
+        proW {
             dimension = "version"
             applicationId = "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
@@ -313,7 +313,7 @@ android {
         // libs-nomupdf the link script fills, every library of the MuPDF build but libmupdf.so.
         // src/main/jniLibs is part of every variant too, and the flavour's copies win over it;
         // libmupdf.so, which only it has, is dropped - see the jniLibs excludes further down.
-        fdroidWebView {
+        fdroidW {
             java.srcDirs += 'src/noGms/java'
             jniLibs.srcDirs += 'src/noMupdf/jniLibs'
             // Everything but the flavour's own LibreraBuildConfig is the F-Droid flavour's
@@ -321,14 +321,14 @@ android {
             res.srcDirs += 'src/fdroid/res'
             assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/']
         }
-        proWebView {
+        proW {
             jniLibs.srcDirs += 'src/noMupdf/jniLibs'
             manifest.srcFile 'src/pro/AndroidManifest.xml'
         }
         // The "Sign in with Google" sheet needs Credential Manager and Google's own credential
         // type, both of them :libDepPro's. The flavours built without that module take the
         // stand-in for it that sits with the other ones in src/noGms/java.
-        ['librera', 'pro', 'proWebView', 'pdf_classic', 'ebooka', 'pdf_v2', 'tts_reader', 'epub_reader'].each { gms ->
+        ['librera', 'pro', 'proW', 'pdf_classic', 'ebooka', 'pdf_v2', 'tts_reader', 'epub_reader'].each { gms ->
             getByName(gms).java.srcDirs += 'src/gms/java'
         }
 
@@ -360,8 +360,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     proImplementation project(':libPro')
     fdroidImplementation project(':libPro')
-    proWebViewImplementation project(':libPro')
-    fdroidWebViewImplementation project(':libPro')
+    proWImplementation project(':libPro')
+    fdroidWImplementation project(':libPro')
 
     //implementation project(":shared")
 
@@ -432,9 +432,9 @@ dependencies {
     pdf_classicImplementation dep_pro
     epub_readerImplementation dep_pro
     proImplementation dep_pro
-    // fdroidWebView, like fdroid, is built without Google Play services: the stand-ins for them live
+    // fdroidW, like fdroid, is built without Google Play services: the stand-ins for them live
     // in src/noGms/java.
-    proWebViewImplementation dep_pro
+    proWImplementation dep_pro
 
 /** Testing **/
     testImplementation(libs.junit)
@@ -452,10 +452,10 @@ androidComponents {
     // The MuPDF-free flavours take their libraries from src/noMupdf/jniLibs, which has no
     // libmupdf.so. src/main/jniLibs is part of every variant and does have it, so the one
     // library is dropped here rather than kept out of the source set.
-    onVariants(selector().withFlavor("version", "fdroidWebView")) { variant ->
+    onVariants(selector().withFlavor("version", "fdroidW")) { variant ->
         variant.packaging.jniLibs.excludes.add("**/libmupdf.so")
     }
-    onVariants(selector().withFlavor("version", "proWebView")) { variant ->
+    onVariants(selector().withFlavor("version", "proW")) { variant ->
         variant.packaging.jniLibs.excludes.add("**/libmupdf.so")
     }
 
@@ -525,9 +525,9 @@ tasks.register("copyApks") {
         // global ~/.gradle/gradle.properties, else ~/Downloads).
         def testingApks = [
                 fdroid  : ["*-arm64.apk", "*-uni.apk"],
-                fdroidWebView: ["*-arm64.apk", "*-uni.apk"],
+                fdroidW : ["*-arm64.apk", "*-uni.apk"],
                 pro     : ["*-arm64.apk", "*-uni.apk"],
-                proWebView   : ["*-arm64.apk", "*-uni.apk"],
+                proW    : ["*-arm64.apk", "*-uni.apk"],
         ]
         def testingDestinations = ["$buildsDir/$betaFolder"]
         if (betaDir) {
@@ -547,9 +547,9 @@ tasks.register("copyApks") {
         // so the upload is one folder to drag rather than a pick through all of the splits.
         def githubApks = [
                 fdroid  : ["*-arm64.apk", "*-uni.apk"],
-                fdroidWebView: ["*-uni.apk"],
+                fdroidW : ["*-uni.apk"],
                 pro     : ["*-arm64.apk", "*-uni.apk"],
-                proWebView   : ["*-uni.apk"],
+                proW    : ["*-uni.apk"],
         ]
         if (project.hasProperty("release")) {
             destinations.each { dest ->

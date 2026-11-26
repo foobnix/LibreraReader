@@ -10,6 +10,7 @@ body:
       options:
         - Librera
         - Librera F-Droid
+        - LibreraW
         - LibreraX
     validations:
       required: true
@@ -31,7 +32,8 @@ body:
       options:
         - MuPDF
         - PDFium
-        - foliate-js
+        - WebView (HTML)
+        - DjVu
         - Not sure
     validations:
       required: true
