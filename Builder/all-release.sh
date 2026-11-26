@@ -56,8 +56,8 @@ echo "Version raised: $CODE_BEFORE -> $CODE_AFTER"
 ./gradlew assembleEpub_readerRelease -Pmupdf=$MUPDF || exit 1
 ./gradlew assembleFdroidRelease -Pmupdf=$MUPDF || exit 1
 
-./gradlew assembleFdroidJSRelease -Pmupdf=$MUPDF || exit 1
-./gradlew assembleProJSRelease -Pmupdf=$MUPDF || exit 1
+./gradlew assembleFdroidWebViewRelease -Pmupdf=$MUPDF || exit 1
+./gradlew assembleProWebViewRelease -Pmupdf=$MUPDF || exit 1
 
 
 ./gradlew copyApks -Prelease -Pmupdf=$MUPDF || exit 1

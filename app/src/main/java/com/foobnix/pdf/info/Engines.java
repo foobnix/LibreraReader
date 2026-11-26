@@ -26,15 +26,15 @@ public final class Engines {
      * Whether MuPDF is in this build. When it is not, there is no second engine to fall back to
      * and nothing asks the user to choose one: {@link com.foobnix.model.AppState#getPdfEngine()}
      * and {@link com.foobnix.model.AppState#getEpubEngine()} answer with the only engine there is,
-     * whatever the stored setting says - which matters because a JS flavour carries the
+     * whatever the stored setting says - which matters because a WebView flavour carries the
      * application ID of the flavour it replaces, so it is installed over it and reads its
      * settings.
      */
-    public static final boolean IS_MUPDF = !LibreraBuildConfig.FLAVOR.endsWith("JS");
+    public static final boolean IS_MUPDF = !LibreraBuildConfig.FLAVOR.endsWith("WebView");
 
     /**
      * Whether the reader picks the engines: every flavour with MuPDF, which carries the JS engines
-     * (PDFium, foliate-js) beside it. A JS flavour has only the JS engines, so there is nothing to
+     * (PDFium, foliate-js) beside it. A WebView flavour has only the JS engines, so there is nothing to
      * choose: the settings are not shown and a stored choice is not read.
      */
     public static final boolean IS_ENGINE_CHOICE = IS_MUPDF;

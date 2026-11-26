@@ -77,13 +77,13 @@ for MUPDF in "${MUPDF_VERSIONS[@]}"; do
   ./gradlew assembleLibreraRelease -Pmupdf=$MUPDF || exit 1
   ./gradlew assembleFdroidRelease -Pmupdf=$MUPDF || exit 1
   
-  # proJS holds no MuPDF, so -Pmupdf says nothing about what is in it; it is passed all the same
+  # proWebView holds no MuPDF, so -Pmupdf says nothing about what is in it; it is passed all the same
   # so the APK is named like the others and copyApks prunes the previous beta's by the same
   # pattern. Built inside this loop because the clean above would otherwise drop its outputs
   # before copyApks runs.
   
-  ./gradlew assembleFdroidJSRelease -Pmupdf=$MUPDF || exit 1
-  ./gradlew assembleProJSRelease -Pmupdf=$MUPDF || exit 1
+  ./gradlew assembleFdroidWebViewRelease -Pmupdf=$MUPDF || exit 1
+  ./gradlew assembleProWebViewRelease -Pmupdf=$MUPDF || exit 1
 
   ####################################
 

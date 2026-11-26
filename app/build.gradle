@@ -7,8 +7,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 7735
-    FDroidVersionNumber = "10.2.8"
+    FDroidCodeNumber = 7739
+    FDroidVersionNumber = "10.2.9"
 }
 
 
@@ -32,10 +32,10 @@ ext {
 
     // A build that carries MuPDF says so in its name, as plain "mupdf" - which MuPDF it was built
     // from is written beside the builds instead (mupdf<version>.txt), so a flavour keeps one name
-    // whatever it was built against. The JS flavours ship no MuPDF at all and say nothing, the
+    // whatever it was built against. The WebView flavours ship no MuPDF at all and say nothing, the
     // same rule the app itself uses to decide whether MuPDF is there (see Engines.IS_MUPDF).
     mupdfSuffix = "-mupdf"
-    mupdfSuffixFor = { String flavorName -> flavorName?.endsWith("JS") ? "" : mupdfSuffix }
+    mupdfSuffixFor = { String flavorName -> flavorName?.endsWith("WebView") ? "" : mupdfSuffix }
 
     println ""
     println "Version: [" + versionNumber + " - " + codeNumber + "]" + (mupdfVersion ? " MuPDF " + mupdfVersion : "")
@@ -145,17 +145,17 @@ android {
          * .mobi converters, the bitmap scaler, the comic archives, LAME, each a library of its
          * own (Builder/jni/Librera-libs.mk) - but the 23 MB libmupdf.so.
          *
-         * The name is what tells the app so: com.foobnix.pdf.info.Engines reads the "JS" suffix,
+         * The name is what tells the app so: com.foobnix.pdf.info.Engines reads the "WebView" suffix,
          * and AppsConfig.IS_FDROID the "fdroid" prefix. Each carries the application ID of the
          * flavour it is built from, so it replaces that one on a device rather than sitting
          * beside it.
          */
-        fdroidJS {
+        fdroidWebView {
             minSdk = libs.versions.minSdk.get().toInteger()
             dimension = "version"
             applicationId = "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Librera FD-JS",
+                    appName      : "Librera FD-WebView",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
                     appWebClientId: "",
@@ -166,13 +166,13 @@ android {
                     admobRewardId  : "",
                     appSafeMode  : "true"
             ]
-            versionNameSuffix = '-fdroid-js'
+            versionNameSuffix = '-fdroid-webview'
         }
-        proJS {
+        proWebView {
             dimension = "version"
             applicationId = "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Librera PRO-JS",
+                    appName      : "Librera PRO-WebView",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
                     appWebClientId: project.findProperty("appWebClientId") ?: "",
@@ -183,7 +183,7 @@ android {
                     admobRewardId  : "",
                     appSafeMode  : "false"
             ]
-            versionNameSuffix = '-js'
+            versionNameSuffix = '-webview'
         }
         librera {
             dimension = "version"
@@ -313,7 +313,7 @@ android {
         // libs-nomupdf the link script fills, every library of the MuPDF build but libmupdf.so.
         // src/main/jniLibs is part of every variant too, and the flavour's copies win over it;
         // libmupdf.so, which only it has, is dropped - see the jniLibs excludes further down.
-        fdroidJS {
+        fdroidWebView {
             java.srcDirs += 'src/noGms/java'
             jniLibs.srcDirs += 'src/noMupdf/jniLibs'
             // Everything but the flavour's own LibreraBuildConfig is the F-Droid flavour's
@@ -321,14 +321,14 @@ android {
             res.srcDirs += 'src/fdroid/res'
             assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/']
         }
-        proJS {
+        proWebView {
             jniLibs.srcDirs += 'src/noMupdf/jniLibs'
             manifest.srcFile 'src/pro/AndroidManifest.xml'
         }
         // The "Sign in with Google" sheet needs Credential Manager and Google's own credential
         // type, both of them :libDepPro's. The flavours built without that module take the
         // stand-in for it that sits with the other ones in src/noGms/java.
-        ['librera', 'pro', 'proJS', 'pdf_classic', 'ebooka', 'pdf_v2', 'tts_reader', 'epub_reader'].each { gms ->
+        ['librera', 'pro', 'proWebView', 'pdf_classic', 'ebooka', 'pdf_v2', 'tts_reader', 'epub_reader'].each { gms ->
             getByName(gms).java.srcDirs += 'src/gms/java'
         }
 
@@ -360,8 +360,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     proImplementation project(':libPro')
     fdroidImplementation project(':libPro')
-    proJSImplementation project(':libPro')
-    fdroidJSImplementation project(':libPro')
+    proWebViewImplementation project(':libPro')
+    fdroidWebViewImplementation project(':libPro')
 
     //implementation project(":shared")
 
@@ -432,9 +432,9 @@ dependencies {
     pdf_classicImplementation dep_pro
     epub_readerImplementation dep_pro
     proImplementation dep_pro
-    // fdroidJS, like fdroid, is built without Google Play services: the stand-ins for them live
+    // fdroidWebView, like fdroid, is built without Google Play services: the stand-ins for them live
     // in src/noGms/java.
-    proJSImplementation dep_pro
+    proWebViewImplementation dep_pro
 
 /** Testing **/
     testImplementation(libs.junit)
@@ -452,10 +452,10 @@ androidComponents {
     // The MuPDF-free flavours take their libraries from src/noMupdf/jniLibs, which has no
     // libmupdf.so. src/main/jniLibs is part of every variant and does have it, so the one
     // library is dropped here rather than kept out of the source set.
-    onVariants(selector().withFlavor("version", "fdroidJS")) { variant ->
+    onVariants(selector().withFlavor("version", "fdroidWebView")) { variant ->
         variant.packaging.jniLibs.excludes.add("**/libmupdf.so")
     }
-    onVariants(selector().withFlavor("version", "proJS")) { variant ->
+    onVariants(selector().withFlavor("version", "proWebView")) { variant ->
         variant.packaging.jniLibs.excludes.add("**/libmupdf.so")
     }
 
@@ -489,7 +489,7 @@ tasks.register("copyApks") {
 
         // Every build of this Librera in the destination is replaced. The MuPDF no longer tells
         // two builds apart - they have the same name - so there is nothing to keep back, and a
-        // JS build, which never carried the MuPDF marker, is pruned with the rest.
+        // WebView build, which never carried the MuPDF marker, is pruned with the rest.
         def own = "*"
 
         // The betas go into a folder of their own: the folders around it are shared with
@@ -525,9 +525,9 @@ tasks.register("copyApks") {
         // global ~/.gradle/gradle.properties, else ~/Downloads).
         def testingApks = [
                 fdroid  : ["*-arm64.apk", "*-uni.apk"],
-                fdroidJS: ["*-arm64.apk", "*-uni.apk"],
+                fdroidWebView: ["*-arm64.apk", "*-uni.apk"],
                 pro     : ["*-arm64.apk", "*-uni.apk"],
-                proJS   : ["*-arm64.apk", "*-uni.apk"],
+                proWebView   : ["*-arm64.apk", "*-uni.apk"],
         ]
         def testingDestinations = ["$buildsDir/$betaFolder"]
         if (betaDir) {
@@ -547,9 +547,9 @@ tasks.register("copyApks") {
         // so the upload is one folder to drag rather than a pick through all of the splits.
         def githubApks = [
                 fdroid  : ["*-arm64.apk", "*-uni.apk"],
-                fdroidJS: ["*-uni.apk"],
+                fdroidWebView: ["*-uni.apk"],
                 pro     : ["*-arm64.apk", "*-uni.apk"],
-                proJS   : ["*-uni.apk"],
+                proWebView   : ["*-uni.apk"],
         ]
         if (project.hasProperty("release")) {
             destinations.each { dest ->
