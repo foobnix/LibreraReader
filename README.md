@@ -19,13 +19,12 @@ and OPDS Catalogs
 [Librera F-Droid](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
 
 
-### Other Librera Applications
+### Librera Applications
 
-[LibreraX](https://librera.app/librerax/)
+**LibreraW** is a WebView/PDFium-based original Librera book reader (without MuPDF).
 
-[Librera1](https://librera.app/librera1/)
+**LibreraX** is a next-generation, cross-platform e-book reader built on an HTML5-compliant WebView architecture and the high-speed PDFium engine, complete with seamless cloud synchronization.
 
-[LibreraCommander](https://librera.app/librera-commander/)
 
 ### Links
 
