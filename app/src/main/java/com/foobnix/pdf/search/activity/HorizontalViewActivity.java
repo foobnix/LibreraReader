@@ -163,6 +163,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     volatile int isInitOrientation;
     /** The size of the page a reflowed book was laid out for when it was opened. */
     volatile int laidOutWidth, laidOutHeight;
+    /** When a reader last recreated itself for a new window size - see relayoutIfResized. */
+    private static long lastRelayout;
     /** Lays a reflowed book out again once its window has been made another size - see relayoutIfResized. */
     final Runnable relayoutIfResized = this::relayoutIfResized;
     ProgressDraw progressDraw;
@@ -1059,6 +1061,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                                 count++;
                             }
                         }
+                        waitForSettledPageSize();
 
                         HorizontalViewActivity.this.runOnUiThread(new Runnable() {
 
@@ -1953,24 +1956,58 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         hideShow();
     }
 
+    /**
+     * A reflowed book is laid out once, for the size the page has when it opens. In a window
+     * of its own - Samsung DeX, Android's desktop windows, beside another app - the page is
+     * first measured before the window's title bar and the system's bars are taken off it, and
+     * while the window may still be getting its size, so the book came out laid out for a page
+     * taller or wider than the one shown and was cut off. There the size is waited for until it
+     * holds. On a phone's full screen it is already final, and the open is not held up.
+     * Called off the main thread, while the book is being opened.
+     */
+    void waitForSettledPageSize() throws InterruptedException {
+        if (!isInMultiWindowMode()) {
+            return;
+        }
+        int w = viewPager.getWidth();
+        int h = viewPager.getHeight();
+        int same = 0;
+        // Three looks 100 ms apart that agree, two seconds at most
+        for (int i = 0; i < 20 && same < 3; i++) {
+            Thread.sleep(100);
+            final int nw = viewPager.getWidth();
+            final int nh = viewPager.getHeight();
+            if (nw == w && nh == h) {
+                same++;
+            } else {
+                LOG.d("waitForSettledPageSize", w + "x" + h, "->", nw + "x" + nh);
+                w = nw;
+                h = nh;
+                same = 0;
+            }
+        }
+    }
+
     /** Has the page size looked at again once the window has settled. */
     void checkRelayoutLater() {
         if (viewPager == null) {
             return;
         }
         viewPager.removeCallbacks(relayoutIfResized);
-        viewPager.postDelayed(relayoutIfResized, 700);
+        viewPager.postDelayed(relayoutIfResized, 500);
     }
 
     /**
      * A reflowed book is laid out once, for the size the page had when it was opened, and its
-     * pages are pictures of that size. A window that is made another size on its own - a
-     * Samsung DeX or other free window, or one beside another app - does not turn the screen,
-     * so nothing else lays the book out again, and the pages are cut off or leave a band of the
-     * background. It is opened again for the new size, where it was, the way a turn of the
-     * screen opens it. A turn itself is asked about in onConfigurationChanged. While the
-     * panels are up the system's bars may take some of the window, so the size is only
-     * compared with them down.
+     * pages are pictures of that size. A window can be given another size without the reader
+     * being relaunched: Samsung DeX switching a window between maximized (above the taskbar,
+     * under its title bar) and full screen changes its height only, and onConfigurationChanged
+     * acts on a reflowed book only when the screen turns. The pages then no longer fit - a band
+     * of the background over and under them, or cut off. The reader is recreated for the new
+     * size, the way the system relaunches it: in the same task and window, the open book kept
+     * and laid out again. A turn is asked about in onConfigurationChanged; while the panels are
+     * up nothing is done, and it is looked at again when they go. Once in three seconds at most,
+     * so a size that will not settle cannot keep the reader starting over.
      */
     void relayoutIfResized() {
         if (isInitPosistion == null || dc == null || !dc.isTextFormat() || isFinishing()) {
@@ -1990,8 +2027,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if ((h > w) != (laidOutHeight > laidOutWidth)) {
             return;
         }
+        final long now = android.os.SystemClock.uptimeMillis();
+        if (now - lastRelayout < 3000) {
+            LOG.d("relayoutIfResized", "skipped, too soon", laidOutWidth + "x" + laidOutHeight, "->", w + "x" + h);
+            return;
+        }
+        lastRelayout = now;
         LOG.d("relayoutIfResized", laidOutWidth + "x" + laidOutHeight, "->", w + "x" + h);
-        onRotateScreen();
+        AppProfile.save(this);
+        recreate();
     }
 
     public void initAsync(int w, int h) {

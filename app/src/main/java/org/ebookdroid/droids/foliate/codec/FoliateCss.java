@@ -99,6 +99,23 @@ public class FoliateCss {
         css.append("strikethrough{text-decoration:line-through;}");
         css.append("letter{float:left;}");
 
+        // The size of a MOBI <font>, against the text around it as MuPDF has it (html-parse.c's
+        // mobi_font_size). A browser takes size="4" for the keyword `large`, a fixed 18px whatever
+        // the reader's own font size: the first paragraph of a chapter set in it came out far
+        // larger than the text in Samsung DeX, and the same as it on a phone.
+        final String[] em = {"0.67em", "0.83em", "1em", "1.17em", "1.33em", "1.5em", "1.67em"};
+        for (int i = 0; i < em.length; i++) {
+            css.append("font[size=\"").append(i + 1).append("\"]{font-size:").append(em[i]).append(";}");
+        }
+        final String[] plus = {"1.17em", "1.33em", "1.5em", "1.67em", "1.67em", "1.67em"};
+        for (int i = 0; i < plus.length; i++) {
+            css.append("font[size=\"+").append(i + 1).append("\"]{font-size:").append(plus[i]).append(";}");
+        }
+        final String[] minus = {"0.83em", "0.67em", "0.67em", "0.67em", "0.67em", "0.67em"};
+        for (int i = 0; i < minus.length; i++) {
+            css.append("font[size=\"-").append(i + 1).append("\"]{font-size:").append(minus[i]).append(";}");
+        }
+
         return css.toString();
     }
 
@@ -197,8 +214,26 @@ public class FoliateCss {
     /**
      * The em size in device pixels: foliate-js's own font size, kept apart from MuPDF's
      * ({@code Dips.spToPx(fontSizeSpFoliate)}). The page is captured at device pixels, so the bridge
-     * divides this by {@code window.devicePixelRatio} to get the CSS pixels to set on the root.
+     * divides this by {@link #fontDensity()} to get the CSS pixels to set on the root.
      */
+    /**
+     * The density the font size and the margins are worked out in, device pixels to the CSS pixel.
+     * The bridge divides by this rather than by the WebView's own devicePixelRatio. The two differ
+     * where the WebView is on another display than the system's default one: in Samsung DeX the
+     * reader moves between the phone's screen (480dpi) and the monitor (160dpi), and the size
+     * came out a third of the reader's setting on one and three times it on the other - the text
+     * at Chrome's 8px minimum on the phone after DeX. The WebView scales the CSS pixels to the
+     * display it is on itself.
+     */
+    static float fontDensity() {
+        try {
+            return Math.max(0.1f, android.content.res.Resources.getSystem().getDisplayMetrics().density);
+        } catch (Throwable e) {
+            LOG.e(e);
+            return 1f;
+        }
+    }
+
     static int rootFontSizePx() {
         try {
             return Math.max(1, Dips.spToPx(BookCSS.get().fontSizeSpFoliate));

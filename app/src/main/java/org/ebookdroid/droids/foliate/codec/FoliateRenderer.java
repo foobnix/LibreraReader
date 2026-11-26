@@ -284,6 +284,40 @@ class FoliateRenderer {
         local.loadUrl(FoliateServer.SHELL_URL);
     }
 
+    /**
+     * Puts the WebView back in a window when the one it was parked in has gone. A reader the
+     * system relaunches - a Samsung DeX or desktop window made another size recreates the
+     * activity - goes on with the book it already had open (ImageExtractor keeps it), and so with
+     * this renderer, whose WebView still hangs off the old activity's views. Out of any window it
+     * is never laid out again: a resize to the new window does not take, and the pages go on
+     * coming out at the size of the old one - cut off on the right in a smaller window, a narrow
+     * column in a larger one. It is moved to the activity on screen now. Main thread only.
+     */
+    private void rehost(final WebView local) {
+        if (local.isAttachedToWindow()) {
+            return;
+        }
+        final ViewGroup root = contentRoot();
+        if (root == null || root == host) {
+            return;
+        }
+        try {
+            final ViewGroup old = host;
+            if (old != null) {
+                old.removeView(local);
+            }
+            if (local.getParent() instanceof ViewGroup) {
+                ((ViewGroup) local.getParent()).removeView(local);
+            }
+            root.addView(local, 0, new ViewGroup.LayoutParams(pageWidth, pageHeight));
+            local.setTranslationX(-2f * pageWidth);
+            host = root;
+            LOG.d("FOLIATE!rehost", LibreraApp.getResumedActivity(), pageWidth + "x" + pageHeight);
+        } catch (Throwable e) {
+            LOG.e(e);
+        }
+    }
+
     /** The content view of the activity on screen, or null when there is none. */
     private static ViewGroup contentRoot() {
         final Activity activity = LibreraApp.getResumedActivity();
@@ -489,6 +523,9 @@ class FoliateRenderer {
             public void run() {
                 try {
                     final WebView local = web;
+                    if (local != null) {
+                        rehost(local);
+                    }
                     final ViewGroup.LayoutParams params = local == null ? null : local.getLayoutParams();
                     if (params != null) {
                         // The params the parent generated, resized in place - replacing them with
@@ -677,6 +714,7 @@ class FoliateRenderer {
             config.put("width", pageWidth);
             config.put("height", pageHeight);
             config.put("fontSizePx", FoliateCss.rootFontSizePx());
+            config.put("fontDensity", FoliateCss.fontDensity());
             config.put("before", FoliateCss.before());
             config.put("after", FoliateCss.after(bookPath));
             final int[] paginator = FoliateCss.paginatorConfig();
@@ -726,6 +764,7 @@ class FoliateRenderer {
                             return;
                         }
                         try {
+                            rehost(local);
                             local.evaluateJavascript(script, null);
                         } catch (Throwable e) {
                             LOG.e(e);

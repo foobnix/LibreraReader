@@ -197,7 +197,7 @@ public class FoliateDocument extends AbstractCodecDocument {
         }
 
         final String key = FoliateIndex.key(bookPath, pageW, pageH, FoliateCss.rootFontSizePx(),
-                FoliateCss.after(bookPath));
+                FoliateCss.before() + FoliateCss.after(bookPath));
         FoliateIndex loaded = FoliateIndex.load(key);
         if (loaded == null) {
             if (!local.resize(pageW, pageH)) {

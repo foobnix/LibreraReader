@@ -491,7 +491,7 @@ const collectText = () => {
     const offset = frameOffset(doc)
     if (!offset) return { html: '', text: '' }
     const size = pageSize()
-    const bodyFont = config ? config.fontSizePx / (window.devicePixelRatio || 1) : 0
+    const bodyFont = config ? config.fontSizePx / cssScale() : 0
 
     // The paragraphs of this page, in order, each with the text that is actually on it
     const blocks = []
@@ -720,10 +720,18 @@ const collectLinks = async () => {
     return { links }
 }
 
+/**
+ * Device pixels to the CSS pixel for the sizes Librera works out - the font size and the margins.
+ * They are in the system's default display's pixels, which are not this WebView's own where it is
+ * on another display (Samsung DeX: the phone's screen and the monitor), so they are divided by the
+ * density they were worked out in, and the WebView scales the CSS pixels to its own display.
+ */
+const cssScale = (cfg = config) => (cfg && cfg.fontDensity) || window.devicePixelRatio || 1
+
 /** The styles, with the root font size the engine was configured with. */
 const applyStyles = () => {
     if (!view || !view.renderer || !config) return
-    const dpr = window.devicePixelRatio || 1
+    const dpr = cssScale()
     // The page is captured at device pixels while CSS lays out in CSS pixels, so the size MuPDF
     // would have been laid out with has to be divided by the ratio between them.
     // !important, as the root size is the reader's: calibre books put a class on <html>
@@ -822,9 +830,10 @@ const handlers = {
         // `half-gap` on each side of the column, and with the column allowed the full width of
         // the page the `1fr` collapses to its own minimum - so each side ends up carrying two
         // half-gaps, and the whole gap is laid out twice over.
-        const sides = Math.max(0, Math.min(30, (cfg.sidesPx || 0) / 2 / cfg.width * 100))
+        // The margins are in the system's pixels and the width in this WebView's own
+        const sides = Math.max(0, Math.min(30, (cfg.sidesPx || 0) / cssScale(cfg) * dpr / 2 / cfg.width * 100))
         renderer.setAttribute('gap', sides.toFixed(2) + '%')
-        renderer.setAttribute('margin', Math.round((cfg.bandPx || 0) / dpr) + 'px')
+        renderer.setAttribute('margin', Math.round((cfg.bandPx || 0) / cssScale(cfg)) + 'px')
         applyStyles()
 
         await renderer.goTo({ index: 0, anchor: 0 })

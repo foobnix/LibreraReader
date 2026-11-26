@@ -30,9 +30,10 @@ class FoliateIndex {
     /**
      * Bumped when the bridge lays a page out differently for the same settings, which the key
      * cannot see otherwise. 2: the root font size became !important. 3: forced page breaks are
-     * dropped.
+     * dropped. 4: a MOBI {@code <font size>} is sized against the text around it, and the root
+     * size is worked out in the system's density rather than the WebView's.
      */
-    private static final int FORMAT = 3;
+    private static final int FORMAT = 4;
 
     /** Pages in each section, in spine order. At least 1 each, so no section is unreachable. */
     private final int[] sectionPages;
