@@ -1731,6 +1731,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        TempHolder.isReaderOnScreen = true;
 
         DocumentController.chooseFullScreen(this, AppState.get().fullScreenMode);
         DocumentController.doRotation(this);
@@ -1766,6 +1767,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        TempHolder.isReaderOnScreen = false;
         AppProfile.save(this);
         TempHolder.isSeaching = false;
         TempHolder.isActiveSpeedRead.set(false);

@@ -659,7 +659,8 @@ public class Fb2Extractor extends BaseExtractor {
         }
     }
 
-    public void loadGenres() {
+    /** Synchronized: the library scan reads books in several threads, and the map is filled once. */
+    public synchronized void loadGenres() {
         if (!genresRus.isEmpty()) {
             return;
         }

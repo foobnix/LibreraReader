@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.os.Looper;
 
 import androidx.annotation.NonNull;
+import androidx.core.util.Pair;
+import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkerParameters;
@@ -32,14 +34,29 @@ import com.foobnix.pdf.info.Prefs;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.ImageExtractor;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
+import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.books.SharedBooks;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Set;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,6 +74,7 @@ public class SearchAllBooksWorker extends MessageWorker {
     /** Books read since the last save: saved in batches, so a killed scan keeps what it read. */
     private static final int SAVE_EVERY_BOOKS = 50;
     private static final long SAVE_EVERY_MS = 2000;
+    private static final String KEY_RESUME = "resume";
 
     public SearchAllBooksWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
@@ -64,8 +82,11 @@ public class SearchAllBooksWorker extends MessageWorker {
 
     }
 
-    public static void run(Context context) {
+    /** A scan was started in this process: what the resume file says is about that one. */
+    private static volatile boolean startedInThisProcess;
 
+    public static void run(Context context) {
+        startedInThisProcess = true;
 
         OneTimeWorkRequest workRequest = new OneTimeWorkRequest
                 .Builder(SearchAllBooksWorker.class).build();
@@ -75,34 +96,50 @@ public class SearchAllBooksWorker extends MessageWorker {
     }
 
 
+    /**
+     * The last scan of this profile, started before the app was last killed, did not finish. Not
+     * the "search was not complete" flag: when the system stops the work before it kills the app -
+     * the app swiped away on Samsung - the scan ends as cancelled and clears that flag.
+     */
+    public static boolean canResume(Context context) {
+        return !startedInThisProcess && LibraryScanResume.read(context).isFor(AppProfile.getCurrent());
+    }
+
+    /** Carries on with the stopped scan: the books it had read are not read again. */
+    public static void resume(Context context) {
+        startedInThisProcess = true;
+        OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(SearchAllBooksWorker.class)
+                .setInputData(new Data.Builder().putBoolean(KEY_RESUME, true).build())
+                .build();
+        WorkManager.getInstance(context).enqueueUniqueWork(SEARCH_FRAGMENT_WORKER_NAME, WORKER_POLICY, workRequest);
+    }
+
     public boolean doWorkInner() {
         LOG.d("worker-starts","SearchAllBooksWorker");
         String errorID = AppProfile.getCurrent();
         Prefs.get().put(errorID, 0);
         final LibraryScanResume resume = LibraryScanResume.read(getApplicationContext());
-        final boolean isResume = resume.isFor(getId().toString(), errorID);
+        final String workId = getId().toString();
+        // Run again by WorkManager after the system stopped it, or resumed by the library screen
+        final boolean isResume = resume.isFor(errorID)
+                && (workId.equals(resume.workId) || getInputData().getBoolean(KEY_RESUME, false));
         // The books the stopped run of this scan had already read, by path
         final Map<String, FileMeta> alreadyRead = new HashMap<>();
-        String skipPath = null;
+        Set<String> skip = Collections.emptySet();
         try {
+            // First: in a process WorkManager started with no screen open the profile is not
+            // read yet, and Tags2.migration() failed on its null folders
+            AppProfile.init(getApplicationContext());
             Tags2.migration();
             itemsMeta = new LinkedList<FileMeta>();
-
-            AppProfile.init(getApplicationContext());
 
             if (isResume) {
                 for (FileMeta m : AppDB.get().getAllByState(FileMetaCore.STATE_FULL)) {
                     alreadyRead.put(m.getPath(), m);
                 }
-                if (resume.current != null) {
-                    if (resume.current.equals(resume.retried)) {
-                        skipPath = resume.current;
-                    } else {
-                        resume.retried = resume.current;
-                    }
-                }
-                LOG.d("SearchAllBooksWorker", "resume", alreadyRead.size(), "stopped on", resume.current,
-                      "skip", skipPath);
+                LOG.d("SearchAllBooksWorker", "resume", alreadyRead.size(), "stopped on", resume.current);
+                skip = resume.carryOn(workId);
+                LOG.d("SearchAllBooksWorker", "resume skip", skip);
             }
 
             ImageExtractor.clearErrors();
@@ -120,11 +157,8 @@ public class SearchAllBooksWorker extends MessageWorker {
 
 
             AppDB.get().deleteAllData();
-            if (isResume) {
-                resume.current = null;
-                resume.save();
-            } else {
-                resume.start(getId().toString(), errorID);
+            if (!isResume) {
+                resume.start(workId, errorID);
             }
 
 
@@ -254,42 +288,12 @@ public class SearchAllBooksWorker extends MessageWorker {
             sendFinishMessage();
 
 
-            final List<FileMeta> unsaved = new ArrayList<>();
-            long savedAt = System.currentTimeMillis();
-            for (FileMeta meta : itemsMeta) {
-                if (isStopped()) {
-                    AppDB.get().updateAll(unsaved);
-                    return false;
-                }
-                metaDone++;
-                final Integer state = meta.getState();
-                if (state != null && state == FileMetaCore.STATE_FULL) {
-                    continue;
-                }
-                if (meta.getPath().equals(skipPath)) {
-                    LOG.d("SearchAllBooksWorker", "skip, the scan stopped on it twice", skipPath);
-                    continue;
-                }
-                resume.setCurrent(meta.getPath());
-                if (ExtUtils.isExteralSD(meta.getPath())) {
-                    FileMetaCore.get().udpateFullMetaSaf(getApplicationContext(), meta);
-                } else {
-                    //if(FileMetaCore.isSafeToExtactBook(meta.getPath())) {
-                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheZipUtils.CacheDir.ZipService, true);
-                    FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
-                    //}
-                }
-                unsaved.add(meta);
-                final long now = System.currentTimeMillis();
-                if (unsaved.size() >= SAVE_EVERY_BOOKS || now - savedAt >= SAVE_EVERY_MS) {
-                    AppDB.get().updateAll(unsaved);
-                    unsaved.clear();
-                    savedAt = now;
-                }
+            if (!readFullMeta(resume, skip)) {
+                return false;
             }
-            AppDB.get().updateAll(unsaved);
-            unsaved.clear();
-            resume.setCurrent(null);
+            // Every book is read: the library is shown as it is while the rest finishes
+            handler.removeCallbacks(refreshTimer);
+            sendFinishMessage();
 
             SharedBooks.updateProgress(itemsMeta, true, -1);
             AppDB.get().updateAll(itemsMeta);
@@ -336,6 +340,197 @@ public class SearchAllBooksWorker extends MessageWorker {
         return true;
 
 
+    }
+
+    /** Native readers one at a time, as before the scan read in more than one thread. */
+    private static final Object NATIVE_LOCK = new Object();
+
+    /**
+     * Reads every book not read yet, in more than one thread: the formats read by native code in
+     * one thread of their own, the formats read in Java - EPUB, FB2, MOBI... and the archives
+     * that hold them - in the others. What is read is saved as it goes.
+     * <p>
+     * Safe beside the reader: native books are read one at a time, the archives are unpacked into
+     * a folder for each thread and not the reader's, a book that fails is left with its file name
+     * and the rest go on, and while a book is open on screen only one Java thread reads.
+     *
+     * @return false when the work was stopped
+     */
+    private boolean readFullMeta(LibraryScanResume resume, Set<String> skip) {
+        final int threads = scanThreads(getApplicationContext());
+        final File unzipRoot = new File(CacheZipUtils.CacheDir.parent, "ZipScan");
+        final ExecutorService serial = Executors.newSingleThreadExecutor(scanThreadFactory("scan-native", 0));
+        final ExecutorService parallel = Executors.newFixedThreadPool(threads - 1, scanThreadFactory("scan-java", 1));
+        // Both lanes hand what they read to the one queue, taken as it comes
+        final BlockingQueue<Future<FileMeta>> finished = new LinkedBlockingQueue<>();
+        final CompletionService<FileMeta> serialLane = new ExecutorCompletionService<>(serial, finished);
+        final CompletionService<FileMeta> parallelLane = new ExecutorCompletionService<>(parallel, finished);
+        LOG.d("SearchAllBooksWorker", "threads", threads);
+        long start = System.currentTimeMillis();
+        int submitted = 0;
+        try {
+            for (final FileMeta meta : itemsMeta) {
+                final Integer state = meta.getState();
+                if (state != null && state == FileMetaCore.STATE_FULL) {
+                    metaDone++;
+                    continue;
+                }
+                if (skip.contains(meta.getPath())) {
+                    LOG.d("SearchAllBooksWorker", "skip, the scan stopped on it twice", meta.getPath());
+                    metaDone++;
+                    continue;
+                }
+                final Callable<FileMeta> read = () -> {
+                    final int index = scanThreadIndex();
+                    // While a book is open on screen one Java thread reads; the native one waits,
+                    // as MuPDF takes turns with the pages being drawn
+                    while (index != 1 && TempHolder.isReaderOnScreen && !isStopped()) {
+                        Thread.sleep(300);
+                    }
+                    if (isStopped()) {
+                        return null;
+                    }
+                    resume.begin(meta.getPath());
+                    try {
+                        readFullMeta(meta, new File(unzipRoot, Thread.currentThread().getName()));
+                    } catch (Throwable e) {
+                        // OutOfMemoryError included: this book keeps its file name, the rest go on
+                        LOG.e(e, meta.getPath());
+                    } finally {
+                        resume.end(meta.getPath());
+                    }
+                    return meta;
+                };
+                (isNativeFormat(meta.getPath()) ? serialLane : parallelLane).submit(read);
+                submitted++;
+            }
+
+            final List<FileMeta> unsaved = new ArrayList<>();
+            long savedAt = System.currentTimeMillis();
+            while (submitted > 0) {
+                if (isStopped()) {
+                    AppDB.get().updateAll(unsaved);
+                    return false;
+                }
+                final Future<FileMeta> next = finished.poll(200, TimeUnit.MILLISECONDS);
+                if (next == null) {
+                    continue;
+                }
+                submitted--;
+                metaDone++;
+                try {
+                    final FileMeta meta = next.get();
+                    if (meta != null) {
+                        unsaved.add(meta);
+                    }
+                } catch (ExecutionException e) {
+                    LOG.e(e);
+                }
+                final long now = System.currentTimeMillis();
+                if (unsaved.size() >= SAVE_EVERY_BOOKS || now - savedAt >= SAVE_EVERY_MS) {
+                    AppDB.get().updateAll(unsaved);
+                    unsaved.clear();
+                    savedAt = now;
+                }
+            }
+            AppDB.get().updateAll(unsaved);
+            LOG.d("SearchAllBooksWorker", "read full meta", System.currentTimeMillis() - start, "ms");
+            return true;
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return false;
+        } finally {
+            serial.shutdownNow();
+            parallel.shutdownNow();
+            try {
+                serial.awaitTermination(5, TimeUnit.SECONDS);
+                parallel.awaitTermination(5, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            CacheZipUtils.deleteDir(unzipRoot);
+        }
+    }
+
+    private void readFullMeta(FileMeta meta, File unzipDir) {
+        final String path = meta.getPath();
+        if (ExtUtils.isExteralSD(path)) {
+            synchronized (NATIVE_LOCK) {
+                FileMetaCore.get().udpateFullMetaSaf(getApplicationContext(), meta);
+            }
+            return;
+        }
+        final EbookMeta ebookMeta;
+        if (isNativeFormat(path) || isNativeInArchive(path)) {
+            synchronized (NATIVE_LOCK) {
+                ebookMeta = FileMetaCore.get().getEbookMetaIn(path, unzipDir);
+            }
+        } else {
+            ebookMeta = FileMetaCore.get().getEbookMetaIn(path, unzipDir);
+        }
+        FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
+    }
+
+    /**
+     * Read by native code - MuPDF, DjVu, TIFF, the comics - or a book on added storage, copied out
+     * through its provider: one at a time, in a thread of their own. Everything else is read in
+     * Java with nothing shared between books, several at a time: an archive goes with them, and
+     * takes its turn with the native ones only if what it holds is one of theirs.
+     */
+    static boolean isNativeFormat(String path) {
+        if (ExtUtils.isExteralSD(path)) {
+            return true;
+        }
+        if (ExtUtils.isZip(path)) {
+            return false;
+        }
+        return !isJavaFormat(path);
+    }
+
+    private static boolean isNativeInArchive(String path) {
+        if (!ExtUtils.isZip(path)) {
+            return false;
+        }
+        final Pair<Boolean, String> entry = CacheZipUtils.isSingleAndSupportEntry(path);
+        return entry.first && !isJavaFormat(entry.second);
+    }
+
+    private static boolean isJavaFormat(String path) {
+        return BookType.EPUB.is(path) || BookType.FB2.is(path) || BookType.MOBI.is(path) || BookType.LIT.is(path)
+                || BookType.CHM.is(path) || BookType.TXT.is(path) || BookType.JSON.is(path) || BookType.HTML.is(path)
+                || BookType.MHT.is(path) || BookType.DOCX.is(path) || BookType.DOC.is(path) || BookType.MD.is(path)
+                || BookType.RTF.is(path) || BookType.ODT.is(path);
+    }
+
+    /** 2 to 4 in all: one for the native formats, the rest for the others. */
+    static int scanThreads(Context c) {
+        final android.app.ActivityManager am = (android.app.ActivityManager) c.getSystemService(Context.ACTIVITY_SERVICE);
+        if (am != null && am.isLowRamDevice()) {
+            return 2;
+        }
+        return Math.max(2, Math.min(4, Runtime.getRuntime().availableProcessors() / 2));
+    }
+
+    /** "scan-native-0", "scan-java-1", "scan-java-2"...: the number after the last dash. */
+    private static int scanThreadIndex() {
+        final String name = Thread.currentThread().getName();
+        try {
+            return Integer.parseInt(name.substring(name.lastIndexOf('-') + 1));
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    private static ThreadFactory scanThreadFactory(String name, int first) {
+        final java.util.concurrent.atomic.AtomicInteger next = new java.util.concurrent.atomic.AtomicInteger(first);
+        return r -> {
+            Thread t = new Thread(() -> {
+                android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
+                r.run();
+            }, name + "-" + next.getAndIncrement());
+            t.setDaemon(true);
+            return t;
+        };
     }
 
     public void updateBookAnnotations() {

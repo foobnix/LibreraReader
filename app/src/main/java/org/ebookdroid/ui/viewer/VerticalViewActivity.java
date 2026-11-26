@@ -209,6 +209,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     @Override
     protected void onResume() {
         super.onResume();
+        TempHolder.isReaderOnScreen = true;
         DocumentController.doRotation(this);
 
         if (AppState.get().fullScreenMode == AppState.FULL_SCREEN_FULLSCREEN) {
@@ -258,6 +259,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     @Override
     protected void onPause() {
         super.onPause();
+        TempHolder.isReaderOnScreen = false;
         LOG.d("onPause", this.getClass());
         getController().onPause();
         try {

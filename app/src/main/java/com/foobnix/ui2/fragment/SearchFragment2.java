@@ -175,7 +175,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 if (count > 0) {
                     countBooks.setText("" + count);
                 }
-                setSearchHint(R.string.searching_please_wait_);
+                setSearchHint(R.string.please_wait);
                 isLibraryReady = false;
             } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 isLibraryReady = false;
@@ -541,7 +541,13 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             layoutError.setVisibility(View.GONE);
         }
 
-        if (errorExist) {
+        if (!BooksService.isRunning && SearchAllBooksWorker.canResume(getActivity())) {
+            // The app was killed while the library was being built: carry on from where it stopped
+            LOG.d("worker-starts", "resume");
+            layoutError.setVisibility(View.GONE);
+            SearchAllBooksWorker.resume(getActivity());
+            searchAndOrderAsync();
+        } else if (errorExist) {
             searchAndOrderAsync();
         } else {
             long count = AppProfile.bookCount;

@@ -47,6 +47,8 @@ public class TempHolder {
 
     public static volatile boolean isSeaching = false;
     public static volatile boolean isConverting = false;
+    /** A book is open on screen: the library scan reads in one thread meanwhile. */
+    public static volatile boolean isReaderOnScreen = false;
     public static volatile boolean isRecordTTS = false;
 
     public static int isRecordFrom = 1;

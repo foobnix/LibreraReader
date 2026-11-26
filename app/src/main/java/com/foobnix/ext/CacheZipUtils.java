@@ -50,8 +50,8 @@ public class CacheZipUtils {
     public static File CACHE_TEMP;
     public static File ATTACHMENTS_CACHE_DIR;
     public static File CACHE_SAF_BOOKS;
-    static Pair<Boolean, String> cacheRes;
-    static String cacheFile;
+    /** The last file asked about and its answer, as one value: the library scan asks from several threads. */
+    private static volatile Pair<String, Pair<Boolean, String>> singleEntryCache;
 
     public static void init(Context c) {
         File externalCacheDir = c.getExternalCacheDir();
@@ -416,13 +416,13 @@ public class CacheZipUtils {
     }
 
     public static Pair<Boolean, String> isSingleAndSupportEntry(String file) {
-        if (file.equals(cacheFile)) {
+        final Pair<String, Pair<Boolean, String>> cached = singleEntryCache;
+        if (cached != null && file.equals(cached.first)) {
             LOG.d("isSingleAndSupportEntry-cache", file);
-            return cacheRes;
+            return cached.second;
         }
         final Pair<Boolean, String> res = isSingleAndSupportEntryInner(file);
-        cacheFile = file;
-        cacheRes = res;
+        singleEntryCache = new Pair<>(file, res);
         return res;
     }
 
@@ -479,8 +479,24 @@ public class CacheZipUtils {
         if (!ExtUtils.isZip(path)) {
             return new UnZipRes(path, path, null);
         }
-
         folder.removeCacheContent();
+        return extractInto(path, folder.getDir(), salt);
+    }
+
+    /**
+     * Unpacks the book in the archive into a folder of the caller's own, emptied first: the
+     * library scan unpacks in several threads, each into its own folder, without the shared lock.
+     */
+    public static UnZipRes extracIfNeed(String path, File dir) {
+        if (!ExtUtils.isZip(path)) {
+            return new UnZipRes(path, path, null);
+        }
+        dir.mkdirs();
+        removeFiles(dir.listFiles());
+        return extractInto(path, dir, -1);
+    }
+
+    private static UnZipRes extractInto(String path, File dir, long salt) {
 
         try {
             if (!isSingleAndSupportEntry(path).first) {
@@ -495,7 +511,7 @@ public class CacheZipUtils {
                     if (salt != -1) {
                         name = salt + name;
                     }
-                    File file = new File(TxtUtils.fixFilePath(folder.getDir().getPath()), TxtUtils.fixFileName(name));
+                    File file = new File(TxtUtils.fixFilePath(dir.getPath()), TxtUtils.fixFileName(name));
                     file.getParentFile().mkdirs();
 
                     BufferedOutputStream fileOutputStream = new BufferedOutputStream(new FileOutputStream(file));

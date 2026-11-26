@@ -235,6 +235,32 @@ public class FileMetaCore {
 
     }
 
+    /**
+     * {@link #getEbookMeta(String, CacheDir, boolean)} for the library scan, which reads in several
+     * threads: an archive is unpacked into the thread's own folder, without the shared lock.
+     */
+    public EbookMeta getEbookMetaIn(String path, File unzipDir) {
+        if (Clouds.isCacheFileExist(path)) {
+            path = Clouds.getCacheFile(path).getPath();
+        }
+        EbookMeta ebookMeta = EbookMeta.Empty();
+        try {
+            if (ExtUtils.isZip(path)) {
+                UnZipRes res = CacheZipUtils.extracIfNeed(path, unzipDir);
+                ebookMeta = getEbookMeta(path, res.unZipPath, res.entryName);
+                estimatePages(ebookMeta, res.unZipPath);
+                ebookMeta.setUnzipPath(res.unZipPath);
+            } else {
+                ebookMeta = getEbookMeta(path, path, null);
+                estimatePages(ebookMeta, path);
+                ebookMeta.setUnzipPath(path);
+            }
+        } catch (Exception e) {
+            LOG.w(e);
+        }
+        return ebookMeta;
+    }
+
     /** A reflowable book has no pages of its own: it is given the standard pages its text fills. */
     private static void estimatePages(EbookMeta ebookMeta, String unZipPath) {
         if (ebookMeta.getPagesCount() == 0 && PageEstimate.isEstimated(unZipPath)) {

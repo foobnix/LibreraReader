@@ -9,15 +9,24 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
- * Where a library scan got to, so that the same scan, started again by WorkManager after the app
- * was killed or the system stopped it, carries on with the books it had not read yet instead of
- * reading all of them again.
+ * Where a library scan got to, so that a scan stopped before it finished - the app killed, or the
+ * system stopping the work - carries on with the books it had not read yet instead of reading all
+ * of them again.
  * <p>
- * A new scan has a new work id, so a scan the user asks for always starts from the beginning.
- * The book being read is written before it is opened: a scan that dies on the same book twice -
- * a native crash in a broken file - leaves that book with its file name only and goes on.
+ * WorkManager runs a stopped scan again under the same work id; the app cancels the scan when it
+ * starts, and the library screen then starts one that carries on ({@code SearchAllBooksWorker.resume}).
+ * Any other scan - one the user asks for - starts from the beginning.
+ * <p>
+ * The books being read are written before they are opened (several at once: the scan reads in
+ * more than one thread). A book the scan was stopped on is read again once; one it was stopped on
+ * twice - a native crash in a broken file - is left with its file name only.
+ * <p>
+ * The file: the work id, the profile, then a line per book, "c path" being read, "r path" read
+ * again once already.
  */
 final class LibraryScanResume {
 
@@ -26,10 +35,10 @@ final class LibraryScanResume {
     private final File file;
     String workId;
     String profile;
-    /** The book being read when the scan stopped, or null. */
-    String current;
-    /** The book the scan was already restarted on once, or null. */
-    String retried;
+    /** The books being read; when read from the file, the ones the scan stopped on. */
+    final Set<String> current = new LinkedHashSet<>();
+    /** The books the scan was already restarted on once. */
+    final Set<String> retried = new LinkedHashSet<>();
 
     private LibraryScanResume(Context c) {
         file = new File(c.getFilesDir(), FILE_NAME);
@@ -43,37 +52,73 @@ final class LibraryScanResume {
         try (BufferedReader in = new BufferedReader(new FileReader(r.file))) {
             r.workId = emptyToNull(in.readLine());
             r.profile = emptyToNull(in.readLine());
-            r.current = emptyToNull(in.readLine());
-            r.retried = emptyToNull(in.readLine());
+            String line;
+            while ((line = in.readLine()) != null) {
+                if (line.startsWith("c ")) {
+                    r.current.add(line.substring(2));
+                } else if (line.startsWith("r ")) {
+                    r.retried.add(line.substring(2));
+                }
+            }
         } catch (Exception e) {
             LOG.e(e);
         }
         return r;
     }
 
-    boolean isFor(String workId, String profile) {
-        return workId != null && workId.equals(this.workId) && profile != null && profile.equals(this.profile);
+    /** A scan of this profile stopped before it finished, and can carry on. */
+    boolean isFor(String profile) {
+        return workId != null && profile != null && profile.equals(this.profile);
     }
 
-    void start(String workId, String profile) {
+    synchronized void start(String workId, String profile) {
         this.workId = workId;
         this.profile = profile;
-        current = null;
-        retried = null;
+        current.clear();
+        retried.clear();
         save();
     }
 
-    /** Written before the book is opened; a plain write, cheap enough for every book. */
-    void setCurrent(String path) {
-        current = path;
+    /**
+     * For a scan that carries on: the books it was stopped on are read once more, and the ones it
+     * was stopped on a second time are returned, not to be read.
+     */
+    synchronized Set<String> carryOn(String workId) {
+        this.workId = workId;
+        final Set<String> skip = new LinkedHashSet<>();
+        for (String path : current) {
+            if (!retried.add(path)) {
+                skip.add(path);
+            }
+        }
+        current.clear();
+        save();
+        return skip;
+    }
+
+    /** Written before the book is opened: a plain write, cheap enough for every book. */
+    synchronized void begin(String path) {
+        current.add(path);
         save();
     }
 
-    void save() {
-        final String text = nullToEmpty(workId) + "\n" + nullToEmpty(profile) + "\n" + nullToEmpty(current) + "\n"
-                + nullToEmpty(retried) + "\n";
+    synchronized void end(String path) {
+        if (current.remove(path)) {
+            save();
+        }
+    }
+
+    synchronized void save() {
+        final StringBuilder text = new StringBuilder();
+        text.append(nullToEmpty(workId)).append('\n').append(nullToEmpty(profile)).append('\n');
+        for (String path : current) {
+            text.append("c ").append(path).append('\n');
+        }
+        for (String path : retried) {
+            text.append("r ").append(path).append('\n');
+        }
         try (FileOutputStream out = new FileOutputStream(file)) {
-            out.write(text.getBytes(StandardCharsets.UTF_8));
+            out.write(text.toString().getBytes(StandardCharsets.UTF_8));
         } catch (Exception e) {
             LOG.e(e);
         }

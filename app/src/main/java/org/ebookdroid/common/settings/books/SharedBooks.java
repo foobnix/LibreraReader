@@ -15,6 +15,9 @@ import org.librera.LinkedJSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +43,13 @@ public class SharedBooks {
         final List<FileMeta> changed = new ArrayList<>();
         for (FileMeta meta : list) {
             try {
-                AppBook book = SharedBooks.load(meta.getPath());
+                // Just read from every file: a book with no record in them is not looked for
+                // again, file by file, as load() would
+                AppBook book = cache.get(ExtUtils.getFileName(meta.getPath()));
+                if (book == null) {
+                    book = keysOnDisk.contains(ExtUtils.getFileName(meta.getPath())) ? SharedBooks.load(meta.getPath())
+                            : new AppBook(meta.getPath());
+                }
                 final Float was = meta.getIsRecentProgress();
                 final Long wasTime = meta.getIsRecentTime();
                 meta.setIsRecentProgress(book.p);
@@ -104,6 +113,9 @@ public class SharedBooks {
         return true;
     }
 
+    /** Every book the progress files had a record of when {@link #preloadAll} last read them. */
+    private static volatile Set<String> keysOnDisk = Collections.emptySet();
+
     /** When each progress file was last read, so an unchanged one is not read again. */
     private static final Map<String, Long> lastRead = new ConcurrentHashMap<>();
 
@@ -133,11 +145,13 @@ public class SharedBooks {
 
         final Map<String, List<AppBook>> records = new HashMap<>();
         final Map<String, AppBook> ours = new HashMap<>();
+        final Set<String> keys = new HashSet<>();
 
         for (File file : files) {
             final boolean isThisDevice = file.equals(AppProfile.syncProgress);
             final LinkedJSONObject obj = IO.readJsonObject(file);
             for (String key : obj.keySet()) {
+                keys.add(key);
                 final AppBook book = load(obj, key);
                 if (TxtUtils.isEmpty(book.path)) {
                     continue;
@@ -171,6 +185,7 @@ public class SharedBooks {
             }
             cache.put(entry.getKey(), merged);
         }
+        keysOnDisk = keys;
         LOG.d("SharedBooks-preloadAll", cache.size());
     }
 
@@ -284,6 +299,14 @@ public class SharedBooks {
         }
 
         AppBook res = new AppBook(fileName);
+        // No record of it in the files, as they were when all of them were read: a book never
+        // opened. The scan asks this for every book in the library, and each one cost a parse of
+        // every device's progress file.
+        if (!keysOnDisk.contains(key) && !lastRead.isEmpty()
+                && !hasChangedOnDisk(AppProfile.getAllFiles(AppProfile.APP_PROGRESS_JSON))) {
+            cache.put(key, res);
+            return res;
+        }
         AppBook original = null;
 
         for (File file : AppProfile.getAllFiles(AppProfile.APP_PROGRESS_JSON)) {
