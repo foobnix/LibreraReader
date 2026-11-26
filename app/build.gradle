@@ -155,7 +155,7 @@ android {
             dimension = "version"
             applicationId = "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Librera FD-WebView",
+                    appName      : "LibreraW FD",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
                     appWebClientId: "",
@@ -172,7 +172,7 @@ android {
             dimension = "version"
             applicationId = "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Librera PRO-WebView",
+                    appName      : "LibreraW PRO",
                     appIcon      : "@mipmap/icon_pdf_pro",
                     appRoundIcon : "@mipmap/icon_pdf_pro",
                     appWebClientId: project.findProperty("appWebClientId") ?: "",
