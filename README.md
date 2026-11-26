@@ -18,6 +18,10 @@ and OPDS Catalogs
 
 [Librera F-Droid](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
 
+[LibreraX on Google Play](https://play.google.com/store/apps/details?id=com.librerax)
+
+[APK](https://github.com/foobnix/LibreraReader/releases)
+
 
 ### Librera Applications
 
