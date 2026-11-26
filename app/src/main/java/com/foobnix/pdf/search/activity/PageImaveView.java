@@ -422,6 +422,8 @@ public class PageImaveView extends View {
 //            bitmap = null;
 //        }
         imageDrawable = null;
+        pinching = false;
+        removeCallbacks(pinchRefresh);
         dropDetail();
         PAGE_VIEWS.remove(this);
         EventBus.getDefault().unregister(this);
@@ -522,20 +524,38 @@ public class PageImaveView extends View {
         scheduleDetail();
     }
 
-    // The part of the page on screen, drawn again at the screen's own sharpness once a zoom past
-    // the page's own size has settled - the page itself is made only as large as the screen.
-    // Its place is in the page bitmap's own pixels, so it moves and grows with the page.
+    // The part of the page on screen, drawn again at the screen's own sharpness when zoomed past
+    // the page's own size - the page itself is made only as large as the screen. Its place is
+    // in the page bitmap's own pixels, so it moves and grows with the page.
     private Bitmap detail;
     private final RectF detailRegion = new RectF();
     private final Paint detailPaint = new Paint(Paint.FILTER_BITMAP_FLAG);
     private final float[] detailMatrix = new float[9];
-    private int detailGeneration;
+    private volatile int detailGeneration;
     private int detailRetries;
     // The zoom the part was drawn at: moved at the same zoom, the part drawn still serves
     private float detailScale;
+    // The page's place on screen the last part was drawn for: drawn for it, it is not drawn again
+    private final float[] renderedMatrix = new float[9];
+    // Parts of this page being drawn: a new one waits for them, they are not thrown away
+    private final java.util.concurrent.atomic.AtomicInteger detailPending =
+            new java.util.concurrent.atomic.AtomicInteger();
     private static final java.util.concurrent.ExecutorService DETAIL =
             java.util.concurrent.Executors.newSingleThreadExecutor();
     private final Runnable renderDetail = this::renderDetail;
+    private final Runnable renderDetailNow = this::renderDetail;
+
+    // Room drawn round the screen: a quarter of it on each side on the page read, so a move shows
+    // sharp parts at once; a tenth on the pages either side, which need only their first look
+    private static final float DETAIL_MARGIN = 0.25f;
+    private static final float DETAIL_MARGIN_NEAR = 0.1f;
+    // A move that brings the screen this near the sharp part's edge draws the next part at once,
+    // while the page still moves, so the edge is not reached and no blurred strip shows
+    private static final float DETAIL_LOOKAHEAD = 0.1f;
+    // Two fingers held on the page: the part on screen is drawn at the zoom they hold this often
+    private static final long PINCH_REFRESH_MS = 500;
+    private boolean pinching;
+    private final Runnable pinchRefresh = this::pinchRefresh;
 
     // The pages made: the one on screen and those either side of it share the zoom
     private static final java.util.Set<PageImaveView> PAGE_VIEWS =
@@ -545,7 +565,8 @@ public class PageImaveView extends View {
      * A zoom or a move of the page draws the part on screen again, a moment after it stops - on
      * the page on screen first, then on the pages either side of it, at the same zoom, so the
      * page turned to is sharp as it comes. The others are not drawn while off screen, so they
-     * are asked here.
+     * are asked here. A move at the same zoom that nears the edge of the part drawn draws the
+     * next part at once, and two fingers held on the page draw it every half second.
      */
     private void scheduleDetail() {
         if (requestDetail()) {
@@ -578,25 +599,42 @@ public class PageImaveView extends View {
             return false;
         }
         System.arraycopy(values, 0, detailMatrix, 0, 9);
+        final boolean current = pageNumber == PageImageState.currentPage;
         // Moved a little at the same zoom - a page turned to by a swipe that nudged the page -
-        // the part drawn, with the room kept round it, still covers the screen: nothing to draw
-        if (detailCovers()) {
+        // the part drawn, with the room kept round it, still covers the screen and a little
+        // past it on the page read: nothing to draw
+        if (detailCovers(current ? DETAIL_LOOKAHEAD : 0)) {
             return false;
         }
         detailRetries = 0;
+        if (current && !pinching && isDetailSameScale() && detailPending.get() == 0) {
+            // Moved at the zoom the part was drawn at, near its edge or past it: the next part
+            // is drawn now, ahead of the move, not once it stops
+            removeCallbacks(renderDetailNow);
+            post(renderDetailNow);
+        }
         removeCallbacks(renderDetail);
-        postDelayed(renderDetail, pageNumber == PageImageState.currentPage ? 300 : 900);
+        postDelayed(renderDetail, current ? 300 : 900);
         return true;
     }
 
-    /** Whether the part drawn sharp covers the screen at the zoom the page has now. */
-    private boolean detailCovers() {
+    /** Whether the part drawn sharp was drawn at the zoom the page has now. */
+    private boolean isDetailSameScale() {
         if (detail == null || detail.isRecycled() || detailScale == 0) {
             return false;
         }
         final float[] values = new float[9];
         imageMatrix().getValues(values);
-        if (Math.abs(values[Matrix.MSCALE_X] / detailScale - 1) > 0.01f) {
+        return Math.abs(values[Matrix.MSCALE_X] / detailScale - 1) <= 0.01f;
+    }
+
+    /**
+     * Whether the part drawn sharp covers the screen at the zoom the page has now.
+     *
+     * @param lookahead how far past the screen, in parts of its size, it must reach too
+     */
+    private boolean detailCovers(final float lookahead) {
+        if (!isDetailSameScale()) {
             return false;
         }
         final Matrix inverse = new Matrix();
@@ -604,6 +642,7 @@ public class PageImaveView extends View {
             return false;
         }
         final RectF shown = new RectF(0, 0, getWidth(), getHeight());
+        shown.inset(-getWidth() * lookahead, -getHeight() * lookahead);
         inverse.mapRect(shown);
         shown.intersect(0, 0, drawableWidth, drawableHeight);
         final RectF reach = new RectF(detailRegion);
@@ -618,6 +657,7 @@ public class PageImaveView extends View {
     private void dropDetail() {
         detailGeneration++;
         detailScale = 0;
+        java.util.Arrays.fill(renderedMatrix, 0);
         if (detail != null) {
             detail = null;
             invalidate();
@@ -660,13 +700,27 @@ public class PageImaveView extends View {
         if (!imageMatrix().invert(inverse)) {
             return;
         }
-        if (detailCovers()) {
+        final boolean current = pageNumber == PageImageState.currentPage;
+        if (detailCovers(current ? DETAIL_LOOKAHEAD : 0)) {
             return;
         }
-        // The part on screen, with a tenth of it kept round each side: a swipe that nudges the
-        // page, or a short move, stays inside it
+        if (detail != null && java.util.Arrays.equals(values, renderedMatrix)) {
+            // Drawn already for the page just where it is now
+            return;
+        }
+        if (detailPending.get() > 0) {
+            // A part still being drawn - while zooming, or ahead of a move - is waited for, not
+            // thrown away: it may well cover the screen
+            removeCallbacks(renderDetail);
+            postDelayed(renderDetail, 100);
+            return;
+        }
+        System.arraycopy(values, 0, renderedMatrix, 0, 9);
+        // The part on screen, with room kept round each side - a quarter of the screen on the
+        // page read, so a move shows sharp parts at once, a tenth on the pages either side
+        final float margin = current ? DETAIL_MARGIN : DETAIL_MARGIN_NEAR;
         final RectF region = new RectF(0, 0, getWidth(), getHeight());
-        region.inset(-getWidth() * 0.1f, -getHeight() * 0.1f);
+        region.inset(-getWidth() * margin, -getHeight() * margin);
         inverse.mapRect(region);
         if (!region.intersect(0, 0, drawableWidth, drawableHeight)) {
             dropDetail();
@@ -696,46 +750,31 @@ public class PageImaveView extends View {
         final int generation = ++detailGeneration;
         final boolean invert = !AppState.get().isDayNotInvert;
         final boolean background = MagicHelper.isNeedBookBackgroundImage();
+        detailPending.incrementAndGet();
+        final boolean pinch = pinching;
         DETAIL.execute(() -> {
+            final long start = System.currentTimeMillis();
             Bitmap bitmap = null;
             try {
-                if (generation != detailGeneration) {
-                    return;
+                if (generation == detailGeneration) {
+                    bitmap = drawDetail(page, width, height, slice, invert, background, textureRegion);
                 }
-                final org.ebookdroid.core.codec.CodecDocument doc = com.foobnix.sys.ImageExtractor.codeCache;
-                if (doc == null || doc.isRecycled()) {
-                    return;
-                }
-                final org.ebookdroid.core.codec.CodecPage codecPage = doc.getPage(page);
-                try {
-                    final BitmapRef ref = codecPage.renderBitmap(width, height, slice, false);
-                    bitmap = ref == null ? null : ref.getBitmap();
-                } finally {
-                    if (!codecPage.isRecycled()) {
-                        codecPage.recycle();
-                    }
-                }
-                if (bitmap == null) {
-                    return;
-                }
-                // The same as the page it lies over: night's inversion, the book's background
-                if (invert) {
-                    final RawBitmap raw = new RawBitmap(bitmap, new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()));
-                    raw.invert();
-                    bitmap.recycle();
-                    bitmap = raw.toBitmap().getBitmap();
-                }
-                if (background) {
-                    bitmap = MagicHelper.updateWithBackground(bitmap, textureRegion);
-                }
-            } catch (Exception e) {
+            } catch (Throwable e) {
                 LOG.e(e);
-                return;
             }
             final Bitmap made = bitmap;
-            post(() -> {
-                if (generation != detailGeneration || !isDetailWanted()) {
-                    made.recycle();
+            // On the main thread, through the handler: a view's own post waits for it to be
+            // on screen again, and the part would stay counted as being drawn
+            handler.post(() -> {
+                detailPending.decrementAndGet();
+                if (made == null || generation != detailGeneration || !isDetailWanted()) {
+                    if (made != null) {
+                        made.recycle();
+                    }
+                    if (generation == detailGeneration) {
+                        // Not drawn: tried again on the next drawing
+                        java.util.Arrays.fill(renderedMatrix, 0);
+                    }
                     java.util.Arrays.fill(detailMatrix, 0);
                     return;
                 }
@@ -745,9 +784,77 @@ public class PageImaveView extends View {
                 detail = made;
                 detailRegion.set(region);
                 detailScale = scale;
+                LOG.d("PageDetail", page, width + "x" + height, "scale", scale, pinch ? "pinch" : "",
+                      System.currentTimeMillis() - start, "ms");
+                // Looked at again on the next drawing: the page may have moved on while the
+                // part was drawn, past it, and the next part is then drawn at once
+                java.util.Arrays.fill(detailMatrix, 0);
                 invalidate();
             });
         });
+    }
+
+    /** Draws a part of the page, as the page it lies over is: night's inversion, the background. */
+    private static Bitmap drawDetail(final int page, final int width, final int height, final RectF slice,
+                                     final boolean invert, final boolean background, final RectF textureRegion) {
+        final org.ebookdroid.core.codec.CodecDocument doc = com.foobnix.sys.ImageExtractor.codeCache;
+        if (doc == null || doc.isRecycled()) {
+            return null;
+        }
+        Bitmap bitmap;
+        final org.ebookdroid.core.codec.CodecPage codecPage = doc.getPage(page);
+        try {
+            final BitmapRef ref = codecPage.renderBitmap(width, height, slice, false);
+            bitmap = ref == null ? null : ref.getBitmap();
+        } finally {
+            if (!codecPage.isRecycled()) {
+                codecPage.recycle();
+            }
+        }
+        if (bitmap == null) {
+            return null;
+        }
+        if (invert) {
+            final RawBitmap raw = new RawBitmap(bitmap, new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()));
+            raw.invert();
+            bitmap.recycle();
+            bitmap = raw.toBitmap().getBitmap();
+        }
+        if (background) {
+            bitmap = MagicHelper.updateWithBackground(bitmap, textureRegion);
+        }
+        return bitmap;
+    }
+
+    /**
+     * Two fingers held on the page: the part on screen is drawn at the zoom they hold every half
+     * second, a part at a time, so the page is sharp while it is still being zoomed and moved.
+     */
+    private void pinchRefresh() {
+        if (!pinching) {
+            return;
+        }
+        // Zoomed, or moved with two fingers near the part's edge
+        if (pageNumber == PageImageState.currentPage && detailPending.get() == 0
+                && !detailCovers(DETAIL_LOOKAHEAD)) {
+            renderDetail();
+        }
+        postDelayed(pinchRefresh, PINCH_REFRESH_MS);
+    }
+
+    private void setPinching(final boolean on) {
+        if (pinching == on) {
+            return;
+        }
+        pinching = on;
+        removeCallbacks(pinchRefresh);
+        if (on) {
+            postDelayed(pinchRefresh, PINCH_REFRESH_MS);
+        } else {
+            // Let go: the part is drawn for where the fingers left the page
+            java.util.Arrays.fill(detailMatrix, 0);
+            invalidate();
+        }
     }
 
     /**
@@ -1576,6 +1683,7 @@ public class PageImaveView extends View {
 
                 if (event.getPointerCount() == 2) {
                     isIgronerClick = true;
+                    setPinching(true);
 
                     LOG.d("TEST", "action ACTION_MOVE 2");
                     if (cx == 0) {
@@ -1618,6 +1726,7 @@ public class PageImaveView extends View {
                 }
             } else if (action == MotionEvent.ACTION_POINTER_UP) {
                 LOG.d("TEST", "action ACTION_POINTER_UP");
+                setPinching(false);
                 // isDoubleTouch = true;
                 int actionIndex = event.getActionIndex();
                 LOG.d("TEST", "actionIndex " + actionIndex);
@@ -1632,6 +1741,7 @@ public class PageImaveView extends View {
                 distance = 0;
 
             } else if (action == MotionEvent.ACTION_UP) {
+                setPinching(false);
                 brightnessHelper.onActionUp();
 
                 LOG.d("TEST", "action ACTION_UP", "long: " + isLognPress);
@@ -1716,6 +1826,7 @@ public class PageImaveView extends View {
                 isIgronerClick = false;
             } else if (action == MotionEvent.ACTION_CANCEL) {
                 LOG.d("TEST", "action ACTION_CANCEL");
+                setPinching(false);
             }
 
             return true;
