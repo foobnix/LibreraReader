@@ -167,6 +167,7 @@
    <string name="search">검색</string>
    <string name="export_bookmarks">내보내기</string>
    <string name="simple_scroll_animation">페이지 전환 애니메이션 (스크롤)</string>
+   <string name="turn_pages_like_paper_book">종이책처럼 페이지 넘기기</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">라이브러리</string>
    <string name="extracting_information_from_books">책에서 정보 추출</string>

@@ -25,6 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/simple_scroll_animation" />
+
+    <CheckBox
+        android:id="@+id/isBookPageCurl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/turn_pages_like_paper_book" />
     
     <CheckBox
         android:id="@+id/isShowToolBar"

@@ -167,6 +167,7 @@
    <string name="search">搜索</string>
    <string name="export_bookmarks">導出書簽</string>
    <string name="simple_scroll_animation">顯示翻頁動畫</string>
+   <string name="turn_pages_like_paper_book">像紙本書一樣翻頁</string>
    <string name="___TABS___SECTION___">標籤區域</string>
    <string name="library">書架</string>
    <string name="extracting_information_from_books">書籍資訊</string>

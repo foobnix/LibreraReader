@@ -167,6 +167,7 @@
    <string name="search">検索</string>
    <string name="export_bookmarks">ブックマークのエクスポート</string>
    <string name="simple_scroll_animation">シンプルなスクロールアニメーション</string>
+   <string name="turn_pages_like_paper_book">紙の本のようにページをめくる</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">ライブラリ</string>
    <string name="extracting_information_from_books">書籍から情報の抽出中</string>

@@ -169,6 +169,7 @@
    <string name="search">Find</string>
    <string name="export_bookmarks">Export</string>
    <string name="simple_scroll_animation">Animate page transition (scroll)</string>
+   <string name="turn_pages_like_paper_book">Turn pages like a paper book</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Library</string>
    <string name="extracting_information_from_books">Extracting information from files</string>

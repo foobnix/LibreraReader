@@ -167,6 +167,7 @@
    <string name="search">ค้นหา</string>
    <string name="export_bookmarks">ส่งออกบุ๊กมาร์ก</string>
    <string name="simple_scroll_animation">เอฟเฟกเปลี่ยนหน้าแบบง่าย</string>
+   <string name="turn_pages_like_paper_book">พลิกหน้าเหมือนหนังสือกระดาษ</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">ห้องสมุด</string>
    <string name="extracting_information_from_books">การดึงข้อมูลจากหนังสือ</string>

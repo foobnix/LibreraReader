@@ -2963,6 +2963,7 @@ public class PrefFragment2 extends UIFragment {
         AppState.get().transparencyUI = 255;
         // Pages turn without sliding: every frame of a slide is a smear on e-paper
         AppState.get().isScrollAnimation = false;
+        AppState.get().isBookPageCurl = false;
         // and the page is plain white with black words, no paper picture under it
         AppState.get().isDayNotInvert = true;
         AppState.get().isUseBGImageDay = false;

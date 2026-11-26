@@ -167,6 +167,7 @@
    <string name="search">Поиск</string>
    <string name="export_bookmarks">Экспорт закладок</string>
    <string name="simple_scroll_animation">Показывать анимацию простого сдвига страниц в сторону</string>
+   <string name="turn_pages_like_paper_book">Перелистывать страницы как в бумажной книге</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Библиотека</string>
    <string name="extracting_information_from_books">Извлечение информации из книг</string>

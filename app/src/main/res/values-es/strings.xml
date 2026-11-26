@@ -167,6 +167,7 @@
    <string name="search">Buscar</string>
    <string name="export_bookmarks">Exportar Marcadores</string>
    <string name="simple_scroll_animation">Animar transición de páginas</string>
+   <string name="turn_pages_like_paper_book">Pasar páginas como en un libro de papel</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Librería</string>
    <string name="extracting_information_from_books">Extrayendo información de los libros</string>

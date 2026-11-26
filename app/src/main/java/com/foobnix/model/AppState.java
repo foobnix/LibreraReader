@@ -780,6 +780,8 @@ public class AppState {
     @IgnoreHashCode public int tapzoneSize = Dips.isXLargeScreen() ? 15 : 25;
     public transient int allocatedMemorySize = (int) MemoryUtils.RECOMENDED_MEMORY_SIZE;
     @IgnoreHashCode public boolean isScrollAnimation = true;
+    // Pages turned in the paged view as in a paper book: folded over by the corner
+    @IgnoreHashCode public boolean isBookPageCurl = false;
     @IgnoreHashCode public boolean isEnableVerticalSwipe = true;
     @IgnoreHashCode public boolean isEnableHorizontalSwipe = true;
     @IgnoreHashCode public boolean isSwipeGestureReverse = false;

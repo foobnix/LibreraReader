@@ -3,7 +3,9 @@ package com.foobnix.pdf.search.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.animation.LinearInterpolator;
 import android.widget.Scroller;
 
@@ -20,8 +22,16 @@ public class VerticalViewPager extends CustomViewPager {
 
     private MyScroller value;
 
+    private PageCurlView curl;
+    private final int curlSlop;
+    private float curlDownX, curlDownY;
+    /** The finger may still start a page turn; it is turning one. */
+    private boolean curlTracking, curlDragging;
+    private VelocityTracker velocity;
+
     public VerticalViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
+        curlSlop = ViewConfiguration.get(context).getScaledPagingTouchSlop();
         init();
         setMyScroller();
     }
@@ -99,6 +109,91 @@ public class VerticalViewPager extends CustomViewPager {
         return ev;
     }
 
+    /** Pages are turned as in a paper book, by this view over the pager. */
+    public void setPageCurl(PageCurlView curl) {
+        this.curl = curl;
+    }
+
+    private boolean isCurl() {
+        return curl != null && PageCurlView.isOn();
+    }
+
+    /**
+     * Swipes turn the page as in a paper book, not the pager: a move across the page starts the
+     * turn as the pager would start a scroll. Returns whether the move is a turn.
+     */
+    private boolean curlTouch(MotionEvent ev) {
+        final int action = ev.getActionMasked();
+        final float x = ev.getX();
+        final float y = ev.getY();
+        if (action == MotionEvent.ACTION_DOWN) {
+            curl.finishNow();
+            curlDownX = x;
+            curlDownY = y;
+            curlDragging = false;
+            curlTracking = true;
+            if (velocity != null) {
+                velocity.recycle();
+            }
+            velocity = VelocityTracker.obtain();
+            velocity.addMovement(ev);
+            return false;
+        }
+        if (velocity != null) {
+            velocity.addMovement(ev);
+        }
+        if (action == MotionEvent.ACTION_MOVE) {
+            if (!curlDragging && curlTracking) {
+                if (ev.getPointerCount() != 1 || AppState.get().selectedText != null) {
+                    curlTracking = false;
+                    return false;
+                }
+                final float dx = x - curlDownX;
+                final float dy = y - curlDownY;
+                if (Math.abs(dx) > curlSlop && Math.abs(dx) * 0.5f > Math.abs(dy)) {
+                    if (canScroll(this, false, (int) dx, (int) x, (int) y)) {
+                        curlTracking = false;
+                        return false;
+                    }
+                    // Across the book as it is read: right to left in a right-to-left book
+                    final boolean forward = isRtl() ? dx > 0 : dx < 0;
+                    curlTracking = false;
+                    if (curl.startDrag(forward ? 1 : -1, curlDownX, curlDownY)) {
+                        curlDragging = true;
+                        if (getParent() != null) {
+                            getParent().requestDisallowInterceptTouchEvent(true);
+                        }
+                    }
+                } else if (Math.abs(dy) > curlSlop) {
+                    curlTracking = false;
+                }
+            }
+            if (curlDragging) {
+                curl.drag(x, y);
+            }
+            return curlDragging;
+        }
+        if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
+            final boolean was = curlDragging;
+            if (curlDragging) {
+                if (action == MotionEvent.ACTION_UP && velocity != null) {
+                    velocity.computeCurrentVelocity(1000);
+                    curl.release(velocity.getXVelocity());
+                } else {
+                    curl.cancelDrag();
+                }
+            }
+            curlDragging = false;
+            curlTracking = false;
+            if (velocity != null) {
+                velocity.recycle();
+                velocity = null;
+            }
+            return was;
+        }
+        return curlDragging;
+    }
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (!AppState.get().isEnableHorizontalSwipe) {
@@ -106,6 +201,10 @@ public class VerticalViewPager extends CustomViewPager {
         }
         if(AppState.get().isSelectTexByTouch){
             return false;
+        }
+
+        if (isCurl()) {
+            return curlTouch(ev);
         }
 
         if (value != null && !value.isFinished()) {
@@ -124,6 +223,11 @@ public class VerticalViewPager extends CustomViewPager {
         }
         if(AppState.get().isSelectTexByTouch){
             return false;
+        }
+
+        if (isCurl()) {
+            curlTouch(ev);
+            return true;
         }
 
         return super.onTouchEvent(swapXY(ev));

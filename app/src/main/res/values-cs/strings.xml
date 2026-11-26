@@ -167,6 +167,7 @@
    <string name="search">Hledat</string>
    <string name="export_bookmarks">Export</string>
    <string name="simple_scroll_animation">Animovat přechod stránky (skrolování)</string>
+   <string name="turn_pages_like_paper_book">Otáčet stránky jako v papírové knize</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Knihovna</string>
    <string name="extracting_information_from_books">Získat informace ze souborů</string>

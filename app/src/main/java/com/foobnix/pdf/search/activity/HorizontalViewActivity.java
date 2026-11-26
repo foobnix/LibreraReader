@@ -105,6 +105,7 @@ import com.foobnix.pdf.search.activity.msg.MessageSelectAnnotation;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
 import com.foobnix.pdf.search.view.CloseAppDialog;
+import com.foobnix.pdf.search.view.PageCurlView;
 import com.foobnix.pdf.search.view.VerticalViewPager;
 import com.foobnix.sys.ClickUtils;
 import com.foobnix.sys.TempHolder;
@@ -135,6 +136,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public boolean prev = true;
     VerticalViewPager viewPager;
+    PageCurlView pageCurl;
     SeekBar seekBar;
     View showRewardVideo;
     TextView toastBrightnessText, floatingBookmarkTextView, maxSeek, currentSeek, pagesCountIndicator,
@@ -345,6 +347,40 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 checkRelayoutLater();
             }
         });
+
+        pageCurl = findViewById(R.id.pageCurl);
+        pageCurl.setHost(new PageCurlView.Host() {
+            @Override
+            public View pageView(int delta) {
+                if (viewPager == null || viewPager.getAdapter() == null) {
+                    return null;
+                }
+                final int pos = viewPager.getCurrentItem() + delta;
+                if (pos < 0 || pos >= viewPager.getAdapter().getCount()) {
+                    return null;
+                }
+                final Fragment fragment = getSupportFragmentManager().findFragmentByTag("f" + pos);
+                final View view = fragment == null ? null : fragment.getView();
+                if (view == null || view.getParent() != viewPager || view.getWidth() == 0) {
+                    return null;
+                }
+                return view;
+            }
+
+            @Override
+            public void turned(int delta) {
+                if (viewPager != null) {
+                    viewPager.setCurrentItem(viewPager.getCurrentItem() + delta, false);
+                }
+            }
+
+            @Override
+            public android.graphics.RectF pageRect(View pageView) {
+                final View image = pageView.findViewById(R.id.myImage1);
+                return image instanceof PageImaveView ? ((PageImaveView) image).pageOnScreen(0) : null;
+            }
+        });
+        viewPager.setPageCurl(pageCurl);
 
         parentParent = findViewById(R.id.parentParent);
         pannelBookTitle = findViewById(R.id.pannelBookTitle);
@@ -1786,6 +1822,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         AppProfile.save(this);
         TempHolder.isSeaching = false;
         TempHolder.isActiveSpeedRead.set(false);
+        if (pageCurl != null) {
+            pageCurl.finishNow();
+        }
         if (dc != null) {
             dc.saveCurrentPageOnPause();
         }
@@ -1799,14 +1838,23 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             return;
         }
         flippingTimer = 0;
+        // A turn on its way ends first: this one goes on from the page it came to
+        final boolean wasTurning = pageCurl != null && pageCurl.isBusy();
+        if (wasTurning) {
+            pageCurl.finishNow();
+        }
 
         boolean isAnimate = AppState.get().isScrollAnimation;
         long lx = System.currentTimeMillis() - lastClick;
         LOG.d("lastClick", lx);
-        if (lx < lastClickMaxTime) {
+        final boolean fast = lx < lastClickMaxTime;
+        if (fast) {
             isAnimate = false;
         }
         lastClick = System.currentTimeMillis();
+        if (!fast && !wasTurning && PageCurlView.isOn() && pageCurl.turn(1)) {
+            return;
+        }
         viewPager.setCurrentItem(dc.getCurentPage() + 1, isAnimate);
     }
 
@@ -1832,12 +1880,20 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             return;
         }
         flippingTimer = 0;
+        final boolean wasTurning = pageCurl != null && pageCurl.isBusy();
+        if (wasTurning) {
+            pageCurl.finishNow();
+        }
 
         boolean isAnimate = AppState.get().isScrollAnimation;
-        if (System.currentTimeMillis() - lastClick < lastClickMaxTime) {
+        final boolean fast = System.currentTimeMillis() - lastClick < lastClickMaxTime;
+        if (fast) {
             isAnimate = false;
         }
         lastClick = System.currentTimeMillis();
+        if (!fast && !wasTurning && PageCurlView.isOn() && pageCurl.turn(-1)) {
+            return;
+        }
         viewPager.setCurrentItem(dc.getCurentPage() - 1, isAnimate);
     }
 

@@ -167,6 +167,7 @@
    <string name="search">கண்டுபிடி</string>
    <string name="export_bookmarks">ஏற்றுமதி</string>
    <string name="simple_scroll_animation">பக்க மாற்றத்தை உயிரூட்டுக (உருள்)</string>
+   <string name="turn_pages_like_paper_book">காகிதப் புத்தகம் போல் பக்கங்களைப் புரட்டு</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">நூலகம்</string>
    <string name="extracting_information_from_books">கோப்புகளிலிருந்து தகவல்களைப் பிரித்தெடுக்கிறது</string>

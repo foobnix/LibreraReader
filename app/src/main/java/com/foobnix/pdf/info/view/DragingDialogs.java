@@ -3354,6 +3354,12 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isBookPageCurl = inflate.findViewById(R.id.isBookPageCurl);
+                isBookPageCurl.setVisibility(
+                        AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
+                isBookPageCurl.setChecked(AppState.get().isBookPageCurl);
+                isBookPageCurl.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isBookPageCurl = isChecked);
+
                 CheckBox isLoopAutoplay = inflate.findViewById(R.id.isLoopAutoplay);
                 isLoopAutoplay.setChecked(AppState.get().isLoopAutoplay);
                 isLoopAutoplay.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -4275,6 +4281,12 @@ public class DragingDialogs {
                         AppState.get().isScrollAnimation = isChecked;
                     }
                 });
+
+                CheckBox isBookPageCurl = inflate.findViewById(R.id.isBookPageCurl);
+                isBookPageCurl.setVisibility(
+                        AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
+                isBookPageCurl.setChecked(AppState.get().isBookPageCurl);
+                isBookPageCurl.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isBookPageCurl = isChecked);
 
                 CheckBox isDisableSwipe = inflate.findViewById(R.id.isEnableVerticalSwipe);
                 isDisableSwipe.setVisibility(
