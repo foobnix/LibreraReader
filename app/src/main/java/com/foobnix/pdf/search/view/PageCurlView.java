@@ -98,6 +98,8 @@ public class PageCurlView extends View {
      * the two it takes the edge. The same band as the corners of {@link #steep}.
      */
     private static final float EDGE_FROM = 0.3f;
+    /** Most the fold leans from upright when the page is held by its edge: about 15 degrees. */
+    private static final float EDGE_LEAN = 0.27f;
 
     /**
      * The turning page as pictures, for bending it: its front, and its back - paper with the
@@ -236,20 +238,50 @@ public class PageCurlView extends View {
         turnedOver.set(2 * spine - sheetR, y);
     }
 
-    /** Turns the page by itself, as by a tap or a key: lifted by its bottom corner. */
+    /** Turns the page by itself, as by a key: lifted by its bottom corner. */
     public boolean turn(int delta) {
+        return turn(delta, Float.NaN);
+    }
+
+    /**
+     * Turns the page by itself, as by a tap at this height on this view (NaN: a key): lifted
+     * where the finger is, as a drag from there would, by the top or bottom corner or by the
+     * middle of its edge.
+     */
+    public boolean turn(int delta, float y) {
         finishNow();
         if (!begin(delta)) {
             return false;
         }
-        setCorner(false);
+        byEdge = false;
+        if (Float.isNaN(y)) {
+            setCorner(false);
+        } else {
+            holdAt(y);
+        }
         prepareSheets();
         final PointF from = new PointF();
         final PointF to = new PointF();
         from.set(peel ? corner : turnedOver);
         to.set(peel ? turnedOver : corner);
-        animate(from, to, (sheetB - sheetT) * 0.12f, TURN_MS, new AccelerateDecelerateInterpolator(), true);
+        // A corner rises a little into the page on the way; held by the edge it goes straight
+        final float lift = byEdge ? 0 : (sheetB - sheetT) * 0.12f;
+        animate(from, to, lift, TURN_MS, new AccelerateDecelerateInterpolator(), true);
         return true;
+    }
+
+    /**
+     * Held by the corner nearest the finger, or, from the middle of the page, by its edge where
+     * the finger is: the page then bends straight down, the same at top and bottom.
+     */
+    private void holdAt(float y) {
+        final float rel = (y - sheetT) / Math.max(1f, sheetB - sheetT);
+        byEdge = rel > EDGE_FROM && rel < 1 - EDGE_FROM;
+        if (byEdge) {
+            setHold(y);
+        } else {
+            setCorner(rel < 0.5f);
+        }
     }
 
     /** The finger has started to move a page, from where it went down; x and y on this view. */
@@ -258,15 +290,7 @@ public class PageCurlView extends View {
         if (!begin(delta)) {
             return false;
         }
-        // Held by the corner nearest the finger, or, from the middle of the page, by its edge
-        // where the finger is: the page then bends straight down, the same at top and bottom
-        final float rel = (y - sheetT) / Math.max(1f, sheetB - sheetT);
-        byEdge = rel > EDGE_FROM && rel < 1 - EDGE_FROM;
-        if (byEdge) {
-            setHold(y);
-        } else {
-            setCorner(rel < 0.5f);
-        }
+        holdAt(y);
         prepareSheets();
         grabX = book(x);
         grabY = y;
@@ -346,7 +370,8 @@ public class PageCurlView extends View {
         if (animator != null) {
             animator.cancel();
         }
-        final float liftDir = corner.y == 0 ? 1 : -1;
+        // Into the page: down from the top corner, up from the bottom one
+        final float liftDir = corner.y < (sheetT + sheetB) / 2 ? 1 : -1;
         final ValueAnimator a = ValueAnimator.ofFloat(0, 1);
         a.setDuration(duration);
         a.setInterpolator(interpolator);
@@ -485,6 +510,12 @@ public class PageCurlView extends View {
         final float sheetW = sheetR - spine;
         final float h = sheetB - sheetT;
         x = Math.min(x, sheetR);
+        if (byEdge) {
+            // Held by the middle of its edge, the page leans only a little, as much up as down:
+            // the fold stays near upright instead of turning over like a flap
+            final float room = Math.max(0f, corner.x - x) * EDGE_LEAN;
+            y = Math.max(corner.y - room, Math.min(corner.y + room, y));
+        }
         // No further from the bound corner on its edge than the page is wide
         float dx = x - spine;
         float dy = y - corner.y;

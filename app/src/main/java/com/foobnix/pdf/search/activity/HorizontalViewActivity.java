@@ -1853,7 +1853,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             isAnimate = false;
         }
         lastClick = System.currentTimeMillis();
-        if (!fast && !wasTurning && PageCurlView.isOn() && pageCurl.turn(1)) {
+        if (!fast && !wasTurning && PageCurlView.isOn() && pageCurl.turn(1, tapY)) {
             return;
         }
         viewPager.setCurrentItem(dc.getCurentPage() + 1, isAnimate);
@@ -1892,10 +1892,54 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             isAnimate = false;
         }
         lastClick = System.currentTimeMillis();
-        if (!fast && !wasTurning && PageCurlView.isOn() && pageCurl.turn(-1)) {
+        if (!fast && !wasTurning && PageCurlView.isOn() && pageCurl.turn(-1, tapY)) {
             return;
         }
         viewPager.setCurrentItem(dc.getCurentPage() - 1, isAnimate);
+    }
+
+    /** Height on the reader of the tap turning the page now, NaN when not a tap. */
+    private float tapY = Float.NaN;
+
+    private void tapAt(int x, int y) {
+        if (clickUtils.isClickRight(x, y) && AppState.get().tapZoneRight != AppState.TAP_DO_NOTHING) {
+            if (AppState.get().tapZoneRight == AppState.TAP_NEXT_PAGE) {
+                nextPage();
+            } else {
+                prevPage();
+            }
+        } else if (clickUtils.isClickLeft(x, y) && AppState.get().tapZoneLeft != AppState.TAP_DO_NOTHING) {
+            if (AppState.get().tapZoneLeft == AppState.TAP_PREV_PAGE) {
+                prevPage();
+            } else {
+                nextPage();
+            }
+        } else if (clickUtils.isClickTop(x, y) && AppState.get().tapZoneTop != AppState.TAP_DO_NOTHING) {
+            if (AppState.get().tapZoneTop == AppState.TAP_PREV_PAGE) {
+                prevPage();
+            } else {
+                nextPage();
+            }
+
+        } else if (clickUtils.isClickBottom(x, y) && AppState.get().tapZoneBottom != AppState.TAP_DO_NOTHING) {
+            if (AppState.get().tapZoneBottom == AppState.TAP_NEXT_PAGE) {
+                nextPage();
+            } else {
+                prevPage();
+            }
+
+        } else {
+            LOG.d("Click-center!", x, y);
+            handler.removeCallbacks(doShowHideWrapperControllsRunnable);
+            if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_NOTHING) {
+                // No double tap to wait for: the panels come at once
+                doShowHideWrapperControllsRunnable.run();
+            } else {
+                // A second tap within the moment is a double tap, and shows no panels
+                handler.postDelayed(doShowHideWrapperControllsRunnable, 250);
+            }
+            // Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Subscribe
@@ -1926,43 +1970,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             int x = (int) ev.getX();
             int y = (int) ev.getY();
-            if (clickUtils.isClickRight(x, y) && AppState.get().tapZoneRight != AppState.TAP_DO_NOTHING) {
-                if (AppState.get().tapZoneRight == AppState.TAP_NEXT_PAGE) {
-                    nextPage();
-                } else {
-                    prevPage();
-                }
-            } else if (clickUtils.isClickLeft(x, y) && AppState.get().tapZoneLeft != AppState.TAP_DO_NOTHING) {
-                if (AppState.get().tapZoneLeft == AppState.TAP_PREV_PAGE) {
-                    prevPage();
-                } else {
-                    nextPage();
-                }
-            } else if (clickUtils.isClickTop(x, y) && AppState.get().tapZoneTop != AppState.TAP_DO_NOTHING) {
-                if (AppState.get().tapZoneTop == AppState.TAP_PREV_PAGE) {
-                    prevPage();
-                } else {
-                    nextPage();
-                }
-
-            } else if (clickUtils.isClickBottom(x, y) && AppState.get().tapZoneBottom != AppState.TAP_DO_NOTHING) {
-                if (AppState.get().tapZoneBottom == AppState.TAP_NEXT_PAGE) {
-                    nextPage();
-                } else {
-                    prevPage();
-                }
-
-            } else {
-                LOG.d("Click-center!", x, y);
-                handler.removeCallbacks(doShowHideWrapperControllsRunnable);
-                if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_NOTHING) {
-                    // No double tap to wait for: the panels come at once
-                    doShowHideWrapperControllsRunnable.run();
-                } else {
-                    // A second tap within the moment is a double tap, and shows no panels
-                    handler.postDelayed(doShowHideWrapperControllsRunnable, 250);
-                }
-                // Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();
+            // A page turned by this tap curls from the finger's height
+            tapY = ev.getY();
+            try {
+                tapAt(x, y);
+            } finally {
+                tapY = Float.NaN;
             }
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_DOUBLE_TAP)) {
             handler.removeCallbacks(doShowHideWrapperControllsRunnable);
