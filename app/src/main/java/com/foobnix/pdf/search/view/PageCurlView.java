@@ -200,20 +200,12 @@ public class PageCurlView extends View {
         under = peel ? other : shown;
         mirror = AppSP.get().isRTL != (delta < 0 && twoPages);
         paper = MagicHelper.getBgColor();
-        // The pictures of the two pages together, on the screen
+        // The turning page's picture on the screen: pages cropped to their print are each of
+        // their own size, and only the one turning is lifted; the other lies there as it is drawn
         final int w = getWidth();
         final int h = getHeight();
-        RectF rect = null;
-        for (View v : new View[]{shown, other}) {
-            final RectF r = host.pageRect(v);
-            if (r != null && r.width() > 1 && r.height() > 1) {
-                if (rect == null) {
-                    rect = new RectF(r);
-                } else {
-                    rect.union(r);
-                }
-            }
-        }
+        final RectF topRect = host.pageRect(top);
+        RectF rect = topRect != null && topRect.width() > 1 && topRect.height() > 1 ? new RectF(topRect) : null;
         if (rect == null || !rect.intersect(0, 0, w, h) || rect.width() < w * 0.2f || rect.height() < h * 0.1f) {
             rect = new RectF(0, 0, w, h);
         }

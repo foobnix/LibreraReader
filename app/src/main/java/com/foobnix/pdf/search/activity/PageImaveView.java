@@ -320,8 +320,40 @@ public class PageImaveView extends View {
         this.pageNumber = pageNumber;
     }
 
+    /**
+     * The zoom the page is drawn with: the one all pages share. Only a page beside the one read,
+     * while the pages fit the screen, is drawn at its own fit, as it will be once turned to:
+     * cropped pages are each of their own size, and with the shared zoom the next page showed out
+     * of place as it came in and jumped to the middle after the turn.
+     */
     public Matrix imageMatrix() {
+        if (pageNumber != PageImageState.currentPage && PageImageState.get().isAutoFit) {
+            final int dw = drawableWidth > 0 ? drawableWidth : lastDrawableWidth;
+            final int dh = drawableHeight > 0 ? drawableHeight : lastDrawableHeight;
+            if (dw > 0 && dh > 0 && getWidth() > 0 && getHeight() > 0) {
+                fit(ownFit, dw, dh);
+                return ownFit;
+            }
+        }
         return PageImageState.get().getMatrix();
+    }
+
+    private final Matrix ownFit = new Matrix();
+
+    /** Sets the matrix to show a page of this size whole, in the middle of the view. */
+    private void fit(Matrix m, int dw, int dh) {
+        final int w = getWidth();
+        final int h = getHeight();
+        final float scaleH = (float) h / dh;
+        final float scaleW = (float) w / dw;
+        m.reset();
+        if (scaleH < scaleW) {
+            m.preScale(scaleH, scaleH);
+            m.postTranslate(Math.abs(w - dw * scaleH) / 2, 0);
+        } else {
+            m.preScale(scaleW, scaleW);
+            m.postTranslate(0, Math.abs(h - dh * scaleW) / 2);
+        }
     }
 
     @Subscribe
@@ -981,21 +1013,10 @@ public class PageImaveView extends View {
             return;
         }
 
-        final int w = getWidth();
-        final int h = getHeight();
-        final float scaleH = (float) h / drawableHeight;
-        final float scaleW = (float) w / drawableWidth;
-
-        imageMatrix().reset();
-        if (scaleH < scaleW) {
-            LOG.d("image pre scale scaleH", scaleH);
-            imageMatrix().preScale(scaleH, scaleH);
-            imageMatrix().postTranslate(Math.abs(getWidth() - drawableWidth * scaleH) / 2, 0);
-        } else {
-            LOG.d("image pre scale scaleW", scaleW);
-            imageMatrix().preScale(scaleW, scaleW);
-            imageMatrix().postTranslate(0, Math.abs(getHeight() - drawableHeight * scaleW) / 2);
+        if (drawableWidth <= 0 || drawableHeight <= 0) {
+            return;
         }
+        fit(imageMatrix(), drawableWidth, drawableHeight);
     }
 
     private float centerX(final MotionEvent event) {
