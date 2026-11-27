@@ -89,6 +89,8 @@ public class PageCurlView extends View {
     private ValueAnimator animator;
 
     private boolean dragging;
+    /** Where the finger went down, in the book's way. */
+    private float grabX, grabY;
 
     /**
      * The turning page as pictures, for bending it: its front, and its back - paper with the
@@ -106,8 +108,7 @@ public class PageCurlView extends View {
     /**
      * The bent page as triangles laid along the fold, Android 10 on: the light changes across
      * the roll only, so with the points in lines along it the shading is even. On a mesh of the
-     * page's own squares the roll, thinner than a square near the cone's point, came out in
-     * blocks.
+     * page's own squares a thin roll came out in blocks.
      */
     private static final boolean VERTICES = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
     private static final int ROWS = 64;
@@ -257,6 +258,8 @@ public class PageCurlView extends View {
         // Held by the corner nearest the finger
         setCorner(y < (sheetT + sheetB) / 2f);
         prepareSheets();
+        grabX = book(x);
+        grabY = y;
         dragging = true;
         drag(x, y);
         return true;
@@ -267,15 +270,20 @@ public class PageCurlView extends View {
             return;
         }
         final float bx = book(x);
+        final float sheetW = sheetR - spine;
+        // The page moves by as much as the finger from where it went down, so it starts to lift
+        // from where it lies instead of jumping to the finger; on the way the corner comes
+        // under the finger
+        final float travel = (float) Math.hypot(bx - grabX, y - grabY);
+        final float k = Math.max(0f, 1f - travel / Math.max(1f, sheetW * 0.6f));
+        final float py = y + (corner.y - grabY) * k;
         if (peel) {
-            // The corner of the page is under the finger
-            setPoint(bx, y);
+            setPoint(bx + (corner.x - grabX) * k, py);
         } else {
-            // The page comes back from over the spine: all turned over at the edge the finger
-            // starts from, flat again at the other one
-            final float from = Math.min(spine, sheetR - (sheetR - spine) * 0.5f);
-            final float t = Math.max(0, Math.min(1, (bx - from) / Math.max(1, sheetR - from)));
-            setPoint(turnedOver.x + t * (corner.x - turnedOver.x), y);
+            // The page comes back from over the spine: all turned over where the finger went
+            // down, flat again at the page's far edge
+            final float t = Math.max(0, Math.min(1, (bx - grabX) / Math.max(sheetW * 0.5f, sheetR - grabX)));
+            setPoint(turnedOver.x + t * (corner.x - turnedOver.x), py);
         }
         invalidate();
     }
@@ -458,15 +466,13 @@ public class PageCurlView extends View {
         return mirror ? getWidth() - x : x;
     }
 
-    /** Puts the corner where it can be: the page stays bound at the spine and in one piece. */
+    /**
+     * Puts the corner where it can be: the page stays bound at the spine and in one piece. It
+     * may go past the page's top or bottom with the finger, from either corner.
+     */
     private void setPoint(float x, float y) {
         final float sheetW = sheetR - spine;
         final float h = sheetB - sheetT;
-        if (corner.y == sheetT) {
-            y = Math.max(y, sheetT);
-        } else {
-            y = Math.min(y, sheetB);
-        }
         x = Math.min(x, sheetR);
         // No further from the bound corner on its edge than the page is wide
         float dx = x - spine;
@@ -488,6 +494,7 @@ public class PageCurlView extends View {
         }
         point.set(x, y);
     }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -677,29 +684,7 @@ public class PageCurlView extends View {
 
         fillSheet();
 
-        // A cone, as a page held by its corner rolls: wide at the corner, coming to a point
-        // where the bend meets the page's far edge
-        final float ax = -ny;
-        final float ay = nx;
-        final float tCorner = (cx - lx) * ax + (cy - ly) * ay;
-        float tTip = Float.NaN;
-        final int liftedN = clip(sheet, 4, lx, ly, nx, ny, flap);
-        for (int i = 0; i < liftedN; i++) {
-            final float px = flap[2 * i];
-            final float py = flap[2 * i + 1];
-            if (Math.abs((px - lx) * nx + (py - ly) * ny) < 1f) {
-                final float t = (px - lx) * ax + (py - ly) * ay;
-                if (Float.isNaN(tTip) || Math.abs(t - tCorner) > Math.abs(tTip - tCorner)) {
-                    tTip = t;
-                }
-            }
-        }
-        if (Float.isNaN(tTip) || Math.abs(tTip - tCorner) < 1f) {
-            tTip = tCorner - (float) Math.hypot(sheetW, sheetH);
-        }
-
-        // The shadow of the roll on the page it uncovers: dark at the bend, more so at the
-        // point of the cone, where the page lies close over it
+        // The shadow of the roll on the page it uncovers: dark at the bend
         final int openN = clip(sheet, 4, lx, ly, nx, ny, flap);
         if (openN >= 3) {
             flapPath.reset();
@@ -717,35 +702,51 @@ public class PageCurlView extends View {
 
         // The front, then the back over it: the back is always the higher of the two
         if (VERTICES) {
-            buildVertices(lx, ly, nx, ny, r, tCorner, tTip, sheetW, false);
+            buildVertices(lx, ly, nx, ny, r, sheetW, false);
             vertexPaint.setShader(frontShader);
             canvas.drawVertices(Canvas.VertexMode.TRIANGLES, (ROWS + 1) * FRONT_COLS * 2, verts, 0, texs, 0,
                     vertColors, 0, frontIndices, 0, frontIndices.length, vertexPaint);
-            buildVertices(lx, ly, nx, ny, r, tCorner, tTip, sheetW, true);
+            buildVertices(lx, ly, nx, ny, r, sheetW, true);
             vertexPaint.setShader(backShader);
             canvas.drawVertices(Canvas.VertexMode.TRIANGLES, (ROWS + 1) * BACK_COLS * 2, verts, 0, texs, 0,
                     vertColors, 0, backIndices, 0, backIndices.length, vertexPaint);
         } else {
-            buildMesh(lx, ly, nx, ny, r, tCorner, tTip, sheetW, sheetH, false);
+            buildMesh(lx, ly, nx, ny, r, sheetW, sheetH, false);
             canvas.drawBitmapMesh(frontSheet, MESH_W, MESH_H, mesh, 0, meshColors, 0, meshPaint);
-            buildMesh(lx, ly, nx, ny, r, tCorner, tTip, sheetW, sheetH, true);
+            buildMesh(lx, ly, nx, ny, r, sheetW, sheetH, true);
             canvas.drawBitmapMesh(backSheet, MESH_W, MESH_H, mesh, 0, meshColors, 0, meshPaint);
         }
 
         canvas.restore();
     }
 
+
     /**
-     * How wide the roll is at a place along the fold, of its width at the corner: nothing at the
-     * cone's point, growing evenly to the corner, and past it less and less, to half as much
-     * again. Stopped dead at the corner the roll's outline had a bend in it there.
+     * How much across a drag from this point has to go, of how far it goes down, to turn the
+     * page: as much anywhere, and half as much from a corner of the page, which is pulled on a
+     * slant. The pager and the page ask the same, so one of the two takes each drag.
+     *
+     * @param page the page on the screen; its margins round it count as its corners too
      */
-    private static float along(float t, float tTip, float span) {
-        final float a = Math.abs(t - tTip) / span;
-        if (a <= 1f) {
-            return Math.max(0.03f, a);
+    public static float steep(RectF page, float x, float y) {
+        if (page == null || page.width() <= 0 || page.height() <= 0) {
+            return 1f;
         }
-        return 1f + 0.5f * (1f - (float) Math.exp(-2f * (a - 1f)));
+        final float cw = page.width() * 0.35f;
+        final float ch = page.height() * 0.3f;
+        final boolean side = x < page.left + cw || x > page.right - cw;
+        final boolean end = y < page.top + ch || y > page.bottom - ch;
+        return side && end ? 0.5f : 1f;
+    }
+
+    /** {@link #steep(RectF, float, float)} for the page shown now. */
+    public float steepAt(float x, float y) {
+        final View shown = host == null ? null : host.pageView(0);
+        RectF page = shown == null ? null : host.pageRect(shown);
+        if (page == null) {
+            page = new RectF(0, 0, getWidth(), getHeight());
+        }
+        return steep(page, x, y);
     }
 
     /** The triangles of a grid of points, {@code cols} to a row. */
@@ -769,16 +770,13 @@ public class PageCurlView extends View {
 
     /**
      * The same bend as {@link #buildMesh}, with the points in rows across the fold and in lines
-     * round the roll: each line is one angle of the roll, so one light, from the corner to the
-     * cone's point. The points take the page's picture from where they were on the flat page;
+     * round the roll: each line is one angle of the roll, so one light, all along the fold. The points take the page's picture from where they were on the flat page;
      * those off the page get its clear border.
      */
-    private void buildVertices(float lx, float ly, float nx, float ny, float r, float tCorner, float tTip,
-                               float sheetW, boolean back) {
+    private void buildVertices(float lx, float ly, float nx, float ny, float r, float sheetW, boolean back) {
         final float pi = (float) Math.PI;
         final float ax = -ny;
         final float ay = nx;
-        final float span = Math.abs(tCorner - tTip);
         float tMin = Float.MAX_VALUE;
         float tMax = -Float.MAX_VALUE;
         float dMin = 0;
@@ -799,7 +797,7 @@ public class PageCurlView extends View {
         int c = 0;
         for (int j = 0; j <= ROWS; j++) {
             final float t = tMin + (tMax - tMin) * j / ROWS;
-            final float rr = r * along(t, tTip, span);
+            final float rr = r;
             final float ox = lx + t * ax;
             final float oy = ly + t * ay;
             for (int i = 0; i < cols; i++) {
@@ -850,20 +848,14 @@ public class PageCurlView extends View {
     }
 
     /**
-     * Places the mesh points of the page bent round the cone, and their light. The front is
+     * Places the mesh points of the page bent round the roll, and their light. The front is
      * drawn up to the top of the roll and the back from there on: the points outside the part
      * drawn are put on the top of the roll, and their triangles have no size.
      *
-     * @param r      the roll's radius at the corner
-     * @param tCorner where the corner is along the bend
-     * @param tTip   where the cone comes to its point along the bend
+     * @param r the roll's radius
      */
-    private void buildMesh(float lx, float ly, float nx, float ny, float r, float tCorner, float tTip,
-                           float sheetW, float h, boolean back) {
+    private void buildMesh(float lx, float ly, float nx, float ny, float r, float sheetW, float h, boolean back) {
         final float pi = (float) Math.PI;
-        final float ax = -ny;
-        final float ay = nx;
-        final float span = Math.abs(tCorner - tTip);
         int k = 0;
         int c = 0;
         for (int j = 0; j <= MESH_H; j++) {
@@ -872,8 +864,7 @@ public class PageCurlView extends View {
             for (int i = 0; i <= MESH_W; i++) {
                 final float x = spine + sheetW * i / (float) MESH_W;
                 final float d = (x - lx) * nx + (y - ly) * ny;
-                final float t = (x - lx) * ax + (y - ly) * ay;
-                final float rr = r * along(t, tTip, span);
+                final float rr = r;
                 final float half = pi * rr / 2;
                 final float s = back ? Math.max(half, d) : Math.min(half, d);
                 final float moved;

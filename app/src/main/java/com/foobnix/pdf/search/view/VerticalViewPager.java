@@ -24,6 +24,7 @@ public class VerticalViewPager extends CustomViewPager {
 
     private PageCurlView curl;
     private final int curlSlop;
+    private float curlSteep = 1f;
     private float curlDownX, curlDownY;
     /** The finger may still start a page turn; it is turning one. */
     private boolean curlTracking, curlDragging;
@@ -132,6 +133,7 @@ public class VerticalViewPager extends CustomViewPager {
             curlDownY = y;
             curlDragging = false;
             curlTracking = true;
+            curlSteep = curl.steepAt(x, y);
             if (velocity != null) {
                 velocity.recycle();
             }
@@ -145,26 +147,37 @@ public class VerticalViewPager extends CustomViewPager {
         if (action == MotionEvent.ACTION_MOVE) {
             if (!curlDragging && curlTracking) {
                 if (ev.getPointerCount() != 1 || AppState.get().selectedText != null) {
+                    LOG.d("PageCurl", "not started", ev.getPointerCount() != 1 ? "two fingers" : "text selected");
                     curlTracking = false;
                     return false;
                 }
                 final float dx = x - curlDownX;
                 final float dy = y - curlDownY;
-                if (Math.abs(dx) > curlSlop && Math.abs(dx) * 0.5f > Math.abs(dy)) {
+                // A page is pulled by its corner on a slant: any drag more across than down turns
+                // it, and from a corner one twice as much down as across still does. The page
+                // itself takes the steeper ones, to move it
+                final boolean across = Math.abs(dx) >= Math.abs(dy) * curlSteep;
+                if (Math.abs(dx) > curlSlop && across) {
                     if (canScroll(this, false, (int) dx, (int) x, (int) y)) {
+                        LOG.d("PageCurl", "not started", "the page scrolls across");
                         curlTracking = false;
                         return false;
                     }
                     // Across the book as it is read: right to left in a right-to-left book
                     final boolean forward = isRtl() ? dx > 0 : dx < 0;
                     curlTracking = false;
-                    if (curl.startDrag(forward ? 1 : -1, curlDownX, curlDownY)) {
+                    final boolean started = curl.startDrag(forward ? 1 : -1, curlDownX, curlDownY);
+                    LOG.d("PageCurl", started ? "started" : "not started, no page", forward ? "next" : "prev",
+                          (int) curlDownX, (int) curlDownY, "by", (int) dx, (int) dy, "steep", curlSteep);
+                    if (started) {
                         curlDragging = true;
                         if (getParent() != null) {
                             getParent().requestDisallowInterceptTouchEvent(true);
                         }
                     }
-                } else if (Math.abs(dy) > curlSlop) {
+                } else if (Math.abs(dy) > curlSlop && !across) {
+                    LOG.d("PageCurl", "not started, down not across", (int) curlDownX, (int) curlDownY,
+                          "by", (int) dx, (int) dy, "steep", curlSteep);
                     curlTracking = false;
                 }
             }

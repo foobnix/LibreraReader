@@ -43,6 +43,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.pdf.search.view.PageCurlView;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
 import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
@@ -123,6 +124,7 @@ public class PageImaveView extends View {
     private boolean isReadyForMove = false;
     private boolean isLognPress = false;
     private boolean isIgronerClick = false;
+    private float downAcross = 1f;
     private int isMoveNextPrev = 0;
     private int pageNumber;
 
@@ -1661,6 +1663,8 @@ public class PageImaveView extends View {
                 y = event.getY();
                 brightnessHelper.onActoinDown(x, y);
                 isReadyForMove = false;
+                // A slanted pull from a page corner turns the page, where pages turn like paper
+                downAcross = PageCurlView.isOn() ? PageCurlView.steep(pageOnScreen(0), x, y) : 1f;
                 if (AppState.get().isSelectTexByTouch) {
                     isLognPress = true;
                     isIgronerClick = true;
@@ -1691,7 +1695,7 @@ public class PageImaveView extends View {
                             } else {
                                 isIgronerClick = false;
                             }
-                            if (AppState.get().isEnableVerticalSwipe && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > Dips.DP_10) {
+                            if (AppState.get().isEnableVerticalSwipe && Math.abs(dy) * downAcross > Math.abs(dx) && Math.abs(dy) > Dips.DP_10) {
                                 if (AppState.get().isSwipeGestureReverse) {
                                     isMoveNextPrev = dy > 0 ? -1 : 1;
                                 } else {
@@ -1701,7 +1705,7 @@ public class PageImaveView extends View {
 
                         } else {
                             if (AppState.get().rotateViewPager == 0) {
-                                if (Math.abs(dy) > Math.abs(dx) && (Math.abs(dy) + Math.abs(dx) > Dips.DP_10)) {
+                                if (Math.abs(dy) * downAcross > Math.abs(dx) && (Math.abs(dy) + Math.abs(dx) > Dips.DP_10)) {
                                     isReadyForMove = true;
                                     isIgronerClick = true;
                                 }
@@ -1713,7 +1717,8 @@ public class PageImaveView extends View {
                             }
                         }
 
-                        boolean isBrightness = brightnessHelper.onActionMove(event);
+                        // Not on a slanted pull from a corner by the left edge: that turns the page
+                        boolean isBrightness = (downAcross == 1f || Math.abs(dy) * downAcross > Math.abs(dx)) && brightnessHelper.onActionMove(event);
                         if (isBrightness) {
                             isIgronerClick = true;
                             isMoveNextPrev = 0;
