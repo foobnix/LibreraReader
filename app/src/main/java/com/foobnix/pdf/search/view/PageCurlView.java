@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Picture;
 import android.graphics.LinearGradient;
@@ -92,12 +93,36 @@ public class PageCurlView extends View {
     /**
      * The turning page as pictures, for bending it: its front, and its back - paper with the
      * front's print showing through, or of two pages the next spread's left page. As large as
-     * the turning page, upside down when it is held by its top corner, so the mesh is drawn from
-     * the part furthest from the corner on: the parts nearer it, bent over, lie over the others.
+     * the turning page, with a clear line of {@link #pad} round it where it is drawn as
+     * triangles: past the page's edge the picture then gives nothing, softly. On Android 9 it is
+     * drawn as a bitmap mesh, upside down when the page is held by its top corner, so the mesh
+     * goes from the part furthest from the corner on: the parts nearer it lie over the others.
      * Null where pictures cannot be made: the page is then folded flat.
      */
     private Bitmap frontSheet, backSheet;
+    private BitmapShader frontShader, backShader;
     private boolean flipped;
+    private int pad;
+    /**
+     * The bent page as triangles laid along the fold, Android 10 on: the light changes across
+     * the roll only, so with the points in lines along it the shading is even. On a mesh of the
+     * page's own squares the roll, thinner than a square near the cone's point, came out in
+     * blocks.
+     */
+    private static final boolean VERTICES = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
+    private static final int ROWS = 64;
+    /** Steps round a quarter of the roll. */
+    private static final int ROLL = 16;
+    /** The flat page's far edge, then the quarter roll up to its top. */
+    private static final int FRONT_COLS = ROLL + 2;
+    /** A soft edge, the quarter roll down from its top, then the back lying flat in two steps. */
+    private static final int BACK_COLS = ROLL + 4;
+    private final float[] verts = new float[(ROWS + 1) * BACK_COLS * 2];
+    private final float[] texs = new float[verts.length];
+    private final int[] vertColors = new int[verts.length];
+    private final short[] frontIndices = indices(FRONT_COLS);
+    private final short[] backIndices = indices(BACK_COLS);
+    private final Paint vertexPaint = new Paint(Paint.FILTER_BITMAP_FLAG);
     private static final int MESH_W = 32;
     private static final int MESH_H = 64;
     private final float[] mesh = new float[(MESH_W + 1) * (MESH_H + 1) * 2];
@@ -358,6 +383,9 @@ public class PageCurlView extends View {
             backSheet.recycle();
             backSheet = null;
         }
+        frontShader = null;
+        backShader = null;
+        vertexPaint.setShader(null);
     }
 
     /**
@@ -372,19 +400,26 @@ public class PageCurlView extends View {
         }
         final int sw = Math.max(1, Math.round(sheetR - spine));
         final int h = Math.max(1, Math.round(sheetB - sheetT));
-        flipped = corner.y == sheetT;
+        flipped = !VERTICES && corner.y == sheetT;
+        pad = VERTICES ? 1 : 0;
+        final int bw = sw + 2 * pad;
+        final int bh = h + 2 * pad;
         try {
             final long start = System.currentTimeMillis();
             Picture picture = new Picture();
-            Canvas c = picture.beginRecording(sw, h);
+            Canvas c = picture.beginRecording(bw, bh);
+            c.translate(pad, pad);
+            c.clipRect(0, 0, sw, h);
             sheetSpace(c, h);
             c.translate(-spine, -sheetT);
             drawPage(c, top);
             picture.endRecording();
-            frontSheet = Bitmap.createBitmap(picture, sw, h, Bitmap.Config.ARGB_8888);
+            frontSheet = Bitmap.createBitmap(picture, bw, bh, Bitmap.Config.ARGB_8888);
 
             picture = new Picture();
-            c = picture.beginRecording(sw, h);
+            c = picture.beginRecording(bw, bh);
+            c.translate(pad, pad);
+            c.clipRect(0, 0, sw, h);
             if (twoPages) {
                 // The back at x is the next spread's left page at the spine's other side
                 sheetSpace(c, h);
@@ -393,12 +428,16 @@ public class PageCurlView extends View {
                 drawPage(c, under);
             } else {
                 c.drawColor(paper);
-                c.drawBitmap(frontSheet, 0, 0, null);
+                c.drawBitmap(frontSheet, -pad, -pad, null);
                 // Paper: the print of the other side shows through, faint
                 c.drawColor((paper & 0x00FFFFFF) | 0xF0000000);
             }
             picture.endRecording();
-            backSheet = Bitmap.createBitmap(picture, sw, h, Bitmap.Config.ARGB_8888);
+            backSheet = Bitmap.createBitmap(picture, bw, bh, Bitmap.Config.ARGB_8888);
+            if (VERTICES) {
+                frontShader = new BitmapShader(frontSheet, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+                backShader = new BitmapShader(backSheet, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+            }
             LOG.d("PageCurl", "sheets", sw + "x" + h, twoPages ? "two" : "one", mirror ? "rtl" : "",
                   System.currentTimeMillis() - start, "ms");
         } catch (Throwable e) {
@@ -677,12 +716,137 @@ public class PageCurlView extends View {
         }
 
         // The front, then the back over it: the back is always the higher of the two
-        buildMesh(lx, ly, nx, ny, r, tCorner, tTip, sheetW, sheetH, false);
-        canvas.drawBitmapMesh(frontSheet, MESH_W, MESH_H, mesh, 0, meshColors, 0, meshPaint);
-        buildMesh(lx, ly, nx, ny, r, tCorner, tTip, sheetW, sheetH, true);
-        canvas.drawBitmapMesh(backSheet, MESH_W, MESH_H, mesh, 0, meshColors, 0, meshPaint);
+        if (VERTICES) {
+            buildVertices(lx, ly, nx, ny, r, tCorner, tTip, sheetW, false);
+            vertexPaint.setShader(frontShader);
+            canvas.drawVertices(Canvas.VertexMode.TRIANGLES, (ROWS + 1) * FRONT_COLS * 2, verts, 0, texs, 0,
+                    vertColors, 0, frontIndices, 0, frontIndices.length, vertexPaint);
+            buildVertices(lx, ly, nx, ny, r, tCorner, tTip, sheetW, true);
+            vertexPaint.setShader(backShader);
+            canvas.drawVertices(Canvas.VertexMode.TRIANGLES, (ROWS + 1) * BACK_COLS * 2, verts, 0, texs, 0,
+                    vertColors, 0, backIndices, 0, backIndices.length, vertexPaint);
+        } else {
+            buildMesh(lx, ly, nx, ny, r, tCorner, tTip, sheetW, sheetH, false);
+            canvas.drawBitmapMesh(frontSheet, MESH_W, MESH_H, mesh, 0, meshColors, 0, meshPaint);
+            buildMesh(lx, ly, nx, ny, r, tCorner, tTip, sheetW, sheetH, true);
+            canvas.drawBitmapMesh(backSheet, MESH_W, MESH_H, mesh, 0, meshColors, 0, meshPaint);
+        }
 
         canvas.restore();
+    }
+
+    /**
+     * How wide the roll is at a place along the fold, of its width at the corner: nothing at the
+     * cone's point, growing evenly to the corner, and past it less and less, to half as much
+     * again. Stopped dead at the corner the roll's outline had a bend in it there.
+     */
+    private static float along(float t, float tTip, float span) {
+        final float a = Math.abs(t - tTip) / span;
+        if (a <= 1f) {
+            return Math.max(0.03f, a);
+        }
+        return 1f + 0.5f * (1f - (float) Math.exp(-2f * (a - 1f)));
+    }
+
+    /** The triangles of a grid of points, {@code cols} to a row. */
+    private static short[] indices(int cols) {
+        final short[] res = new short[ROWS * (cols - 1) * 6];
+        int k = 0;
+        for (int j = 0; j < ROWS; j++) {
+            for (int i = 0; i < cols - 1; i++) {
+                final int a = j * cols + i;
+                final int b = a + cols;
+                res[k++] = (short) a;
+                res[k++] = (short) (a + 1);
+                res[k++] = (short) b;
+                res[k++] = (short) (a + 1);
+                res[k++] = (short) (b + 1);
+                res[k++] = (short) b;
+            }
+        }
+        return res;
+    }
+
+    /**
+     * The same bend as {@link #buildMesh}, with the points in rows across the fold and in lines
+     * round the roll: each line is one angle of the roll, so one light, from the corner to the
+     * cone's point. The points take the page's picture from where they were on the flat page;
+     * those off the page get its clear border.
+     */
+    private void buildVertices(float lx, float ly, float nx, float ny, float r, float tCorner, float tTip,
+                               float sheetW, boolean back) {
+        final float pi = (float) Math.PI;
+        final float ax = -ny;
+        final float ay = nx;
+        final float span = Math.abs(tCorner - tTip);
+        float tMin = Float.MAX_VALUE;
+        float tMax = -Float.MAX_VALUE;
+        float dMin = 0;
+        float dMax = 0;
+        for (int i = 0; i < 4; i++) {
+            final float px = sheet[2 * i] - lx;
+            final float py = sheet[2 * i + 1] - ly;
+            final float t = px * ax + py * ay;
+            final float d = px * nx + py * ny;
+            tMin = Math.min(tMin, t);
+            tMax = Math.max(tMax, t);
+            dMin = Math.min(dMin, d);
+            dMax = Math.max(dMax, d);
+        }
+        final int cols = back ? BACK_COLS : FRONT_COLS;
+        final float greyEnd = sheetW * 0.6f;
+        int k = 0;
+        int c = 0;
+        for (int j = 0; j <= ROWS; j++) {
+            final float t = tMin + (tMax - tMin) * j / ROWS;
+            final float rr = r * along(t, tTip, span);
+            final float ox = lx + t * ax;
+            final float oy = ly + t * ay;
+            for (int i = 0; i < cols; i++) {
+                final float d;
+                float moved;
+                final float light;
+                int alpha = 255;
+                if (!back) {
+                    if (i == 0) {
+                        // The page lying flat, up to the fold
+                        d = dMin - 1;
+                        moved = d;
+                        light = 1f;
+                    } else {
+                        // Turning away from the eye up the roll, darkest at its top
+                        final float angle = pi / 2 * (i - 1) / ROLL;
+                        d = angle * rr;
+                        moved = rr * (float) Math.sin(angle);
+                        light = 1f - 0.4f * (float) Math.sin(angle);
+                    }
+                } else if (i <= ROLL + 1) {
+                    // The back coming round towards the eye again, lit at the turn
+                    final float angle = pi / 2 + pi / 2 * Math.max(0, i - 1) / ROLL;
+                    d = angle * rr;
+                    moved = rr * (float) Math.sin(angle);
+                    light = Math.min(1f, 0.62f - 0.5f * (float) Math.cos(angle));
+                    if (i == 0) {
+                        // The roll's outline fades out over a pixel instead of ending in steps
+                        moved += 1;
+                        alpha = 0;
+                    }
+                } else {
+                    // The back as it lies over: a little greyer away from the roll
+                    final float over = i == ROLL + 2 ? greyEnd : Math.max(dMax, greyEnd) + 1;
+                    d = pi * rr + over;
+                    moved = -over;
+                    light = 1f - 0.14f * Math.min(1f, over / greyEnd);
+                }
+                verts[k] = ox + moved * nx;
+                verts[k + 1] = oy + moved * ny;
+                texs[k] = ox + d * nx - spine + pad;
+                texs[k + 1] = oy + d * ny - sheetT + pad;
+                k += 2;
+                final int v = Math.round(255 * Math.max(0f, Math.min(1f, light)));
+                vertColors[c++] = (alpha << 24) | (v << 16) | (v << 8) | v;
+            }
+        }
     }
 
     /**
@@ -709,8 +873,7 @@ public class PageCurlView extends View {
                 final float x = spine + sheetW * i / (float) MESH_W;
                 final float d = (x - lx) * nx + (y - ly) * ny;
                 final float t = (x - lx) * ax + (y - ly) * ay;
-                final float along = Math.max(0.03f, Math.min(1f, Math.abs(t - tTip) / span));
-                final float rr = r * along;
+                final float rr = r * along(t, tTip, span);
                 final float half = pi * rr / 2;
                 final float s = back ? Math.max(half, d) : Math.min(half, d);
                 final float moved;

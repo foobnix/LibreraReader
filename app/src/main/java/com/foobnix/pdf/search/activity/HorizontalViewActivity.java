@@ -338,6 +338,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         findViewById(R.id.showHypenLangPanel).setVisibility(View.GONE);
 
+        PageImaveView.forgetPageSize();
         viewPager = (VerticalViewPager) findViewById(R.id.pager2);
         viewPager.setAccessibilityDelegate(new View.AccessibilityDelegate());
 
@@ -2511,6 +2512,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         viewPager.setOffscreenPageLimit(pagesInMemory);
         LOG.d("setOffscreenPageLimit", pagesInMemory);
+        // Pages made anew, single or double: their size is not known until one is drawn
+        PageImaveView.forgetPageSize();
         viewPager.setAdapter(pagerAdapter);
         viewPager.setSaveEnabled(false);
         viewPager.setSaveFromParentEnabled(false);

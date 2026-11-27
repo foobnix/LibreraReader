@@ -881,12 +881,33 @@ public class PageImaveView extends View {
      * as the scrolled view shows a page still being made. The colour around the page, black for
      * some, flashed over the whole screen while turning pages quickly.
      */
+    /**
+     * The size of the last page drawn: a page not drawn yet is shown as large as it, where the
+     * shared zoom puts it, not over the whole screen - zoomed out, or a page shorter than the
+     * screen, the page came in as a full screen of paper and shrank to its size once drawn.
+     */
+    private static int lastDrawableWidth, lastDrawableHeight;
+
+    /** A new book, or the pages made anew: until a page is drawn, the not-drawn page fills the view. */
+    public static void forgetPageSize() {
+        lastDrawableWidth = 0;
+        lastDrawableHeight = 0;
+    }
+
     private void drawPageNotReady(final Canvas canvas) {
-        canvas.drawColor(MagicHelper.getBgColor());
+        if (lastDrawableWidth > 0 && lastDrawableHeight > 0) {
+            canvas.drawColor(MagicHelper.getForegroundColor());
+            pageBgRect.set(0, 0, lastDrawableWidth, lastDrawableHeight);
+            imageMatrix().mapRect(pageBgRect);
+        } else {
+            pageBgRect.set(0, 0, getWidth(), getHeight());
+        }
+        pageBgPaint.setAlpha(255);
+        pageBgPaint.setColor(MagicHelper.getBgColor());
+        canvas.drawRect(pageBgRect, pageBgPaint);
         if (MagicHelper.isNeedBookBackgroundImage()) {
             final Bitmap bg = MagicHelper.getBackgroundImage();
             if (bg != null && !bg.isRecycled()) {
-                pageBgRect.set(0, 0, getWidth(), getHeight());
                 pageBgPaint.setAlpha(255 - MagicHelper.getTransparencyInt());
                 canvas.drawBitmap(bg, null, pageBgRect, pageBgPaint);
             }
@@ -910,6 +931,8 @@ public class PageImaveView extends View {
         imageDrawable = new BitmapDrawable(getResources(), bitmap);
         drawableHeight = bitmap.getHeight();
         drawableWidth = bitmap.getWidth();
+        lastDrawableWidth = drawableWidth;
+        lastDrawableHeight = drawableHeight;
         imageDrawable.setBounds(0, 0, drawableWidth, drawableHeight);
 
         // The zoom is shared by every page: a page made beside the one on screen fitting it to its
