@@ -12,6 +12,7 @@ import android.widget.PopupMenu;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.DialogSpeedRead;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -44,10 +45,24 @@ public class MenuBuilderM {
                     AppState.get().isMirrorImage = isChecked;
                     anchor.post(dc::restartActivity);
                 });
-        // Pages turned as in a paper book: the paged view only, taken up on the next turn
-        if (AppSP.get().readingMode == AppState.READING_MODE_BOOK && AppState.get().rotateViewPager == 0) {
+        // Pages turned as in a paper book: in the paged view, taken up on the next turn
+        if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
+            if (AppState.get().rotateViewPager == 0) {
+                p.getMenu().addCheckbox(anchor.getContext().getString(R.string.turn_pages_like_paper_book),
+                        AppState.get().isBookPageCurl, (button, isChecked) -> AppState.get().isBookPageCurl = isChecked);
+            }
+        } else {
+            // In the vertical view no page turns, so it is not ticked there: ticking it goes over
+            // to the paged view, the pages turning there at once - also when they were set to
+            // turn up and down, which they cannot so
             p.getMenu().addCheckbox(anchor.getContext().getString(R.string.turn_pages_like_paper_book),
-                    AppState.get().isBookPageCurl, (button, isChecked) -> AppState.get().isBookPageCurl = isChecked);
+                    false, (button, isChecked) -> {
+                        if (isChecked) {
+                            AppState.get().isBookPageCurl = true;
+                            AppState.get().rotateViewPager = 0;
+                            anchor.post(() -> ExtUtils.switchReadingMode(dc.getActivity(), dc));
+                        }
+                    });
         }
     }
 
