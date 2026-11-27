@@ -91,6 +91,13 @@ public class PageCurlView extends View {
     private boolean dragging;
     /** Where the finger went down, in the book's way. */
     private float grabX, grabY;
+    /** The page is held by its edge, the finger having gone down between its corners. */
+    private boolean byEdge;
+    /**
+     * Of the page's height, how far from its top and bottom a finger takes the corner; between
+     * the two it takes the edge. The same band as the corners of {@link #steep}.
+     */
+    private static final float EDGE_FROM = 0.3f;
 
     /**
      * The turning page as pictures, for bending it: its front, and its back - paper with the
@@ -220,7 +227,11 @@ public class PageCurlView extends View {
     }
 
     private void setCorner(boolean topCorner) {
-        final float y = topCorner ? sheetT : sheetB;
+        setHold(topCorner ? sheetT : sheetB);
+    }
+
+    /** The page is held at its outer edge at this height: a corner, or between them. */
+    private void setHold(float y) {
         corner.set(sheetR, y);
         turnedOver.set(2 * spine - sheetR, y);
     }
@@ -247,8 +258,15 @@ public class PageCurlView extends View {
         if (!begin(delta)) {
             return false;
         }
-        // Held by the corner nearest the finger
-        setCorner(y < (sheetT + sheetB) / 2f);
+        // Held by the corner nearest the finger, or, from the middle of the page, by its edge
+        // where the finger is: the page then bends straight down, the same at top and bottom
+        final float rel = (y - sheetT) / Math.max(1f, sheetB - sheetT);
+        byEdge = rel > EDGE_FROM && rel < 1 - EDGE_FROM;
+        if (byEdge) {
+            setHold(y);
+        } else {
+            setCorner(rel < 0.5f);
+        }
         prepareSheets();
         grabX = book(x);
         grabY = y;
@@ -268,7 +286,8 @@ public class PageCurlView extends View {
         // under the finger
         final float travel = (float) Math.hypot(bx - grabX, y - grabY);
         final float k = Math.max(0f, 1f - travel / Math.max(1f, sheetW * 0.6f));
-        final float py = y + (corner.y - grabY) * k;
+        // Held by the edge, the page leans only a little with the finger going up or down
+        final float py = byEdge ? corner.y + (y - grabY) * 0.25f : y + (corner.y - grabY) * k;
         if (peel) {
             setPoint(bx + (corner.x - grabX) * k, py);
         } else {
@@ -725,7 +744,7 @@ public class PageCurlView extends View {
             return 1f;
         }
         final float cw = page.width() * 0.35f;
-        final float ch = page.height() * 0.3f;
+        final float ch = page.height() * EDGE_FROM;
         final boolean side = x < page.left + cw || x > page.right - cw;
         final boolean end = y < page.top + ch || y > page.bottom - ch;
         return side && end ? 0.5f : 1f;
