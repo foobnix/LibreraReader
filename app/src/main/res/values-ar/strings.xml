@@ -166,8 +166,12 @@
    <string name="add">إضافة</string>
    <string name="search">بحث</string>
    <string name="export_bookmarks">تصدير التبويبات</string>
-   <string name="simple_scroll_animation">بسيط التمرير الرسوم المتحركة</string>
-   <string name="turn_pages_like_paper_book">قلب الصفحات مثل كتاب ورقي</string>
+   <string name="page_effect">تأثير الصفحة</string>
+   <string name="page_effect_none">بلا</string>
+   <string name="page_effect_simple_horizontal">بسيط، أفقي</string>
+   <string name="page_effect_simple_vertical">بسيط، عمودي</string>
+   <string name="page_effect_book_horizontal">صفحة كتاب، أفقي</string>
+   <string name="page_effect_book_vertical">صفحة كتاب، عمودي</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">المكتبة</string>
    <string name="extracting_information_from_books">استخراج المعلومات من الكتب</string>

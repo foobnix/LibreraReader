@@ -166,8 +166,12 @@
    <string name="add">Hozzáadás</string>
    <string name="search">Keresés</string>
    <string name="export_bookmarks">Exportálás</string>
-   <string name="simple_scroll_animation">Lapáttűnés animálása (görgetés)</string>
-   <string name="turn_pages_like_paper_book">Lapozás, mint egy papírkönyvben</string>
+   <string name="page_effect">Lapozási effektus</string>
+   <string name="page_effect_none">Nincs</string>
+   <string name="page_effect_simple_horizontal">Egyszerű, vízszintes</string>
+   <string name="page_effect_simple_vertical">Egyszerű, függőleges</string>
+   <string name="page_effect_book_horizontal">Könyvlap, vízszintes</string>
+   <string name="page_effect_book_vertical">Könyvlap, függőleges</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Könyvtár</string>
    <string name="extracting_information_from_books">Információk kiolvasása a fájlokból</string>

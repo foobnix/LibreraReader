@@ -166,8 +166,12 @@
    <string name="add">Toevoegen</string>
    <string name="search">Zoeken</string>
    <string name="export_bookmarks">Exporteer bladwijzers</string>
-   <string name="simple_scroll_animation">Simple scroll animatie</string>
-   <string name="turn_pages_like_paper_book">Pagina\'s omslaan zoals in een papieren boek</string>
+   <string name="page_effect">Pagina-effect</string>
+   <string name="page_effect_none">Geen</string>
+   <string name="page_effect_simple_horizontal">Eenvoudig, horizontaal</string>
+   <string name="page_effect_simple_vertical">Eenvoudig, verticaal</string>
+   <string name="page_effect_book_horizontal">Boekpagina, horizontaal</string>
+   <string name="page_effect_book_vertical">Boekpagina, verticaal</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotheek</string>
    <string name="extracting_information_from_books">Extraheren van informatie uit boeken</string>

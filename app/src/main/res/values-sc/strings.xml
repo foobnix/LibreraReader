@@ -166,8 +166,12 @@
    <string name="add">Annanghe</string>
    <string name="search">Agata</string>
    <string name="export_bookmarks">Esporta</string>
-   <string name="simple_scroll_animation">Ànima sas transitziones de pàgina (iscurrimentu)</string>
-   <string name="turn_pages_like_paper_book">Bota sas pàginas comente in unu libru de paperi</string>
+   <string name="page_effect">Efetu de pàgina</string>
+   <string name="page_effect_none">Perunu</string>
+   <string name="page_effect_simple_horizontal">Simple, orizontale</string>
+   <string name="page_effect_simple_vertical">Simple, verticale</string>
+   <string name="page_effect_book_horizontal">Pàgina de libru, orizontale</string>
+   <string name="page_effect_book_vertical">Pàgina de libru, verticale</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Biblioteca</string>
    <string name="extracting_information_from_books">Estraende informatziones dae sos documentos</string>

@@ -1685,7 +1685,7 @@ public class PageImaveView extends View {
                 brightnessHelper.onActoinDown(x, y);
                 isReadyForMove = false;
                 // A slanted pull from a page corner turns the page, where pages turn like paper
-                downAcross = PageCurlView.isOn() ? PageCurlView.steep(pageOnScreen(0), x, y) : 1f;
+                downAcross = PageCurlView.isOn() && !PageCurlView.isVertical() ? PageCurlView.steep(pageOnScreen(0), x, y) : 1f;
                 if (AppState.get().isSelectTexByTouch) {
                     isLognPress = true;
                     isIgronerClick = true;

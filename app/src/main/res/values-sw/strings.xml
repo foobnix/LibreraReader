@@ -166,8 +166,12 @@
    <string name="add">Kuongeza</string>
    <string name="search">Tafuta</string>
    <string name="export_bookmarks">Export Bookmarks</string>
-   <string name="simple_scroll_animation">Rahisi kitabu uhuishaji</string>
-   <string name="turn_pages_like_paper_book">Geuza kurasa kama katika kitabu cha karatasi</string>
+   <string name="page_effect">Athari ya ukurasa</string>
+   <string name="page_effect_none">Hakuna</string>
+   <string name="page_effect_simple_horizontal">Rahisi, mlalo</string>
+   <string name="page_effect_simple_vertical">Rahisi, wima</string>
+   <string name="page_effect_book_horizontal">Ukurasa wa kitabu, mlalo</string>
+   <string name="page_effect_book_vertical">Ukurasa wa kitabu, wima</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Maktaba</string>
    <string name="extracting_information_from_books">Kuchimba habari kutoka vitabu</string>

@@ -166,8 +166,12 @@
    <string name="add">ചേർക്കുക</string>
    <string name="search">കണ്ടെത്തുക</string>
    <string name="export_bookmarks">കയറ്റുമതി</string>
-   <string name="simple_scroll_animation">പേജ് സംക്രമണം ആനിമേറ്റുചെയ്യുക (സ്ക്രോൾ)</string>
-   <string name="turn_pages_like_paper_book">കടലാസ് പുസ്തകത്തിലെ പോലെ പേജുകൾ മറിക്കുക</string>
+   <string name="page_effect">പേജ് ഇഫക്റ്റ്</string>
+   <string name="page_effect_none">ഒന്നുമില്ല</string>
+   <string name="page_effect_simple_horizontal">ലളിതം, തിരശ്ചീനം</string>
+   <string name="page_effect_simple_vertical">ലളിതം, ലംബം</string>
+   <string name="page_effect_book_horizontal">പുസ്തക പേജ്, തിരശ്ചീനം</string>
+   <string name="page_effect_book_vertical">പുസ്തക പേജ്, ലംബം</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">പുസ്തകശാല</string>
    <string name="extracting_information_from_books">ഫയലുകളിൽ നിന്ന് വിവരങ്ങൾ എക്‌സ്‌ട്രാക്റ്റുചെയ്യുന്നു</string>

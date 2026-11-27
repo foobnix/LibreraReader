@@ -202,7 +202,7 @@ public class MyPopupMenu {
                     profileLetter.setBackground(item.drawable);
                     imageView.setVisibility(View.GONE);
                 } else {
-                    imageView.setVisibility(View.GONE);
+                    imageView.setVisibility(anyIcon ? View.INVISIBLE : View.GONE);
                 }
                 // A line under the row parts it from the rows that follow. Rows come back recycled,
                 // so the plain ones lose it again.

@@ -166,8 +166,12 @@
    <string name="add">Ajouter</string>
    <string name="search">Rechercher</string>
    <string name="export_bookmarks">Exporter les signets</string>
-   <string name="simple_scroll_animation">Animation de défilement simple</string>
-   <string name="turn_pages_like_paper_book">Tourner les pages comme dans un livre papier</string>
+   <string name="page_effect">Effet de page</string>
+   <string name="page_effect_none">Aucun</string>
+   <string name="page_effect_simple_horizontal">Simple, horizontal</string>
+   <string name="page_effect_simple_vertical">Simple, vertical</string>
+   <string name="page_effect_book_horizontal">Page de livre, horizontal</string>
+   <string name="page_effect_book_vertical">Page de livre, vertical</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliothèque</string>
    <string name="extracting_information_from_books">Extraction des informations des livres</string>

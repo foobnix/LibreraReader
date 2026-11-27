@@ -44,6 +44,10 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
  * <p>
  * All the geometry is in "book" coordinates: left to right as the book is read, so the
  * mirrored book is worked out as the other one and drawn mirrored.
+ * <p>
+ * Pages that go up and down turn as the leaves of a calendar: bound at the top, lifted by the
+ * bottom and laid over upwards. That is the same turn with across and down swapped: the book
+ * coordinates are the screen's turned on its diagonal.
  */
 public class PageCurlView extends View {
 
@@ -72,6 +76,10 @@ public class PageCurlView extends View {
      */
     private boolean peel;
     private boolean twoPages, mirror;
+    /** Bound at the top, as a calendar: book x is down the screen, book y across it. */
+    private boolean vertical;
+    /** From book coordinates to this view's, and back: it is its own inverse. */
+    private final Matrix toView = new Matrix();
     private int paper;
     /** x of the binding: the edge the turning page is held at. */
     private float spine;
@@ -170,9 +178,14 @@ public class PageCurlView extends View {
         setVisibility(INVISIBLE);
     }
 
-    /** Pages are turned as in a paper book: the setting is on, and the pages are side by side. */
+    /** Pages are turned as in a paper book: side by side, or up and down as a calendar. */
     public static boolean isOn() {
-        return AppState.get().isBookPageCurl && AppState.get().rotateViewPager == 0;
+        return AppState.get().isBookPageCurl;
+    }
+
+    /** The pages turn up and down, as the leaves of a calendar. */
+    public static boolean isVertical() {
+        return isOn() && AppState.get().rotateViewPager == 90;
     }
 
     public void setHost(Host host) {
@@ -200,14 +213,16 @@ public class PageCurlView extends View {
             return false;
         }
         this.delta = delta;
-        twoPages = AppSP.get().isDouble && !AppSP.get().isCut;
+        vertical = AppState.get().rotateViewPager == 90;
+        // A calendar turns the whole spread at once, and the same way in any book
+        twoPages = !vertical && AppSP.get().isDouble && !AppSP.get().isCut;
         // Of two pages, back is as in a book: the left page is lifted by its outer corner and
         // laid over to the right, the previous spread under it and on its back - the turn
         // forward, mirrored. Of one page, the previous page comes back over the shown one.
         peel = delta > 0 || twoPages;
         top = peel ? shown : other;
         under = peel ? other : shown;
-        mirror = AppSP.get().isRTL != (delta < 0 && twoPages);
+        mirror = !vertical && AppSP.get().isRTL != (delta < 0 && twoPages);
         paper = MagicHelper.getBgColor();
         // The turning page's picture on the screen: pages cropped to their print are each of
         // their own size, and only the one turning is lifted; the other lies there as it is drawn
@@ -218,12 +233,18 @@ public class PageCurlView extends View {
         if (rect == null || !rect.intersect(0, 0, w, h) || rect.width() < w * 0.2f || rect.height() < h * 0.1f) {
             rect = new RectF(0, 0, w, h);
         }
-        final float left = mirror ? w - rect.right : rect.left;
-        final float right = mirror ? w - rect.left : rect.right;
+        toView.reset();
+        if (vertical) {
+            toView.setValues(new float[]{0, 1, 0, 1, 0, 0, 0, 0, 1});
+        } else if (mirror) {
+            toView.setScale(-1, 1, w / 2f, 0);
+        }
+        final float left = vertical ? rect.top : mirror ? w - rect.right : rect.left;
+        final float right = vertical ? rect.bottom : mirror ? w - rect.left : rect.right;
         spine = twoPages ? (left + right) / 2f : left;
         sheetR = right;
-        sheetT = rect.top;
-        sheetB = rect.bottom;
+        sheetT = vertical ? rect.left : rect.top;
+        sheetB = vertical ? rect.right : rect.bottom;
         setVisibility(VISIBLE);
         return true;
     }
@@ -240,24 +261,23 @@ public class PageCurlView extends View {
 
     /** Turns the page by itself, as by a key: lifted by its bottom corner. */
     public boolean turn(int delta) {
-        return turn(delta, Float.NaN);
+        return turn(delta, Float.NaN, Float.NaN);
     }
 
     /**
-     * Turns the page by itself, as by a tap at this height on this view (NaN: a key): lifted
-     * where the finger is, as a drag from there would, by the top or bottom corner or by the
-     * middle of its edge.
+     * Turns the page by itself, as by a tap at this point on this view (NaN: a key): lifted
+     * where the finger is, as a drag from there would, by a corner or by the middle of its edge.
      */
-    public boolean turn(int delta, float y) {
+    public boolean turn(int delta, float x, float y) {
         finishNow();
         if (!begin(delta)) {
             return false;
         }
         byEdge = false;
-        if (Float.isNaN(y)) {
+        if (Float.isNaN(x) || Float.isNaN(y)) {
             setCorner(false);
         } else {
-            holdAt(y);
+            holdAt(bookY(x, y));
         }
         prepareSheets();
         final PointF from = new PointF();
@@ -290,20 +310,21 @@ public class PageCurlView extends View {
         if (!begin(delta)) {
             return false;
         }
-        holdAt(y);
+        holdAt(bookY(x, y));
         prepareSheets();
-        grabX = book(x);
-        grabY = y;
+        grabX = bookX(x, y);
+        grabY = bookY(x, y);
         dragging = true;
         drag(x, y);
         return true;
     }
 
-    public void drag(float x, float y) {
+    public void drag(float viewX, float viewY) {
         if (!dragging) {
             return;
         }
-        final float bx = book(x);
+        final float bx = bookX(viewX, viewY);
+        final float y = bookY(viewX, viewY);
         final float sheetW = sheetR - spine;
         // The page moves by as much as the finger from where it went down, so it starts to lift
         // from where it lies instead of jumping to the finger; on the way the corner comes
@@ -323,13 +344,13 @@ public class PageCurlView extends View {
         invalidate();
     }
 
-    /** The finger is lifted, moving at {@code velocityX} pixels a second across the screen. */
-    public void release(float velocityX) {
+    /** The finger is lifted, moving at these pixels a second on the screen. */
+    public void release(float velocityX, float velocityY) {
         if (!dragging) {
             return;
         }
         dragging = false;
-        final float vx = mirror ? -velocityX : velocityX;
+        final float vx = vertical ? velocityY : mirror ? -velocityX : velocityX;
         final float fling = Dips.dpToPx(400);
         final float done = (corner.x - point.x) / (corner.x - turnedOver.x);
         final boolean turned;
@@ -498,8 +519,21 @@ public class PageCurlView extends View {
         }
     }
 
-    private float book(float x) {
-        return mirror ? getWidth() - x : x;
+    private float bookX(float x, float y) {
+        return vertical ? y : mirror ? getWidth() - x : x;
+    }
+
+    private float bookY(float x, float y) {
+        return vertical ? x : y;
+    }
+
+    /** This view's size in book coordinates. */
+    private int bookW() {
+        return vertical ? getHeight() : getWidth();
+    }
+
+    private int bookH() {
+        return vertical ? getWidth() : getHeight();
     }
 
     /**
@@ -559,12 +593,10 @@ public class PageCurlView extends View {
             drawCurl(canvas);
             return;
         }
-        final int w = getWidth();
-        final int h = getHeight();
+        final int w = bookW();
+        final int h = bookH();
         canvas.save();
-        if (mirror) {
-            canvas.scale(-1, 1, w / 2f, 0);
-        }
+        canvas.concat(toView);
         canvas.drawColor(paper);
 
         final float cx = corner.x;
@@ -683,14 +715,11 @@ public class PageCurlView extends View {
      * pictures: its front where it faces up, its back where it is turned over.
      */
     private void drawCurl(Canvas canvas) {
-        final int w = getWidth();
-        final int h = getHeight();
+        final int h = bookH();
         final float sheetW = sheetR - spine;
         final float sheetH = sheetB - sheetT;
         canvas.save();
-        if (mirror) {
-            canvas.scale(-1, 1, w / 2f, 0);
-        }
+        canvas.concat(toView);
         canvas.drawColor(paper);
 
         final float cx = corner.x;
@@ -781,8 +810,11 @@ public class PageCurlView extends View {
         return side && end ? 0.5f : 1f;
     }
 
-    /** {@link #steep(RectF, float, float)} for the page shown now. */
+    /** {@link #steep(RectF, float, float)} for the page shown now; a calendar has no slant. */
     public float steepAt(float x, float y) {
+        if (isVertical()) {
+            return 1f;
+        }
         final View shown = host == null ? null : host.pageView(0);
         RectF page = shown == null ? null : host.pageRect(shown);
         if (page == null) {
@@ -963,15 +995,16 @@ public class PageCurlView extends View {
         }
     }
 
-    /** Draws a page view as the pager shows it; in a mirrored book, back to its own way. */
+    /**
+     * Draws a page view as the pager shows it, on a canvas in book coordinates: in a mirrored
+     * book or a calendar, back to its own way.
+     */
     private void drawPage(Canvas canvas, View page) {
         if (page == null) {
             return;
         }
         canvas.save();
-        if (mirror) {
-            canvas.scale(-1, 1, getWidth() / 2f, 0);
-        }
+        canvas.concat(toView);
         page.draw(canvas);
         canvas.restore();
     }

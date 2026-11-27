@@ -166,8 +166,12 @@
    <string name="add">Dodaj</string>
    <string name="search">Szukaj</string>
    <string name="export_bookmarks">Eksportuj zakładki</string>
-   <string name="simple_scroll_animation">Animuj przejście strony (przewijanie)</string>
-   <string name="turn_pages_like_paper_book">Przewracaj strony jak w papierowej książce</string>
+   <string name="page_effect">Efekt strony</string>
+   <string name="page_effect_none">Brak</string>
+   <string name="page_effect_simple_horizontal">Prosty, poziomo</string>
+   <string name="page_effect_simple_vertical">Prosty, pionowo</string>
+   <string name="page_effect_book_horizontal">Strona książki, poziomo</string>
+   <string name="page_effect_book_vertical">Strona książki, pionowo</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Biblioteka</string>
    <string name="extracting_information_from_books">Uzyskiwanie informacji z książek</string>

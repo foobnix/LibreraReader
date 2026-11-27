@@ -166,8 +166,12 @@
    <string name="add">添加</string>
    <string name="search">搜索</string>
    <string name="export_bookmarks">导出</string>
-   <string name="simple_scroll_animation">显示翻页动画(滚动)</string>
-   <string name="turn_pages_like_paper_book">像纸质书一样翻页</string>
+   <string name="page_effect">翻页效果</string>
+   <string name="page_effect_none">无</string>
+   <string name="page_effect_simple_horizontal">简单，横向</string>
+   <string name="page_effect_simple_vertical">简单，纵向</string>
+   <string name="page_effect_book_horizontal">书页，横向</string>
+   <string name="page_effect_book_vertical">书页，纵向</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">书库</string>
    <string name="extracting_information_from_books">建立索引</string>

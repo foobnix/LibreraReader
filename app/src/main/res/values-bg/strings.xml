@@ -166,8 +166,12 @@
    <string name="add">Добави</string>
    <string name="search">Търсене</string>
    <string name="export_bookmarks">Износ</string>
-   <string name="simple_scroll_animation">Анимационен преход на страница (превъртане)</string>
-   <string name="turn_pages_like_paper_book">Обръщане на страниците като в хартиена книга</string>
+   <string name="page_effect">Ефект на страницата</string>
+   <string name="page_effect_none">Без</string>
+   <string name="page_effect_simple_horizontal">Прост, хоризонтално</string>
+   <string name="page_effect_simple_vertical">Прост, вертикално</string>
+   <string name="page_effect_book_horizontal">Книжна страница, хоризонтално</string>
+   <string name="page_effect_book_vertical">Книжна страница, вертикално</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Библиотека</string>
    <string name="extracting_information_from_books">Извличане на информация от файлове</string>

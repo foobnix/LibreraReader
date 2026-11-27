@@ -166,8 +166,12 @@
    <string name="add">Қосу</string>
    <string name="search">Табу</string>
    <string name="export_bookmarks">Экспорт</string>
-   <string name="simple_scroll_animation">Бетті жылжыту (жылжыту)</string>
-   <string name="turn_pages_like_paper_book">Беттерді қағаз кітаптағыдай парақтау</string>
+   <string name="page_effect">Бет эффектісі</string>
+   <string name="page_effect_none">Жоқ</string>
+   <string name="page_effect_simple_horizontal">Қарапайым, көлденең</string>
+   <string name="page_effect_simple_vertical">Қарапайым, тік</string>
+   <string name="page_effect_book_horizontal">Кітап беті, көлденең</string>
+   <string name="page_effect_book_vertical">Кітап беті, тік</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Кітапхана</string>
    <string name="extracting_information_from_books">Файлдардан ақпарат алу</string>

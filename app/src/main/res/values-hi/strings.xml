@@ -166,8 +166,12 @@
    <string name="add">जोड़ना</string>
    <string name="search">खोज</string>
    <string name="export_bookmarks">बुकमार्क निर्यात करें</string>
-   <string name="simple_scroll_animation">सरल पुस्तक एनीमेशन</string>
-   <string name="turn_pages_like_paper_book">कागज़ की किताब की तरह पन्ने पलटें</string>
+   <string name="page_effect">पृष्ठ प्रभाव</string>
+   <string name="page_effect_none">कोई नहीं</string>
+   <string name="page_effect_simple_horizontal">सरल, क्षैतिज</string>
+   <string name="page_effect_simple_vertical">सरल, लंबवत</string>
+   <string name="page_effect_book_horizontal">पुस्तक पृष्ठ, क्षैतिज</string>
+   <string name="page_effect_book_vertical">पुस्तक पृष्ठ, लंबवत</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">पुस्तकालय</string>
    <string name="extracting_information_from_books">पुस्तकों से जानकारी निकालने</string>

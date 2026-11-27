@@ -166,8 +166,12 @@
    <string name="add">Pridėti</string>
    <string name="search">Ieškoti</string>
    <string name="export_bookmarks">Kurti žymelių kopiją</string>
-   <string name="simple_scroll_animation">Slinkimo animacija</string>
-   <string name="turn_pages_like_paper_book">Versti puslapius kaip popierinėje knygoje</string>
+   <string name="page_effect">Puslapio efektas</string>
+   <string name="page_effect_none">Nėra</string>
+   <string name="page_effect_simple_horizontal">Paprastas, horizontaliai</string>
+   <string name="page_effect_simple_vertical">Paprastas, vertikaliai</string>
+   <string name="page_effect_book_horizontal">Knygos puslapis, horizontaliai</string>
+   <string name="page_effect_book_vertical">Knygos puslapis, vertikaliai</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Biblioteka</string>
    <string name="extracting_information_from_books">Išskleidžiama knygų informacija</string>

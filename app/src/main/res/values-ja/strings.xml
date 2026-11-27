@@ -166,8 +166,12 @@
    <string name="add">追加する</string>
    <string name="search">検索</string>
    <string name="export_bookmarks">ブックマークのエクスポート</string>
-   <string name="simple_scroll_animation">シンプルなスクロールアニメーション</string>
-   <string name="turn_pages_like_paper_book">紙の本のようにページをめくる</string>
+   <string name="page_effect">ページ効果</string>
+   <string name="page_effect_none">なし</string>
+   <string name="page_effect_simple_horizontal">シンプル（横）</string>
+   <string name="page_effect_simple_vertical">シンプル（縦）</string>
+   <string name="page_effect_book_horizontal">本のページ（横）</string>
+   <string name="page_effect_book_vertical">本のページ（縦）</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">ライブラリ</string>
    <string name="extracting_information_from_books">書籍から情報の抽出中</string>

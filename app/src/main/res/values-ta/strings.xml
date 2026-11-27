@@ -166,8 +166,12 @@
    <string name="add">கூட்டு</string>
    <string name="search">கண்டுபிடி</string>
    <string name="export_bookmarks">ஏற்றுமதி</string>
-   <string name="simple_scroll_animation">பக்க மாற்றத்தை உயிரூட்டுக (உருள்)</string>
-   <string name="turn_pages_like_paper_book">காகிதப் புத்தகம் போல் பக்கங்களைப் புரட்டு</string>
+   <string name="page_effect">பக்க விளைவு</string>
+   <string name="page_effect_none">எதுவுமில்லை</string>
+   <string name="page_effect_simple_horizontal">எளிய, கிடைமட்டம்</string>
+   <string name="page_effect_simple_vertical">எளிய, செங்குத்து</string>
+   <string name="page_effect_book_horizontal">புத்தகப் பக்கம், கிடைமட்டம்</string>
+   <string name="page_effect_book_vertical">புத்தகப் பக்கம், செங்குத்து</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">நூலகம்</string>
    <string name="extracting_information_from_books">கோப்புகளிலிருந்து தகவல்களைப் பிரித்தெடுக்கிறது</string>

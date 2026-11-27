@@ -151,20 +151,23 @@ public class VerticalViewPager extends CustomViewPager {
                     curlTracking = false;
                     return false;
                 }
-                final float dx = x - curlDownX;
-                final float dy = y - curlDownY;
+                // Across the page as it turns: down the screen for a calendar
+                final boolean calendar = PageCurlView.isVertical();
+                final float dx = calendar ? y - curlDownY : x - curlDownX;
+                final float dy = calendar ? x - curlDownX : y - curlDownY;
                 // A page is pulled by its corner on a slant: any drag more across than down turns
                 // it, and from a corner one twice as much down as across still does. The page
                 // itself takes the steeper ones, to move it
                 final boolean across = Math.abs(dx) >= Math.abs(dy) * curlSteep;
                 if (Math.abs(dx) > curlSlop && across) {
-                    if (canScroll(this, false, (int) dx, (int) x, (int) y)) {
+                    if (!calendar && canScroll(this, false, (int) dx, (int) x, (int) y)) {
                         LOG.d("PageCurl", "not started", "the page scrolls across");
                         curlTracking = false;
                         return false;
                     }
-                    // Across the book as it is read: right to left in a right-to-left book
-                    final boolean forward = isRtl() ? dx > 0 : dx < 0;
+                    // Across the book as it is read: right to left in a right-to-left book; up
+                    // for a calendar
+                    final boolean forward = !calendar && isRtl() ? dx > 0 : dx < 0;
                     curlTracking = false;
                     final boolean started = curl.startDrag(forward ? 1 : -1, curlDownX, curlDownY);
                     LOG.d("PageCurl", started ? "started" : "not started, no page", forward ? "next" : "prev",
@@ -191,7 +194,7 @@ public class VerticalViewPager extends CustomViewPager {
             if (curlDragging) {
                 if (action == MotionEvent.ACTION_UP && velocity != null) {
                     velocity.computeCurrentVelocity(1000);
-                    curl.release(velocity.getXVelocity());
+                    curl.release(velocity.getXVelocity(), velocity.getYVelocity());
                 } else {
                     curl.cancelDrag();
                 }

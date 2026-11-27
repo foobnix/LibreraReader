@@ -168,8 +168,12 @@
    <string name="add">Engadir</string>
    <string name="search">Procurar</string>
    <string name="export_bookmarks">Exportar</string>
-   <string name="simple_scroll_animation">Animar transición de páxina (desprazamento)</string>
-   <string name="turn_pages_like_paper_book">Pasar as páxinas como nun libro de papel</string>
+   <string name="page_effect">Efecto de páxina</string>
+   <string name="page_effect_none">Ningún</string>
+   <string name="page_effect_simple_horizontal">Simple, horizontal</string>
+   <string name="page_effect_simple_vertical">Simple, vertical</string>
+   <string name="page_effect_book_horizontal">Páxina de libro, horizontal</string>
+   <string name="page_effect_book_vertical">Páxina de libro, vertical</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Biblioteca</string>
    <string name="extracting_information_from_books">Extraendo información dos ficheiros</string>

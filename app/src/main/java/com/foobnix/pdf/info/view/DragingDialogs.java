@@ -153,6 +153,7 @@ import com.foobnix.pdf.search.activity.msg.FlippingStop;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
 import com.foobnix.pdf.search.activity.msg.MovePageAction;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
+import com.foobnix.pdf.search.menu.PageEffect;
 import com.foobnix.pdf.search.view.ProgressTask;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.ReadingHighlight;
@@ -3344,21 +3345,10 @@ public class DragingDialogs {
             @Override public View getContentView(LayoutInflater inflater) {
                 View inflate = inflater.inflate(R.layout.dialog_flipping_pages, null, false);
 
-                CheckBox isScrollAnimation = inflate.findViewById(R.id.isScrollAnimation);
-                isScrollAnimation.setVisibility(
+                final TextView pageEffect = inflate.findViewById(R.id.pageEffect);
+                ((ViewGroup) pageEffect.getParent()).setVisibility(
                         AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
-                isScrollAnimation.setChecked(AppState.get().isScrollAnimation);
-                isScrollAnimation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isScrollAnimation = isChecked;
-                    }
-                });
-
-                CheckBox isBookPageCurl = inflate.findViewById(R.id.isBookPageCurl);
-                isBookPageCurl.setVisibility(
-                        AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
-                isBookPageCurl.setChecked(AppState.get().isBookPageCurl);
-                isBookPageCurl.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isBookPageCurl = isChecked);
+                PageEffect.bind(pageEffect, null);
 
                 CheckBox isLoopAutoplay = inflate.findViewById(R.id.isLoopAutoplay);
                 isLoopAutoplay.setChecked(AppState.get().isLoopAutoplay);
@@ -4272,21 +4262,15 @@ public class DragingDialogs {
                     return false;
                 });
 
-                CheckBox isScrollAnimation = inflate.findViewById(R.id.isScrollAnimation);
-                isScrollAnimation.setVisibility(
+                final TextView pageEffect = inflate.findViewById(R.id.pageEffect);
+                ((ViewGroup) pageEffect.getParent()).setVisibility(
                         AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
-                isScrollAnimation.setChecked(AppState.get().isScrollAnimation);
-                isScrollAnimation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    @Override public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isScrollAnimation = isChecked;
-                    }
+                PageEffect.bind(pageEffect, () -> {
+                    // The effect may have turned the pages' way with it
+                    final TextView rotate = inflate.findViewById(R.id.rotateViewPager);
+                    rotate.setText(AppState.get().rotateViewPager == 0 ? R.string.horizontal : R.string.vertical);
+                    TxtUtils.underlineTextView(rotate);
                 });
-
-                CheckBox isBookPageCurl = inflate.findViewById(R.id.isBookPageCurl);
-                isBookPageCurl.setVisibility(
-                        AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
-                isBookPageCurl.setChecked(AppState.get().isBookPageCurl);
-                isBookPageCurl.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isBookPageCurl = isChecked);
 
                 CheckBox isDisableSwipe = inflate.findViewById(R.id.isEnableVerticalSwipe);
                 isDisableSwipe.setVisibility(
@@ -4718,6 +4702,8 @@ public class DragingDialogs {
                                                                  R.string.horizontal :
                                                                  R.string.vertical);
                                          TxtUtils.underlineTextView(rotateViewPager);
+                                         // The page effect goes the new way too
+                                         PageEffect.show(inflate.findViewById(R.id.pageEffect));
                                          return false;
                                      }
                                  });
@@ -4730,6 +4716,8 @@ public class DragingDialogs {
                                                                  R.string.horizontal :
                                                                  R.string.vertical);
                                          TxtUtils.underlineTextView(rotateViewPager);
+                                         // The page effect goes the new way too
+                                         PageEffect.show(inflate.findViewById(R.id.pageEffect));
                                          return false;
                                      }
                                  });

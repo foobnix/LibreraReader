@@ -166,8 +166,12 @@
    <string name="add">Ekle</string>
    <string name="search">Bul</string>
    <string name="export_bookmarks">Dışa aktar</string>
-   <string name="simple_scroll_animation">Sayfa kaydırma animasyonunu aç</string>
-   <string name="turn_pages_like_paper_book">Sayfaları kâğıt kitap gibi çevir</string>
+   <string name="page_effect">Sayfa efekti</string>
+   <string name="page_effect_none">Yok</string>
+   <string name="page_effect_simple_horizontal">Basit, yatay</string>
+   <string name="page_effect_simple_vertical">Basit, dikey</string>
+   <string name="page_effect_book_horizontal">Kitap sayfası, yatay</string>
+   <string name="page_effect_book_vertical">Kitap sayfası, dikey</string>
    <string name="___TABS___SECTION___">Sekmeler</string>
    <string name="library">Kütüphane</string>
    <string name="extracting_information_from_books">Kitaplardan bilgi ayıklanıyor</string>

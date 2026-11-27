@@ -166,8 +166,12 @@
    <string name="add">Thêm vào</string>
    <string name="search">Tìm kiếm</string>
    <string name="export_bookmarks">Export Bookmarks</string>
-   <string name="simple_scroll_animation">Hoạt hình cuộn đơn giản</string>
-   <string name="turn_pages_like_paper_book">Lật trang như sách giấy</string>
+   <string name="page_effect">Hiệu ứng trang</string>
+   <string name="page_effect_none">Không</string>
+   <string name="page_effect_simple_horizontal">Đơn giản, ngang</string>
+   <string name="page_effect_simple_vertical">Đơn giản, dọc</string>
+   <string name="page_effect_book_horizontal">Trang sách, ngang</string>
+   <string name="page_effect_book_vertical">Trang sách, dọc</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Thư viện</string>
    <string name="extracting_information_from_books">Trích xuất thông tin từ sách</string>

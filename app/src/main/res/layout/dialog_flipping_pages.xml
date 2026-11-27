@@ -20,17 +20,24 @@
         myseek:text="" >
     </com.foobnix.pdf.info.view.CustomSeek>
 
-    <CheckBox
-        android:id="@+id/isScrollAnimation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/simple_scroll_animation" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <CheckBox
-        android:id="@+id/isBookPageCurl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/turn_pages_like_paper_book" />
+        <TextView
+            android:layout_width="180dip"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/page_effect"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/pageEffect"
+            style="@style/textLinkDropdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/page_effect_none" />
+    </LinearLayout>
     
     <CheckBox
         android:id="@+id/isShowToolBar"

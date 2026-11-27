@@ -22,8 +22,8 @@ public class MenuBuilderM {
 
     /**
      * The ways of reading the page-mode menu offers after its layouts, in the paged and the
-     * vertical view alike: speed reading, and the two switches that change how the page is drawn.
-     * A switch reopens the book, as accent reading is baked into the converted text.
+     * vertical view alike: speed reading, the two switches that change how the page is drawn, and
+     * the page effect. A switch reopens the book, as accent reading is baked into the converted text.
      */
     public static void addReadingModes(final View anchor, final MyPopupMenu p, final DocumentController dc) {
         p.getMenu()
@@ -45,25 +45,27 @@ public class MenuBuilderM {
                     AppState.get().isMirrorImage = isChecked;
                     anchor.post(dc::restartActivity);
                 });
-        // Pages turned as in a paper book: in the paged view, taken up on the next turn
-        if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
-            if (AppState.get().rotateViewPager == 0) {
-                p.getMenu().addCheckbox(anchor.getContext().getString(R.string.turn_pages_like_paper_book),
-                        AppState.get().isBookPageCurl, (button, isChecked) -> AppState.get().isBookPageCurl = isChecked);
-            }
-        } else {
-            // In the vertical view no page turns, so it is not ticked there: ticking it goes over
-            // to the paged view, the pages turning there at once - also when they were set to
-            // turn up and down, which they cannot so
-            p.getMenu().addCheckbox(anchor.getContext().getString(R.string.turn_pages_like_paper_book),
-                    false, (button, isChecked) -> {
-                        if (isChecked) {
-                            AppState.get().isBookPageCurl = true;
-                            AppState.get().rotateViewPager = 0;
-                            anchor.post(() -> ExtUtils.switchReadingMode(dc.getActivity(), dc));
-                        }
-                    });
-        }
+        // How the paged view goes from page to page. The vertical view has no pages to go to:
+        // there it shows none, and a choice of one goes over to the paged view
+        final boolean paged = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
+        final Context c = anchor.getContext();
+        final int current = paged ? PageEffect.get() : PageEffect.NONE;
+        p.getMenu()
+         .add(c.getString(R.string.page_effect) + ": " + PageEffect.name(c, current))
+         .setOnMenuItemClickListener(item -> {
+             PageEffect.choose(anchor, current, effect -> {
+                 if (!paged) {
+                     if (effect != PageEffect.NONE) {
+                         PageEffect.set(effect);
+                         anchor.post(() -> ExtUtils.switchReadingMode(dc.getActivity(), dc));
+                     }
+                 } else if (PageEffect.set(effect)) {
+                     // The pager is made for one way of going: up and down needs it made again
+                     anchor.post(dc::restartActivity);
+                 }
+             });
+             return false;
+         });
     }
 
 

@@ -166,8 +166,12 @@
    <string name="add">Legg til</string>
    <string name="search">Søke</string>
    <string name="export_bookmarks">Eksporter bokmerker</string>
-   <string name="simple_scroll_animation">Enkel rulleanimasjon</string>
-   <string name="turn_pages_like_paper_book">Bla om sider som i en papirbok</string>
+   <string name="page_effect">Bla-effekt</string>
+   <string name="page_effect_none">Ingen</string>
+   <string name="page_effect_simple_horizontal">Enkel, vannrett</string>
+   <string name="page_effect_simple_vertical">Enkel, loddrett</string>
+   <string name="page_effect_book_horizontal">Bokside, vannrett</string>
+   <string name="page_effect_book_vertical">Bokside, loddrett</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotek</string>
    <string name="extracting_information_from_books">Utpakking av informasjon fra bøker</string>

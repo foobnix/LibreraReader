@@ -166,8 +166,12 @@
    <string name="add">Adde</string>
    <string name="search">Perlustrare</string>
    <string name="export_bookmarks">Signa exportare</string>
-   <string name="simple_scroll_animation">Animatio procurrendi</string>
-   <string name="turn_pages_like_paper_book">Paginas ut in libro chartaceo verte</string>
+   <string name="page_effect">Effectus paginae</string>
+   <string name="page_effect_none">Nullus</string>
+   <string name="page_effect_simple_horizontal">Simplex, horizontalis</string>
+   <string name="page_effect_simple_vertical">Simplex, verticalis</string>
+   <string name="page_effect_book_horizontal">Pagina libri, horizontalis</string>
+   <string name="page_effect_book_vertical">Pagina libri, verticalis</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Librarium</string>
    <string name="extracting_information_from_books">Desumo informationem ex plicis</string>

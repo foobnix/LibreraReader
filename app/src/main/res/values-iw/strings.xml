@@ -166,8 +166,12 @@
    <string name="add">הוסף</string>
    <string name="search">חפש</string>
    <string name="export_bookmarks">יצוא סימניות</string>
-   <string name="simple_scroll_animation">אנימציה גלילה פשוט</string>
-   <string name="turn_pages_like_paper_book">הפוך דפים כמו בספר נייר</string>
+   <string name="page_effect">אפקט עמוד</string>
+   <string name="page_effect_none">ללא</string>
+   <string name="page_effect_simple_horizontal">פשוט, אופקי</string>
+   <string name="page_effect_simple_vertical">פשוט, אנכי</string>
+   <string name="page_effect_book_horizontal">דף ספר, אופקי</string>
+   <string name="page_effect_book_vertical">דף ספר, אנכי</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">ספריה</string>
    <string name="extracting_information_from_books">להוציא מידע מתוך ספרים</string>

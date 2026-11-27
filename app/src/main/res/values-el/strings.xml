@@ -166,8 +166,12 @@
    <string name="add">Προσθήκη</string>
    <string name="search">Εύρημα</string>
    <string name="export_bookmarks">Εξαγωγή</string>
-   <string name="simple_scroll_animation">Μετάβαση κίνησης σελίδας (κύλιση)</string>
-   <string name="turn_pages_like_paper_book">Γύρισμα σελίδων όπως σε χάρτινο βιβλίο</string>
+   <string name="page_effect">Εφέ σελίδας</string>
+   <string name="page_effect_none">Κανένα</string>
+   <string name="page_effect_simple_horizontal">Απλό, οριζόντια</string>
+   <string name="page_effect_simple_vertical">Απλό, κάθετα</string>
+   <string name="page_effect_book_horizontal">Σελίδα βιβλίου, οριζόντια</string>
+   <string name="page_effect_book_vertical">Σελίδα βιβλίου, κάθετα</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Βιβλιοθήκη</string>
    <string name="extracting_information_from_books">Εξαγωγή πληροφοριών από αρχεία</string>

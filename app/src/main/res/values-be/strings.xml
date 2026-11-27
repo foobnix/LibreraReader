@@ -166,8 +166,12 @@
    <string name="add">Дадаць</string>
    <string name="search">Знайсці</string>
    <string name="export_bookmarks">Экспарт</string>
-   <string name="simple_scroll_animation">Аніміраваны пераход старонкі (пракрутка)</string>
-   <string name="turn_pages_like_paper_book">Гартаць старонкі як у папяровай кнізе</string>
+   <string name="page_effect">Эфект старонкі</string>
+   <string name="page_effect_none">Няма</string>
+   <string name="page_effect_simple_horizontal">Просты, гарызантальна</string>
+   <string name="page_effect_simple_vertical">Просты, вертыкальна</string>
+   <string name="page_effect_book_horizontal">Старонка кнігі, гарызантальна</string>
+   <string name="page_effect_book_vertical">Старонка кнігі, вертыкальна</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Бібліятэка</string>
    <string name="extracting_information_from_books">Выманне інфармацыі з файлаў</string>

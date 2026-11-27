@@ -166,8 +166,12 @@
    <string name="add">Hinzufügen</string>
    <string name="search">Suche</string>
    <string name="export_bookmarks">Lesezeichen exportieren</string>
-   <string name="simple_scroll_animation">Animation fürs Umblättern</string>
-   <string name="turn_pages_like_paper_book">Seiten wie in einem Papierbuch umblättern</string>
+   <string name="page_effect">Umblättereffekt</string>
+   <string name="page_effect_none">Keiner</string>
+   <string name="page_effect_simple_horizontal">Einfach, horizontal</string>
+   <string name="page_effect_simple_vertical">Einfach, vertikal</string>
+   <string name="page_effect_book_horizontal">Buchseite, horizontal</string>
+   <string name="page_effect_book_vertical">Buchseite, vertikal</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliothek</string>
    <string name="extracting_information_from_books">Extrahieren von Informationen aus Dokumenten</string>

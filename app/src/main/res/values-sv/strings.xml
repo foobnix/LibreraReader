@@ -166,8 +166,12 @@
    <string name="add">Lägg till</string>
    <string name="search">Sök</string>
    <string name="export_bookmarks">Exportera bokmärken</string>
-   <string name="simple_scroll_animation">Enkel rullnings animation</string>
-   <string name="turn_pages_like_paper_book">Bläddra sidor som i en pappersbok</string>
+   <string name="page_effect">Bläddringseffekt</string>
+   <string name="page_effect_none">Ingen</string>
+   <string name="page_effect_simple_horizontal">Enkel, vågrätt</string>
+   <string name="page_effect_simple_vertical">Enkel, lodrätt</string>
+   <string name="page_effect_book_horizontal">Boksida, vågrätt</string>
+   <string name="page_effect_book_vertical">Boksida, lodrätt</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotek</string>
    <string name="extracting_information_from_books">Extrahera information från böcker</string>

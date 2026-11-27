@@ -166,8 +166,12 @@
    <string name="add">Aggiungere</string>
    <string name="search">Cerca</string>
    <string name="export_bookmarks">Esporta segnalibri</string>
-   <string name="simple_scroll_animation">Animazione di scorrimento semplice</string>
-   <string name="turn_pages_like_paper_book">Sfoglia le pagine come in un libro di carta</string>
+   <string name="page_effect">Effetto pagina</string>
+   <string name="page_effect_none">Nessuno</string>
+   <string name="page_effect_simple_horizontal">Semplice, orizzontale</string>
+   <string name="page_effect_simple_vertical">Semplice, verticale</string>
+   <string name="page_effect_book_horizontal">Pagina di libro, orizzontale</string>
+   <string name="page_effect_book_vertical">Pagina di libro, verticale</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Libreria</string>
    <string name="extracting_information_from_books">Estraggo le informazioni dai libri</string>

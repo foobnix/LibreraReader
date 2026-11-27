@@ -166,8 +166,12 @@
    <string name="add">Gehitu</string>
    <string name="search">Bilatu</string>
    <string name="export_bookmarks">Esportatu laster-markak</string>
-   <string name="simple_scroll_animation">Animatu orriaren trantsizioa</string>
-   <string name="turn_pages_like_paper_book">Pasatu orriak paperezko liburu batean bezala</string>
+   <string name="page_effect">Orriaren efektua</string>
+   <string name="page_effect_none">Bat ere ez</string>
+   <string name="page_effect_simple_horizontal">Sinplea, horizontala</string>
+   <string name="page_effect_simple_vertical">Sinplea, bertikala</string>
+   <string name="page_effect_book_horizontal">Liburu-orria, horizontala</string>
+   <string name="page_effect_book_vertical">Liburu-orria, bertikala</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Liburutegia</string>
    <string name="extracting_information_from_books">Liburuetatik informazioa erauzten</string>

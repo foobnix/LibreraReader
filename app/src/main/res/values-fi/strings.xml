@@ -166,8 +166,12 @@
    <string name="add">Lisää</string>
    <string name="search">Etsi</string>
    <string name="export_bookmarks">Vie</string>
-   <string name="simple_scroll_animation">Animoi sivun vaihto (vieritys)</string>
-   <string name="turn_pages_like_paper_book">Käännä sivuja kuin paperikirjassa</string>
+   <string name="page_effect">Sivutehoste</string>
+   <string name="page_effect_none">Ei mitään</string>
+   <string name="page_effect_simple_horizontal">Yksinkertainen, vaakasuunta</string>
+   <string name="page_effect_simple_vertical">Yksinkertainen, pystysuunta</string>
+   <string name="page_effect_book_horizontal">Kirjan sivu, vaakasuunta</string>
+   <string name="page_effect_book_vertical">Kirjan sivu, pystysuunta</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Kirjasto</string>
    <string name="extracting_information_from_books">Haetaan kirjojen tietoja</string>

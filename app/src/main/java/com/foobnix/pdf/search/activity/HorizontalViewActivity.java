@@ -1853,7 +1853,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             isAnimate = false;
         }
         lastClick = System.currentTimeMillis();
-        if (!fast && !wasTurning && PageCurlView.isOn() && pageCurl.turn(1, tapY)) {
+        if (!fast && !wasTurning && PageCurlView.isOn() && pageCurl.turn(1, tapX, tapY)) {
             return;
         }
         viewPager.setCurrentItem(dc.getCurentPage() + 1, isAnimate);
@@ -1892,14 +1892,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             isAnimate = false;
         }
         lastClick = System.currentTimeMillis();
-        if (!fast && !wasTurning && PageCurlView.isOn() && pageCurl.turn(-1, tapY)) {
+        if (!fast && !wasTurning && PageCurlView.isOn() && pageCurl.turn(-1, tapX, tapY)) {
             return;
         }
         viewPager.setCurrentItem(dc.getCurentPage() - 1, isAnimate);
     }
 
-    /** Height on the reader of the tap turning the page now, NaN when not a tap. */
-    private float tapY = Float.NaN;
+    /** Where on the reader the tap turning the page now is, NaN when not a tap. */
+    private float tapX = Float.NaN, tapY = Float.NaN;
 
     private void tapAt(int x, int y) {
         if (clickUtils.isClickRight(x, y) && AppState.get().tapZoneRight != AppState.TAP_DO_NOTHING) {
@@ -1970,11 +1970,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             int x = (int) ev.getX();
             int y = (int) ev.getY();
-            // A page turned by this tap curls from the finger's height
+            // A page turned by this tap curls from where the finger is
+            tapX = ev.getX();
             tapY = ev.getY();
             try {
                 tapAt(x, y);
             } finally {
+                tapX = Float.NaN;
                 tapY = Float.NaN;
             }
         } else if (ev.getMessage().equals(MessageEvent.MESSAGE_DOUBLE_TAP)) {

@@ -166,8 +166,12 @@
    <string name="add">Adăugați</string>
    <string name="search">Căutare</string>
    <string name="export_bookmarks">Marcaje la export</string>
-   <string name="simple_scroll_animation">Parcurgere animație simplă</string>
-   <string name="turn_pages_like_paper_book">Întoarce paginile ca într-o carte de hârtie</string>
+   <string name="page_effect">Efect de pagină</string>
+   <string name="page_effect_none">Niciunul</string>
+   <string name="page_effect_simple_horizontal">Simplu, orizontal</string>
+   <string name="page_effect_simple_vertical">Simplu, vertical</string>
+   <string name="page_effect_book_horizontal">Pagină de carte, orizontal</string>
+   <string name="page_effect_book_vertical">Pagină de carte, vertical</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotecă</string>
    <string name="extracting_information_from_books">Dezarhivarea informații din cărți</string>
