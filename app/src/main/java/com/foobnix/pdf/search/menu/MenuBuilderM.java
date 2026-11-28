@@ -9,9 +9,9 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.widget.PopupMenu;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.DialogSpeedRead;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -20,57 +20,155 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 @SuppressLint("NewApi")
 public class MenuBuilderM {
 
-    /**
-     * The ways of reading the page-mode menu offers after its layouts, in the paged and the
-     * vertical view alike: speed reading, the two switches that change how the page is drawn, and
-     * the page effect. A switch reopens the book, as accent reading is baked into the converted text.
-     */
-    public static void addReadingModes(final View anchor, final MyPopupMenu p, final DocumentController dc) {
-        p.getMenu()
-         .add(R.string.fast_reading)
-         .setIcon(R.drawable.glyphicons_177_forward)
-         .setOnMenuItemClickListener(item -> {
-             DialogSpeedRead.show(dc.getActivity(), dc);
-             return false;
-         });
-        if (dc.isTextFormat()) {
-            p.getMenu().addCheckbox(anchor.getContext().getString(R.string.highlighting_initial_letters),
-                    AppState.get().isBionicMode, (button, isChecked) -> {
-                        AppState.get().isBionicMode = isChecked;
-                        anchor.post(dc::restartActivity);
-                    });
-        }
-        p.getMenu().addCheckbox(anchor.getContext().getString(R.string.mirror_image_for_teleprompter),
-                AppState.get().isMirrorImage, (button, isChecked) -> {
-                    AppState.get().isMirrorImage = isChecked;
-                    anchor.post(dc::restartActivity);
-                });
-        // How the paged view goes from page to page. The vertical view has no pages to go to:
-        // there it shows none, and a choice of one goes over to the paged view
-        final boolean paged = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
-        final Context c = anchor.getContext();
-        final int current = paged ? PageEffect.get() : PageEffect.NONE;
-        p.getMenu()
-         .add(c.getString(R.string.page_effect) + ": " + PageEffect.name(c, current))
-         .setOnMenuItemClickListener(item -> {
-             PageEffect.choose(anchor, current, effect -> {
-                 if (!paged) {
-                     if (effect != PageEffect.NONE) {
-                         PageEffect.set(effect);
-                         anchor.post(() -> ExtUtils.switchReadingMode(dc.getActivity(), dc));
-                     }
-                 } else if (PageEffect.set(effect)) {
-                     // The pager is made for one way of going: up and down needs it made again
-                     anchor.post(dc::restartActivity);
-                 }
-             });
-             return false;
-         });
+    /** How the pages of the book are laid out on the screen. */
+    public static final int LAYOUT_HALF = 0;
+    public static final int LAYOUT_ONE = 1;
+    public static final int LAYOUT_TWO = 2;
+    public static final int LAYOUT_COVER_TWO = 3;
+
+    private static final int[] LAYOUT_ICONS = {
+            R.drawable.my_glyphicons_page_split,
+            R.drawable.my_glyphicons_two_page_one,
+            R.drawable.my_glyphicons_two_pages_12,
+            R.drawable.my_glyphicons_two_pages_23};
+    private static final int[] LAYOUT_NAMES = {
+            R.string.half_page,
+            R.string.one_page,
+            R.string.two_pages,
+            R.string.two_pages_cover};
+
+    public interface OnLayout {
+        void onLayout(int layout);
     }
 
+    public static int layoutIcon(int layout) {
+        return LAYOUT_ICONS[layout];
+    }
 
+    /** What the pages are laid out as, in words. */
+    public static String layoutName(Context c, int layout) {
+        return c.getString(LAYOUT_NAMES[layout]);
+    }
 
+    /** The layout the book is in now. */
+    public static int currentLayout() {
+        final AppSP sp = AppSP.get();
+        if (sp.isCut) {
+            return LAYOUT_HALF;
+        }
+        if (!sp.isDouble) {
+            return LAYOUT_ONE;
+        }
+        return sp.isDoubleCoverAlone ? LAYOUT_COVER_TWO : LAYOUT_TWO;
+    }
 
+    /**
+     * The layouts to choose from, in the order given, on one row under their name. One of them
+     * alone is no choice: then the menu shows none.
+     */
+    public static void addPageLayouts(final MyPopupMenu p, final int[] layouts, final OnLayout onLayout) {
+        if (layouts.length < 2) {
+            return;
+        }
+        final Context c = p.getContext();
+        final int current = currentLayout();
+        final int[] icons = new int[layouts.length];
+        final String[] names = new String[layouts.length];
+        int selected = -1;
+        for (int i = 0; i < layouts.length; i++) {
+            icons[i] = LAYOUT_ICONS[layouts[i]];
+            names[i] = c.getString(LAYOUT_NAMES[layouts[i]]);
+            if (layouts[i] == current) {
+                selected = i;
+            }
+        }
+        // Two pages only show in the paged view: elsewhere the book is in one
+        for (int i = 0; selected == -1 && i < layouts.length; i++) {
+            if (layouts[i] == LAYOUT_ONE) {
+                selected = i;
+            }
+        }
+        p.getMenu().add(R.string.pages_layout).asLabel();
+        p.getMenu()
+         .setChoiceIcons(selected, i -> onLayout.onLayout(layouts[i]), icons)
+         .setChoiceDescriptions(names);
+    }
+
+    /** The angle the page is turned by, on one row under its name. */
+    /**
+     * The view the book is read in: vertical, paged or musician's (not on e-ink, as the open
+     * dialog has it).
+     */
+    public static void addViewModes(final View anchor, final MyPopupMenu p, final DocumentController dc) {
+        final java.util.List<Integer> modes = new java.util.ArrayList<>();
+        final java.util.List<String> names = new java.util.ArrayList<>();
+        modes.add(AppState.READING_MODE_SCROLL);
+        names.add(AppState.get().nameVerticalMode);
+        modes.add(AppState.READING_MODE_BOOK);
+        names.add(AppState.get().nameHorizontalMode);
+        if (!Dips.isEInk()) {
+            // Short in a row of choices, unless the reader named the mode themselves
+            final String musician = AppState.get().nameMusicianMode;
+            modes.add(AppState.READING_MODE_MUSICIAN);
+            names.add(musician == null || musician.isEmpty()
+                    || musician.equals(anchor.getContext().getString(R.string.mode_musician))
+                    ? anchor.getContext().getString(R.string.mode_musician_short) : musician);
+        }
+
+        final int current = modes.indexOf(AppSP.get().readingMode);
+        // The names say what they are: no title over them
+        p.getMenu().setChoices(current, i -> {
+            if (i == current) {
+                return;
+            }
+            anchor.post(() -> ExtUtils.switchReadingMode(dc.getActivity(), dc, modes.get(i)));
+        }, names.toArray(new String[0]));
+    }
+
+    public static void addRotateChoices(final MyPopupMenu p, final Runnable onRotate) {
+        final int[] angles = {0, 90, 180, 270};
+        int selected = -1;
+        for (int i = 0; i < angles.length; i++) {
+            if (angles[i] == AppState.get().rotate) {
+                selected = i;
+            }
+        }
+        p.getMenu().add(R.string.rotate).asLabel();
+        // A page turned that far, its number in it; none taken is upright
+        p.getMenu().setChoiceIcons(selected >= 0 ? selected : 0, i -> {
+            AppState.get().rotate = angles[i];
+            onRotate.run();
+        }, R.drawable.page_rotate_0, R.drawable.page_rotate_90, R.drawable.page_rotate_180, R.drawable.page_rotate_270)
+         .setChoiceDescriptions("0\u00B0", "90\u00B0", "180\u00B0", "270\u00B0");
+    }
+
+    /**
+     * How the paged view goes from page to page, every effect on the rows under its name. The
+     * vertical view has no pages to go to: there it shows none, and an effect goes over to the
+     * paged view.
+     */
+    public static void addPageEffects(final View anchor, final MyPopupMenu p, final DocumentController dc) {
+        final Context c = anchor.getContext();
+        final boolean paged = AppSP.get().readingMode == AppState.READING_MODE_BOOK;
+        final String[] names = new String[5];
+        for (int i = 0; i < names.length; i++) {
+            names[i] = PageEffect.name(c, i);
+        }
+        p.getMenu().add(R.string.page_effect).asLabel();
+        p.getMenu()
+         .setChoiceIcons(paged ? PageEffect.get() : PageEffect.NONE, effect -> {
+             if (!paged) {
+                 if (effect != PageEffect.NONE) {
+                     PageEffect.set(effect);
+                     anchor.post(() -> ExtUtils.switchReadingMode(dc.getActivity(), dc));
+                 }
+             } else if (PageEffect.set(effect)) {
+                 // The pager is made for one way of going: another way needs it made again
+                 anchor.post(dc::restartActivity);
+             }
+         }, PageEffect.ICONS)
+         .setChoiceDescriptions(names);
+    }
 
     public static PopupMenu bookMenu(final View view, final Activity a, final String pageUrl, final Runnable onReloadDocument) {
         final PopupMenu popupMenu = new PopupMenu(view.getContext(), view);

@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Đơn giản, dọc</string>
    <string name="page_effect_book_horizontal">Trang sách, ngang</string>
    <string name="page_effect_book_vertical">Trang sách, dọc</string>
+   <string name="pages_layout">Trang</string>
+   <string name="scroll_distance">Khoảng cuộn</string>
+   <string name="mode_musician_short">Nhạc sĩ</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Thư viện</string>
    <string name="extracting_information_from_books">Trích xuất thông tin từ sách</string>

@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Қарапайым, тік</string>
    <string name="page_effect_book_horizontal">Кітап беті, көлденең</string>
    <string name="page_effect_book_vertical">Кітап беті, тік</string>
+   <string name="pages_layout">Беттер</string>
+   <string name="scroll_distance">Айналдыру қашықтығы</string>
+   <string name="mode_musician_short">Музыкант</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Кітапхана</string>
    <string name="extracting_information_from_books">Файлдардан ақпарат алу</string>

@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Simplu, vertical</string>
    <string name="page_effect_book_horizontal">Pagină de carte, orizontal</string>
    <string name="page_effect_book_vertical">Pagină de carte, vertical</string>
+   <string name="pages_layout">Pagini</string>
+   <string name="scroll_distance">Distanța de derulare</string>
+   <string name="mode_musician_short">Muzician</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotecă</string>
    <string name="extracting_information_from_books">Dezarhivarea informații din cărți</string>

@@ -1206,16 +1206,29 @@ public class ExtUtils {
      * back to the paged one.
      */
     public static void switchReadingMode(final Activity a, final DocumentController dc) {
+        switchReadingMode(a, dc, AppSP.get().readingMode == AppState.READING_MODE_BOOK
+                ? AppState.READING_MODE_SCROLL : AppState.READING_MODE_BOOK);
+    }
+
+    /**
+     * The open book again in another mode, at the same place: vertical, paged or musician's, or
+     * in LibreraX, which it is opened in this once and which never becomes the mode.
+     */
+    public static void switchReadingMode(final Activity a, final DocumentController dc, final int mode) {
         if (dc == null || dc.getCurrentBook() == null) {
             return;
         }
         final File file = dc.getCurrentBook();
         final String playlist = a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST);
+        final float percent = dc.getPercentage();
         dc.closeWithAnnotationsSaved(new Runnable() {
 
             @Override public void run() {
-                AppSP.get().readingMode = AppSP.get().readingMode == AppState.READING_MODE_BOOK
-                        ? AppState.READING_MODE_SCROLL : AppState.READING_MODE_BOOK;
+                if (mode == AppState.READING_MODE_LIBRERAX) {
+                    LibreraX.open(a, Uri.fromFile(file), percent, null);
+                    return;
+                }
+                AppSP.get().readingMode = mode;
                 // The same book in the other mode keeps its place, also with "open on page 1"
                 DocumentController.reopenNext();
                 showDocumentWithoutDialog(a, file, playlist);

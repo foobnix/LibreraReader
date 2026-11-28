@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Simple, verticale</string>
    <string name="page_effect_book_horizontal">Pàgina de libru, orizontale</string>
    <string name="page_effect_book_vertical">Pàgina de libru, verticale</string>
+   <string name="pages_layout">Pàginas</string>
+   <string name="scroll_distance">Distàntzia de iscurrimentu</string>
+   <string name="mode_musician_short">Musitzista</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Biblioteca</string>
    <string name="extracting_information_from_books">Estraende informatziones dae sos documentos</string>

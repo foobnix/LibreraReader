@@ -780,8 +780,9 @@ public class AppState {
     @IgnoreHashCode public int tapzoneSize = Dips.isXLargeScreen() ? 15 : 25;
     public transient int allocatedMemorySize = (int) MemoryUtils.RECOMENDED_MEMORY_SIZE;
     @IgnoreHashCode public boolean isScrollAnimation = true;
-    // Pages turned in the paged view as in a paper book: folded over by the corner
-    @IgnoreHashCode public boolean isBookPageCurl = false;
+    // Pages turned in the paged view as in a paper book: folded over by the corner. The default
+    // effect (across the page); not on e-ink, nor with accessibility, as the slide is not
+    @IgnoreHashCode public boolean isBookPageCurl = true;
     @IgnoreHashCode public boolean isEnableVerticalSwipe = true;
     @IgnoreHashCode public boolean isEnableHorizontalSwipe = true;
     @IgnoreHashCode public boolean isSwipeGestureReverse = false;
@@ -920,6 +921,7 @@ public class AppState {
             isRememberMode = false;
             isReverseKeys = true;
             isScrollAnimation = false;
+            isBookPageCurl = false;
             tintThemeColor = Color.BLACK;
             transparencyUI = 255;
             bolderTextOnImage = true;
@@ -987,6 +989,7 @@ public class AppState {
         AppState.get().tapPositionTop = true;
         BookCSS.get().appFontScale = 1.1f;
         AppState.get().isScrollAnimation = false;
+        AppState.get().isBookPageCurl = false;
         AppSP.get().isFirstTimeVertical = false;
         AppSP.get().isFirstTimeHorizontal = false;
         AppState.get().tabsOrder9 = com.foobnix.model.AppState.get().tabsOrder9.replace(UITab.PrefFragment.index + "#0",

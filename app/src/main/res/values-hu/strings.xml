@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Egyszerű, függőleges</string>
    <string name="page_effect_book_horizontal">Könyvlap, vízszintes</string>
    <string name="page_effect_book_vertical">Könyvlap, függőleges</string>
+   <string name="pages_layout">Oldalak</string>
+   <string name="scroll_distance">Görgetési távolság</string>
+   <string name="mode_musician_short">Zenész</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Könyvtár</string>
    <string name="extracting_information_from_books">Információk kiolvasása a fájlokból</string>

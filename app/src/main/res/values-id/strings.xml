@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Sederhana, vertikal</string>
    <string name="page_effect_book_horizontal">Halaman buku, horizontal</string>
    <string name="page_effect_book_vertical">Halaman buku, vertikal</string>
+   <string name="pages_layout">Halaman</string>
+   <string name="scroll_distance">Jarak gulir</string>
+   <string name="mode_musician_short">Musisi</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Perpustakaan</string>
    <string name="extracting_information_from_books">Mengekstrak informasi dari buku</string>

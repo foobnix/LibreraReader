@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Rahisi, wima</string>
    <string name="page_effect_book_horizontal">Ukurasa wa kitabu, mlalo</string>
    <string name="page_effect_book_vertical">Ukurasa wa kitabu, wima</string>
+   <string name="pages_layout">Kurasa</string>
+   <string name="scroll_distance">Umbali wa kusogeza</string>
+   <string name="mode_musician_short">Mwanamuziki</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Maktaba</string>
    <string name="extracting_information_from_books">Kuchimba habari kutoka vitabu</string>

@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Eenvoudig, verticaal</string>
    <string name="page_effect_book_horizontal">Boekpagina, horizontaal</string>
    <string name="page_effect_book_vertical">Boekpagina, verticaal</string>
+   <string name="pages_layout">Pagina\'s</string>
+   <string name="scroll_distance">Scrollafstand</string>
+   <string name="mode_musician_short">Muzikant</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotheek</string>
    <string name="extracting_information_from_books">Extraheren van informatie uit boeken</string>

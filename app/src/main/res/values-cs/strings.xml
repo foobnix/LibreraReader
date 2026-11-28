@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Jednoduchý, svisle</string>
    <string name="page_effect_book_horizontal">Stránka knihy, vodorovně</string>
    <string name="page_effect_book_vertical">Stránka knihy, svisle</string>
+   <string name="pages_layout">Stránky</string>
+   <string name="scroll_distance">Vzdálenost posunu</string>
+   <string name="mode_musician_short">Hudebník</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Knihovna</string>
    <string name="extracting_information_from_books">Získat informace ze souborů</string>

@@ -43,6 +43,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.graphics.PorterDuffColorFilter;
 
+import androidx.appcompat.widget.TooltipCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
@@ -84,6 +85,7 @@ import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.LandscapeSplit;
 import com.foobnix.pdf.info.view.HypenPanelHelper;
 import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.view.TwoIconImageView;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
@@ -104,6 +106,7 @@ import com.foobnix.pdf.search.activity.msg.MessageEraseAnnotation;
 import com.foobnix.pdf.search.activity.msg.MessageSelectAnnotation;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.menu.MenuBuilderM;
+import com.foobnix.pdf.search.menu.PageEffect;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.pdf.search.view.PageCurlView;
 import com.foobnix.pdf.search.view.VerticalViewPager;
@@ -769,6 +772,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         // });
 
         onModeChange = (ImageView) findViewById(R.id.onModeChange);
+        // Ringed as the library button is
+        TintUtil.setRingColor(onModeChange, MagicHelper.getTextOrIconColor());
+        // Beside the pages, how they are turned; a new effect makes the screen again
+        ((TwoIconImageView) onModeChange).setSecondIcon(PageEffect.ICONS[PageEffect.get()]);
+        describeModeButton();
         onModeChange.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -778,151 +786,17 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 }
 
                 MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
-                p.getMenu()
-                 .add(R.string.one_page)
-                 .setIcon(R.drawable.my_glyphicons_two_page_one)
-                 .setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                     @Override
-                     public boolean onMenuItemClick(MenuItem item) {
-                         final boolean wasCut = AppSP.get().isCut;
-                         closeDialogs();
-                         onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
-                         AppSP.get().isDouble = false;
-                         AppSP.get().isDoubleCoverAlone = false;
-                         AppSP.get().isCut = false;
-
-                         SettingsManager.getBookSettings().updateFromAppState();
-                         SharedBooks.save(SettingsManager.getBookSettings());
-
-                         if (dc.isTextFormat() || wasCut != AppSP.get().isCut) {
-                             nullAdapter();
-                             dc.restartActivity();
-                             dc.cleanImageMatrix();
-                         } else {
-                             TTSEngine.get().stop();
-                             dc.cleanImageMatrix();
-                             reloadDoc.run();
-                             authoFit();
-                         }
-                         return false;
-                     }
-                 });
-                p.getMenu()
-                 .add(R.string.two_pages)
-                 .setIcon(R.drawable.my_glyphicons_two_pages_12)
-                 .setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                     @Override
-                     public boolean onMenuItemClick(MenuItem item) {
-
-                         final boolean wasCut = AppSP.get().isCut;
-                         closeDialogs();
-                         onModeChange.setImageResource(R.drawable.my_glyphicons_two_pages_12);
-                         AppSP.get().isDouble = true;
-                         AppSP.get().isCut = false;
-                         AppSP.get().isDoubleCoverAlone = false;
-
-                         SettingsManager.getBookSettings().updateFromAppState();
-                         SharedBooks.save(SettingsManager.getBookSettings());
-
-                         if (dc.isTextFormat() || wasCut != AppSP.get().isCut) {
-                             nullAdapter();
-                             dc.restartActivity();
-                             dc.cleanImageMatrix();
-                         } else {
-                             TTSEngine.get().stop();
-                             dc.cleanImageMatrix();
-                             reloadDoc.run();
-                             authoFit();
-                         }
-                         return false;
-                     }
-                 });
-                if (!dc.isTextFormat()) {
-                    p.getMenu()
-                     .add(R.string.two_pages_cover)
-                     .setIcon(R.drawable.my_glyphicons_two_pages_23)
-                     .setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                         @Override
-                         public boolean onMenuItemClick(MenuItem item) {
-
-                             final boolean wasCut = AppSP.get().isCut;
-                             closeDialogs();
-                             onModeChange.setImageResource(R.drawable.my_glyphicons_two_pages_23);
-                             AppSP.get().isDouble = true;
-                             AppSP.get().isCut = false;
-                             AppSP.get().isDoubleCoverAlone = true;
-                             SettingsManager.getBookSettings().updateFromAppState();
-                             SharedBooks.save(SettingsManager.getBookSettings());
-
-                             if (dc.isTextFormat() || wasCut != AppSP.get().isCut) {
-                                 nullAdapter();
-                                 dc.restartActivity();
-                                 dc.cleanImageMatrix();
-                             } else {
-                                 TTSEngine.get().stop();
-                                 dc.cleanImageMatrix();
-                                 reloadDoc.run();
-                                 authoFit();
-                             }
-                             return false;
-                         }
-                     });
-                }
-                if (!dc.isTextFormat()) {
-                    p.getMenu()
-                     .add(R.string.half_page)
-                     .setIcon(R.drawable.my_glyphicons_page_split)
-                     .setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                         @Override
-                         public boolean onMenuItemClick(MenuItem item) {
-
-                             final boolean wasCut = AppSP.get().isCut;
-                             closeDialogs();
-                             onModeChange.setImageResource(R.drawable.my_glyphicons_page_split);
-                             AppSP.get().isDouble = false;
-                             AppSP.get().isCut = true;
-                             // AppSP.get().isCrop = false;
-                             SettingsManager.getBookSettings().updateFromAppState();
-                             SharedBooks.save(SettingsManager.getBookSettings());
-
-                             TTSEngine.get().stop();
-
-                             // onCrop.underline(AppSP.get().isCrop);
-
-                             if (!wasCut) {
-                                 nullAdapter();
-                                 dc.restartActivity();
-                                 dc.cleanImageMatrix();
-                                 return false;
-                             }
-                             dc.cleanImageMatrix();
-                             reloadDoc.run();
-                             authoFit();
-                             return false;
-                         }
-                     });
-                }
-                p.getMenu().add(getString(R.string.rotate)).setIcon(R.drawable.glyphicons_basic_86_reload).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        MenuBuilderM.addRotateMenu(v, null, new Runnable() {
-
-                            @Override
-                            public void run() {
-                                dc.cleanImageMatrix();
-                                reloadDoc.run();
-                                authoFit();
-                            }
-                        }).show();
-                        return false;
-                    }
+                MenuBuilderM.addViewModes(v, p, dc);
+                MenuBuilderM.addPageLayouts(p, dc.isTextFormat()
+                        ? new int[]{MenuBuilderM.LAYOUT_ONE, MenuBuilderM.LAYOUT_TWO}
+                        : new int[]{MenuBuilderM.LAYOUT_HALF, MenuBuilderM.LAYOUT_ONE, MenuBuilderM.LAYOUT_TWO,
+                                MenuBuilderM.LAYOUT_COVER_TWO}, layout -> applyPageLayout(layout));
+                MenuBuilderM.addRotateChoices(p, () -> {
+                    dc.cleanImageMatrix();
+                    reloadDoc.run();
+                    authoFit();
                 });
-                MenuBuilderM.addReadingModes(v, p, dc);
+                MenuBuilderM.addPageEffects(v, p, dc);
                 p.show();
                 Keyboards.hideNavigation(HorizontalViewActivity.this);
 
@@ -2412,6 +2286,47 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         isInitOrientation = AppState.get().orientation;
 
+    }
+
+    /**
+     * Lays the pages out as chosen: half a page, one page, two, or two with the cover alone.
+     * Cutting the page in half or back, or a text book, opens the book again.
+     */
+    /** The page button's two icons in words: read out, and shown on a long press. */
+    private void describeModeButton() {
+        final String text = MenuBuilderM.layoutName(this, MenuBuilderM.currentLayout()) + ", "
+                + PageEffect.name(this, PageEffect.get());
+        onModeChange.setContentDescription(text);
+        TooltipCompat.setTooltipText(onModeChange, text);
+    }
+
+    private void applyPageLayout(int layout) {
+        final boolean wasCut = AppSP.get().isCut;
+        final boolean cut = layout == MenuBuilderM.LAYOUT_HALF;
+        closeDialogs();
+        onModeChange.setImageResource(MenuBuilderM.layoutIcon(layout));
+        AppSP.get().isCut = cut;
+        AppSP.get().isDouble = layout == MenuBuilderM.LAYOUT_TWO || layout == MenuBuilderM.LAYOUT_COVER_TWO;
+        if (!cut) {
+            AppSP.get().isDoubleCoverAlone = layout == MenuBuilderM.LAYOUT_COVER_TWO;
+        }
+        describeModeButton();
+        SettingsManager.getBookSettings().updateFromAppState();
+        SharedBooks.save(SettingsManager.getBookSettings());
+
+        if (cut) {
+            TTSEngine.get().stop();
+        }
+        if (dc.isTextFormat() || wasCut != cut) {
+            nullAdapter();
+            dc.restartActivity();
+            dc.cleanImageMatrix();
+        } else {
+            TTSEngine.get().stop();
+            dc.cleanImageMatrix();
+            reloadDoc.run();
+            authoFit();
+        }
     }
 
     public void authoFit() {

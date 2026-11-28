@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Basit, dikey</string>
    <string name="page_effect_book_horizontal">Kitap sayfası, yatay</string>
    <string name="page_effect_book_vertical">Kitap sayfası, dikey</string>
+   <string name="pages_layout">Sayfalar</string>
+   <string name="scroll_distance">Kaydırma mesafesi</string>
+   <string name="mode_musician_short">Müzisyen</string>
    <string name="___TABS___SECTION___">Sekmeler</string>
    <string name="library">Kütüphane</string>
    <string name="extracting_information_from_books">Kitaplardan bilgi ayıklanıyor</string>

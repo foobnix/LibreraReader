@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">簡單，縱向</string>
    <string name="page_effect_book_horizontal">書頁，橫向</string>
    <string name="page_effect_book_vertical">書頁，縱向</string>
+   <string name="pages_layout">頁面</string>
+   <string name="scroll_distance">捲動距離</string>
+   <string name="mode_musician_short">樂師</string>
    <string name="___TABS___SECTION___">標籤區域</string>
    <string name="library">書架</string>
    <string name="extracting_information_from_books">書籍資訊</string>

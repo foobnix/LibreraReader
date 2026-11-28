@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">แบบง่าย แนวตั้ง</string>
    <string name="page_effect_book_horizontal">หน้าหนังสือ แนวนอน</string>
    <string name="page_effect_book_vertical">หน้าหนังสือ แนวตั้ง</string>
+   <string name="pages_layout">หน้า</string>
+   <string name="scroll_distance">ระยะการเลื่อน</string>
+   <string name="mode_musician_short">นักดนตรี</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">ห้องสมุด</string>
    <string name="extracting_information_from_books">การดึงข้อมูลจากหนังสือ</string>

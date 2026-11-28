@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Простой, по вертикали</string>
    <string name="page_effect_book_horizontal">Страница книги, по горизонтали</string>
    <string name="page_effect_book_vertical">Страница книги, по вертикали</string>
+   <string name="pages_layout">Страницы</string>
+   <string name="scroll_distance">Шаг прокрутки</string>
+   <string name="mode_musician_short">Музыкант</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Библиотека</string>
    <string name="extracting_information_from_books">Извлечение информации из книг</string>

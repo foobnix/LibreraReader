@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Enkel, loddrett</string>
    <string name="page_effect_book_horizontal">Bokside, vannrett</string>
    <string name="page_effect_book_vertical">Bokside, loddrett</string>
+   <string name="pages_layout">Sider</string>
+   <string name="scroll_distance">Rulleavstand</string>
+   <string name="mode_musician_short">Musiker</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotek</string>
    <string name="extracting_information_from_books">Utpakking av informasjon fra bøker</string>

@@ -44,6 +44,22 @@
         android:text="Item"
         android:textSize="20sp" />
 
+    <!-- Choices made on the row itself, wrapped onto more lines when they do not fit -->
+    <com.foobnix.pdf.info.view.ChoiceFlowLayout
+        android:id="@+id/choices"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dip"
+        android:layout_marginRight="4dip"
+        android:visibility="gone" />
+
+    <!-- A row holding a view of its own, such as a slider for a value -->
+    <FrameLayout
+        android:id="@+id/rowExtra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
     <!-- A mark on the row, not an icon naming it: it follows the name instead of standing
          in the icon column in front of it. -->
     <ImageView

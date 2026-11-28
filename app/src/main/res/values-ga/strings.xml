@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Simplí, ingearach</string>
    <string name="page_effect_book_horizontal">Leathanach leabhair, cothrománach</string>
    <string name="page_effect_book_vertical">Leathanach leabhair, ingearach</string>
+   <string name="pages_layout">Leathanaigh</string>
+   <string name="scroll_distance">Fad scrollaithe</string>
+   <string name="mode_musician_short">Ceoltóir</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Leabharlann</string>
    <string name="extracting_information_from_books">Ag baint faisnéise as comhaid</string>

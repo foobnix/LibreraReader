@@ -1,5 +1,6 @@
 package org.ebookdroid.core;
 
+import com.foobnix.model.AppSP;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 
@@ -54,7 +55,9 @@ public class Page {
         this.index = index;
         this.cpi = cpi;
         this.type = pt != null ? pt : PageType.FULL_PAGE;
-        this.bounds = new RectF(0, 0, cpi.width / type.getWidthScale(), cpi.height);
+        this.bounds = sideways()
+                ? new RectF(0, 0, cpi.height, cpi.width / type.getWidthScale())
+                : new RectF(0, 0, cpi.width / type.getWidthScale(), cpi.height);
 
         setAspectRatio(cpi);
 
@@ -139,6 +142,24 @@ public class Page {
         nodes.recycleAll(bitmapsToRecycle, true);
     }
 
+    /**
+     * How far the pages are turned in the scroll view, clockwise: 0, 90, 180 or 270. Whole pages
+     * only - a half page is a slice of the page as it stands, so cut pages are not turned.
+     */
+    public static int rotation() {
+        if (AppSP.get().readingMode != AppState.READING_MODE_SCROLL || AppSP.get().isCut) {
+            return 0;
+        }
+        final int r = ((AppState.get().rotate % 360) + 360) % 360;
+        return r == 90 || r == 180 || r == 270 ? r : 0;
+    }
+
+    /** Turned on its side: as wide as it was high. */
+    public static boolean sideways() {
+        final int r = rotation();
+        return r == 90 || r == 270;
+    }
+
     public float getAspectRatio() {
         return aspectRatio / 128.0f;
     }
@@ -154,7 +175,9 @@ public class Page {
 
     public boolean setAspectRatio(final CodecPageInfo page) {
         if (page != null) {
-            return this.setAspectRatio(page.width / type.getWidthScale(), page.height);
+            return sideways()
+                    ? this.setAspectRatio(page.height, page.width / type.getWidthScale())
+                    : this.setAspectRatio(page.width / type.getWidthScale(), page.height);
         }
         return false;
     }

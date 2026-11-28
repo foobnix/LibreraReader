@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">פשוט, אנכי</string>
    <string name="page_effect_book_horizontal">דף ספר, אופקי</string>
    <string name="page_effect_book_vertical">דף ספר, אנכי</string>
+   <string name="pages_layout">עמודים</string>
+   <string name="scroll_distance">מרחק גלילה</string>
+   <string name="mode_musician_short">מוסיקאי</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">ספריה</string>
    <string name="extracting_information_from_books">להוציא מידע מתוך ספרים</string>

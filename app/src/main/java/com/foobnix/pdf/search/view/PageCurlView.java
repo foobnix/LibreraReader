@@ -106,6 +106,8 @@ public class PageCurlView extends View {
      * the two it takes the edge. The same band as the corners of {@link #steep}.
      */
     private static final float EDGE_FROM = 0.3f;
+    /** How far the finger goes before the page's edge is under it. */
+    private static final float CATCH_UP = Dips.dpToPx(64);
     /** Most the fold leans from upright when the page is held by its edge: about 15 degrees. */
     private static final float EDGE_LEAN = 0.27f;
 
@@ -326,20 +328,20 @@ public class PageCurlView extends View {
         final float bx = bookX(viewX, viewY);
         final float y = bookY(viewX, viewY);
         final float sheetW = sheetR - spine;
-        // The page moves by as much as the finger from where it went down, so it starts to lift
-        // from where it lies instead of jumping to the finger; on the way the corner comes
-        // under the finger
+        // The page starts to lift from where it lies instead of jumping to the finger, and its
+        // edge comes under the finger within a short way, to go with it from there. Over a share
+        // of the page instead, a pull from the middle - the way a calendar is pulled up - left
+        // the edge half a screen behind the finger, out of sight under the bars
         final float travel = (float) Math.hypot(bx - grabX, y - grabY);
-        final float k = Math.max(0f, 1f - travel / Math.max(1f, sheetW * 0.6f));
+        final float k = Math.max(0f, 1f - travel / Math.max(1f, Math.min(sheetW * 0.6f, CATCH_UP)));
         // Held by the edge, the page leans only a little with the finger going up or down
         final float py = byEdge ? corner.y + (y - grabY) * 0.25f : y + (corner.y - grabY) * k;
         if (peel) {
             setPoint(bx + (corner.x - grabX) * k, py);
         } else {
             // The page comes back from over the spine: all turned over where the finger went
-            // down, flat again at the page's far edge
-            final float t = Math.max(0, Math.min(1, (bx - grabX) / Math.max(sheetW * 0.5f, sheetR - grabX)));
-            setPoint(turnedOver.x + t * (corner.x - turnedOver.x), py);
+            // down, its edge then under the finger, and flat again at the page's far edge
+            setPoint(bx + (turnedOver.x - bx) * k, py);
         }
         invalidate();
     }
@@ -394,7 +396,9 @@ public class PageCurlView extends View {
         // Into the page: down from the top corner, up from the bottom one
         final float liftDir = corner.y < (sheetT + sheetB) / 2 ? 1 : -1;
         final ValueAnimator a = ValueAnimator.ofFloat(0, 1);
-        a.setDuration(duration);
+        // The calendar turn goes the whole height of the screen: at the pace of a turn across it
+        // the page is gone before it is seen, so it takes half as long again
+        a.setDuration(isVertical() ? duration * 3 / 2 : duration);
         a.setInterpolator(interpolator);
         a.addUpdateListener(animation -> {
             final float t = (float) animation.getAnimatedValue();

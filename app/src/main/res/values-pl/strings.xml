@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Prosty, pionowo</string>
    <string name="page_effect_book_horizontal">Strona książki, poziomo</string>
    <string name="page_effect_book_vertical">Strona książki, pionowo</string>
+   <string name="pages_layout">Strony</string>
+   <string name="scroll_distance">Odległość przewijania</string>
+   <string name="mode_musician_short">Muzyk</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Biblioteka</string>
    <string name="extracting_information_from_books">Uzyskiwanie informacji z książek</string>

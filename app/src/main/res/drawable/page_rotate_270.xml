@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pages turned 270 degrees: a page with a folded corner turned that far, the number upright
+     in it (none when upright). On the frame of the other page icons (a page at 8,4-24,28 of 32). Tinted where shown. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32"
+    android:viewportHeight="32">
+    <group
+        android:pivotX="16"
+        android:pivotY="16"
+        android:rotation="270">
+        <path
+            android:pathData="M10,4 H19 L24,9 V26 A2,2 0 0 1 22,28 H10 A2,2 0 0 1 8,26 V6 A2,2 0 0 1 10,4 Z M19,4 V9 H24"
+            android:strokeColor="@color/black"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+    </group>
+    <path
+        android:pathData="M10.75,14.3 Q10.75,12.8 12.2,12.8 Q13.65,12.8 13.65,14.600000000000001 Q13.65,16.0 10.75,19.200000000000003 H13.65 M14.55,12.8 H17.45 L15.75,19.200000000000003 M19.8,12.8 A1.45,3.2 0 1 1 19.8,19.200000000000003 A1.45,3.2 0 1 1 19.8,12.8 Z"
+        android:strokeColor="@color/black"
+        android:strokeWidth="1.4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

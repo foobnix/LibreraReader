@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">بسيط، عمودي</string>
    <string name="page_effect_book_horizontal">صفحة كتاب، أفقي</string>
    <string name="page_effect_book_vertical">صفحة كتاب، عمودي</string>
+   <string name="pages_layout">الصفحات</string>
+   <string name="scroll_distance">مسافة التمرير</string>
+   <string name="mode_musician_short">موسيقي</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">المكتبة</string>
    <string name="extracting_information_from_books">استخراج المعلومات من الكتب</string>

@@ -3,6 +3,7 @@
  */
 package com.foobnix.pdf.info.wrapper;
 
+import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.content.ContextCompat;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -214,46 +215,72 @@ public class DocumentWrapperUI {
         @Override
         public void onClick(final View v) {
             MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
-
-            p.getMenu()
-             .add(R.string.one_page)
-             .setIcon(R.drawable.my_glyphicons_two_page_one)
-             .setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                 @Override
-                 public boolean onMenuItemClick(MenuItem item) {
-                     if (dc.isTextFormat()) {
-                         return false;
-                     }
-                     closeDialogs();
-                     onModeChange.setImageResource(R.drawable.my_glyphicons_two_page_one);
-                     applyCut(false);
-                     return false;
-                 }
-             });
-            if (!dc.isTextFormat()) {
-                addHalfPage(p);
-            }
-            MenuBuilderM.addReadingModes(v, p, dc);
+            // A text book has no half pages: one page alone is no choice, and is not shown
+            MenuBuilderM.addViewModes(v, p, dc);
+            MenuBuilderM.addPageLayouts(p, dc.isTextFormat()
+                    ? new int[]{MenuBuilderM.LAYOUT_ONE}
+                    : new int[]{MenuBuilderM.LAYOUT_HALF, MenuBuilderM.LAYOUT_ONE}, layout -> {
+                closeDialogs();
+                onModeChange.setImageResource(MenuBuilderM.layoutIcon(layout));
+                applyCut(layout == MenuBuilderM.LAYOUT_HALF);
+            });
+            // Pages are turned as they are laid out: the view is made again
+            MenuBuilderM.addRotateChoices(p, () -> {
+                closeDialogs();
+                v.post(dc::restartWithAnnotationsSaved);
+            });
+            addScrollByChoices(p);
+            MenuBuilderM.addPageEffects(v, p, dc);
             p.show();
             Keyboards.hideNavigation(dc.getActivity());
 
         }
 
-        private void addHalfPage(MyPopupMenu p) {
-            p.getMenu()
-             .add(R.string.half_page)
-             .setIcon(R.drawable.my_glyphicons_page_split)
-             .setOnMenuItemClickListener(new OnMenuItemClickListener() {
+        /**
+         * How far a tap on the edge or a page key scrolls: a page, a screen, 75% or 50% of one,
+         * or a custom share, which any other value is shown as.
+         */
+        private void addScrollByChoices(MyPopupMenu p) {
+            final int[] steps = {AppState.NEXT_SCREEN_SCROLL_BY_PAGES, 100, 75, 50};
+            final int custom = steps.length;
+            int selected = custom;
+            for (int i = 0; i < steps.length; i++) {
+                if (steps[i] == AppState.get().nextScreenScrollBy) {
+                    selected = i;
+                }
+            }
+            final String screen = dc.getString(R.string.of_screen).toLowerCase(Locale.US);
+            p.getMenu().add(R.string.scroll_distance).asLabel();
+            final boolean[] isCustom = {selected == custom};
+            p.getMenu().setChoiceIcons(selected, i -> {
+                 isCustom[0] = i == custom;
+                 // Custom is set on the slider under the icons, which shows with it
+                 AppState.get().nextScreenScrollBy = i == custom ? AppState.get().nextScreenScrollMyValue : steps[i];
+                 initNextType();
+             }, scrollByIcon(steps[0]), scrollByIcon(steps[1]), scrollByIcon(steps[2]), scrollByIcon(steps[3]),
+             R.drawable.scroll_by_custom)
+             .setChoiceDescriptions(dc.getString(R.string.by_pages), dc.getString(R.string.by_screans),
+                     "75% " + screen, "50% " + screen, dc.getString(R.string.custom_value));
+            p.getMenu().setSeek(1, 100, new MyPopupMenu.SeekRow() {
+                @Override
+                public boolean shown() {
+                    return isCustom[0];
+                }
 
-                 @Override
-                 public boolean onMenuItemClick(MenuItem item) {
-                     closeDialogs();
-                     onModeChange.setImageResource(R.drawable.my_glyphicons_page_split);
-                     applyCut(true);
-                     return false;
-                 }
-             });
+                @Override
+                public int value() {
+                    // A share set before, from the old list (95%, 25%...), is the custom one
+                    final int by = AppState.get().nextScreenScrollBy;
+                    return by >= 1 && by < 100 && by != 75 && by != 50 ? by : AppState.get().nextScreenScrollMyValue;
+                }
+
+                @Override
+                public void onValue(int value) {
+                    AppState.get().nextScreenScrollMyValue = value;
+                    AppState.get().nextScreenScrollBy = value;
+                    initNextType();
+                }
+            });
         }
 
         private void applyCut(boolean cut) {
@@ -1229,7 +1256,11 @@ public class DocumentWrapperUI {
 
         onModeChange = (ImageView) a.findViewById(R.id.onModeChange);
         onModeChange.setOnClickListener(onModeChangeClick);
+        // Ringed as the library button is
+        TintUtil.setRingColor(onModeChange, MagicHelper.getTextOrIconColor());
         onModeChange.setImageResource(AppSP.get().isCut ? R.drawable.my_glyphicons_page_split : R.drawable.my_glyphicons_two_page_one);
+        // The scroll button stands for it here: the pages and the scroll, one popup for both
+        onModeChange.setVisibility(View.GONE);
 
         View prefTop = a.findViewById(R.id.prefTop);
         prefTop.setOnClickListener(onPrefTop);
@@ -1278,7 +1309,7 @@ public class DocumentWrapperUI {
         // reads as one mark rather than a grey box with a coloured label inside it.
         TintUtil.setRingColor(nextTypeBootom, MagicHelper.getTextOrIconColor());
 
-        nextTypeBootom.setOnClickListener(onNextType);
+        nextTypeBootom.setOnClickListener(onModeChangeClick);
 
         nextScreenType = ((ImageView) a.findViewById(R.id.imageNextScreen));
         nextScreenType.setOnClickListener(onNextType);
@@ -1738,56 +1769,55 @@ public class DocumentWrapperUI {
             });
         }
 
-        popupMenu.getMenu().add(R.string.custom_value).setIcon(R.drawable.scroll_by_custom).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Activity a = dc.getActivity();
-                final AlertDialog.Builder builder = new AlertDialog.Builder(a);
-                builder.setTitle(R.string.custom_value);
-
-                final CustomSeek myValue = new CustomSeek(a);
-                myValue.init(1, 100, AppState.get().nextScreenScrollMyValue);
-                myValue.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        AppState.get().nextScreenScrollMyValue = result;
-                        myValue.setValueText(AppState.get().nextScreenScrollMyValue + "%");
-                        return false;
-                    }
-                });
-                myValue.setValueText(AppState.get().nextScreenScrollMyValue + "%");
-
-                builder.setView(myValue);
-
-                builder.setPositiveButton(R.string.apply, new OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        AppState.get().nextScreenScrollBy = AppState.get().nextScreenScrollMyValue;
-                        initNextType();
-                        Keyboards.hideNavigation(dc.getActivity());
-
-                    }
-                });
-                builder.setNegativeButton(R.string.cancel, new OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-                builder.show();
-
-                return false;
-            }
-
+        popupMenu.getMenu().add(R.string.custom_value).setIcon(R.drawable.scroll_by_custom).setOnMenuItemClickListener(item -> {
+            showCustomScrollBy();
+            return false;
         });
 
         popupMenu.show();
 
+    }
+
+    /** Asks for the share of the screen to scroll by, 1 to 100%. */
+    private void showCustomScrollBy() {
+        Activity a = dc.getActivity();
+        final AlertDialog.Builder builder = new AlertDialog.Builder(a);
+        builder.setTitle(R.string.custom_value);
+
+        final CustomSeek myValue = new CustomSeek(a);
+        myValue.init(1, 100, AppState.get().nextScreenScrollMyValue);
+        myValue.setOnSeekChanged(new IntegerResponse() {
+
+            @Override
+            public boolean onResultRecive(int result) {
+                AppState.get().nextScreenScrollMyValue = result;
+                myValue.setValueText(AppState.get().nextScreenScrollMyValue + "%");
+                return false;
+            }
+        });
+        myValue.setValueText(AppState.get().nextScreenScrollMyValue + "%");
+
+        builder.setView(myValue);
+
+        builder.setPositiveButton(R.string.apply, new OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                AppState.get().nextScreenScrollBy = AppState.get().nextScreenScrollMyValue;
+                initNextType();
+                Keyboards.hideNavigation(dc.getActivity());
+
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.show();
     }
 
     public View.OnClickListener onBookmarks = new View.OnClickListener() {
@@ -1943,7 +1973,11 @@ public class DocumentWrapperUI {
         // turned on its side the row has only half the bar beside the reading controls
         // (LandscapeSplit), so the name goes into the description only
         nextTypeBootom.setText("");
-        nextTypeBootom.setContentDescription(name);
+        // Both its icons in words: read out, and shown on a long press
+        final String described = MenuBuilderM.layoutName(a, AppSP.get().isCut ? MenuBuilderM.LAYOUT_HALF : MenuBuilderM.LAYOUT_ONE)
+                + ", " + name;
+        nextTypeBootom.setContentDescription(described);
+        TooltipCompat.setTooltipText(nextTypeBootom, described);
         nextTypeBootom.setMinWidth(0);
         nextTypeBootom.setMinimumWidth(0);
         // No wider than the icon and its ring, so it stands in the middle
@@ -1954,10 +1988,43 @@ public class DocumentWrapperUI {
                 nextTypeBootom.setLayoutParams(lp);
             }
         }
+        // The pages, then how far they scroll, as the page button in the paged view has them
+        final Drawable pages = ContextCompat.getDrawable(a, AppSP.get().isCut ? R.drawable.my_glyphicons_page_split : R.drawable.my_glyphicons_two_page_one);
         final Drawable icon = ContextCompat.getDrawable(a, scrollByIcon(AppState.get().nextScreenScrollBy));
-        if (icon != null) {
-            pillIcon(nextTypeBootom, icon, true);
+        if (icon != null && pages != null) {
+            pillIcons(nextTypeBootom, pages, icon);
         }
+    }
+
+    /** A ringed button with two marks side by side in the middle of its ring. */
+    public static void pillIcons(TextView button, Drawable first, Drawable second) {
+        Object ring = button.getTag(R.id.pillRing);
+        if (!(ring instanceof Drawable)) {
+            ring = button.getBackground();
+            button.setTag(R.id.pillRing, ring);
+        }
+        if (ring == null) {
+            return;
+        }
+        final int size = Dips.dpToPx(24);
+        final int gap = Dips.DP_4;
+        final int color = MagicHelper.getTextOrIconColor();
+        first = first.mutate();
+        second = second.mutate();
+        first.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+        second.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+        final LayerDrawable layers = new LayerDrawable(new Drawable[]{(Drawable) ring, first, second});
+        for (int i = 1; i <= 2; i++) {
+            layers.setLayerGravity(i, Gravity.CENTER);
+            layers.setLayerSize(i, size, size);
+        }
+        // Centred in what the insets leave: half the inset off the middle, each to its side
+        layers.setLayerInsetRight(1, size + gap);
+        layers.setLayerInsetLeft(2, size + gap);
+        button.setBackground(layers);
+        button.setCompoundDrawables(null, null, null, null);
+        button.setMinWidth(size * 2 + gap + Dips.dpToPx(20));
+        button.setMinimumWidth(size * 2 + gap + Dips.dpToPx(20));
     }
 
     public View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {

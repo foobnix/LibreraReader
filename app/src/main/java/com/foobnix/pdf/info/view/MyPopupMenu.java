@@ -11,7 +11,9 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.util.TypedValue;
 import android.view.ActionProvider;
 import android.view.ContextMenu;
@@ -34,6 +36,8 @@ import android.widget.ListView;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.TooltipCompat;
+import androidx.core.graphics.ColorUtils;
 import androidx.annotation.Nullable;
 
 import com.foobnix.android.utils.Apps;
@@ -85,20 +89,23 @@ public class MyPopupMenu {
 
     /** The colour every icon in the menu is drawn in, on the surface the menu stands on. */
     private void tintMenuIcon(ImageView imageView) {
+        TintUtil.setTintImageWithAlpha(imageView, menuIconColor());
+    }
+
+    private int menuIconColor() {
         if (isTabsActivity) {
             if (AppState.get().appTheme == AppState.THEME_INK ||
                     AppState.get().appTheme == AppState.THEME_LIGHT) {
-                TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
-            } else {
-                TintUtil.setTintImageWithAlpha(imageView, Color.WHITE);
+                return TintUtil.color;
             }
-        } else if (isLightSurface) {
+            return Color.WHITE;
+        }
+        if (isLightSurface) {
             // A reader's menu drawn white would swallow the white its bars' icons wear, so on
             // a light menu an icon takes the theme colour.
-            TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
-        } else {
-            TintUtil.setTintImageWithAlpha(imageView, MagicHelper.getTextOrIconColor());
+            return TintUtil.color;
         }
+        return MagicHelper.getTextOrIconColor();
     }
 
     public void show(int pos, boolean isLong) {
@@ -111,6 +118,7 @@ public class MyPopupMenu {
         }
 
         final ListPopupWindow p1 = new ListPopupWindow(c);
+        shownPopup = p1;
 
 
         if (AppState.get().isEnableAccessibility) {
@@ -134,7 +142,8 @@ public class MyPopupMenu {
                 final String stringRes = item.stringRes;
                 textView.setVisibility(TxtUtils.visibleIf(TxtUtils.isNotEmpty(stringRes)));
                 textView.setText(stringRes);
-                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, item.isLabel ? 14 : 20);
+                textView.setAlpha(item.isLabel ? 0.7f : 1f);
 
                 // A head names what the rows under it choose between: set in caps, underlined,
                 // and out of reach of a tap. Rows come back recycled, so the plain ones undo it.
@@ -204,6 +213,67 @@ public class MyPopupMenu {
                 } else {
                     imageView.setVisibility(anyIcon ? View.INVISIBLE : View.GONE);
                 }
+                // Choices made on the row itself, under the label that names them. The menu stays
+                // up when one is taken, so the rest can be set in the same go. Such rows and labels
+                // are only as tall as they need; rows come back recycled, so the others get theirs back.
+                // A slider row: shown only while what it sets is in use, else no height at all
+                final FrameLayout extra = layout.findViewById(R.id.rowExtra);
+                if (item.seek != null) {
+                    final boolean shown = item.seek.shown();
+                    textView.setVisibility(View.GONE);
+                    imageView.setVisibility(View.GONE);
+                    layout.findViewById(R.id.choices).setVisibility(View.GONE);
+                    extra.setVisibility(shown ? View.VISIBLE : View.GONE);
+                    if (shown) {
+                        extra.removeAllViews();
+                        final CustomSeek seek = new CustomSeek(c);
+                        seek.init(item.seekMin, item.seekMax, item.seek.value(), "%");
+                        seek.tint(menuIconColor());
+                        seek.setOnSeekChanged(value -> {
+                            item.seek.onValue(value);
+                            return false;
+                        });
+                        extra.addView(seek, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT));
+                    }
+                    ViewGroup.LayoutParams rowParams = layout.getLayoutParams();
+                    if (rowParams != null) {
+                        rowParams.height = shown ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
+                        layout.setLayoutParams(rowParams);
+                    }
+                    layout.setPadding(Dips.DP_8, 0, Dips.DP_4, shown ? Dips.DP_4 : 0);
+                    layout.setForeground(null);
+                    layout.setOnClickListener(null);
+                    layout.setOnLongClickListener(null);
+                    layout.setClickable(false);
+                    layout.setLongClickable(false);
+                    return;
+                }
+                extra.removeAllViews();
+                extra.setVisibility(View.GONE);
+
+                ChoiceFlowLayout choices = (ChoiceFlowLayout) layout.findViewById(R.id.choices);
+                choices.removeAllViews();
+                final boolean hasChoices = item.choices != null || item.choiceIcons != null;
+                choices.setVisibility(hasChoices ? View.VISIBLE : View.GONE);
+                if (hasChoices) {
+                    textView.setVisibility(View.GONE);
+                    imageView.setVisibility(View.GONE);
+                    final int count = item.choiceIcons != null ? item.choiceIcons.length : item.choices.length;
+                    for (int i = 0; i < count; i++) {
+                        choices.addView(choiceView(item, i, textView.getCurrentTextColor()));
+                    }
+                }
+                if (item.isLabel) {
+                    imageView.setVisibility(View.GONE);
+                }
+                ViewGroup.LayoutParams rowParams = layout.getLayoutParams();
+                if (rowParams != null) {
+                    rowParams.height = hasChoices || item.isLabel ? ViewGroup.LayoutParams.WRAP_CONTENT : Dips.dpToPx(42);
+                    layout.setLayoutParams(rowParams);
+                }
+                layout.setPadding(Dips.DP_4, item.isLabel ? Dips.DP_8 : Dips.DP_4, Dips.DP_4, Dips.DP_4);
+
                 // A line under the row parts it from the rows that follow. Rows come back recycled,
                 // so the plain ones lose it again.
                 if (item.lineBelow) {
@@ -216,7 +286,7 @@ public class MyPopupMenu {
                     layout.setForeground(null);
                 }
 
-                if (item.isTitle) {
+                if (item.isTitle || item.isLabel || hasChoices) {
                     layout.setOnClickListener(null);
                     layout.setOnLongClickListener(null);
                     layout.setClickable(false);
@@ -297,7 +367,8 @@ public class MyPopupMenu {
             p1.setAdapter(a);
 
             try {
-                p1.setWidth(measureContentWidth(a, c) + Dips.dpToPx(20));
+                // Never wider than the screen
+                p1.setWidth(Math.min(measureContentWidth(a, c) + Dips.dpToPx(20), Dips.screenWidth() - Dips.dpToPx(16)));
             } catch (Exception e) {
                 LOG.e(e);
                 p1.setWidth(200);
@@ -326,6 +397,87 @@ public class MyPopupMenu {
             builder.show();
         }
 
+    }
+
+    /**
+     * One choice of a row, a word or an icon: plain, or on a light wash of the theme colour when
+     * it is the one taken.
+     */
+    private View choiceView(final Menu item, final int index, int textColor) {
+        final boolean taken = index == item.choiceSelected;
+        final View chip;
+        if (item.choiceIcons != null) {
+            ImageView icon = new ImageView(c);
+            icon.setImageResource(item.choiceIcons[index]);
+            icon.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            icon.setPadding(Dips.dpToPx(10), Dips.DP_4, Dips.dpToPx(10), Dips.DP_4);
+            icon.setLayoutParams(new ViewGroup.LayoutParams(Dips.dpToPx(52), Dips.dpToPx(36)));
+            tintMenuIcon(icon);
+            chip = icon;
+        } else {
+            TextView text = new TextView(c);
+            text.setText(item.choices[index]);
+            text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+            text.setSingleLine(true);
+            text.setGravity(Gravity.CENTER);
+            text.setMinWidth(Dips.dpToPx(44));
+            text.setMinHeight(Dips.dpToPx(36));
+            text.setPadding(Dips.dpToPx(10), 0, Dips.dpToPx(10), 0);
+            text.setTextColor(textColor);
+            chip = text;
+        }
+        if (item.choiceDescriptions != null) {
+            // Read out by a screen reader, and shown on a long press to whoever cannot tell
+            // what an icon is from its picture
+            chip.setContentDescription(item.choiceDescriptions[index]);
+            TooltipCompat.setTooltipText(chip, item.choiceDescriptions[index]);
+        }
+
+        // No ring: the one taken stands on a see-through wash of the theme colour, in the round of
+        // the chrome, its icon or word in the colour of the others
+        final int accent = AppState.get().appTheme == AppState.THEME_INK ? Color.BLACK : TintUtil.color;
+        final int radius = c.getResources().getDimensionPixelSize(R.dimen.radius);
+        final GradientDrawable shape = new GradientDrawable();
+        shape.setCornerRadius(radius);
+        shape.setColor(taken ? ColorUtils.setAlphaComponent(accent, 0x40) : Color.TRANSPARENT);
+        final GradientDrawable mask = new GradientDrawable();
+        mask.setCornerRadius(radius);
+        mask.setColor(Color.WHITE);
+        chip.setBackground(new RippleDrawable(ColorStateList.valueOf(0x66808080), shape, mask));
+        chip.setSelected(taken);
+
+        chip.setOnClickListener(v -> {
+            item.choiceSelected = index;
+            if (item.onChoice != null) {
+                item.onChoice.onChoice(index);
+            }
+            notifyRows(chip);
+            // A row may have come or gone with the choice (a slider): the menu takes its new height
+            final ListPopupWindow popup = shownPopup;
+            if (popup != null && popup.isShowing()) {
+                chip.post(() -> {
+                    if (popup.isShowing()) {
+                        popup.show();
+                    }
+                });
+            }
+        });
+        return chip;
+    }
+
+    /** Draws the rows of the list the view stands in again, its choice now taken. */
+    private static void notifyRows(View inRow) {
+        View v = inRow;
+        while (v.getParent() instanceof View) {
+            v = (View) v.getParent();
+            if (v instanceof ListView) {
+                ListAdapter adapter = ((ListView) v).getAdapter();
+                if (adapter instanceof android.widget.BaseAdapter) {
+                    ((android.widget.BaseAdapter) adapter).notifyDataSetChanged();
+                }
+                return;
+            }
+        }
     }
 
     private int measureContentWidth(ListAdapter listAdapter, Context mContext) {
@@ -401,6 +553,21 @@ public class MyPopupMenu {
     public void setOnDismissListener(OnDismissListener onDismissListener) {
         this.onDismissListener = onDismissListener;
     }
+
+    public interface OnChoice {
+        void onChoice(int index);
+    }
+
+    /** A value set on a slider in its own row, shown only while it is in use. */
+    public interface SeekRow {
+        boolean shown();
+
+        int value();
+
+        void onValue(int value);
+    }
+
+    private ListPopupWindow shownPopup;
 
     public static class MyMenuItem implements MenuItem {
         String title;
@@ -697,7 +864,55 @@ public class MyPopupMenu {
         boolean isTitle;
         boolean lineBelow;
         boolean keepOpen;
+        boolean isLabel;
+        String[] choices;
+        int[] choiceIcons;
+        String[] choiceDescriptions;
+        int choiceSelected = -1;
+        OnChoice onChoice;
         private String fontPath;
+
+        /** Makes the row a small name over the choices under it, not there to be tapped. */
+        public Menu asLabel() {
+            this.isLabel = true;
+            return this;
+        }
+
+        SeekRow seek;
+        int seekMin, seekMax;
+
+        /** Makes the row a slider from {@code min} to {@code max} percent. */
+        public Menu setSeek(int min, int max, SeekRow seek) {
+            this.seekMin = min;
+            this.seekMax = max;
+            this.seek = seek;
+            return this;
+        }
+
+        /**
+         * Makes the row a set of choices, {@code selected} the one taken (-1: none). A tap takes
+         * one and leaves the menu up, drawn again.
+         */
+        public Menu setChoices(int selected, OnChoice onChoice, String... choices) {
+            this.choices = choices;
+            this.choiceSelected = selected;
+            this.onChoice = onChoice;
+            return this;
+        }
+
+        /** As {@link #setChoices}, each choice an icon: name them with {@link #setChoiceDescriptions}. */
+        public Menu setChoiceIcons(int selected, OnChoice onChoice, int... icons) {
+            this.choiceIcons = icons;
+            this.choiceSelected = selected;
+            this.onChoice = onChoice;
+            return this;
+        }
+
+        /** What each choice is read out as, where it shows no words or only some. */
+        public Menu setChoiceDescriptions(String... descriptions) {
+            this.choiceDescriptions = descriptions;
+            return this;
+        }
 
         /** A tap on the row leaves the menu up, to be tapped again. */
         public Menu keepOpen() {

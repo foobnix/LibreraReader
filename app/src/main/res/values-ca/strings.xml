@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Simple, vertical</string>
    <string name="page_effect_book_horizontal">Pàgina de llibre, horitzontal</string>
    <string name="page_effect_book_vertical">Pàgina de llibre, vertical</string>
+   <string name="pages_layout">Pàgines</string>
+   <string name="scroll_distance">Distància de desplaçament</string>
+   <string name="mode_musician_short">Músic</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Biblioteca</string>
    <string name="extracting_information_from_books">Extreu informació dels fitxers</string>

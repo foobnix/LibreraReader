@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pages turned 0 degrees: a page with a folded corner turned that far, the number upright
+     in it (none when upright). On the frame of the other page icons (a page at 8,4-24,28 of 32). Tinted where shown. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32"
+    android:viewportHeight="32">
+    <group
+        android:pivotX="16"
+        android:pivotY="16"
+        android:rotation="0">
+        <path
+            android:pathData="M10,4 H19 L24,9 V26 A2,2 0 0 1 22,28 H10 A2,2 0 0 1 8,26 V6 A2,2 0 0 1 10,4 Z M19,4 V9 H24"
+            android:strokeColor="@color/black"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+    </group>
+</vector>

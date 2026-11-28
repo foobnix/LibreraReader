@@ -29,6 +29,14 @@ public final class PageEffect {
             R.string.page_effect_book_horizontal,
             R.string.page_effect_book_vertical};
 
+    /** Each effect drawn: a page, the way it goes, and the curl of a book's page. */
+    public static final int[] ICONS = {
+            R.drawable.page_effect_none,
+            R.drawable.page_effect_simple_horizontal,
+            R.drawable.page_effect_simple_vertical,
+            R.drawable.page_effect_book_horizontal,
+            R.drawable.page_effect_book_vertical};
+
     public interface OnChosen {
         void onChosen(int effect);
     }

@@ -208,11 +208,20 @@
                 android:contentDescription="@string/content_of_book"
                 android:src="@drawable/glyphicons_115_list" />
 
-            <com.foobnix.pdf.search.view.HeightImageView
+            <!-- Ringed as the playlist toggle is: a pill, not a circle. Two icons: the pages,
+                 then how the page is turned -->
+            <com.foobnix.pdf.info.view.TwoIconImageView
                 android:id="@+id/onModeChange"
-                style="@style/buttonWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/wh_button"
+                android:layout_width="72dip"
+                android:layout_height="32dip"
+                android:layout_marginLeft="4dip"
+                android:layout_marginRight="4dip"
+                android:background="@drawable/bg_border_white"
+                android:paddingLeft="8dip"
+                android:paddingTop="3dip"
+                android:paddingRight="8dip"
+                android:paddingBottom="3dip"
+                android:scaleType="fitCenter"
                 android:layout_weight="0"
                 android:contentDescription="@string/one_page"
                 android:src="@drawable/my_glyphicons_two_page_one"

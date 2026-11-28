@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">सरल, लंबवत</string>
    <string name="page_effect_book_horizontal">पुस्तक पृष्ठ, क्षैतिज</string>
    <string name="page_effect_book_vertical">पुस्तक पृष्ठ, लंबवत</string>
+   <string name="pages_layout">पृष्ठ</string>
+   <string name="scroll_distance">स्क्रॉल दूरी</string>
+   <string name="mode_musician_short">संगीतकार</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">पुस्तकालय</string>
    <string name="extracting_information_from_books">पुस्तकों से जानकारी निकालने</string>

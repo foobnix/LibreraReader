@@ -1,5 +1,7 @@
 package org.ebookdroid.core;
 
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.Bitmap.Config;
 import android.graphics.PixelFormat;
 import android.graphics.PointF;
@@ -364,7 +366,9 @@ public class DecodeServiceBase implements DecodeService {
                 return;
             }
 
-            croppedPageBounds = checkCropping(task, vuPage);
+            // A turned page is not cropped: the margins are found on the page as it stands
+            final int rotation = Page.rotation();
+            croppedPageBounds = rotation == 0 ? checkCropping(task, vuPage) : null;
             if (executor.isTaskDead(task)) {
                 return;
             }
@@ -375,11 +379,13 @@ public class DecodeServiceBase implements DecodeService {
             // A crop-ON decode that was already in flight when the user turned
             // crop off could otherwise keep rendering the cropped region using a
             // stale node.croppedBounds, so the page never appears to un-crop.
-            final boolean cropping = task.viewState.book != null && task.viewState.book.cp;
+            final boolean cropping = rotation == 0 && task.viewState.book != null && task.viewState.book.cp;
             final RectF actualSliceBounds = (cropping && task.node.croppedBounds != null) ? task.node.croppedBounds : task.node.pageSliceBounds;
 
             // TempHolder.lock.lock();
-            final BitmapRef bitmap = vuPage.renderBitmap(r.width(), r.height(), actualSliceBounds, true);
+            final BitmapRef bitmap = rotation == 0
+                    ? vuPage.renderBitmap(r.width(), r.height(), actualSliceBounds, true)
+                    : renderTurned(vuPage, r.width(), r.height(), actualSliceBounds, rotation);
             // TempHolder.lock.unlock();
 
             if (executor.isTaskDead(task) || task.cropStamp != cropStamp.get()) {
@@ -392,6 +398,23 @@ public class DecodeServiceBase implements DecodeService {
                 bitmap.getBitmap().prepareToDraw();
             }
             // TempHolder.lock.lock();
+            // Words, links and marks are where they stand on the page as it is: on a turned one
+            // they would be drawn and touched in the wrong place, so it has none, as a turned
+            // page in the paged view has none
+            if (rotation != 0) {
+                if (task.node.page.links == null) {
+                    task.node.page.links = new ArrayList<>();
+                }
+                if (task.node.page.annotations == null) {
+                    task.node.page.annotations = new ArrayList<>();
+                }
+                if (task.node.page.texts == null) {
+                    task.node.page.texts = new TextWord[0][];
+                }
+                if (task.node.page.marks == null) {
+                    task.node.page.marks = new ArrayList<>();
+                }
+            }
             if (task.node.page.links == null) {
                 task.node.page.links = vuPage.getPageLinks();
                 if (LengthUtils.isNotEmpty(task.node.page.links)) {
@@ -449,6 +472,36 @@ public class DecodeServiceBase implements DecodeService {
             }
 
         }
+    }
+
+    /**
+     * A slice of the page turned clockwise by {@code rotation}: the matching slice of the page as
+     * it stands, drawn as high as the turned one is wide where it lies on its side, then turned.
+     */
+    static BitmapRef renderTurned(final CodecPage vuPage, final int width, final int height, final RectF slice,
+                                  final int rotation) {
+        final RectF src;
+        final boolean sideways = rotation == 90 || rotation == 270;
+        if (rotation == 90) {
+            // A point x,y of the page shows at 1-y,x
+            src = new RectF(slice.top, 1 - slice.right, slice.bottom, 1 - slice.left);
+        } else if (rotation == 180) {
+            src = new RectF(1 - slice.right, 1 - slice.bottom, 1 - slice.left, 1 - slice.top);
+        } else {
+            // 270: a point x,y of the page shows at y,1-x
+            src = new RectF(1 - slice.bottom, slice.left, 1 - slice.top, slice.right);
+        }
+        final int w = sideways ? height : width;
+        final int h = sideways ? width : height;
+        final BitmapRef upright = vuPage.renderBitmap(w, h, src, true);
+        if (upright == null || upright.getBitmap() == null) {
+            return upright;
+        }
+        final Matrix m = new Matrix();
+        m.postRotate(rotation);
+        final Bitmap turned = Bitmap.createBitmap(upright.getBitmap(), 0, 0, w, h, m, true);
+        BitmapManager.release(upright);
+        return new BitmapRef(turned, 0L);
     }
 
     RectF checkCropping(final DecodeTask task, final CodecPage vuPage) {

@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">シンプル（縦）</string>
    <string name="page_effect_book_horizontal">本のページ（横）</string>
    <string name="page_effect_book_vertical">本のページ（縦）</string>
+   <string name="pages_layout">ページ</string>
+   <string name="scroll_distance">スクロール距離</string>
+   <string name="mode_musician_short">ミュージシャン</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">ライブラリ</string>
    <string name="extracting_information_from_books">書籍から情報の抽出中</string>

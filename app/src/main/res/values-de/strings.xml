@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Einfach, vertikal</string>
    <string name="page_effect_book_horizontal">Buchseite, horizontal</string>
    <string name="page_effect_book_vertical">Buchseite, vertikal</string>
+   <string name="pages_layout">Seiten</string>
+   <string name="scroll_distance">Bildlaufweite</string>
+   <string name="mode_musician_short">Musiker</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliothek</string>
    <string name="extracting_information_from_books">Extrahieren von Informationen aus Dokumenten</string>

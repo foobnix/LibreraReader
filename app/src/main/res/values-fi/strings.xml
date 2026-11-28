@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Yksinkertainen, pystysuunta</string>
    <string name="page_effect_book_horizontal">Kirjan sivu, vaakasuunta</string>
    <string name="page_effect_book_vertical">Kirjan sivu, pystysuunta</string>
+   <string name="pages_layout">Sivut</string>
+   <string name="scroll_distance">Vierityksen pituus</string>
+   <string name="mode_musician_short">Muusikko</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Kirjasto</string>
    <string name="extracting_information_from_books">Haetaan kirjojen tietoja</string>

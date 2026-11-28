@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">단순, 세로</string>
    <string name="page_effect_book_horizontal">책 페이지, 가로</string>
    <string name="page_effect_book_vertical">책 페이지, 세로</string>
+   <string name="pages_layout">페이지</string>
+   <string name="scroll_distance">스크롤 거리</string>
+   <string name="mode_musician_short">뮤지션</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">라이브러리</string>
    <string name="extracting_information_from_books">책에서 정보 추출</string>

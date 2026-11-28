@@ -249,6 +249,21 @@ public class CustomSeek extends FrameLayout {
     private View minus;
     private TextView titleText;
 
+    /** The slider, its value and its - and + in one colour: that of the icons round it. */
+    public void tint(int color) {
+        final android.content.res.ColorStateList list = android.content.res.ColorStateList.valueOf(color);
+        seek.setProgressTintList(list);
+        seek.setThumbTintList(list);
+        seek.setProgressBackgroundTintList(list);
+        textCurerntValue.setTextColor(color);
+        if (plus instanceof android.widget.ImageView) {
+            ((android.widget.ImageView) plus).setImageTintList(list);
+        }
+        if (minus instanceof android.widget.ImageView) {
+            ((android.widget.ImageView) minus).setImageTintList(list);
+        }
+    }
+
     public void setValueText(String text) {
         textCurerntValue.setText(text + sufix);
     }

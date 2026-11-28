@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">ലളിതം, ലംബം</string>
    <string name="page_effect_book_horizontal">പുസ്തക പേജ്, തിരശ്ചീനം</string>
    <string name="page_effect_book_vertical">പുസ്തക പേജ്, ലംബം</string>
+   <string name="pages_layout">പേജുകൾ</string>
+   <string name="scroll_distance">സ്ക്രോൾ ദൂരം</string>
+   <string name="mode_musician_short">സംഗീതജ്ഞൻ</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">പുസ്തകശാല</string>
    <string name="extracting_information_from_books">ഫയലുകളിൽ നിന്ന് വിവരങ്ങൾ എക്‌സ്‌ട്രാക്റ്റുചെയ്യുന്നു</string>

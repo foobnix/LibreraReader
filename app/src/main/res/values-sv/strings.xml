@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">Enkel, lodrätt</string>
    <string name="page_effect_book_horizontal">Boksida, vågrätt</string>
    <string name="page_effect_book_vertical">Boksida, lodrätt</string>
+   <string name="pages_layout">Sidor</string>
+   <string name="scroll_distance">Rullningsavstånd</string>
+   <string name="mode_musician_short">Musiker</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">Bibliotek</string>
    <string name="extracting_information_from_books">Extrahera information från böcker</string>

@@ -172,6 +172,9 @@
    <string name="page_effect_simple_vertical">எளிய, செங்குத்து</string>
    <string name="page_effect_book_horizontal">புத்தகப் பக்கம், கிடைமட்டம்</string>
    <string name="page_effect_book_vertical">புத்தகப் பக்கம், செங்குத்து</string>
+   <string name="pages_layout">பக்கங்கள்</string>
+   <string name="scroll_distance">உருட்டும் தூரம்</string>
+   <string name="mode_musician_short">இசைக்கலைஞர்</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">நூலகம்</string>
    <string name="extracting_information_from_books">கோப்புகளிலிருந்து தகவல்களைப் பிரித்தெடுக்கிறது</string>
