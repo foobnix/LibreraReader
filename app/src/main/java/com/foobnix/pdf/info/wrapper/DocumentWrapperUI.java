@@ -3,6 +3,8 @@
  */
 package com.foobnix.pdf.info.wrapper;
 
+import org.ebookdroid.common.settings.books.SharedBooks;
+import org.ebookdroid.common.settings.SettingsManager;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.content.ContextCompat;
 import android.annotation.TargetApi;
@@ -215,12 +217,24 @@ public class DocumentWrapperUI {
         @Override
         public void onClick(final View v) {
             MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
-            // A text book has no half pages: one page alone is no choice, and is not shown
             MenuBuilderM.addViewModes(v, p, dc);
+            // The layouts of the paged view, as there (a text book has no half pages). Here the
+            // book is in one page or half ones; two pages go over to the paged view, in that layout
             MenuBuilderM.addPageLayouts(p, dc.isTextFormat()
-                    ? new int[]{MenuBuilderM.LAYOUT_ONE}
-                    : new int[]{MenuBuilderM.LAYOUT_HALF, MenuBuilderM.LAYOUT_ONE}, layout -> {
+                            ? new int[]{MenuBuilderM.LAYOUT_ONE, MenuBuilderM.LAYOUT_TWO}
+                            : new int[]{MenuBuilderM.LAYOUT_HALF, MenuBuilderM.LAYOUT_ONE, MenuBuilderM.LAYOUT_TWO,
+                                    MenuBuilderM.LAYOUT_COVER_TWO},
+                    AppSP.get().isCut ? MenuBuilderM.LAYOUT_HALF : MenuBuilderM.LAYOUT_ONE, layout -> {
                 closeDialogs();
+                if (layout == MenuBuilderM.LAYOUT_TWO || layout == MenuBuilderM.LAYOUT_COVER_TWO) {
+                    AppSP.get().isCut = false;
+                    AppSP.get().isDouble = true;
+                    AppSP.get().isDoubleCoverAlone = layout == MenuBuilderM.LAYOUT_COVER_TWO;
+                    SettingsManager.getBookSettings().updateFromAppState();
+                    SharedBooks.save(SettingsManager.getBookSettings());
+                    v.post(() -> ExtUtils.switchReadingMode(dc.getActivity(), dc, AppState.READING_MODE_BOOK));
+                    return;
+                }
                 onModeChange.setImageResource(MenuBuilderM.layoutIcon(layout));
                 applyCut(layout == MenuBuilderM.LAYOUT_HALF);
             });
@@ -1988,43 +2002,11 @@ public class DocumentWrapperUI {
                 nextTypeBootom.setLayoutParams(lp);
             }
         }
-        // The pages, then how far they scroll, as the page button in the paged view has them
+        // The pages alone in the ring, as the page button in the paged view has them
         final Drawable pages = ContextCompat.getDrawable(a, AppSP.get().isCut ? R.drawable.my_glyphicons_page_split : R.drawable.my_glyphicons_two_page_one);
-        final Drawable icon = ContextCompat.getDrawable(a, scrollByIcon(AppState.get().nextScreenScrollBy));
-        if (icon != null && pages != null) {
-            pillIcons(nextTypeBootom, pages, icon);
+        if (pages != null) {
+            pillIcon(nextTypeBootom, pages, true);
         }
-    }
-
-    /** A ringed button with two marks side by side in the middle of its ring. */
-    public static void pillIcons(TextView button, Drawable first, Drawable second) {
-        Object ring = button.getTag(R.id.pillRing);
-        if (!(ring instanceof Drawable)) {
-            ring = button.getBackground();
-            button.setTag(R.id.pillRing, ring);
-        }
-        if (ring == null) {
-            return;
-        }
-        final int size = Dips.dpToPx(24);
-        final int gap = Dips.DP_4;
-        final int color = MagicHelper.getTextOrIconColor();
-        first = first.mutate();
-        second = second.mutate();
-        first.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
-        second.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
-        final LayerDrawable layers = new LayerDrawable(new Drawable[]{(Drawable) ring, first, second});
-        for (int i = 1; i <= 2; i++) {
-            layers.setLayerGravity(i, Gravity.CENTER);
-            layers.setLayerSize(i, size, size);
-        }
-        // Centred in what the insets leave: half the inset off the middle, each to its side
-        layers.setLayerInsetRight(1, size + gap);
-        layers.setLayerInsetLeft(2, size + gap);
-        button.setBackground(layers);
-        button.setCompoundDrawables(null, null, null, null);
-        button.setMinWidth(size * 2 + gap + Dips.dpToPx(20));
-        button.setMinimumWidth(size * 2 + gap + Dips.dpToPx(20));
     }
 
     public View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {

@@ -85,7 +85,6 @@ import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
 import com.foobnix.pdf.info.view.LandscapeSplit;
 import com.foobnix.pdf.info.view.HypenPanelHelper;
 import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.view.TwoIconImageView;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
@@ -774,8 +773,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         onModeChange = (ImageView) findViewById(R.id.onModeChange);
         // Ringed as the library button is
         TintUtil.setRingColor(onModeChange, MagicHelper.getTextOrIconColor());
-        // Beside the pages, how they are turned; a new effect makes the screen again
-        ((TwoIconImageView) onModeChange).setSecondIcon(PageEffect.ICONS[PageEffect.get()]);
         describeModeButton();
         onModeChange.setOnClickListener(new OnClickListener() {
 
@@ -2292,7 +2289,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
      * Lays the pages out as chosen: half a page, one page, two, or two with the cover alone.
      * Cutting the page in half or back, or a text book, opens the book again.
      */
-    /** The page button's two icons in words: read out, and shown on a long press. */
+    /** The page button in words, the pages and how they turn: read out, and shown on a long press. */
     private void describeModeButton() {
         final String text = MenuBuilderM.layoutName(this, MenuBuilderM.currentLayout()) + ", "
                 + PageEffect.name(this, PageEffect.get());

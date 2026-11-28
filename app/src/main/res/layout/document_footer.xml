@@ -208,11 +208,10 @@
                 android:contentDescription="@string/content_of_book"
                 android:src="@drawable/glyphicons_115_list" />
 
-            <!-- Ringed as the playlist toggle is: a pill, not a circle. Two icons: the pages,
-                 then how the page is turned -->
-            <com.foobnix.pdf.info.view.TwoIconImageView
+            <!-- Ringed as the playlist toggle is: a pill, not a circle, the pages in it -->
+            <ImageView
                 android:id="@+id/onModeChange"
-                android:layout_width="72dip"
+                android:layout_width="48dip"
                 android:layout_height="32dip"
                 android:layout_marginLeft="4dip"
                 android:layout_marginRight="4dip"

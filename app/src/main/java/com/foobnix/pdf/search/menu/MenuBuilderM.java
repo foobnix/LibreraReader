@@ -9,6 +9,8 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.widget.PopupMenu;
 
+import androidx.appcompat.widget.TooltipCompat;
+
 import com.foobnix.android.utils.Dips;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
@@ -67,11 +69,15 @@ public class MenuBuilderM {
      * alone is no choice: then the menu shows none.
      */
     public static void addPageLayouts(final MyPopupMenu p, final int[] layouts, final OnLayout onLayout) {
+        addPageLayouts(p, layouts, currentLayout(), onLayout);
+    }
+
+    /** As above, {@code current} the one shown taken. */
+    public static void addPageLayouts(final MyPopupMenu p, final int[] layouts, final int current, final OnLayout onLayout) {
         if (layouts.length < 2) {
             return;
         }
         final Context c = p.getContext();
-        final int current = currentLayout();
         final int[] icons = new int[layouts.length];
         final String[] names = new String[layouts.length];
         int selected = -1;
@@ -162,9 +168,16 @@ public class MenuBuilderM {
                      PageEffect.set(effect);
                      anchor.post(() -> ExtUtils.switchReadingMode(dc.getActivity(), dc));
                  }
-             } else if (PageEffect.set(effect)) {
-                 // The pager is made for one way of going: another way needs it made again
-                 anchor.post(dc::restartActivity);
+             } else {
+                 final boolean remake = PageEffect.set(effect);
+                 // The page button says the effect with the pages
+                 final String text = layoutName(c, currentLayout()) + ", " + PageEffect.name(c, PageEffect.get());
+                 anchor.setContentDescription(text);
+                 TooltipCompat.setTooltipText(anchor, text);
+                 if (remake) {
+                     // The pager is made for one way of going: another way needs it made again
+                     anchor.post(dc::restartActivity);
+                 }
              }
          }, PageEffect.ICONS)
          .setChoiceDescriptions(names);
